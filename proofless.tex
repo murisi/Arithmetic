@@ -21,20 +21,20 @@
 	\date{\today{} \currenttime}
 	\maketitle
 	\section{Introduction}
-		\textbf{Only first 12 pages have been revised. Think of last 15 pages as roadmap.}
+		\textbf{Only first 14 pages have been revised. Think of last 14 pages as a roadmap.}
 		
 		What follows is an attempt to present linear algebra as a system of algorithms in a manner devoid of argumentation. The correctness of these algorithms hopefully is made apparent by stating expected variable values at certain points of execution. Mathematical argumentation is circumvented by letting algorithms \textit{show} what a proposition in an argument might have \textit{said}.
 		
-		The subset of linear algebra I intend to tackle consists of the Smith normal form, determinants, compund matrices, general solutions to linear systems, characteristic matrices, the rational canonical form, block matrix multiplication, minimum polynomials, orthogonalization, and the spectral theorem for symmetric matrices. To get the above done, I also have to extract the algorithms from Sturm's theorem, Cauchy's bound, the Cauchy-Schwarz inequality, the Euclidean division algorithm, and the factor theorem.
+		The subset of linear algebra I intend to tackle consists of the Smith normal form, determinants, compound matrices, general solutions to linear systems, characteristic matrices, the rational canonical form, block matrix multiplication, minimum polynomials, orthogonalization, and the spectral theorem for symmetric matrices. To get the above done, I also have to extract the algorithms from Sturm's theorem, Cauchy's bound, the Cauchy-Schwarz inequality, the Euclidean division algorithm, and the factor theorem.
 		
 		Some things to take into consideration:
 		\begin{enumerate}
 			\item Where a proof expresses generality using universal quantification, the algorithms below show generality by allowing one to choose inputs. See \hyperref[sec:algorithm 24]{algorithm 24}.
-			\item Where a proof expresses that a proposition implies contradiction, the algorithms below merely show how certain control flows lead to absurdity. See algorithms \hyperref[sec:algorithm 11]{11}, \hyperref[sec:algorithm 28]{28}, \hyperref[sec:algorithm 34]{34}, and \hyperref[sec:algorithm 51]{51}.
-			\item Where a proof uses the principle of mathematical induction, the algorithms below merely use iteration/recursion and loop invariants. See algorithms \hyperref[sec:algorithm 46]{46}, \hyperref[sec:algorithm 46]{46 auxilliary}, and \hyperref[sec:algorithm 51]{51}.
+			\item Where a proof expresses that a proposition implies contradiction, the algorithms below merely show how certain control flows lead to absurdity. See algorithms \hyperref[sec:algorithm 11]{11}, \hyperref[sec:algorithm 28]{28}, \hyperref[sec:algorithm 35]{34}, and \hyperref[sec:algorithm 52]{51}.
+			\item Where a proof uses the principle of mathematical induction, the algorithms below merely use iteration/recursion and loop invariants. See algorithms \hyperref[sec:algorithm 47]{46}, \hyperref[sec:algorithm 47]{46 auxilliary}, and \hyperref[sec:algorithm 52]{51}.
 		\end{enumerate}
 		
-		Anyway, to see most easily what I am trying to do, see algorithms \hyperref[sec:algorithm 33]{33}, \hyperref[sec:algorithm 39]{39}, \hyperref[sec:algorithm 48]{48}, and \hyperref[sec:algorithm 50]{50}.
+		Anyway, to see most easily what I am trying to do, see algorithms \hyperref[sec:algorithm 34]{33}, \hyperref[sec:algorithm 40]{39}, \hyperref[sec:algorithm 49]{48}, and \hyperref[sec:algorithm 51]{50}.
 	\tableofcontents
 	\section{Body}
 		\subsection{Algorithm 1}\label{sec:algorithm 1}
@@ -501,25 +501,22 @@
 					\item Verify that $0=1$.
 					\item \textbf{Abort algorithm.}
 				\end{enumerate}
-				\item Otherwise if $D$ does not have a zero on its diagonal, then do the following:
+				\item Otherwise do the following:
 				\begin{enumerate}
+					\item Verify that $D$ does not have a zero on its diagonal.
 					\item Verify that $B\backslash I_m=I_m(B\backslash I_m)=AB(B\backslash I_m)=A(B(B\backslash I_m))=AI_m=A$.
 					\item \textbf{Therefore verify that $BA=B(B\backslash I_m)=I_m$.}
 				\end{enumerate}
-				\item Otherwise do the following:
-				\begin{enumerate}
-					\item \textbf{Abort algorithm.}
-				\end{enumerate}
 			\end{enumerate}
 		\subsection{Algorithm 26}\label{sec:algorithm 26}
-			\textbf{Choose four $m\times m$ matrices:
+			\textbf{Choose $m\times m$ polynomial matrices $\langle B,M,M^{-1},A,N^{-1},N\rangle$ such that:
 			\begin{enumerate}
-				\item $A$ and $B$, whose entries are all rationals.
-				\item $M$ and $N$, polynomial matrices that are the product of row/column operations, like $M$ and $N$ of \hyperref[sec:algorithm 5]{algorithm 5}.
-				\item In such a way that $xI_m-B=M(xI_m-A)N$.
+				\item $B$ and $A$ are rational matrices.
+				\item $MM^{-1}=I_m$.
+				\item $N^{-1}N=I_m$.
+				\item $xI_m-B=M(xI_m-A)N$.
 			\end{enumerate}} and do the following:
 			\begin{enumerate}
-				\item Let $N^{-1}$ be constructed from $N$ in a similar way to \hyperref[sec:algorithm 6]{algorithm 6}.
 				\item Post-multiply both sides of (3) by $N^{-1}$.
 				\item Verify that $(xI_m-B)N^{-1}=M(xI_m-A)NN^{-1}=M(xI_m-A)I_m=M(xI_m-A)$.
 				\item Let $M_0x^b+M_1x^{b-1}+\cdots+M_bx^0=M$, where the $M_i$ are rational matrices.
@@ -541,7 +538,6 @@
 				\item Therefore verify that $xR_1-R_1A=R_1(xI_m-A)=(xI_m-B)R_2=(xI_m-B)R_1=xR_1-BR_1$.
 				\item Therefore by adding $-xR_1$ to both sides, verify that $-R_1A=-BR_1$
 				\item Therefore by negating both sides, verify that $R_1A=BR_1$.
-				\item Construct the $m\times m$ matrix $M^{-1}$ from $M$ in a similar manner to \hyperref[sec:algorithm 6]{algorithm 6}.
 				\item In a similar way to (8), construct a polynomial matrix $Q_3$, and a rational matrix $R_3$ such that $M^{-1}=(xI-A)Q_3+R_3$.
 				\item Verify that $I_m=MM^{-1}=((xI_m-B)Q_1+R_1)M^{-1}=(xI_m-B)Q_1M^{-1}+R_1M^{-1}=(xI_m-B)Q_1M^{-1}+R_1(xI-A)Q_3+R_1R_3=(xI_m-B)Q_1M^{-1}+(xI-B)R_1Q_3+R_1R_3=(xI_m-B)(Q_1M^{-1}+R_1Q_3)+R_1R_3$.
 				\item By equating the powers of $x$ on both sides, verify that $Q_1M^{-1}+R_1Q_3=0$.
@@ -568,8 +564,9 @@
 					\item Therefore using \hyperref[sec:algorithm 19]{algorithm 19}, verify that $\det(xI-A)=0$.
 					\item \textbf{Abort algorithm.}
 				\end{enumerate}
-				\item Otherwise if none of the diagonal entries of $B$ equal zero, do the following:
+				\item Otherwise do the following:
 				\begin{enumerate}
+					\item Verify that none of the diagonal entries of $B$ equal zero.
 					\item If the last diagonal entry of $B$ is not monic, then do the following:
 					\begin{enumerate}
 						\item Cognizant of the execution of \hyperref[sec:algorithm 3]{algorithm 3}, verify that the first $m-1$ diagonal entries of $B$ are monic.
@@ -578,25 +575,18 @@
 						\item Therefore by \hyperref[sec:algorithm 19]{algorithm 19}, verify that $\det(xI-A)$ is not monic
 						\item \textbf{Abort algorithm.}
 					\end{enumerate}
-					\item Otherwise if the last diagonal entry of $B$ is monic, then do the following:
+					\item Otherwise do the following:
 					\begin{enumerate}
+						\item Verify that the last diagonal entry of $B$ is monic.
 						\item \textbf{Verify that none of the diagonal entries of $B$ equal zero.}
 						\item \textbf{Verify that all the diagonal entries of $B$ are monic.}
 					\end{enumerate}
-					\item Otherwise do the following:
-					\begin{enumerate}
-						\item \textbf{Abort algorithm.}
-					\end{enumerate}
-				\end{enumerate}
-				\item Otherwise do the following:
-				\begin{enumerate}
-					\item \textbf{Abort algorithm.}
 				\end{enumerate}
 			\end{enumerate}
-		\subsection{Algorithm 29 (Rational canonical form construction)}\label{sec:algorithm 29}
+		\subsection{Algorithm 29 (Rational canonical form construction)}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals} and do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let $B$ be the result.
+				\item Execute \hyperref[sec:algorithm 5]{algorithm 5} on the polynomial matrix $xI_m-A$ and let $\langle B,,\rangle$ be the result.
 				\item Execute \hyperref[sec:algorithm 28]{algorithm 28} on $A$.
 				\item Let $E$ and $F$ be a $0\times 0$ matrices.
 				\item \textbf{Now iterate through the diagonal entries $p=x^k+p_1x^{k-1}+p_2x^{k-2}+\cdots+p_kx^0$ of $B$ and:}
@@ -634,23 +624,51 @@
 				\item Let $n$ be the sum of the positive degrees of the polynomials on the diagonal of $B$.
 				\item Verify that $E$ and $F$ are $n\times n$ matrices.
 				\item Using \hyperref[sec:algorithm 8]{algorithm 8}, verify that $n=\sum_{i=1}^{i=m}\deg(B_{i,i})=\deg(\det(B))=\deg(\det(xI-A))=m$.
-				\item Using row and column operations based on the instances of execution of row and column operations (4aviii) to (4axiii), construct row and column operations to turn $xI-E$ into $F$.
+				\item Therefore verify that $E$ and $F$ are $m\times m$ matrices.
+				\item \textbf{Based on operations (4aviii) to (4axiii), use row and column operations to transform $xI_m-E$ into $F$.}
+				\item \textbf{Yield the tuple $\langle E, F\rangle$.}
+			\end{enumerate}
+		\subsection{Algorithm 30}\label{sec:algorithm 30}
+			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals} and do the following:
+			\begin{enumerate}
+				\item Execute \hyperref[sec:algorithm 5]{algorithm 5} on the polynomial matrix $xI_m-A$ and let $\langle B,{M_3}^{-1},{N_3}^{-1}\rangle$ be the result.
+				\item Verify that ${M_3}^{-1}(xI_m-A){N_3}^{-1}=B$.
+				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on the polynomial matrix $xI_m-A$ and let $\langle M_3,B,N_3\rangle$ be the result.
+				\item Verify that $xI_m-A=M_3BN_3$.
+				\item Using \hyperref[sec:algorithm 7]{algorithm 7}, verify that $M_3{M_3}^{-1}=I_m$.
+				\item Using \hyperref[sec:algorithm 7]{algorithm 7}, verify that ${N_3}^{-1}N_3=I_m$.
+				\item Augment (9) in an analogous way to how \hyperref[sec:algorithm 5]{algorithm 5} augments \hyperref[sec:algorithm 3]{algorithm 3}. Let $\langle F,M_1,N_1\rangle$ receive the result once (9) has executed.
+				\item Augment (9) in an analogous way to how \hyperref[sec:algorithm 6]{algorithm 6} augments \hyperref[sec:algorithm 3]{algorithm 3}. Let $\langle {M_1}^{-1},F,{N_1}^{-1}\rangle$ receive the result once (9) has executed.
+				\item Execute \hyperref[sec:algorithm 29]{algorithm 29} on the matrix $A$ and let $\langle E,F\rangle$ receive the result.
+				\item Verify that $M_1(xI_m-E)N_1=F$.
+				\item Using \hyperref[sec:algorithm 7]{algorithm 7}, verify that $M_1{M_1}^{-1}=I_m$.
+				\item Using \hyperref[sec:algorithm 7]{algorithm 7}, verify that ${N_1}^{-1}N_1=I_m$.
+				\item Augment (18) in an analogous way to how \hyperref[sec:algorithm 5]{algorithm 5} augments \hyperref[sec:algorithm 3]{algorithm 3}. Let $\langle B,M_2,N_2\rangle$ receive the result once (18) has executed.
+				\item Augment (18) in an analogous way to how \hyperref[sec:algorithm 6]{algorithm 6} augments \hyperref[sec:algorithm 3]{algorithm 3}. Let $\langle {M_2}^{-1},B,{N_2}^{-1}\rangle$ receive the result once (18) has executed.
 				\item Verify that $F$ and $B$ have the same positive degree polynomials on their diagonals.
 				\item Verify that the rest of the diagonals of $F$ and $B$ are $1$s.
 				\item Verify that $F$ is the same as $B$ up to rearrangement of the diagonal entries.
-				\item Let $F'$ be a copy of $F$.
-				\item Rearrange $F'$ to be $B$ by using diagonal entry swaps. In general, swap the $i^{th}$ and $j^{th}$ diagonal entries as follows:
+				\item Rearrange a copy of $F$ to be $B$ by using diagonal entry swaps. In general, swap the $i^{th}$ and $j^{th}$ diagonal entries as follows:
 				\begin{enumerate}
 					\item Use \hyperref[sec:algorithm 27]{algorithm 27} to negate row $i$ and swap it with row $j$.
 					\item Use an algorithm analogous to \hyperref[sec:algorithm 27]{algorithm 27} to negate column $i$ and swap it with column $j$.
 				\end{enumerate}
-				\item By row and column operations, we went from $xI-E$ to $F$, then we went from $F$ to $B$, and using row and column operations obtained in a similar way to \hyperref[sec:algorithm 6]{algorithm 6}, we should be able to go from $B$ to $xI-A$.
-				\item Sequencing these row and column operations starting with $xI-E$ should yield $xI-A$.
-				\item \textbf{Recording the operations in (15) in a similar way to \hyperref[sec:algorithm 5]{algorithm 5} should produce matrices $M$ and $N$ such that $xI-A=M(xI-E)N$.}
-				\item \textbf{Now using \hyperref[sec:algorithm 26]{algorithm 26}, it should be possible to construct matrices $R_1$ and $R_3$ such that $A=R_1ER_3$ and such that $R_1R_3=I_m$.}
+				\item Verify that $M_2FN_2=B$.
+				\item Using \hyperref[sec:algorithm 7]{algorithm 7}, verify that $M_2{M_2}^{-1}=I_m$.
+				\item Using \hyperref[sec:algorithm 7]{algorithm 7}, verify that ${N_2}^{-1}N_2=I_m$.
+				\item Let $M=M_3M_2M_1$.
+				\item Let $N=N_1N_2N_3$.
+				\item Verify that $xI_m-A=M_3BN_3=M_3M_2FN_2N_3=M_3M_2M_1(xI_m-E)N_1N_2N_3=M(xI_m-E)N$.
+				\item Let $M^{-1}={M_1}^{-1}{M_2}^{-1}{M_3}^{-1}$.
+				\item Let $N^{-1}={N_3}^{-1}{N_2}^{-1}{N_1}^{-1}$.
+				\item Verify that $MM^{-1}=M_3M_2M_1{M_1}^{-1}{M_2}^{-1}{M_3}^{-1}=I_m$.
+				\item Verify that $N^{-1}N={N_3}^{-1}{N_2}^{-1}{N_1}^{-1}N_1N_2N_3=I_m$.
+				\item \textbf{Execute \hyperref[sec:algorithm 26]{algorithm 26} on the matrices $\langle A,M,M^{-1},E,N^{-1},N\rangle$. Let the tuple $\langle R_1,R_3\rangle$ be the result.}
+				\item Verify that $A=R_1ER_3$.
+				\item Verify that $R_1R_3=I_m$.
 				\item \textbf{Yield the tuple $\langle R_1,E,R_3\rangle$.}
 			\end{enumerate}
-		\subsection{Algorithm 30 (Block matrix multiplication)}\label{sec:algorithm 30}
+		\subsection{Algorithm 31 (Block matrix multiplication)}\label{sec:algorithm 31}
 			\textbf{Choose an $m\times n$ matrix, $A$, and an $n\times k$ matrix, $B$, whose entries are polynomials. Choose integers $1\le a\le m$, $1\le b\le n$, and $1\le c\le k$.} Now do the following:
 			\begin{enumerate}
 				\item Let $C$ be the submatrix of $A$ that spans rows $1$ to $a-1$ and columns $1$ to $b-1$.
@@ -668,16 +686,16 @@
 				\item \textbf{Therefore verify that the top left $(a-1)\times(c-1)$ block of $AB$ equals $CE+DF$.}
 				\item \textbf{Do similar computations to verify that the other three blocks of $AB$ are computed in an analogous way to multiplying two $2\times 2$ matrices.}
 			\end{enumerate}
-		\subsection{Algorithm 31}\label{sec:algorithm 31}
+		\subsection{Algorithm 32}\label{sec:algorithm 32}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals} and do the following:
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let $B$ be the result.
 				\item Execute \hyperref[sec:algorithm 28]{algorithm 28} on $A$.
 				\item Let $r=x^t+r_1x^{t-1}+r_2x^{t-2}+\cdots+r_tx^0=B_{m,m}$.
-				\item Execute \hyperref[sec:algorithm 29]{algorithm 29} on the matrix $A$ to obtain the matrix $E$.
+				\item Execute \hyperref[sec:algorithm 30]{algorithm 30} on the matrix $A$ to obtain the matrix $E$.
 				\item Verify that $R_3R_1=I_m$.
-				\item Using \hyperref[sec:algorithm 29]{algorithm 29}, verify that $r(A)=A^t+r_1A^{t-1}+r_2A^{t-2}+\cdots+r_tA^0=(R_1ER_3)^t+r_1(R_1ER_3)^{t-1}+r_2(R_1ER_3)^{t-2}+\cdots+r_t(R_1ER_3)^0=R_1(E^t+r_1E^{t-1}+r_2E^{t-2}+\cdots+r_tE^0)R_3=R_1r(E)R_3$.
-				\item For $i=0$ up to $i=t$, by repeated applications of \hyperref[sec:algorithm 30]{algorithm 30}, verify that $E^i$ evaluates to $E$ with all its diagonal blocks exponentiated to $i$.
+				\item Using \hyperref[sec:algorithm 30]{algorithm 30}, verify that $r(A)=A^t+r_1A^{t-1}+r_2A^{t-2}+\cdots+r_tA^0=(R_1ER_3)^t+r_1(R_1ER_3)^{t-1}+r_2(R_1ER_3)^{t-2}+\cdots+r_t(R_1ER_3)^0=R_1(E^t+r_1E^{t-1}+r_2E^{t-2}+\cdots+r_tE^0)R_3=R_1r(E)R_3$.
+				\item For $i=0$ up to $i=t$, by repeated applications of \hyperref[sec:algorithm 31]{algorithm 31}, verify that $E^i$ evaluates to $E$ with all its diagonal blocks exponentiated to $i$.
 				\item Therefore verify that $r(E)$ evaluates to $m\times m$ matrix whose diagonal blocks are the application of $r$ on the corresponding diagonal blocks of $E$.
 				\item For $j=1$ to $j=m$:
 				\begin{enumerate}
@@ -696,13 +714,13 @@
 				\item Therefore verify that $r(E)=0_{m\times m}$.
 				\item \textbf{Therefore verify that $r(A)=R_1r(E)R_3=R_10_{m\times m}R_3=0_{m\times m}$.}
 			\end{enumerate}
-		\subsection{Algorithm 32}\label{sec:algorithm 32}
+		\subsection{Algorithm 33}\label{sec:algorithm 33}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals. Choose a non-zero polynomial $p=x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$ such that $p(A)=0$.}
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let $B$ be the result.
 				\item Execute \hyperref[sec:algorithm 28]{algorithm 28} on $A$.
 				\item Let $r=x^u+r_1x^{u-1}+r_2x^{u-2}+\cdots+r_ux^0=B_{m,m}$.
-				\item Execute \hyperref[sec:algorithm 29]{algorithm 29} on the matrix $A$ to obtain the matrix $E$.
+				\item Execute \hyperref[sec:algorithm 30]{algorithm 30} on the matrix $A$ to obtain the matrix $E$.
 				\item Let $F$ be a $1\times 2$ matrix consisting in-order of $p$ and $r$.
 				\item Execute \hyperref[sec:algorithm 5]{algorithm 5} on $F$ and let $\langle D,M,N\rangle$ receive the result.
 				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on $F$ and let $\langle M^{-1},D,N^{-1}\rangle$ receive the result.
@@ -716,11 +734,11 @@
 				\item Therefore verify that $w\le u$.
 				\item Verify that $D=MFN$.
 				\item Therefore verify that $g=D_{1,1}=N_{1,1}p+N_{2,1}r$.
-				\item Therefore using \hyperref[sec:algorithm 31]{algorithm 31}, verify that $g(A)=N_{1,1}(A)p(A)+N_{2,1}(A)r(A)=N_{1,1}(A)0_{m\times m}+N_{2,1}(A)0_{m\times m}=0_{m\times m}$.
-				\item Using steps of \hyperref[sec:algorithm 31]{algorithm 31}, \hyperref[sec:algorithm 25]{algorithm 25}, and \hyperref[sec:algorithm 29]{algorithm 29}, verify that $g(E)=I_mg(E)I_m=R_3R_1g(E)R_3R_1=R_3g(A)R_1=R_30_{m\times m}R_1=0_{m\times m}$.
+				\item Therefore using \hyperref[sec:algorithm 32]{algorithm 32}, verify that $g(A)=N_{1,1}(A)p(A)+N_{2,1}(A)r(A)=N_{1,1}(A)0_{m\times m}+N_{2,1}(A)0_{m\times m}=0_{m\times m}$.
+				\item Using steps of \hyperref[sec:algorithm 32]{algorithm 32}, \hyperref[sec:algorithm 25]{algorithm 25}, and \hyperref[sec:algorithm 30]{algorithm 30}, verify that $g(E)=I_mg(E)I_m=R_3R_1g(E)R_3R_1=R_3g(A)R_1=R_30_{m\times m}R_1=0_{m\times m}$.
 				\item Let $G$ be the $u\times u$ block in $E$ corresponding to the polynomial $r$ in $B$.
-				\item Using steps of \hyperref[sec:algorithm 31]{algorithm 31}, verify that $g(G)=0_{u\times u}$.
-				\item Therefore verify, using steps of \hyperref[sec:algorithm 31]{algorithm 31}, that $g(G)e_1=(G^w+g_1G^{w-1}+g_2G^{w-2}+\cdots+g_wG^0)e_1=Ge_w+g_1e_w+g_2e_{w-1}+\cdots+g_we_1$.
+				\item Using steps of \hyperref[sec:algorithm 32]{algorithm 32}, verify that $g(G)=0_{u\times u}$.
+				\item Therefore verify, using steps of \hyperref[sec:algorithm 32]{algorithm 32}, that $g(G)e_1=(G^w+g_1G^{w-1}+g_2G^{w-2}+\cdots+g_wG^0)e_1=Ge_w+g_1e_w+g_2e_{w-1}+\cdots+g_we_1$.
 				\item If $w<u$, then:
 				\begin{enumerate}
 					\item Verify that $Ge_w+g_1e_w+g_2e_{w-1}+\cdots+g_we_1=e_{w+1}+g_1e_w+g_2e_{w-1}+\cdots+g_we_1=0_{u\times 1}$.
@@ -740,14 +758,14 @@
 					\item \textbf{Therefore verify that $p=F_{1,1}=D_{1,1}{N^{-1}}_{1,1}+D_{1,2}{N^{-1}}_{2,1}={N^{-1}}_{1,1}g+{N^{-1}}_{2,1}*0={N^{-1}}_{1,1}g={N^{-1}}_{1,1}r$.}
 				\end{enumerate}
 			\end{enumerate}
-		\subsection{Algorithm 33 (Difference of powers)}\label{sec:algorithm 33}
+		\subsection{Algorithm 34 (Difference of powers)}\label{sec:algorithm 34}
 			\textbf{Choose an integer $n>0$ and a formal polynomial $p=p_0x^n+p_1x^{n-1}+\cdots+p_n$.}
 			\begin{enumerate}
 				\item Let the formal polynomial $G(y,z)=\sum_{r=1}^n p_{n-r}(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})$.
 				\item \textbf{Verify that the formal polynomial $p(z)-p(y)=(p_0z^n+p_1z^{n-1}+\cdots+p_n)-(p_0y^n+p_1y^{n-1}+\cdots+p_n)=(\sum_{r=0}^n p_{n-r}z^r)-(\sum_{r=0}^n p_{n-r}y^r)=\sum_{r=1}^n p_{n-r}(z^r-y^r)=\sum_{r=1}^n p_{n-r}(z-y)(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})=(z-y)\sum_{r=1}^n p_{n-r}(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})=(z-y)G(y,z)$.}
 				\item \textbf{Yield the tuple $\langle G(y,z)\rangle$.}
 			\end{enumerate}
-		\subsection{Algorithm 34}\label{sec:algorithm 34}
+		\subsection{Algorithm 35}\label{sec:algorithm 35}
 			\textbf{Choose a formal polynomial $p=x^n+p_1x^{n-1}+\cdots+p_n$ and rationals $a_1<a_2<\cdots<a_n<a_{n+1}$ in such a way that for $i=1$ to $i=n+1$, $p(a_i)=0$.} Now do the following:
 			\begin{enumerate}
 				\item Write $p$ as $1*p$, so that it has two factors.
@@ -762,7 +780,7 @@
 					\end{enumerate}
 					\item Otherwise $g(a_i)=0$. Now do the following:
 					\begin{enumerate}
-						\item Execute \hyperref[sec:algorithm 33]{algorithm 33} on $g$ and let $(G(x,y))$ be the result.
+						\item Execute \hyperref[sec:algorithm 34]{algorithm 34} on $g$ and let $(G(x,y))$ be the result.
 						\item Let the formal polynomial $q=q(x)=G(a_i,x)$.
 						\item Verify that the formal polynomial $g=g(x)=g(x)-g(a_i)=(x-a_i)G(a_i,x)=(x-a_i)q(x)=(x-a_i)q$.
 						\item Verify that $p=(x-a_1)(x-a_2)\cdots(x-a_i)q$.
@@ -772,10 +790,10 @@
 				\item Using (3), verify that $p(a_{n+1})\ne 0$.
 				\item \textbf{Abort algorithm.}
 			\end{enumerate}
-		\subsection{Algorithm 35 (Bisection)}\label{sec:algorithm 35}
+		\subsection{Algorithm 36 (Bisection)}\label{sec:algorithm 36}
 			\textbf{Choose a formal polynomial $f$. Choose rational numbers $a<b$ such that $\sgn(f(a))=-\sgn(f(b))$. Choose a rational number target $B>0$.} Now do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 33]{algorithm 33} on $f$ and let $(G(x,y))$ be the result.
+				\item Execute \hyperref[sec:algorithm 34]{algorithm 34} on $f$ and let $(G(x,y))$ be the result.
 				\item Verify that the formal polynomial $f(y)-f(x)=(y-x)G(x,y)$.
 				\item Let $G'$ be $G$ but with all negative signs replaced with positive signs.
 				\item Let $U=\max(G'(\lvert a\rvert,\lvert a\rvert), G'(\lvert b\rvert,\lvert b\rvert))$.
@@ -800,7 +818,7 @@
 						\end{enumerate}
 						\item Otherwise the $i+1$ numbers $c_k$ such that $c_1<c_2<\cdots<c_i<c_{i+1}$ have been recorded. Now do the following:
 						\begin{enumerate}
-							\item Execute \hyperref[sec:algorithm 34]{algorithm 34} on the formal polynomial $f_i$ and the rationals $c_1<c_2<\cdots<c_i<c_{i+1}$.
+							\item Execute \hyperref[sec:algorithm 35]{algorithm 35} on the formal polynomial $f_i$ and the rationals $c_1<c_2<\cdots<c_i<c_{i+1}$.
 							\item \textbf{Abort algorithm.}
 						\end{enumerate}
 					\end{enumerate}
@@ -814,7 +832,7 @@
 				\end{enumerate}
 				\item \textbf{Verify that $\lvert f(a)\rvert,\lvert f(b)\rvert<\lvert f(b)-f(a)\rvert=\lvert(b-a)G(a,b)\rvert<\lvert(b-a)G'(a,b)\rvert<\lvert b-a\rvert U<B$.}
 			\end{enumerate}
-		\subsection{Algorithm 36}\label{sec:algorithm 36}
+		\subsection{Algorithm 37}\label{sec:algorithm 37}
 			\textbf{Choose a polynomial $f_n=x^n+p_1x^{n-1}+\cdots+p_n$ and pairs of rationals $(a_n,b_n),(a_{n-1},b_{n-1}),\cdots,(a_0,b_0)$ in such a way that:
 			\begin{enumerate}
 				\item $a_n<b_n\le a_{n-1}<b_{n-1}\le\cdots\le a_1<b_1\le a_0<b_0$.
@@ -825,7 +843,7 @@
 				\item For $i=n$ to $i=1$:
 				\begin{enumerate}
 					\item Let $B=\min_{k=0}^{i-1}\min(\lvert f_i(a_i)\rvert,\lvert f_i(b_i)\rvert)$.
-					\item Execute \hyperref[sec:algorithm 35]{algorithm 35} on the formal polynomial $f_i$, interval $(a_i, b_i)$, and target of $B$. Let $a_i$ and $b_i$ receive their updates.
+					\item Execute \hyperref[sec:algorithm 36]{algorithm 36} on the formal polynomial $f_i$, interval $(a_i, b_i)$, and target of $B$. Let $a_i$ and $b_i$ receive their updates.
 					\item Verify that $\lvert f_i(b_i)\rvert<B$.
 					\item $f$ should evaluate to $f-f_i(b_i)+f_i(b_i)$ which should evaluate to $(x-b_i)f_{i-1}+f_i(b_i)$, where $f_{i-1}$ is a monic $(i-1)^{th}$ degree formal polynomial.
 					\item For $k=0$ to $k=i-1$, do the following:
@@ -856,7 +874,7 @@
 				\item By (1eiD) and (1eiH) or (1eiiA) and (1eiiB), $\sgn(f_0(a_0))=-\sgn(f_0(b_0))$.
 				\item \textbf{Verify that 0=1.}
 			\end{enumerate}
-		\subsection{Algorithm 37 (Sturm's algorithm initialization)}\label{sec:algorithm 37}
+		\subsection{Algorithm 38 (Sturm's algorithm initialization)}\label{sec:algorithm 38}
 			\textbf{Choose a sequence of polynomials $s_0={s_0}_0,s_1={s_1}_0x^1+{s_1}_1,\cdots,s_m={s_m}_0x^m+{s_m}_1x^{m-1}+\cdots+{s_m}_m$ and another sequence of polynomials $q_1,q_2,\cdots,q_{m-1}$ in such a way that
 			\begin{enumerate}
 				\item For $i=0$ to $i=m$, ${s_i}_0>0$
@@ -867,7 +885,7 @@
 				\item Let $J_i(x)$ be a shorthand for the number of sign changes in the sequence $s_0(x),s_1(x),\cdots,s_i(x)$.
 				\item For $i=1$ to $i=m$, do the following:
 				\begin{enumerate}
-					\item Execute \hyperref[sec:algorithm 33]{algorithm 33} on $s_i$ and let $(G_i(x,y))$ be the result.
+					\item Execute \hyperref[sec:algorithm 34]{algorithm 34} on $s_i$ and let $(G_i(x,y))$ be the result.
 					\item \textbf{Verify that the formal polynomial $s_i(y)-s_i(x)=(y-x)G_i(x,y)$.}
 				\end{enumerate}
 				\item For $i=1$ to $i=m-1$, do the following:
@@ -881,9 +899,9 @@
 					\item \textbf{Factorize this equation and divide it through by $s_0$ to obtain the equation $g_is_{i+1}+h_is_i=1$, where $g_i$ and $h_i$ are polynomials.}
 				\end{enumerate}
 			\end{enumerate}
-		\subsection{Algorithm 38 (Change in number of sign changes verification)}\label{sec:algorithm 38}
+		\subsection{Algorithm 39 (Change in number of sign changes verification)}\label{sec:algorithm 39}
 			\begin{enumerate}
-				\item \textbf{Execute \hyperref[sec:algorithm 37]{algorithm 37}.}
+				\item \textbf{Execute \hyperref[sec:algorithm 38]{algorithm 38}.}
 				\item \textbf{Choose rational numbers $c$ and $d$ in such a way that:
 				\begin{enumerate}
 					\item $J_m(c)$ and $J_m(d)$ are well defined.
@@ -936,7 +954,7 @@
 				\end{enumerate}
 				\item \textbf{If $\sgn(s_m(c))=\sgn(s_m(d))$, then $J_m(c)$ should equal $J_m(d)$. Otherwise $\lvert J_m(d)-J_m(c)\rvert$ should equal $1$.}
 			\end{enumerate}
-		\subsection{Algorithm 39 (Cauchy's positive verification)}\label{sec:algorithm 39}
+		\subsection{Algorithm 40 (Cauchy's positive verification)}\label{sec:algorithm 40}
 			\textbf{Choose a non-zero polynomial $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0>0$. Choose a rational $k>1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert$.} In reverse order verify the following:
 			\begin{enumerate}
 				\item \textbf{$p(k)>0$}
@@ -950,24 +968,24 @@
 				\item $k^{n+1}-(1+\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert)k^n+\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert>0$
 				\item $k>1+\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert$
 			\end{enumerate}
-		\subsection{Algorithm 40 (Cauchy's alternation verification)}\label{sec:algorithm 40}
+		\subsection{Algorithm 41 (Cauchy's alternation verification)}\label{sec:algorithm 41}
 			\textbf{Choose a non-zero polynomial $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0>0$. Choose a rational $k<-(1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert)$.} Now do the following:
 			\begin{enumerate}
 				\item Let $q=q_0x^t+q_1x^{t-1}+q_2x^{t-2}+\cdots+q_tx^0$, where $q_i=(-1)^ip_i$.
 				\item It should be that $k<-(1+\max_{i=1}^t\lvert\frac{q_i}{q_0}\rvert)$.
 				\item Therefore it should be that $-k>1+\max_{i=1}^t\lvert\frac{q_i}{q_0}\rvert$.
-				\item Now execute \hyperref[sec:algorithm 37]{algorithm 37} on $q$ and $-k$.
+				\item Now execute \hyperref[sec:algorithm 38]{algorithm 38} on $q$ and $-k$.
 				\item It should be that $q(-k)>0$, that is, $\sum_{i=0}^t q_i(-k)^{t-i}>0$.
 				\item Therefore, it should be that $\sum_{i=0}^t (-1)^i(-1)^{t-i}p_ik^{t-i}>0$.
 				\item Therefore, it should be that $(-1)^t\sum_{i=0}^t p_ik^{t-i}>0$.
 				\item \textbf{Therefore it should be that $(-1)^tp(k)>0$.}
 			\end{enumerate}
-		\subsection{Algorithm 41 (Sturm's sign change)}\label{sec:algorithm 41}
+		\subsection{Algorithm 42 (Sturm's sign change)}\label{sec:algorithm 42}
 			\begin{enumerate}
-				\item \textbf{Execute \hyperref[sec:algorithm 37]{algorithm 37}.}
+				\item \textbf{Execute \hyperref[sec:algorithm 38]{algorithm 38}.}
 				\item Let $U=1+\max_{i=0}^m\left(1+\max_{j=1}^i\lvert\frac{{s_i}_j}{{s_i}_0}\rvert\right)$
-				\item By \hyperref[sec:algorithm 39]{algorithm 39}, $J(U)$ should evaluate to $0$.
-				\item By \hyperref[sec:algorithm 40]{algorithm 40}, $J(-U)$ should evaluate to $m$.
+				\item By \hyperref[sec:algorithm 40]{algorithm 40}, $J(U)$ should evaluate to $0$.
+				\item By \hyperref[sec:algorithm 41]{algorithm 41}, $J(-U)$ should evaluate to $m$.
 				\item For $i=1$ to $i=m$: Let $G_i'(x,y)$ be $G_i(x,y)$ with all negative signs replaced with positive signs.
 				\item Let the rational $B=\max_{i=1}^m G_i'(U,U)$.
 				\item For $i=1$ to $i=m-1$: Let the polynomial $g_i'$ be $g_i$ with all negative signs replaced with positive signs. Let the polynomial $h_i'$ be $h_i$ with all negative signs replaced with positive signs.
@@ -982,7 +1000,7 @@
 						\item Choose a number $d$ in a way such that $c<d<c+l$ and $J(d)$ is well-defined.
 					\end{enumerate}
 					\item Otherwise let $d=U$.
-					\item Execute \hyperref[sec:algorithm 38]{algorithm 38}.
+					\item Execute \hyperref[sec:algorithm 39]{algorithm 39}.
 					\item \textbf{If $J_m(c)\ne J_m(d)$, then record the pair of rational numbers $(c,d)$.}
 					\item Now let $c=d$ and go to (12) if the new $c\ne U$.
 				\end{enumerate}
@@ -995,7 +1013,7 @@
 				\end{enumerate}
 				\item If more than $m$ pairs of rational numbers were recorded, then verify the following:
 				\begin{enumerate}
-					\item \textbf{Execute \hyperref[sec:algorithm 36]{algorithm 36} on the formal polynomial $s_m(x)$ along with the first $m+1$ recorded pairs.}
+					\item \textbf{Execute \hyperref[sec:algorithm 37]{algorithm 37} on the formal polynomial $s_m(x)$ along with the first $m+1$ recorded pairs.}
 				\end{enumerate}
 				\textbf{\item Otherwise verify that:
 				\begin{enumerate}
@@ -1004,15 +1022,15 @@
 					\item For $i=1$ to $i=m$, $\sgn(s_m(c_i))=-\sgn(s_m(d_i))$.
 				\end{enumerate}}
 			\end{enumerate}
-		\subsection{Algorithm 42}\label{sec:algorithm 42}
+		\subsection{Algorithm 43}\label{sec:algorithm 43}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals. Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let $B$ be the result. Choose a polynomial $p$ such that $\deg(p)<\deg(B_{m,m})$.} Now do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 32]{algorithm 32} on matrix $A$ and polynomial $p$.
-				\item Since the inner execution of \hyperref[sec:algorithm 1]{algorithm 1} at \hyperref[sec:algorithm 32]{algorithm 32}'s (5) was decreasing the degree of an entry on every iteration, verify for \hyperref[sec:algorithm 32]{algorithm 32}'s $g$ that $\deg(g)\le\deg(B_{m,m})-1$.
+				\item Execute \hyperref[sec:algorithm 33]{algorithm 33} on matrix $A$ and polynomial $p$.
+				\item Since the inner execution of \hyperref[sec:algorithm 1]{algorithm 1} at \hyperref[sec:algorithm 33]{algorithm 33}'s (5) was decreasing the degree of an entry on every iteration, verify for \hyperref[sec:algorithm 33]{algorithm 33}'s $g$ that $\deg(g)\le\deg(B_{m,m})-1$.
 				\item Since $B_{m,m}=g$, verify that $\deg(B_{m,m})\le\deg(B_{m,m})-1$.
 				\item \textbf{Abort algorithm.}
 			\end{enumerate}
-		\subsection{Algorithm 43}\label{sec:algorithm 43}
+		\subsection{Algorithm 44}\label{sec:algorithm 44}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals} and do the following:
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let $B$ be the result.
@@ -1035,7 +1053,7 @@
 					\item Column $i$ of $FN$ should be zero.
 					\item $F(Ne_i)$ should equal zero.
 					\item Therefore $N_{1,i}A^{t-1}+N_{2,i}A^{t-2}+\cdots+N_{t,i}A^0$ should equal zero.
-					\item Execute \hyperref[sec:algorithm 42]{algorithm 42} on matrix $A$ and polynomial $p=N_{1,i}x^{t-1}+N_{2,i}x^{t-2}+\cdots+N_{t,i}x^0$.
+					\item Execute \hyperref[sec:algorithm 43]{algorithm 43} on matrix $A$ and polynomial $p=N_{1,i}x^{t-1}+N_{2,i}x^{t-2}+\cdots+N_{t,i}x^0$.
 					\item \textbf{Verify that 0=1.}
 				\end{enumerate}
 				\item Otherwise, if any column $i$ of $C_t(M^{-1})$ is equal to zero, then:
@@ -1058,10 +1076,10 @@
 					\item \textbf{$C_t(F)\ne 0_{\binom{m^2}{t}\times 1}$}
 				\end{enumerate}
 			\end{enumerate}
-		\subsection{Algorithm 44}\label{sec:algorithm 44}
+		\subsection{Algorithm 45}\label{sec:algorithm 45}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals and is such that $A^T=A$.} Now do the following:
 			\begin{enumerate}
-				\item \textbf{Execute \hyperref[sec:algorithm 43]{algorithm 43} on the matrix $A$.}
+				\item \textbf{Execute \hyperref[sec:algorithm 44]{algorithm 44} on the matrix $A$.}
 				\item $C_t(F^TF)$ should evaluate to $C_t(F^T)C_t(F)$ which should evaluate to the sum of squares of the entries of $C_t(F)$ which should be more than zero.
 				\item Using \hyperref[sec:algorithm 6]{algorithm 6}, it should be possible to evaluate $F^TF$ as $M^{-1}DN^{-1}$.
 				\item If $D$ has a zero on its diagonal, then:
@@ -1097,14 +1115,14 @@
 					\end{enumerate}
 				\end{enumerate}
 			\end{enumerate}
-		\subsection{Algorithm 45 (Euclidean division)}\label{sec:algorithm 45}
+		\subsection{Algorithm 46 (Euclidean division)}\label{sec:algorithm 46}
 			\textbf{Choose two polynomials in $x$, $a$ and $b$} and do the following:
 			\begin{enumerate}
 				\item If the degree of $a$ is more than or equal to the degree of $b$:
 				\begin{enumerate}
 					\item Let $y$ be $\frac{\text{$a$'s leading coefficient}}{\text{$b$'s leading coefficient}}x^{\text{$a$'s degree - $b$'s degree}}$
 					\item Let $e$ be $a-yb$. The degree of $e$ should be less than that of the degree of $a$.
-					\item Apply \hyperref[sec:algorithm 45]{algorithm 45} on the ordered pair of polynomials $e$ and $b$. Let $c$ and $d$ be the ordered pair of polynomials yielded by this application.
+					\item Apply \hyperref[sec:algorithm 46]{algorithm 46} on the ordered pair of polynomials $e$ and $b$. Let $c$ and $d$ be the ordered pair of polynomials yielded by this application.
 					\item It should be that $cb+d=e$ and that $d$ has degree less than $b$.
 					\item Therefore it should be that $cb+d=a-yb$
 					\item \textbf{Therefore it should be that $(y+c)b+d=a$ and that $d$ has degree less than $b$.}
@@ -1116,12 +1134,12 @@
 					\item \textbf{Yield the ordered pair consisting of $0$ then $a$.}
 				\end{enumerate}
 			\end{enumerate}
-		\subsection{Algorithm 46 (Edwards' Sturm chain construction)}\label{sec:algorithm 46}
+		\subsection{Algorithm 47 (Edwards' Sturm chain construction)}\label{sec:algorithm 47}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals and is such that $A^T=A$.} Now do the following:
 			\begin{enumerate}
-				\item \textbf{Execute \hyperref[sec:algorithm 44]{algorithm 44} on the matrix $A$.}
+				\item \textbf{Execute \hyperref[sec:algorithm 45]{algorithm 45} on the matrix $A$.}
 				\item If polynomials $u$ and $s_{t+1}$ such that $us_t+s_{t+1}h=1$ were successfully created, then:
-				\item Execute \hyperref[sec:algorithm 45]{algorithm 45} on the ordered pair $s_{t+1}$ and $s_t$. Let $q_t$ and $s_{t-1}$ be the polynomials yielded by this execution.
+				\item Execute \hyperref[sec:algorithm 46]{algorithm 46} on the ordered pair $s_{t+1}$ and $s_t$. Let $q_t$ and $s_{t-1}$ be the polynomials yielded by this execution.
 				\item Verify that $s_{t+1}=q_ts_t+s_{t-1}$, where $\deg(s_{t-1})<t$.
 				\item Therefore verify that $us_t+(q_ts_t+s_{t-1})h=1$.
 				\item Therefore verify that $u(A)s_t(A)+(q_t(A)s_t(A)+s_{t-1}(A))h(A)=I_{m,m}$.
@@ -1134,7 +1152,7 @@
 						\item Verify that $s_i=p_1s_{t-1}+j_1s_t$ where $\deg(s_i)=i$, ${s_i}_0>0$, $\deg(p_1)=t-1-i$, and $\deg(j_1)=t-2-i$.
 						\item Verify that $s_{i+1}=p_2s_{t-1}+j_2s_t$ where $\deg(s_{i+1})=i$, $\deg(p_2)=t-2-i$, and $\deg(j_2)=t-3-i$.
 					\end{enumerate}
-					\item Execute \hyperref[sec:algorithm 45]{algorithm 45} on the ordered pair $-s_{i+1}$ and $-s_i$. Let $q_i$ and $s_{i-1}$ be the polynomials yielded by this execution.
+					\item Execute \hyperref[sec:algorithm 46]{algorithm 46} on the ordered pair $-s_{i+1}$ and $-s_i$. Let $q_i$ and $s_{i-1}$ be the polynomials yielded by this execution.
 					\item Verify that $\deg(q_i)=1$ and that ${q_i}_0=\frac{{s_{i+1}}_0}{{s_i}_0}$.
 					\item Also verify that $-s_{i+1}=-q_is_i+s_{i-1}$.
 					\item Therefore verify that $q_is_i=s_{i+1}+s_{i-1}$.
@@ -1150,7 +1168,7 @@
 					\item Therefore verify that $s_{i-1}(A)=p_3(A)s_{t-1}(A)+j_3(A)s_t(A)=p_3(A)s_{t-1}(A)+j_3(A)0_{m\times m}=p_3(A)s_{t-1}(A)$.
 					\item If $p_3(A)=0$, then do the following:
 					\begin{enumerate}
-						\item Execute \hyperref[sec:algorithm 42]{algorithm 42} on the matrix $A$ and polynomial $p_3$.
+						\item Execute \hyperref[sec:algorithm 43]{algorithm 43} on the matrix $A$ and polynomial $p_3$.
 						\item \textbf{Abort algorithm.}
 					\end{enumerate}
 					\item Otherwise, if $s_{i-1}(A)=0_{m\times m}$, then do the following:
@@ -1168,7 +1186,7 @@
 					\item Otherwise, do the following:
 					\begin{enumerate}
 						\item Verify that $\deg(s_{i-1})<i$.
-						\item Execute the \hyperref[sec:algorithm 46 auxilliary algorithm]{auxilliary algorithm} on the pair $(s_{i-1}, s_{i-1})$.
+						\item Execute the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm} on the pair $(s_{i-1}, s_{i-1})$.
 						\item Now verify that $\tr(s_{i-1}(A)^2h(A)^2)=\frac{{s_{i-1}}_0}{{s_i}_0}$.
 						\item Verify that $s_{i-1}(A)h(A)\ne 0_{m\times m}$.
 						\item Therefore verify that $\tr(s_{i-1}(A)^2h(A)^2)=\tr((s_{i-1}(A)h(A))^2)=\lVert s_{i-1}(A)h(A)\rVert^2>0$.
@@ -1177,7 +1195,7 @@
 					\end{enumerate}
 				\end{enumerate}
 			\end{enumerate}
-			\subsubsection{Auxilliary algorithm}\label{sec:algorithm 46 auxilliary algorithm}
+			\subsubsection{Auxilliary algorithm}\label{sec:algorithm 47 auxilliary algorithm}
 				\textbf{Choose an integer $0\le k\le t$ such that polynomial $s_k$ is defined. Choose a polynomial $g=g_0x^k+g_1x^{k-1}+\cdots+g_k.$}
 				\begin{enumerate}
 					\item If $k=t$, then verify that $\tr(g(A)s_k(A)h(A)^2)$
@@ -1199,27 +1217,27 @@
 					\begin{enumerate}
 						\item Verify that $\tr(g(A)s_k(A)h(A)^2)=\tr(g(A)(q_{k+1}(A)s_{k+1}(A)+s_{k+2}(A))h(A)^2)$.
 						\item Verify that $\tr(g(A)s_k(A)h(A)^2)=\tr(g(A)q_{k+1}(A)s_{k+1}(A)h(A)^2)+\tr(g(A)s_{k+2}(A)h(A)^2)$.
-						\item Execute the \hyperref[sec:algorithm 46 auxilliary algorithm]{auxilliary algorithm} supplying the integer $k+1$ and $(k+1)^{th}$ degree polynomial $gq$.
-						\item Since it should be that $k+1<t$, the execution of the \hyperref[sec:algorithm 46 auxilliary algorithm]{auxilliary algorithm} should have verified that $\tr((g(A)q_{k+1}(A))s_{k+1}(A)h(A)^2)=\frac{({s_{k+2}}_0/{s_{k+1}}_0)g_0}{{s_{k+2}}_0}=\frac{g_0}{s_{k+1}}$.
-						\item Execute the \hyperref[sec:algorithm 46 auxilliary algorithm]{auxilliary algorithm} supplying the integer $k+2$ and $k^{th}$ degree polynomial $g$.
+						\item Execute the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm} supplying the integer $k+1$ and $(k+1)^{th}$ degree polynomial $gq$.
+						\item Since it should be that $k+1<t$, the execution of the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm} should have verified that $\tr((g(A)q_{k+1}(A))s_{k+1}(A)h(A)^2)=\frac{({s_{k+2}}_0/{s_{k+1}}_0)g_0}{{s_{k+2}}_0}=\frac{g_0}{s_{k+1}}$.
+						\item Execute the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm} supplying the integer $k+2$ and $k^{th}$ degree polynomial $g$.
 						\item If $k+2<t$, then:
 						\begin{enumerate}
-							\item The execution of the \hyperref[sec:algorithm 46 auxilliary algorithm]{auxilliary algorithm} should have verified that $\tr(g(A)s_{k+2}(A)h(A)^2)=\frac{0}{{s_{k+2}}_0}=0$.
+							\item The execution of the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm} should have verified that $\tr(g(A)s_{k+2}(A)h(A)^2)=\frac{0}{{s_{k+2}}_0}=0$.
 						\end{enumerate}
 						\item Otherwise if $k+2=t$, then:
 						\begin{enumerate}
-							\item The execution of the \hyperref[sec:algorithm 46 auxilliary algorithm]{auxilliary algorithm} should have verified that $\tr(g(A)s_{k+2}(A)h(A)^2)=\tr(g(A)s_t(A)h(A)^2)=0$.
+							\item The execution of the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm} should have verified that $\tr(g(A)s_{k+2}(A)h(A)^2)=\tr(g(A)s_t(A)h(A)^2)=0$.
 						\end{enumerate}
 						\item \textbf{Therefore verify that $\tr(g(A)s_k(A)h(A)^2)=\frac{g_0}{{s_{k+1}}_0}+0=\frac{g_0}{{s_{k+1}}_0}$.}
 					\end{enumerate}
 				\end{enumerate}
-		\subsection{Algorithm 47}\label{sec:algorithm 47}
+		\subsection{Algorithm 48}\label{sec:algorithm 48}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals and is such that $A^T=A$.} Now do the following:
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let $D$ be the result.
 				\item The last diagonal entry of $D$ should be a product of $m$ factors, $u_1u_2\cdots u_m$.
-				\item Execute \hyperref[sec:algorithm 46]{algorithm 46} on the matrix $A$.
-				\item Execute \hyperref[sec:algorithm 41]{algorithm 41} supplying the sequences of polynomials $s_0,s_1,\cdots,s_t$ and $q_1,q_2,\cdots,q_{t-1}$ constructed above.
+				\item Execute \hyperref[sec:algorithm 47]{algorithm 47} on the matrix $A$.
+				\item Execute \hyperref[sec:algorithm 42]{algorithm 42} supplying the sequences of polynomials $s_0,s_1,\cdots,s_t$ and $q_1,q_2,\cdots,q_{t-1}$ constructed above.
 				\item For $i=1$ to $i=t$ do the following:
 				\begin{enumerate}
 					\item If $\sgn(u_1(c_i))=\sgn(u_1(d_i)), \sgn(u_2(c_i))=\sgn(u_2(d_i)), \cdots, \sgn(u_m(c_i))=\sgn(u_m(d_i))$, then do the following:
@@ -1238,7 +1256,7 @@
 				\item Verify that $\sum_{i=1}^m n_j=t$.
 				\item If for any $i=1$ to $i=m$, $n_i>\deg(u_i)$, then do the following:
 				\begin{enumerate}
-					\item Execute \hyperref[sec:algorithm 36]{algorithm 36} on the polynomial $u_i$ along with $\deg(u_i)+1$ of the rational number pairs assigned to it.
+					\item Execute \hyperref[sec:algorithm 37]{algorithm 37} on the polynomial $u_i$ along with $\deg(u_i)+1$ of the rational number pairs assigned to it.
 					\item \textbf{Abort algorithm.}
 				\end{enumerate}
 				\item Otherwise if for any $i=1$ to $i=m$, $n_i<\deg(u_i)$, then do the following:
@@ -1256,7 +1274,7 @@
 				\end{enumerate}
 				\item \textbf{For all $i=1$ to $i=m$, verify that $n_i=\deg(u_i)$.}
 			\end{enumerate}
-		\subsection{Algorithm 48 (Upper triangular matrix multiplication)}\label{sec:algorithm 48}
+		\subsection{Algorithm 49 (Upper triangular matrix multiplication)}\label{sec:algorithm 49}
 			\textbf{Choose two upper triangular $m\times m$ matrices, $A$ and $B$.} Now do the following:
 			\begin{enumerate}
 				\item Multiply $A$ by $B$ and let $C$ be the result.
@@ -1273,7 +1291,7 @@
 				\end{enumerate}
 				\item \textbf{Therefore verify that $C$ is upper triangular.}
 			\end{enumerate}
-		\subsection{Algorithm 49 (Orthogonalization)}\label{sec:algorithm 49}
+		\subsection{Algorithm 50 (Orthogonalization)}\label{sec:algorithm 50}
 			\textbf{Choose integers $m\ge n\ge 0$. Choose an $n\times m$ matrix of polynomials $M$ and an $m\times n$ matrix of polynomials $A_0$ such that $MA_0=I_n$.} Now do the following:
 			\begin{enumerate}
 				\item Using \hyperref[sec:algorithm 8]{algorithm 8}, verify that $C_n(M_0A_0)=C_n(I_n)=1$.
@@ -1307,7 +1325,7 @@
 					\item Verify that $MA_i=(D_1N_1)\cdots (D_iN_i)$.
 					\item For $j=1$ to $j=n$, do the following:
 					\begin{enumerate}
-						\item Using \hyperref[sec:algorithm 48]{algorithm 48}, verify that $({e_j}^TM)(A_ie_j)={e_j}^T(MA_i)e_j={e_j}^T((D_1N_1)\cdots (D_iN_i))e_j=({D_1}_{j,j}{N_1}_{j,j})\cdots ({D_i}_{j,j}{N_i}_{j,j})$.
+						\item Using \hyperref[sec:algorithm 49]{algorithm 49}, verify that $({e_j}^TM)(A_ie_j)={e_j}^T(MA_i)e_j={e_j}^T((D_1N_1)\cdots (D_iN_i))e_j=({D_1}_{j,j}{N_1}_{j,j})\cdots ({D_i}_{j,j}{N_i}_{j,j})$.
 						\item \textbf{Therefore using (5d) verify that $({e_j}^TM)(A_ie_j)={D_1}_{j,j}\cdots {D_i}_{j,j}={D_1}_{j,j}\cdots {D_{\min(i,j-1)}}_{j,j}=\lVert A_0e_1\rVert^2\cdots\lVert A_{\min(i,j-1)-1}e_{\min(i,j-1)}\rVert^2$.}
 					\end{enumerate}
 				\end{enumerate}
@@ -1315,7 +1333,7 @@
 				\item \textbf{Verify that ${A_n}^TA_n=(A_0(D_1N_1)\cdots (D_nN_n))^T(A_0(D_1N_1)\cdots (D_nN_n))=((D_1N_1)\cdots (D_nN_n))^T({A_0}^TA_0)((D_1N_1)\cdots (D_nN_n))=E^T({A_0}^TA_0)E$ is a diagonal matrix.}
 				\item \textbf{Yield the matrix $E$.}
 			\end{enumerate}
-		\subsection{Algorithm 50 (Cauchy-Schwarz inequality)}\label{sec:algorithm 50}
+		\subsection{Algorithm 51 (Cauchy-Schwarz inequality)}\label{sec:algorithm 51}
 			\textbf{Choose a $1*m$ matrix $A$ and an $m*1$ matrix $B$.} Now do the following:
 			\begin{enumerate}
 				\item Verify that $0$
@@ -1328,22 +1346,22 @@
 				\end{enumerate}
 				\item \textbf{Therefore verify that $(AB)^2\le(AA^T)(B^TB)$.}
 			\end{enumerate}
-		\subsection{Algorithm 51}\label{sec:algorithm 51}
+		\subsection{Algorithm 52}\label{sec:algorithm 52}
 			\textbf{Choose integers $m\ge n>0$. Choose an $n\times m$ matrix of polynomials $M$ and an $m\times n$ matrix of polynomials $A_0$ such that $MA_0=I_n$. Choose a rational number $x$.} Now do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 49]{algorithm 49} on $M$ and $A_0$.
+				\item Execute \hyperref[sec:algorithm 50]{algorithm 50} on $M$ and $A_0$.
 				\item Let $a=\max(\lVert M(x)\rVert^2,1)$.
 				\item \textbf{Choose a column index $1\le j\le n$ such that $\lVert A_n(x)e_j\rVert^2<\frac{1}{a^{(2n+2)!!}}$.}
 				\item Let $i=n$.
 				\item Verify that $\lVert A_i(x)e_j\rVert^2<\frac{1}{a^{(2i+2)!!}}$.
-				\item Using \hyperref[sec:algorithm 50]{algorithm 50}, verify that $({e_j}^TM(x)A_i(x)e_j)^2\le\lVert{e_j}^TM(x)\rVert^2\lVert A_i(x)e_j\rVert^2<\lVert M(x)\rVert^2\frac{1}{a^{(2i+2)!!}}\le a\frac{1}{a^{(2i+2)!!}}\le\frac{1}{a^{(2i)!!*2i}}\le 1$.
+				\item Using \hyperref[sec:algorithm 51]{algorithm 51}, verify that $({e_j}^TM(x)A_i(x)e_j)^2\le\lVert{e_j}^TM(x)\rVert^2\lVert A_i(x)e_j\rVert^2<\lVert M(x)\rVert^2\frac{1}{a^{(2i+2)!!}}\le a\frac{1}{a^{(2i+2)!!}}\le\frac{1}{a^{(2i)!!*2i}}\le 1$.
 				\item If $i=0$, then do the following:
 				\begin{enumerate}
 					\item Verify that $({e_j}^TM(x)A_i(x)e_j)^2=({e_j}^TM(x)A_0(x)e_j)^2=({e_j}^TI_ne_j)^2=1$.
 					\item \textbf{Abort algorithm.}
 				\end{enumerate}
 				\item Otherwise, do the following:
-				\item Using \hyperref[sec:algorithm 49]{algorithm 49}, verify that $(1\lVert A_0e_1\rVert^2\cdots\lVert A_{\min(i,j-1)-1}e_{\min(i,j-1)}\rVert^2)^2=({e_j}^TM(x)A_i(x)e_j)^2<\frac{1}{a^{(2i)!!*2i}}\le 1$.
+				\item Using \hyperref[sec:algorithm 50]{algorithm 50}, verify that $(1\lVert A_0e_1\rVert^2\cdots\lVert A_{\min(i,j-1)-1}e_{\min(i,j-1)}\rVert^2)^2=({e_j}^TM(x)A_i(x)e_j)^2<\frac{1}{a^{(2i)!!*2i}}\le 1$.
 				\item If $\min(i,j-1)=0$, then do the following:
 				\begin{enumerate}
 					\item Verify that $(1\lVert A_0(x)e_1\rVert^2\cdots\lVert A_{\min(i,j-1)-1}(x)e_{\min(i,j-1)}\rVert^2)^2=1^2=1$.
@@ -1367,10 +1385,10 @@
 				\end{enumerate}
 				\item \textbf{Abort algorithm.}
 			\end{enumerate}
-		\subsection{Algorithm 52}\label{sec:algorithm 52}
+		\subsection{Algorithm 53}\label{sec:algorithm 53}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals and is such that $A^T=A$.} Now do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 47]{algorithm 47} on the matrix $A$.
+				\item Execute \hyperref[sec:algorithm 48]{algorithm 48} on the matrix $A$.
 				\item For $i=1$ to $i=t$, let $k_i$ be the index of the polynomial to which $(c_i, d_i)$ was associated.
 				\item Let the macro $[P]$ expand to "(if $P$, then yield $1$, otherwise yield $0$)".
 				\item Verify that $\sum_{i=1}^t(m+1-k_i)$
@@ -1389,10 +1407,10 @@
 				\end{enumerate}
 				\item \textbf{Verify that $\sum_{i=1}^t(m+1-k_i)=m$.}
 			\end{enumerate}
-		\subsection{Algorithm 53 (Spectral algorithm initialization)}\label{sec:algorithm 53}
+		\subsection{Algorithm 54 (Spectral algorithm initialization)}\label{sec:algorithm 54}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals and is such that $A^T=A$. Choose a rational number $\epsilon>0$.} Now do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 47]{algorithm 47} on the matrix $A$.
+				\item Execute \hyperref[sec:algorithm 48]{algorithm 48} on the matrix $A$.
 				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} with $xI_m-A$ as the choice matrix. Take note of $M^{-1}$, $D$, and $N^{-1}$.
 				\item Let $M'$ be the matrix obtained by replacing all the negative signs in $M^{-1}$ with positive signs.
 				\item Let $M''=\max_{i=1}^m\max_{j=1}^mM'(\max(\lvert c_1\rvert,\lvert d_t\rvert))_{i,j}$.
@@ -1406,7 +1424,7 @@
 					\item Let $k_i$ be the index of the polynomial to which $(c_i, d_i)$ was associated.
 					\item Verify that $\sgn(u_{k_i}(c_i))\ne\sgn(u_{k_i}(d_i))$.
 					\item Let $Q$ be the last $m+1-k_i$ columns of $I_m$.
-					\item Execute \hyperref[sec:algorithm 49]{algorithm 49} on the matrix $NQ$. Let $E$ be the $(m+1-k_i)\times (m+1-k_i)$ matrix yielded from this.
+					\item Execute \hyperref[sec:algorithm 50]{algorithm 50} on the matrix $NQ$. Let $E$ be the $(m+1-k_i)\times (m+1-k_i)$ matrix yielded from this.
 					\item Let $K_i=NQE$, an $m\times(m+1-k_i)$ matrix.
 					\item \textbf{Verify that ${K_i}^T{K_i}$ is a diagonal matrix.}
 					\item Let $E'$ be the matrix obtained by replacing all the negative signs in $E$ with positive signs.
@@ -1418,14 +1436,14 @@
 					\item Let $b=\frac{\epsilon\delta}{M''N''E''^2m^2(m+1-k_i)}$.
 					\item For $j=k$ to $j=m$, do the following:
 					\begin{enumerate}
-						\item Execute \hyperref[sec:algorithm 35]{algorithm 35} on the formal polynomial $D_{j,j}$, interval $(c_i, d_i)$, and target of $b$. Let $c_i$ and $d_i$ receive their updates.
+						\item Execute \hyperref[sec:algorithm 36]{algorithm 36} on the formal polynomial $D_{j,j}$, interval $(c_i, d_i)$, and target of $b$. Let $c_i$ and $d_i$ receive their updates.
 					\end{enumerate}
 					\item If a diagonal entry of ${K_i(c_i)}^TK_i(c_i)$ is less than $L'$, then do the following:
 					\begin{enumerate}
 						\item Let $z$ be the index of the column of the entry.
 						\item Verify that $(Q^TN^{-1})(NQ)=Q^T(N^{-1}N)Q=Q^TI_mQ=Q^TQ=I_{m+1-k_i}$.
 						\item Verify that $L'\le\frac{1}{\max(\lVert (Q^TN^{-1})(c_i)\rVert^2,1)^{(2(m+1-k_i)+2)!!}}$.
-						\item Execute \hyperref[sec:algorithm 51]{algorithm 51} with matrices $Q^TN^{-1}$ and $NQ$, rational number $c_i$, and column index $z$.
+						\item Execute \hyperref[sec:algorithm 52]{algorithm 52} with matrices $Q^TN^{-1}$ and $NQ$, rational number $c_i$, and column index $z$.
 						\item \textbf{Abort algorithm.}
 					\end{enumerate}
 					\item Otherwise, do the following:
@@ -1437,15 +1455,15 @@
 					\end{enumerate}
 				\end{enumerate}
 			\end{enumerate}
-		\subsection{Algorithm 54 (Spectral algorithm)}\label{sec:algorithm 54}
+		\subsection{Algorithm 55 (Spectral algorithm)}\label{sec:algorithm 55}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals and is such that $A^T=A$. Choose a rational number $\epsilon>0$.} Now do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 53]{algorithm 53} on matrix $A$ and rational $\epsilon$.
+				\item Execute \hyperref[sec:algorithm 54]{algorithm 54} on matrix $A$ and rational $\epsilon$.
 				\item Let $C$ be a diagonal matrix whose $i^{th}$, where $1\le i\le t$, group of entries are $m+1-k_i$ $c_i$s.
-				\item Using \hyperref[sec:algorithm 52]{algorithm 52}, verify that $C$ is $m\times m$.
+				\item Using \hyperref[sec:algorithm 53]{algorithm 53}, verify that $C$ is $m\times m$.
 				\item Let $K$ be a matrix whose columns are the in-order concatenation of those of $K_1(c_1),K_2(c_2),\cdots,K_t(c_t)$.
-				\item Using \hyperref[sec:algorithm 52]{algorithm 52} and (9e), verify that $K$ is $m\times m$.
-				\item \textbf{Using \hyperref[sec:algorithm 52]{algorithm 52} and \hyperref[sec:algorithm 53]{algorithm 53}, verify that $\lVert KC-AK\rVert^2\le\sum_{i=1}^t\frac{m+1-k_i}{m}\epsilon^2=\frac{\sum_{i=1}^t (m+1-k_i)}{m}\epsilon^2=\frac{m}{m}\epsilon^2=\epsilon^2$.}
+				\item Using \hyperref[sec:algorithm 53]{algorithm 53} and (9e), verify that $K$ is $m\times m$.
+				\item \textbf{Using \hyperref[sec:algorithm 53]{algorithm 53} and \hyperref[sec:algorithm 54]{algorithm 54}, verify that $\lVert KC-AK\rVert^2\le\sum_{i=1}^t\frac{m+1-k_i}{m}\epsilon^2=\frac{\sum_{i=1}^t (m+1-k_i)}{m}\epsilon^2=\frac{m}{m}\epsilon^2=\epsilon^2$.}
 				\item For $i=1$ to $i=m$, do the following: For $j=1$ to $j=m$, do the following:
 				\begin{enumerate}
 					\item If $Ke_i$ was constructed during iteration $i=a$ and $Ke_j$ during iteration $i=b$ of (11), and if $a\ne b$, then do the following:
@@ -1460,8 +1478,8 @@
 					\end{enumerate}
 					\item \textbf{Therefore verify that $\lvert {e_i}^T(K^TK)e_j\rvert=\lvert(Ke_i)^T(Ke_j)\rvert\le\frac{2\epsilon\delta}{c_b-c_a}\le 2\epsilon$.}
 				\end{enumerate}
-				\item \textbf{Using (7c) and \hyperref[sec:algorithm 53]{algorithm 53}, verify that the absolute values of all the non-diagonal entries $K^TK$ are less than or equal to $2\epsilon$.}
-				\item \textbf{Using \hyperref[sec:algorithm 53]{algorithm 53}, verify that all the diagonal entries of $K^TK$ are more than or equal to $L'$.}
+				\item \textbf{Using (7c) and \hyperref[sec:algorithm 54]{algorithm 54}, verify that the absolute values of all the non-diagonal entries $K^TK$ are less than or equal to $2\epsilon$.}
+				\item \textbf{Using \hyperref[sec:algorithm 54]{algorithm 54}, verify that all the diagonal entries of $K^TK$ are more than or equal to $L'$.}
 			\end{enumerate}
 \end{document}
 \grid
