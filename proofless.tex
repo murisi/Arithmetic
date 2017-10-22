@@ -27,7 +27,9 @@
 		
 		The subset of linear algebra I intend to tackle consists of the Smith normal form, determinants, compound matrices, general solutions to linear systems, characteristic matrices, the rational canonical form, block matrix multiplication, minimum polynomials, orthogonalization, and the spectral theorem for symmetric matrices. To get the above done, I also have to extract the algorithms from Sturm's theorem, Cauchy's bound, the Cauchy-Schwarz inequality, the Euclidean division algorithm, and the factor theorem.
 		
-		Some things to take into consideration:
+		\textbf{Here, I would like to note that this project is a highly modified version of the textbook Linear Algebra by Harold Edwards. In summary, I have taken the text; removed all the exercises and exposition; removed all the proofs inessential to proving the spectral theorem; extracted and purified the algorithms used in each proof; and conjured up my own algorithms in the cases where I could not extract an algorithm.}
+		
+		The following are some things to take into consideration whilst reading the \hyperref[sec:body]{body} of this project:
 		\begin{enumerate}
 			\item Where a proof expresses generality using universal quantification, the algorithms below show generality by allowing one to choose inputs. See \hyperref[sec:algorithm 24]{algorithm 24}.
 			\item Where a proof expresses that a proposition implies contradiction, the algorithms below merely show how certain control flows lead to absurdity. See algorithms \hyperref[sec:algorithm 11]{11}, \hyperref[sec:algorithm 28]{28}, \hyperref[sec:algorithm 35]{34}, and \hyperref[sec:algorithm 52]{51}.
@@ -36,7 +38,7 @@
 		
 		Anyway, to see most easily what I am trying to do, see algorithms \hyperref[sec:algorithm 34]{33}, \hyperref[sec:algorithm 40]{39}, \hyperref[sec:algorithm 49]{48}, and \hyperref[sec:algorithm 51]{50}.
 	\tableofcontents
-	\section{Body}
+	\section{Body}\label{sec:body}
 		\subsection{Algorithm 1}\label{sec:algorithm 1}
 			\textbf{Choose a $1\times 2$ matrix, $A$, whose entries are polynomials} and do the following:
 			\begin{enumerate}
