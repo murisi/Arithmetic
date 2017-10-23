@@ -21,7 +21,7 @@
 	\date{\today{} \currenttime}
 	\maketitle
 	\section{Introduction}
-		\textbf{Only the first 19 pages have been revised. Think of the last 9 pages as a roadmap.}
+		\textbf{Only the first 20 pages have been revised. Think of the last 8 pages as a roadmap.}
 		
 		What follows is an attempt to present linear algebra as a system of algorithms in a manner devoid of argumentation. The correctness of these algorithms hopefully is made apparent by stating expected variable values at certain points of execution. Mathematical argumentation is circumvented by letting algorithms \textit{show} what a proposition in an argument might have \textit{said}.
 		
@@ -1004,54 +1004,71 @@
 			\textbf{Choose a non-zero polynomial $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0>0$. Choose a rational $k<-(1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert)$.} Now do the following:
 			\begin{enumerate}
 				\item Let $q=q_0x^t+q_1x^{t-1}+q_2x^{t-2}+\cdots+q_tx^0$, where $q_i=(-1)^ip_i$.
-				\item It should be that $k<-(1+\max_{i=1}^t\lvert\frac{q_i}{q_0}\rvert)$.
-				\item Therefore it should be that $-k>1+\max_{i=1}^t\lvert\frac{q_i}{q_0}\rvert$.
-				\item Now execute \hyperref[sec:algorithm 38]{algorithm 38} on $q$ and $-k$.
-				\item It should be that $q(-k)>0$, that is, $\sum_{i=0}^t q_i(-k)^{t-i}>0$.
-				\item Therefore, it should be that $\sum_{i=0}^t (-1)^i(-1)^{t-i}p_ik^{t-i}>0$.
-				\item Therefore, it should be that $(-1)^t\sum_{i=0}^t p_ik^{t-i}>0$.
-				\item \textbf{Therefore it should be that $(-1)^tp(k)>0$.}
+				\item Verify that $k<-(1+\max_{i=1}^t\lvert\frac{q_i}{q_0}\rvert)$.
+				\item Therefore verify that $-k>1+\max_{i=1}^t\lvert\frac{q_i}{q_0}\rvert$.
+				\item Execute \hyperref[sec:algorithm 40]{algorithm 40} on $q$ and $-k$.
+				\item \textbf{Therefore, verify that $(-1)^tp(k)=(-1)^t\sum_{i=0}^t p_ik^{t-i}=\sum_{i=0}^t (-1)^i(-1)^{t-i}p_ik^{t-i}=\sum_{i=0}^t q_i(-k)^{t-i}=q(-k)>0$.}
 			\end{enumerate}
 		\subsection{Algorithm 42 (Sturm's sign change)}\label{sec:algorithm 42}
 			\begin{enumerate}
 				\item \textbf{Execute \hyperref[sec:algorithm 38]{algorithm 38}.}
 				\item Let $U=1+\max_{i=0}^m\left(1+\max_{j=1}^i\lvert\frac{{s_i}_j}{{s_i}_0}\rvert\right)$
-				\item By \hyperref[sec:algorithm 40]{algorithm 40}, $J(U)$ should evaluate to $0$.
-				\item By \hyperref[sec:algorithm 41]{algorithm 41}, $J(-U)$ should evaluate to $m$.
-				\item For $i=1$ to $i=m$: Let $G_i'(x,y)$ be $G_i(x,y)$ with all negative signs replaced with positive signs.
+				\item Using \hyperref[sec:algorithm 40]{algorithm 40}, verify that $J(U)=0$.
+				\item Using \hyperref[sec:algorithm 41]{algorithm 41}, verify that $J(-U)=m$.
+				\item For $i=1$ to $i=m$, do the following:
+				\begin{enumerate}
+					\item Let $G_i'(x,y)$ be $G_i(x,y)$ with all negative signs replaced with positive signs.
+				\end{enumerate}
 				\item Let the rational $B=\max_{i=1}^m G_i'(U,U)$.
-				\item For $i=1$ to $i=m-1$: Let the polynomial $g_i'$ be $g_i$ with all negative signs replaced with positive signs. Let the polynomial $h_i'$ be $h_i$ with all negative signs replaced with positive signs.
-				\item Let $C=C=\max_{i=1}^m \max(g_i'(U),h_i'(U))$.
-				\item For $i=1$ to $i=m-1$: Let the polynomial $q_i'$ be $q_i$ with all negative signs replaced with positive signs.
+				\item For $i=1$ to $i=m-1$, do the following:
+				\begin{enumerate}
+					\item Let the polynomial $g_i'$ be $g_i$ with all negative signs replaced with positive signs.
+					\item Let the polynomial $h_i'$ be $h_i$ with all negative signs replaced with positive signs.
+					\item Let the polynomial $q_i'$ be $q_i$ with all negative signs replaced with positive signs.
+				\end{enumerate}
+				\item Let $C=\max_{i=1}^m \max(g_i'(U),h_i'(U))$.
 				\item Let $D=\max(3, \max_{i=1}^m q_i'(U))$
-				\item Let $l=\frac{1}{BCD}$ and $c=-U$.
+				\item Let $l=\frac{1}{BCD}$.
+				\item Let $c=-U$.
 				\item Do the following:
 				\begin{enumerate}
-					\item If $c+l\le U$, then:
+					\item If $c+l\le U$, then do the following:
 					\begin{enumerate}
 						\item Choose a number $d$ in a way such that $c<d<c+l$ and $J(d)$ is well-defined.
 					\end{enumerate}
-					\item Otherwise let $d=U$.
+					\item Otherwise do the following:
+					\begin{enumerate}
+						\item Let $d=U$.
+					\end{enumerate}
 					\item Execute \hyperref[sec:algorithm 39]{algorithm 39}.
 					\item \textbf{If $J_m(c)\ne J_m(d)$, then record the pair of rational numbers $(c,d)$.}
-					\item Now let $c=d$ and go to (12) if the new $c\ne U$.
+					\item If the $d\ne U$, then do the following:
+					\begin{enumerate}
+						\item Let $c=d$.
+						\item Go to (12).
+					\end{enumerate}
 				\end{enumerate}
-				\item If less than $m$ pairs of rational numbers were recorded, then verify the following:
+				\item If less than $m$ pairs of rational numbers were recorded, then do the following:
 				\begin{enumerate}
-					\item Each change of $J_m(x)$ over the course of (12) was by $1$.
-					\item $J_m(x)$ changed less than $m$ times over the course of (12).
-					\item Therefore it should be that $\lvert J_m(U)-J_m(-U)\rvert<m$.
-					\item \textbf{Verify that 0=1.}
+					\item Verify that each change of $J_m(x)$ over the course of (12) was by $1$.
+					\item Verify that $J_m(x)$ changed less than $m$ times over the course of (12).
+					\item Therefore verify that $\lvert J_m(U)-J_m(-U)\rvert<m$.
+					\item Therefore verify that $m<m$.
+					\item \textbf{Abort algorithm.}
 				\end{enumerate}
 				\item If more than $m$ pairs of rational numbers were recorded, then verify the following:
 				\begin{enumerate}
-					\item \textbf{Execute \hyperref[sec:algorithm 37]{algorithm 37} on the formal polynomial $s_m(x)$ along with the first $m+1$ recorded pairs.}
+					\item Execute \hyperref[sec:algorithm 37]{algorithm 37} on the formal polynomial $s_m(x)$ along with the first $m+1$ recorded pairs.
+					\item \textbf{Abort algorithm.}
 				\end{enumerate}
-				\textbf{\item Otherwise verify that:
+				\textbf{\item Otherwise, do the following:
 				\begin{enumerate}
-					\item Exactly $m$ pairs of rational numbers $(c_1,d_1),(c_2,d_2),\cdots,(c_m,d_m)$ were recorded.
-					\item $c_1<d_1\le c_2<d_2\le\cdots\le c_m<d_m$.
-					\item For $i=1$ to $i=m$, $\sgn(s_m(c_i))=-\sgn(s_m(d_i))$.
+					\item Verify that exactly $m$ pairs of rational numbers $(c_1,d_1),(c_2,d_2),\cdots,(c_m,d_m)$ were recorded.
+					\item Verify that $c_1<d_1\le c_2<d_2\le\cdots\le c_m<d_m$.
+					\item For $i=1$ to $i=m$, do the following:
+					\begin{enumerate}
+						\item Verify that $\sgn(s_m(c_i))=-\sgn(s_m(d_i))$.
+					\end{enumerate}
 				\end{enumerate}}
 			\end{enumerate}
 		\subsection{Algorithm 43}\label{sec:algorithm 43}
