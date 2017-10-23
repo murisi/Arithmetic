@@ -21,7 +21,7 @@
 	\date{\today{} \currenttime}
 	\maketitle
 	\section{Introduction}
-		\textbf{Only the first 15 pages have been revised. Think of the last 13 pages as a roadmap.}
+		\textbf{Only the first 16 pages have been revised. Think of the last 12 pages as a roadmap.}
 		
 		What follows is an attempt to present linear algebra as a system of algorithms in a manner devoid of argumentation. The correctness of these algorithms hopefully is made apparent by stating expected variable values at certain points of execution. Mathematical argumentation is circumvented by letting algorithms \textit{show} what a proposition in an argument might have \textit{said}.
 		
@@ -720,10 +720,10 @@
 		\subsection{Algorithm 33}\label{sec:algorithm 33}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals. Choose a non-zero polynomial $p=x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$ such that $p(A)=0$.}
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let $B$ be the result.
+				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let the tuple $\langle B\rangle$ receive the result.
 				\item Execute \hyperref[sec:algorithm 28]{algorithm 28} on $A$.
 				\item Let $r=x^u+r_1x^{u-1}+r_2x^{u-2}+\cdots+r_ux^0=B_{m,m}$.
-				\item Execute \hyperref[sec:algorithm 30]{algorithm 30} on the matrix $A$ to obtain the matrix $E$.
+				\item Execute \hyperref[sec:algorithm 30]{algorithm 30} on the matrix $A$ and let the tuple $\langle R_1,E,R_3\rangle$ receive the result.
 				\item Let $F$ be a $1\times 2$ matrix consisting in-order of $p$ and $r$.
 				\item Execute \hyperref[sec:algorithm 5]{algorithm 5} on $F$ and let $\langle D,M,N\rangle$ receive the result.
 				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on $F$ and let $\langle M^{-1},D,N^{-1}\rangle$ receive the result.
@@ -748,8 +748,9 @@
 					\item Therefore verify that $1=0$.
 					\item \textbf{Abort algorithm.}
 				\end{enumerate}
-				\item Otherwise it should be that $w=u$. Now:
+				\item Otherwise, do the following:
 				\begin{enumerate}
+					\item Verify that $w=u$.
 					\item Verify that $Ge_w+g_1e_w+g_2e_{w-1}+\cdots+g_we_1=Ge_u+g_1e_u+g_2e_{u-1}+\cdots+g_ue_1=0_{u\times 1}$.
 					\item Therefore for $i=1$ to $i=u$, do the following:
 					\begin{enumerate}
@@ -762,7 +763,7 @@
 				\end{enumerate}
 			\end{enumerate}
 		\subsection{Algorithm 34 (Difference of powers)}\label{sec:algorithm 34}
-			\textbf{Choose an integer $n>0$ and a formal polynomial $p=p_0x^n+p_1x^{n-1}+\cdots+p_n$.}
+			\textbf{Choose an integer $n\ge 0$ and a formal polynomial $p=p_0x^n+p_1x^{n-1}+\cdots+p_n$.}
 			\begin{enumerate}
 				\item Let the formal polynomial $G(y,z)=\sum_{r=1}^n p_{n-r}(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})$.
 				\item \textbf{Verify that the formal polynomial $p(z)-p(y)=(p_0z^n+p_1z^{n-1}+\cdots+p_n)-(p_0y^n+p_1y^{n-1}+\cdots+p_n)=(\sum_{r=0}^n p_{n-r}z^r)-(\sum_{r=0}^n p_{n-r}y^r)=\sum_{r=1}^n p_{n-r}(z^r-y^r)=\sum_{r=1}^n p_{n-r}(z-y)(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})=(z-y)\sum_{r=1}^n p_{n-r}(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})=(z-y)G(y,z)$.}
