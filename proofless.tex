@@ -676,7 +676,7 @@
 				\item Let $C$ be the submatrix of $A$ that spans rows $1$ to $a-1$ and columns $1$ to $b-1$.
 				\item Let $D$ be the submatrix of $A$ that spans rows $1$ to $a-1$ and columns $b$ to $n$.
 				\item Let $E$ be the submatrix of $B$ that spans rows $1$ to $b-1$ and columns $1$ to $c-1$.
-				\item Let $F$ be the submatrix of $A$ that spans rows $b$ to $n$ and columns $1$ to $c-1$.
+				\item Let $F$ be the submatrix of $B$ that spans rows $b$ to $n$ and columns $1$ to $c-1$.
 				\item Multiply matrix $A$ by matrix $B$.
 				\item For each $1\le i\le a-1$, do the following:
 				\begin{enumerate}
@@ -691,11 +691,12 @@
 		\subsection{Algorithm 32}\label{sec:algorithm 32}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals} and do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let $B$ be the result.
+				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let the tuple $\langle B\rangle$ receive the result.
 				\item Execute \hyperref[sec:algorithm 28]{algorithm 28} on $A$.
 				\item Let $r=x^t+r_1x^{t-1}+r_2x^{t-2}+\cdots+r_tx^0=B_{m,m}$.
-				\item Execute \hyperref[sec:algorithm 30]{algorithm 30} on the matrix $A$ to obtain the matrix $E$.
-				\item Verify that $R_3R_1=I_m$.
+				\item Execute \hyperref[sec:algorithm 30]{algorithm 30} on the matrix $A$ and let the tuple $\langle R_1,E,R_3\rangle$ receive the result.
+				\item Verify that $R_1R_3=I_m$.
+				\item Therefore using \hyperref[sec:algorithm 25]{algorithm 25}, verify that $R_3R_1=I_m$.
 				\item Using \hyperref[sec:algorithm 30]{algorithm 30}, verify that $r(A)=A^t+r_1A^{t-1}+r_2A^{t-2}+\cdots+r_tA^0=(R_1ER_3)^t+r_1(R_1ER_3)^{t-1}+r_2(R_1ER_3)^{t-2}+\cdots+r_t(R_1ER_3)^0=R_1(E^t+r_1E^{t-1}+r_2E^{t-2}+\cdots+r_tE^0)R_3=R_1r(E)R_3$.
 				\item For $i=0$ up to $i=t$, by repeated applications of \hyperref[sec:algorithm 31]{algorithm 31}, verify that $E^i$ evaluates to $E$ with all its diagonal blocks exponentiated to $i$.
 				\item Therefore verify that $r(E)$ evaluates to $m\times m$ matrix whose diagonal blocks are the application of $r$ on the corresponding diagonal blocks of $E$.
@@ -709,7 +710,7 @@
 					\item Let $0_{m\times n}$ denote an $m\times n$ matrix of zeros.
 					\item Therefore, for $i=1$ up to $i=k$: Cognizant of the construction of $G$'s last column, verify that $p(G)e_i=(G^k+p_1G^{k-1}+p_2G^{k-2}+\cdots+p_kG^0)e_i=(G^k+p_1G^{k-1}+p_2G^{k-2}+\cdots+p_kG^0)G^{i-1}e_1=G^{i-1}(GG^{k-1}+p_1G^{k-1}+p_2G^{k-2}+\cdots+p_kG^0)e_1=G^{i-1}(Ge_k+p_1e_k+p_2e_{k-1}+\cdots+p_ke_1)=G^{i-1}0_{k\times 1}=0_{k\times 1}$.
 					\item Therefore verify that $p(G)=0_{k\times k}$.
-					\item Using the execution of \hyperref[sec:algorithm 3]{algorithm 3} in (1), verify that $r=B_{m,m}=B_{j,j}u_{j+1}u_{j+2}\cdots u_m=B_{j,j}q=pq$, where $q=u_{j+1}u_{j+2}\cdots u_m$.
+					\item Cognizant of the execution of \hyperref[sec:algorithm 3]{algorithm 3} in (1), verify that $r=B_{m,m}=B_{j,j}u_{j+1}u_{j+2}\cdots u_m=B_{j,j}q=pq$, where $q=u_{j+1}u_{j+2}\cdots u_m$.
 					\item Therefore verify that $r(G)=p(G)q(G)=0_{k\times k}q(G)=0_{k\times k}$.
 				\end{enumerate}
 				\item Therefore verify that the diagonal blocks of $r(E)$ each equal $0_{i\times i}$, where $i$ is the size of each diagonal block.
