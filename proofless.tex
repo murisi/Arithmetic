@@ -21,7 +21,7 @@
 	\date{\today{} \currenttime}
 	\maketitle
 	\section{Introduction}
-		\textbf{Only the first 17 pages have been revised. Think of the last 11 pages as a roadmap.}
+		\textbf{Only the first 18 pages have been revised. Think of the last 10 pages as a roadmap.}
 		
 		What follows is an attempt to present linear algebra as a system of algorithms in a manner devoid of argumentation. The correctness of these algorithms hopefully is made apparent by stating expected variable values at certain points of execution. Mathematical argumentation is circumvented by letting algorithms \textit{show} what a proposition in an argument might have \textit{said}.
 		
@@ -891,20 +891,29 @@
 			Now do the following:
 			\begin{enumerate}
 				\item Let $J_i(x)$ be a shorthand for the number of sign changes in the sequence $s_0(x),s_1(x),\cdots,s_i(x)$.
-				\item For $i=1$ to $i=m$, do the following:
+				\item For $i=0$ to $i=m$, do the following:
 				\begin{enumerate}
-					\item Execute \hyperref[sec:algorithm 34]{algorithm 34} on $s_i$ and let $(G_i(x,y))$ be the result.
+					\item Execute \hyperref[sec:algorithm 34]{algorithm 34} on $s_i$ and let $\langle G_i(x,y)\rangle$ receive the result.
 					\item \textbf{Verify that the formal polynomial $s_i(y)-s_i(x)=(y-x)G_i(x,y)$.}
 				\end{enumerate}
 				\item For $i=1$ to $i=m-1$, do the following:
 				\begin{enumerate}
-					\item It should be that $q_is_i-s_{i+1}=s_{i-1}$. Make this our working equation.
-					\item If $i>1$:
+					\item Verify that $q_is_i-s_{i+1}=s_{i-1}$.
+					\item Let $H_i$ be the equation $q_is_i-s_{i+1}=s_{i-1}$.
+					\item If $i>1$, do the following:
 					\begin{enumerate}
-						\item Substitute this $s_{i-1}$ into the equation mentioned in (7c) of the previous iteration. Let the outcome be our working equation.
+						\item Let $Q_i$ be the result of:
+						\begin{enumerate}
+							\item Substituting the equation $H_i$ into the equation $H_{i-1}$ through $s_{i-1}$.
+							\item Distributing out the cofactor of $H_i$ over $H_i$ within $Q_i$.
+							\item Factoring the term $s_i$ out of the two terms now containg it within $Q_i$.
+						\end{enumerate}
+						\item Let $H_i$ be $Q_i$.
 					\end{enumerate}
-					\item Our working equation should now be in terms of $s_i$, $s_{i+1}$, and $s_0$.
-					\item \textbf{Factorize this equation and divide it through by $s_0$ to obtain the equation $g_is_{i+1}+h_is_i=1$, where $g_i$ and $h_i$ are polynomials.}
+					\item Verify that $H_i$ is of the form $ps_i+qs_{i+1}=s_0$ where $p$ and $q$ are some polynomials.
+					\item Let $g_i=\frac{p}{s_0}$.
+					\item Let $h_i=\frac{q}{s_0}$.
+					\item \textbf{Verify that $g_is_{i+1}+h_is_i=1$.}
 				\end{enumerate}
 			\end{enumerate}
 		\subsection{Algorithm 39 (Change in number of sign changes verification)}\label{sec:algorithm 39}
