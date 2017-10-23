@@ -21,7 +21,7 @@
 	\date{\today{} \currenttime}
 	\maketitle
 	\section{Introduction}
-		\textbf{Only the first 18 pages have been revised. Think of the last 10 pages as a roadmap.}
+		\textbf{Only the first 19 pages have been revised. Think of the last 9 pages as a roadmap.}
 		
 		What follows is an attempt to present linear algebra as a system of algorithms in a manner devoid of argumentation. The correctness of these algorithms hopefully is made apparent by stating expected variable values at certain points of execution. Mathematical argumentation is circumvented by letting algorithms \textit{show} what a proposition in an argument might have \textit{said}.
 		
@@ -924,17 +924,17 @@
 					\item $J_m(c)$ and $J_m(d)$ are well defined.
 					\item Letting $B=\max_{i=1}^m \lvert G_i(c,d)\rvert$.
 					\item Letting $C=\max_{i=1}^{m-1}\max(\lvert g_i(c)\rvert,\lvert h_i(c)\rvert,\lvert g_i(d)\rvert,\lvert h_i(d))\rvert$.
-					\item Letting $D=\max_{i=1}^{m-1}\max(\lvert q_i(c)\rvert,\lvert q_i(d)\rvert)$.
+					\item Letting $D=\max_{i=1}^{m-1}\max(\lvert q_i(c)\rvert,\lvert q_i(d)\rvert,2)$.
 					\item $\lvert d-c\rvert<\frac{1}{BCD}$.
 				\end{enumerate}}
 				\item Let $i=0$.
 				\item Do the following:
 				\begin{enumerate}
-					\item $\sgn(s_i(c))$ should equal $\sgn(s_i(d))$.
-					\item $J_i(c)$ should equal $J_i(d)$.
-					\item If $\sgn(s_{i+1}(c))=\sgn(s_{i+1}(d))$, verify the following:
+					\item Verify that $\sgn(s_i(c))=\sgn(s_i(d))$.
+					\item Verify that $J_i(c)=J_i(d)$.
+					\item If $\sgn(s_{i+1}(c))=\sgn(s_{i+1}(d))$, do the following:
 					\begin{enumerate}
-						\item $J_{i+1}(c)=J_{i+1}(d)$.
+						\item Verify that $J_{i+1}(c)=J_{i+1}(d)$.
 						\item Set $i$ to $i+1$ and go to (4) if the new $i<m$.
 					\end{enumerate}
 					\item Otherwise, if $\sgn(s_{i+1}(c))\ne\sgn(s_{i+1}(d))$ and $i+2\le m$, verify the following:
@@ -944,32 +944,47 @@
 						\item $1=g_{i+1}(c)s_{i+2}(c)+h_{i+1}(c)s_{i+1}(c)=\lvert g_{i+1}(c)s_{i+2}(c)+h_{i+1}(c)s_{i+1}(c)\rvert\le\lvert g_{i+1}(c)\rvert\lvert s_{i+2}(c)\rvert+\lvert h_{i+1}(c)\rvert\lvert s_{i+1}(c)\rvert<C(\lvert s_{i+2}(c)\rvert+\frac{1}{CD})$
 						\item $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i+2}(c)\rvert$
 						\item $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i+2}(d)\rvert$
-						\item If $\sgn(s_{i+2}(c))\ne\sgn(s_{i+2}(d))$, verify the following:
+						\item If $\sgn(s_{i+2}(c))\ne\sgn(s_{i+2}(d))$, do the following:
 						\begin{enumerate}
-							\item $\lvert s_{i+2}(c)\rvert<\frac{1}{CD}=\frac{1}{C}\cdot\frac{1}{D}<\frac{1}{C}(1-\frac{1}{D})$
-							\item \textbf{Verify that 0=1.}
+							\item Verify that $\lvert s_{i+2}(c)\rvert<\frac{1}{CD}=\frac{1}{C}\cdot\frac{1}{D}<\frac{1}{C}(1-\frac{1}{D})$.
+							\item Verify that $\frac{1}{C}(1-\frac{1}{D})<\frac{1}{C}(1-\frac{1}{D})$.
+							\item \textbf{Abort algorithm.}
 						\end{enumerate}
-						\item Otherwise if $\sgn(s_i(c))=\sgn(s_{i+2}(c))$, verify the following:
+						\item Otherwise if $\sgn(s_i(c))=\sgn(s_{i+2}(c))$, do the following:
 						\begin{enumerate}
-							\item $2\frac{1}{C}(1-\frac{1}{D})\le\lvert s_i(c)\rvert+\lvert s_{i+2}(c)\rvert=\lvert s_i(c)+s_{i+2}(c)\rvert=\lvert q_{i+1}(c)s_{i+1}(c)\rvert<D\frac{1}{CD}$.
-							\item $2(1-\frac{1}{D})<1$.
-							\item $D<2$.
-							\item \textbf{Verify that 0=1.}
+							\item Verify that $2\frac{1}{C}(1-\frac{1}{D})\le\lvert s_i(c)\rvert+\lvert s_{i+2}(c)\rvert=\lvert s_i(c)+s_{i+2}(c)\rvert=\lvert q_{i+1}(c)s_{i+1}(c)\rvert<D\frac{1}{CD}$.
+							\item Verify that $2(1-\frac{1}{D})<1$.
+							\item Verify that $D<2$.
+							\item Verify that $2<2$.
+							\item \textbf{Abort algorithm.}
 						\end{enumerate}
-						\item Otherwise $\sgn(s_{i+2}(c))=\sgn(s_{i+2}(d))$ and $\sgn(s_i(c))\ne\sgn(s_{i+2}(c))$. Now verify the following:
+						\item Otherwise, do the following:
 						\begin{enumerate}
-							\item $J_{i+2}(c)=J_{i+2}(d)$.
+							\item Verify that $\sgn(s_{i+2}(c))=\sgn(s_{i+2}(d))$.
+							\item Verify that $\sgn(s_i(c))\ne\sgn(s_{i+2}(c))$.
+							\item Verify that $J_{i+2}(c)=J_{i+2}(d)$.
 							\item Set $i$ to $i+2$ and go to (4).
 						\end{enumerate}
 					\end{enumerate}
-					\item Otherwise $\sgn(s_{i+1}(c))\ne\sgn(s_{i+1}(d))$ and $i+1=m$. Now verify the following:
+					\item Otherwise, verify the following:
 					\begin{enumerate}
+						\item $\sgn(s_{i+1}(c))\ne\sgn(s_{i+1}(d))$.
+						\item $i+1=m$
 						\item $\lvert s_{i+1}(c)\rvert<\frac{1}{CD}$.
 						\item $\lvert s_{i+1}(d)\rvert<\frac{1}{CD}$.
 						\item $\lvert J_{i+1}(c)-J_{i+1}(d)\rvert=1$.
 					\end{enumerate}
 				\end{enumerate}
-				\item \textbf{If $\sgn(s_m(c))=\sgn(s_m(d))$, then $J_m(c)$ should equal $J_m(d)$. Otherwise $\lvert J_m(d)-J_m(c)\rvert$ should equal $1$.}
+				\textbf{
+					\item If $\sgn(s_m(c))=\sgn(s_m(d))$, then do the following:
+					\begin{enumerate}
+						\item Verify that $J_m(c)=J_m(d)$.
+					\end{enumerate}
+					\item Otherwise do the following:
+					\begin{enumerate}
+						\item Verify that $\lvert J_m(d)-J_m(c)\rvert=1$.
+					\end{enumerate}
+				}
 			\end{enumerate}
 		\subsection{Algorithm 40 (Cauchy's positive verification)}\label{sec:algorithm 40}
 			\textbf{Choose a non-zero polynomial $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0>0$. Choose a rational $k>1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert$.} In reverse order verify the following:
