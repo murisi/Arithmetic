@@ -21,7 +21,7 @@
 	\date{\today{} \currenttime}
 	\maketitle
 	\section{Introduction}
-		\textbf{Only the first 16 pages have been revised. Think of the last 12 pages as a roadmap.}
+		\textbf{Only the first 17 pages have been revised. Think of the last 11 pages as a roadmap.}
 		
 		What follows is an attempt to present linear algebra as a system of algorithms in a manner devoid of argumentation. The correctness of these algorithms hopefully is made apparent by stating expected variable values at certain points of execution. Mathematical argumentation is circumvented by letting algorithms \textit{show} what a proposition in an argument might have \textit{said}.
 		
@@ -784,7 +784,7 @@
 					\end{enumerate}
 					\item Otherwise $g(a_i)=0$. Now do the following:
 					\begin{enumerate}
-						\item Execute \hyperref[sec:algorithm 34]{algorithm 34} on $g$ and let $(G(x,y))$ be the result.
+						\item Execute \hyperref[sec:algorithm 34]{algorithm 34} on $g$ and let the tuple $\langle G(x,y)\rangle$ receive the result.
 						\item Let the formal polynomial $q=q(x)=G(a_i,x)$.
 						\item Verify that the formal polynomial $g=g(x)=g(x)-g(a_i)=(x-a_i)G(a_i,x)=(x-a_i)q(x)=(x-a_i)q$.
 						\item Verify that $p=(x-a_1)(x-a_2)\cdots(x-a_i)q$.
@@ -797,10 +797,10 @@
 		\subsection{Algorithm 36 (Bisection)}\label{sec:algorithm 36}
 			\textbf{Choose a formal polynomial $f$. Choose rational numbers $a<b$ such that $\sgn(f(a))=-\sgn(f(b))$. Choose a rational number target $B>0$.} Now do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 34]{algorithm 34} on $f$ and let $(G(x,y))$ be the result.
+				\item Execute \hyperref[sec:algorithm 34]{algorithm 34} on $f$ and let the tuple $\langle G(x,y)\rangle$ receive the result.
 				\item Verify that the formal polynomial $f(y)-f(x)=(y-x)G(x,y)$.
 				\item Let $G'$ be $G$ but with all negative signs replaced with positive signs.
-				\item Let $U=\max(G'(\lvert a\rvert,\lvert a\rvert), G'(\lvert b\rvert,\lvert b\rvert))$.
+				\item Let $U=G'(\lvert a\rvert,\lvert b\rvert)$.
 				\item Until $\lvert b-a\rvert U<B$
 				\begin{enumerate}
 					\item Let $c=\frac{a+b}{2}$.
@@ -820,8 +820,9 @@
 							\item Let $a=c$.
 							\item Go to (1bi).
 						\end{enumerate}
-						\item Otherwise the $i+1$ numbers $c_k$ such that $c_1<c_2<\cdots<c_i<c_{i+1}$ have been recorded. Now do the following:
+						\item Otherwise, do the following:
 						\begin{enumerate}
+							\item Let $c_1<c_2<\cdots<c_i<c_{i+1}$ be the $i+1$ numbers that were recorded.
 							\item Execute \hyperref[sec:algorithm 35]{algorithm 35} on the formal polynomial $f_i$ and the rationals $c_1<c_2<\cdots<c_i<c_{i+1}$.
 							\item \textbf{Abort algorithm.}
 						\end{enumerate}
@@ -834,7 +835,8 @@
 						\item \textbf{Abort algorithm.}
 					\end{enumerate}
 				\end{enumerate}
-				\item \textbf{Verify that $\lvert f(a)\rvert,\lvert f(b)\rvert<\lvert f(b)-f(a)\rvert=\lvert(b-a)G(a,b)\rvert<\lvert(b-a)G'(a,b)\rvert<\lvert b-a\rvert U<B$.}
+				\item \textbf{Verify that $\lvert f(a)\rvert,\lvert f(b)\rvert<\lvert f(b)-f(a)\rvert=\lvert(b-a)G(a,b)\rvert<\lvert(b-a)G'(\lvert a\rvert,\lvert b\rvert)\rvert=\lvert b-a\rvert U<B$.}
+				\item \textbf{Yield the tuple $\langle a,b\rangle$.}
 			\end{enumerate}
 		\subsection{Algorithm 37}\label{sec:algorithm 37}
 			\textbf{Choose a polynomial $f_n=x^n+p_1x^{n-1}+\cdots+p_n$ and pairs of rationals $(a_n,b_n),(a_{n-1},b_{n-1}),\cdots,(a_0,b_0)$ in such a way that:
@@ -846,37 +848,39 @@
 			\begin{enumerate}
 				\item For $i=n$ to $i=1$:
 				\begin{enumerate}
-					\item Let $B=\min_{k=0}^{i-1}\min(\lvert f_i(a_i)\rvert,\lvert f_i(b_i)\rvert)$.
-					\item Execute \hyperref[sec:algorithm 36]{algorithm 36} on the formal polynomial $f_i$, interval $(a_i, b_i)$, and target of $B$. Let $a_i$ and $b_i$ receive their updates.
+					\item Let $B=\min_{k=0}^{i-1}\min(\lvert f_i(a_k)\rvert,\lvert f_i(b_k)\rvert)$.
+					\item For $k=0$ to $k=i-1$, verify that $\lvert f_i(a_k)\rvert\ge B$.
+					\item Execute \hyperref[sec:algorithm 36]{algorithm 36} on the formal polynomial $f_i$, interval $(a_i, b_i)$, and target of $B$. Let the tuple $\langle a_i,b_i\rangle$ receive the result.
 					\item Verify that $\lvert f_i(b_i)\rvert<B$.
-					\item $f$ should evaluate to $f-f_i(b_i)+f_i(b_i)$ which should evaluate to $(x-b_i)f_{i-1}+f_i(b_i)$, where $f_{i-1}$ is a monic $(i-1)^{th}$ degree formal polynomial.
+					\item Execute \hyperref[sec:algorithm 34]{algorithm 34} on the formal polynomial $f_i$ and let the tuple $\langle G_{i-1}(x,y)\rangle$ receive the result.
+					\item Let the formal polynomial $f_{i-1}=f_{i-1}(x)=G_{i-1}(b_i,x)$.
+					\item Verify that $f_{i-1}$ is a monic $(i-1)^{th}$ degree formal polynomial.
+					\item Verify that the formal polynomial $f_i=f_i(x)=f_i(x)-f_i(b_i)+f_i(b_i)=(x-b_i)G_{i-1}(b_i,x)+f_i(b_i)=(x-b_i)f_{i-1}(x)+f_i(b_i)=(x-b_i)f_{i-1}+f_i(b_i)$.
 					\item For $k=0$ to $k=i-1$, do the following:
 					\begin{enumerate}
-						\item If $f_i(a_k)>B$, verify that:
+						\item If $f_i(a_k)\ge B$, in-order verify that:
 						\begin{enumerate}
-							\item $f_i(a_k)>B>\lvert f_i(b_i)\rvert\ge f_i(b_i)$.
+							\item $f_i(a_k)\ge B>\lvert f_i(b_i)\rvert\ge f_i(b_i)$.
 							\item $f_i(a_k)-f_i(b_i)>0$.
 							\item $(a_k-b_i)f_{i-1}(a_k)>0$.
 							\item $f_{i-1}(a_k)>0$.
-							\item $f_i(b_k)<-B<-\lvert f_i(b_i)\rvert\le f_i(b_i)$.
+							\item $f_i(b_k)\le-B<-\lvert f_i(b_i)\rvert\le f_i(b_i)$.
 							\item $f_i(b_k)-f_i(b_i)<0$.
 							\item $(b_k-b_i)f_{i-1}(b_k)<0$.
 							\item $f_{i-1}(b_k)<0$.
 						\end{enumerate}
-						\item Otherwise, if $f_i(a_k)<-B$, verify that:
+						\item Otherwise, if $f_i(a_k)\le -B$, do the following:
 						\begin{enumerate}
-							\item $f_{i-1}(a_k)<0$.
-							\item $f_{i-1}(b_k)>0$.
-						\end{enumerate}
-						\item Otherwise:
-						\begin{enumerate}
-							\item \textbf{Verify that 0=1.}
+							\item Using steps similar to (1ii), verify that $f_{i-1}(a_k)<0$.
+							\item Using steps similar to (1ii), verify that $f_{i-1}(b_k)>0$.
 						\end{enumerate}
 					\end{enumerate}
 				\end{enumerate}
-				\item By (1d), $f_0$ should equal $1$.
-				\item By (1eiD) and (1eiH) or (1eiiA) and (1eiiB), $\sgn(f_0(a_0))=-\sgn(f_0(b_0))$.
-				\item \textbf{Verify that 0=1.}
+				\item Using (1g), verify that $f_0=1$.
+				\item Using (1iiD) and (1iiH) or (1iiiA) and (1iiiB), verify that $\sgn(f_0(a_0))=-\sgn(f_0(b_0))$.
+				\item Therefore verify that $\sgn(1)=-\sgn(1)$.
+				\item Therefore verify that $1=-1$.
+				\item \textbf{Abort algorithm.}
 			\end{enumerate}
 		\subsection{Algorithm 38 (Sturm's algorithm initialization)}\label{sec:algorithm 38}
 			\textbf{Choose a sequence of polynomials $s_0={s_0}_0,s_1={s_1}_0x^1+{s_1}_1,\cdots,s_m={s_m}_0x^m+{s_m}_1x^{m-1}+\cdots+{s_m}_m$ and another sequence of polynomials $q_1,q_2,\cdots,q_{m-1}$ in such a way that
