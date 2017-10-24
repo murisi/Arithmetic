@@ -21,7 +21,7 @@
 	\date{\today{} \currenttime}
 	\maketitle
 	\section{Introduction}
-		\textbf{Only the first 20 pages have been revised. Think of the last 8 pages as a roadmap.}
+		\textbf{Only the first 21 pages have been revised. Think of the last 7 pages as a roadmap.}
 		
 		What follows is an attempt to present linear algebra as a system of algorithms in a manner devoid of argumentation. The correctness of these algorithms hopefully is made apparent by stating expected variable values at certain points of execution. Mathematical argumentation is circumvented by letting algorithms \textit{show} what a proposition in an argument might have \textit{said}.
 		
@@ -1072,57 +1072,59 @@
 				\end{enumerate}}
 			\end{enumerate}
 		\subsection{Algorithm 43}\label{sec:algorithm 43}
-			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals. Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let $B$ be the result. Choose a polynomial $p$ such that $\deg(p)<\deg(B_{m,m})$.} Now do the following:
+			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals. Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let the tuple $\langle B\rangle$ receive the result. Choose a polynomial $p$ such that $p(A)=0$ and $\deg(p)<\deg(B_{m,m})$.} Now do the following:
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 33]{algorithm 33} on matrix $A$ and polynomial $p$.
-				\item Since the inner execution of \hyperref[sec:algorithm 1]{algorithm 1} at \hyperref[sec:algorithm 33]{algorithm 33}'s (5) was decreasing the degree of an entry on every iteration, verify for \hyperref[sec:algorithm 33]{algorithm 33}'s $g$ that $\deg(g)\le\deg(B_{m,m})-1$.
-				\item Since $B_{m,m}=g$, verify that $\deg(B_{m,m})\le\deg(B_{m,m})-1$.
+				\item Cognizant of steps (8) to (10) of \hyperref[sec:algorithm 33]{algorithm 33}, verify for \hyperref[sec:algorithm 33]{algorithm 33}'s $g$ that $\deg(g)\le\deg(B_{m,m})-1$.
+				\item Cognizant of step (20d) of \hyperref[sec:algorithm 33]{algorithm 33}, verify that $B_{m,m}=g$.
+				\item Therefore verify that $\deg(B_{m,m})=\deg(g)\le\deg(B_{m,m})-1$.
+				\item Therefore verify that $0\le -1$.
 				\item \textbf{Abort algorithm.}
 			\end{enumerate}
 		\subsection{Algorithm 44}\label{sec:algorithm 44}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals} and do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let $B$ be the result.
+				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let the tuple $\langle B\rangle$ receive the result.
 				\item Execute \hyperref[sec:algorithm 28]{algorithm 28} on $A$.
-				\item Let $r=x^t+r_1x^{t-1}+r_2x^{t-2}+\cdots+r_tx^0$ be the last diagonal entry of $B$.
-				\item Make an $m^2*t$ matrix, $F$, whose $i^{th}$ column is the sequential concatenation of the columns of $A^{t-i}$.
-				\item Execute \hyperref[sec:algorithm 5]{algorithm 5} on $F$ to obtain matrices $M$, $N$, and $D$ such that $MFN=D$.
-				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on $F$ to obtain matrices $M$, $N$, and $D$ such that $F=M^{-1}DN^{-1}$.
-				\item Using \hyperref[sec:algorithm 7]{algorithm 7}, it should be that $M^{-1}MFN=I_{m^2}FN=FN=M^{-1}D$.
+				\item Let $r=x^t+r_1x^{t-1}+r_2x^{t-2}+\cdots+r_tx^0=B_{m,m}$.
+				\item Make an $m^2\times t$ matrix, $F$, whose $i^{th}$ column is the sequential concatenation of the columns of $A^{t-i}$.
+				\item Execute \hyperref[sec:algorithm 5]{algorithm 5} on $F$ and let the tuple $\langle D,M,N\rangle$ receive the result.
+				\item Verify that $MFN=D$.
+				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on $F$ and let the tuple $\langle M^{-1},D,N^{-1}\rangle$ receive the result.
+				\item Verify that $F=M^{-1}DN^{-1}$.
+				\item Using \hyperref[sec:algorithm 7]{algorithm 7}, verify that $M^{-1}MFN=I_{m^2}FN=FN=M^{-1}D$.
 				\item If any column $i$ of $N$, $Ne_i$, is equal to zero, then:
 				\begin{enumerate}
-					\item Column $i$ of $N^{-1}N$ should equal zero.
-					\item \textbf{Verify that 0=1.}
+					\item Verify that $0_{t\times 1}=N^{-1}0_{t\times 1}=N^{-1}(Ne_i)=(N^{-1}N)e_i=I_te_i=e_i$.
+					\item Therefore verify that 0=1.
+					\item \textbf{Abort algorithm.}
 				\end{enumerate}
-				\item Otherwise if the first entry of $C_t(D)$ is zero, then:
+				\item Otherwise if ${C_t(D)}_{1,1}=0$, then:
 				\begin{enumerate}
-					\item Some diagonal entry, $D_{i,i}$, of $D$ should be zero.
-					\item Column $i$ of $D$ should be zero.
-					\item Column $i$ of $M^{-1}D$ should be zero.
-					\item Column $i$ of $FN$ should be zero.
-					\item $F(Ne_i)$ should equal zero.
-					\item Therefore $N_{1,i}A^{t-1}+N_{2,i}A^{t-2}+\cdots+N_{t,i}A^0$ should equal zero.
+					\item Verify that for some $1\le i\le t$, $D_{i,i}=0$.
+					\item Therefore verify that $De_i=0_{m^2}$.
+					\item Therefore verify that $F(Ne_i)=(FN)e_i=(M^{-1}D)e_i=M^{-1}(De_i)=0_{m^2}$.
+					\item Therefore verify that $N_{1,i}A^{t-1}+N_{2,i}A^{t-2}+\cdots+N_{t,i}A^0=0_{m\times m}$.
 					\item Execute \hyperref[sec:algorithm 43]{algorithm 43} on matrix $A$ and polynomial $p=N_{1,i}x^{t-1}+N_{2,i}x^{t-2}+\cdots+N_{t,i}x^0$.
-					\item \textbf{Verify that 0=1.}
+					\item \textbf{Abort algorithm.}
 				\end{enumerate}
-				\item Otherwise, if any column $i$ of $C_t(M^{-1})$ is equal to zero, then:
+				\item Otherwise, if any column $i$ of $C_t(M^{-1})$, $C_t(M^{-1})e_i$, is equal to zero, then:
 				\begin{enumerate}
-					\item Column $i$ of $C_t(M)C_t(M^{-1})$ should equal zero.
-					\item $C_t(M)C_t(M^{-1})$ should, by \hyperref[sec:algorithm 18]{algorithm 18}, equal $C_t(MM^{-1})$ which should, by \hyperref[sec:algorithm 7]{algorithm 7}, equal $C_t(I_{m^2})$ which, by \hyperref[sec:algorithm 14]{algorithm 14}, should equal $I_{\binom{m^2}{t}}$.
-					\item Therefore column $i$ of $I_{\binom{m^2}{t}}$ should equal zero.
-					\item \textbf{Verify that 0=1.}
+					\item Using \hyperref[sec:algorithm 18]{algorithm 18}, \hyperref[sec:algorithm 7]{algorithm 7}, and \hyperref[sec:algorithm 14]{algorithm 14}, verify that $0_{m^2\times 1}=C_t(M)0_{m^2\times 1}=C_t(M)(C_t(M^{-1})e_i)=(C_t(M)C_t(M^{-1}))e_i=C_t(MM^{-1})e_i=C_t(I_{m^2})e_i=I_{\binom{m^2}{t}}e_i=e_i$.
+					\item Therefore verify that 0=1.
+					\item \textbf{Abort algorithm.}
 				\end{enumerate}
-				\item Otherwise, if column $i$ of $C_t(N^{-1})$ is equal to zero, then:
+				\item Otherwise, if $C_t(N^{-1})=0$, then:
 				\begin{enumerate}
-					\item \textbf{Verify that 0=1.}
+					\item Verify that $1=C_t(I_t)=C_t(N^{-1}N)=C_t(N^{-1})C_t(N)=0*C_t(N)=0$.
+					\item \textbf{Abort algorithm.}
 				\end{enumerate}
-				\item Otherwise all columns of $C_t(M^{-1})$ are non-zero, the first entry of $C_t(D)$ is non-zero, and $C_t(N^{-1})$ is non-zero. Now verify the following in order:
+				\item Otherwise, verify the following in order:
 				\begin{enumerate}
-					\item $C_t(F)=C_t(M^{-1}DN^{-1})$
-					\item $C_t(F)=C_t(M^{-1})C_t(D)C_t(N^{-1})$
-					\item $C_t(F)=C_t(M^{-1})ke_1C_t(N^{-1})$, where $k$ is a non-zero rational number
-					\item $C_t(F)=kC_t(N^{-1})C_t(M^{-1})e_1$
-					\item \textbf{$C_t(F)\ne 0_{\binom{m^2}{t}\times 1}$}
+					\item All columns of $C_t(M^{-1})$ are non-zero.
+					\item ${C_t(D)}_{1,1}\ne 0$.
+					\item $C_t(N^{-1})\ne 0$
+					\item \textbf{$C_t(F)=C_t(M^{-1}DN^{-1})=C_t(M^{-1})C_t(D)C_t(N^{-1})=C_t(M^{-1}){C_t(D)}_{1,1}e_1C_t(N^{-1})={C_t(D)}_{1,1}C_t(N^{-1})C_t(M^{-1})e_1\ne 0_{\binom{m^2}{t}\times 1}$}
 				\end{enumerate}
 			\end{enumerate}
 		\subsection{Algorithm 45}\label{sec:algorithm 45}
