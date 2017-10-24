@@ -1132,17 +1132,17 @@
 			\begin{enumerate}
 				\item \textbf{Execute \hyperref[sec:algorithm 44]{algorithm 44} on the matrix $A$ and let the tuple $\langle F\rangle$ receive the result.}
 				\item Using \hyperref[sec:algorithm 23]{algorithm 23}, verify that $C_t(F^TF)=C_t(F^T)C_t(F)={C_t(F)}^TC_t(F)=\lVert C_t(F)\rVert^2>0$.
-				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on $F^TF$ and let the tuple $\langle M^{-1},D,N^{-1}\rangle$ receive the result.
-				\item Verify that $F^TF=M^{-1}DN^{-1}$
-				\item If $D$ has a zero on its diagonal, then:
+				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on $F^TF$ and let the tuple $\langle M^{-1},B,N^{-1}\rangle$ receive the result.
+				\item Verify that $F^TF=M^{-1}BN^{-1}$
+				\item If $B$ has a zero on its diagonal, then:
 				\begin{enumerate}
-					\item Verify that $C_t(F^TF)=C_t(M^{-1}DN^{-1})=C_t(D)=0$.
+					\item Verify that $C_t(F^TF)=C_t(M^{-1}BN^{-1})=C_t(B)=0$.
 					\item Therefore verify that $0>0$.
 					\item \textbf{Abort algorithm.}
 				\end{enumerate}
 				\item Otherwise, do the following:
 				\begin{enumerate}
-					\item Verify that $D$ does not have a zero on its diagonal.
+					\item Verify that $B$ does not have a zero on its diagonal.
 					\item Let $t=\deg(B_{m,m})$.
 					\item Let $s_t=B_{m,m}$.
 					\item Let $\tr(X)$ be a shorthand for the sum of the diagonal entries of the square matrix $X$.
