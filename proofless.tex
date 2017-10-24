@@ -21,7 +21,7 @@
 	\date{\today{} \currenttime}
 	\maketitle
 	\section{Introduction}
-		\textbf{Only the first 21 pages have been revised. Think of the last 7 pages as a roadmap.}
+		\textbf{Only the first 22 pages have been revised. Think of the last 6 pages as a roadmap.}
 		
 		What follows is an attempt to present linear algebra as a system of algorithms in a manner devoid of argumentation. The correctness of these algorithms hopefully is made apparent by stating expected variable values at certain points of execution. Mathematical argumentation is circumvented by letting algorithms \textit{show} what a proposition in an argument might have \textit{said}.
 		
@@ -1131,58 +1131,70 @@
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals and is such that $A^T=A$.} Now do the following:
 			\begin{enumerate}
 				\item \textbf{Execute \hyperref[sec:algorithm 44]{algorithm 44} on the matrix $A$.}
-				\item $C_t(F^TF)$ should evaluate to $C_t(F^T)C_t(F)$ which should evaluate to the sum of squares of the entries of $C_t(F)$ which should be more than zero.
-				\item Using \hyperref[sec:algorithm 6]{algorithm 6}, it should be possible to evaluate $F^TF$ as $M^{-1}DN^{-1}$.
+				\item Using \hyperref[sec:algorithm 23]{algorithm 23}, verify that $C_t(F^TF)=C_t(F^T)C_t(F)={C_t(F)}^TC_t(F)=\lVert C_t(F)\rVert^2>0$.
+				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on $F^TF$ and let the tuple $\langle M^{-1},D,N^{-1}\rangle$ receive the result.
+				\item Verify that $F^TF=M^{-1}DN^{-1}$
 				\item If $D$ has a zero on its diagonal, then:
 				\begin{enumerate}
-					\item $C_t(F^TF)$ should evaluate to $C_t(M^{-1}DN^{-1})$ which should evaluate to $C_t(D)$ which should evaluate to $0$.
-					\item \textbf{Verify that 0=1.}
+					\item Verify that $C_t(F^TF)=C_t(M^{-1}DN^{-1})=C_t(D)=0$.
+					\item Therefore verify that $0>0$.
+					\item \textbf{Abort algorithm.}
 				\end{enumerate}
-				\item Otherwise $D$ should not have a zero on its diagonal. So do the following:
+				\item Otherwise, do the following:
 				\begin{enumerate}
+					\item Verify that $D$ does not have a zero on its diagonal.
 					\item Let $\tr(X)$ be a shorthand for the sum of the diagonal entries of the square matrix $X$.
 					\item Let $\mat(p_1x^{t-1}+p_1x^{t-2}+\cdots+p_t)$ be a shorthand for $p_1e_1+p_2e_2+\cdots+p_te_t$.
 					\item Let $\pol(p_1e_1+p_2e_2+\cdots+p_te_t)$ be a shorthand for $p_1x^{t-1}+p_1x^{t-2}+\cdots+p_t$.
 					\item Let $H=(F^TF)\backslash e_1$.
-					\item Separately apply \hyperref[sec:algorithm 5]{algorithm 5} and \hyperref[sec:algorithm 6]{algorithm 6} on a $1\times 2$ matrix comprising $r$ followed by $\pol(H)$.
-					\item If $d$ is a monic polynomial of degree is more than $0$, then do the following:
+					\item Let $h=\pol(H)$.
+					\item Execute \hyperref[sec:algorithm 5]{algorithm 5} on a $1\times 2$ matrix comprising $r$ followed by $h$. Let the tuple $\langle D,M,N\rangle$ receive the result.
+					\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on a $1\times 2$ matrix comprising $r$ followed by $h$. Let the tuple $\langle M^{-1},D,N^{-1}\rangle$ receive the result.
+					\item Let $d=D_{1,1}$.
+					\item Verify that $d$ is monic.
+					\item If $\deg(d)>0$, then do the following:
 					\begin{enumerate}
-						\item From the matrices constructed by \hyperref[sec:algorithm 6]{algorithm 6}, let $d=D_{1,1}$, $b={N^{-1}}_{1,1}$ and $c={N^{-1}}_{1,2}$.
-						\item It should be that $r=bd$, where $b$ is a monic polynomial with degree $z<t$.
-						\item It should be that $\pol(H)=cd$, where $c$ is some polynomial.
+						\item Let $b={N^{-1}}_{1,1}$.
+						\item Let $c={N^{-1}}_{1,2}$.
+						\item Verify that $r=bd$.
+						\item Verify that $b$ is a monic polynomial with degree $z<t$.
+						\item Verify that $h=cd$.
 						\item Let $u=x^{t-z-1}b$.
-						\item $\tr(u(A)h(A))$ should evaluate to $\mat(u)^TF^TFH$ which should evaluate to $\mat(u)^TF^TF((F^TF)\backslash e_1)$ which should evaluate to $\mat(u)^Te_1$ which should evaluate to $\mat(u)_{1,1}$ which should evaluate to $1$.
-						\item $\tr(u(A)h(A))$ should also evaluate to $\tr(A^{z-1}b(A)c(A)d(A))$ which should evaluate to $\tr(A^{z-1}c(A)b(A)d(A))$ which should evaluate to $\tr(A^{z-1}c(A)f(A))$ which should evaluate to $\tr(A^{z-1}c(A)0_{m\times m})$ which should evaluate to $\tr(0_{m\times m})$ which should evaluate to $0$.
-						\item \textbf{Verify that 0=1.}
+						\item Verify that $\tr(u(A)h(A))=\mat(u)^TF^TFH=\mat(u)^TF^TF((F^TF)\backslash e_1)=\mat(u)^Te_1=\mat(u)_{1,1}=1$.
+						\item Verify that $\tr(u(A)h(A))=\tr(A^{z-1}b(A)c(A)d(A))=\tr(A^{z-1}c(A)b(A)d(A))=\tr(A^{z-1}c(A)f(A))=\tr(A^{z-1}c(A)0_{m\times m})=\tr(0_{m\times m})=0$.
+						\item Therefore verify that 0=1.
+						\item \textbf{Abort algorithm.}
 					\end{enumerate}
-					\item Otherwise if $d=1$, then do the following:
+					\item Otherwise, do the following:
 					\begin{enumerate}
-						\item From the matrices constructed by \hyperref[sec:algorithm 6]{algorithm 6}, let $d=D_{1,1}$, $u=N_{1,1}$ and $s_{t+1}=N_{2,1}$.
-						\item \textbf{It should be that $uf+s_{t+1}h=1$.}
-					\end{enumerate}
-					\item Otherwise:
-					\begin{enumerate}
-						\item \textbf{Verify that 0=1.}
+						\item Verify that $d=1$.
+						\item Let $u=N_{1,1}$.
+						\item Let $s_{t+1}=N_{2,1}$.
+						\item \textbf{Verify that $uf+s_{t+1}h=1$.}
 					\end{enumerate}
 				\end{enumerate}
 			\end{enumerate}
 		\subsection{Algorithm 46 (Euclidean division)}\label{sec:algorithm 46}
 			\textbf{Choose two polynomials in $x$, $a$ and $b$} and do the following:
 			\begin{enumerate}
-				\item If the degree of $a$ is more than or equal to the degree of $b$:
+				\item If $\deg(a)\ge\deg(b)$:
 				\begin{enumerate}
 					\item Let $y$ be $\frac{\text{$a$'s leading coefficient}}{\text{$b$'s leading coefficient}}x^{\text{$a$'s degree - $b$'s degree}}$
-					\item Let $e$ be $a-yb$. The degree of $e$ should be less than that of the degree of $a$.
-					\item Apply \hyperref[sec:algorithm 46]{algorithm 46} on the ordered pair of polynomials $e$ and $b$. Let $c$ and $d$ be the ordered pair of polynomials yielded by this application.
-					\item It should be that $cb+d=e$ and that $d$ has degree less than $b$.
-					\item Therefore it should be that $cb+d=a-yb$
-					\item \textbf{Therefore it should be that $(y+c)b+d=a$ and that $d$ has degree less than $b$.}
-					\item \textbf{Now yield the ordered pair of polynomials consisting of $y+c$  and $d$.}
+					\item Let $e$ be $a-yb$.
+					\item Verify that $\deg(e)<\deg(a)$.
+					\item Execute \hyperref[sec:algorithm 46]{algorithm 46} on the tuple $\langle e,b\rangle$. Let the tuple $\langle c,d\rangle$ receive the result.
+					\item Verify that $cb+d=e$.
+					\item Verify that $\deg(d)<\deg(b)$.
+					\item Therefore verify that $cb+d=a-yb$
+					\item \textbf{Therefore verify that $(y+c)b+d=a$.}
+					\item \textbf{Also verify that $\deg(d)<\deg(b)$.}
+					\item \textbf{Now yield the tuple $\langle y+c, d\rangle$.}
 				\end{enumerate}
 				\item Otherwise:
 				\begin{enumerate}
-					\item \textbf{It should be that $0b+a=a$ and that $a$ has degree less than $b$.}
-					\item \textbf{Yield the ordered pair consisting of $0$ then $a$.}
+					\item \textbf{Verify that $0*b+a=a$.}
+					\item \textbf{Verify that $\deg(a)<\deg(b)$.}
+					\item \textbf{Yield the tuple $\langle 0,a\rangle$.}
 				\end{enumerate}
 			\end{enumerate}
 		\subsection{Algorithm 47 (Edwards' Sturm chain construction)}\label{sec:algorithm 47}
