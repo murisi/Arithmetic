@@ -21,8 +21,6 @@
 	\date{\today{} \currenttime}
 	\maketitle
 	\section{Introduction}
-		\textbf{Only the first 22 pages have been revised. Think of the last 6 pages as a roadmap.}
-		
 		What follows is an attempt to present linear algebra as a system of algorithms in a manner devoid of argumentation. The correctness of these algorithms hopefully is made apparent by stating expected variable values at certain points of execution. Mathematical argumentation is circumvented by letting algorithms \textit{show} what a proposition in an argument might have \textit{said}.
 		
 		The subset of linear algebra I intend to tackle consists of the Smith normal form, determinants, compound matrices, general solutions to linear systems, characteristic matrices, the rational canonical form, block matrix multiplication, minimum polynomials, orthogonalization, and the spectral theorem for symmetric matrices. To get the above done, I also have to extract the algorithms from Sturm's theorem, Cauchy's bound, the Cauchy-Schwarz inequality, the Euclidean division algorithm, and the factor theorem.
@@ -1175,7 +1173,7 @@
 				\end{enumerate}
 			\end{enumerate}
 		\subsection{Algorithm 46 (Euclidean division)}\label{sec:algorithm 46}
-			\textbf{Choose two polynomials in $x$, $a$ and $b$} and do the following:
+			\textbf{Choose two polynomials in $x$, $\langle a,b\rangle$} and do the following:
 			\begin{enumerate}
 				\item If $\deg(a)\ge\deg(b)$:
 				\begin{enumerate}
@@ -1201,8 +1199,7 @@
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals and is such that $A^T=A$.} Now do the following:
 			\begin{enumerate}
 				\item \textbf{Execute \hyperref[sec:algorithm 45]{algorithm 45} on the matrix $A$.}
-				\item If polynomials $u$ and $s_{t+1}$ such that $us_t+s_{t+1}h=1$ were successfully created, then:
-				\item Execute \hyperref[sec:algorithm 46]{algorithm 46} on the ordered pair $s_{t+1}$ and $s_t$. Let $q_t$ and $s_{t-1}$ be the polynomials yielded by this execution.
+				\item Execute \hyperref[sec:algorithm 46]{algorithm 46} on the tuple $\langle s_{t+1},s_t\rangle$. Let the tuple $\langle q_t,s_{t-1}\rangle$ receive the result.
 				\item Verify that $s_{t+1}=q_ts_t+s_{t-1}$, where $\deg(s_{t-1})<t$.
 				\item Therefore verify that $us_t+(q_ts_t+s_{t-1})h=1$.
 				\item Therefore verify that $u(A)s_t(A)+(q_t(A)s_t(A)+s_{t-1}(A))h(A)=I_{m,m}$.
@@ -1215,16 +1212,17 @@
 						\item Verify that $s_i=p_1s_{t-1}+j_1s_t$ where $\deg(s_i)=i$, ${s_i}_0>0$, $\deg(p_1)=t-1-i$, and $\deg(j_1)=t-2-i$.
 						\item Verify that $s_{i+1}=p_2s_{t-1}+j_2s_t$ where $\deg(s_{i+1})=i$, $\deg(p_2)=t-2-i$, and $\deg(j_2)=t-3-i$.
 					\end{enumerate}
-					\item Execute \hyperref[sec:algorithm 46]{algorithm 46} on the ordered pair $-s_{i+1}$ and $-s_i$. Let $q_i$ and $s_{i-1}$ be the polynomials yielded by this execution.
-					\item Verify that $\deg(q_i)=1$ and that ${q_i}_0=\frac{{s_{i+1}}_0}{{s_i}_0}$.
+					\item Execute \hyperref[sec:algorithm 46]{algorithm 46} on the tuple $\langle -s_{i+1},-s_i\rangle$. Let the tuple $\langle q_i,s_{i-1}\rangle$ receive the result.
+					\item Verify that $\deg(q_i)=1$.
+					\item Verify that ${q_i}_0=\frac{{s_{i+1}}_0}{{s_i}_0}$.
 					\item Also verify that $-s_{i+1}=-q_is_i+s_{i-1}$.
 					\item Therefore verify that $q_is_i=s_{i+1}+s_{i-1}$.
 					\item Therefore verify that $q_is_i-s_{i+1}=s_{i-1}$.
 					\item If $i<t-1$, then do the following:
 					\begin{enumerate}
-						\item \textbf{It should be that $s_{i-1}=q_i(p_1s_{t-1}+j_1s_t)-(p_2s_{t-1}+j_2s_t)=p_3s_{t-1}+j_3s_t$, where $p_3=q_ip_1-p_2$ is of degree $t-i$ and $j_3=q_ij_1-j_2$ is of degree $t-1-i$.}
+						\item \textbf{Verify that $s_{i-1}=q_i(p_1s_{t-1}+j_1s_t)-(p_2s_{t-1}+j_2s_t)=p_3s_{t-1}+j_3s_t$, where $p_3=q_ip_1-p_2$ is of degree $t-i$ and $j_3=q_ij_1-j_2$ is of degree $t-1-i$.}
 					\end{enumerate}
-					\item Otherwise:
+					\item Otherwise do the following:
 					\begin{enumerate}
 						\item \textbf{Verify that $s_{i-1}=s_{t-2}=q_{t-1}s_{t-1}-s_t=p_3s_{t-1}+j_3s_t$, where $p_3=q_{t-1}$ of degree $1=t-1$ and $j_3=-1$ is of degree $0=t-1-i$.}
 					\end{enumerate}
@@ -1249,7 +1247,7 @@
 					\item Otherwise, do the following:
 					\begin{enumerate}
 						\item Verify that $\deg(s_{i-1})<i$.
-						\item Execute the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm} on the pair $(s_{i-1}, s_{i-1})$.
+						\item Execute the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm} on the tuple $(i-1, s_{i-1})$.
 						\item Now verify that $\tr(s_{i-1}(A)^2h(A)^2)=\frac{{s_{i-1}}_0}{{s_i}_0}$.
 						\item Verify that $s_{i-1}(A)h(A)\ne 0_{m\times m}$.
 						\item Therefore verify that $\tr(s_{i-1}(A)^2h(A)^2)=\tr((s_{i-1}(A)h(A))^2)=\lVert s_{i-1}(A)h(A)\rVert^2>0$.
@@ -1280,16 +1278,20 @@
 					\begin{enumerate}
 						\item Verify that $\tr(g(A)s_k(A)h(A)^2)=\tr(g(A)(q_{k+1}(A)s_{k+1}(A)+s_{k+2}(A))h(A)^2)$.
 						\item Verify that $\tr(g(A)s_k(A)h(A)^2)=\tr(g(A)q_{k+1}(A)s_{k+1}(A)h(A)^2)+\tr(g(A)s_{k+2}(A)h(A)^2)$.
-						\item Execute the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm} supplying the integer $k+1$ and $(k+1)^{th}$ degree polynomial $gq$.
-						\item Since it should be that $k+1<t$, the execution of the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm} should have verified that $\tr((g(A)q_{k+1}(A))s_{k+1}(A)h(A)^2)=\frac{({s_{k+2}}_0/{s_{k+1}}_0)g_0}{{s_{k+2}}_0}=\frac{g_0}{s_{k+1}}$.
-						\item Execute the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm} supplying the integer $k+2$ and $k^{th}$ degree polynomial $g$.
-						\item If $k+2<t$, then:
+						\item Verify that $\deg(gq)=k+1$.
+						\item Verify that $k+1<t$.
+						\item Execute the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm} on the tuple $\langle k+1, gq\rangle$.
+						\item Cognizant of the execution of the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm}, verify that $\tr((g(A)q_{k+1}(A))s_{k+1}(A)h(A)^2)=\frac{({s_{k+2}}_0/{s_{k+1}}_0)g_0}{{s_{k+2}}_0}=\frac{g_0}{s_{k+1}}$.
+						\item Verify that $\deg(g)=k$.
+						\item Execute the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm} on the tuple $\langle k+2,g\rangle$.
+						\item If $k+2<t$, then do the following:
 						\begin{enumerate}
-							\item The execution of the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm} should have verified that $\tr(g(A)s_{k+2}(A)h(A)^2)=\frac{0}{{s_{k+2}}_0}=0$.
+							\item Cognizant of the execution of the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm}, verify that $\tr(g(A)s_{k+2}(A)h(A)^2)=\frac{0}{{s_{k+2}}_0}=0$.
 						\end{enumerate}
-						\item Otherwise if $k+2=t$, then:
+						\item Otherwise, do the following:
 						\begin{enumerate}
-							\item The execution of the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm} should have verified that $\tr(g(A)s_{k+2}(A)h(A)^2)=\tr(g(A)s_t(A)h(A)^2)=0$.
+							\item Verify that $k+2=t$.
+							\item Cognizant of the execution of the \hyperref[sec:algorithm 47 auxilliary algorithm]{auxilliary algorithm}, verify that $\tr(g(A)s_{k+2}(A)h(A)^2)=\tr(g(A)s_t(A)h(A)^2)=0$.
 						\end{enumerate}
 						\item \textbf{Therefore verify that $\tr(g(A)s_k(A)h(A)^2)=\frac{g_0}{{s_{k+1}}_0}+0=\frac{g_0}{{s_{k+1}}_0}$.}
 					\end{enumerate}
