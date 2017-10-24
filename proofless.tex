@@ -175,7 +175,7 @@
 						\item If the current operation adds polynomial $x$ times column $i$ to column $j$, then add $-x$ times column $i$ from column $j$ from our working matrix.
 						\item If the current operation adds polynomial $x$ times row $i$ to row $j$, then add $-x$ times row $i$ from row $j$ from our working matrix.
 					\end{enumerate}
-				\item Our working matrix should now be equal to $A$.
+				\item Verify that our working matrix now equals $A$.
 				\item Make a singleton list containing one item, the original matrix $D$.
 				\item Augment (2) in a way analogous to how \hyperref[sec:algorithm 5]{algorithm 5} augmented \hyperref[sec:algorithm 3]{algorithm 3}, but this time with the list provided in (4).
 				\item Now run augmented (2).
@@ -294,11 +294,11 @@
 				\item If the entry is diagonal, then do the following:
 				\begin{enumerate}
 					\item Verify that the $k$ column indices we just selected from $I_m$ are the same as the $k$ rows indices we just selected from $I_m$.
-					\item Therefore verify that the diagonal positions of $B$ correspond to a diagonal entry of $I_m$.
-					\item Therefore verify that the diagonal positions of $B$ are $1$.
+					\item Therefore verify that the diagonal positions of $B$ correspond to diagonal positions of $I_m$.
+					\item Therefore verify that the diagonal positions of $B$ are $1$s.
 					\item Also verify that the non-diagonal positions of $B$ correspond to a non-diagonal entry of $I_m$.
 					\item Therefore verify that the non-diagonal positions of $B$ are $0$.
-					\item Therefore the submatrix $B$ should equal $I_k$.
+					\item Therefore verify that $B=I_k$.
 					\item \textbf{Therefore using \hyperref[sec:algorithm 8]{algorithm 8}, verify that $\lvert B\rvert=1$.}
 				\end{enumerate}
 				\item Otherwise, do the following:
@@ -1067,6 +1067,7 @@
 					\begin{enumerate}
 						\item Verify that $\sgn(s_m(c_i))=-\sgn(s_m(d_i))$.
 					\end{enumerate}
+					\item \textbf{Yield the tuple $\langle c_1,d_1,c_2,d_2,\cdots,c_m,d_m\rangle$.}
 				\end{enumerate}}
 			\end{enumerate}
 		\subsection{Algorithm 43}\label{sec:algorithm 43}
@@ -1117,18 +1118,19 @@
 					\item Verify that $1=C_t(I_t)=C_t(N^{-1}N)=C_t(N^{-1})C_t(N)=0*C_t(N)=0$.
 					\item \textbf{Abort algorithm.}
 				\end{enumerate}
-				\item Otherwise, verify the following in order:
+				\item Otherwise, do the following:
 				\begin{enumerate}
-					\item All columns of $C_t(M^{-1})$ are non-zero.
-					\item ${C_t(D)}_{1,1}\ne 0$.
-					\item $C_t(N^{-1})\ne 0$
-					\item \textbf{$C_t(F)=C_t(M^{-1}DN^{-1})=C_t(M^{-1})C_t(D)C_t(N^{-1})=C_t(M^{-1}){C_t(D)}_{1,1}e_1C_t(N^{-1})={C_t(D)}_{1,1}C_t(N^{-1})C_t(M^{-1})e_1\ne 0_{\binom{m^2}{t}\times 1}$}
+					\item Verify that all columns of $C_t(M^{-1})$ are non-zero.
+					\item Verify that ${C_t(D)}_{1,1}\ne 0$.
+					\item Verify that $C_t(N^{-1})\ne 0$.
+					\item \textbf{Verify that $C_t(F)=C_t(M^{-1}DN^{-1})=C_t(M^{-1})C_t(D)C_t(N^{-1})=C_t(M^{-1}){C_t(D)}_{1,1}e_1C_t(N^{-1})={C_t(D)}_{1,1}C_t(N^{-1})C_t(M^{-1})e_1\ne 0_{\binom{m^2}{t}\times 1}$.}
+					\item \textbf{Yield $\langle F\rangle$.}
 				\end{enumerate}
 			\end{enumerate}
 		\subsection{Algorithm 45}\label{sec:algorithm 45}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals and is such that $A^T=A$.} Now do the following:
 			\begin{enumerate}
-				\item \textbf{Execute \hyperref[sec:algorithm 44]{algorithm 44} on the matrix $A$.}
+				\item \textbf{Execute \hyperref[sec:algorithm 44]{algorithm 44} on the matrix $A$ and let the tuple $\langle F\rangle$ receive the result.}
 				\item Using \hyperref[sec:algorithm 23]{algorithm 23}, verify that $C_t(F^TF)=C_t(F^T)C_t(F)={C_t(F)}^TC_t(F)=\lVert C_t(F)\rVert^2>0$.
 				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on $F^TF$ and let the tuple $\langle M^{-1},D,N^{-1}\rangle$ receive the result.
 				\item Verify that $F^TF=M^{-1}DN^{-1}$
@@ -1141,25 +1143,27 @@
 				\item Otherwise, do the following:
 				\begin{enumerate}
 					\item Verify that $D$ does not have a zero on its diagonal.
+					\item Let $t=\deg(B_{m,m})$.
+					\item Let $s_t=B_{m,m}$.
 					\item Let $\tr(X)$ be a shorthand for the sum of the diagonal entries of the square matrix $X$.
 					\item Let $\mat(p_1x^{t-1}+p_1x^{t-2}+\cdots+p_t)$ be a shorthand for $p_1e_1+p_2e_2+\cdots+p_te_t$.
 					\item Let $\pol(p_1e_1+p_2e_2+\cdots+p_te_t)$ be a shorthand for $p_1x^{t-1}+p_1x^{t-2}+\cdots+p_t$.
 					\item Let $H=(F^TF)\backslash e_1$.
 					\item Let $h=\pol(H)$.
-					\item Execute \hyperref[sec:algorithm 5]{algorithm 5} on a $1\times 2$ matrix comprising $r$ followed by $h$. Let the tuple $\langle D,M,N\rangle$ receive the result.
-					\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on a $1\times 2$ matrix comprising $r$ followed by $h$. Let the tuple $\langle M^{-1},D,N^{-1}\rangle$ receive the result.
+					\item Execute \hyperref[sec:algorithm 5]{algorithm 5} on a $1\times 2$ matrix comprising $s_t$ followed by $h$. Let the tuple $\langle D,M,N\rangle$ receive the result.
+					\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on a $1\times 2$ matrix comprising $s_t$ followed by $h$. Let the tuple $\langle M^{-1},D,N^{-1}\rangle$ receive the result.
 					\item Let $d=D_{1,1}$.
 					\item Verify that $d$ is monic.
 					\item If $\deg(d)>0$, then do the following:
 					\begin{enumerate}
 						\item Let $b={N^{-1}}_{1,1}$.
 						\item Let $c={N^{-1}}_{1,2}$.
-						\item Verify that $r=bd$.
+						\item Verify that $s_t=bd$.
 						\item Verify that $b$ is a monic polynomial with degree $z<t$.
 						\item Verify that $h=cd$.
 						\item Let $u=x^{t-z-1}b$.
 						\item Verify that $\tr(u(A)h(A))=\mat(u)^TF^TFH=\mat(u)^TF^TF((F^TF)\backslash e_1)=\mat(u)^Te_1=\mat(u)_{1,1}=1$.
-						\item Verify that $\tr(u(A)h(A))=\tr(A^{z-1}b(A)c(A)d(A))=\tr(A^{z-1}c(A)b(A)d(A))=\tr(A^{z-1}c(A)f(A))=\tr(A^{z-1}c(A)0_{m\times m})=\tr(0_{m\times m})=0$.
+						\item Verify that $\tr(u(A)h(A))=\tr(A^{z-1}b(A)c(A)d(A))=\tr(A^{z-1}c(A)b(A)d(A))=\tr(A^{z-1}c(A)s_t(A))=\tr(A^{z-1}c(A)0_{m\times m})=\tr(0_{m\times m})=0$.
 						\item Therefore verify that 0=1.
 						\item \textbf{Abort algorithm.}
 					\end{enumerate}
@@ -1168,7 +1172,8 @@
 						\item Verify that $d=1$.
 						\item Let $u=N_{1,1}$.
 						\item Let $s_{t+1}=N_{2,1}$.
-						\item \textbf{Verify that $uf+s_{t+1}h=1$.}
+						\item \textbf{Verify that $us_t+s_{t+1}h=1$.}
+						\item \textbf{Yield the tuple $\langle u,s_t,s_{t+1},h\rangle$.}
 					\end{enumerate}
 				\end{enumerate}
 			\end{enumerate}
@@ -1198,7 +1203,7 @@
 		\subsection{Algorithm 47 (Edwards' Sturm chain construction)}\label{sec:algorithm 47}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals and is such that $A^T=A$.} Now do the following:
 			\begin{enumerate}
-				\item \textbf{Execute \hyperref[sec:algorithm 45]{algorithm 45} on the matrix $A$.}
+				\item \textbf{Execute \hyperref[sec:algorithm 45]{algorithm 45} on the matrix $A$. Let the tuple $\langle u,s_t,s_{t+1},h\rangle$ receive the result.}
 				\item Execute \hyperref[sec:algorithm 46]{algorithm 46} on the tuple $\langle s_{t+1},s_t\rangle$. Let the tuple $\langle q_t,s_{t-1}\rangle$ receive the result.
 				\item Verify that $s_{t+1}=q_ts_t+s_{t-1}$, where $\deg(s_{t-1})<t$.
 				\item Therefore verify that $us_t+(q_ts_t+s_{t-1})h=1$.
@@ -1255,6 +1260,7 @@
 						\item \textbf{Therefore verify that ${s_{i-1}}_0>0$.}
 					\end{enumerate}
 				\end{enumerate}
+				\item Yield the tuple $\langle \langle s_0,s_1,\cdots,s_t\rangle,\langle q_1,q_2,\cdots,q_{t-1}\rangle\rangle$.
 			\end{enumerate}
 			\subsubsection{Auxilliary algorithm}\label{sec:algorithm 47 auxilliary algorithm}
 				\textbf{Choose an integer $0\le k\le t$ such that polynomial $s_k$ is defined. Choose a polynomial $g=g_0x^k+g_1x^{k-1}+\cdots+g_k.$}
@@ -1299,10 +1305,10 @@
 		\subsection{Algorithm 48}\label{sec:algorithm 48}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals and is such that $A^T=A$.} Now do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let $D$ be the result.
-				\item The last diagonal entry of $D$ should be a product of $m$ factors, $u_1u_2\cdots u_m$.
-				\item Execute \hyperref[sec:algorithm 47]{algorithm 47} on the matrix $A$.
-				\item Execute \hyperref[sec:algorithm 42]{algorithm 42} supplying the sequences of polynomials $s_0,s_1,\cdots,s_t$ and $q_1,q_2,\cdots,q_{t-1}$ constructed above.
+				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let the tuple $\langle D\rangle$ receive the result.
+				\item Verify that $D_{m,m}=u_1u_2\cdots u_m$.
+				\item Execute \hyperref[sec:algorithm 47]{algorithm 47} on the matrix $A$ and let the tuple $\langle \langle s_0,s_1,\cdots,s_t\rangle,\langle q_1,q_2,\cdots,q_{t-1}\rangle\rangle$ receive the result.
+				\item Execute \hyperref[sec:algorithm 42]{algorithm 42} supplying the tuple $\langle \langle s_0,s_1,\cdots,s_t\rangle,\langle q_1,q_2,\cdots,q_{t-1}\rangle\rangle$. Let the tuple $\langle c_1,d_1,c_2,d_2,\cdots,c_m,d_m\rangle$ receive the result.
 				\item For $i=1$ to $i=t$ do the following:
 				\begin{enumerate}
 					\item If $\sgn(u_1(c_i))=\sgn(u_1(d_i)), \sgn(u_2(c_i))=\sgn(u_2(d_i)), \cdots, \sgn(u_m(c_i))=\sgn(u_m(d_i))$, then do the following:
@@ -1396,7 +1402,7 @@
 				\end{enumerate}
 				\item Let $E=(D_1N_1)\cdots (D_nN_n)$.
 				\item \textbf{Verify that ${A_n}^TA_n=(A_0(D_1N_1)\cdots (D_nN_n))^T(A_0(D_1N_1)\cdots (D_nN_n))=((D_1N_1)\cdots (D_nN_n))^T({A_0}^TA_0)((D_1N_1)\cdots (D_nN_n))=E^T({A_0}^TA_0)E$ is a diagonal matrix.}
-				\item \textbf{Yield the matrix $E$.}
+				\item \textbf{Yield the tuple $\langle E\rangle$.}
 			\end{enumerate}
 		\subsection{Algorithm 51 (Cauchy-Schwarz inequality)}\label{sec:algorithm 51}
 			\textbf{Choose a $1*m$ matrix $A$ and an $m*1$ matrix $B$.} Now do the following:
@@ -1429,7 +1435,7 @@
 				\item Using \hyperref[sec:algorithm 50]{algorithm 50}, verify that $(1\lVert A_0e_1\rVert^2\cdots\lVert A_{\min(i,j-1)-1}e_{\min(i,j-1)}\rVert^2)^2=({e_j}^TM(x)A_i(x)e_j)^2<\frac{1}{a^{(2i)!!*2i}}\le 1$.
 				\item If $\min(i,j-1)=0$, then do the following:
 				\begin{enumerate}
-					\item Verify that $(1\lVert A_0(x)e_1\rVert^2\cdots\lVert A_{\min(i,j-1)-1}(x)e_{\min(i,j-1)}\rVert^2)^2=1^2=1$.
+					\item Verify that $(1\lVert A_0(x)e_1\rVert^2\cdots\allowbreak\lVert A_{\min(i,j-1)-1}(x)e_{\min(i,j-1)}\rVert^2)^2=1^2=1$.
 					\item \textbf{Abort algorithm.}
 				\end{enumerate}
 				\item Otherwise do the following:
@@ -1437,7 +1443,7 @@
 					\item Verify that $\min(i,j-1)>0$.
 					\item If for all $k=0$ to $k=\min(i,j-1)-1$, $\lVert A_k(x)e_{k+1}\rVert^2\ge\frac{1}{a^{(2i)!!}}$, then do the following:
 					\begin{enumerate}
-						\item Verify that $({e_j}^TM(x)A_i(x)e_j)^2=(\lVert A_0(x)e_1\rVert^2\cdots\lVert A_{\min(i,j-1)-1}(x)e_{\min(i,j-1)}\rVert^2)^2\ge(\frac{1}{a^{(2i)!!}})^{2\min(i,j-1)}\ge(\frac{1}{a^{(2i)!!}})^{2i}=\frac{1}{a^{(2i)!!*2i}}$.
+						\item Verify that $({e_j}^TM(x)A_i(x)e_j)^2=(\lVert A_0(x)e_1\rVert^2\cdots\allowbreak\lVert A_{\min(i,j-1)-1}(x)e_{\min(i,j-1)}\rVert^2)^2\ge(\frac{1}{a^{(2i)!!}})^{2\min(i,j-1)}\ge(\frac{1}{a^{(2i)!!}})^{2i}=\frac{1}{a^{(2i)!!*2i}}$.
 						\item \textbf{Abort algorithm.}
 					\end{enumerate}
 					\item Otherwise, do the following:
