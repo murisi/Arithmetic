@@ -30,34 +30,37 @@
 		The following are some things to take into consideration whilst reading the \hyperref[sec:body]{body} of this project:
 		\begin{enumerate}
 			\item Where a proof expresses generality using universal quantification, the algorithms below show generality by allowing one to choose inputs. See \hyperref[sec:algorithm 24]{algorithm 24}.
-			\item Where a proof expresses that a proposition implies contradiction, the algorithms below merely show how certain control flows lead to absurdity. See algorithms \hyperref[sec:algorithm 11]{11}, \hyperref[sec:algorithm 28]{28}, \hyperref[sec:algorithm 35]{34}, and \hyperref[sec:algorithm 52]{51}.
-			\item Where a proof uses the principle of mathematical induction, the algorithms below merely use iteration/recursion and loop invariants. See algorithms \hyperref[sec:algorithm 47]{46}, \hyperref[sec:algorithm 47]{46 auxilliary}, and \hyperref[sec:algorithm 52]{51}.
+			\item Where a proof expresses that a proposition implies contradiction, the algorithms below merely show how certain control flows lead to absurdity. See algorithms \hyperref[sec:algorithm 11]{11}, \hyperref[sec:algorithm 28]{28}, \hyperref[sec:algorithm 35]{35}, and \hyperref[sec:algorithm 52]{52}.
+			\item Where a proof uses the principle of mathematical induction, the algorithms below merely use iteration/recursion and loop invariants. See algorithms \hyperref[sec:algorithm 47]{47}, \hyperref[sec:algorithm 47]{47 auxilliary}, and \hyperref[sec:algorithm 52]{52}.
 		\end{enumerate}
 		
-		Anyway, to see most easily what I am trying to do, see algorithms \hyperref[sec:algorithm 34]{33}, \hyperref[sec:algorithm 40]{39}, \hyperref[sec:algorithm 49]{48}, and \hyperref[sec:algorithm 51]{50}.
+		Anyway, to see most easily what I am trying to do, see algorithms \hyperref[sec:algorithm 34]{34}, \hyperref[sec:algorithm 40]{40}, \hyperref[sec:algorithm 49]{49}, and \hyperref[sec:algorithm 51]{51}.
 	\tableofcontents
 	\section{Body}\label{sec:body}
 		\subsection{Algorithm 1}\label{sec:algorithm 1}
 			\textbf{Choose a $1\times 2$ matrix, $A$, whose entries are polynomials} and do the following:
 			\begin{enumerate}
 				\item Let $A$ be our working matrix.
-				\item If the $A_{1,1}=0$, then add $A_{1,2}$ to it.
+				\item If $A_{1,1}=0$, then do the following:
+				\begin{enumerate}
+					\item Add $A_{1,2}$ to $A_{1,1}$.
+				\end{enumerate}
 				\item Then while $A_{1,2}\ne 0$, do the following:
 				\begin{enumerate}
 					\item If $\deg(A_{1,1})=\deg(A_{1,2})$ and $A_{1,1}$ is monic, then:
 					\begin{enumerate}
 						\item Subtract $a$ times $A_{1,1}$ from $A_{1,2}$ where $a$ is the leading coefficient of $A_{1,2}$.
 					\end{enumerate}
-					\item Otherwise, if $\deg(A_{1,1})=\deg(A_{1,2})$ but $A_{1,1}$ is not monic, then:
+					\item Otherwise, if $\deg(A_{1,1})=\deg(A_{1,2})$ but $A_{1,1}$ is not monic, then do the following:
 					\begin{enumerate}
 						\item Add $1-b/a$ times $A_{1,2}$ to $A_{1,1}$ where $b$ and $a$ are the leading coefficients of $A_{1,1}$ and $A_{1,2}$ respectively.
 						\item Go to (3a) again.
 					\end{enumerate}
-					\item Otherwise, if $\deg(A_{1,1})\ne\deg(A_{1,2})$, then:
+					\item Otherwise, if $\deg(A_{1,1})\ne\deg(A_{1,2})$, then do the following:
 					\begin{enumerate}
 						\item Let $p$ and $q$ be locations of the polynomials with the lower and higher degree respectively.
 						\item Add $-b/ax^{\deg(p)-\deg(q)}$ times $p$ to $q$ where $b$ and $a$ are the leading coefficients of $q$ and $p$ respectively.
-						\item If $q$ becomes zero, then:
+						\item If $q$ becomes zero, then do the following:
 						\begin{enumerate}
 							\item Undo operation (3cii) and do the same thing again, only this time using the fraction $1-b/ax^{\deg(p)-\deg(q)}$.
 						\end{enumerate}
@@ -445,7 +448,7 @@
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on $A$. Let ${M^{-1}}_i$ be the $i^{th}$ element of the sublist corresponding to $M$ and ${N^{-1}}_i$ be the $i^{th}$ element of the sublist corresponding to $N$.
 				\item Verify that $A={M^{-1}}_1\cdots {M^{-1}}_mD{N^{-1}}_1\cdots {N^{-1}}_n$.
-				\item \textbf{Therefore using \hyperref[sec:algorithm 19]{algorithms 19} and \hyperref[sec:algorithm 20]{20}, verify that $\det(A^T)=\det(({M^{-1}}_0\cdots {M^{-1}}_mD{N^{-1}}_0\cdots {N^{-1}}_n)^T)=\det(({N^{-1}}_n)^T\cdots({N^{-1}}_0)^TD^T({M^{-1}}_m)^T\cdots({M^{-1}}_0)^T)=\det(D^T)=\det(D)=\det({M^{-1}}_1\cdots {M^{-1}}_mD{N^{-1}}_1\cdots {N^{-1}}_n)=\det(A)$.}
+				\item \textbf{Therefore using algorithms \hyperref[sec:algorithm 19]{19} and \hyperref[sec:algorithm 20]{20}, verify that $\det(A^T)=\det(({M^{-1}}_0\cdots {M^{-1}}_mD{N^{-1}}_0\cdots {N^{-1}}_n)^T)=\det(({N^{-1}}_n)^T\cdots({N^{-1}}_0)^TD^T({M^{-1}}_m)^T\cdots({M^{-1}}_0)^T)=\det(D^T)=\det(D)=\det({M^{-1}}_1\cdots {M^{-1}}_mD{N^{-1}}_1\cdots {N^{-1}}_n)=\det(A)$.}
 			\end{enumerate}
 		\subsection{Algorithm 23 (Compound matrix of transpose verification)}\label{sec:algorithm 23}
 			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are polynomials and an integer $0\le k\le\min(m,n)$.} Now do the following:
