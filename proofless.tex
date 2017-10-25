@@ -161,8 +161,8 @@
 				\item Make a singleton list containing one item, the chosen matrix $A$.
 				\item Augment \hyperref[sec:algorithm 3]{algorithm 3} so that each time a polynomial $x$ times a column $i$ is added onto column $j$, an $n\times n$ matrix that only has $1$s on its diagonal, and such that the only non-zero entry off its diagonal is $x$ at position $(i,j)$, is appended onto the list.
 				\item Also augment \hyperref[sec:algorithm 3]{algorithm 3} so that each time a polynomial $x$ times a row $i$ is added onto row $j$, an $n\times n$ matrix that only has $1$s on its diagonal, and such that the only non-zero entry off its diagonal is $x$ at position $(j,i)$, is prepended onto the list.
-				\item Now run \hyperref[sec:algorithm 3]{algorithm 3} on the matrix $A$.
-				\item Let $D$ be the diagonal matrix produced by \hyperref[sec:algorithm 3]{algorithm 3}.
+				\item Now run \hyperref[sec:algorithm 3]{algorithm 3} on the matrix $A$. Let the tuple $\langle D\rangle$ receive the result.
+				\item Verify that $D$ is a diagonal matrix.
 				\item\textbf{Verify that $D$ equals the product, in-order, of the matrices in the list.}
 				\item Let $M$ be the product of the sublist whose entries are all those that precede $A$.
 				\item Let $N$ be the product of the sublist whose entries are all those that follow the original $A$.
