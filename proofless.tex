@@ -624,9 +624,8 @@
 						\item \textbf{Abort algorithm.}
 					\end{enumerate}
 				\end{enumerate}
-				\item Let $n$ be the sum of the positive degrees of the polynomials on the diagonal of $B$.
-				\item Verify that $E$ and $F$ are $n\times n$ matrices.
-				\item Using \hyperref[sec:algorithm 8]{algorithm 8}, verify that $n=\sum_{i=1}^{i=m}\deg(B_{i,i})=\deg(\det(B))=\deg(\det(xI-A))=m$.
+				\item Let the macro $[P]$ expand to "(if $P$, then yield $1$, otherwise yield $0$)".
+				\item Using \hyperref[sec:algorithm 8]{algorithm 8}, verify that $\sum_{i=1}^{i=m}[\deg(B_{i,i})>0]\deg(B_{i,i})=\sum_{i=1}^{i=m}[\deg(B_{i,i})\ge 0]\deg(B_{i,i})=\sum_{i=1}^{i=m}\deg(B_{i,i})=\deg(\det(B))=\deg(\det(xI_m-A))=m$.
 				\item Therefore verify that $E$ and $F$ are $m\times m$ matrices.
 				\item \textbf{Based on operations (4aviii) to (4axiii), use row and column operations to transform $xI_m-E$ into $F$.}
 				\item \textbf{Yield the tuple $\langle E, F\rangle$.}
@@ -1472,7 +1471,6 @@
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 48]{algorithm 48} on the matrix $A$.
 				\item For $i=1$ to $i=t$, let $k_i$ be the index of the polynomial to which $(c_i, d_i)$ was associated.
-				\item Let the macro $[P]$ expand to "(if $P$, then yield $1$, otherwise yield $0$)".
 				\item Verify that $\sum_{i=1}^t(m+1-k_i)$
 				\begin{enumerate}
 					\item $=\sum_{i=1}^t\sum_{j=1}^m [k_i\le j]$
