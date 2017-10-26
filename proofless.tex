@@ -104,8 +104,8 @@
 					\end{enumerate}
 				\item While the top-left entry is non-zero, do the following:
 					\begin{enumerate}
-						\item Call operation (1a) except that at (1aivA), we instead expect that the top-left entry has a lower degree than before.
-						\item Call operation (1b) except that at (1bivA), we instead expect that the top-left entry has a lower degree than before.
+						\item Call operation (1a) except that at (1aivA), we instead expect that $A_{1,1}$ has a lower degree than before.
+						\item Call operation (1b) except that at (1bivA), we instead expect that $A_{1,1}$ has a lower degree than before.
 						\item Call operation (1c).
 					\end{enumerate}
 				\item Apply \hyperref[sec:algorithm 2]{algorithm 2} to the $(m-1)\times(n-1)$ submatrix formed by removing the first row and first column from the matrix under consideration.
@@ -1185,8 +1185,8 @@
 			\begin{enumerate}
 				\item If $\deg(a)\ge\deg(b)$:
 				\begin{enumerate}
-					\item Let $y$ be $\frac{\text{$a$'s leading coefficient}}{\text{$b$'s leading coefficient}}x^{\text{$a$'s degree - $b$'s degree}}$
-					\item Let $e$ be $a-yb$.
+					\item Let $y=\frac{\text{$a$'s leading coefficient}}{\text{$b$'s leading coefficient}}x^{\deg(a)-\deg(b)}$
+					\item Let $e=a-yb$.
 					\item Verify that $\deg(e)<\deg(a)$.
 					\item Execute \hyperref[sec:algorithm 46]{algorithm 46} on the tuple $\langle e,b\rangle$. Let the tuple $\langle c,d\rangle$ receive the result.
 					\item Verify that $cb+d=e$.
@@ -1228,11 +1228,19 @@
 					\item Therefore verify that $q_is_i-s_{i+1}=s_{i-1}$.
 					\item If $i<t-1$, then do the following:
 					\begin{enumerate}
-						\item \textbf{Verify that $s_{i-1}=q_i(p_1s_{t-1}+j_1s_t)-(p_2s_{t-1}+j_2s_t)=p_3s_{t-1}+j_3s_t$, where $p_3=q_ip_1-p_2$ is of degree $t-i$ and $j_3=q_ij_1-j_2$ is of degree $t-1-i$.}
+					  \item Let $p_3=q_ip_1-p_2$.
+					  \item Verify that $\deg(p_3)=t-i$.
+					  \item Let $j_3=q_ij_1-j_2$.
+					  \item Verify that $\deg(j_3)=t-1-i$.
+						\item \textbf{Verify that $s_{i-1}=q_i(p_1s_{t-1}+j_1s_t)-(p_2s_{t-1}+j_2s_t)=p_3s_{t-1}+j_3s_t$.}
 					\end{enumerate}
 					\item Otherwise do the following:
 					\begin{enumerate}
-						\item \textbf{Verify that $s_{i-1}=s_{t-2}=q_{t-1}s_{t-1}-s_t=p_3s_{t-1}+j_3s_t$, where $p_3=q_{t-1}$ of degree $1=t-1$ and $j_3=-1$ is of degree $0=t-1-i$.}
+					  \item Let $p_3=q_{t-1}$.
+					  \item Verify that $\deg(p_3)=1=t-1$.
+					  \item Let $j_3=-1$.
+					  \item Verify that $\deg(j_3)=0=t-1-i$.
+						\item \textbf{Verify that $s_{i-1}=s_{t-2}=q_{t-1}s_{t-1}-s_t=p_3s_{t-1}+j_3s_t$.}
 					\end{enumerate}
 					\item Therefore verify that $s_{i-1}(A)=p_3(A)s_{t-1}(A)+j_3(A)s_t(A)=p_3(A)s_{t-1}(A)+j_3(A)0_{m\times m}=p_3(A)s_{t-1}(A)$.
 					\item If $p_3(A)=0$, then do the following:
