@@ -38,7 +38,7 @@
 	\tableofcontents
 	\section{Body}\label{sec:body}
 		\subsection{Algorithm 1}\label{sec:algorithm 1}
-			\textbf{Choose a $1\times 2$ matrix, $A$, whose entries are polynomials} and do the following:
+			\textbf{Choose a $1\times 2$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s} and do the following:
 			\begin{enumerate}
 				\item Let $A$ be our working matrix.
 				\item If $A_{1,1}=0$, then do the following:
@@ -83,7 +83,7 @@
 				\item \textbf{Yield the tuple $\langle A\rangle$.}
 			\end{enumerate}
 		\subsection{Algorithm 2}\label{sec:algorithm 2}
-			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are polynomials} and do the following:
+			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s} and do the following:
 			\begin{enumerate}
 				\item Let $A$ be our working matrix.
 				\item If the top-left entry of the matrix is zero, then do the following:
@@ -114,7 +114,7 @@
 				\item \textbf{Yield the tuple $\langle A\rangle$.}
 			\end{enumerate}
 		\subsection{Algorithm 3 (Smith normal form construction)}\label{sec:algorithm 3}
-			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are polynomials} and do the following:
+			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s} and do the following:
 			\begin{enumerate}
 				\item Apply \hyperref[sec:algorithm 2]{algorithm 2} on $A$.
 				\item If $m>0$ and $n>0$, then do the following:
@@ -146,7 +146,7 @@
 				\item \textbf{Yield the tuple $\langle A\rangle$.}
 			\end{enumerate}
 		\subsection{Algorithm 4 (Associativity verification)}\label{sec:algorithm 4}
-			\textbf{Choose an $m\times n$ matrix, A, an $n\times p$ matrix, B, and a $p\times q$ matrix C, all of whose entries are polynomials.} Now do the following:
+			\textbf{Choose an $m\times n$ matrix, A, an $n\times p$ matrix, B, and a $p\times q$ matrix C, all of whose entries are $\mathbb{Q}[x]$s.} Now do the following:
 			\begin{enumerate}
 				\item Verify that $(AB)_{i,l}=\sum_{k=0}^{n-1} \left(A_{i,k}*B_{k,l}\right)$.
 				\item Verify that $((AB)C)_{i,r}=\sum_{l=0}^{p-1} \left((AB)_{i,l}*C_{l,r}\right)=\sum_{l=0}^{p-1} \left(\sum_{k=0}^{n-1} \left(A_{i,k}*B_{k,l}\right)*C_{l,r}\right)$.
@@ -156,7 +156,7 @@
 				\item \textbf{Therefore verify that $(AB)C=A(BC)$.}
 			\end{enumerate}
 		\subsection{Algorithm 5 (Extended Smith normal form construction)}\label{sec:algorithm 5}
-			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are polynomials} and do the following:
+			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s} and do the following:
 			\begin{enumerate}
 				\item Make a singleton list containing one item, the chosen matrix $A$.
 				\item Augment \hyperref[sec:algorithm 3]{algorithm 3} so that each time a polynomial $x$ times a column $i$ is added onto column $j$, an $n\times n$ matrix that only has $1$s on its diagonal, and such that the only non-zero entry off its diagonal is $x$ at position $(i,j)$, is appended onto the list.
@@ -170,7 +170,7 @@
 				\item \textbf{Yield the tuple $\langle D,M,N\rangle$.}
 			\end{enumerate}
 		\subsection{Algorithm 6 (Inverse extended Smith normal form construction)}\label{sec:algorithm 6}
-			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are polynomials} and do the following:
+			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s} and do the following:
 			\begin{enumerate}
 				\item Run \hyperref[sec:algorithm 3]{algorithm 3} on matrix $A$ to get the matrix $D$.
 				\item Now, starting work with the matrix $D$, iterate through the row and column operations of \hyperref[sec:algorithm 3]{algorithm 3} starting from the last and ending with the first:
@@ -189,7 +189,7 @@
 				\item \textbf{Yield the tuple $\langle M^{-1}, D, N^{-1}\rangle$.}
 			\end{enumerate}
 		\subsection{Algorithm 7}\label{sec:algorithm 7}
-			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are polynomials} and do the following:
+			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s} and do the following:
 			\begin{enumerate}
 				\item Run \hyperref[sec:algorithm 6]{algorithm 6} with $A$ as the choice matrix.
 				\item Now, starting work with the matrix $I_n$, the $n\times n$ matrix with only $1$s on the diagonal, do the following operations:
@@ -204,7 +204,7 @@
 			\end{enumerate}
 			\textbf{Using similar computations, verify that $N^{-1}N=I_n$, and that $MM^{-1}=M^{-1}M=I_m$.}
 		\subsection{Algorithm 8 (Determinant calculation)}\label{sec:algorithm 8}
-			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are polynomials} and do the following:
+			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s} and do the following:
 			\begin{enumerate}
 				\item If $m$ equals $0$, then do the following:
 				\begin{enumerate}
@@ -218,7 +218,7 @@
 			\end{enumerate}
 			\textbf{We will use the notation $\det_{I,J}(A)$ to refer to the invocation of \hyperref[sec:algorithm 8]{algorithm 8} on the square submatrix created by selecting the sequence of rows $I$ and the sequence of columns $J$ from $A$. If neither $I$ nor $J$ are specified, then the invocation shall happen directly on $A$.}
 		\subsection{Algorithm 9 (Multilinearity verification)}\label{sec:algorithm 9}
-			\textbf{Choose a polynomial $p$. Choose two $m\times 1$ matrices, $B$ and $C$, whose entries are polynomials. Choose an $m\times m$ matrix, $A$, whose entries are polynomials and that is such that its $i^{th}$ column is $B+pC$. The value $\det(A)$ can be evaluated as follows:}
+			\textbf{Choose a $\mathbb{Q}[x]$ $p$. Choose two $m\times 1$ matrices, $B$ and $C$, whose entries are $\mathbb{Q}[x]$s. Choose an $m\times m$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s and that is such that its $i^{th}$ column is $B+pC$. The value $\det(A)$ can be evaluated as follows:}
 			\begin{enumerate}
 				\item Considering every element of $A$ to be a unit, verify that fully expanding out $\det(A)$ yields an alternating sum of $m!$ terms, where each term is the product of $m$ entries of $A$, where each entry has a distinct row and distinct column.
 				\item Distribute out the entries of the $i^{th}$ column occuring in this alternating sum.
@@ -231,7 +231,7 @@
 			\end{enumerate}
 			\textbf{Make an analogous algorithm for cases when a given row is the sum of two $1\times m$ matrices.}
 		\subsection{Algorithm 10 (Alternation verification)}\label{sec:algorithm 10}
-			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are polynomials. Choose a row $1<i\le m$. To evaluate $\det(A')$ where $A'$ is $A$ with rows $i-1$ and $i$ swapped, do the following:}
+			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s. Choose a row $1<i\le m$. To evaluate $\det(A')$ where $A'$ is $A$ with rows $i-1$ and $i$ swapped, do the following:}
 			\begin{enumerate}
 				\item Fully expand out $\det A$ into $m!$ terms and then do the same for $\det A'$.
 				\item For each of the $m!$ ways to select $m$ rows from $A$, let $r=(r_1, r_2, \cdots, r_m)$ be the rows selected corresponding to the columns $1, 2, \cdots, m$ respectively, and do the following:
@@ -251,7 +251,7 @@
 			\end{enumerate}
 			\textbf{Make a simpler algorithm to verify that column swaps cause sign alternations.}
 		\subsection{Algorithm 11}\label{sec:algorithm 11}
-			\textbf{Choose integers $1<i\le m$. Choose an $m\times m$ matrix, $A$, whose entries are polynomials, and such that columns $i-1$ and $i$ are the same. To evaluate $\det(A)$, do the following:}
+			\textbf{Choose integers $1<i\le m$. Choose an $m\times m$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s, and such that columns $i-1$ and $i$ are the same. To evaluate $\det(A)$, do the following:}
 			\begin{enumerate}
 				\item If $\det(A)\ne 0$, then do the following:
 				\begin{enumerate}
@@ -268,7 +268,7 @@
 			\end{enumerate}
 			\textbf{Make an analogous algorithm to verify that matrix choices with repeated rows yield determinants equal to zero.}
 		\subsection{Algorithm 12}\label{sec:algorithm 12}
-			\textbf{Choose a column index $1\le i\le m$. Choose a positive integer $j$. Choose an $m\times m$ matrix, $A$, whose entries are polynomials. To evaluate $\det(A')$ where $A'$ is $A$ but with column $i$ moved $j$ places, do the following:}
+			\textbf{Choose a column index $1\le i\le m$. Choose a positive integer $j$. Choose an $m\times m$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s. To evaluate $\det(A')$ where $A'$ is $A$ but with column $i$ moved $j$ places, do the following:}
 			\begin{enumerate}
 				\item Let $A_i=A$.
 				\item For $k=i+1$ to $k=i+j$, do the following:
@@ -283,7 +283,7 @@
 			
 			\textbf{Also make an analogous algorithm that does the verification for moved rows.}
 		\subsection{Algorithm 13 (Compound matrix calculation)}\label{sec:algorithm 13}
-			\textbf{Choose an $m\times n$ matrix, $A$, of polynomials and choose an integer $1\le k\le\min(m,n)$.} Yield a tuple comprising the $\binom{m}{k}\times\binom{n}{k}$ matrix constructed as follows:
+			\textbf{Choose an $m\times n$ matrix, $A$, of $\mathbb{Q}[x]$s and choose an integer $1\le k\le\min(m,n)$.} Yield a tuple comprising the $\binom{m}{k}\times\binom{n}{k}$ matrix constructed as follows:
 			\begin{enumerate}
 				\item The rows are labeled by the colexicographically sorted list of increasing length-$k$ sequences whose elements are picked from the first $m$ positive integers.
 				\item The columns are labeled by the colexicographically sorted list of increasing length-$k$ sequences whose elements are picked from the first $n$ positive integers.
@@ -321,7 +321,7 @@
 				\item \textbf{Therefore verify that $C_k(I_m)=I_{\binom{m}{k}}$.}	
 			\end{enumerate}
 		\subsection{Algorithm 15}\label{sec:algorithm 15}
-			\textbf{Choose an integer $1\le k\le\min(m,n)$. Choose an $m\times m$ matrix, $A$, whose diagonal entries are $1$s, and such that the only entry off the diagonal is the polynomial $p$ at $(i,j)$. Also choose an $m\times n$ matrix, $B$, whose entries are polynomials.} To evaluate $C_k(AB)$, do the following:
+			\textbf{Choose an integer $1\le k\le\min(m,n)$. Choose an $m\times m$ matrix, $A$, whose diagonal entries are $1$s, and such that the only entry off the diagonal is the $\mathbb{Q}[x]$ $p$ at $(i,j)$. Also choose an $m\times n$ matrix, $B$, whose entries are $\mathbb{Q}[x]$s.} To evaluate $C_k(AB)$, do the following:
 			\begin{enumerate}
 				\item Verify that $AB$ equals $B$, but with its row $i$ having $p$ times $B$'s row $j$ added to it.
 				\item Go through the row labels, $I$, of $C_k(AB)$ and do the following:
@@ -360,7 +360,7 @@
 				\item \textbf{Verify that $C_k(AB)=DC_k(B)$.}
 			\end{enumerate}
 		\subsection{Algorithm 16}\label{sec:algorithm 16}
-			\textbf{Choose an $m\times n$ matrix, $A$, whose only entries are polynomials on the diagonal positions. Also choose an $n\times n$ matrix, $B$, whose entries are polynomials. Also choose an integer $0\le k\le\min(m,n)$.} To evaluate $C_k(AB)$, do the following:
+			\textbf{Choose an $m\times n$ matrix, $A$, whose only entries are $\mathbb{Q}[x]$s on the diagonal positions. Also choose an $n\times n$ matrix, $B$, whose entries are $\mathbb{Q}[x]$s. Also choose an integer $0\le k\le\min(m,n)$.} To evaluate $C_k(AB)$, do the following:
 			\begin{enumerate}
 				\item Verify that $AB$ equals the top $m\times n$ submatrix of $B$ with each row $i$ multiplied by $A_{i,i}$.
 				\item Go through the row labels, $I$, of $C_k(AB)$ and do the following:
@@ -388,7 +388,7 @@
 				\item \textbf{Verify that $C_k(AB)=DC_k(B)$.}
 			\end{enumerate}
 		\subsection{Algorithm 17}\label{sec:algorithm 17}
-			\textbf{Choose an integer $1\le k\le\min(m,n)$. Choose an $m\times m$ matrix, $A$, whose diagonal entries are $1$s, and such that the only entry off the diagonal is the polynomial $p$ at $(i,j)$. Also choose an $m\times n$ matrix, $B$, whose entries are polynomials.} To evaluate $C_k(AB)$, do the following:
+			\textbf{Choose an integer $1\le k\le\min(m,n)$. Choose an $m\times m$ matrix, $A$, whose diagonal entries are $1$s, and such that the only entry off the diagonal is the $\mathbb{Q}[x]$ $p$ at $(i,j)$. Also choose an $m\times n$ matrix, $B$, whose entries are $\mathbb{Q}[x]$s.} To evaluate $C_k(AB)$, do the following:
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 15]{algorithm 15} on matrices $A$ and $I_m$. Let $D$ be the matrix constructed.
 				\item Verify that $C_k(AI_m)=DC_k(I_m)$.
@@ -400,16 +400,16 @@
 			\end{enumerate}
 			\textbf{Make an analogous algorithm to verify that $C_k(BA)=C_k(B)C_k(A)$.}
 			
-			\textbf{Using \hyperref[sec:algorithm 16]{algorithm 16}, make an algorithm similar to above but that works when a diagonal matrix of polynomials, $A$, is instead chosen.}
+			\textbf{Using \hyperref[sec:algorithm 16]{algorithm 16}, make an algorithm similar to above but that works when a diagonal matrix of $\mathbb{Q}[x]$s, $A$, is instead chosen.}
 		\subsection{Algorithm 18 (Compound matrix of matrix product calculation)}\label{sec:algorithm 18}
-			\textbf{Choose an integer $0\le k\le\min(m,n,p)$. Choose an $m\times n$ matrix, $A$, whose only entries are polynomials. Also choose an $n\times p$ matrix, $B$, whose entries are polynomials.} To evaluate $C_k(AB)$, do the following:
+			\textbf{Choose an integer $0\le k\le\min(m,n,p)$. Choose an $m\times n$ matrix, $A$, whose only entries are $\mathbb{Q}[x]$s. Also choose an $n\times p$ matrix, $B$, whose entries are $\mathbb{Q}[x]$s.} To evaluate $C_k(AB)$, do the following:
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on $A$. Let ${M^{-1}}_i$ be the $i^{th}$ element of the sublist corresponding to $M$ and ${N^{-1}}_i$ be the $i^{th}$ element of the sublist corresponding to $N$.
 				\item Verify that $A={M^{-1}}_1\cdots {M^{-1}}_mD{N^{-1}}_1\cdots {N^{-1}}_n$.
 				\item \textbf{Using repeated applications of \hyperref[sec:algorithm 17]{algorithm 17}, verify that $C_k(AB)=C_k({M^{-1}}_1\cdots {M^{-1}}_mD{N^{-1}}_1\cdots {N^{-1}}_nB)=C_k({M^{-1}}_1)\cdots C_k({M^{-1}}_m)*C_k(D)*C_k({N^{-1}}_1)\cdots C_k({N^{-1}}_n)C_k(B)=C_k({M^{-1}}_1\cdots {M^{-1}}_mD{N^{-1}}_1\cdots {N^{-1}}_n)C_k(B)=C_k(A)C_k(B)$.}
 			\end{enumerate}
 		\subsection{Algorithm 19 (Determinant equals product of diagonal entries verification)}\label{sec:algorithm 19}
-			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are polynomials.} To evaluate $\det(A)$, do the following:
+			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s.} To evaluate $\det(A)$, do the following:
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on $A$. Let ${M^{-1}}_i$ be the $i^{th}$ element of the sublist corresponding to $M$ and ${N^{-1}}_i$ be the $i^{th}$ element of the sublist corresponding to $N$.
 				\item Verify that $A={M^{-1}}_1\cdots {M^{-1}}_mD{N^{-1}}_1\cdots {N^{-1}}_n$.
@@ -417,7 +417,7 @@
 				\item \textbf{Using \hyperref[sec:algorithm 8]{algorithm 8}, verify that $\det(D)$ is the product of the diagonal entries of $D$.}
 			\end{enumerate}
 		\subsection{Algorithm 20 (Transpose calculation)}\label{sec:algorithm 20}
-			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are polynomials} and do the following:
+			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s} and do the following:
 			\begin{enumerate}
 				\item Make an $n\times m$ matrix, $A^T$.
 				\item For $i=1$ to $i=n$:
@@ -431,7 +431,7 @@
 			\end{enumerate}
 			\textbf{The notation $A^T$ shall be used to refer to the result of invoking \hyperref[sec:algorithm 20]{algorithm 20} on a matrix $A$.}
 		\subsection{Algorithm 21 (Transpose of product verification)}\label{sec:algorithm 21}
-			\textbf{Choose an $m\times n$ matrix, $A$, and an $n\times k$ matrix, $B$, both of whose entries are polynomials.} Now do the following:
+			\textbf{Choose an $m\times n$ matrix, $A$, and an $n\times k$ matrix, $B$, both of whose entries are $\mathbb{Q}[x]$s.} Now do the following:
 			\begin{enumerate}
 				\item Verify that $B^TA^T$ and $(AB)^T$ have dimensions $k\times m$.
 				\item For $i=1$ to $i=k$:
@@ -444,14 +444,14 @@
 				\item \textbf{Therefore verify that $B^TA^T=(AB)^T$.}
 			\end{enumerate}
 		\subsection{Algorithm 22 (Determinant of transpose verification)}\label{sec:algorithm 22}
-			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are polynomials.} To evaluate $\det(A^T)$, do the following:
+			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s.} To evaluate $\det(A^T)$, do the following:
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} on $A$. Let ${M^{-1}}_i$ be the $i^{th}$ element of the sublist corresponding to $M$ and ${N^{-1}}_i$ be the $i^{th}$ element of the sublist corresponding to $N$.
 				\item Verify that $A={M^{-1}}_1\cdots {M^{-1}}_mD{N^{-1}}_1\cdots {N^{-1}}_n$.
 				\item \textbf{Therefore using algorithms \hyperref[sec:algorithm 19]{19} and \hyperref[sec:algorithm 20]{20}, verify that $\det(A^T)=\det(({M^{-1}}_0\cdots {M^{-1}}_mD{N^{-1}}_0\cdots {N^{-1}}_n)^T)=\det(({N^{-1}}_n)^T\cdots({N^{-1}}_0)^TD^T({M^{-1}}_m)^T\cdots({M^{-1}}_0)^T)=\det(D^T)=\det(D)=\det({M^{-1}}_1\cdots {M^{-1}}_mD{N^{-1}}_1\cdots {N^{-1}}_n)=\det(A)$.}
 			\end{enumerate}
 		\subsection{Algorithm 23 (Compound matrix of transpose verification)}\label{sec:algorithm 23}
-			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are polynomials and an integer $0\le k\le\min(m,n)$.} Now do the following:
+			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s and an integer $0\le k\le\min(m,n)$.} Now do the following:
 			\begin{enumerate}
 				\item Compute the value $C_k(A^T)$.
 				\item For each row label $I$ of $C_k(A^T)$, do the following:
@@ -512,7 +512,7 @@
 				\end{enumerate}
 			\end{enumerate}
 		\subsection{Algorithm 26}\label{sec:algorithm 26}
-			\textbf{Choose $m\times m$ polynomial matrices $\langle B,M,M^{-1},A,N^{-1},N\rangle$ such that:
+			\textbf{Choose $m\times m$ matrices of $\mathbb{Q}[x]$s, $\langle B,M,M^{-1},A,N^{-1},N\rangle$, such that:
 			\begin{enumerate}
 				\item $B$ and $A$ are rational matrices.
 				\item $MM^{-1}=I_m$.
@@ -549,7 +549,7 @@
 				\item \textbf{Yield the pair $(R_1,R_3)$.}
 			\end{enumerate}
 		\subsection{Algorithm 27}\label{sec:algorithm 27}
-			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are polynomials. Choose two integers $1\le i,j\le m$ such that $i\ne j$} and do the following:
+			\textbf{Choose an $m\times n$ matrix, $A$, whose entries are $\mathbb{Q}[x]$s. Choose two integers $1\le i,j\le m$ such that $i\ne j$} and do the following:
 			\begin{enumerate}
 				\item Subtract row $j$ from row $i$.
 				\item Add row $i$ to row $j$.
@@ -671,7 +671,7 @@
 				\item \textbf{Yield the tuple $\langle R_1,E,R_3\rangle$.}
 			\end{enumerate}
 		\subsection{Algorithm 31 (Block matrix multiplication)}\label{sec:algorithm 31}
-			\textbf{Choose an $m\times n$ matrix, $A$, and an $n\times k$ matrix, $B$, whose entries are polynomials. Choose integers $1\le a\le m$, $1\le b\le n$, and $1\le c\le k$.} Now do the following:
+			\textbf{Choose an $m\times n$ matrix, $A$, and an $n\times k$ matrix, $B$, whose entries are $\mathbb{Q}[x]$s. Choose integers $1\le a\le m$, $1\le b\le n$, and $1\le c\le k$.} Now do the following:
 			\begin{enumerate}
 				\item Let $C$ be the submatrix of $A$ that spans rows $1$ to $a-1$ and columns $1$ to $b-1$.
 				\item Let $D$ be the submatrix of $A$ that spans rows $1$ to $a-1$ and columns $b$ to $n$.
@@ -691,7 +691,7 @@
 		\subsection{Algorithm 32}\label{sec:algorithm 32}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals} and do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let the tuple $\langle B\rangle$ receive the result.
+				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI_m-A$ and let the tuple $\langle B\rangle$ receive the result.
 				\item Execute \hyperref[sec:algorithm 28]{algorithm 28} on $A$.
 				\item Let $r=x^t+r_1x^{t-1}+r_2x^{t-2}+\cdots+r_tx^0=B_{m,m}$.
 				\item Execute \hyperref[sec:algorithm 30]{algorithm 30} on the matrix $A$ and let the tuple $\langle R_1,E,R_3\rangle$ receive the result.
@@ -718,9 +718,9 @@
 				\item \textbf{Therefore verify that $r(A)=R_1r(E)R_3=R_10_{m\times m}R_3=0_{m\times m}$.}
 			\end{enumerate}
 		\subsection{Algorithm 33}\label{sec:algorithm 33}
-			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals. Choose a non-zero polynomial $p=x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$ such that $p(A)=0$.}
+			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals. Choose a non-zero $\mathbb{Q}[x]$ $p=x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$ such that $p(A)=0$.}
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let the tuple $\langle B\rangle$ receive the result.
+				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI_m-A$ and let the tuple $\langle B\rangle$ receive the result.
 				\item Execute \hyperref[sec:algorithm 28]{algorithm 28} on $A$.
 				\item Let $r=x^u+r_1x^{u-1}+r_2x^{u-2}+\cdots+r_ux^0=B_{m,m}$.
 				\item Execute \hyperref[sec:algorithm 30]{algorithm 30} on the matrix $A$ and let the tuple $\langle R_1,E,R_3\rangle$ receive the result.
@@ -763,14 +763,14 @@
 				\end{enumerate}
 			\end{enumerate}
 		\subsection{Algorithm 34 (Difference of powers)}\label{sec:algorithm 34}
-			\textbf{Choose an integer $n\ge 0$ and a formal polynomial $p=p_0x^n+p_1x^{n-1}+\cdots+p_n$.}
+			\textbf{Choose an integer $n\ge 0$ and a $\mathbb{Q}[x]$ $p=p_0x^n+p_1x^{n-1}+\cdots+p_n$.}
 			\begin{enumerate}
-				\item Let the formal polynomial $G(y,z)=\sum_{r=1}^n p_{n-r}(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})$.
-				\item \textbf{Verify that the formal polynomial $p(z)-p(y)=(p_0z^n+p_1z^{n-1}+\cdots+p_n)-(p_0y^n+p_1y^{n-1}+\cdots+p_n)=(\sum_{r=0}^n p_{n-r}z^r)-(\sum_{r=0}^n p_{n-r}y^r)=\sum_{r=1}^n p_{n-r}(z^r-y^r)=\sum_{r=1}^n p_{n-r}(z-y)(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})=(z-y)\sum_{r=1}^n p_{n-r}(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})=(z-y)G(y,z)$.}
+				\item Let the $\mathbb{Q}[y,z]$ $G(y,z)=\sum_{r=1}^n p_{n-r}(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})$.
+				\item \textbf{Verify that the $\mathbb{Q}[y,z]$ $p(z)-p(y)=(p_0z^n+p_1z^{n-1}+\cdots+p_n)-(p_0y^n+p_1y^{n-1}+\cdots+p_n)=(\sum_{r=0}^n p_{n-r}z^r)-(\sum_{r=0}^n p_{n-r}y^r)=\sum_{r=1}^n p_{n-r}(z^r-y^r)=\sum_{r=1}^n p_{n-r}(z-y)(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})=(z-y)\sum_{r=1}^n p_{n-r}(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})=(z-y)G(y,z)$.}
 				\item \textbf{Yield the tuple $\langle G(y,z)\rangle$.}
 			\end{enumerate}
 		\subsection{Algorithm 35}\label{sec:algorithm 35}
-			\textbf{Choose a formal polynomial $p=x^n+p_1x^{n-1}+\cdots+p_n$ and rationals $a_1<a_2<\cdots<a_n<a_{n+1}$ in such a way that for $i=1$ to $i=n+1$, $p(a_i)=0$.} Now do the following:
+			\textbf{Choose a $\mathbb{Q}[x]$ $p=x^n+p_1x^{n-1}+\cdots+p_n$ and rationals $a_1<a_2<\cdots<a_n<a_{n+1}$ in such a way that for $i=1$ to $i=n+1$, $p(a_i)=0$.} Now do the following:
 			\begin{enumerate}
 				\item Write $p$ as $1*p$, so that it has two factors.
 				\item For $i=1$ up to $i=n$, do the following:
@@ -785,8 +785,8 @@
 					\item Otherwise $g(a_i)=0$. Now do the following:
 					\begin{enumerate}
 						\item Execute \hyperref[sec:algorithm 34]{algorithm 34} on $g$ and let the tuple $\langle G(x,y)\rangle$ receive the result.
-						\item Let the formal polynomial $q=q(x)=G(a_i,x)$.
-						\item Verify that the formal polynomial $g=g(x)=g(x)-g(a_i)=(x-a_i)G(a_i,x)=(x-a_i)q(x)=(x-a_i)q$.
+						\item Let the $\mathbb{Q}[x]$ $q=q(x)=G(a_i,x)$.
+						\item Verify that the $\mathbb{Q}[x]$ $g=g(x)=g(x)-g(a_i)=(x-a_i)G(a_i,x)=(x-a_i)q(x)=(x-a_i)q$.
 						\item Verify that $p=(x-a_1)(x-a_2)\cdots(x-a_i)q$.
 					\end{enumerate}
 				\end{enumerate}
@@ -795,10 +795,10 @@
 				\item \textbf{Abort algorithm.}
 			\end{enumerate}
 		\subsection{Algorithm 36 (Bisection)}\label{sec:algorithm 36}
-			\textbf{Choose a formal polynomial $f$. Choose rational numbers $a<b$ such that $\sgn(f(a))=-\sgn(f(b))$. Choose a rational number target $B>0$.} Now do the following:
+			\textbf{Choose a $\mathbb{Q}[x]$ $f$. Choose rational numbers $a<b$ such that $\sgn(f(a))=-\sgn(f(b))$. Choose a rational number target $B>0$.} Now do the following:
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 34]{algorithm 34} on $f$ and let the tuple $\langle G(x,y)\rangle$ receive the result.
-				\item Verify that the formal polynomial $f(y)-f(x)=(y-x)G(x,y)$.
+				\item Verify that the $\mathbb{Q}[x,y]$ $f(y)-f(x)=(y-x)G(x,y)$.
 				\item Let $G'$ be $G$ but with all negative signs replaced with positive signs.
 				\item Let $U=G'(\lvert a\rvert,\lvert b\rvert)$.
 				\item Until $\lvert b-a\rvert U<B$
@@ -823,7 +823,7 @@
 						\item Otherwise, do the following:
 						\begin{enumerate}
 							\item Let $c_1<c_2<\cdots<c_i<c_{i+1}$ be the $i+1$ numbers that were recorded.
-							\item Execute \hyperref[sec:algorithm 35]{algorithm 35} on the formal polynomial $f_i$ and the rationals $c_1<c_2<\cdots<c_i<c_{i+1}$.
+							\item Execute \hyperref[sec:algorithm 35]{algorithm 35} on the polynomial $f_i$ and the rationals $c_1<c_2<\cdots<c_i<c_{i+1}$.
 							\item \textbf{Abort algorithm.}
 						\end{enumerate}
 					\end{enumerate}
@@ -839,7 +839,7 @@
 				\item \textbf{Yield the tuple $\langle a,b\rangle$.}
 			\end{enumerate}
 		\subsection{Algorithm 37}\label{sec:algorithm 37}
-			\textbf{Choose a polynomial $f_n=x^n+p_1x^{n-1}+\cdots+p_n$ and pairs of rationals $(a_n,b_n),(a_{n-1},b_{n-1}),\cdots,(a_0,b_0)$ in such a way that:
+			\textbf{Choose a $\mathbb{Q}[x]$ $f_n=x^n+p_1x^{n-1}+\cdots+p_n$ and pairs of rationals $(a_n,b_n),(a_{n-1},b_{n-1}),\cdots,(a_0,b_0)$ in such a way that:
 			\begin{enumerate}
 				\item $a_n<b_n\le a_{n-1}<b_{n-1}\le\cdots\le a_1<b_1\le a_0<b_0$.
 				\item For $i=0$ to $i=n$, $\sgn(f_n(a_i))=-\sgn(f_n(b_i))$.
@@ -883,7 +883,7 @@
 				\item \textbf{Abort algorithm.}
 			\end{enumerate}
 		\subsection{Algorithm 38 (Sturm's algorithm initialization)}\label{sec:algorithm 38}
-			\textbf{Choose a sequence of polynomials $s_0={s_0}_0,s_1={s_1}_0x^1+{s_1}_1,\cdots,s_m={s_m}_0x^m+{s_m}_1x^{m-1}+\cdots+{s_m}_m$ and another sequence of polynomials $q_1,q_2,\cdots,q_{m-1}$ in such a way that
+			\textbf{Choose a sequence of $\mathbb{Q}[x]$s $s_0={s_0}_0,s_1={s_1}_0x^1+{s_1}_1,\cdots,s_m={s_m}_0x^m+{s_m}_1x^{m-1}+\cdots+{s_m}_m$ and another sequence of $\mathbb{Q}[x]$s $q_1,q_2,\cdots,q_{m-1}$ in such a way that
 			\begin{enumerate}
 				\item For $i=0$ to $i=m$, ${s_i}_0>0$
 				\item For $i=1$ to $i=m-1$, $s_{i-1}+s_{i+1}=q_is_i$.
@@ -894,7 +894,7 @@
 				\item For $i=0$ to $i=m$, do the following:
 				\begin{enumerate}
 					\item Execute \hyperref[sec:algorithm 34]{algorithm 34} on $s_i$ and let $\langle G_i(x,y)\rangle$ receive the result.
-					\item \textbf{Verify that the formal polynomial $s_i(y)-s_i(x)=(y-x)G_i(x,y)$.}
+					\item \textbf{Verify that the $\mathbb{Q}[x,y]$ $s_i(y)-s_i(x)=(y-x)G_i(x,y)$.}
 				\end{enumerate}
 				\item For $i=1$ to $i=m-1$, do the following:
 				\begin{enumerate}
@@ -987,7 +987,7 @@
 				}
 			\end{enumerate}
 		\subsection{Algorithm 40 (Cauchy's positive verification)}\label{sec:algorithm 40}
-			\textbf{Choose a non-zero polynomial $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0>0$. Choose a rational $k>1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert$.} In reverse order verify the following:
+			\textbf{Choose a $\mathbb{Q}[x]$ $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0>0$. Choose a rational $k>1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert$.} In reverse order verify the following:
 			\begin{enumerate}
 				\item \textbf{$p(k)>0$}
 				\item $p_0k^n+p_1k^{n-1}+\cdots+p_nk^0>0$
@@ -1001,7 +1001,7 @@
 				\item $k>1+\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert$
 			\end{enumerate}
 		\subsection{Algorithm 41 (Cauchy's alternation verification)}\label{sec:algorithm 41}
-			\textbf{Choose a non-zero polynomial $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0>0$. Choose a rational $k<-(1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert)$.} Now do the following:
+			\textbf{Choose a $\mathbb{Q}[x]$ $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0>0$. Choose a rational $k<-(1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert)$.} Now do the following:
 			\begin{enumerate}
 				\item Let $q=q_0x^t+q_1x^{t-1}+q_2x^{t-2}+\cdots+q_tx^0$, where $q_i=(-1)^ip_i$.
 				\item Verify that $k<-(1+\max_{i=1}^t\lvert\frac{q_i}{q_0}\rvert)$.
@@ -1073,7 +1073,7 @@
 				\end{enumerate}}
 			\end{enumerate}
 		\subsection{Algorithm 43}\label{sec:algorithm 43}
-			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals. Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let the tuple $\langle B\rangle$ receive the result. Choose a polynomial $p$ such that $p(A)=0$ and $\deg(p)<\deg(B_{m,m})$.} Now do the following:
+			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals. Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI_m-A$ and let the tuple $\langle B\rangle$ receive the result. Choose a $\mathbb{Q}[x]$ $p$ such that $p(A)=0$ and $\deg(p)<\deg(B_{m,m})$.} Now do the following:
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 33]{algorithm 33} on matrix $A$ and polynomial $p$.
 				\item Cognizant of steps (8) to (10) of \hyperref[sec:algorithm 33]{algorithm 33}, verify for \hyperref[sec:algorithm 33]{algorithm 33}'s $g$ that $\deg(g)\le\deg(B_{m,m})-1$.
@@ -1085,7 +1085,7 @@
 		\subsection{Algorithm 44}\label{sec:algorithm 44}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals} and do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let the tuple $\langle B\rangle$ receive the result.
+				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI_m-A$ and let the tuple $\langle B\rangle$ receive the result.
 				\item Execute \hyperref[sec:algorithm 28]{algorithm 28} on $A$.
 				\item Let $r=x^t+r_1x^{t-1}+r_2x^{t-2}+\cdots+r_tx^0=B_{m,m}$.
 				\item Make an $m^2\times t$ matrix, $F$, whose $i^{th}$ column is the sequential concatenation of the columns of $A^{t-i}$.
@@ -1180,7 +1180,7 @@
 				\end{enumerate}
 			\end{enumerate}
 		\subsection{Algorithm 46 (Euclidean division)}\label{sec:algorithm 46}
-			\textbf{Choose two polynomials in $x$, $\langle a,b\rangle$} and do the following:
+			\textbf{Choose two $\mathbb{Q}[x]$s, $\langle a,b\rangle$,} and do the following:
 			\begin{enumerate}
 				\item If $\deg(a)\ge\deg(b)$:
 				\begin{enumerate}
@@ -1273,7 +1273,7 @@
 				\item Yield the tuple $\langle \langle s_0,s_1,\cdots,s_t\rangle,\langle q_1,q_2,\cdots,q_{t-1}\rangle\rangle$.
 			\end{enumerate}
 			\subsubsection{Auxilliary algorithm}\label{sec:algorithm 47 auxilliary algorithm}
-				\textbf{Choose an integer $0\le k\le t$ such that polynomial $s_k$ is defined. Choose a polynomial $g=g_0x^k+g_1x^{k-1}+\cdots+g_k.$}
+				\textbf{Choose an integer $0\le k\le t$ such that polynomial $s_k$ is defined. Choose a $\mathbb{Q}[x]$ $g=g_0x^k+g_1x^{k-1}+\cdots+g_k.$}
 				\begin{enumerate}
 					\item If $k=t$, then verify that $\tr(g(A)s_k(A)h(A)^2)$
 					\begin{enumerate}
@@ -1315,7 +1315,7 @@
 		\subsection{Algorithm 48}\label{sec:algorithm 48}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals and is such that $A^T=A$.} Now do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI-A$ and let the tuple $\langle D\rangle$ receive the result.
+				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI_m-A$ and let the tuple $\langle D\rangle$ receive the result.
 				\item Verify that $D_{m,m}=u_1u_2\cdots u_m$.
 				\item Execute \hyperref[sec:algorithm 47]{algorithm 47} on the matrix $A$ and let the tuple $\langle \langle s_0,s_1,\cdots,s_t\rangle,\langle q_1,q_2,\cdots,q_{t-1}\rangle\rangle$ receive the result.
 				\item Execute \hyperref[sec:algorithm 42]{algorithm 42} supplying the tuple $\langle \langle s_0,s_1,\cdots,s_t\rangle,\langle q_1,q_2,\cdots,q_{t-1}\rangle\rangle$. Let the tuple $\langle c_1,d_1,c_2,d_2,\cdots,c_m,d_m\rangle$ receive the result.
@@ -1373,7 +1373,7 @@
 				\item \textbf{Therefore verify that $C$ is upper triangular.}
 			\end{enumerate}
 		\subsection{Algorithm 50 (Orthogonalization)}\label{sec:algorithm 50}
-			\textbf{Choose integers $m\ge n\ge 0$. Choose an $n\times m$ matrix of polynomials $M$ and an $m\times n$ matrix of polynomials $A_0$ such that $MA_0=I_n$.} Now do the following:
+			\textbf{Choose integers $m\ge n\ge 0$. Choose an $n\times m$ matrix of $\mathbb{Q}[x]$s $M$ and an $m\times n$ matrix of $\mathbb{Q}[x]$s $A_0$ such that $MA_0=I_n$.} Now do the following:
 			\begin{enumerate}
 				\item Using \hyperref[sec:algorithm 8]{algorithm 8}, verify that $C_n(M_0A_0)=C_n(I_n)=1$.
 				\item If $C_n(A_0)=0_{\binom{m}{n}\times 1}$, then do the following:
@@ -1428,7 +1428,7 @@
 				\item \textbf{Therefore verify that $(AB)^2\le(AA^T)(B^TB)$.}
 			\end{enumerate}
 		\subsection{Algorithm 52}\label{sec:algorithm 52}
-			\textbf{Choose integers $m\ge n>0$. Choose an $n\times m$ matrix of polynomials $M$ and an $m\times n$ matrix of polynomials $A_0$ such that $MA_0=I_n$. Choose a rational number $x$.} Now do the following:
+			\textbf{Choose integers $m\ge n>0$. Choose an $n\times m$ matrix of $\mathbb{Q}[x]$s $M$ and an $m\times n$ matrix of $\mathbb{Q}[x]$s $A_0$ such that $MA_0=I_n$. Choose a rational number $x$.} Now do the following:
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 50]{algorithm 50} on $M$ and $A_0$.
 				\item Let $a=\max(\lVert M(x)\rVert^2,1)$.
