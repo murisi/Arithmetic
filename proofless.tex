@@ -21,20 +21,18 @@
 	\date{\today{} \currenttime}
 	\maketitle
 	\section{Introduction}
-		What follows is an attempt to present linear algebra as a system of algorithms in a manner devoid of argumentation. The correctness of these algorithms hopefully is made apparent by stating expected variable values at certain points of execution. Mathematical argumentation is circumvented by letting algorithms \textit{show} what a proposition in an argument might have \textit{said}.
+		What follows is an attempt to present linear algebra as a system of algorithms in a manner devoid of argumentation. The functioning of these algorithms hopefully is made apparent by stating expected variable values at certain points of execution. Mathematical argumentation is circumvented by letting algorithms \textit{show} what a proposition in an argument might have \textit{said}.
 		
-		The subset of linear algebra I intend to tackle consists of the Smith normal form, determinants, compound matrices, general solutions to linear systems, characteristic matrices, the rational canonical form, block matrix multiplication, minimum polynomials, orthogonalization, and the spectral theorem for symmetric matrices. To get the above done, I also have to extract the algorithms from Sturm's theorem, Cauchy's bound, the Cauchy-Schwarz inequality, the Euclidean division algorithm, and the factor theorem.
+		The subset of linear algebra I intend to tackle consists of the \hyperref[sec:algorithm 3]{Smith normal form}, \hyperref[sec:algorithm 8]{determinants}, \hyperref[sec:algorithm 13]{compound matrices}, \hyperref[sec:algorithm 24]{general solutions to linear systems}, \hyperref[sec:algorithm 26]{characteristic matrices}, \hyperref[sec:algorithm 29]{the rational canonical form}, \hyperref[sec:algorithm 31]{block matrix multiplication}, \hyperref[sec:algorithm 32]{minimum polynomials}, \hyperref[sec:algorithm 50]{orthogonalization}, and \hyperref[sec:algorithm 55]{the spectral theorem for symmetric matrices}. To get the above done, I also have to extract the algorithms from \hyperref[sec:algorithm 42]{Sturm's theorem}, \hyperref[sec:algorithm 40]{Cauchy's bound}, \hyperref[sec:algorithm 51]{the Cauchy-Schwarz inequality}, and \hyperref[sec:algorithm 46]{the Euclidean division algorithm}.
 		
-		\textbf{Here, I would like to note that this project is largely based on the textbook Linear Algebra by Harold Edwards. In summary, I have taken the text; removed all the exercises and exposition; removed all the proofs inessential to proving the spectral theorem; extracted and purified the algorithms used in each proof; and conjured up my own algorithms in the cases where I could not extract an algorithm.}
-		
-		The following are some things to take into consideration whilst reading the \hyperref[sec:body]{body} of this project:
+		\textbf{One way to use this exposition to understand linear algebra is to go through the algorithms in order and execute each one on one or two inputs.} At any rate, please be taking the following into consideration:
 		\begin{enumerate}
-			\item Where a proof expresses generality using universal quantification, the algorithms below show generality by allowing one to choose inputs. See \hyperref[sec:algorithm 24]{algorithm 24}.
-			\item Where a proof expresses that a proposition implies contradiction, the algorithms below merely show how certain control flows lead to absurdity. See algorithms \hyperref[sec:algorithm 11]{11}, \hyperref[sec:algorithm 28]{28}, \hyperref[sec:algorithm 35]{35}, and \hyperref[sec:algorithm 52]{52}.
-			\item Where a proof uses the principle of mathematical induction, the algorithms below merely use iteration/recursion and loop invariants. See algorithms \hyperref[sec:algorithm 47]{47}, \hyperref[sec:algorithm 47]{47 auxilliary}, and \hyperref[sec:algorithm 52]{52}.
+			\item Where a proof would express generality using universal quantification, the algorithms below show generality by allowing one to choose inputs. See \hyperref[sec:algorithm 24]{algorithm 24}.
+			\item Where a proof would express that a proposition implies contradiction, the algorithms below merely show how certain control flows lead to absurdity. See algorithms \hyperref[sec:algorithm 11]{11}, \hyperref[sec:algorithm 28]{28}, \hyperref[sec:algorithm 35]{35}, and \hyperref[sec:algorithm 52]{52}.
+			\item Where a proof would use the principle of mathematical induction, the algorithms below merely use iteration/recursion and loop invariants. See algorithms \hyperref[sec:algorithm 47]{47}, \hyperref[sec:algorithm 47]{47 auxilliary}, and \hyperref[sec:algorithm 52]{52}.
 		\end{enumerate}
 		
-		Anyway, to see most easily what I am trying to do, see algorithms \hyperref[sec:algorithm 34]{34}, \hyperref[sec:algorithm 40]{40}, \hyperref[sec:algorithm 49]{49}, and \hyperref[sec:algorithm 51]{51}.
+		Here, I would like to note that this project is largely based on the textbook Linear Algebra by Harold Edwards. In summary, I have taken the text; removed all the exercises and exposition; removed all the proofs inessential to proving the spectral theorem for symmetric matrices; extracted and purified the algorithms used in each proof; and conjured up my own algorithms in the cases where I could not extract an algorithm.
 	\tableofcontents
 	\section{Body}\label{sec:body}
 		\subsection{Algorithm 1}\label{sec:algorithm 1}
@@ -1487,7 +1485,7 @@
 				\end{enumerate}
 				\item \textbf{Verify that $\sum_{i=1}^t(m+1-k_i)=m$.}
 			\end{enumerate}
-		\subsection{Algorithm 54 (Spectral algorithm initialization)}\label{sec:algorithm 54}
+		\subsection{Algorithm 54 (Symmetric matrix spectral algorithm initialization)}\label{sec:algorithm 54}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals and is such that $A^T=A$. Choose a rational number $\epsilon>0$.} Now do the following:
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 48]{algorithm 48} on the matrix $A$.
@@ -1536,7 +1534,7 @@
 				\end{enumerate}
 				\item \textbf{Yield the tuple $\langle\langle K_1,c_1\rangle,\cdots,\langle K_t,c_t\rangle\rangle$.}
 			\end{enumerate}
-		\subsection{Algorithm 55 (Spectral algorithm)}\label{sec:algorithm 55}
+		\subsection{Algorithm 55 (Symmetric matrix spectral)}\label{sec:algorithm 55}
 			\textbf{Choose an $m\times m$ matrix, $A$, whose entries are only rationals and is such that $A^T=A$. Choose a rational number $\epsilon>0$.} Now do the following:
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 54]{algorithm 54} on matrix $A$ and rational $\epsilon$. Let the tuple $\langle\langle K_1,c_1\rangle,\cdots,\langle K_t,c_t\rangle\rangle$ receive the result.
