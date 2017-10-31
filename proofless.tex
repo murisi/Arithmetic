@@ -1402,15 +1402,15 @@
 					\item \textbf{Verify that ${A_i}^TA_i=(A_{i-1}D_iN_i)^T(A_{i-1}D_iN_i)={N_i}^T{D_i}^T({A_{i-1}}^TA_{i-1})D_iN_i$ is a matrix with $0$s from position $(i,i+1)$ to $(i,n)$ and from position $(i+1,i)$ to $(n,i)$.}
 					\item Verify that $A_i=A_0(D_1N_1)\cdots (D_iN_i)$.
 					\item Verify that $MA_i=(D_1N_1)\cdots (D_iN_i)$.
+					\item \textbf{Therefore verify that $A_0MA_i=A_i$.}
 					\item For $j=1$ to $j=n$, do the following:
 					\begin{enumerate}
 						\item Using \hyperref[sec:algorithm 49]{algorithm 49}, verify that $({e_j}^TM)(A_ie_j)={e_j}^T(MA_i)e_j={e_j}^T((D_1N_1)\cdots (D_iN_i))e_j=({D_1}_{j,j}{N_1}_{j,j})\cdots ({D_i}_{j,j}{N_i}_{j,j})$.
 						\item \textbf{Therefore using (5d) verify that $({e_j}^TM)(A_ie_j)={D_1}_{j,j}\cdots {D_i}_{j,j}={D_1}_{j,j}\cdots {D_{\min(i,j-1)}}_{j,j}=\lVert A_0e_1\rVert^2\cdots\lVert A_{\min(i,j-1)-1}e_{\min(i,j-1)}\rVert^2$.}
 					\end{enumerate}
 				\end{enumerate}
-				\item Let $E=(D_1N_1)\cdots (D_nN_n)$.
-				\item \textbf{Verify that ${A_n}^TA_n=(A_0(D_1N_1)\cdots (D_nN_n))^T(A_0(D_1N_1)\cdots (D_nN_n))=((D_1N_1)\cdots (D_nN_n))^T({A_0}^TA_0)((D_1N_1)\cdots (D_nN_n))=E^T({A_0}^TA_0)E$ is a diagonal matrix.}
-				\item \textbf{Yield the tuple $\langle E\rangle$.}
+				\item \textbf{Verify that ${A_n}^TA_n=(A_0(D_1N_1)\cdots (D_nN_n))^T(A_0(D_1N_1)\cdots (D_nN_n))=((D_1N_1)\cdots (D_nN_n))^T({A_0}^TA_0)((D_1N_1)\cdots (D_nN_n))$ is a diagonal matrix.}
+				\item \textbf{Yield the tuple $\langle A_0,A_1,\cdots,A_n\rangle$.}
 			\end{enumerate}
 		\subsection{Algorithm 51 (Cauchy-Schwarz inequality)}\label{sec:algorithm 51}
 			\textbf{Choose a $\mathcal{M}_{1,m}(\mathbb{Q})$, $A$, and a $\mathcal{M}_{m,1}(\mathbb{Q})$, $B$.} Now do the following:
@@ -1428,7 +1428,7 @@
 		\subsection{Algorithm 52}\label{sec:algorithm 52}
 			\textbf{Choose integers $m\ge n>0$. Choose a $\mathcal{M}_{n,m}(\mathbb{Q}[x])$, $M$, and a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A_0$, such that $MA_0=I_n$. Choose a $\mathbb{Q}$, $x$.} Now do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 50]{algorithm 50} on $M$ and $A_0$.
+				\item Execute \hyperref[sec:algorithm 50]{algorithm 50} on $M$ and $A_0$. Let the tuple $\langle A_0,A_1,\cdots,A_n\rangle$ receive the result.
 				\item Let $a=\max(\lVert M(x)\rVert^2,1)$.
 				\item \textbf{Choose a column index $1\le j\le n$ such that $\lVert A_n(x)e_j\rVert^2<\frac{1}{a^{(2n+2)!!}}$.}
 				\item Let $i=n$.
@@ -1459,7 +1459,7 @@
 						\item \textbf{Let $k$, where $0\le k<i$, be one of the integers for which $\lVert A_k(x)e_{k+1}\rVert^2<\frac{1}{a^{(2i)!!}}$.}
 						\item \textbf{Verify that $\lVert A_k(x)e_{k+1}\rVert^2<\frac{1}{a^{(2i)!!}}\le\frac{1}{a^{(2k+2)!!}}$.}
 						\item \textbf{Simultaneously set $i$ to $k$ and $j$ to $k+1$.}
-						\item \textbf{Go to (4).}
+						\item \textbf{Go to (5).}
 					\end{enumerate}
 				\end{enumerate}
 				\item \textbf{Abort algorithm.}
@@ -1489,7 +1489,7 @@
 			\textbf{Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Choose a $\mathbb{Q}$ $\epsilon>0$.} Now do the following:
 			\begin{enumerate}
 				\item Execute \hyperref[sec:algorithm 48]{algorithm 48} on the matrix $A$.
-				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} with $xI_m-A$ as the choice matrix. Take note of $M^{-1}$, $D$, and $N^{-1}$.
+				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} with $xI_m-A$ as the choice matrix. Let the tuple $\langle M^{-1},D,N^{-1}\rangle$ receive the result.
 				\item Let $M'$ be the matrix obtained by replacing all the negative signs in $M^{-1}$ with positive signs.
 				\item Let $M''=\max_{i=1}^m\max_{j=1}^mM'(\max(\lvert c_1\rvert,\lvert d_t\rvert))_{i,j}$.
 				\item Let $N'$ be the matrix obtained by replacing all the negative signs in $N$ with positive signs.
@@ -1502,9 +1502,11 @@
 					\item Let $k_i$ be the index of the polynomial to which $(c_i, d_i)$ was associated.
 					\item Verify that $\sgn(u_{k_i}(c_i))\ne\sgn(u_{k_i}(d_i))$.
 					\item Let $Q$ be the last $m+1-k_i$ columns of $I_m$.
-					\item Execute \hyperref[sec:algorithm 50]{algorithm 50} on the matrix $NQ$. Let $E$ be the $(m+1-k_i)\times (m+1-k_i)$ matrix yielded from this.
-					\item Let $K_i=NQE$, an $m\times(m+1-k_i)$ matrix.
+					\item Verify that $(Q^TN^{-1})(NQ)=Q^T(N^{-1}N)Q=Q^TI_mQ=Q^TQ=I_{m+1-k_i}$.
+					\item Execute \hyperref[sec:algorithm 50]{algorithm 50} on the matrices $Q^TN^{-1}$ and $NQ$. Let the tuple $\langle ,,\cdots,,K_i\rangle$ receive the result.
 					\item \textbf{Verify that ${K_i}^T{K_i}$ is a diagonal matrix.}
+					\item Let $E=Q^TN^{-1}K_i$ be a $(m+1-k_i)\times(m+1-k_i)$ matrix.
+					\item Cognizant of the execution of \hyperref[sec:algorithm 50]{algorithm 50}, verify that $K_i=NQE$.
 					\item Let $E'$ be the matrix obtained by replacing all the negative signs in $E$ with positive signs.
 					\item Let $E''_i=\max_{j=1}^m\max_{l=1}^mE'(\max(\lvert c_1\rvert,\lvert d_t\rvert))_{j,l}$.
 				\end{enumerate}
@@ -1519,7 +1521,6 @@
 					\item If a diagonal entry of ${K_i(c_i)}^TK_i(c_i)$ is less than $L'$, then do the following:
 					\begin{enumerate}
 						\item Let $z$ be the index of the column of the entry.
-						\item Verify that $(Q^TN^{-1})(NQ)=Q^T(N^{-1}N)Q=Q^TI_mQ=Q^TQ=I_{m+1-k_i}$.
 						\item Verify that $L'\le\frac{1}{\max(\lVert (Q^TN^{-1})(c_i)\rVert^2,1)^{(2(m+1-k_i)+2)!!}}$.
 						\item Execute \hyperref[sec:algorithm 52]{algorithm 52} with matrices $Q^TN^{-1}$ and $NQ$, rational number $c_i$, and column index $z$.
 						\item \textbf{Abort algorithm.}
@@ -1528,7 +1529,7 @@
 					\begin{enumerate}
 						\item \textbf{For $j=1$ to $j=m+1-k_i$, verify that $({K_i(c_i)}^TK_i(c_i))_{j,j}\ge L'$.}
 						\item Verify that $xK_i-AK_i=(xI_m-A)K_i=M^{-1}DN^{-1}K_i=M^{-1}DN^{-1}NQE=M^{-1}DQE$.
-						\item Verify that $\lVert c_iK_i(c_i)-AK_i(c_i)\rVert^2=\lVert M^{-1}(c_i)D(c_i)QE(c_i)\rVert^2\le\lVert M''J_m\frac{\epsilon\delta}{M''N''E''^2m^2(m+1-k_i)}QE''J_{m+1-k}\rVert^2=\lVert J_m\frac{\epsilon\delta}{N''E''m^2(m+1-k_i)}QJ_{m+1-k}\rVert^2=\lVert \frac{\epsilon\delta}{N''E''m^2}J_{m\times (m+1-k_i)}\rVert^2\le\lVert \frac{\epsilon\delta}{N''E''m^2}J_{m\times (m+1-k_i)}\rVert^2=\frac{m+1-k_i}{m^3}\cdot\frac{\epsilon^2\delta^2}{(N''E'')^2}$.
+						\item Verify that $\lVert c_iK_i(c_i)-AK_i(c_i)\rVert^2=\lVert M^{-1}(c_i)D(c_i)QE(c_i)\rVert^2\le\lVert M''J_m\frac{\epsilon\delta}{M''N''E''^2m^2(m+1-k_i)}QE''J_{m+1-k}\rVert^2=\lVert J_m\frac{\epsilon\delta}{N''E''m^2(m+1-k_i)}QJ_{m+1-k}\rVert^2=\lVert \frac{\epsilon\delta}{N''E''m^2}J_{m\times (m+1-k_i)}\rVert^2=\frac{m+1-k_i}{m^3}\cdot\frac{\epsilon^2\delta^2}{(N''E'')^2}$.
 					\item \textbf{Therefore verify that $\lVert c_iK_i(c_i)-AK_i(c_i)\rVert^2\le\frac{m+1-k_i}{m^3}\cdot\frac{\epsilon^2\delta^2}{(N''E'')^2}\le\frac{m+1-k_i}{m}\epsilon^2$.}
 					\end{enumerate}
 				\end{enumerate}
