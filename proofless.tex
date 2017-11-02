@@ -146,11 +146,11 @@
 		\subsection{Algorithm 4 (Associativity verification)}\label{sec:algorithm 4}
 			\textbf{Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, A, a $\mathcal{M}_{n,p}(\mathbb{Q}[x])$, B, and a $\mathcal{M}_{p,q}(\mathbb{Q}[x])$, C.} Now do the following:
 			\begin{enumerate}
-				\item Verify that $(AB)_{i,l}=\sum_{k=0}^{n-1} \left(A_{i,k}*B_{k,l}\right)$.
-				\item Verify that $((AB)C)_{i,r}=\sum_{l=0}^{p-1} \left((AB)_{i,l}*C_{l,r}\right)=\sum_{l=0}^{p-1} \left(\sum_{k=0}^{n-1} \left(A_{i,k}*B_{k,l}\right)*C_{l,r}\right)$.
-				\item Verify that $(BC)_{k,r}=\sum_{l=0}^{p-1}\left(B_{k,l}*C_{l,r}\right)$.
-				\item Verify that $(A(BC))_{i,r}=\sum_{k=0}^{n-1}\left(A_{i,k}*(BC)_{k,r}\right)=\sum_{k=0}^{n-1}\left(A_{i,k}*\sum_{l=0}^{p-1}\left(B_{k,l}*C_{l,r}\right)\right)$.
-				\item Verify that $(2)=\sum_{l=0}^{p-1} \left(\sum_{k=0}^{n-1} \left(A_{i,k}*B_{k,l}*C_{l,r}\right)\right)=\sum_{k=0}^{n-1} \left(\sum_{l=0}^{p-1} \left(A_{i,k}*B_{k,l}*C_{l,r}\right)\right)=\sum_{k=0}^{n-1}\left(A_{i,k}*\sum_{l=0}^{p-1}\left(B_{k,l}*C_{l,r}\right)\right)=(4)$.
+				\item Verify that $(AB)_{i,l}=\sum_{k=1}^{n} \left(A_{i,k}*B_{k,l}\right)$.
+				\item Verify that $((AB)C)_{i,r}=\sum_{l=1}^{p} \left((AB)_{i,l}*C_{l,r}\right)=\sum_{l=1}^{p} \left(\sum_{k=1}^{n} \left(A_{i,k}*B_{k,l}\right)*C_{l,r}\right)$.
+				\item Verify that $(BC)_{k,r}=\sum_{l=1}^{p}\left(B_{k,l}*C_{l,r}\right)$.
+				\item Verify that $(A(BC))_{i,r}=\sum_{k=1}^{n}\left(A_{i,k}*(BC)_{k,r}\right)=\sum_{k=1}^{n}\left(A_{i,k}*\sum_{l=1}^{p}\left(B_{k,l}*C_{l,r}\right)\right)$.
+				\item Verify that $(2)=\sum_{l=1}^{p} \left(\sum_{k=1}^{n} \left(A_{i,k}*B_{k,l}*C_{l,r}\right)\right)=\sum_{k=1}^{n} \left(\sum_{l=1}^{p} \left(A_{i,k}*B_{k,l}*C_{l,r}\right)\right)=\sum_{k=1}^{n}\left(A_{i,k}*\sum_{l=1}^{p}\left(B_{k,l}*C_{l,r}\right)\right)=(4)$.
 				\item \textbf{Therefore verify that $(AB)C=A(BC)$.}
 			\end{enumerate}
 		\subsection{Algorithm 5 (Extended Smith normal form construction)}\label{sec:algorithm 5}
