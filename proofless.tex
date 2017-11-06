@@ -1067,7 +1067,7 @@
 					\begin{enumerate}
 						\item Verify that $\sgn(s_m(c_i))=-\sgn(s_m(d_i))$.
 					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle c_1,d_1,c_2,d_2,\cdots,c_m,d_m\rangle$.}
+					\item \textbf{Yield the tuple $\langle\langle c_1,d_1\rangle,\langle c_2,d_2\rangle,\cdots,\langle c_m,d_m\rangle\rangle$.}
 				\end{enumerate}}
 			\end{enumerate}
 		\subsection{Algorithm 43}\label{sec:algorithm 43}
@@ -1316,7 +1316,7 @@
 				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI_m-A$ and let the tuple $\langle D\rangle$ receive the result.
 				\item Verify that $D_{m,m}=u_1u_2\cdots u_m$.
 				\item Execute \hyperref[sec:algorithm 47]{algorithm 47} on the matrix $A$ and let the tuple $\langle \langle s_0,s_1,\cdots,s_t\rangle,\langle q_1,q_2,\cdots,q_{t-1}\rangle\rangle$ receive the result.
-				\item Execute \hyperref[sec:algorithm 42]{algorithm 42} supplying the tuple $\langle \langle s_0,s_1,\cdots,s_t\rangle,\langle q_1,q_2,\cdots,q_{t-1}\rangle\rangle$. Let the tuple $\langle c_1,d_1,c_2,d_2,\cdots,c_m,d_m\rangle$ receive the result.
+				\item Execute \hyperref[sec:algorithm 42]{algorithm 42} supplying the tuple $\langle \langle s_0,s_1,\cdots,s_t\rangle,\langle q_1,q_2,\cdots,q_{t-1}\rangle\rangle$. Let the tuple $\langle\langle c_1,d_1\rangle,\langle c_2,d_2\rangle,\cdots,\langle c_m,d_m\rangle\rangle$ receive the result.
 				\item For $i=1$ to $i=t$ do the following:
 				\begin{enumerate}
 					\item If $\sgn(u_1(c_i))=\sgn(u_1(d_i)), \sgn(u_2(c_i))=\sgn(u_2(d_i)), \cdots, \sgn(u_m(c_i))=\sgn(u_m(d_i))$, then do the following:
