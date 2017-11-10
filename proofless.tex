@@ -1533,12 +1533,12 @@
 					\item \textbf{Therefore verify that $\lVert c_iK_i(c_i)-AK_i(c_i)\rVert^2\le\frac{m+1-k_i}{m^3}\cdot\frac{\epsilon^2\delta^2}{(N''E'')^2}\le\frac{m+1-k_i}{m}\epsilon^2$.}
 					\end{enumerate}
 				\end{enumerate}
-				\item \textbf{Yield the tuple $\langle\langle K_1,c_1\rangle,\cdots,\langle K_t,c_t\rangle\rangle$.}
+				\item \textbf{Yield the tuple $\langle L',\langle K_1,c_1\rangle,\cdots,\langle K_t,c_t\rangle\rangle$.}
 			\end{enumerate}
 		\subsection{Algorithm 55 (Symmetric matrix spectral)}\label{sec:algorithm 55}
 			\textbf{Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Choose a $\mathbb{Q}$ $\epsilon>0$.} Now do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 54]{algorithm 54} on matrix $A$ and rational $\epsilon$. Let the tuple $\langle\langle K_1,c_1\rangle,\cdots,\langle K_t,c_t\rangle\rangle$ receive the result.
+				\item Execute \hyperref[sec:algorithm 54]{algorithm 54} on matrix $A$ and rational $\epsilon$. Let the tuple $\langle L',\langle K_1,c_1\rangle,\cdots,\langle K_t,c_t\rangle\rangle$ receive the result.
 				\item Let $C$ be a diagonal matrix whose $i^{th}$, where $1\le i\le t$, group of entries are $m+1-k_i$ $c_i$s.
 				\item Using \hyperref[sec:algorithm 53]{algorithm 53}, verify that $C$ is $m\times m$.
 				\item Let $K$ be a matrix whose columns are the in-order concatenation of those of $K_1(c_1),K_2(c_2),\cdots,K_t(c_t)$.
@@ -1560,7 +1560,7 @@
 				\end{enumerate}
 				\item \textbf{Using (7c) and \hyperref[sec:algorithm 54]{algorithm 54}, verify that the absolute values of all the non-diagonal entries $K^TK$ are less than or equal to $2\epsilon$.}
 				\item \textbf{Using \hyperref[sec:algorithm 54]{algorithm 54}, verify that all the diagonal entries of $K^TK$ are more than or equal to $L'$.}
-				\item \textbf{Yield the tuple $\langle K,C\rangle$.}
+				\item \textbf{Yield the tuple $\langle L',K,C\rangle$.}
 			\end{enumerate}
 \end{document}
 \grid
