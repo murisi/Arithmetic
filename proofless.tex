@@ -1489,7 +1489,9 @@
 				\item Execute \hyperref[sec:algorithm 48]{algorithm 48} on the matrix $A$. Let the tuple $\langle\langle k_1,k_2,\cdots,k_t\rangle,\langle c_1,d_1\rangle,\langle c_2,d_2\rangle,\cdots,\langle c_t,d_t\rangle\rangle$ receive the result.
 				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} with $xI_m-A$ as the choice matrix. Let the tuple $\langle M^{-1},D,N^{-1}\rangle$ receive the result.
 				\item Let $L$ be the formal polynomial obtained by replacing all the negative signs in $(\lVert N^{-1}\rVert^2)^{(2m+2)!!}$ with positive signs.
-				\item \textbf{Yield the tuple $\langle\frac{1}{\max(1,L(\lvert c_1\rvert),L(\lvert d_t\rvert))}\rangle$.}
+				\item Let $L'=\frac{1}{\max(1,L(\lvert c_1\rvert),L(\lvert d_t\rvert))}$.
+				\item \textbf{Verify that $L'>0$.}
+				\item \textbf{Yield the tuple $\langle L'\rangle$.}
 			\end{enumerate}
 			\textbf{We will use the notation $\disc(A)$ to refer to the invocation of \hyperref[sec:algorithm 54]{algorithm 54} on the matrix $A$.}
 		\subsection{Algorithm 55 (Symmetric matrix spectral algorithm initialization)}\label{sec:algorithm 55}
@@ -1531,7 +1533,7 @@
 					\end{enumerate}
 					\item Otherwise, do the following:
 					\begin{enumerate}
-						\item \textbf{For $j=1$ to $j=m+1-k_i$, verify that $({K_i(c_i)}^TK_i(c_i))_{j,j}\ge \disc(A)$.}
+						\item \textbf{For $j=1$ to $j=m+1-k_i$, verify that $({K_i(c_i)}^TK_i(c_i))_{j,j}\ge \disc(A)>0$.}
 						\item Verify that $xK_i-AK_i=(xI_m-A)K_i=M^{-1}DN^{-1}K_i=M^{-1}DN^{-1}NQE=M^{-1}DQE$.
 						\item Verify that $\lVert c_iK_i(c_i)-AK_i(c_i)\rVert^2=\lVert M^{-1}(c_i)D(c_i)QE(c_i)\rVert^2\le\lVert M''J_m\frac{\epsilon\delta}{M''N''E''^2m^2(m+1-k_i)}QE''J_{m+1-k}\rVert^2=\lVert J_m\frac{\epsilon\delta}{N''E''m^2(m+1-k_i)}QJ_{m+1-k}\rVert^2=\lVert \frac{\epsilon\delta}{N''E''m^2}J_{m\times (m+1-k_i)}\rVert^2=\frac{m+1-k_i}{m^3}\cdot\frac{\epsilon^2\delta^2}{(N''E'')^2}$.
 					\item \textbf{Therefore verify that $\lVert c_iK_i(c_i)-AK_i(c_i)\rVert^2\le\frac{m+1-k_i}{m^3}\cdot\frac{\epsilon^2\delta^2}{(N''E'')^2}\le\frac{m+1-k_i}{m}\epsilon^2$.}
@@ -1563,7 +1565,7 @@
 					\item \textbf{Therefore verify that $\lvert {e_i}^T(K^TK)e_j\rvert=\lvert(Ke_i)^T(Ke_j)\rvert\le\frac{2\epsilon\delta}{c_b-c_a}\le 2\epsilon$.}
 				\end{enumerate}
 				\item \textbf{Using (7c) and \hyperref[sec:algorithm 55]{algorithm 55}, verify that the absolute values of all the non-diagonal entries $K^TK$ are less than or equal to $2\epsilon$.}
-				\item \textbf{Using \hyperref[sec:algorithm 55]{algorithm 55}, verify that all the diagonal entries of $K^TK$ are more than or equal to $\disc(A)$.}
+				\item \textbf{Using \hyperref[sec:algorithm 55]{algorithm 55}, verify that all the diagonal entries of $K^TK$ are more than or equal to $\disc(A)>0$.}
 				\item \textbf{Yield the tuple $\langle K,C\rangle$.}
 			\end{enumerate}
 \end{document}
