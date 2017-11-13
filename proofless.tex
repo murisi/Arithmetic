@@ -14,6 +14,7 @@
 \DeclareMathOperator{\mat}{mat}
 \DeclareMathOperator{\pol}{pol}
 \DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\disc}{disc}
 
 \begin{document}
 	\title{A Rigorous Proofless Approach to Linear Algebra}
@@ -23,7 +24,7 @@
 	\section{Introduction}
 		What follows is an attempt to present linear algebra as a system of algorithms in a manner devoid of argumentation. The functioning of these algorithms hopefully is made apparent by stating expected variable values at certain points of execution. Mathematical argumentation is circumvented by letting algorithms \textit{show} what a proposition in an argument might have \textit{said}.
 		
-		The subset of linear algebra I intend to tackle consists of the \hyperref[sec:algorithm 3]{Smith normal form}, \hyperref[sec:algorithm 8]{determinants}, \hyperref[sec:algorithm 13]{compound matrices}, \hyperref[sec:algorithm 24]{general solutions to linear systems}, \hyperref[sec:algorithm 26]{characteristic matrices}, \hyperref[sec:algorithm 29]{the rational canonical form}, \hyperref[sec:algorithm 31]{block matrix multiplication}, \hyperref[sec:algorithm 32]{minimum polynomials}, \hyperref[sec:algorithm 50]{orthogonalization}, and \hyperref[sec:algorithm 55]{the spectral theorem for symmetric matrices}. To get the above done, I also have to extract the algorithms from \hyperref[sec:algorithm 42]{Sturm's theorem}, \hyperref[sec:algorithm 40]{Cauchy's bound}, \hyperref[sec:algorithm 51]{the Cauchy-Schwarz inequality}, and \hyperref[sec:algorithm 46]{the Euclidean division algorithm}.
+		The subset of linear algebra I intend to tackle consists of the \hyperref[sec:algorithm 3]{Smith normal form}, \hyperref[sec:algorithm 8]{determinants}, \hyperref[sec:algorithm 13]{compound matrices}, \hyperref[sec:algorithm 24]{general solutions to linear systems}, \hyperref[sec:algorithm 26]{characteristic matrices}, \hyperref[sec:algorithm 29]{the rational canonical form}, \hyperref[sec:algorithm 31]{block matrix multiplication}, \hyperref[sec:algorithm 32]{minimum polynomials}, \hyperref[sec:algorithm 50]{orthogonalization}, and \hyperref[sec:algorithm 56]{the spectral theorem for symmetric matrices}. To get the above done, I also have to extract the algorithms from \hyperref[sec:algorithm 42]{Sturm's theorem}, \hyperref[sec:algorithm 40]{Cauchy's bound}, \hyperref[sec:algorithm 51]{the Cauchy-Schwarz inequality}, and \hyperref[sec:algorithm 46]{the Euclidean division algorithm}.
 		
 		One way to use this exposition to understand linear algebra is to go through the algorithms in order and execute each one on one or two inputs. At any rate, please be taking the following into consideration:
 		\begin{enumerate}
@@ -1316,7 +1317,7 @@
 				\item Execute \hyperref[sec:algorithm 3]{algorithm 3} on the polynomial matrix $xI_m-A$ and let the tuple $\langle D\rangle$ receive the result.
 				\item Verify that $D_{m,m}=u_1u_2\cdots u_m$.
 				\item Execute \hyperref[sec:algorithm 47]{algorithm 47} on the matrix $A$ and let the tuple $\langle \langle s_0,s_1,\cdots,s_t\rangle,\langle q_1,q_2,\cdots,q_{t-1}\rangle\rangle$ receive the result.
-				\item Execute \hyperref[sec:algorithm 42]{algorithm 42} supplying the tuple $\langle \langle s_0,s_1,\cdots,s_t\rangle,\langle q_1,q_2,\cdots,q_{t-1}\rangle\rangle$. Let the tuple $\langle\langle c_1,d_1\rangle,\langle c_2,d_2\rangle,\cdots,\langle c_m,d_m\rangle\rangle$ receive the result.
+				\item Execute \hyperref[sec:algorithm 42]{algorithm 42} supplying the tuple $\langle \langle s_0,s_1,\cdots,s_t\rangle,\langle q_1,q_2,\cdots,q_{t-1}\rangle\rangle$. Let the tuple $\langle\langle c_1,d_1\rangle,\langle c_2,d_2\rangle,\cdots,\langle c_t,d_t\rangle\rangle$ receive the result.
 				\item For $i=1$ to $i=t$ do the following:
 				\begin{enumerate}
 					\item If $\sgn(u_1(c_i))=\sgn(u_1(d_i)), \sgn(u_2(c_i))=\sgn(u_2(d_i)), \cdots, \sgn(u_m(c_i))=\sgn(u_m(d_i))$, then do the following:
@@ -1328,30 +1329,28 @@
 					\end{enumerate}
 					\item Otherwise do the following:
 					\begin{enumerate}
-						\item Assign $(c_i,d_i)$ to one of the $u_j$s for which $\sgn(u_j(c_i))=-\sgn(u_j(d_i))$.
+						\item Let $j$ be the least integer such that $\sgn(u_j(c_i))=-\sgn(u_j(d_i))$.
+						\item \textbf{Let $k_i=j$.}
 					\end{enumerate}
 				\end{enumerate}
-				\item Let $n_i$ be the number of pairs assigned to the polynomial $u_i$.
-				\item Verify that $\sum_{i=1}^m n_j=t$.
+				\item Let $n_j=\sum_{i=1}^t [k_i=j]$.
+				\item Verify that $\sum_{j=1}^m n_j=\sum_{j=1}^m\sum_{i=1}^t [k_i=j]=\sum_{i=1}^t\sum_{j=1}^m [k_i=j]=\sum_{i=1}^t 1=t$.
 				\item If for any $i=1$ to $i=m$, $n_i>\deg(u_i)$, then do the following:
 				\begin{enumerate}
-					\item Execute \hyperref[sec:algorithm 37]{algorithm 37} on the polynomial $u_i$ along with $\deg(u_i)+1$ of the rational number pairs assigned to it.
+					\item Execute \hyperref[sec:algorithm 37]{algorithm 37} on the polynomial $u_i$ along with $\deg(u_i)+1$ of the distinct pairs $\langle c_l,d_l\rangle$ such that $k_l=i$.
 					\item \textbf{Abort algorithm.}
 				\end{enumerate}
 				\item Otherwise if for any $i=1$ to $i=m$, $n_i<\deg(u_i)$, then do the following:
 				\begin{enumerate}
-					\item Verify that $\sum_{i=1}^m n_j<t$.
-					\item Verify that $\sum_{i=1}^m n_j<\sum_{i=1}^m n_j$.
+					\item Verify that $\sum_{i=1}^m n_j<\sum_{i=1}^m \deg(u_j)=t$.
+					\item Therefore verify that $\sum_{i=1}^m n_j<\sum_{i=1}^m n_j$.
 					\item \textbf{Abort algorithm.}
 				\end{enumerate}
-				\item Otherwise if for any $i=1$ to $i=m$, $n_i\ne\deg(u_i)$, then do the following:
+				\item Otherwise, do the following:
 				\begin{enumerate}
-					\item Verify that $n_i\ne\deg(u_i)$.
-					\item Verify that $n_i\nless\deg(u_i)$.
-					\item Verify that $n_i\ngtr\deg(u_i)$.
-					\item \textbf{Abort algorithm.}
+					\item \textbf{For all $i=1$ to $i=m$, verify that $n_i=\deg(u_i)$.}
+					\item \textbf{Yield the tuple $\langle\langle k_1,k_2,\cdots,k_t\rangle,\langle c_1,d_1\rangle,\langle c_2,d_2\rangle,\cdots,\langle c_t,d_t\rangle\rangle$.}
 				\end{enumerate}
-				\item \textbf{For all $i=1$ to $i=m$, verify that $n_i=\deg(u_i)$.}
 			\end{enumerate}
 		\subsection{Algorithm 49 (Upper triangular matrix multiplication)}\label{sec:algorithm 49}
 			\textbf{Choose two upper triangular $\mathcal{M}_{m,m}(\mathbb{Q}[x])$s, $A$ and $B$.} Now do the following:
@@ -1467,8 +1466,7 @@
 		\subsection{Algorithm 53}\label{sec:algorithm 53}
 			\textbf{Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$.} Now do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 48]{algorithm 48} on the matrix $A$.
-				\item For $i=1$ to $i=t$, let $k_i$ be the index of the polynomial to which $(c_i, d_i)$ was associated.
+				\item Execute \hyperref[sec:algorithm 48]{algorithm 48} on the matrix $A$. Let the tuple $\langle\langle k_1,k_2,\cdots,k_t\rangle,\langle c_1,d_1\rangle,\langle c_2,d_2\rangle,\cdots,\langle c_t,d_t\rangle\rangle$ receive the result.
 				\item Verify that $\sum_{i=1}^t(m+1-k_i)$
 				\begin{enumerate}
 					\item $=\sum_{i=1}^t\sum_{j=1}^m [k_i\le j]$
@@ -1485,21 +1483,27 @@
 				\end{enumerate}
 				\item \textbf{Verify that $\sum_{i=1}^t(m+1-k_i)=m$.}
 			\end{enumerate}
-		\subsection{Algorithm 54 (Symmetric matrix spectral algorithm initialization)}\label{sec:algorithm 54}
+		\subsection{Algorithm 54}\label{sec:algorithm 54}
+			\textbf{Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$.} Now do the following:
+			\begin{enumerate}
+				\item Execute \hyperref[sec:algorithm 48]{algorithm 48} on the matrix $A$. Let the tuple $\langle\langle k_1,k_2,\cdots,k_t\rangle,\langle c_1,d_1\rangle,\langle c_2,d_2\rangle,\cdots,\langle c_t,d_t\rangle\rangle$ receive the result.
+				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} with $xI_m-A$ as the choice matrix. Let the tuple $\langle M^{-1},D,N^{-1}\rangle$ receive the result.
+				\item Let $L$ be the formal polynomial obtained by replacing all the negative signs in $(\lVert N^{-1}\rVert^2)^{(2m+2)!!}$ with positive signs.
+				\item \textbf{Yield the tuple $\langle\frac{1}{\max(1,L(\lvert c_1\rvert),L(\lvert d_t\rvert))}\rangle$.}
+			\end{enumerate}
+			\textbf{We will use the notation $\disc(A)$ to refer to the invocation of \hyperref[sec:algorithm 54]{algorithm 54} on the matrix $A$.}
+		\subsection{Algorithm 55 (Symmetric matrix spectral algorithm initialization)}\label{sec:algorithm 55}
 			\textbf{Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Choose a $\mathbb{Q}$ $\epsilon>0$.} Now do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 48]{algorithm 48} on the matrix $A$.
+				\item Execute \hyperref[sec:algorithm 48]{algorithm 48} on the matrix $A$. Let the tuple $\langle\langle k_1,k_2,\cdots,k_t\rangle,\langle c_1,d_1\rangle,\langle c_2,d_2\rangle,\cdots,\langle c_t,d_t\rangle\rangle$ receive the result.
 				\item Execute \hyperref[sec:algorithm 6]{algorithm 6} with $xI_m-A$ as the choice matrix. Let the tuple $\langle M^{-1},D,N^{-1}\rangle$ receive the result.
 				\item Let $M'$ be the matrix obtained by replacing all the negative signs in $M^{-1}$ with positive signs.
 				\item Let $M''=\max_{i=1}^m\max_{j=1}^mM'(\max(\lvert c_1\rvert,\lvert d_t\rvert))_{i,j}$.
 				\item Let $N'$ be the matrix obtained by replacing all the negative signs in $N$ with positive signs.
 				\item Let $N''=1+\max_{i=1}^m\max_{j=1}^mN'(\max(\lvert c_1\rvert,\lvert d_t\rvert))_{i,j}$.
-				\item Let $L$ be the formal polynomial obtained by replacing all the negative signs in $(\lVert N^{-1}\rVert^2)^{(2m+2)!!}$ with positive signs.
-				\item Let $L'=\frac{1}{\max(1,L(\lvert c_1\rvert),L(\lvert d_t\rvert))}$.
 				\item Let $\delta=\min(1,\min_{i=1}^{t-1}(c_{i+1}-c_i))$.
 				\item For $i=1$ to $i=t$, do the following:
 				\begin{enumerate}
-					\item Let $k_i$ be the index of the polynomial to which $(c_i, d_i)$ was associated.
 					\item Verify that $\sgn(u_{k_i}(c_i))\ne\sgn(u_{k_i}(d_i))$.
 					\item Let $Q$ be the last $m+1-k_i$ columns of $I_m$.
 					\item Verify that $(Q^TN^{-1})(NQ)=Q^T(N^{-1}N)Q=Q^TI_mQ=Q^TQ=I_{m+1-k_i}$.
@@ -1518,32 +1522,32 @@
 					\begin{enumerate}
 						\item Execute \hyperref[sec:algorithm 36]{algorithm 36} on the formal polynomial $D_{j,j}$, interval $(c_i, d_i)$, and target of $b$. Let $c_i$ and $d_i$ receive their updates.
 					\end{enumerate}
-					\item If a diagonal entry of ${K_i(c_i)}^TK_i(c_i)$ is less than $L'$, then do the following:
+					\item If a diagonal entry of ${K_i(c_i)}^TK_i(c_i)$ is less than $\disc(A)$, then do the following:
 					\begin{enumerate}
 						\item Let $z$ be the index of the column of the entry.
-						\item Verify that $L'\le\frac{1}{\max(\lVert (Q^TN^{-1})(c_i)\rVert^2,1)^{(2(m+1-k_i)+2)!!}}$.
+						\item Verify that $\disc(A)\le\frac{1}{\max(\lVert (Q^TN^{-1})(c_i)\rVert^2,1)^{(2(m+1-k_i)+2)!!}}$.
 						\item Execute \hyperref[sec:algorithm 52]{algorithm 52} with matrices $Q^TN^{-1}$ and $NQ$, rational number $c_i$, and column index $z$.
 						\item \textbf{Abort algorithm.}
 					\end{enumerate}
 					\item Otherwise, do the following:
 					\begin{enumerate}
-						\item \textbf{For $j=1$ to $j=m+1-k_i$, verify that $({K_i(c_i)}^TK_i(c_i))_{j,j}\ge L'$.}
+						\item \textbf{For $j=1$ to $j=m+1-k_i$, verify that $({K_i(c_i)}^TK_i(c_i))_{j,j}\ge \disc(A)$.}
 						\item Verify that $xK_i-AK_i=(xI_m-A)K_i=M^{-1}DN^{-1}K_i=M^{-1}DN^{-1}NQE=M^{-1}DQE$.
 						\item Verify that $\lVert c_iK_i(c_i)-AK_i(c_i)\rVert^2=\lVert M^{-1}(c_i)D(c_i)QE(c_i)\rVert^2\le\lVert M''J_m\frac{\epsilon\delta}{M''N''E''^2m^2(m+1-k_i)}QE''J_{m+1-k}\rVert^2=\lVert J_m\frac{\epsilon\delta}{N''E''m^2(m+1-k_i)}QJ_{m+1-k}\rVert^2=\lVert \frac{\epsilon\delta}{N''E''m^2}J_{m\times (m+1-k_i)}\rVert^2=\frac{m+1-k_i}{m^3}\cdot\frac{\epsilon^2\delta^2}{(N''E'')^2}$.
 					\item \textbf{Therefore verify that $\lVert c_iK_i(c_i)-AK_i(c_i)\rVert^2\le\frac{m+1-k_i}{m^3}\cdot\frac{\epsilon^2\delta^2}{(N''E'')^2}\le\frac{m+1-k_i}{m}\epsilon^2$.}
 					\end{enumerate}
 				\end{enumerate}
-				\item \textbf{Yield the tuple $\langle L',\langle K_1,c_1\rangle,\cdots,\langle K_t,c_t\rangle\rangle$.}
+				\item \textbf{Yield the tuple $\langle\langle K_1,c_1\rangle,\cdots,\langle K_t,c_t\rangle\rangle$.}
 			\end{enumerate}
-		\subsection{Algorithm 55 (Symmetric matrix spectral)}\label{sec:algorithm 55}
+		\subsection{Algorithm 56 (Symmetric matrix spectral)}\label{sec:algorithm 56}
 			\textbf{Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Choose a $\mathbb{Q}$ $\epsilon>0$.} Now do the following:
 			\begin{enumerate}
-				\item Execute \hyperref[sec:algorithm 54]{algorithm 54} on matrix $A$ and rational $\epsilon$. Let the tuple $\langle L',\langle K_1,c_1\rangle,\cdots,\langle K_t,c_t\rangle\rangle$ receive the result.
+				\item Execute \hyperref[sec:algorithm 55]{algorithm 55} on matrix $A$ and rational $\epsilon$. Let the tuple $\langle\langle K_1,c_1\rangle,\cdots,\langle K_t,c_t\rangle\rangle$ receive the result.
 				\item Let $C$ be a diagonal matrix whose $i^{th}$, where $1\le i\le t$, group of entries are $m+1-k_i$ $c_i$s.
 				\item Using \hyperref[sec:algorithm 53]{algorithm 53}, verify that $C$ is $m\times m$.
 				\item Let $K$ be a matrix whose columns are the in-order concatenation of those of $K_1(c_1),K_2(c_2),\cdots,K_t(c_t)$.
 				\item Using \hyperref[sec:algorithm 53]{algorithm 53} and (9e), verify that $K$ is $m\times m$.
-				\item \textbf{Using \hyperref[sec:algorithm 53]{algorithm 53} and \hyperref[sec:algorithm 54]{algorithm 54}, verify that $\lVert KC-AK\rVert^2\le\sum_{i=1}^t\frac{m+1-k_i}{m}\epsilon^2=\frac{\sum_{i=1}^t (m+1-k_i)}{m}\epsilon^2=\frac{m}{m}\epsilon^2=\epsilon^2$.}
+				\item \textbf{Using \hyperref[sec:algorithm 53]{algorithm 53} and \hyperref[sec:algorithm 55]{algorithm 55}, verify that $\lVert KC-AK\rVert^2\le\sum_{i=1}^t\frac{m+1-k_i}{m}\epsilon^2=\frac{\sum_{i=1}^t (m+1-k_i)}{m}\epsilon^2=\frac{m}{m}\epsilon^2=\epsilon^2$.}
 				\item For $i=1$ to $i=m$, do the following: For $j=1$ to $j=m$, do the following:
 				\begin{enumerate}
 					\item If $Ke_i$ was constructed during iteration $i=a$ and $Ke_j$ during iteration $i=b$ of (11), and if $a\ne b$, then do the following:
@@ -1558,9 +1562,9 @@
 					\end{enumerate}
 					\item \textbf{Therefore verify that $\lvert {e_i}^T(K^TK)e_j\rvert=\lvert(Ke_i)^T(Ke_j)\rvert\le\frac{2\epsilon\delta}{c_b-c_a}\le 2\epsilon$.}
 				\end{enumerate}
-				\item \textbf{Using (7c) and \hyperref[sec:algorithm 54]{algorithm 54}, verify that the absolute values of all the non-diagonal entries $K^TK$ are less than or equal to $2\epsilon$.}
-				\item \textbf{Using \hyperref[sec:algorithm 54]{algorithm 54}, verify that all the diagonal entries of $K^TK$ are more than or equal to $L'$.}
-				\item \textbf{Yield the tuple $\langle L',K,C\rangle$.}
+				\item \textbf{Using (7c) and \hyperref[sec:algorithm 55]{algorithm 55}, verify that the absolute values of all the non-diagonal entries $K^TK$ are less than or equal to $2\epsilon$.}
+				\item \textbf{Using \hyperref[sec:algorithm 55]{algorithm 55}, verify that all the diagonal entries of $K^TK$ are more than or equal to $\disc(A)$.}
+				\item \textbf{Yield the tuple $\langle K,C\rangle$.}
 			\end{enumerate}
 \end{document}
 \grid
