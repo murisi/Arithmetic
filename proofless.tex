@@ -258,6 +258,8 @@
 					\item Verify that $A'$ equals $A$.
 					\item Therefore verify that $\det(A')=\det(A)$.
 					\item Using \hyperref[sec:algorithm 10]{algorithm 10}, also verify that $\det(A')=-\det(A)$.
+					\item Therefore verify that $\det(A)=-\det(A)$.
+					\item Therefore verify that $1=-1$.
 					\item \textbf{Abort algorithm.}
 				\end{enumerate}
 				\item Otherwise, do the following:
@@ -564,6 +566,7 @@
 				\begin{enumerate}
 					\item Using \hyperref[sec:algorithm 8]{algorithm 8}, verify that $\det(B)=0$.
 					\item Therefore using \hyperref[sec:algorithm 19]{algorithm 19}, verify that $\det(xI-A)=0$.
+					\item Therefore verify that $1=0$.
 					\item \textbf{Abort algorithm.}
 				\end{enumerate}
 				\item Otherwise do the following:
@@ -573,8 +576,9 @@
 					\begin{enumerate}
 						\item Cognizant of the execution of \hyperref[sec:algorithm 3]{algorithm 3}, verify that the first $m-1$ diagonal entries of $B$ are monic.
 						\item Using \hyperref[sec:algorithm 8]{algorithm 8}, verify that $\det(B)$ equals the product of the diagonal entries of $B$.
-						\item Therefore verify that $\det(B)$ is not monic
-						\item Therefore by \hyperref[sec:algorithm 19]{algorithm 19}, verify that $\det(xI-A)$ is not monic
+						\item Therefore verify that $\det(B)$ is not monic.
+						\item Therefore by \hyperref[sec:algorithm 19]{algorithm 19}, verify that $\det(xI-A)$ is not monic.
+						\item Therefore verify that $1\ne 1$.
 						\item \textbf{Abort algorithm.}
 					\end{enumerate}
 					\item Otherwise do the following:
@@ -617,10 +621,6 @@
 					\begin{enumerate}
 						\item Verify that $p$ is monic.
 						\item Verify that $p=1$.
-					\end{enumerate}
-					\item Otherwise do the following:
-					\begin{enumerate}
-						\item \textbf{Abort algorithm.}
 					\end{enumerate}
 				\end{enumerate}
 				\item Let the macro $[P]$ expand to "(if $P$, then yield $1$, otherwise yield $0$)".
@@ -779,6 +779,7 @@
 					\begin{enumerate}
 						\item For $k=1$ to $k=i-1$, verify that $(a_i-a_k)\ne 0$.
 						\item Verify that $p(a_i)\ne 0$.
+						\item Therefore verify that $0\ne 0$.
 						\item \textbf{Abort algorithm.}
 					\end{enumerate}
 					\item Otherwise $g(a_i)=0$. Now do the following:
@@ -791,6 +792,7 @@
 				\end{enumerate}
 				\item Now verify that $p=(x-a_1)(x-a_2)\cdots(x-a_n)1$.
 				\item Using (3), verify that $p(a_{n+1})\ne 0$.
+				\item Therefore verify that $0\ne 0$.
 				\item \textbf{Abort algorithm.}
 			\end{enumerate}
 		\subsection{Algorithm 36 (Bisection)}\label{sec:algorithm 36}
@@ -1250,12 +1252,14 @@
 					\begin{enumerate}
 						\item Verify that $p_3(A)s_{t-1}(A)h(A)=s_{i-1}(A)h(A)=0_{m\times m}h(A)=0_{m\times m}$.
 						\item Verify that $p_3(A)s_{t-1}(A)h(A)=p_3(A)I_{m,m}=p_3(A)\ne0_{m\times m}$.
+						\item Therefore verify that $0\ne 0$.
 						\item \textbf{Abort algorithm.}
 					\end{enumerate}
 					\item Otherwise if $s_{i-1}(A)h(A)=0_{m\times m}$, then do the following:
 					\begin{enumerate}
 						\item Verify that $s_{i-1}(A)h(A)s_{t-1}(A)=0_{m\times m}s_{t-1}(A)=0_{m\times m}$.
 						\item Verify that $s_{i-1}(A)h(A)s_{t-1}(A)=s_{i-1}(A)I_{m,m}=s_{i-1}(A)\ne 0$.
+						\item Therefore verify that $0\ne 0$.
 						\item \textbf{Abort algorithm.}
 					\end{enumerate}
 					\item Otherwise, do the following:
@@ -1323,8 +1327,11 @@
 					\item If $\sgn(u_1(c_i))=\sgn(u_1(d_i)), \sgn(u_2(c_i))=\sgn(u_2(d_i)), \cdots, \sgn(u_m(c_i))=\sgn(u_m(d_i))$, then do the following:
 					\begin{enumerate}
 						\item Verify that $\sgn(u_1(c_i))\sgn(u_2(c_i))\cdots\sgn(u_m(c_i))=\sgn(u_1(d_i))\sgn(u_2(d_i))\cdots\sgn(u_m(d_i))$.
-						\item Verify that $\sgn(u_1(c_i)u_2(c_i)\cdots u_m(c_i))=\sgn(u_1(d_i)u_2(d_i)\cdots u_m(d_i))$.
-						\item Verify that $\sgn(s_t(c_i))=\sgn(s_t(d_i))$.
+						\item Therefore verify that $\sgn(u_1(c_i)u_2(c_i)\cdots u_m(c_i))=\sgn(u_1(d_i)u_2(d_i)\cdots u_m(d_i))$.
+						\item Therefore verify that $\sgn(s_t(c_i))=\sgn(s_t(d_i))$.
+						\item Cognizant of the execution of \hyperref[sec:algorithm 42]{algorithm 42}, verify that $\sgn(s_t(c_i))=-\sgn(s_t(d_i))$.
+						\item Therefore verify that $\sgn(s_t(c_i))=-\sgn(s_t(c_i))$.
+						\item Therefore verify that $1=-1$.
 						\item \textbf{Abort algorithm.}
 					\end{enumerate}
 					\item Otherwise do the following:
@@ -1376,6 +1383,7 @@
 				\item If $C_n(A_0)=0_{\binom{m}{n}\times 1}$, then do the following:
 				\begin{enumerate}
 					\item Verify that $C_n(M_0A_0)=C_n(M_0)C_n(A_0)=C_n(M_0)0_{\binom{m}{n}\times 1}=0$.
+					\item Therefore verify that $1=0$.
 					\item \textbf{Abort algorithm.}
 				\end{enumerate}
 				\item Otherwise, do the following:
@@ -1384,7 +1392,7 @@
 				\begin{enumerate}
 					\item If $A_{i-1}e_i=0_{m\times 1}$, then do the following:
 					\begin{enumerate}
-						\item Verify that $C_n(A_{i-1})=0$.
+						\item Cognizant of the execution of the previous iteration, verify that $C_n(A_{i-1})=0$.
 						\item \textbf{Abort algorithm.}
 					\end{enumerate}
 					\item Otherwise, do the following:
@@ -1436,6 +1444,7 @@
 				\item If $i=0$, then do the following:
 				\begin{enumerate}
 					\item Verify that $({e_j}^TM(x)A_i(x)e_j)^2=({e_j}^TM(x)A_0(x)e_j)^2=({e_j}^TI_ne_j)^2=1$.
+					\item Therefore verify that $1<1$.
 					\item \textbf{Abort algorithm.}
 				\end{enumerate}
 				\item Otherwise, do the following:
@@ -1443,6 +1452,7 @@
 				\item If $\min(i,j-1)=0$, then do the following:
 				\begin{enumerate}
 					\item Verify that $(1\lVert A_0(x)e_1\rVert^2\cdots\allowbreak\lVert A_{\min(i,j-1)-1}(x)e_{\min(i,j-1)}\rVert^2)^2=1^2=1$.
+					\item Therefore verify that $1<1$.
 					\item \textbf{Abort algorithm.}
 				\end{enumerate}
 				\item Otherwise do the following:
@@ -1451,6 +1461,7 @@
 					\item If for all $k=0$ to $k=\min(i,j-1)-1$, $\lVert A_k(x)e_{k+1}\rVert^2\ge\frac{1}{a^{(2i)!!}}$, then do the following:
 					\begin{enumerate}
 						\item Verify that $({e_j}^TM(x)A_i(x)e_j)^2=(\lVert A_0(x)e_1\rVert^2\cdots\allowbreak\lVert A_{\min(i,j-1)-1}(x)e_{\min(i,j-1)}\rVert^2)^2\ge(\frac{1}{a^{(2i)!!}})^{2\min(i,j-1)}\ge(\frac{1}{a^{(2i)!!}})^{2i}=\frac{1}{a^{(2i)!!*2i}}$.
+						\item Therefore verify that $({e_j}^TM(x)A_i(x)e_j)^2<\frac{1}{a^{(2i)!!*2i}}\le ({e_j}^TM(x)A_i(x)e_j)^2$.
 						\item \textbf{Abort algorithm.}
 					\end{enumerate}
 					\item Otherwise, do the following:
