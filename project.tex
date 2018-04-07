@@ -47,6 +47,9 @@
 			The task of understanding the following procedures should be the same as that of understanding any codebase. Hence running a debugger, that is, executing the following procedures step by step on some chosen input(s) and observing their control flows and sequences of program states should be equally helpful in making sense of them.
 	\tableofcontents
 	\section{Matrix Arithmetic}\label{sec:body}
+		Let us use the notation $\mathbb{Q}[x_1,x_2,\cdots,x_n]$ as a shorthand for "formal polynomial in the indeterminates $x_1,x_2,\cdots,x_n$".
+		
+		Let us use the notation $\mathcal{M}_{m,n}(A)$ as a shorthand for "$m\times n$ matrix of $A$s".
 		\subsection{Procedure 1}\label{sec:procedure 1}
 			\subsubsection{Objective}
 				Choose a $\mathcal{M}_{m,2}(\mathbb{Q}[x])$, $A$. Let $\deg(0)=\infty$. Let $k=\min(\deg(A_{1,1}),\deg(A_{1,2}))$ and $q=\deg(A_{1,1})$. The objective of the following instructions is to make $A_{1,2}=0$, $\deg(A_{1,1})\le k$, and either leave $A_{*,1}$ unchanged or make $\deg(A_{1,1})<q$ by a sequence of operations whereby, in each step a $\mathbb{Q}[x]$ times either of the columns is added to the other.
@@ -94,7 +97,7 @@
 				\end{enumerate}
 		Let us use the notation "diagonal" as a shorthand for "matrix positions such that the row index equals the column index".
 		
-		Let us use the notation $\mathcal{D}_{m,n}(A)$ as a shorthand for "$\mathcal{M}_{m,n}(A)$ with only $A$s on the diagonal, and $0$s everywhere else".
+		Let us use the notation $\mathcal{D}_{m,n}(A)$ as a shorthand for "$\mathcal{M}_{m,n}(A)$ with $0$s in all the off-diagonal positions".
 		\subsection{Procedure 2}\label{sec:procedure 2}
 			\subsubsection{Objective}
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$. The objective of the following instructions is to transform $A$ into a $\mathcal{D}_{m,n}(\mathbb{Q}[x])$ by a sequence of operations whereby either a $\mathbb{Q}[x]$ times any of the columns is added to a different column, or a $\mathbb{Q}[x]$ times any of the rows is added to a different row.
