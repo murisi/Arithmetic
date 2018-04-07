@@ -50,6 +50,8 @@
 		Let us use the notation $\mathbb{Q}[x_1,x_2,\cdots,x_n]$ as a shorthand for "formal polynomial in the indeterminates $x_1,x_2,\cdots,x_n$".
 		
 		Let us use the notation $\mathcal{M}_{m,n}(A)$ as a shorthand for "$m\times n$ matrix of $A$s".
+		
+		Let us use the notation $p\circ q$ as a shorthand for "the sum of products where each product is the coefficient of a monomial in $p$ times the coefficient of the same monomial in $q$".
 		\subsection{Procedure 1}\label{sec:procedure 1}
 			\subsubsection{Objective}
 				Choose a $\mathcal{M}_{m,2}(\mathbb{Q}[x])$, $A$. Let $\deg(0)=\infty$. Let $k=\min(\deg(A_{1,1}),\deg(A_{1,2}))$ and $q=\deg(A_{1,1})$. The objective of the following instructions is to make $A_{1,2}=0$, $\deg(A_{1,1})\le k$, and either leave $A_{*,1}$ unchanged or make $\deg(A_{1,1})<q$ by a sequence of operations whereby, in each step a $\mathbb{Q}[x]$ times either of the columns is added to the other.
@@ -144,9 +146,11 @@
 					\item Therefore Verify that $(2)=\sum_{l=1}^{p} \left(\sum_{k=1}^{n} \left(A_{i,k}*B_{k,l}*C_{l,r}\right)\right)=\sum_{k=1}^{n} \left(\sum_{l=1}^{p} \left(A_{i,k}*B_{k,l}*C_{l,r}\right)\right)=\sum_{k=1}^{n}\left(A_{i,k}*\sum_{l=1}^{p}\left(B_{k,l}*C_{l,r}\right)\right)=(4)$ for $1\le i\le m$, for $1\le r\le q$.
 					\item \textbf{Therefore verify that $(AB)C=A(BC)$.}
 				\end{enumerate}
-		Let us use the notation $I_n$ as a shorthand for "the $\mathcal{M}_{n,n}(\mathbb{Q})$ with only $1$s on the diagonal and $0$s everywhere else" in what follows.
+		Let us use the notation $I_n$ as a shorthand for "the $\mathcal{M}_{n,n}(\mathbb{Q})$ with only $1$s on the diagonal and $0$s everywhere else".
 		
-		Let us use the notation $\mathcal{T}_{m}(\mathbb{Q}[x])$ as a shorthand for "$\mathcal{M}_{m,m}(\mathbb{Q}[x])$ with only $1$s on the diagonal, a single $\mathbb{Q}[x]$ off the diagonal, and $0$s everywhere else" in what follows.
+		Let us use the notation $\mathcal{T}_{m}(\mathbb{Q}[x])$ as a shorthand for "$\mathcal{M}_{m,m}(\mathbb{Q}[x])$ with only $1$s on the diagonal, a single $\mathbb{Q}[x]$ off the diagonal, and $0$s everywhere else".
+		
+		Let us use the notation $\lvert A\rvert$ as a shorthand for "the number of items in the list $A$".
 		\subsection{Procedure 4 (Row and column operation recording)}\label{sec:procedure 4}
 			\subsubsection{Objective}
 				Choose a procedure, $A$, and two non-negative integers $m,n$. The objective of the following instructions is to construct a list of $\mathcal{T}_{m}(\mathbb{Q}[x])$s, $M$, and a list of $\mathcal{T}_{n}(\mathbb{Q}[x])$s, $N$ such that $M_{\lvert M\rvert +1-i}$ equals $I_m$ after applying the $i^{th}$ row operation carried out by $A$ also on it, and $N_i$ equals $I_n$ after applying the $i^{th}$ row operation carried out by $A$ also on it.
@@ -181,7 +185,7 @@
 					\end{enumerate}
 					\item \textbf{Therefore verify that $AI_n=A$.}
 				\end{enumerate}
-		Let us use the notation $M_*$ as a shorthand for "$\prod_{i=1}^{\lvert M\rvert} M_i$" in what follows.
+		Let us use the notation $M_*$ as a shorthand for "$\prod_{i=1}^{\lvert M\rvert} M_i$".
 		\subsection{Procedure 6 (Matrix list inversion)}\label{sec:procedure 6}
 			\subsubsection{Objective}
 				Choose a list of $\mathcal{T}_{m}(\mathbb{Q}[x])$, $A$. The objective of the following instructions is to define a list of $\mathcal{T}_{m}(\mathbb{Q}[x])$, $A^{-1}$, such that $A_*{A^{-1}}_*=I_m$.
@@ -261,6 +265,7 @@
 					\item \textbf{Hence verify that $A'_{k,k}=u_kA'_{1,1}$ for $k=1$ to $k=\min(m,n)$.}
 					\item \textbf{Yield $\langle u\rangle$.}
 				\end{enumerate}
+		Let us use the notation $[a:b]$ as a shorthand for "the list $\langle a,a+1,\cdots b-1\rangle$".
 		\subsection{Procedure 9 (Block matrix multiplication)}\label{sec:procedure 9}
 			\subsubsection{Objective}
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$, and a $\mathcal{M}_{n,k}(\mathbb{Q}[x])$, $B$. Choose integers $1\le a\le m$, $1\le b\le n$, and $1\le c\le k$. The objective of the following instructions is to show that $(AB)_{[1:a],[1:c]}=A_{[1:a],[1:b]}B_{[1:b],[1:c]}+A_{[1:a],[b:n+1]}B_{[b:n+1],[1:c]}$.
@@ -311,7 +316,7 @@
 				Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$. The objective of the following instructions is to define the $\mathbb{Q}[x]$ $\det(A)$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
-					\item If $m$ equals $0$, then do the following:
+					\item If $m=0$, then do the following:
 					\begin{enumerate}
 						\item \textbf{Yield the tuple $\langle 1\rangle$.}
 					\end{enumerate}
@@ -321,7 +326,6 @@
 						\item \textbf{Yield the tuple $\langle a\rangle$.}
 					\end{enumerate}
 				\end{enumerate}
-			\textbf{We will use the notation $\det(A)$ to refer to the invocation of \hyperref[sec:procedure 11]{procedure 11} on $A$.}
 		\subsection{Procedure 12 (Multilinearity verification)}\label{sec:procedure 12}
 			\subsubsection{Objective}
 				Choose a $\mathbb{Q}[x]$ $p$. Choose two $\mathcal{M}_{m,1}(\mathbb{Q}[x])$s, $B$ and $C$. Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$, such that its $i^{th}$ column is $B+pC$. Let $A'$ be $A$ but with the $i^{th}$ column replaced by $B$ and let $A'''$ be $A$ but with the $i^{th}$ column replaced by $C$. The objective of the following instructions is to show that $\det(A)=\det(A') + p\det(A''')$.
@@ -571,7 +575,6 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle A^T\rangle$.}
 				\end{enumerate}
-			\textbf{The notation $A^T$ shall be used to refer to the result of invoking \hyperref[sec:procedure 24]{procedure 24} on a matrix $A$.}
 		\subsection{Procedure 25 (Transpose of product verification)}\label{sec:procedure 25}
 			\subsubsection{Objective}
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$, and a $\mathcal{M}_{n,k}(\mathbb{Q}[x])$, $B$. The objective of the following instructions is to show that $B^TA^T=(AB)^T$.
@@ -597,7 +600,7 @@
 				\end{enumerate}
 		\subsection{Procedure 27 (Compound matrix of transpose verification)}\label{sec:procedure 27}
 			\subsubsection{Objective}
-				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$, and an integer $0\le k\le\min(m,n)$. The objective of the following instructions is to show that $(C_k(A))^T=(C_k(A^T))$.
+				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$, and an integer $0\le k\le\min(m,n)$. The objective of the following instructions is to show that $C_k(A)^T=C_k(A^T)$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item For each row label $I$ of $C_k(A^T)$, do the following:
@@ -760,20 +763,24 @@
 						\item \textbf{Verify that none of the diagonal entries of $B$ equal zero.}
 					\end{enumerate}
 				\end{enumerate}
-			Let us use the notation $[P]$ as a shorthand for "if $P$, then yield $1$, otherwise yield $0$" in what follows.
+			Let us use the notation $[P]$ as a shorthand for "if $P$, then yield $1$, otherwise yield $0$".
+			
+			Let us use the notation $\cols(A)$ as a shorthand for "the number of columns of $A$".
+			
+			Let us use the notation $\rows(A)$ as a shorthand for "the number of rows of $A$".
 		\subsection{Procedure 37 (Block diagonal construction)}\label{sec:procedure 37}
 			\subsubsection{Objective}
-				Choose a list of $\mathcal{M}_{*,*}(\mathbb{Q})$, $C$. Let $m=\sum_{i=1}^{\lvert C\rvert}\dim(C_i)$. The objective of the following instructions is to define the $\mathcal{M}_{m,m}(\mathbb{Q})$, $\bdiag(C)$.
+				Choose a list of $\mathcal{M}_{*}(\mathbb{Q})$, $C$. Let $m=\sum_{i=1}^{\lvert C\rvert}\cols(C_i)$. The objective of the following instructions is to define the $\mathcal{M}_{m,m}(\mathbb{Q})$, $\bdiag(C)$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item Let $E$ be a $0\times 0$ matrices.
 					\item \textbf{Now for $i=1$ to $i=\lvert C\rvert$:}
 					\begin{enumerate}
-						\item Add $\dim(C_i)$ columns filled with zeros to the right end of $E$.
-						\item Add $\dim(C_i)$ rows filled with zeros to the bottom end of $E$.
+						\item Add $\cols(C_i)$ columns filled with zeros to the right end of $E$.
+						\item Add $\cols(C_i)$ rows filled with zeros to the bottom end of $E$.
 						\item Set the bottom-right corner of $E$ equal to $C_i$.
 					\end{enumerate}
-					\item Verify that $\dim(E)=\sum_{i=1}^{\lvert C\rvert}\dim(C_i)=m$.
+					\item Verify that $\cols(E)=\sum_{i=1}^{\lvert C\rvert}\cols(C_i)=m$.
 					\item \textbf{Yield the tuple $\langle E\rangle$.}
 				\end{enumerate}
 		\subsection{Procedure 38}\label{sec:procedure 38}
@@ -830,16 +837,16 @@
 		\textbf{Let us use the notation $\mon(p)$ as a shorthand for "$\frac{p}{x^{\deg(p)}\circ p}$" in what follows.}
 		\subsection{Procedure 41}\label{sec:procedure 41}
 			\subsubsection{Objective}
-				Choose a positive integer $m$ and an $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \hyperref[sec:procedure 4]{procedure 4} on the polynomial matrix $xI_m-A$ and let $\langle,B,,\rangle$ receive the result. Execute \hyperref[sec:procedure 38]{procedure 38} on $A$ and let $\langle a\rangle$ receive the result. Let $E_i=\rcan(\mon(B_{a-1+i,a-1+i}))$ for $i=1$ to $i=m+1-a$. The objective of the following instructions is to first show that $\dim(\bdiag(E))=m$, and second to apply a sequence of elementary operations on $xI_m-\bdiag(E)$ to obtain the matrix $B$.
+				Choose a positive integer $m$ and an $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \hyperref[sec:procedure 4]{procedure 4} on the polynomial matrix $xI_m-A$ and let $\langle,B,,\rangle$ receive the result. Execute \hyperref[sec:procedure 38]{procedure 38} on $A$ and let $\langle a\rangle$ receive the result. Let $E_i=\rcan(\mon(B_{a-1+i,a-1+i}))$ for $i=1$ to $i=m+1-a$. The objective of the following instructions is to first show that $\cols(\bdiag(E))=m$, and second to apply a sequence of elementary operations on $xI_m-\bdiag(E)$ to obtain the matrix $B$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item Verify that the diagonal of $B$ comprises $x-1$ rationals followed by $B_{a,a},B_{a+1,a+1},\cdots,B_{m,m}$.
-					\item \textbf{Using \hyperref[sec:procedure 40]{procedure 40}, verify that $\dim(\bdiag(E))=\sum_{i=1}^{\lvert E\rvert}\dim(E_i)=\sum_{i=1}^{\lvert E\rvert}\dim(\rcan(\mon(B_{a-1+i,a-1+i})))=\sum_{i=1}^{\lvert E\rvert}\deg(\mon(B_{a-1+i,a-1+i}))=\sum_{i=1}^{m+1-a}\deg(B_{a-1+i,a-1+i})=\sum_{i=a}^m\deg(B_{i,i})=m$.}
+					\item \textbf{Using \hyperref[sec:procedure 40]{procedure 40}, verify that $\cols(\bdiag(E))=\sum_{i=1}^{\lvert E\rvert}\cols(E_i)=\sum_{i=1}^{\lvert E\rvert}\cols(\rcan(\mon(B_{a-1+i,a-1+i})))=\sum_{i=1}^{\lvert E\rvert}\deg(\mon(B_{a-1+i,a-1+i}))=\sum_{i=1}^{m+1-a}\deg(B_{a-1+i,a-1+i})=\sum_{i=a}^m\deg(B_{i,i})=m$.}
 					\item Let $F=xI_m-\bdiag(E)$.
 					\item Now for $i=1$ to $i=\lvert E\rvert$:
 					\begin{enumerate}
-						\item Let $j=1+\sum_{r=1}^{i-1}\dim(E_r)$.
-						\item Let $k=j+\dim(E_i)$.
+						\item Let $j=1+\sum_{r=1}^{i-1}\cols(E_r)$.
+						\item Let $k=j+\cols(E_i)$.
 						\item Apply \hyperref[sec:procedure 40]{procedure 40} on the tuple $\langle\mon(B_{a-1+i,a-1+i}),F_{[j:k],[j:k]}\rangle$.
 					\end{enumerate}
 					\item Now verify that $F$ is a $\mathcal{D}_{m,m}(\mathbb{Q})$.
