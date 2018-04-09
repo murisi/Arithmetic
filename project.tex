@@ -1055,7 +1055,15 @@
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item Let the $\mathbb{Q}[y,z]$ $G=\sum_{r=1}^n p_{n-r}(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})$.
-					\item \textbf{Verify that the $p(z)-p(y)=(p_0z^n+p_1z^{n-1}+\cdots+p_n)-(p_0y^n+p_1y^{n-1}+\cdots+p_n)=(\sum_{r=0}^n p_{n-r}z^r)-(\sum_{r=0}^n p_{n-r}y^r)=\sum_{r=1}^n p_{n-r}(z^r-y^r)=\sum_{r=1}^n p_{n-r}(z-y)(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})=(z-y)\sum_{r=1}^n p_{n-r}(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})=(z-y)G(y,z)$.}
+					\item Verify that $p(z)-p(y)$
+					\begin{enumerate}
+						\item $=(p_0z^n+p_1z^{n-1}+\cdots+p_n)-(p_0y^n+p_1y^{n-1}+\cdots+p_n)$
+						\item $=(\sum_{r=0}^n p_{n-r}z^r)-(\sum_{r=0}^n p_{n-r}y^r)$
+						\item $=\sum_{r=1}^n p_{n-r}(z^r-y^r)$
+						\item $=\sum_{r=1}^n p_{n-r}(z-y)(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})$
+						\item $=(z-y)\sum_{r=1}^n p_{n-r}(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})$
+						\item $=(z-y)G(y,z)$.
+					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle G\rangle$.}
 				\end{enumerate}
 		\subsection{Procedure 53}\label{sec:procedure 53}
@@ -1172,7 +1180,7 @@
 				Choose two lists of $\mathbb{Q}[x]$s $s,q$ in such a way that, letting $m=\lvert s\rvert-1$,
 				\begin{enumerate}
 					\item For $i=0$ to $i=m$, $\deg(s_i)=i$.
-					\item For $i=0$ to $i=m$, $x^i\circ s_i>0$.
+					\item For $i=0$ to $i=m$, $\sgn(x^i\circ s_i)=\sgn(x^m\circ s_m)$.
 					\item For $i=1$ to $i=m-1$, $s_{i-1}+s_{i+1}=q_is_i$.
 				\end{enumerate}
 				Let $x,y$ be indeterminates. The objective of the following instructions is to construct lists of $\mathbb{Q}[x]$s $g,h$ such that $g_is_{i+1}+h_is_i=1$ for $i=1$ to $i=m-1$.
@@ -1284,13 +1292,13 @@
 					\end{enumerate}
 		\subsection{Procedure 58 (Cauchy's positive verification)}\label{sec:procedure 58}
 			\subsubsection{Objective}
-				Choose a $\mathbb{Q}[x]$ $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0>0$. Choose a $\mathbb{Q}$ $k>1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert$. The objective of the following instructions is to show that $p(k)>0$.
+				Choose a $\mathbb{Q}[x]$ $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0\ne 0$. Choose a $\mathbb{Q}$ $k>1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert$. The objective of the following instructions is to show that $\sgn(p(k))=\sgn(p_0)$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item In reverse order verify the following:
 					\begin{enumerate}
-						\item \textbf{$p(k)>0$}
-						\item $p_0k^n+p_1k^{n-1}+\cdots+p_nk^0>0$
+						\item \textbf{$\sgn(p_0k^n+p_1k^{n-1}+\cdots+p_nk^0)=\sgn(p_0)$}
+						\item $\sgn(k^n+\frac{p_1}{p_0}k^{n-1}+\cdots+\frac{p_n}{p_0}k^0)=1$
 						\item $k^n+\frac{p_1}{p_0}k^{n-1}+\cdots+\frac{p_n}{p_0}k^0>0$
 						\item $k^n>-(\frac{p_1}{p_0}k^{n-1}+\cdots+\frac{p_n}{p_0}k^0)$
 						\item $k^n>\lvert \frac{p_1}{p_0}k^{n-1}+\cdots+\frac{p_n}{p_0}k^0\rvert$
@@ -1303,16 +1311,26 @@
 				\end{enumerate}
 		\subsection{Procedure 59 (Cauchy's alternation verification)}\label{sec:procedure 59}
 			\subsubsection{Objective}
-				Choose a $\mathbb{Q}[x]$ $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0>0$. Choose a $\mathbb{Q}$ $k<-(1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert)$. The objective of the following instructions is to show that $(-1)^tp(k)>0$.
+				Choose a $\mathbb{Q}[x]$ $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0\ne 0$. Choose a $\mathbb{Q}$ $k<-(1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert)$. The objective of the following instructions is to show that $\sgn(p(k))=(-1)^t\sgn(p_0)$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item Let $q=q_0x^t+q_1x^{t-1}+q_2x^{t-2}+\cdots+q_tx^0$, where $q_i=(-1)^ip_i$.
 					\item Verify that $k<-(1+\max_{i=1}^t\lvert\frac{q_i}{q_0}\rvert)$.
 					\item Therefore verify that $-k>1+\max_{i=1}^t\lvert\frac{q_i}{q_0}\rvert$.
 					\item Execute \hyperref[sec:procedure 58]{procedure 58} on $q$ and $-k$.
-					\item \textbf{Therefore, verify that $(-1)^tp(k)=(-1)^t\sum_{i=0}^t p_ik^{t-i}=\sum_{i=0}^t (-1)^i(-1)^{t-i}p_ik^{t-i}=\sum_{i=0}^t q_i(-k)^{t-i}=q(-k)>0$.}
+					\item Hence verify that $(-1)^t\sgn(p(k))$
+					\begin{enumerate}
+						\item $=\sgn((-1)^tp(k))$
+						\item $=\sgn((-1)^t\sum_{i=0}^t p_ik^{t-i})$
+						\item $=\sgn(\sum_{i=0}^t (-1)^i(-1)^{t-i}p_ik^{t-i})$
+						\item $=\sgn(\sum_{i=0}^t q_i(-k)^{t-i})$
+						\item $=\sgn(q(-k))$
+						\item $=\sgn(q_0)$
+						\item $=\sgn(p_0)$.
+					\end{enumerate}
+					\item \textbf{Therefore verify that $\sgn(p(k))=(-1)^t(-1)^t\sgn(p(k))=(-1)^t\sgn(p_0)$.}
 				\end{enumerate}
-		\subsection{Procedure 60}\label{sec:procedure 60}
+		\subsection{Procedure 60 (Range subdivision)}\label{sec:procedure 60}
 			\subsubsection{Objective}
 				Choose a list of $\mathbb{Q}[x]$s, $s$, and $\mathbb{Q}$s $a,l,c$ such that $a<c$ and $l>0$. The objective of the following instructions is to either show that $0<0$ or to construct a list of $\mathbb{Q}$s, $b$, such that $a=b_1<b_2<\cdots<b_{\lvert b\rvert}=c$, $b_{i+1}-b_i\le l$ for $i=1$ to $i=\lvert b\rvert-1$, and $J_s(b)$ is defined for $i=1$ to $i=\lvert b\rvert-1$.
 			\subsubsection{Implementation}
@@ -1639,7 +1657,7 @@
 				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. The objective of the following instructions is to construct lists of $\mathbb{Q}[x]$s $s,q$ such that
 				\begin{enumerate}
 					\item For $i=0$ to $i=t$, $\deg(s_i)=i$.
-					\item For $i=0$ to $i=t$, $x^i\circ s_i>0$.
+					\item For $i=0$ to $i=t$, $\sgn(x^i\circ s_i)=\sgn(x^t\circ s_t)$.
 					\item For $i=1$ to $i=t-1$, $s_{i-1}+s_{i+1}=q_is_i$.
 					\item $s_t=\last_A$.
 				\end{enumerate}
