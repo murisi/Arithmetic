@@ -322,65 +322,88 @@
 					\end{enumerate}
 					\item Otherwise, do the following:
 					\begin{enumerate}
-						\item Let $a$ be the sum of $m$ terms where, counting from $i=0$, the $i^{th}$ term is ($(-1)^{i}A_{i,1}$ times the result of applying \hyperref[sec:procedure 11]{procedure 11} on the submatrix formed by removing the first column and $i^{th}$ row from A).
-						\item \textbf{Yield the tuple $\langle a\rangle$.}
+						\item \textbf{Yield the tuple $\langle\sum_{r=1}^m (-1)^{r-1}A_{r,1}\det(A_{[1:r][r+1,m+1],[2:m+1]})\rangle$.}
 					\end{enumerate}
 				\end{enumerate}
 		\subsection{Procedure 12 (Multilinearity verification)}\label{sec:procedure 12}
 			\subsubsection{Objective}
-				Choose a $\mathbb{Q}[x]$ $p$. Choose two $\mathcal{M}_{m,1}(\mathbb{Q}[x])$s, $B$ and $C$. Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$, such that its $i^{th}$ column is $B+pC$. Let $A'$ be $A$ but with the $i^{th}$ column replaced by $B$ and let $A'''$ be $A$ but with the $i^{th}$ column replaced by $C$. The objective of the following instructions is to show that $\det(A)=\det(A') + p\det(A''')$.
+				Choose a $\mathbb{Q}[x]$ $p$. Choose two $\mathcal{M}_{m,1}(\mathbb{Q}[x])$s, $B$ and $C$. Choose an integer $0<i\le m$. Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$, such that its $i^{th}$ column is $B+pC$. Let $A'$ be $A$ but with the $i^{th}$ column replaced by $B$ and let $A'''$ be $A$ but with the $i^{th}$ column replaced by $C$. The objective of the following instructions is to show that $\det(A)=\det(A') + p\det(A''')$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
-					\item Considering every element of $A$ to be a unit, verify that fully expanding out $\det(A)$ yields an alternating sum of $m!$ terms, where each term is the product of $m$ entries of $A$, where each entry has a distinct row and distinct column.
-					\item Distribute out the entries of the $i^{th}$ column occuring in this alternating sum.
-					\item Verify that the outcome of (2) is $m!*2$ terms.
-					\item Reorder the terms so that the currently odd ones come first and the currently even ones come last.
-					\item Verify that $\det(A)=\det(A') + \det(A'')$ where $A''$ is $A$ but with the $i^{th}$ column replaced by $pC$.
-					\item Reorder the factors of each term in $\det(A'')$ to bring $p$ to the front.
-					\item Now verify that the $\det(A'')=p\det(A''')$.
-					\item \textbf{Therefore verify that $\det(A)=\det(A') + p\det(A''')$.}
+					\item If $i=1$, then verify that $\det(A)$
+					\begin{enumerate}
+						\item $=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\cdot\det(A_{[1:r][r+1:m+1],[2:m+1]})$
+						\item $=\sum_{r=1}^m (-1)^{r-1}(B+pC)_{r,1}\cdot\det(A_{[1:r][r+1:m+1],[2:m+1]})$
+						\item $=\sum_{r=1}^m (-1)^{r-1}(B)_{r,1}\cdot\det(A_{[1:r][r+1:m+1],[2:m+1]})+\sum_{r=1}^m (-1)^{r-1}(pC)_{r,1}\cdot\det(A_{[1:r][r+1:m+1],[2:m+1]})$
+						\item $=\sum_{r=1}^m (-1)^{r-1}(B)_{r,1}\cdot\det(A_{[1:r][r+1:m+1],[2:m+1]})+p\sum_{r=1}^m (-1)^{r-1}(C)_{r,1}\cdot\det(A_{[1:r][r+1:m+1],[2:m+1]})$
+						\item $=\sum_{r=1}^m (-1)^{r-1}(A')_{r,1}\cdot\det(A'_{[1:r][r+1:m+1],[2:m+1]})+p\sum_{r=1}^m (-1)^{r-1}(A''')_{r,1}\cdot\det(A'''_{[1:r][r+1:m+1],[2:m+1]})$
+						\item $=\det(A')+p\det(A''')$
+					\end{enumerate}
+					\item Otherwise, do the following:
+					\begin{enumerate}
+						\item For $r=1$ to $r=m$, do the following:
+						\begin{enumerate}
+							\item Execute \hyperref[sec:procedure 12]{procedure 12} on $\langle p,B_{[1:r][r+1:m+1],1},C_{[1:r][r+1:m+1],1},i-1,\allowbreak A_{[1:r][r+1:m+1],[2:m+1]}\rangle$.
+							\item Therefore verify that $\det(A_{[1:r][r+1:m+1],[2:m+1]})=\det(A'_{[1:r][r+1:m+1],[2:m+1]})+p\det(A'''_{[1:r][r+1:m+1],[2:m+1]})$.
+						\end{enumerate}
+						\item Therefore using (a), verify that $\det(A)$
+						\begin{enumerate}
+							\item $=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\cdot\det(A_{[1:r][r+1:m+1],[2:m+1]})$
+							\item $=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\cdot(\det(A'_{[1:r][r+1:m+1],[2:m+1]})+p\det(A'''_{[1:r][r+1:m+1],[2:m+1]}))$
+							\item $=\sum_{r=1}^m (-1)^{r-1}A'_{r,1}\cdot\det(A'_{[1:r][r+1:m+1],[2:m+1]})+\sum_{r=1}^m (-1)^{r-1}A'''_{r,1}\cdot p\det(A'''_{[1:r][r+1:m+1],[2:m+1]})$
+							\item $=\det(A')+p\det(A''')$.
+						\end{enumerate}
+					\end{enumerate}
 				\end{enumerate}
 			\textbf{Make an analogous procedure for cases when a given row is the sum of two $1\times m$ matrices.}
 		\subsection{Procedure 13 (Alternation verification)}\label{sec:procedure 13}
 			\subsubsection{Objective}
-				Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$. Choose a row $1<i\le m$. Let $A'$ be $A$ with rows $i-1$ and $i$ swapped. The objective of the following instructions is to show that $\det(A')=-\det(A)$.
+				Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$. Choose a row $1<i\le m$. Let $A'$ be $A$ with columns $i-1$ and $i$ swapped. The objective of the following instructions is to show that $\det(A')=-\det(A)$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
-					\item Fully expand out $\det A$ into $m!$ terms and then do the same for $\det A'$.
-					\item For each of the $m!$ ways to select $m$ rows from $A$, let $r=(r_1, r_2, \cdots, r_m)$ be the rows selected corresponding to the columns $1, 2, \cdots, m$ respectively, and do the following:
+					\item If $i=2$, then verify that $\det(A)$
 					\begin{enumerate}
-						\item Verify that the values selected by $r$ in $A$ are the same as the values selected by $r'$ in $A'$, where $r'$ is obtained by swapping the values $i-1$ and $i$ in the sequence $r$.
-						\item Execute \hyperref[sec:procedure 11]{procedure 11} on $A$, and consider the execution path that produces the term corresponding to the row selections $r$. Ditto for $A'$ and $r'$.
-						\item Let $k$ be the lesser of the indicies of the values $i-1$ and $i$ in the sequence $r$.
-						\item Verify that the signs attached to $A_{r_1,1},\cdots,A_{r_{k-1},k-1}$ are the same as the signs attached to $A'_{r'_1,1},\cdots,A'_{r'_{k-1},k-1}$.
-						\item Verify that indices $r_k$ and $r'_k$ identify adjacent rows in the remaining respective submatrices of $A$ and $A'$.
-						\item Therefore verify that the signs then attached to $A_{r_k}$ and $A'_{r'_k}$ are opposite.
-						\item Verify that after the removal of $r_k$ and $r'_k$ from their respective submatrices, the submatrices left are identical.
-						\item Therefore verify that the signs attached to $A_{r_{k+1},k+1},\cdots,A_{r_{m-1},m-1}$ are the same as the signs attached to $A'_{r'_{k+1},k+1},\cdots,A'_{r'_{m-1},m-1}$.
-						\item Therefore verify that the term corresponding to the row selections $r'$ in the full expansion of $\det(A')$ has the opposite sign to the term corresponding to the row selections $r$ in the full expansion of $\det(A)$.
+						\item $=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\det(A_{[1:r][r+1:m+1],[2:m+1]})$
+						\item $=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\sum_{t=r+1}^m (-1)^{t-2}A_{t,2}\cdot\det(A_{[1:r][r+1:t][t+1:m+1],[3:m+1]})+\sum_{t=1}^m (-1)^{t-1}A_{t,1}\sum_{r=1}^{t-1} (-1)^{r-1}A_{r,2}\cdot\det(A_{[1:r][r+1:t][t+1:m+1],[3:m+1]})$
+						\item $=\sum_{t=1}^m (-1)^{t-2}A_{t,2}\sum_{r=1}^{t-1} (-1)^{r-1}A_{r,1}\cdot\det(A_{[1:r][r+1:t][t+1:m+1],[3:m+1]})+\sum_{r=1}^m (-1)^{r-1}A_{r,2}\sum_{t=r+1}^m (-1)^{t-1}A_{t,1}\cdot\det(A_{[1:r][r+1:t][t+1:m+1],[3:m+1]})$
+						\item $=\sum_{t=1}^m (-1)^{t-2}A'_{t,1}\sum_{r=1}^{t-1} (-1)^{r-1}A'_{r,2}\cdot\det(A'_{[1:r][r+1:t][t+1:m+1],[3:m+1]})+\sum_{r=1}^m (-1)^{r-1}A'_{r,1}\sum_{t=r+1}^m (-1)^{t-1}A'_{t,2}\cdot\det(A'_{[1:r][r+1:t][t+1:m+1],[3:m+1]})$
+						\item $=-(\sum_{r=1}^m (-1)^{r-1}A'_{r,1}\sum_{t=r+1}^m (-1)^{t-2}A'_{t,2}\cdot\det(A'_{[1:r][r+1:t][t+1:m+1],[3:m+1]})+\sum_{t=1}^m (-1)^{t-1}A'_{t,1}\sum_{r=1}^{t-1} (-1)^{r-1}A'_{r,2}\cdot\det(A'_{[1:r][r+1:t][t+1:m+1],[3:m+1]}))$
+						\item $=-\det(A')$.
 					\end{enumerate}
-					\item Therefore verify that every term in the full expansion of $\det(A)$ corresponds to a unique negated version of itself in the full expansion of $\det(A')$.
-					\item\textbf{Therefore verify that $\det(A')=-\det(A)$.}
+					\item Otherwise do the following:
+					\begin{enumerate}
+						\item Verify that $i>2$.
+						\item For $r=1$ to $r=m$, do the following:
+						\begin{enumerate}
+							\item Execute \hyperref[sec:procedure 13]{procedure 13} on $\langle i-1,\allowbreak A_{[1:r][r+1:m+1],[2:m+1]}\rangle$.
+							\item Therefore verify that $\det(A_{[1:r][r+1:m+1],[2:m+1]})=-\det(A'_{[1:r][r+1:m+1],[2:m+1]})$.
+						\end{enumerate}
+						\item Therefore using (b), verify that $\det(A)=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\cdot\det(A_{[1:r][r+1:m+1],[2:m+1]})=\sum_{r=1}^m (-1)^{r-1}A'_{r,1}\cdot(-\det(A'_{[1:r][r+1:m+1],[2:m+1]}))=-\det(A')$.
+					\end{enumerate}
 				\end{enumerate}
-			\textbf{Make a simpler procedure to verify that column swaps cause sign alternations.}
+			\textbf{Make an analogous procedure to verify that row swaps cause sign alternations.}
 		\subsection{Procedure 14}\label{sec:procedure 14}
 			\subsubsection{Objective}
-				Choose integers $1<i\le m$. Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$, such that columns $i-1$ and $i$ are the same. The objective of the following instructions is to show that either $1=-1$ or $\det(A)=0$.
+				Choose integers $1<i\le m$. Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$, such that columns $i-1$ and $i$ are the same. The objective of the following instructions is to show that $\det(A)=0$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
-					\item If $\det(A)\ne 0$, then do the following:
+					\item If $i=2$, then verify that $\det(A)$
 					\begin{enumerate}
-						\item Let $A'$ be $A$ with columns $i$ and $i-1$ swapped.
-						\item Verify that $A'$ equals $A$.
-						\item Therefore verify that $\det(A')=\det(A)$.
-						\item Using \hyperref[sec:procedure 13]{procedure 13}, also verify that $\det(A')=-\det(A)$.
-						\item Therefore verify that $\det(A)=-\det(A)$.
-						\item Therefore verify that $1=-1$.
-						\item \textbf{Abort procedure.}
+						\item $=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\det(A_{[1:r][r+1:m+1],[2:m+1]})$
+						\item $=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\sum_{t=r+1}^m (-1)^{t-2}A_{t,2}\cdot\det(A_{[1:r][r+1:t][t+1:m+1],[3:m+1]})+\sum_{t=1}^m (-1)^{t-1}A_{t,1}\sum_{r=1}^{t-1} (-1)^{r-1}A_{r,2}\cdot\det(A_{[1:r][r+1:t][t+1:m+1],[3:m+1]})$
+						\item $=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\sum_{t=r+1}^m (-1)^{t-2}A_{t,2}\cdot\det(A_{[1:r][r+1:t][t+1:m+1],[3:m+1]})+\sum_{r=1}^m (-1)^{r-1}A_{r,2}\sum_{t=r+1}^m (-1)^{t-1}A_{t,1}\cdot\det(A_{[1:r][r+1:t][t+1:m+1],[3:m+1]})$
+						\item $=-\sum_{r=1}^m (-1)^{r-1}A_{r,1}\sum_{t=r+1}^m (-1)^{t-1}A_{t,2}\cdot\det(A_{[1:r][r+1:t][t+1:m+1],[3:m+1]})+\sum_{r=1}^m (-1)^{r-1}A_{r,1}\sum_{t=r+1}^m (-1)^{t-1}A_{t,2}\cdot\det(A_{[1:r][r+1:t][t+1:m+1],[3:m+1]})$
+						\item $=0$.
 					\end{enumerate}
-					\item Otherwise, do the following:
+					\item Otherwise do the following:
 					\begin{enumerate}
-						\item \textbf{Verify that $\det(A)=0$.}
+						\item Verify that $i>2$.
+						\item For $r=1$ to $r=m$, do the following:
+						\begin{enumerate}
+							\item Execute \hyperref[sec:procedure 14]{procedure 14} on $\langle i-1,\allowbreak A_{[1:r][r+1:m+1],[2:m+1]}\rangle$.
+							\item Therefore verify that $\det(A_{[1:r][r+1:m+1],[2:m+1]})=0$.
+						\end{enumerate}
+						\item Therefore using (b), verify that $\det(A)=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\det(A_{[1:r][r+1:m+1],[2:m+1]})=\sum_{r=1}^m (-1)^{r-1}A_{r,1}*0=0$.
 					\end{enumerate}
 				\end{enumerate}
 			\textbf{Make an analogous procedure to verify that matrix choices with repeated rows yield determinants equal to zero.}
@@ -549,7 +572,13 @@
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item Execute \hyperref[sec:procedure 21]{procedure 21} on $A$ and let $\langle M,D,,N\rangle$ receive.
-					\item \textbf{Using repeated applications of \hyperref[sec:procedure 20]{procedure 20}, verify that $C_k(AB)=C_k({M^{-1}}_1\cdots {M^{-1}}_{\lvert M\rvert}D{N^{-1}}_1\cdots {N^{-1}}_{\lvert N\rvert}B)=C_k({M^{-1}}_1)\cdots C_k({M^{-1}}_{\lvert M\rvert})*C_k(D)*C_k({N^{-1}}_1)\cdots C_k({N^{-1}}_{\lvert N\rvert})C_k(B)=C_k({M^{-1}}_1\cdots {M^{-1}}_{\lvert M\rvert}D{N^{-1}}_1\cdots {N^{-1}}_{\lvert N\rvert})C_k(B)=C_k(A)C_k(B)$.}
+					\item Using repeated applications of \hyperref[sec:procedure 20]{procedure 20}, verify that $C_k(AB)$
+					\begin{enumerate}
+						\item $=C_k({M^{-1}}_1\cdots {M^{-1}}_{\lvert M\rvert}D{N^{-1}}_1\cdots {N^{-1}}_{\lvert N\rvert}B)$
+						\item $=C_k({M^{-1}}_1)\cdots C_k({M^{-1}}_{\lvert M\rvert})*C_k(D)*C_k({N^{-1}}_1)\cdots C_k({N^{-1}}_{\lvert N\rvert})C_k(B)$
+						\item $=C_k({M^{-1}}_1\cdots {M^{-1}}_{\lvert M\rvert}D{N^{-1}}_1\cdots {N^{-1}}_{\lvert N\rvert})C_k(B)$
+						\item $=C_k(A)C_k(B)$.
+					\end{enumerate}
 				\end{enumerate}
 		\subsection{Procedure 23 (Determinant equals product of diagonal entries verification)}\label{sec:procedure 23}
 			\subsubsection{Objective}
@@ -557,7 +586,14 @@
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item Execute \hyperref[sec:procedure 21]{procedure 21} on $A$ and let $\langle M,D,,N\rangle$ receive.
-					\item \textbf{Using \hyperref[sec:procedure 11]{procedure 11} and \hyperref[sec:procedure 22]{procedure 22}, verify that $\det(A)=C_m(A)=C_m({M^{-1}}_1\cdots {M^{-1}}_{\lvert M\rvert}D{N^{-1}}_1\cdots {N^{-1}}_{\lvert N\rvert})=C_m({M^{-1}}_1)\cdots C_m({M^{-1}}_{\lvert M\rvert})C_m(D)C_m({N^{-1}}_1)\cdots\allowbreak C_m({N^{-1}}_{\lvert N\rvert})=1\cdots 1C_m(D)1\cdots 1=C_m(D)=\det(D)$.}
+					\item Using \hyperref[sec:procedure 11]{procedure 11} and \hyperref[sec:procedure 22]{procedure 22}, verify that $\det(A)$
+					\begin{enumerate}
+						\item $=C_m(A)$
+						\item $=C_m({M^{-1}}_1\cdots {M^{-1}}_{\lvert M\rvert}D{N^{-1}}_1\cdots {N^{-1}}_{\lvert N\rvert})$
+						\item $=C_m({M^{-1}}_1)\cdots C_m({M^{-1}}_{\lvert M\rvert})C_m(D)C_m({N^{-1}}_1)\cdots\allowbreak C_m({N^{-1}}_{\lvert N\rvert})$
+						\item $=1\cdots 1C_m(D)1\cdots 1=C_m(D)$
+						\item $=\det(D)$.
+					\end{enumerate}
 					\item \textbf{Using \hyperref[sec:procedure 11]{procedure 11}, verify that $\det(D)$ is the product of the diagonal entries of $D$.}
 				\end{enumerate}
 		\subsection{Procedure 24 (Transpose calculation)}\label{sec:procedure 24}
@@ -596,7 +632,15 @@
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item Execute \hyperref[sec:procedure 21]{procedure 21} on $A$ and let $\langle M,D,,N\rangle$ receive.
-					\item \textbf{Therefore using procedures \hyperref[sec:procedure 23]{19} and \hyperref[sec:procedure 24]{20}, verify that $\det(A^T)=\det(({M^{-1}}_1\cdots {M^{-1}}_{\lvert M\rvert}D{N^{-1}}_1\cdots {N^{-1}}_{\lvert N\rvert})^T)=\det(({N^{-1}}_{\lvert N\rvert})^T\cdots({N^{-1}}_1)^TD^T({M^{-1}}_{\lvert M\rvert})^T\cdots({M^{-1}}_1)^T)=\det(D^T)=\det(D)=\det({M^{-1}}_1\cdots {M^{-1}}_{\lvert M\rvert}D{N^{-1}}_1\cdots {N^{-1}}_{\lvert N\rvert})=\det(A)$.}
+					\item Therefore using procedures \hyperref[sec:procedure 23]{19} and \hyperref[sec:procedure 24]{20}, verify that $\det(A^T)$
+					\begin{enumerate}
+						\item $=\det(({M^{-1}}_1\cdots {M^{-1}}_{\lvert M\rvert}D{N^{-1}}_1\cdots {N^{-1}}_{\lvert N\rvert})^T)$
+						\item $=\det(({N^{-1}}_{\lvert N\rvert})^T\cdots({N^{-1}}_1)^TD^T({M^{-1}}_{\lvert M\rvert})^T\cdots({M^{-1}}_1)^T)$
+						\item $=\det(D^T)$
+						\item $=\det(D)$
+						\item $=\det({M^{-1}}_1\cdots {M^{-1}}_{\lvert M\rvert}D{N^{-1}}_1\cdots {N^{-1}}_{\lvert N\rvert})$
+						\item $=\det(A)$.
+					\end{enumerate}
 				\end{enumerate}
 		\subsection{Procedure 27 (Compound matrix of transpose verification)}\label{sec:procedure 27}
 			\subsubsection{Objective}
