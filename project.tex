@@ -44,7 +44,7 @@
 			I wanted to see whether programs constructed according to certain rules can serve a similar function to mathematical proofs. For example, let $A$ be the $100\times 100$ matrix containing the multiplication table up to $100$. At least to me, seeing the form of \hyperref[sec:procedure 22]{procedure 22} allows me to be confident enough to bet that $\det(A^2)=\det(A)^2$ without carrying out the necessary computations.
 		
 		\paragraph{How do I understand this?}
-			The task of understanding the following procedures should be the same as that of understanding any codebase. Hence running a debugger, that is, executing the following procedures step by step on some chosen input(s) and observing their control flows and sequences of program states should be equally helpful in making sense of them.
+			The task of understanding the following procedures should be the same as that of understanding any codebase. Hence domain specific knowledge is required, which in this case comprises rational, formal polynomial, and matrix arithmetic as well as inequalities. Otherwise, running a debugger, that is, executing the following procedures step by step on some chosen input(s) and observing their control flows and sequences of program states should be equally helpful in making sense of them.
 	\tableofcontents
 	\section{Matrix Arithmetic}\label{sec:body}
 		Let us use the notation $\mathbb{Q}[x_1,x_2,\cdots,x_n]$ as a shorthand for "formal polynomial in the indeterminates $x_1,x_2,\cdots,x_n$".
@@ -314,7 +314,18 @@
 						\item Therefore verify that $N_*$ is the same as $I_n$ modulo the submatrix spanning rows $j$ to $n$ and columns $j$ to $n$.
 						\item Verify that $A'=M_*AN_*$.
 						\item Let $v_j=\sum_{r=j}^{\min(m,n)} (M_*)_{j,r}p_{r+1-j}(N_*)_{r,j}$.
-						\item Hence using (f), (h), and (i), verify that $A'_{j,j}=(M_*AN_*)_{j,j}=\sum_{r=1}^m (M_*)_{j,r}(AN_*)_{r,j}=\sum_{r=1}^{\min(m,n)} (M_*)_{j,r}(AN_*)_{r,j}=\sum_{r=1}^{\min(m,n)} (M_*)_{j,r}A_{r,r}(N_*)_{r,j}=\sum_{r=j}^{\min(m,n)} (M_*)_{j,r}A_{r,r}(N_*)_{r,j}=\sum_{r=j}^{\min(m,n)} (M_*)_{j,r}A_{j-1,j-1}p_{r+1-j}(N_*)_{r,j}=A_{j-1,j-1}\sum_{r=j}^{\min(m,n)} (M_*)_{j,r}p_{r+1-j}(N_*)_{r,j}=A'_{j-1,j-1}\sum_{r=j}^{\min(m,n)} (M_*)_{j,r}p_{r+1-j}(N_*)_{r,j}=A'_{j-1,j-1}v_j$.
+						\item Hence using (f), (h), and (i), verify that $A'_{j,j}$
+						\begin{enumerate}
+							\item $=(M_*AN_*)_{j,j}$
+							\item $=\sum_{r=1}^m (M_*)_{j,r}(AN_*)_{r,j}$
+							\item $=\sum_{r=1}^{\min(m,n)} (M_*)_{j,r}(AN_*)_{r,j}$
+							\item $=\sum_{r=1}^{\min(m,n)} (M_*)_{j,r}A_{r,r}(N_*)_{r,j}$
+							\item $=\sum_{r=j}^{\min(m,n)} (M_*)_{j,r}A_{r,r}(N_*)_{r,j}$
+							\item $=\sum_{r=j}^{\min(m,n)} (M_*)_{j,r}A_{j-1,j-1}p_{r+1-j}(N_*)_{r,j}$
+							\item $=A_{j-1,j-1}\sum_{r=j}^{\min(m,n)} (M_*)_{j,r}p_{r+1-j}(N_*)_{r,j}$
+							\item $=A'_{j-1,j-1}\sum_{r=j}^{\min(m,n)} (M_*)_{j,r}p_{r+1-j}(N_*)_{r,j}$
+							\item $=A'_{j-1,j-1}v_j$.
+						\end{enumerate}
 						\item Set $A$ to $A'$.
 						\item Set $p$ to $u_{2:\lvert u\rvert}$.
 					\end{enumerate}
@@ -528,7 +539,17 @@
 							\item Using \hyperref[sec:procedure 16]{procedure 16}, verify that every element of $I$ is less than or equal to $\min(m,n)$.
 							\item Let $A_0=A$.
 							\item For $i=1$ to $i=k$: Let $A_i$ equal $A_{i-1}$ but with position $(I_i,I_i)$ set to $1$.
-							\item For each column label $J$: Repeatedly using \hyperref[sec:procedure 12]{procedure 12}, verify that ${C_k(AB)}_{I,J}=\det((AB)_{I,J})=\det((A_0B)_{I,J})=A_{I_1,I_1}\det((A_1B)_{I,J})=A_{I_1,I_1}A_{I_2,I_2}\det((A_2B)_{I,J})=\cdots=A_{I_1,I_1}A_{I_2,I_2}\cdots A_{I_k,I_k}\det((A_kB)_{I,J})=A_{I_1,I_1}A_{I_2,I_2}\cdots A_{I_k,I_k}\det(B_{I,J})=A_{I_1,I_1}A_{I_2,I_2}\cdots A_{I_k,I_k}{C_k(B)}_{I,J}$.
+							\item For each column label $J$: Repeatedly using \hyperref[sec:procedure 12]{procedure 12}, verify that ${C_k(AB)}_{I,J}$
+							\begin{enumerate}
+								\item $=\det((AB)_{I,J})$
+								\item $=\det((A_0B)_{I,J})$
+								\item $=A_{I_1,I_1}\det((A_1B)_{I,J})$
+								\item $=A_{I_1,I_1}A_{I_2,I_2}\det((A_2B)_{I,J})$
+								\item $\vdots$
+								\item $=A_{I_1,I_1}A_{I_2,I_2}\cdots A_{I_k,I_k}\det((A_kB)_{I,J})$
+								\item $=A_{I_1,I_1}A_{I_2,I_2}\cdots A_{I_k,I_k}\det(B_{I,J})$
+								\item $=A_{I_1,I_1}A_{I_2,I_2}\cdots A_{I_k,I_k}{C_k(B)}_{I,J}$.
+							\end{enumerate}
 							\item \textbf{Therefore verify that $(C_k(AB))_{\ul{I},*}=A_{I_1,I_1}A_{I_1,I_1}\cdots A_{I_k,I_k}*(C_k(B))_{\ul{I},*}$.}
 							\item \textbf{Set $D_{\ul{I},\ul{I}}$ to $A_{I_1,I_1}A_{I_1,I_1}\cdots A_{I_k,I_k}$.}
 						\end{enumerate}
@@ -714,7 +735,7 @@
 					\begin{enumerate}
 						\item Using \hyperref[sec:procedure 23]{procedure 23}, verify that $\det(I_m)=\det(AB)=\det(A)\det(B)=\det(A)\det(D)=\det(A)*0=0$.
 						\item Using \hyperref[sec:procedure 11]{procedure 11}, verify that $\det(I_m)=1^m=1$.
-						\item Verify that $0=1$.
+						\item Therefore verify that $0=1$.
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 					\item Otherwise do the following:
@@ -739,7 +760,7 @@
 			\textbf{Make an analogous procedure that instead has the objective of constructing a $Q$ and $R$ such that $M=Q(xI_m-B)+R$.}
 		\subsection{Procedure 32}\label{sec:procedure 32}
 			\subsubsection{Objective}
-				Choose two $\mathcal{M}_{m,m}(\mathbb{Q})$s, $B,A$, and two lists of $\mathcal{T}_{m}(\mathbb{Q}[x])$s such that $xI_m-B=M(xI_m-A)N$. The objective of the following instructions is to construct $\mathcal{M}_{m,m}(\mathbb{Q})$s $R_1$ and $R_3$ such that $I_m=R_1R_3$ and $B=R_1AR_3$.
+				Choose two $\mathcal{M}_{m,m}(\mathbb{Q})$s, $B,A$, and two lists of $\mathcal{T}_{m}(\mathbb{Q}[x])$s such that $xI_m-B=M(xI_m-A)N$. The objective of the following instructions is to either show that $0=1$ or to construct $\mathcal{M}_{m,m}(\mathbb{Q})$s $R_1$ and $R_3$ such that $I_m=R_1R_3$ and $B=R_1AR_3$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item Verify that $(xI_m-B)N^{-1}=M(xI_m-A)NN^{-1}=M(xI_m-A)I_m=M(xI_m-A)$.
@@ -798,6 +819,7 @@
 					\item Use \hyperref[sec:procedure 33]{procedure 33} to negate the $i^{th}$ row and swap it with the $j^{th}$ row.
 					\item \textbf{Therefore, overall verify that $B_{i,i}$ has been multiplied by $k$, and $B_{j,j}$ by $\frac{1}{k}$.}
 				\end{enumerate}
+		Let us use the notation "$p$ is monic" as a shorthand for "$x^{\deg(p)}\circ p=1$".
 		\subsection{Procedure 36}\label{sec:procedure 36}
 			\subsubsection{Objective}
 				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \hyperref[sec:procedure 10]{procedure 10} on the polynomial matrix $xI-A$ and let $\langle B\rangle$ be the result. The objective of the following instructions is to show that either none of the diagonal entries of $B$ are equal to zero, or $1=0$.
@@ -918,7 +940,7 @@
 				\end{enumerate}
 		\subsection{Procedure 42}\label{sec:procedure 42}
 			\subsubsection{Objective}
-				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \hyperref[sec:procedure 38]{procedure 38} on $A$ and let $\langle a\rangle$ receive the result. Let $E_i=\rcan(\mon(B_{a-1+i,a-1+i}))$ for $i=1$ to $i=m+1-a$. The objective of the following instructions is to construct $\mathcal{M}_{m,m}(\mathbb{Q})$s $R,T$ such that $A=R\bdiag(E)T$, $RT=I_m$, and $TR=I_m$.
+				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \hyperref[sec:procedure 38]{procedure 38} on $A$ and let $\langle a\rangle$ receive the result. Let $E_i=\rcan(\mon(B_{a-1+i,a-1+i}))$ for $i=1$ to $i=m+1-a$. The objective of the following instructions is to either show that $0=1$ or to construct $\mathcal{M}_{m,m}(\mathbb{Q})$s $R,T$ such that $A=R\bdiag(E)T$, $RT=I_m$, and $TR=I_m$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item Execute \hyperref[sec:procedure 21]{procedure 21} on the polynomial matrix $xI_m-A$ and let $\langle P,B,,Q\rangle$ be the result.
@@ -947,7 +969,13 @@
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item For $i=0$ up to $i=t$, by repeated applications of \hyperref[sec:procedure 9]{procedure 9}, verify that $\bdiag(A)^i$ evaluates to $\bdiag(A^i)$ (where the exponentiation is done element-wise).
-					\item \textbf{Therefore verify that $r(\bdiag(A))=r_0\bdiag(A)^t+r_1\bdiag(A)^{t-1}+\cdots+r_t\bdiag(A)^0=r_0\bdiag(A^t)+r_1\bdiag(A^{t-1})+\cdots+r_t\bdiag(A^0)=\bdiag(r_0A^t)+\bdiag(r_1A^{t-1})+\cdots+\bdiag(r_tA^0)=\bdiag(r(A))$ (where $r$ is applied element-wise).}
+					\item Therefore verify that $r(\bdiag(A))$
+					\begin{enumerate}
+						\item $=r_0\bdiag(A)^t+r_1\bdiag(A)^{t-1}+\cdots+r_t\bdiag(A)^0$
+						\item $=r_0\bdiag(A^t)+r_1\bdiag(A^{t-1})+\cdots+r_t\bdiag(A^0)$
+						\item $=\bdiag(r_0A^t)+\bdiag(r_1A^{t-1})+\cdots+\bdiag(r_tA^0)$
+						\item \textbf{$=\bdiag(r(A))$ (where $r$ is applied element-wise).}
+					\end{enumerate}
 				\end{enumerate}
 		\subsection{Procedure 45}\label{sec:procedure 45}
 			\subsubsection{Objective}
@@ -969,7 +997,15 @@
 				\begin{enumerate}
 					\item Let $G=\rcan(p)$.
 					\item Then by $G$'s construction, for $i=1$ up to $i=k$, verify that $G^{i-1}e_1=G^{i-2}e_2=\cdots=G^{0}e_i=e_i$.
-					\item Therefore, for $i=1$ up to $i=k$: Cognizant of the construction of $G$'s last column, verify that $p(G)e_i=(G^k+p_1G^{k-1}+p_2G^{k-2}+\cdots+p_kG^0)e_i=(G^k+p_1G^{k-1}+p_2G^{k-2}+\cdots+p_kG^0)G^{i-1}e_1=G^{i-1}(GG^{k-1}+p_1G^{k-1}+p_2G^{k-2}+\cdots+p_kG^0)e_1=G^{i-1}(Ge_k+p_1e_k+p_2e_{k-1}+\cdots+p_ke_1)=G^{i-1}0_{k\times 1}=0_{k\times 1}$.
+					\item Therefore, for $i=1$ up to $i=k$: Cognizant of the construction of $G$'s last column, verify that $p(G)e_i$
+					\begin{enumerate}
+						\item $=(G^k+p_1G^{k-1}+p_2G^{k-2}+\cdots+p_kG^0)e_i$
+						\item $=(G^k+p_1G^{k-1}+p_2G^{k-2}+\cdots+p_kG^0)G^{i-1}e_1$
+						\item $=G^{i-1}(GG^{k-1}+p_1G^{k-1}+p_2G^{k-2}+\cdots+p_kG^0)e_1$
+						\item $=G^{i-1}(Ge_k+p_1e_k+p_2e_{k-1}+\cdots+p_ke_1)$
+						\item $=G^{i-1}0_{k\times 1}$
+						\item $=0_{k\times 1}$.
+					\end{enumerate}
 					\item Therefore verify that $p(G)=0_{k\times k}$.
 				\end{enumerate}
 		\subsection{Procedure 47}\label{sec:procedure 47}
@@ -984,7 +1020,7 @@
 				\end{enumerate}
 		\subsection{Procedure 48}\label{sec:procedure 48}
 			\subsubsection{Objective}
-				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. The objective of the following instructions is to show that $\last_A(A)=0_{m\times m}$.
+				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. The objective of the following instructions is to either show that $0<0$ or to show that $\last_A(A)=0_{m\times m}$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item Execute \hyperref[sec:procedure 21]{procedure 21} on the matrix $A$ and let the tuple $\langle M,B,v,N\rangle$ receive the result.
@@ -1511,7 +1547,7 @@
 		Let $\pol(P)$ be a shorthand for "$P_{1,1}x^{t-1}+P_{2,1}x^{t-2}+\cdots+P_{t,1}$ where $t=\rows(P)$" in what follows.
 		\subsection{Procedure 67}\label{sec:procedure 67}
 			\subsubsection{Objective}
-				Choose an $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. The objective of the following instructions is to define the $\mathbb{Q}[x]$ $\sel_A$.
+				Choose an $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. The objective of the following instructions is to either show that $0<0$ or to define the $\mathbb{Q}[x]$ $\sel_A$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item Using \hyperref[sec:procedure 27]{procedure 27} and \hyperref[sec:procedure 66]{procedure 66}, verify that $C_t(\pows(A)^T\pows(A))=C_t(\pows(A)^T)C_t(\pows(A))={C_t(\pows(A))}^TC_t(\pows(A))=\lVert C_t(\pows(A))\rVert^2>0$.
@@ -1521,6 +1557,8 @@
 					\item Yield $\langle\sel_A\rangle$.
 				\end{enumerate}
 		Let us use the notation $\tr(X)$ as a shorthand for "the sum of the diagonal entries of the square matrix $X$" in what follows.
+		
+		Let us use the notation "$A$ is symmetric" as a shorthand for "$A^T=A$".
 		\subsection{Procedure 68}\label{sec:procedure 68}
 			\subsubsection{Objective}
 				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. Choose two $\mathbb{Q}[x]$s $u=u_1x^{t-1}+u_2x^{t-2}+\cdots+u_tx^0,w=w_1x^{t-1}+w_2x^{t-2}+\cdots+w_tx^0$. The objective of the following instructions is to show that $\tr(u(A)w(A))=\mat(u)^T\pows(A)^T\pows(A)\mat_t(w)$.
@@ -1663,7 +1701,7 @@
 				\end{enumerate}
 		\subsection{Procedure 73 (Edwards' Sturm chain construction)}\label{sec:procedure 73}
 			\subsubsection{Objective}
-				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. The objective of the following instructions is to construct lists of $\mathbb{Q}[x]$s $s,q$ such that
+				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. The objective of the following instructions is to either show that $0\ne 0$ or to construct lists of $\mathbb{Q}[x]$s $s,q$ such that
 				\begin{enumerate}
 					\item For $i=0$ to $i=t$, $\deg(s_i)=i$.
 					\item For $i=0$ to $i=t$, $\sgn(x^i\circ s_i)=\sgn(x^t\circ s_t)$.
@@ -1969,7 +2007,7 @@
 				\end{enumerate}
 		\subsection{Procedure 83}\label{sec:procedure 83}
 			\subsubsection{Objective}
-				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \hyperref[sec:procedure 75]{procedure 75} on the matrix $A$ and let the tuple $\langle k\rangle$ receive the result. The objective of the following instructions is to show that $\sum_{i=1}^t(m+1-k_i)=m$.
+				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \hyperref[sec:procedure 75]{procedure 75} on the matrix $A$ and let the tuple $\langle k\rangle$ receive the result. The objective of the following instructions is to either show that $0<0$ or to show that $\sum_{i=1}^t(m+1-k_i)=m$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item Execute \hyperref[sec:procedure 21]{procedure 21} on the matrix $A$ and let the tuple $\langle,D,u,\rangle$.
@@ -1989,7 +2027,7 @@
 				\end{enumerate}
 		\subsection{Procedure 84}\label{sec:procedure 84}
 			\subsubsection{Objective}
-				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. The objective of the following instructions is to define the rational $\disc(A)$.
+				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. The objective of the following instructions is to either show that $0<0$ or to define the rational $\disc(A)$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item Execute \hyperref[sec:procedure 74]{procedure 74} on the matrix $A$ and let the tuple $\langle c,d\rangle$ receive the result.
@@ -2002,7 +2040,7 @@
 		Let us use the notation $\disc(A)$ to refer to the invocation of \hyperref[sec:procedure 84]{procedure 84} on the matrix $A$.
 		\subsection{Procedure 85}\label{sec:procedure 85}
 			\subsubsection{Objective}
-				Choose integers $0<k\le m$ and a list of $\mathcal{T}_m(\mathbb{Q}[x])$, $N$. Let $Q=(I_m)_{*,[k:m]}$. The objective of the following instructions is to construct an  $\mathcal{M}_{m,m+1-k}(\mathbb{Q}[x])$, $K$, and an $\mathcal{M}_{m+1-k,m+1-k}(\mathbb{Q}[x])$, $E$, such that $K_i=NQE$ and $K^TK$ is a $\mathcal{D}_{m+1-k,m+1-k}(\mathbb{Q}[x])$.
+				Choose integers $0<k\le m$ and a list of $\mathcal{T}_m(\mathbb{Q}[x])$, $N$. Let $Q=(I_m)_{*,[k:m]}$. The objective of the following instructions is to either show that $1=0$ or to construct an $\mathcal{M}_{m,m+1-k}(\mathbb{Q}[x])$, $K$, and an $\mathcal{M}_{m+1-k,m+1-k}(\mathbb{Q}[x])$, $E$, such that $K_i=NQE$ and $K^TK$ is a $\mathcal{D}_{m+1-k,m+1-k}(\mathbb{Q}[x])$.
 			\subsubsection{Implementation}
 				\begin{enumerate}
 					\item Verify that $(Q^TN^{-1})(NQ)=Q^T(N^{-1}N)Q=Q^TI_mQ=Q^TQ=I_{m+1-k}$.
