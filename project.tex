@@ -631,7 +631,7 @@
 				\end{enumerate}
 		\procedure[Determinant equals product of diagonal entries verification]{23}
 			\objective
-				Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$. Let $D$ be a copy of $A$. Execute \hyperref[sec:procedure 2]{procedure 2} on $D$. The objective of the following instructions is to show that $\det(A)$ is the product of the diagonal entries of $D$.
+				Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$. Let $D$ be a copy of $A$. Execute \hyperref[sec:procedure 10]{procedure 10} on $D$. The objective of the following instructions is to show that $\det(A)$ is the product of the diagonal entries of $D$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \hyperref[sec:procedure 21]{procedure 21} on $A$ and let $\langle M,D,,N\rangle$ receive.
@@ -751,7 +751,7 @@
 				Choose two $\mathcal{M}_{m,m}(\mathbb{Q})$s, $A$ and $B$, such that $AB=I_m$. The objective of the following instructions is to show that either $0=1$ or $BA=I_m$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \hyperref[sec:procedure 5]{procedure 5} on $B$ and let $\langle M^{-1},D,N^{-1}\rangle$ receive the result.
+					\item Execute \hyperref[sec:procedure 21]{procedure 21} on $B$ and let $\langle M,D,,N\rangle$ receive the result.
 					\item Verify that $B={M^{-1}}_*D{N^{-1}}_*$.
 					\item If $D$ has a zero on its diagonal, then do the following:
 					\begin{enumerate}
@@ -849,11 +849,12 @@
 			\implementation
 				\begin{enumerate}
 					\item Using \hyperref[sec:procedure 11]{procedure 11}, verify that $\det(xI-A)$ is a monic polynomial of degree $m$.
-					\item Therefore verify that $\det(B)=\det(xI-A)$ is a monic polynomial of degree $m$.
+					\item Therefore using \hyperref[sec:procedure 23]{procedure 23}, verify that $\det(B)=\det(xI-A)$.
+					\item Therefore verify that $\det(B)$ is a monic polynomial of degree $m$.
 					\item If any of the diagonal entries of $B$ equal zero, then do the following:
 					\begin{enumerate}
 						\item Using \hyperref[sec:procedure 11]{procedure 11}, verify that $\det(B)=B_{1,1}B_{2,2}\cdots B_{m,m}=0$.
-						\item Therefore verify that $1=0$.
+						\item Therefore using (3) and (4a), verify that $1=0$.
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 					\item Otherwise do the following:
@@ -1156,7 +1157,7 @@
 						\begin{enumerate}
 							\item For $k=1$ to $k=i-1$, verify that $(a_i-a_k)\ne 0$.
 							\item Verify that $p(a_i)\ne 0$.
-							\item Therefore verify that $0\ne 0$.
+							\item Therefore using (O) and (ii), verify that $0\ne 0$.
 							\item \textbf{Abort procedure.}
 						\end{enumerate}
 						\item Otherwise $g(a_i)=0$. Now do the following:
@@ -1170,7 +1171,7 @@
 					\end{enumerate}
 					\item Now verify that $p=(x-a_1)(x-a_2)\cdots(x-a_n)1$.
 					\item Using (3), verify that $p(a_{n+1})\ne 0$.
-					\item Therefore verify that $0\ne 0$.
+					\item Therefore using (O) and (4), verify that $0\ne 0$.
 					\item \textbf{Abort procedure.}
 				\end{enumerate}
 		\procedure[Bisection]{54}
@@ -1528,7 +1529,7 @@
 					\item Execute \hyperref[sec:procedure 51]{procedure 51} on $A$ and $p$ and let $f$ receive.
 					\item Now verify that $p=f\last_A$.
 					\item Verify that $f\ne 0$ and $\last_A\ne 0$.
-					\item \textbf{Therefore verify that $\deg(\last_A)>\deg(p)=\deg(f\last_A)\ge\deg(\last_A)$.}
+					\item \textbf{Therefore using (O), (2), and (3), verify that $\deg(\last_A)>\deg(p)=\deg(f\last_A)\ge\deg(\last_A)$.}
 					\item \textbf{Abort procedure.}
 				\end{enumerate}
 		\procedure{65}
@@ -1886,7 +1887,7 @@
 					\item Otherwise if for any $i=1$ to $i=m$, $n_i<\deg(u_i)$, then do the following:
 					\begin{enumerate}
 						\item Verify that $\sum_{i=1}^m n_j<\sum_{i=1}^m \deg(u_j)=t$.
-						\item Therefore verify that $\sum_{i=1}^m n_j<\sum_{i=1}^m n_j$.
+						\item Therefore using (1) and (a), verify that $\sum_{i=1}^m n_j<\sum_{i=1}^m n_j$.
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 					\item Otherwise, do the following:
@@ -1948,7 +1949,7 @@
 				\end{enumerate}
 		\procedure{79}
 			\objective
-				Choose integers $m\ge n\ge 0$. Choose a $\mathcal{M}_{n,m}(\mathbb{Q}[x])$, $M$, and a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A_0$, such that $MA_0=I_n$. Execute \hyperref[sec:procedure 78]{procedure 78} on $M$ and $A_0$ and let the tuple $\langle A_1,\cdots,A_n\rangle$ receive the result. The objective of the following instructions is to either show that $1=0$ or to show that $({A_i}^TA_i)_{[1:i+1],[1:i+1]}$ is a $\mathcal{D}_{i,i}(\mathbb{Q}[x])$ for $i=1$ to $i=n$.
+				Choose integers $m\ge n\ge 0$. Choose a $\mathcal{M}_{n,m}(\mathbb{Q}[x])$, $M$, and a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A_0$, such that $MA_0=I_n$. Execute \hyperref[sec:procedure 78]{procedure 78} on $M$ and $A_0$ and let the tuple $\langle A_1,\cdots,A_n\rangle$ receive the result. The objective of the following instructions is to either show that $1=0$ or to show that $({A_i}^TA_i)_{[1:i+1],[1:i+1]}$ is a $\mathcal{D}_{i,i}(\mathbb{Q}[x])$ and ${A_i}^TA_i=\bdiag(({A_i}^TA_i)_{[1:i+1],[1:i+1]},({A_i}^TA_i)_{[i+1:n+1],[i+1:n+1]})$ for $i=1$ to $i=n$.
 			\implementation
 				\begin{enumerate}
 					\item For $i=1$ to $i=n$, do the following:
@@ -1961,6 +1962,7 @@
 						\item Also verify that $({A_i}^TA_i)_{i,[i+1:n+1]}=0$.
 						\item Also verify that $({A_i}^TA_i)_{[i+1:n+1],i}=0$.
 						\item \textbf{Therefore verify that $({A_i}^TA_i)_{[1:i+1],[1:i+1]}$ is a $\mathcal{D}_{i,i}(\mathbb{Q}[x])$.}
+						\item \textbf{Also verify that ${A_i}^TA_i=\bdiag(({A_i}^TA_i)_{[1:i+1],[1:i+1]},({A_i}^TA_i)_{[i+1:n+1],[i+1:n+1]})$.}
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{80}
@@ -2016,7 +2018,7 @@
 					\item If $i=0$, then do the following:
 					\begin{enumerate}
 						\item Verify that $({e_j}^TM(x)A_i(x)e_j)^2=({e_j}^TM(x)A_0(x)e_j)^2=({e_j}^TI_ne_j)^2=1$.
-						\item Therefore verify that $1<1$.
+						\item Therefore using (4) and (a), verify that $1<1$.
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 					\item Otherwise, do the following:
@@ -2024,7 +2026,7 @@
 					\item If $\min(i,j-1)=0$, then do the following:
 					\begin{enumerate}
 						\item Verify that $(1\lVert A_0(x)e_1\rVert^2\cdots\allowbreak\lVert A_{\min(i,j-1)-1}(x)e_{\min(i,j-1)}\rVert^2)^2=1^2=1$.
-						\item Therefore verify that $1<1$.
+						\item Therefore using (7) and (a), verify that $1<1$.
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 					\item Otherwise do the following:
@@ -2033,7 +2035,7 @@
 						\item If for all $k=0$ to $k=\min(i,j-1)-1$, $\lVert A_k(x)e_{k+1}\rVert^2\ge\frac{1}{a^{(2i)!!}}$, then do the following:
 						\begin{enumerate}
 							\item Verify that $({e_j}^TM(x)A_i(x)e_j)^2=(\lVert A_0(x)e_1\rVert^2\cdots\allowbreak\lVert A_{\min(i,j-1)-1}(x)e_{\min(i,j-1)}\rVert^2)^2\ge(\frac{1}{a^{(2i)!!}})^{2\min(i,j-1)}\ge(\frac{1}{a^{(2i)!!}})^{2i}=\frac{1}{a^{(2i)!!*2i}}$.
-							\item Therefore verify that $({e_j}^TM(x)A_i(x)e_j)^2<\frac{1}{a^{(2i)!!*2i}}\le ({e_j}^TM(x)A_i(x)e_j)^2$.
+							\item Therefore using (4) and (i), verify that $({e_j}^TM(x)A_i(x)e_j)^2<\frac{1}{a^{(2i)!!*2i}}\le ({e_j}^TM(x)A_i(x)e_j)^2$.
 							\item \textbf{Abort procedure.}
 						\end{enumerate}
 						\item Otherwise, do the following:
