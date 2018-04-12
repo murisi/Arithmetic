@@ -6,10 +6,15 @@
 \usepackage{datetime}
 \usepackage[nottoc,numbib]{tocbibind}
 \usepackage{hyperref}
+\usepackage{enumitem}
 \hypersetup{
 	colorlinks = true,
 	linktoc = all,
 }
+
+\setlist[enumerate,2,3,4]{leftmargin=0.3cm}
+\setlength{\columnsep}{0.7cm}
+
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\mat}{mat}
 \DeclareMathOperator{\pol}{pol}
@@ -23,6 +28,7 @@
 \DeclareMathOperator{\rows}{rows}
 \DeclareMathOperator{\sel}{sel}
 \DeclareMathOperator{\last}{last}
+
 \newcommand{\ul}[1]{\underline{#1}}
 \newcommand{\notation}[1]{\subsubsection*{Notation #1}}
 \newcommand{\procedure}[2][]{\subsection*{Procedure #2 \ifthenelse{\equal{#1}{}}{}{(#1)}}\label{sec:procedure #2}}
