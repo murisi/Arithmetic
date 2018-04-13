@@ -1958,11 +1958,11 @@
 						\item Let $N_i=I_n$ except that its $i^{th}$ row is $i-1$ $0$s followed by a $1$ followed by $-({A_{i-1}}^TA_{i-1})_{i,i+1}$, then $-({A_{i-1}}^TA_{i-1})_{i,i+2}$, all the way up to $-({A_{i-1}}^TA_{i-1})_{i,n}$.
 						\item Verify that $A_i=A_{i-1}D_iN_i$.
 						\item Verify that ${A_i}^TA_i=(A_{i-1}D_iN_i)^T(A_{i-1}D_iN_i)={N_i}^T{D_i}^T({A_{i-1}}^TA_{i-1})D_iN_i$.
-						\item Now verify that ${A_i}^TA_i$ and ${A_{i-1}}^TA_{i-1}$ are the same modulo the bottom-right $(n-i+1)\times(n-i+1)$ block.
+						\item Now using \hyperref[sec:procedure 9]{procedure 9}, verify that ${A_i}^TA_i$ and ${A_{i-1}}^TA_{i-1}$ are the same modulo the bottom-right $(n-i+1)\times(n-i+1)$ block.
+						\item \textbf{Therefore using (1e) and the previous instance of (1i), verify that $({A_i}^TA_i)_{[1:i+1],[1:i+1]}$ is a $\mathcal{D}_{i,i}(\mathbb{Q}[x])$.}
 						\item Also verify that $({A_i}^TA_i)_{i,[i+1:n+1]}=0$.
 						\item Also verify that $({A_i}^TA_i)_{[i+1:n+1],i}=0$.
-						\item \textbf{Therefore verify that $({A_i}^TA_i)_{[1:i+1],[1:i+1]}$ is a $\mathcal{D}_{i,i}(\mathbb{Q}[x])$.}
-						\item \textbf{Also verify that ${A_i}^TA_i=\bdiag(({A_i}^TA_i)_{[1:i+1],[1:i+1]},({A_i}^TA_i)_{[i+1:n+1],[i+1:n+1]})$.}
+						\item \textbf{Therefore using (1g), (1h), and the previous instance of (1i), verify that ${A_i}^TA_i=\bdiag(({A_i}^TA_i)_{[1:i+1],[1:i+1]},({A_i}^TA_i)_{[i+1:n+1],[i+1:n+1]})$.}
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{80}
@@ -2067,6 +2067,8 @@
 						\item $=m$
 					\end{enumerate}
 				\end{enumerate}
+		\notation{36}
+			Let us use the notation $(2k)!!$ as a shorthand for "$2^k(k!)$".
 		\procedure{84}
 			\objective
 				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. The objective of the following instructions is to either show that $0<0$ or to construct the rational, $\disc(A)$.
@@ -2079,7 +2081,7 @@
 					\item \textbf{Verify that $\disc(A)>0$.}
 					\item \textbf{Yield the tuple $\langle\disc(A)\rangle$.}
 				\end{enumerate}
-		\notation{36}
+		\notation{37}
 			Let us use the notation $\disc(A)$ to refer to the result yielded by executing \hyperref[sec:procedure 84]{procedure 84} on the matrix $A$.
 		\procedure{85}
 			\objective
