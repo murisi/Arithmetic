@@ -12,6 +12,7 @@
 	linktoc = all,
 }
 
+\setcounter{section}{-1}
 \setlist[enumerate,2,3,4]{leftmargin=0.3cm}
 \setlength{\columnsep}{0.7cm}
 
@@ -37,7 +38,7 @@
 \newcommand{\procedurehr}[2][]{\hyperref[sec:procedure #2]{\ifthenelse{\equal{#1}{}}{procedure #2}{#1}}}
 
 \begin{document}
-	\title{Strictured Programming}
+	\title{Arithmetic: A Programmatic Approach}
 	\author{Murisi Tarusenga}
 	\date{\today{} \currenttime}
 	\maketitle
@@ -55,14 +56,392 @@
 		\paragraph{How do I understand this?}
 			The task of understanding the following procedures should be the same as that of understanding any codebase. Hence domain specific knowledge is required, which in this case comprises rational, formal polynomial, and matrix arithmetic as well as inequalities. Otherwise, running a debugger, that is, executing the following procedures step by step on some chosen input(s) and observing their control flows and sequences of program states should be equally helpful in making sense of them.
 	\tableofcontents
-	\section{Matrix Arithmetic}\label{sec:body}
-		\notation{1}
+	\section{Rational Arithmetic}
+		\notation{1.0}
 			Let us use the notation $\mathbb{Q}[x_1,x_2,\cdots,x_n]$ as a shorthand for "formal polynomial with rational coefficients in the indeterminates $x_1,x_2,\cdots,x_n$".
-		\notation{2}
-			Let us use the notation $\mathcal{M}_{m,n}(A)$ as a shorthand for "$m\times n$ matrix of $A$s".
-		\notation{3}
+		\procedure[Difference of powers]{1.0}
+			\objective
+				Choose an integer $n\ge 0$ and a $\mathbb{Q}[x]$ $p=p_0x^n+p_1x^{n-1}+\cdots+p_n$. Let $y,z$ be indeterminates. The objective of the following instructions is to construct a $\mathbb{Q}[y,z]$ $G$ such that $p(z)-p(y)=(z-y)G(y,z)$.
+			\implementation
+				\begin{enumerate}
+					\item Let the $\mathbb{Q}[y,z]$ $G=\sum_{r=1}^n p_{n-r}(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})$.
+					\item Verify that $p(z)-p(y)$
+					\begin{enumerate}
+						\item $=(p_0z^n+p_1z^{n-1}+\cdots+p_n)-(p_0y^n+p_1y^{n-1}+\cdots+p_n)$
+						\item $=(\sum_{r=0}^n p_{n-r}z^r)-(\sum_{r=0}^n p_{n-r}y^r)$
+						\item $=\sum_{r=1}^n p_{n-r}(z^r-y^r)$
+						\item $=\sum_{r=1}^n p_{n-r}(z-y)(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})$
+						\item $=(z-y)\sum_{r=1}^n p_{n-r}(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})$
+						\item $=(z-y)G(y,z)$.
+					\end{enumerate}
+					\item \textbf{Yield the tuple $\langle G\rangle$.}
+				\end{enumerate}
+		\procedure{1.1}
+			\objective
+				Choose a $\mathbb{Q}[x]$ $p=x^n+p_1x^{n-1}+\cdots+p_n$ and $\mathbb{Q}$s $a_1<a_2<\cdots<a_n<a_{n+1}$ in such a way that for $i=1$ to $i=n+1$, $p(a_i)=0$. The objective of the following instructions is to show that $0\ne 0$.
+			\implementation
+				\begin{enumerate}
+					\item Write $p$ as $1*p$, so that it has two factors.
+					\item For $i=1$ up to $i=n$, do the following:
+					\begin{enumerate}
+						\item Let $g$ be the rightmost factor of $p$.
+						\item If $g(a_i)\ne 0$, do the following:
+						\begin{enumerate}
+							\item For $k=1$ to $k=i-1$, verify that $(a_i-a_k)\ne 0$.
+							\item Verify that $p(a_i)\ne 0$.
+							\item Therefore using (O) and (ii), verify that $0\ne 0$.
+							\item \textbf{Abort procedure.}
+						\end{enumerate}
+						\item Otherwise $g(a_i)=0$. Now do the following:
+						\begin{enumerate}
+							\item Execute \procedurehr{1.0} on $g$ and let the tuple $\langle G\rangle$ receive the result.
+							\item Let $x$ be an indeterminate.
+							\item Let the $\mathbb{Q}[x]$ $q=q(x)=G(a_i,x)$.
+							\item Verify that the $\mathbb{Q}[x]$ $g=g(x)=g(x)-g(a_i)=(x-a_i)G(a_i,x)=(x-a_i)q(x)=(x-a_i)q$.
+							\item Verify that $p=(x-a_1)(x-a_2)\cdots(x-a_i)q$.
+						\end{enumerate}
+					\end{enumerate}
+					\item Now verify that $p=(x-a_1)(x-a_2)\cdots(x-a_n)1$.
+					\item Using (3), verify that $p(a_{n+1})\ne 0$.
+					\item Therefore using (O) and (4), verify that $0\ne 0$.
+					\item \textbf{Abort procedure.}
+				\end{enumerate}
+		\procedure[Bisection]{1.2}
+			\objective
+				Choose a $\mathbb{Q}[x]$ $f$. Choose $\mathbb{Q}$s $a<b$ such that $\sgn(f(a))=-\sgn(f(b))$. Choose a rational number target $B>0$. The objective of the following instructions is to construct a $\mathbb{Q}$ $d$ such that $a\le d\le b$ and $\lvert f(d)\rvert<B$.
+			\implementation
+				\begin{enumerate}
+					\item Execute \procedurehr{1.0} on $f$ and let the tuple $\langle G\rangle$ receive the result.
+					\item Let $x,y$ be indeterminates.
+					\item Verify that the $\mathbb{Q}[x,y]$ $f(y)-f(x)=(y-x)G(x,y)$.
+					\item Let $c=a$ and $d=b$.
+					\item Until $\lvert d-c\rvert \lvert G\rvert(\lvert a\rvert,\lvert b\rvert)<B$
+					\begin{enumerate}
+						\item Let $e=\frac{c+d}{2}$.
+						\item If $\sgn(f(c))=-\sgn(f(e))$, then:
+						\begin{enumerate}
+							\item Let $d=e$.
+						\end{enumerate}
+						\item Otherwise if $\sgn(f(e))=-\sgn(f(d))$, then:
+						\begin{enumerate}
+							\item Let $c=e$.
+						\end{enumerate}
+						\item Otherwise if $f(e)=0$, then do the following:
+						\begin{enumerate}
+							\item \textbf{Verify that $\lvert f(e)\rvert=0<B$.}
+							\item Yield the tuple $\langle e\rangle$.
+						\end{enumerate}
+					\end{enumerate}
+					\item \textbf{Verify that $\lvert f(c)\rvert,\lvert f(d)\rvert<\lvert f(d)-f(c)\rvert=\lvert(d-c)G(c,d)\rvert=\lvert d-c\rvert\lvert G(c,d)\rvert\le\lvert d-c\rvert\lvert G\rvert(\lvert c\rvert,\lvert d\rvert)\le\lvert d-c\rvert\lvert G\rvert(\lvert a\rvert,\lvert b\rvert)<B$.}
+					\item \textbf{Yield the tuple $\langle c\rangle$.}
+				\end{enumerate}
+		\procedure{1.3}
+			\objective
+				Choose a $\mathbb{Q}[x]$ $f=x^n+p_1x^{n-1}+\cdots+p_n$ and pairs of $\mathbb{Q}$s $(a_n,b_n),(a_{n-1},b_{n-1}),\cdots,(a_0,b_0)$ in such a way that:
+				\begin{enumerate}
+					\item $a_n<b_n\le a_{n-1}<b_{n-1}\le\cdots\le a_1<b_1\le a_0<b_0$.
+					\item $\sgn(f(a_i))=-\sgn(f(b_i))$ for $i=0$ to $i=n$.
+				\end{enumerate}
+				The objective of the following instructions is to show that $1=-1$.
+			\implementation
+				\begin{enumerate}
+					\item If $n>0$:
+					\begin{enumerate}
+						\item Let $B=\min_{k=0}^{n-1}\min(\lvert f(a_k)\rvert,\lvert f(b_k)\rvert)$.
+						\item For $k=0$ to $k=n-1$, verify that $\lvert f(a_k)\rvert\ge B$.
+						\item Execute \procedurehr{1.2} on the formal polynomial $f$, interval $(a_n, b_n)$, and target of $B$. Let the tuple $\langle d\rangle$ receive the result.
+						\item Verify that $\lvert f(d)\rvert<B$.
+						\item Execute \procedurehr{1.0} on the formal polynomial $f$ and let the tuple $\langle G\rangle$ receive the result.
+						\item Let $x$ be an indeterminate.
+						\item Let the formal polynomial $h=G(d,x)$.
+						\item Verify that $h$ is a monic $(n-1)^{th}$ degree formal polynomial.
+						\item Verify that the formal polynomial $f=f(x)=f(x)-f(d)+f(d)=(x-d)G(d,x)+f(d)=(x-d)h(x)+f(d)=(x-d)h+f(d)$.
+						\item For $k=0$ to $k=n-1$, do the following:
+						\begin{enumerate}
+							\item If $f(a_k)\ge B$, in-order verify that:
+							\begin{enumerate}
+								\item $f(a_k)\ge B>\lvert f(d)\rvert\ge f(d)$.
+								\item $f(a_k)-f(d)>0$.
+								\item $(a_k-d)h(a_k)>0$.
+								\item \textbf{$h(a_k)>0$.}
+								\item $f(b_k)\le-B<-\lvert f(d)\rvert\le f(d)$.
+								\item $f(b_k)-f(d)<0$.
+								\item $(b_k-d)h(b_k)<0$.
+								\item \textbf{$h(b_k)<0$.}
+							\end{enumerate}
+							\item Otherwise, if $f(a_k)\le -B$, do the following:
+							\begin{enumerate}
+								\item \textbf{Using steps analogous to (ji), verify that $h(a_k)<0$.}
+								\item \textbf{Using steps analogous to (ji), verify that $h(b_k)>0$.}
+							\end{enumerate}
+						\end{enumerate}
+						\item Execute \procedurehr{1.3} on $h$ and $a_{n-1}<b_{n-1}\le a_{n-2}<b_{n-2}\le\cdots\le a_1<b_1\le a_0<b_0$.
+					\end{enumerate}
+					\item Otherwise, do the following:
+					\begin{enumerate}
+						\item Verify that $n=0$.
+						\item Therefore verify that $h=1$.
+						\item \textbf{Therefore verify that $1=\sgn(1)=\sgn(f_0(a_0))=-\sgn(f_0(b_0))=-\sgn(1)=-1$.}
+						\item \textbf{Abort procedure.}
+					\end{enumerate}
+				\end{enumerate}
+		\notation{1.1}
 			Let us use the notation $p\circ q$ as a shorthand for "the sum of products where each product is the coefficient of a monomial in $p$ times the coefficient of the same monomial in $q$".
-		\procedure{1}
+		\notation{1.2}
+			Let us use the notation $[a:b]$ as a shorthand for "the list $\langle a,a+1,\cdots b-1\rangle$".
+		\procedure[Sturm's procedure initialization]{1.4}
+			\objective
+				Choose two lists of $\mathbb{Q}[x]$s $s,q$ in such a way that, letting $m=\lvert s\rvert-1$,
+				\begin{enumerate}
+					\item For $i=0$ to $i=m$, $\deg(s_i)=i$.
+					\item For $i=0$ to $i=m$, $\sgn(x^i\circ s_i)=\sgn(x^m\circ s_m)$.
+					\item For $i=1$ to $i=m-1$, $s_{i-1}+s_{i+1}=q_is_i$.
+				\end{enumerate}
+				Let $x,y$ be indeterminates. The objective of the following instructions is to construct lists of $\mathbb{Q}[x]$s $g,h$ such that $g_is_{i+1}+h_is_i=1$ for $i=1$ to $i=m-1$.
+			\implementation
+				\begin{enumerate}
+					\item Let $g=h=\langle\rangle$.
+					\item If $m>2$, do the following:
+					\begin{enumerate}
+						\item Verify that $q_{m-1}s_{m-1}-s_{m}=s_{m-2}$.
+						\item Execute \procedurehr{1.4} on $s_{[0:m]}$ and $q_{[1:m-1]}$ and let the tuple $\langle,,g,h\rangle$ receive.
+						\item Verify that $g_{m-2}s_{m-1}+h_{m-2}s_{m-2}=1$.
+						\item Let $g_{m-1}=-h_{m-2}$.
+						\item Let $h_{m-1}=g_{m-2}+h_{m-2}q_{m-1}$.
+						\item \textbf{Therefore verify that $g_{m-1}s_{m}+h_{m-1}s_{m-1}=g_{m-2}s_{m-1}+h_{m-2}(q_{m-1}s_{m-1}-s_{m})=g_{m-2}s_{m-1}+h_{m-2}s_{m-2}=1$.}
+					\end{enumerate}
+					\item Otherwise, if $m=2$ do the following:
+					\begin{enumerate}
+						\item Verify that $s_{0}+s_{2}=q_1s_1$.
+						\item Let $g_1=-\frac{1}{s_0}$.
+						\item Let $h_1=\frac{q_1}{s_0}$.
+						\item \textbf{Therefore verify that $g_1s_2+h_1s_1=1$.}
+					\end{enumerate}
+					\item \textbf{Yield the tuple $\langle s,q,g,h\rangle$.}
+				\end{enumerate}
+		\notation{1.3}
+			Let us use the notation $[P]$ as a shorthand for "if $P$, then yield $1$, otherwise yield $0$".
+		\notation{1.4}
+			Let us use the notation $J_{s}(x)$ as a shorthand for "the number of sign changes in the list $s_0(x),s_1(x),\cdots,s_{\lvert s\rvert-1}(x)$".
+		\procedure[Change in number of sign changes verification]{1.5}
+			\objective
+				Execute \procedurehr{1.4} and let $\langle s,q,g,h\rangle$ receive. Execute \procedurehr{1.0} on $s$ and let $\langle G\rangle$ receive the result. Choose $\mathbb{Q}$s $c$ and $d$ in such a way that:
+				\begin{enumerate}
+					\item $J_m(c)$ and $J_m(d)$ are well defined.
+					\item Letting $B=\max_{i=1}^m \lvert G_i(c,d)\rvert$.
+					\item Letting $C=\max_{i=1}^{m-1}\max(\lvert g_i(c)\rvert,\lvert h_i(c)\rvert,\lvert g_i(d)\rvert,\lvert h_i(d))\rvert$.
+					\item Letting $D=\max_{i=1}^{m-1}\max(\lvert q_i(c)\rvert,\lvert q_i(d)\rvert,2)$.
+					\item $\lvert d-c\rvert\le\frac{1}{BCD}$.
+				\end{enumerate}
+				The objective of the following instructions is to show that either $0<0$ or $\lvert J_m(d)-J_m(c)\rvert=[\sgn(s_m(c))\ne\sgn(s_m(d))]$.
+			\implementation
+				\begin{enumerate}
+					\item Let $i=0$.
+					\item Do the following:
+					\begin{enumerate}
+						\item Verify that $\sgn(s_i(c))=\sgn(s_i(d))$.
+						\item Verify that $J_i(c)=J_i(d)$.
+						\item If $\sgn(s_{i+1}(c))=\sgn(s_{i+1}(d))$, do the following:
+						\begin{enumerate}
+							\item Verify that $J_{i+1}(c)=J_{i+1}(d)$.
+							\item Set $i$ to $i+1$ and go to (2) if the new $i<m$.
+						\end{enumerate}
+						\item Otherwise, if $\sgn(s_{i+1}(c))\ne\sgn(s_{i+1}(d))$ and $i+2\le m$, do the following:
+						\begin{enumerate}
+							\item Execute \hyperref[sec:procedure 1.5 auxilliary procedure]{procedure 1.5 auxilliary procedure} on $i$.
+							\item If $\sgn(s_{i+2}(c))\ne\sgn(s_{i+2}(d))$, do the following:
+							\begin{enumerate}
+								\item Verify that $\lvert s_{i+2}(c)\rvert<\lvert s_{i+2}(d)-s_{i+2}(c)\rvert=\lvert (d-c)G_{i+2}(c,d)\rvert\le\frac{1}{BCD}\cdot B=\frac{1}{CD}=\frac{1}{C}\cdot\frac{1}{D}\le\frac{1}{C}(1-\frac{1}{D})$.
+								\item Using (A) and (i), verify that $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i+2}(c)\rvert<\frac{1}{C}(1-\frac{1}{D})$.
+								\item \textbf{Abort procedure.}
+							\end{enumerate}
+							\item Otherwise if $\sgn(s_i(c))=\sgn(s_{i+2}(c))$, do the following:
+							\begin{enumerate}
+								\item Verify that $2\frac{1}{C}(1-\frac{1}{D})<\lvert s_i(c)\rvert+\lvert s_{i+2}(c)\rvert=\lvert s_i(c)+s_{i+2}(c)\rvert=\lvert q_{i+1}(c)s_{i+1}(c)\rvert<D\frac{1}{CD}$.
+								\item Verify that $2(1-\frac{1}{D})<1$.
+								\item Using (B) and the construction of $D$, verify that $2\le D<2$.
+								\item \textbf{Abort procedure.}
+							\end{enumerate}
+							\item Otherwise, do the following:
+							\begin{enumerate}
+								\item Verify that $\sgn(s_i(d))=\sgn(s_i(c))\ne\sgn(s_{i+2}(c))=\sgn(s_{i+2}(d))$.
+								\item Therefore verify that $1=J_{i+2}(c)-J_{i}(c)=J_{i+2}(d)-J_{i}(d)$.
+								\item Therefore verify that $J_{i}(c)+1=J_{i+2}(c)=J_{i+2}(d)=J_{i}(d)+1$.
+								\item Set $i$ to $i+2$ and go to (2).
+							\end{enumerate}
+						\end{enumerate}
+						\item Otherwise, verify the following:
+						\begin{enumerate}
+							\item $\sgn(s_{i+1}(c))\ne\sgn(s_{i+1}(d))$.
+							\item $\lvert J_{i+1}(c)-J_{i+1}(d)\rvert=1$.
+							\item $i+1=m$.
+						\end{enumerate}
+					\end{enumerate}
+					\textbf{
+						\item If $\sgn(s_m(c))=\sgn(s_m(d))$, then do the following:
+						\begin{enumerate}
+							\item Verify that $J_m(c)=J_m(d)$.
+						\end{enumerate}
+						\item Otherwise do the following:
+						\begin{enumerate}
+							\item Verify that $\lvert J_m(d)-J_m(c)\rvert=1$.
+						\end{enumerate}
+					}
+				\end{enumerate}
+			\subsubsection*{Auxilliary Procedure}\label{sec:procedure 1.5 auxilliary procedure}
+				\paragraph{Objective}
+					Choose a non-negative integer $i<m$ such that $\sgn(s_{i+1}(c))\ne\sgn(s_{i+1}(d))$ and $i+2\le m$. The objective of the following instructions is to show that $\lvert s_{i+1}(c)\rvert<\frac{1}{CD}$, $\lvert s_{i+1}(d)\rvert<\frac{1}{CD}$, $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i}(c)\rvert$, $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i}(d)\rvert$, $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i+2}(c)\rvert$, and $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i+2}(d)\rvert$.
+				\paragraph{Implementation}
+					\begin{enumerate}
+						\item Verify the following in order:
+						\begin{enumerate}
+							\item $\lvert s_{i+1}(c)\rvert<\lvert s_{i+1}(c)-s_{i+1}(d)\rvert=\lvert c-d\rvert\lvert G_{i+1}(c,d)\rvert\le\lvert c-d\rvert B\le lB=\frac{1}{CD}$
+							\item $\lvert s_{i+1}(d)\rvert<\lvert s_{i+1}(c)-s_{i+1}(d)\rvert\le\frac{1}{CD}$
+							\item $1=g_{i}(c)s_{i+1}(c)+h_{i}(c)s_{i}(c)=\lvert g_{i}(c)s_{i+1}(c)+h_{i}(c)s_{i}(c)\rvert\le\lvert g_{i}(c)\rvert\lvert s_{i+1}(c)\rvert+\lvert h_{i}(c)\rvert\lvert s_{i}(c)\rvert<C(\frac{1}{CD}+\lvert s_{i}(c)\rvert)$
+							\item $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i}(c)\rvert$
+							\item $1<C(\frac{1}{CD}+\lvert s_{i}(d)\rvert)$
+							\item $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i}(d)\rvert$
+							\item $1=g_{i+1}(c)s_{i+2}(c)+h_{i+1}(c)s_{i+1}(c)=\lvert g_{i+1}(c)s_{i+2}(c)+h_{i+1}(c)s_{i+1}(c)\rvert\le\lvert g_{i+1}(c)\rvert\lvert s_{i+2}(c)\rvert+\lvert h_{i+1}(c)\rvert\lvert s_{i+1}(c)\rvert<C(\lvert s_{i+2}(c)\rvert+\frac{1}{CD})$
+							\item $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i+2}(c)\rvert$
+							\item $1<C(\lvert s_{i+2}(d)\rvert+\frac{1}{CD})$
+							\item $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i+2}(d)\rvert$
+						\end{enumerate}
+					\end{enumerate}
+		\procedure[Cauchy's positive verification]{1.6}
+			\objective
+				Choose a $\mathbb{Q}[x]$ $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0\ne 0$. Choose a $\mathbb{Q}$ $k>1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert$. The objective of the following instructions is to show that $\sgn(p(k))=\sgn(p_0)$.
+			\implementation
+				\begin{enumerate}
+					\item In reverse order verify the following:
+					\begin{enumerate}
+						\item \textbf{$\sgn(p_0k^n+p_1k^{n-1}+\cdots+p_nk^0)=\sgn(p_0)$}
+						\item $\sgn(k^n+\frac{p_1}{p_0}k^{n-1}+\cdots+\frac{p_n}{p_0}k^0)=1$
+						\item $k^n+\frac{p_1}{p_0}k^{n-1}+\cdots+\frac{p_n}{p_0}k^0>0$
+						\item $k^n>-(\frac{p_1}{p_0}k^{n-1}+\cdots+\frac{p_n}{p_0}k^0)$
+						\item $k^n>\lvert \frac{p_1}{p_0}k^{n-1}+\cdots+\frac{p_n}{p_0}k^0\rvert$
+						\item $k^n>\lvert\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert(k^{n-1}+\cdots+k^0)\rvert$
+						\item $k^n>\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert\frac{k^n-1}{k-1}$
+						\item $k^{n+1}-k^n>\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert(k^n-1)$
+						\item $k^{n+1}-(1+\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert)k^n+\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert>0$
+						\item $k>1+\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert$
+					\end{enumerate}
+				\end{enumerate}
+		\procedure[Cauchy's alternation verification]{1.7}
+			\objective
+				Choose a $\mathbb{Q}[x]$ $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0\ne 0$. Choose a $\mathbb{Q}$ $k<-(1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert)$. The objective of the following instructions is to show that $\sgn(p(k))=(-1)^t\sgn(p_0)$.
+			\implementation
+				\begin{enumerate}
+					\item Let $q=q_0x^t+q_1x^{t-1}+q_2x^{t-2}+\cdots+q_tx^0$, where $q_i=(-1)^ip_i$.
+					\item Verify that $k<-(1+\max_{i=1}^t\lvert\frac{q_i}{q_0}\rvert)$.
+					\item Therefore verify that $-k>1+\max_{i=1}^t\lvert\frac{q_i}{q_0}\rvert$.
+					\item Execute \procedurehr{1.6} on $q$ and $-k$.
+					\item Hence verify that $(-1)^t\sgn(p(k))$
+					\begin{enumerate}
+						\item $=\sgn((-1)^tp(k))$
+						\item $=\sgn((-1)^t\sum_{i=0}^t p_ik^{t-i})$
+						\item $=\sgn(\sum_{i=0}^t (-1)^i(-1)^{t-i}p_ik^{t-i})$
+						\item $=\sgn(\sum_{i=0}^t q_i(-k)^{t-i})$
+						\item $=\sgn(q(-k))$
+						\item $=\sgn(q_0)$
+						\item $=\sgn(p_0)$.
+					\end{enumerate}
+					\item \textbf{Therefore verify that $\sgn(p(k))=(-1)^t(-1)^t\sgn(p(k))=(-1)^t\sgn(p_0)$.}
+				\end{enumerate}
+		\procedure[Range subdivision]{1.8}
+			\objective
+				Choose a list of $\mathbb{Q}[x]$s, $s$, and $\mathbb{Q}$s $a,l,c$ such that $a<c$ and $l>0$. The objective of the following instructions is to either show that $0<0$ or to construct a list of $\mathbb{Q}$s, $b$, such that $a=b_1<b_2<\cdots<b_{\lvert b\rvert}=c$, $b_{i+1}-b_i\le l$ for $i=1$ to $i=\lvert b\rvert-1$, and $J_s(b)$ is defined for $i=1$ to $i=\lvert b\rvert-1$.
+			\implementation
+				\begin{enumerate}
+					\item Let $e=\langle\langle\rangle,\langle\rangle,\cdots,\langle\rangle\rangle$.
+					\item Let $f=\sum_{r=1}^{\lvert s\rvert}\deg(s_r)$.
+					\item Let $b=\langle a\rangle$.
+					\item Let $d=b_1$.
+					\item While $d+l<c$, do the following:
+					\begin{enumerate}
+						\item Let $m=l$.
+						\item While $J_s(d+m)$ is not defined and $\lvert e\rvert\le f$, do the following:
+						\begin{enumerate}
+							\item Let $1\le i\le\lvert s\rvert$ be an integer such that $s_i(d+m)=0$.
+							\item Append $d+m$ onto $e_i$.
+							\item Set $m=\frac{m}{2}$
+						\end{enumerate}
+						\item If $\sum\lvert e\rvert>f$, then do the following:
+						\begin{enumerate}
+							\item If $\lvert e_i\rvert\le\deg(s_i)$ for $1\le i\le\lvert s\rvert$, then do the following:
+							\begin{enumerate}
+								\item Verify that $\sum\lvert e\rvert\le f$.
+								\item Therefore using (c), verify that $\sum\lvert e\rvert\le f<\sum\lvert e\rvert$.
+								\item \textbf{Abort procedure.}
+							\end{enumerate}
+							\item Otherwise, do the following:
+							\begin{enumerate}
+								\item Let $1\le i\le\lvert s\rvert$ be an integer such that $\lvert e_i\rvert>\deg(s_i)$.
+								\item Execute \procedurehr{1.1} on $s_i$ and a sorted $e_i$.
+								\item \textbf{Abort procedure.}
+							\end{enumerate}
+						\end{enumerate}
+						\item Otherwise, do the following:
+						\begin{enumerate}
+							\item \textbf{Verify that $J_s(d+m)$ is defined.}
+							\item Append $d+m$ onto $b$.
+							\item \textbf{Verify that $0<b_{\lvert b\rvert}-b_{\lvert b\rvert-1}=m\le l$.}
+							\item Set $d$ to $d+m$.
+							\item Using (5), verify that $d<c$.
+						\end{enumerate}
+					\end{enumerate}
+					\item Verify that $d<c$.
+					\item Verify that $d+l\ge c$.
+					\item \textbf{Therefore verify that $0<c-d\le l$.}
+					\item Append $c$ onto $b$.
+					\item \textbf{Yield $\langle b\rangle$.}
+				\end{enumerate}
+		\notation{1.5}
+			Let us use the notation $\lvert A\rvert$ as a shorthand for "the number of items in the list $A$".
+		\procedure[Sturm's sign change]{1.9}
+			\objective
+				Execute \procedurehr{1.4} and let $\langle s,q,g,h\rangle$ receive. Let $m=\lvert s\rvert-1$. The objective of the following instructions is to either show that $0<0$ or to construct two lists of rational numbers $c,d$ such that $c_1<d_1\le c_2<d_2\le\cdots\le c_m<d_m$ and $\sgn(s_m(c_i))=-\sgn(s_m(d_i))$ for $i=1$ to $i=m$.
+			\implementation
+				\begin{enumerate}
+					\item Let $U=1+\max_{i=0}^m\left(1+\max_{j=1}^i\lvert\frac{x^{i-j}\circ s_i}{x^i\circ s_i}\rvert\right)$
+					\item Using \procedurehr{1.6}, verify that $J(U)=0$.
+					\item Using \procedurehr{1.7}, verify that $J(-U)=m$.
+					\item Execute \procedurehr{1.0} on $s$ and let $\langle G\rangle$ receive the result.
+					\item Let the rational $B=\max_{i=1}^m \lvert G_i\rvert(U,U)$.
+					\item Let $C=\max_{i=1}^m \max(\lvert g_i\rvert(U),\lvert h_i\rvert(U))$.
+					\item Let $D=\max(3, \max_{i=1}^m \lvert q_i\rvert(U))$
+					\item Let $l=\frac{1}{BCD}$.
+					\item Execute \procedurehr{1.8} on $s$ with endpoints $-U,U$ and a step size of $l$ and let $\langle e\rangle$ receive the result.
+					\item Let $c=d=\langle\rangle$.
+					\item For $i=1$ to $i=\lvert e\rvert-1$:
+					\begin{enumerate}
+						\item Execute \procedurehr{1.5} on the tuple $\langle e_i,e_{i+1}\rangle$.
+						\item If $J_m(c)\ne J_m(d)$, then do the following:
+						\begin{enumerate}
+							\item Append $e_i$ to $c$.
+							\item Append $e_{i+1}$ to $d$.
+							\item Cognizant of \procedurehr{1.5}, verify that $\lvert J_m(d)-J_m(c)\rvert=1$.
+							\item Therefore verify that $\sgn(s_m(c_{\lvert c\rvert}))=-\sgn(s_m(d_{\lvert d\rvert}))$.
+							\item Also verify that $d_{\lvert d\rvert-1}\le c_{\lvert c\rvert}<d_{\lvert d\rvert}$.
+						\end{enumerate}
+					\end{enumerate}
+					\item If less than $m$ pairs of rational numbers were recorded, then do the following:
+					\begin{enumerate}
+						\item Verify that each change of $J_m(x)$ over the course of (12) was by $1$.
+						\item Verify that $J_m(x)$ changed less than $m$ times over the course of (12).
+						\item Therefore verify that $\lvert J_m(U)-J_m(-U)\rvert<m$.
+						\item Therefore using (2) and (3), verify that $m=\lvert J_m(U)-J_m(-U)\rvert<m$.
+						\item \textbf{Abort procedure.}
+					\end{enumerate}
+					\item Otherwise, do the following:
+					\begin{enumerate}
+						\item Verify that $m\le\lvert c\rvert=\lvert d\rvert$.
+						\item \textbf{Yield the tuple $\langle c,d\rangle$.}
+					\end{enumerate}
+				\end{enumerate}
+	\section{Matrix Arithmetic}
+		\notation{2.0}
+			Let us use the notation $\mathcal{M}_{m,n}(A)$ as a shorthand for "$m\times n$ matrix of $A$s".
+		\procedure{2.0}
 			\objective
 				Choose a $\mathcal{M}_{m,2}(\mathbb{Q}[x])$, $A$. Let $\deg(0)=\infty$. Let $k=\min(\deg(A_{1,1}),\deg(A_{1,2}))$ and $q=\deg(A_{1,1})$. The objective of the following instructions is to make $A_{1,2}=0$, $\deg(A_{1,1})\le k$, and either leave $A_{*,1}$ unchanged or make $\deg(A_{1,1})<q$ by a sequence of operations whereby, in each step a $\mathbb{Q}[x]$ times either of the columns is added to the other.
 			\implementation
@@ -107,11 +486,11 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle A\rangle$.}
 				\end{enumerate}
-		\notation{4}
+		\notation{2.1}
 			Let us use the notation "diagonal" as a shorthand for "matrix positions such that the row index equals the column index".
-		\notation{5}
+		\notation{2.2}
 			Let us use the notation $\mathcal{D}_{m,n}(A)$ as a shorthand for "$\mathcal{M}_{m,n}(A)$ with $0$s in all the off-diagonal positions".
-		\procedure{2}
+		\procedure{2.1}
 			\objective
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$. The objective of the following instructions is to transform $A$ into a $\mathcal{D}_{m,n}(\mathbb{Q}[x])$ by a sequence of operations whereby either a $\mathbb{Q}[x]$ times any of the columns is added to a different column, or a $\mathbb{Q}[x]$ times any of the rows is added to a different row.
 			\implementation
@@ -129,7 +508,7 @@
 						\item While there are non-zero entries in the top row less its first entry, do the following:
 						\begin{enumerate}
 							\item In the first row, select the $\mathcal{M}_{m,2}(\mathbb{Q}[x])$ whose top-right entry coincides with the last non-zero entry of the first row
-							\item Apply \procedurehr{1} on this submatrix.
+							\item Apply \procedurehr{2.0} on this submatrix.
 							\item Verify that the top-left and top-right entries of the submatrix are now non-zero and zero respectively.
 							\item If the first column of $A$ was modified by (5aii), then do the following:
 							\begin{enumerate}
@@ -140,12 +519,12 @@
 						\item Now do the same operations as in (a), but this time with the operations themselves reflected across the matrix's diagonal.
 					\end{enumerate}
 					\item Verify that, except for the top-left entry, the first row and the first column are zero.
-					\item Apply \procedurehr{2} on the submatrix $A_{[2:m+1],[2:n+1]}$.
+					\item Apply \procedurehr{2.1} on the submatrix $A_{[2:m+1],[2:n+1]}$.
 					\item Verify that (7)'s execution leaves the first row and column unchanged.
 					\item \textbf{Verify that $A$ is now a $\mathcal{D}_{m,n}(\mathbb{Q}[x])$.}
 					\item \textbf{Yield the tuple $\langle A\rangle$.}
 				\end{enumerate}
-		\procedure[Associativity verification]{3}
+		\procedure[Associativity verification]{2.2}
 			\objective
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, A, a $\mathcal{M}_{n,p}(\mathbb{Q}[x])$, B, and a $\mathcal{M}_{p,q}(\mathbb{Q}[x])$, C. The objective of the following instructions is to show that $(AB)C=A(BC)$.
 			\implementation
@@ -157,13 +536,11 @@
 					\item Therefore Verify that $(2)=\sum_{l=1}^{p} \left(\sum_{k=1}^{n} \left(A_{i,k}*B_{k,l}*C_{l,r}\right)\right)=\sum_{k=1}^{n} \left(\sum_{l=1}^{p} \left(A_{i,k}*B_{k,l}*C_{l,r}\right)\right)=\sum_{k=1}^{n}\left(A_{i,k}*\sum_{l=1}^{p}\left(B_{k,l}*C_{l,r}\right)\right)=(4)$ for $1\le i\le m$, for $1\le r\le q$.
 					\item \textbf{Therefore verify that $(AB)C=A(BC)$.}
 				\end{enumerate}
-		\notation{6}
+		\notation{2.3}
 			Let us use the notation $I_n$ as a shorthand for "the $\mathcal{M}_{n,n}(\mathbb{Q})$ with only $1$s on the diagonal and $0$s everywhere else".
-		\notation{7}
+		\notation{2.4}
 			Let us use the notation $\mathcal{T}_{m}(\mathbb{Q}[x])$ as a shorthand for "$\mathcal{M}_{m,m}(\mathbb{Q}[x])$ with only $1$s on the diagonal, a single $\mathbb{Q}[x]$ off the diagonal, and $0$s everywhere else".
-		\notation{8}
-			Let us use the notation $\lvert A\rvert$ as a shorthand for "the number of items in the list $A$".
-		\procedure[Row and column operation recording]{4}
+		\procedure[Row and column operation recording]{2.3}
 			\objective
 				Choose a procedure, $A$, and two non-negative integers $m,n$. The objective of the following instructions is to construct a list of $\mathcal{T}_{m}(\mathbb{Q}[x])$s, $M$, and a list of $\mathcal{T}_{n}(\mathbb{Q}[x])$s, $N$ such that $M_{\lvert M\rvert +1-i}$ equals $I_m$ after applying the $i^{th}$ row operation carried out by $A$ also on it, and $N_i$ equals $I_n$ after applying the $i^{th}$ row operation carried out by $A$ also on it.
 			\implementation
@@ -175,7 +552,7 @@
 					\item Now run procedure $A$.
 					\item \textbf{Yield the tuple $\langle M,N\rangle$.}
 				\end{enumerate}
-		\procedure[Multiplication by identity]{5}
+		\procedure[Multiplication by identity]{2.4}
 			\objective
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$. The objective of the following instructions is to show that $I_mA=A=AI_n$.
 			\implementation
@@ -197,11 +574,11 @@
 					\end{enumerate}
 					\item \textbf{Therefore verify that $AI_n=A$.}
 				\end{enumerate}
-		\notation{9}
+		\notation{2.5}
 			Let us use the notation $M_*$ as a shorthand for "$M_1M_2\cdots M_{\lvert M\rvert}$".
-		\notation{10}
-			Let us use the notation $A^{-1}$ as a shorthand for the result yielded by executing \procedurehr{6} on $A$.
-		\procedure[Matrix list inversion]{6}
+		\notation{2.6}
+			Let us use the notation $A^{-1}$ as a shorthand for the result yielded by executing \procedurehr{2.5} on $A$.
+		\procedure[Matrix list inversion]{2.5}
 			\objective
 				Choose a list of $\mathcal{T}_{m}(\mathbb{Q}[x])$, $A$. The objective of the following instructions is to construct a list of $\mathcal{T}_{m}(\mathbb{Q}[x])$, $A^{-1}$, such that $A_*{A^{-1}}_*=I_m$.
 			\implementation
@@ -227,7 +604,7 @@
 						\item Now prepend $B$ onto $A^{-1}$.
 					\end{enumerate}
 					\item Verify that $\lvert A\rvert=\lvert A^{-1}\rvert$.
-					\item Therefore using \procedurehr{3} and \procedurehr{5}, verify that $A_*{A^{-1}}_*$
+					\item Therefore using \procedurehr{2.2} and \procedurehr{2.4}, verify that $A_*{A^{-1}}_*$
 					\begin{enumerate}
 						\item $=A_1\cdots A_{\lvert A\rvert-1}A_{\lvert A\rvert}{A^{-1}}_1{A^{-1}}_2\cdots {A^{-1}}_{\lvert A\rvert}$
 						\item $=A_1\cdots A_{\lvert A\rvert-2}A_{\lvert A\rvert-1}I_m{A^{-1}}_2{A^{-1}}_3\cdots {A^{-1}}_{\lvert A\rvert}$
@@ -238,15 +615,15 @@
 						\item $=I_m$.
 					\end{enumerate}
 				\end{enumerate}
-		\procedure{7}
+		\procedure{2.6}
 			\objective
 				Choose a list of $\mathcal{T}_{m}(\mathbb{Q}[x])$, $A$. The objective of the following instructions is to show that $(A^{-1})^{-1}=A$ and ${A^{-1}}_*A_*=I_m$.
 			\implementation
 				\begin{enumerate}
 					\item \textbf{Verify that $(A^{-1})^{-1}=A$.}
-					\item \textbf{Therefore using \procedurehr{6}, verify that ${A^{-1}}_*A_*={A^{-1}}_*{(A^{-1})^{-1}}_*=I_m$.}
+					\item \textbf{Therefore using \procedurehr{2.5}, verify that ${A^{-1}}_*A_*={A^{-1}}_*{(A^{-1})^{-1}}_*=I_m$.}
 				\end{enumerate}
-		\procedure{8}
+		\procedure{2.7}
 			\objective
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$. The objective of the following instructions is to define the polynomials $u_1,u_2,\cdots,u_{\min(m,n)}$ and transform $A$ into a $\mathcal{D}_{m,n}(\mathbb{Q}[x])$ such that $A_{k,k}=u_kA_{1,1}$ for $1\le k\le\min(m,n)$ by a sequence of operations whereby either a $\mathbb{Q}[x]$ times any of the columns is added to a different column, or a $\mathbb{Q}[x]$ times any of the rows is added to a different row.
 			\implementation
@@ -258,9 +635,9 @@
 						\item Add row $j$ to row $1$.
 						\item Now verify that $A_{1,j}=A_{j,j}$.
 						\item Set $A'=A$ and let $A'$ be our working matrix.
-						\item Let $\langle M,N\rangle$ receive the results of executing \procedurehr{4} on the pair $\langle m,n\rangle$ and the following procedure:
+						\item Let $\langle M,N\rangle$ receive the results of executing \procedurehr{2.3} on the pair $\langle m,n\rangle$ and the following procedure:
 						\begin{enumerate}
-							\item Execute \procedurehr{1} on the submatrix of $A'$ formed by selecting row $1$ and columns $1$ and $j$ as if there were nothing in between.
+							\item Execute \procedurehr{2.0} on the submatrix of $A'$ formed by selecting row $1$ and columns $1$ and $j$ as if there were nothing in between.
 						\end{enumerate}
 						\item Now verify that:
 						\begin{enumerate}
@@ -289,9 +666,7 @@
 					\item \textbf{Hence verify that $A'_{k,k}=u_kA'_{1,1}$ for $k=1$ to $k=\min(m,n)$.}
 					\item \textbf{Yield $\langle u\rangle$.}
 				\end{enumerate}
-		\notation{11}
-			Let us use the notation $[a:b]$ as a shorthand for "the list $\langle a,a+1,\cdots b-1\rangle$".
-		\procedure[Block matrix multiplication]{9}
+		\procedure[Block matrix multiplication]{2.8}
 			\objective
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$, and a $\mathcal{M}_{n,k}(\mathbb{Q}[x])$, $B$. Choose integers $1\le a\le m$, $1\le b\le n$, and $1\le c\le k$. The objective of the following instructions is to show that $(AB)_{[1:a],[1:c]}=A_{[1:a],[1:b]}B_{[1:b],[1:c]}+A_{[1:a],[b:n+1]}B_{[b:n+1],[1:c]}$.
 			\implementation
@@ -307,20 +682,20 @@
 					\item \textbf{Therefore verify that $(AB)_{[1:a],[1:c]}=A_{[1:a],[1:b]}B_{[1:b],[1:c]}+A_{[1:a],[b:n+1]}B_{[b:n+1],[1:c]}$.}
 					\item \textbf{Do similar computations to verify that the other three blocks of $AB$ are computed in an analogous way to multiplying two $2\times 2$ matrices.}
 				\end{enumerate}
-		\procedure[Smith normal form construction]{10}
+		\procedure[Smith normal form construction]{2.9}
 			\objective
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$. Let $A_{0,0}=1$. The objective of the following instructions is to define the polynomials $v_1,v_2,\cdots,v_{\min(m,n)}$ and transform $A$ into a $\mathcal{D}_{m,n}(\mathbb{Q}[x])$ such that $A_{k,k}=v_kA_{k-1,k-1}$ for $1\le k\le\min(m,n)$ by a sequence of operations whereby either a $\mathbb{Q}[x]$ times any of the columns is added to a different column, or a $\mathbb{Q}[x]$ times any of the rows is added to a different row.
 			\implementation
 				\begin{enumerate}
-					\item Apply \procedurehr{2} on matrix $A$.
+					\item Apply \procedurehr{2.1} on matrix $A$.
 					\item Let $v=\langle\rangle$.
 					\item Let $p=\langle A_{1,1},A_{2,2},\cdots,A_{\min(m,n),\min(m,n)}\rangle$.
 					\item For $j$ going from $1$ to $\min(m,n)$, do the following:
 					\begin{enumerate}
 						\item Set $A'=A$.
-						\item Let $\langle M,N\rangle$ receive the results of executing \procedurehr{4} on the pair $\langle m,n\rangle$ and the following procedure:
+						\item Let $\langle M,N\rangle$ receive the results of executing \procedurehr{2.3} on the pair $\langle m,n\rangle$ and the following procedure:
 						\begin{enumerate}
-							\item Apply \procedurehr{8} on the submatrix of $A'$ containing rows $j$ to $m$ and columns $j$ to $n$, and let $\langle u\rangle$ receive.
+							\item Apply \procedurehr{2.7} on the submatrix of $A'$ containing rows $j$ to $m$ and columns $j$ to $n$, and let $\langle u\rangle$ receive.
 						\end{enumerate}
 						\item Verify that $A'_{k,k}=u_{k+1-j}A'_{j,j}$ for $k=j$ to $k=\min(m,n)$.
 						\item \textbf{Verify that $A'$ is the same as $A$ modulo the submatrix spanning rows $j$ to $m$ and columns $j$ to $n$.}
@@ -347,11 +722,11 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle v\rangle$.}
 				\end{enumerate}
-		\notation{12}
+		\notation{2.7}
 			Let us use the notation $A^\frown B$ as a shorthand for "the list formed by concatenating $B$ onto $A$".
-		\notation{13}
-			Let us use the notation $\det(A)$ as a shorthand for the result yielded by executing \procedurehr{11} on $A$.
-		\procedure[Determinant calculation]{11}
+		\notation{2.8}
+			Let us use the notation $\det(A)$ as a shorthand for the result yielded by executing \procedurehr{2.10} on $A$.
+		\procedure[Determinant calculation]{2.10}
 			\objective
 				Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$. The objective of the following instructions is to construct a $\mathbb{Q}[x]$, $\det(A)$.
 			\implementation
@@ -365,7 +740,7 @@
 						\item \textbf{Yield the tuple $\langle\sum_{r=1}^m (-1)^{r-1}A_{r,1}\det(A_{[1:r]^\frown[r+1,m+1],[2:m+1]})\rangle$.}
 					\end{enumerate}
 				\end{enumerate}
-		\procedure[Multilinearity verification]{12}
+		\procedure[Multilinearity verification]{2.11}
 			\objective
 				Choose a $\mathbb{Q}[x]$ $p$. Choose two $\mathcal{M}_{m,1}(\mathbb{Q}[x])$s, $B$ and $C$. Choose an integer $0<i\le m$. Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$, such that its $i^{th}$ column is $B+pC$. Let $A'$ be $A$ but with the $i^{th}$ column replaced by $B$ and let $A'''$ be $A$ but with the $i^{th}$ column replaced by $C$. The objective of the following instructions is to show that $\det(A)=\det(A') + p\det(A''')$.
 			\implementation
@@ -383,7 +758,7 @@
 					\begin{enumerate}
 						\item For $r=1$ to $r=m$, do the following:
 						\begin{enumerate}
-							\item Execute \procedurehr{12} on $\langle p,B_{[1:r]^\frown[r+1:m+1],1},C_{[1:r]^\frown[r+1:m+1],1},i-1,\allowbreak A_{[1:r]^\frown[r+1:m+1],[2:m+1]}\rangle$.
+							\item Execute \procedurehr{2.11} on $\langle p,B_{[1:r]^\frown[r+1:m+1],1},C_{[1:r]^\frown[r+1:m+1],1},i-1,\allowbreak A_{[1:r]^\frown[r+1:m+1],[2:m+1]}\rangle$.
 							\item Therefore verify that $\det(A_{[1:r]^\frown[r+1:m+1],[2:m+1]})=\det(A'_{[1:r]^\frown[r+1:m+1],[2:m+1]})+p\det(A'''_{[1:r]^\frown[r+1:m+1],[2:m+1]})$.
 						\end{enumerate}
 						\item Therefore using (a), verify that $\det(A)$
@@ -396,7 +771,7 @@
 					\end{enumerate}
 				\end{enumerate}
 			\textbf{Make an analogous procedure for cases when a given row is the sum of two $1\times m$ matrices.}
-		\procedure[Alternation verification]{13}
+		\procedure[Alternation verification]{2.12}
 			\objective
 				Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$. Choose a row $1<i\le m$. Let $A'$ be $A$ with columns $i-1$ and $i$ swapped. The objective of the following instructions is to show that $\det(A')=-\det(A)$.
 			\implementation
@@ -415,14 +790,14 @@
 						\item Verify that $i>2$.
 						\item For $r=1$ to $r=m$, do the following:
 						\begin{enumerate}
-							\item Execute \procedurehr{13} on $\langle i-1,\allowbreak A_{[1:r]^\frown[r+1:m+1],[2:m+1]}\rangle$.
+							\item Execute \procedurehr{2.12} on $\langle i-1,\allowbreak A_{[1:r]^\frown[r+1:m+1],[2:m+1]}\rangle$.
 							\item Therefore verify that $\det(A_{[1:r]^\frown[r+1:m+1],[2:m+1]})=-\det(A'_{[1:r]^\frown[r+1:m+1],[2:m+1]})$.
 						\end{enumerate}
 						\item Therefore using (b), verify that $\det(A)=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\cdot\det(A_{[1:r]^\frown[r+1:m+1],[2:m+1]})=\sum_{r=1}^m (-1)^{r-1}A'_{r,1}\cdot(-\det(A'_{[1:r]^\frown[r+1:m+1],[2:m+1]}))=-\det(A')$.
 					\end{enumerate}
 				\end{enumerate}
 			\textbf{Make an analogous procedure to verify that row swaps cause sign alternations.}
-		\procedure{14}
+		\procedure{2.13}
 			\objective
 				Choose integers $1<i\le m$. Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$, such that columns $i-1$ and $i$ are the same. The objective of the following instructions is to show that $\det(A)=0$.
 			\implementation
@@ -440,14 +815,14 @@
 						\item Verify that $i>2$.
 						\item For $r=1$ to $r=m$, do the following:
 						\begin{enumerate}
-							\item Execute \procedurehr{14} on $\langle i-1,\allowbreak A_{[1:r]^\frown[r+1:m+1],[2:m+1]}\rangle$.
+							\item Execute \procedurehr{2.13} on $\langle i-1,\allowbreak A_{[1:r]^\frown[r+1:m+1],[2:m+1]}\rangle$.
 							\item Therefore verify that $\det(A_{[1:r]^\frown[r+1:m+1],[2:m+1]})=0$.
 						\end{enumerate}
 						\item Therefore using (b), verify that $\det(A)=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\det(A_{[1:r]^\frown[r+1:m+1],[2:m+1]})=\sum_{r=1}^m (-1)^{r-1}A_{r,1}*0=0$.
 					\end{enumerate}
 				\end{enumerate}
 			\textbf{Make an analogous procedure to verify that matrix choices with repeated rows yield determinants equal to zero.}
-		\procedure{15}
+		\procedure{2.14}
 			\objective
 				Choose integers $1\le i\le m$. Choose an integer $0<j\le m-i$. Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$. Let $A'$ be $A$ but with column $i$ moved $j$ places. The objective of the following instructions is to show that $\det(A')=(-1)^j\det(A)$.
 			\implementation
@@ -456,7 +831,7 @@
 					\item For $k=i+1$ to $k=i+j$, do the following:
 					\begin{enumerate}
 						\item Let $A_k$ be obtained by swapping columns $k-1$ and $k$ of $A_{k-1}$.
-						\item Using \procedurehr{13}, verify that $\det(A_k)=-\det(A_{k-1})$.
+						\item Using \procedurehr{2.12}, verify that $\det(A_k)=-\det(A_{k-1})$.
 					\end{enumerate}
 					\item Verify that $A'=A_{i+j}$.
 					\item \textbf{Therefore verify that $\det(A')=\det(A_{i+j})=(-1)^1\det(A_{i+j-1})=\cdots=(-1)^j\det(A_{i})=(-1)^j\det(A)$.}
@@ -464,7 +839,7 @@
 			\textbf{Make an analogous procedure that verifies that $\det(A')=(-1)^j\det(A)$ when a non-positive integer, $j$, is chosen.}
 			
 			\textbf{Also make an analogous procedure that does the verification for moved rows.}
-		\procedure[Compound matrix calculation]{16}
+		\procedure[Compound matrix calculation]{2.15}
 			\objective
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$, and choose an integer $0\le k\le\min(m,n)$. The objective of the following instructions is to construct a $\mathcal{M}_{\binom{m}{k},\binom{n}{k}}(\mathbb{Q}[x])$, $C_k(A)$.
 			\implementation
@@ -476,11 +851,11 @@
 						\item For each row label $I$: For each column label $J$: Let the entry at position $(I,J)$ be $\det(A_{I,J})$.
 					\end{enumerate}
 				\end{enumerate}
-		\notation{14}
-			We will use the notation $C_k(A)$ to refer to the result yielded by executing \procedurehr{16} on the matrix $A$ and integer $k$.
-		\notation{15}
+		\notation{2.9}
+			We will use the notation $C_k(A)$ to refer to the result yielded by executing \procedurehr{2.15} on the matrix $A$ and integer $k$.
+		\notation{2.10}
 			We will use the notation $A_{\ul{I},\ul{J}}$ to refer to the entry of $A$ with row label $I$ and column label $J$.
-		\procedure[Compound matrix of identity calculation]{17}
+		\procedure[Compound matrix of identity calculation]{2.16}
 			\objective
 				Choose two integers $0\le k\le m$. The objective of the following instructions is to show that $C_k(I_m)=I_{\binom{m}{k}}$.
 			\implementation
@@ -491,7 +866,7 @@
 						\begin{enumerate}
 							\item Verify that $((I_m)_{I,J})_{i,j}=((I_m)_{J,J})_{i,j}=(I_m)_{J_i,J_j}=[J_i=J_j]=[i=j]$ for $1\le i\le k$, for $1\le j\le k$.
 							\item Therefore verify that $(C_k(I_m))_{\ul{I},\ul{J}}=I_k$.
-							\item \textbf{Therefore using \procedurehr{11}, verify that $(C_k(I_m))_{\ul{I},\ul{J}}=\det((I_m)_{I,J})=\det(I_k)=1$.}
+							\item \textbf{Therefore using \procedurehr{2.10}, verify that $(C_k(I_m))_{\ul{I},\ul{J}}=\det((I_m)_{I,J})=\det(I_k)=1$.}
 						\end{enumerate}
 						\item Otherwise, do the following:
 						\begin{enumerate}
@@ -499,12 +874,12 @@
 							\item Let $i$ be the index of an element of $I$ that is not an element of $J$.
 							\item Now verify that $(I_m)_{I_i,j}=[I_i=j]=0$, for each $j$ in $J$.
 							\item Therefore verify that $((I_m)_{I,J})_{i,*}=0_{1\times k}$.
-							\item \textbf{Therefore using \procedurehr{11}, verify that $(C_k(I_m))_{\ul{I},\ul{J}}=\det((I_m)_{I,J})=0$.}
+							\item \textbf{Therefore using \procedurehr{2.10}, verify that $(C_k(I_m))_{\ul{I},\ul{J}}=\det((I_m)_{I,J})=0$.}
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Therefore verify that $C_k(I_m)=I_{\binom{m}{k}}$.}	
 				\end{enumerate}
-		\procedure{18}
+		\procedure{2.17}
 			\objective
 				Choose an integer $1\le k\le\min(m,n)$. Choose a $\mathcal{T}_{m}(\mathbb{Q}[x])$, $A$, such that the off diagonal entry is the $\mathbb{Q}[x]$ $p$ at $(i,j)$. Also choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $B$. The objective of the following instructions is to construct a $\mathcal{M}_{\binom{m}{k},\binom{m}{k}}(\mathbb{Q}[x])$ $D$ such that $C_k(AB)=DC_k(B)$.
 			\implementation
@@ -522,11 +897,11 @@
 						\item Otherwise, if $i\in I$, then:
 						\begin{enumerate}
 							\item Let $I'$ be $I$ but with an in-place replacement of $i$ by $j$.
-							\item For each column label $J$: Using \procedurehr{12}, verify that ${C_k(AB)}_{\ul{I},\ul{J}}=\det((AB)_{I,J})=\det(B_{I,J})+p*\det(B_{I',J})$.
+							\item For each column label $J$: Using \procedurehr{2.11}, verify that ${C_k(AB)}_{\ul{I},\ul{J}}=\det((AB)_{I,J})=\det(B_{I,J})+p*\det(B_{I',J})$.
 							\item If $j\in I$, then do the following:
 							\begin{enumerate}
 								\item Verify that the sequence $I'$ contains two $j$s.
-								\item For each column label $J$: Using \procedurehr{14} verify that $\det(B_{I',J})=0$.
+								\item For each column label $J$: Using \procedurehr{2.13} verify that $\det(B_{I',J})=0$.
 								\item Therefore for each column label $J$: verify that ${C_k(AB)}_{\ul{I},\ul{J}}=\det(B_{I,J})={C_k(B)}_{\ul{I},\ul{J}}$.
 								\item \textbf{Therefore verify that ${C_k(AB)}_{\ul{I},*}={C_k(B)}_{\ul{I},*}$.}
 							\end{enumerate}
@@ -534,7 +909,7 @@
 							\begin{enumerate}
 								\item Let $l$ be the signed number of places that the $j$ introduced above needs to be moved in order to make $I'$ an increasing sequence.
 								\item Let $I''$ be obtained from $I'$ by moving the integer $j$ in $I'$ by $l$ places.
-								\item For each column label $J$: Using \procedurehr{15}, verify that $\det(B_{I',J})=(-1)^l\det(B_{I'',J})$.
+								\item For each column label $J$: Using \procedurehr{2.14}, verify that $\det(B_{I',J})=(-1)^l\det(B_{I'',J})$.
 								\item Therefore for each column label $J$: Verify that ${C_k(AB)}_{\ul{I},\ul{J}}=\det(B_{I,J})+p*\det(B_{I',J})=\det(B_{I,J})+(-1)^lp*\det(B_{I'',J})$.
 								\item Verify that $I''$ is a row label of $C_k(B)$.
 								\item Therefore for each column label $J$: Verify that ${C_k(AB)}_{\ul{I},\ul{J}}=\det(B_{I,J})+(-1)^lp*\det(B_{I'',J})={C_k(B)}_{\ul{I},\ul{J}}+(-1)^lp*{C_k(B)}_{\ul{I''},\ul{J}}$.
@@ -546,7 +921,7 @@
 					\end{enumerate}
 					\item \textbf{Therefore verify that $C_k(AB)=DC_k(B)$.}
 				\end{enumerate}
-		\procedure{19}
+		\procedure{2.18}
 			\objective
 				Choose a $\mathcal{D}_{m,n}(\mathbb{Q}[x])$, $A$. Also choose an $\mathcal{M}_{n,n}(\mathbb{Q}[x])$, $B$. Also choose an integer $0\le k\le\min(m,n)$. The objective of the following instructions is to construct a $\mathcal{D}_{\binom{m}{k},\binom{n}{k}}(\mathbb{Q}[x])$ $D$ such that $C_k(AB)=DC_k(B)$.
 			\implementation
@@ -557,10 +932,10 @@
 					\begin{enumerate}
 						\item If $I_k\le \min(m,n)$, then do the following:
 						\begin{enumerate}
-							\item Using \procedurehr{16}, verify that every element of $I$ is less than or equal to $\min(m,n)$.
+							\item Using \procedurehr{2.15}, verify that every element of $I$ is less than or equal to $\min(m,n)$.
 							\item Let $A_0=A$.
 							\item For $i=1$ to $i=k$: Let $A_i$ equal $A_{i-1}$ but with position $(I_i,I_i)$ set to $1$.
-							\item For each column label $J$: Repeatedly using \procedurehr{12}, verify that ${C_k(AB)}_{I,J}$
+							\item For each column label $J$: Repeatedly using \procedurehr{2.11}, verify that ${C_k(AB)}_{I,J}$
 							\begin{enumerate}
 								\item $=\det((AB)_{I,J})$
 								\item $=\det((A_0B)_{I,J})$
@@ -579,7 +954,7 @@
 							\item Verify that $A_{I_k,*}=0_{1\times n}$.
 							\item Therefore verify that $(AB)_{I_k,*}=0_{1\times n}$.
 							\item Therefore verify that $((AB)_{I,*})_{k,*}=0_{1\times n}$.
-							\item Therefore using \procedurehr{11}, for each column label $J$: verify that ${C_k(AB)}_{I,J}=\det((AB)_{I,J})=0$.
+							\item Therefore using \procedurehr{2.10}, for each column label $J$: verify that ${C_k(AB)}_{I,J}=\det((AB)_{I,J})=0$.
 							\item \textbf{Therefore verify that $(C_k(AB))_{\ul{I},*}$ is zero.}
 						\end{enumerate}
 						\item \textbf{Therefore verify that ${C_k(AB)}_{\ul{I},*}=D_{\ul{I},*}C_k(B)$.}
@@ -587,43 +962,43 @@
 					\item \textbf{Verify that $D$ is diagonal.}
 					\item \textbf{Verify that $C_k(AB)=DC_k(B)$.}
 				\end{enumerate}
-		\procedure{20}
+		\procedure{2.19}
 			\objective
 				Choose an integer $1\le k\le\min(m,n)$. Choose a $\mathcal{T}_{m}(\mathbb{Q}[x])$, $A$, such that the off diagonal entry is the $\mathbb{Q}[x]$ $p$ at $(i,j)$. Also choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $B$. The objective of the following instructions is to show that $C_k(AB)=C_k(A)C_k(B)$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{18} on matrices $A$ and $I_m$. Let $D$ be the matrix constructed.
-					\item Using \procedurehr{17}, verify that $C_k(A)=C_k(AI_m)=DC_k(I_m)=DI_{\binom{m}{k}}=D$.
-					\item Execute \procedurehr{18} on matrices $A$ and $B$. Let $D'$ be the matrix constructed.
+					\item Execute \procedurehr{2.17} on matrices $A$ and $I_m$. Let $D$ be the matrix constructed.
+					\item Using \procedurehr{2.16}, verify that $C_k(A)=C_k(AI_m)=DC_k(I_m)=DI_{\binom{m}{k}}=D$.
+					\item Execute \procedurehr{2.17} on matrices $A$ and $B$. Let $D'$ be the matrix constructed.
 					\item Verify that $C_k(AB)=D'C_k(B)$.
 					\item Verify that $D'=D=C_k(A)$.
 					\item \textbf{Therefore verify that $C_k(AB)=C_k(A)C_k(B)$.}
 				\end{enumerate}
 			\textbf{Make an analogous procedure to show that $C_k(BA)=C_k(B)C_k(A)$.}
 			
-			\textbf{Using \procedurehr{19}, make a procedure similar to the above but that only instead allows for a diagonal matrix of $\mathbb{Q}[x]$s, $A$, to be chosen.}
-		\procedure{21}
+			\textbf{Using \procedurehr{2.18}, make a procedure similar to the above but that only instead allows for a diagonal matrix of $\mathbb{Q}[x]$s, $A$, to be chosen.}
+		\procedure{2.20}
 			\objective
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$. Let $D_{0,0}=1$. The objective of the following instructions is to construct a list of $\mathcal{T}_{m}(\mathbb{Q}[x])$s, $M$, a $\mathcal{D}_{m,n}(\mathbb{Q}[x])$, $D$, a list of $\mathbb{Q}[x]$s, $v$, and a list of $\mathcal{T}_{n}(\mathbb{Q}[x])$s, $N$, such that $MAN=D$, $A=M^{-1}DN^{-1}$, and $D_{i,i}=v_iD_{i-1,i-1}$ for $i=1$ to $i=\min(m,n)$.
 			\implementation
 				\begin{enumerate}
 					\item Let $D$ be a copy of $A$.
-					\item Let $\langle M,N\rangle$ receive the results of executing \procedurehr{4} on the pair $\langle m,n\rangle$ and the following procedure:
+					\item Let $\langle M,N\rangle$ receive the results of executing \procedurehr{2.3} on the pair $\langle m,n\rangle$ and the following procedure:
 						\begin{enumerate}
-							\item Execute \procedurehr{10} on the matrix $D$ and let $\langle v\rangle$ receive.
+							\item Execute \procedurehr{2.9} on the matrix $D$ and let $\langle v\rangle$ receive.
 						\end{enumerate}
 					\item \textbf{Verify that $D_{i,i}=v_iD_{i-1,i-1}$ for $i=1$ to $i=\min(m,n)$.}
 					\item \textbf{Verify that $M_*AN_*=D$.}
 					\item Hence verify that $A=I_mAI_n={M^{-1}}_*M_*AN_*{N^{-1}}_*={M^{-1}}_*D{N^{-1}}_*$.
 					\item \textbf{Yield the tuple $\langle M,D,v,N\rangle$.}
 				\end{enumerate}
-		\procedure[Compound matrix of matrix product calculation]{22}
+		\procedure[Compound matrix of matrix product calculation]{2.21}
 			\objective
 				Choose integers $0\le k\le\min(m,n,p)$. Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$. Also choose a $\mathcal{M}_{n,p}(\mathbb{Q}[x])$, $B$. The objective of the following instructions is to show that $C_k(AB)=C_k(A)C_k(B)$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{21} on $A$ and let $\langle M,D,,N\rangle$ receive.
-					\item Using repeated applications of \procedurehr{20}, verify that $C_k(AB)$
+					\item Execute \procedurehr{2.20} on $A$ and let $\langle M,D,,N\rangle$ receive.
+					\item Using repeated applications of \procedurehr{2.19}, verify that $C_k(AB)$
 					\begin{enumerate}
 						\item $=C_k({M^{-1}}_1\cdots {M^{-1}}_{\lvert M\rvert}D{N^{-1}}_1\cdots {N^{-1}}_{\lvert N\rvert}B)$
 						\item $=C_k({M^{-1}}_1)\cdots C_k({M^{-1}}_{\lvert M\rvert})*C_k(D)*C_k({N^{-1}}_1)\cdots C_k({N^{-1}}_{\lvert N\rvert})C_k(B)$
@@ -631,13 +1006,13 @@
 						\item $=C_k(A)C_k(B)$.
 					\end{enumerate}
 				\end{enumerate}
-		\procedure[Determinant equals product of diagonal entries verification]{23}
+		\procedure[Determinant equals product of diagonal entries verification]{2.22}
 			\objective
-				Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$. Let $D$ be a copy of $A$. Execute \procedurehr{10} on $D$. The objective of the following instructions is to show that $\det(A)$ is the product of the diagonal entries of $D$.
+				Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$. Let $D$ be a copy of $A$. Execute \procedurehr{2.9} on $D$. The objective of the following instructions is to show that $\det(A)$ is the product of the diagonal entries of $D$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{21} on $A$ and let $\langle M,D,,N\rangle$ receive.
-					\item Using \procedurehr{11} and \procedurehr{22}, verify that $\det(A)$
+					\item Execute \procedurehr{2.20} on $A$ and let $\langle M,D,,N\rangle$ receive.
+					\item Using \procedurehr{2.10} and \procedurehr{2.21}, verify that $\det(A)$
 					\begin{enumerate}
 						\item $=C_m(A)$
 						\item $=C_m({M^{-1}}_1\cdots {M^{-1}}_{\lvert M\rvert}D{N^{-1}}_1\cdots {N^{-1}}_{\lvert N\rvert})$
@@ -645,9 +1020,9 @@
 						\item $=1\cdots 1C_m(D)1\cdots 1=C_m(D)$
 						\item $=\det(D)$.
 					\end{enumerate}
-					\item \textbf{Using \procedurehr{11}, verify that $\det(D)$ is the product of the diagonal entries of $D$.}
+					\item \textbf{Using \procedurehr{2.10}, verify that $\det(D)$ is the product of the diagonal entries of $D$.}
 				\end{enumerate}
-		\procedure[Transpose calculation]{24}
+		\procedure[Transpose calculation]{2.23}
 			\objective
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$. The objective of the following instructions is to construct a $\mathcal{M}_{n,m}(\mathbb{Q}[x])$, $A^T$.
 			\implementation
@@ -662,9 +1037,9 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle A^T\rangle$.}
 				\end{enumerate}
-		\notation{16}
-			Let us use the notation $A^T$ for the result yielded by executing \procedurehr{24} on $A$.
-		\procedure[Transpose of product verification]{25}
+		\notation{2.11}
+			Let us use the notation $A^T$ for the result yielded by executing \procedurehr{2.23} on $A$.
+		\procedure[Transpose of product verification]{2.24}
 			\objective
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$, and a $\mathcal{M}_{n,k}(\mathbb{Q}[x])$, $B$. The objective of the following instructions is to show that $B^TA^T=(AB)^T$.
 			\implementation
@@ -674,18 +1049,18 @@
 					\begin{enumerate}
 						\item For $j=1$ to $j=m$:
 						\begin{enumerate}
-							\item Using \procedurehr{24}, verify that $(B^TA^T)_{i,j}=\sum_{l=0}^n B_{l,i}A_{j,l}=\sum_{l=0}^n A_{j,l}B_{l,i}=(AB)_{j,i}=((AB)^T)_{i,j}$.
+							\item Using \procedurehr{2.23}, verify that $(B^TA^T)_{i,j}=\sum_{l=0}^n B_{l,i}A_{j,l}=\sum_{l=0}^n A_{j,l}B_{l,i}=(AB)_{j,i}=((AB)^T)_{i,j}$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Therefore verify that $B^TA^T=(AB)^T$.}
 				\end{enumerate}
-		\procedure[Determinant of transpose verification]{26}
+		\procedure[Determinant of transpose verification]{2.25}
 			\objective
 				Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$. The objective of the following instructions is to show that $\det(A^T)=\det(A)$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{21} on $A$ and let $\langle M,D,,N\rangle$ receive.
-					\item Therefore using procedures \procedurehr{23} and \procedurehr{25}, verify that $\det(A^T)$
+					\item Execute \procedurehr{2.20} on $A$ and let $\langle M,D,,N\rangle$ receive.
+					\item Therefore using procedures \procedurehr{2.22} and \procedurehr{2.24}, verify that $\det(A^T)$
 					\begin{enumerate}
 						\item $=\det(({M^{-1}}_1\cdots {M^{-1}}_{\lvert M\rvert}D{N^{-1}}_1\cdots {N^{-1}}_{\lvert N\rvert})^T)$
 						\item $=\det(({N^{-1}}_{\lvert N\rvert})^T\cdots({N^{-1}}_1)^TD^T({M^{-1}}_{\lvert M\rvert})^T\cdots({M^{-1}}_1)^T)$
@@ -695,7 +1070,7 @@
 						\item $=\det(A)$.
 					\end{enumerate}
 				\end{enumerate}
-		\procedure[Compound matrix of transpose verification]{27}
+		\procedure[Compound matrix of transpose verification]{2.26}
 			\objective
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$, and an integer $0\le k\le\min(m,n)$. The objective of the following instructions is to show that $C_k(A)^T=C_k(A^T)$.
 			\implementation
@@ -704,14 +1079,14 @@
 					\begin{enumerate}
 						\item For each column label $J$ of $C_k(A^T)$, do the following:
 						\begin{enumerate}
-							\item Using \procedurehr{26}, verify that $(C_k(A^T))_{\ul{I},\ul{J}}=\det((A^T)_{I,J})=\det(A_{J,I})=(C_k(A))_{\ul{J},\ul{I}}$.
+							\item Using \procedurehr{2.25}, verify that $(C_k(A^T))_{\ul{I},\ul{J}}=\det((A^T)_{I,J})=\det(A_{J,I})=(C_k(A))_{\ul{J},\ul{I}}$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Therefore verify that $(C_k(A))^T=(C_k(A^T))$.}
 				\end{enumerate}
-		\procedure[Linear system solution construction]{28}
+		\procedure[Linear system solution construction]{2.27}
 			\objective
-				Choose a $\mathcal{M}_{m,n}(\mathbb{Q})$, $A$, and a $\mathcal{M}_{m,p}(\mathbb{Q})$, $B$. Execute \procedurehr{21} on $A$ and let $\langle M,D,,N\rangle$ receive the result. If the indices of the rows of $D$ that are entirely zero are also the indices of the rows of $MB$ that are entirely zero, then the objective of the following instructions is to construct a $\mathcal{M}_{n,p}(\mathbb{Q})$ $E$ such that $AE=B$.
+				Choose a $\mathcal{M}_{m,n}(\mathbb{Q})$, $A$, and a $\mathcal{M}_{m,p}(\mathbb{Q})$, $B$. Execute \procedurehr{2.20} on $A$ and let $\langle M,D,,N\rangle$ receive the result. If the indices of the rows of $D$ that are entirely zero are also the indices of the rows of $MB$ that are entirely zero, then the objective of the following instructions is to construct a $\mathcal{M}_{n,p}(\mathbb{Q})$ $E$ such that $AE=B$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that $A=M^{-1}DN^{-1}$.
@@ -729,16 +1104,16 @@
 					\end{enumerate}
 					\item Verify that $DC=MB$.
 					\item Let $E$ be $NC$.
-					\item \textbf{Therefore using \procedurehr{6}, verify that $AE=M^{-1}DN^{-1}E=M^{-1}DN^{-1}NC=M^{-1}DI_nC=M^{-1}DC=M^{-1}MB=I_mB=B$.}
+					\item \textbf{Therefore using \procedurehr{2.5}, verify that $AE=M^{-1}DN^{-1}E=M^{-1}DN^{-1}NC=M^{-1}DI_nC=M^{-1}DC=M^{-1}MB=I_mB=B$.}
 					\item \textbf{Yield the tuple $\langle E\rangle$.}
 				\end{enumerate}
-		\notation{17}
-			The notation $A\backslash B$ shall be used to refer to the result yielded by executing \procedurehr{28} on matrices $A$ and $B$.
-		\notation{18}
+		\notation{2.12}
+			The notation $A\backslash B$ shall be used to refer to the result yielded by executing \procedurehr{2.27} on matrices $A$ and $B$.
+		\notation{2.13}
 			Make an analogous procedure to yield an $F$ such that $FA=B$. The notation $B/A$ shall be used to refer to the $F$ yielded by invoking this procedure.
-		\procedure{29}
+		\procedure{2.28}
 			\objective
-				Choose a $\mathcal{M}_{m,n}(\mathbb{Q})$, $A$, a $\mathcal{M}_{n,p}(\mathbb{Q})$, $E$, and a $\mathcal{M}_{m,p}(\mathbb{Q})$, $B$ such that $AE=B$. Execute \procedurehr{21} on $A$ and let $\langle M,D,,N\rangle$ receive the result. If the indices of the rows of $D$ that are entirely zero are not also the indices of the rows of $M_*B$ that are entirely zero, then the objective of the following instructions is to show that $0\ne 0$.
+				Choose a $\mathcal{M}_{m,n}(\mathbb{Q})$, $A$, a $\mathcal{M}_{n,p}(\mathbb{Q})$, $E$, and a $\mathcal{M}_{m,p}(\mathbb{Q})$, $B$ such that $AE=B$. Execute \procedurehr{2.20} on $A$ and let $\langle M,D,,N\rangle$ receive the result. If the indices of the rows of $D$ that are entirely zero are not also the indices of the rows of $M_*B$ that are entirely zero, then the objective of the following instructions is to show that $0\ne 0$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that ${M^{-1}}_*D{N^{-1}}_*E=AE=B$.
@@ -748,17 +1123,17 @@
 					\item Let $j$ be an integer such that $(M_*B)_{i,j}\ne 0$.
 					\item \textbf{Now verify that $0=D_{i,j}=(M_*B)_{i,j}\ne 0$.}
 				\end{enumerate}
-		\procedure{30}
+		\procedure{2.29}
 			\objective
 				Choose two $\mathcal{M}_{m,m}(\mathbb{Q})$s, $A$ and $B$, such that $AB=I_m$. The objective of the following instructions is to show that either $0=1$ or $BA=I_m$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{21} on $B$ and let $\langle M,D,,N\rangle$ receive the result.
+					\item Execute \procedurehr{2.20} on $B$ and let $\langle M,D,,N\rangle$ receive the result.
 					\item Verify that $B={M^{-1}}_*D{N^{-1}}_*$.
 					\item If $D$ has a zero on its diagonal, then do the following:
 					\begin{enumerate}
-						\item Using \procedurehr{23}, verify that $\det(I_m)=\det(AB)=\det(A)\det(B)=\det(A)\det(D)=\det(A)*0=0$.
-						\item Using \procedurehr{11}, verify that $\det(I_m)=1^m=1$.
+						\item Using \procedurehr{2.22}, verify that $\det(I_m)=\det(AB)=\det(A)\det(B)=\det(A)\det(D)=\det(A)*0=0$.
+						\item Using \procedurehr{2.10}, verify that $\det(I_m)=1^m=1$.
 						\item Therefore verify that $0=1$.
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
@@ -769,7 +1144,7 @@
 						\item \textbf{Therefore verify that $BA=B(B\backslash I_m)=I_m$.}
 					\end{enumerate}
 				\end{enumerate}
-		\procedure{31}
+		\procedure{2.30}
 			\objective
 				Choose an $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $M$, and an $\mathcal{M}_{m,m}(\mathbb{Q})$, $B$. The objective of the following instructions is to construct a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $Q$, and a $\mathcal{M}_{m,m}(\mathbb{Q})$, $R$, such that $M=(xI_m-B)Q+R$.
 			\implementation
@@ -782,15 +1157,15 @@
 					\item \textbf{Yield the tuple $\langle Q,R\rangle$.}
 				\end{enumerate}
 			\textbf{Make an analogous procedure that instead has the objective of constructing a $Q$ and $R$ such that $M=Q(xI_m-B)+R$.}
-		\procedure{32}
+		\procedure{2.31}
 			\objective
 				Choose two $\mathcal{M}_{m,m}(\mathbb{Q})$s, $B,A$, and two lists of $\mathcal{T}_{m}(\mathbb{Q}[x])$s such that $xI_m-B=M(xI_m-A)N$. The objective of the following instructions is to either show that $0=1$ or to construct $\mathcal{M}_{m,m}(\mathbb{Q})$s $R_1$ and $R_3$ such that $I_m=R_1R_3$ and $B=R_1AR_3$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that $(xI_m-B)N^{-1}=M(xI_m-A)NN^{-1}=M(xI_m-A)I_m=M(xI_m-A)$.
-					\item Execute \procedurehr{31} on $\langle M,B\rangle$ and let $\langle Q_1,R_1\rangle$ receive.
+					\item Execute \procedurehr{2.30} on $\langle M,B\rangle$ and let $\langle Q_1,R_1\rangle$ receive.
 					\item Verify that $M=(xI_m-B)Q_1+R_1$.
-					\item Execute \procedurehr{31} on $\langle N^{-1},A\rangle$ and let $\langle Q_2,R_2\rangle$ receive.
+					\item Execute \procedurehr{2.30} on $\langle N^{-1},A\rangle$ and let $\langle Q_2,R_2\rangle$ receive.
 					\item Verify that $N^{-1}=Q_2(xI_m-A)+R_2$.
 					\item By substituting $M$ and $N^{-1}$ into (2), verify that $(xI_m-B)(Q_2(xI_m-A)+R_2)=((xI_m-B)Q_1+R_1)(xI_m-A)$.
 					\item By rearranging both sides, verify that $(xI_m-B)(Q_2-Q_1)(xI_m-A)=R_1(xI_m-A)-(xI_m-B)R_2$.
@@ -799,16 +1174,16 @@
 					\item Therefore by adding $(xI_m-B)R_2$ to both sides, verify that $xR_1-R_1A=R_1(xI_m-A)=(xI_m-B)R_2=xR_2-BR_2$.
 					\item By equating the coefficients of $x$ on both sides, verify that $R_1=R_2$.
 					\item Therefore verify that $R_1A=BR_1$.
-					\item Execute \procedurehr{31} on $\langle M^{-1},A\rangle$ and let $\langle Q_3,R_3\rangle$ receive.
+					\item Execute \procedurehr{2.30} on $\langle M^{-1},A\rangle$ and let $\langle Q_3,R_3\rangle$ receive.
 					\item Verify that $M^{-1}=(xI_m-A)Q_3+R_3$.
 					\item Verify that $I_m=MM^{-1}=((xI_m-B)Q_1+R_1)M^{-1}=(xI_m-B)Q_1M^{-1}+R_1M^{-1}=(xI_m-B)Q_1M^{-1}+R_1(xI-A)Q_3+R_1R_3=(xI_m-B)Q_1M^{-1}+(xI-B)R_1Q_3+R_1R_3=(xI_m-B)(Q_1M^{-1}+R_1Q_3)+R_1R_3$.
 					\item By equating the powers of $x$ on both sides, verify that $Q_1M^{-1}+R_1Q_3=0$.
 					\item By substituting zero for $Q_1M^{-1}+R_1Q_3$, \textbf{verify that $I_m=(xI_m-B)0_{m\times m}+R_1R_3=R_1R_3$.}
-					\item \textbf{Therefore using \procedurehr{30}, verify that $R_3R_1=I_m$.}
+					\item \textbf{Therefore using \procedurehr{2.29}, verify that $R_3R_1=I_m$.}
 					\item \textbf{Also, verify that $B=BI_m=BR_1R_3=R_1AR_3$.}
 					\item \textbf{Yield the pair $(R_1,R_3)$.}
 				\end{enumerate}
-		\procedure{33}
+		\procedure{2.32}
 			\objective
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$. Choose two integers $1\le i,j\le m$ such that $i\ne j$. The objective of the following instructions is to negate row $i$ and swap it with row $j$ using only elementary row and column operations.
 			\implementation
@@ -820,17 +1195,17 @@
 					\item \textbf{Verify that the $i^{th}$ row has been negated and swapped with the $j^{th}$ row.}
 				\end{enumerate}
 		\textbf{Make an analogous procedure to negate column $i$ and swap it with column $j$.}
-		\procedure{34}
+		\procedure{2.33}
 			\objective
 				Choose a $\mathcal{D}_{m,n}(\mathbb{Q}[x])$, $A$. Choose two integers $1\le i,j\le\min(m,n)$ such that $i\ne j$. The objective of the following instructions is to swap $B_{i,i}$ and $B_{j,j}$ using only elementary row and column operations.
 			\implementation
 				\begin{enumerate}
 					\item Let $A$ be our working matrix.
-					\item Use \procedurehr{33} to negate the $i^{th}$ row and swap it with the $j^{th}$ row.
-					\item Use \procedurehr{33} to negate the $i^{th}$ column and swap it with the $j^{th}$ column.
+					\item Use \procedurehr{2.32} to negate the $i^{th}$ row and swap it with the $j^{th}$ row.
+					\item Use \procedurehr{2.32} to negate the $i^{th}$ column and swap it with the $j^{th}$ column.
 					\item \textbf{Therefore, overall verify that $B_{i,i}$ and $B_{j,j}$ have been swapped.}
 				\end{enumerate}
-		\procedure{35}
+		\procedure{2.34}
 			\objective
 				Choose a $\mathcal{D}_{m,n}(\mathbb{Q}[x])$, $A$. Choose two integers $1\le i,j\le\min(m,n)$ such that $i\ne j$. Choose a rational $k\ne 0$. The objective of the following instructions is to multiply $B_{i,i}$ by $k$ and $B_{j,j}$ by $\frac{1}{k}$ using only elementary row and column operations.
 			\implementation
@@ -840,22 +1215,22 @@
 					\item Subtract $\frac{1}{k}$ times row $j$ from row $i$.
 					\item Add $k$ times row $i$ to row $j$.
 					\item Verify that the $i^{th}$ row has been scaled by $k$, the $j^{th}$ row by $-\frac{1}{k}$, and that both these rows are swapped.
-					\item Use \procedurehr{33} to negate the $i^{th}$ row and swap it with the $j^{th}$ row.
+					\item Use \procedurehr{2.32} to negate the $i^{th}$ row and swap it with the $j^{th}$ row.
 					\item \textbf{Therefore, overall verify that $B_{i,i}$ has been multiplied by $k$, and $B_{j,j}$ by $\frac{1}{k}$.}
 				\end{enumerate}
-		\notation{19}
+		\notation{2.14}
 			Let us use the notation "$p$ is monic" as a shorthand for "$x^{\deg(p)}\circ p=1$".
-		\procedure{36}
+		\procedure{2.35}
 			\objective
-				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \procedurehr{10} on the polynomial matrix $xI-A$ and let $\langle B\rangle$ be the result. The objective of the following instructions is to show that either none of the diagonal entries of $B$ are equal to zero, or $1=0$.
+				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \procedurehr{2.9} on the polynomial matrix $xI-A$ and let $\langle B\rangle$ be the result. The objective of the following instructions is to show that either none of the diagonal entries of $B$ are equal to zero, or $1=0$.
 			\implementation
 				\begin{enumerate}
-					\item Using \procedurehr{11}, verify that $\det(xI-A)$ is a monic polynomial of degree $m$.
-					\item Therefore using \procedurehr{23}, verify that $\det(B)=\det(xI-A)$.
+					\item Using \procedurehr{2.10}, verify that $\det(xI-A)$ is a monic polynomial of degree $m$.
+					\item Therefore using \procedurehr{2.22}, verify that $\det(B)=\det(xI-A)$.
 					\item Therefore verify that $\det(B)$ is a monic polynomial of degree $m$.
 					\item If any of the diagonal entries of $B$ equal zero, then do the following:
 					\begin{enumerate}
-						\item Using \procedurehr{11}, verify that $\det(B)=B_{1,1}B_{2,2}\cdots B_{m,m}=0$.
+						\item Using \procedurehr{2.10}, verify that $\det(B)=B_{1,1}B_{2,2}\cdots B_{m,m}=0$.
 						\item Therefore using (3) and (4a), verify that $1=0$.
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
@@ -864,13 +1239,11 @@
 						\item \textbf{Verify that none of the diagonal entries of $B$ equal zero.}
 					\end{enumerate}
 				\end{enumerate}
-		\notation{20}
-			Let us use the notation $[P]$ as a shorthand for "if $P$, then yield $1$, otherwise yield $0$".
-		\notation{21}
+		\notation{2.15}
 			Let us use the notation $\cols(A)$ as a shorthand for "the number of columns of $A$".
-		\notation{22}
+		\notation{2.16}
 			Let us use the notation $\rows(A)$ as a shorthand for "the number of rows of $A$".
-		\procedure[Block diagonal construction]{37}
+		\procedure[Block diagonal construction]{2.36}
 			\objective
 				Choose a list of $\mathcal{M}_{*}(\mathbb{Q})$, $C$. Let $m=\sum_{i=1}^{\lvert C\rvert}\cols(C_i)$. The objective of the following instructions is to construct a $\mathcal{M}_{m,m}(\mathbb{Q})$, $\bdiag(C)$.
 			\implementation
@@ -885,14 +1258,14 @@
 					\item Verify that $\cols(E)=\sum_{i=1}^{\lvert C\rvert}\cols(C_i)=m$.
 					\item \textbf{Yield the tuple $\langle E\rangle$.}
 				\end{enumerate}
-		\notation{23}
-			Let us use the notation $\bdiag(C)$ as a shorthand for the result yielded by executing \procedurehr{37} on $C$.
-		\procedure{38}
+		\notation{2.17}
+			Let us use the notation $\bdiag(C)$ as a shorthand for the result yielded by executing \procedurehr{2.36} on $C$.
+		\procedure{2.37}
 			\objective
-				Choose a positive integer $m$ and an $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \procedurehr{21} on the polynomial matrix $xI_m-A$ and let $\langle ,B,v,\rangle$ be the result. The objective of the following instructions is to either show that $0<0$ or to construct an integer $a$ such that $\sum_{i=a}^m\deg(B_{i,i})=m$, $\deg(B_{i,i})>0$ for $i=a$ to $i=m$, and $\deg(B_{i,i})=0$ for $i=1$ to $i=a-1$.
+				Choose a positive integer $m$ and an $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \procedurehr{2.20} on the polynomial matrix $xI_m-A$ and let $\langle ,B,v,\rangle$ be the result. The objective of the following instructions is to either show that $0<0$ or to construct an integer $a$ such that $\sum_{i=a}^m\deg(B_{i,i})=m$, $\deg(B_{i,i})>0$ for $i=a$ to $i=m$, and $\deg(B_{i,i})=0$ for $i=1$ to $i=a-1$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{36} on $A$.
+					\item Execute \procedurehr{2.35} on $A$.
 					\item If $\deg(B_{i,i})=0$ for $i=1$ to $i=m$, then do the following:
 					\begin{enumerate}
 						\item Verify that $\det(xI_m-A)=\det(B)=B_{1,1}B_{2,2}\cdots B_{m,m}$.
@@ -914,7 +1287,7 @@
 						\item \textbf{Yield the tuple $\langle a\rangle$.}
 					\end{enumerate}
 				\end{enumerate}
-		\procedure[Rational canonical form construction]{39}
+		\procedure[Rational canonical form construction]{2.38}
 			\objective
 				Choose a $\mathbb{Q}[x]$, $p=x^k+p_1x^{k-1}+p_2x^{k-2}+\cdots+p_kx^0$ such that $k>0$. The objective of the following instructions is to construct a $\mathcal{M}_{k,k}(\mathbb{Q})$, $\rcan(p)$.
 			\implementation
@@ -924,9 +1297,9 @@
 					\item Let $C$'s last column from top to bottom be $-p_k, -p_{k-1},\cdots,-p_1$.
 					\item \textbf{Yield the tuple $\langle C\rangle$.}
 				\end{enumerate}
-		\notation{24}
-			Let us use $\rcan(p)$ as a shorthand for the result yielded by executing \procedurehr{39} on $p$.
-		\procedure{40}
+		\notation{2.18}
+			Let us use $\rcan(p)$ as a shorthand for the result yielded by executing \procedurehr{2.38} on $p$.
+		\procedure{2.39}
 			\objective
 				Choose a monic $\mathbb{Q}[x]$, $p$ such that $\deg(p)>0$. Let $k=\deg(p)$. Choose a $\mathcal{M}_{k,k}(\mathbb{Q}[x])$, $D$, such that $D=xI_k-\rcan(p)$. The objective of the following instructions is to transform $D$ into $\bdiag(1,\cdots,1,p)$ by a sequence of elementary operations.
 			\implementation
@@ -937,32 +1310,32 @@
 					\item Verify that $D$'s last column is $p$ followed by some other polynomials.
 					\item For $i=2$ going up to $i=k$, subtract $D_{i, k}$ times column $i-1$ from column $k$.
 					\item Verify that $D$'s last column is now $p$ followed by zeros.
-					\item For $i=2$ going up to $i=k$, negate row $i-1$ and exchange it with row $i$ using \procedurehr{33}.
+					\item For $i=2$ going up to $i=k$, negate row $i-1$ and exchange it with row $i$ using \procedurehr{2.32}.
 					\item \textbf{Therefore verify that $D=\bdiag(1,\cdots,1,p)$.}
 				\end{enumerate}
-		\notation{25}
+		\notation{2.19}
 			Let us use the notation $\mon(p)$ as a shorthand for "$\frac{p}{x^{\deg(p)}\circ p}$".
-		\procedure{41}
+		\procedure{2.40}
 			\objective
-				Choose a positive integer $m$ and an $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \procedurehr{4} on the polynomial matrix $xI_m-A$ and let $\langle,B,,\rangle$ receive the result. Execute \procedurehr{38} on $A$ and let $\langle a\rangle$ receive the result. Let $E_i=\rcan(\mon(B_{a-1+i,a-1+i}))$ for $i=1$ to $i=m+1-a$. The objective of the following instructions is to first show that $\cols(\bdiag(E))=m$, and second to apply a sequence of elementary operations on $xI_m-\bdiag(E)$ to obtain the matrix $B$.
+				Choose a positive integer $m$ and an $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \procedurehr{2.3} on the polynomial matrix $xI_m-A$ and let $\langle,B,,\rangle$ receive the result. Execute \procedurehr{2.37} on $A$ and let $\langle a\rangle$ receive the result. Let $E_i=\rcan(\mon(B_{a-1+i,a-1+i}))$ for $i=1$ to $i=m+1-a$. The objective of the following instructions is to first show that $\cols(\bdiag(E))=m$, and second to apply a sequence of elementary operations on $xI_m-\bdiag(E)$ to obtain the matrix $B$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that the diagonal of $B$ comprises $x-1$ rationals followed by $B_{a,a},B_{a+1,a+1},\cdots,B_{m,m}$.
-					\item \textbf{Using \procedurehr{40}, verify that $\cols(\bdiag(E))=\sum_{i=1}^{\lvert E\rvert}\cols(E_i)=\sum_{i=1}^{\lvert E\rvert}\cols(\rcan(\mon(B_{a-1+i,a-1+i})))=\sum_{i=1}^{\lvert E\rvert}\deg(\mon(B_{a-1+i,a-1+i}))=\sum_{i=1}^{m+1-a}\deg(B_{a-1+i,a-1+i})=\sum_{i=a}^m\deg(B_{i,i})=m$.}
+					\item \textbf{Using \procedurehr{2.39}, verify that $\cols(\bdiag(E))=\sum_{i=1}^{\lvert E\rvert}\cols(E_i)=\sum_{i=1}^{\lvert E\rvert}\cols(\rcan(\mon(B_{a-1+i,a-1+i})))=\sum_{i=1}^{\lvert E\rvert}\deg(\mon(B_{a-1+i,a-1+i}))=\sum_{i=1}^{m+1-a}\deg(B_{a-1+i,a-1+i})=\sum_{i=a}^m\deg(B_{i,i})=m$.}
 					\item Let $F=xI_m-\bdiag(E)$.
 					\item Now for $i=1$ to $i=\lvert E\rvert$:
 					\begin{enumerate}
 						\item Let $j=1+\sum_{r=1}^{i-1}\cols(E_r)$.
 						\item Let $k=j+\cols(E_i)$.
-						\item Apply \procedurehr{40} on the tuple $\langle\mon(B_{a-1+i,a-1+i}),F_{[j:k],[j:k]}\rangle$.
+						\item Apply \procedurehr{2.39} on the tuple $\langle\mon(B_{a-1+i,a-1+i}),F_{[j:k],[j:k]}\rangle$.
 					\end{enumerate}
 					\item Now verify that $F$ is a $\mathcal{D}_{m,m}(\mathbb{Q})$.
 					\item Also verify that the diagonal of $F$ comprises $\mon(B_{a,a}),\mon(B_{a+1,a+1}),\cdots,\mon(B_{m,m})$ and $a-1$ $1$s.
-					\item Rearrange the diagonal of $F$ so that $\mon(B_{i,i})$ is at the $i^{th}$ position on the diagonal for $i=a$ to $i=m$ by doing pairwise swaps. In general, swap the $i^{th}$ and $j^{th}$ diagonal entries using \procedurehr{34}.
+					\item Rearrange the diagonal of $F$ so that $\mon(B_{i,i})$ is at the $i^{th}$ position on the diagonal for $i=a$ to $i=m$ by doing pairwise swaps. In general, swap the $i^{th}$ and $j^{th}$ diagonal entries using \procedurehr{2.33}.
 					\item For $i=1$ to $i=m-1$, do the following:
 					\begin{enumerate}
 						\item Let $k=\frac{x^{\deg(B_{i,i})}\circ B_{i,i}}{x^{\deg(F_{i,i})}\circ F_{i,i}}$.
-						\item Scale $B_{i,i}$ by $k$ and $B_{i+1,i+1}$ by $\frac{1}{k}$ using \procedurehr{35}.
+						\item Scale $B_{i,i}$ by $k$ and $B_{i+1,i+1}$ by $\frac{1}{k}$ using \procedurehr{2.34}.
 						\item Now verify that $F_{i,i}=B_{i,i}$.
 					\end{enumerate}
 					\item Now verify that $x^m\circ\det(F)=x^m\circ\det(xI_m-\bdiag(E))=1=x^m\circ\det(xI_m-A)=x^m\circ\det(B)$.
@@ -970,37 +1343,37 @@
 					\item Therefore verify that $F_{m,m}=B_{m,m}$.
 					\item \textbf{Therefore verify that $F=B$.}
 				\end{enumerate}
-		\procedure{42}
+		\procedure{2.41}
 			\objective
-				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \procedurehr{38} on $A$ and let $\langle a\rangle$ receive the result. Let $E_i=\rcan(\mon(B_{a-1+i,a-1+i}))$ for $i=1$ to $i=m+1-a$. The objective of the following instructions is to either show that $0=1$ or to construct $\mathcal{M}_{m,m}(\mathbb{Q})$s $R,T$ such that $A=R\bdiag(E)T$, $RT=I_m$, and $TR=I_m$.
+				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \procedurehr{2.37} on $A$ and let $\langle a\rangle$ receive the result. Let $E_i=\rcan(\mon(B_{a-1+i,a-1+i}))$ for $i=1$ to $i=m+1-a$. The objective of the following instructions is to either show that $0=1$ or to construct $\mathcal{M}_{m,m}(\mathbb{Q})$s $R,T$ such that $A=R\bdiag(E)T$, $RT=I_m$, and $TR=I_m$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{21} on the polynomial matrix $xI_m-A$ and let $\langle P,B,,Q\rangle$ be the result.
+					\item Execute \procedurehr{2.20} on the polynomial matrix $xI_m-A$ and let $\langle P,B,,Q\rangle$ be the result.
 					\item Verify that $P_*(xI_m-A)Q_*=B$.
 					\item Verify that $xI_m-A={P^{-1}}_*B{Q^{-1}}_*$.
-					\item Let $Z$ be a variant of \procedurehr{21} where every occurence of \procedurehr{10} in its instructions is replaced with \procedurehr{41}, and where every mention of $v$ is ignored.
+					\item Let $Z$ be a variant of \procedurehr{2.20} where every occurence of \procedurehr{2.9} in its instructions is replaced with \procedurehr{2.40}, and where every mention of $v$ is ignored.
 					\item Execute procedure $Z$ on the matrix $xI_m-\bdiag(E)$ and let $\langle M,,,N\rangle$ receive the result.
 					\item Verify that $M_*(xI_m-\bdiag(E))N_*=B$.
 					\item Verify that $xI_m-A={P^{-1}}_*B{Q^{-1}}_*={P^{-1}}_*M(xI_m-\bdiag(E))N{Q^{-1}}_*$.
-					\item Execute \procedurehr{32} on the matrices $\langle A,{P}^{-1}M,\bdiag(E),N{Q}^{-1}\rangle$. Let the tuple $\langle R,T\rangle$ be the result.
+					\item Execute \procedurehr{2.31} on the matrices $\langle A,{P}^{-1}M,\bdiag(E),N{Q}^{-1}\rangle$. Let the tuple $\langle R,T\rangle$ be the result.
 					\item \textbf{Verify that $A=R\bdiag(E)T$.}
 					\item \textbf{Verify that $RT=I_m$.}
 					\item \textbf{Verify that $TR=I_m$.}
 					\item \textbf{Yield the tuple $\langle R,E,T\rangle$.}
 				\end{enumerate}
-		\procedure{43}
+		\procedure{2.42}
 			\objective
 				Choose a $\mathbb{Q}[x]$, $r=r_0x^t+r_1x^{t-1}+\cdots+r_tx^0$, and $\mathcal{M}_{m,m}(\mathbb{Q})$s, $R,A,S$ such that $SR=I_m$. The objective of the following instructions is to show that $r(RAS)=Rr(A)S$.
 			\implementation
 				\begin{enumerate}
 					\item \textbf{Verify that $r(RAS)=r_0(RAS)^t+r_1(RAS)^{t-1}+\cdots+r_t(RAS)^0=r_0RA^tS+r_1RA^{t-1}S+\cdots+r_tRA^0S=R(r_0A^t+r_1A^{t-1}+\cdots+r_tA^0)S=Rr(A)S$.}
 				\end{enumerate}
-		\procedure{44}
+		\procedure{2.43}
 			\objective
 				Choose a list of $\mathcal{M}_{m,m}(\mathbb{Q})$s, $A$, and a $\mathbb{Q}[x]$, $r=r_0x^t+r_1x^{t-1}+\cdots+r_tx^0$. The objective of the following instructions is to show that $r(\bdiag(A))=\bdiag(r(A))$.
 			\implementation
 				\begin{enumerate}
-					\item For $i=0$ up to $i=t$, by repeated applications of \procedurehr{9}, verify that $\bdiag(A)^i$ evaluates to $\bdiag(A^i)$ (where the exponentiation is done element-wise).
+					\item For $i=0$ up to $i=t$, by repeated applications of \procedurehr{2.8}, verify that $\bdiag(A)^i$ evaluates to $\bdiag(A^i)$ (where the exponentiation is done element-wise).
 					\item Therefore verify that $r(\bdiag(A))$
 					\begin{enumerate}
 						\item $=r_0\bdiag(A)^t+r_1\bdiag(A)^{t-1}+\cdots+r_t\bdiag(A)^0$
@@ -1009,21 +1382,21 @@
 						\item \textbf{$=\bdiag(r(A))$ (where $r$ is applied element-wise).}
 					\end{enumerate}
 				\end{enumerate}
-		\procedure{45}
+		\procedure{2.44}
 			\objective
-				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$, and a $\mathbb{Q}[x]$, $r$. Execute \procedurehr{42} on the matrix $A$ and let the tuple $\langle R_1,E,R_3\rangle$ receive the result. The objective of the following instructions is to show that $r(A)=R_1\bdiag(r(E))R_3$ (where $r$ is applied element-wise).
+				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$, and a $\mathbb{Q}[x]$, $r$. Execute \procedurehr{2.41} on the matrix $A$ and let the tuple $\langle R_1,E,R_3\rangle$ receive the result. The objective of the following instructions is to show that $r(A)=R_1\bdiag(r(E))R_3$ (where $r$ is applied element-wise).
 			\implementation
 				\begin{enumerate}
 					\item Verify that $R_3R_1=I_m$.
-					\item Using \procedurehr{43}, verify that $r(A)=r(R_1\bdiag(E)R_3)=R_1r(\bdiag(E))R_3$.
-					\item Using \procedurehr{44}, verify that $r(\bdiag(E))=\bdiag(r(E))$ (where $r$ is applied element-wise).
+					\item Using \procedurehr{2.42}, verify that $r(A)=r(R_1\bdiag(E)R_3)=R_1r(\bdiag(E))R_3$.
+					\item Using \procedurehr{2.43}, verify that $r(\bdiag(E))=\bdiag(r(E))$ (where $r$ is applied element-wise).
 					\item \textbf{Therefore verify that $r(A)=R_1\bdiag(r(E))R_3$ (where $r$ is applied element-wise).}
 				\end{enumerate}
-		\notation{26}
+		\notation{2.20}
 			Let us use the notation $e_i$ as a shorthand for "the $\mathcal{M}_{k,1}(\mathbb{Q})$ that is $0$, except for its $i^{th}$ entry which is $1$".
-		\notation{27}
+		\notation{2.21}
 			Let us use the notation $0_{m\times n}$ as a shorthand for "the $\mathcal{M}_{m,m}(\mathbb{Q})$ such that every entry is $0$".
-		\procedure{46}
+		\procedure{2.45}
 			\objective
 				Choose a $\mathbb{Q}[x]$ $p=x^k+p_1x^{k-1}+p_2x^{k-2}+\cdots+p_kx^0$ such that $k>0$. The objective of the following instructions is to show that $p(\rcan(p))=0_{k\times k}$.
 			\implementation
@@ -1041,36 +1414,36 @@
 					\end{enumerate}
 					\item Therefore verify that $p(G)=0_{k\times k}$.
 				\end{enumerate}
-		\procedure{47}
+		\procedure{2.46}
 			\objective
 				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. The objective of the following instructions is to define the $\mathbb{Q}[x]$ $\last_A$ and show that either $1=0$ or $\last_A\ne 0$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{21} on the polynomial matrix $xI_m-A$ and let the tuple $\langle,B,,\rangle$ receive the result.
-					\item Execute \procedurehr{36} on $A$.
+					\item Execute \procedurehr{2.20} on the polynomial matrix $xI_m-A$ and let the tuple $\langle,B,,\rangle$ receive the result.
+					\item Execute \procedurehr{2.35} on $A$.
 					\item Verify that $B_{m,m}\ne 0$.
 					\item Yield $\langle B_{m,m}\rangle$.
 				\end{enumerate}
-		\notation{28}
-			Let us use the notation $\last_A$ as a shorthand for the result of executing \procedurehr{47} on $A$.
-		\procedure{48}
+		\notation{2.22}
+			Let us use the notation $\last_A$ as a shorthand for the result of executing \procedurehr{2.46} on $A$.
+		\procedure{2.47}
 			\objective
 				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. The objective of the following instructions is to either show that $0<0$ or to show that $\last_A(A)=0_{m\times m}$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{21} on the matrix $A$ and let the tuple $\langle M,B,v,N\rangle$ receive the result.
-					\item Execute \procedurehr{38} on $A$ and let $\langle a\rangle$ receive.
-					\item Execute \procedurehr{42} on $A$ and let $\langle R,E,T\rangle$ receive.
+					\item Execute \procedurehr{2.20} on the matrix $A$ and let the tuple $\langle M,B,v,N\rangle$ receive the result.
+					\item Execute \procedurehr{2.37} on $A$ and let $\langle a\rangle$ receive.
+					\item Execute \procedurehr{2.41} on $A$ and let $\langle R,E,T\rangle$ receive.
 					\item For $j=1$ to $j=\lvert E\rvert$:
 					\begin{enumerate}
 						\item Verify that $E_j=\rcan(\mon(B_{a-1+j,a-1+j}))$.
 						\item Verify that $\last_A=B_{m,m}=B_{a-1+j,a-1+j}v_{a+j}v_{a+j+1}\cdots v_m$.
 						\item Let $k=\deg(\mon(B_{a-1+j,a-1+j}))$.
-						\item Therefore using \procedurehr{46} verify that $\last_A(E_j)=B_{m,m}(E_j)=B_{a-1+j,a-1+j}(\rcan(\mon(B_{a-1+j,a-1+j})))\cdot v_{a+j}(E_j)v_{a+j+1}(E_j)\cdots v_m(E_j)=0_{k\times k}v_{a+j}(E_j)v_{a+j+1}(E_j)\cdots v_m(E_j)=0_{k\times k}$.
+						\item Therefore using \procedurehr{2.45} verify that $\last_A(E_j)=B_{m,m}(E_j)=B_{a-1+j,a-1+j}(\rcan(\mon(B_{a-1+j,a-1+j})))\cdot v_{a+j}(E_j)v_{a+j+1}(E_j)\cdots v_m(E_j)=0_{k\times k}v_{a+j}(E_j)v_{a+j+1}(E_j)\cdots v_m(E_j)=0_{k\times k}$.
 					\end{enumerate}
-					\item \textbf{Therefore using \procedurehr{45} verify that $\last_A(A)=R\bdiag(\last_A(E))T=R\bdiag(B_{m,m}(E))T=R0_{m\times m}T=0_{m\times m}$.}
+					\item \textbf{Therefore using \procedurehr{2.44} verify that $\last_A(A)=R\bdiag(\last_A(E))T=R\bdiag(B_{m,m}(E))T=R0_{m\times m}T=0_{m\times m}$.}
 				\end{enumerate}
-		\procedure{49}
+		\procedure{2.48}
 			\objective
 				Choose a monic $\mathbb{Q}[x]$ $p$ such that $\deg(p)>0$. Choose a $\mathbb{Q}[x]$ $g=g_0x^k+g_1x^{k-1}+\cdots+g_kx^0$ such that $g_0\ne 0$ and $k<\deg(p)$. The objective of the following instructions is to show that $g(\rcan(p))\ne 0_{\deg(p)\times \deg(p)}$.
 			\implementation
@@ -1079,7 +1452,7 @@
 					\item Therefore cognizant of $G$'s construction, verify that $g(G)e_1=(g_0G^k+g_1G^{k-1}+\cdots+g_kG^0)e_1=g_0e_{k+1}+g_1e_k+\cdots+g_we_1\ne 0_{\deg(p)\times 1}$.
 					\item \textbf{Therefore verify that $g(G)\ne 0_{\deg(p)\times \deg(p)}$.}
 				\end{enumerate}
-		\procedure{50}
+		\procedure{2.49}
 			\objective
 				Choose two $\mathbb{Q}[x]$s $g=g_0x^k+g_1x^{k-1}+\cdots+g_kx^0$, $p=x^k+p_1x^{k-1}+p_2x^{k-2}+\cdots+p_kx^0$ such that $\deg(p)=\deg(g)>0$ and $g(\rcan(p))=0_{\deg(p)\times\deg(p)}$. The objective of the following instructions is to show that $g=g_0p$.
 			\implementation
@@ -1095,13 +1468,13 @@
 					\end{enumerate}
 					\item \textbf{Therefore verify that $g=g_0p$.}
 				\end{enumerate}
-		\procedure{51}
+		\procedure{2.50}
 			\objective
 				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Choose a $\mathbb{Q}[x]$ $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$ where $p_0\ne 0$, such that $p(A)=0_{m\times m}$. The objective of the following instructions is to either show that $0\ne 0$ or to construct a $\mathbb{Q}[x]$ $f$ such that $p=f\last_A$.
 			\implementation
 				\begin{enumerate}
 					\item Let $F$ be a $1\times 2$ matrix consisting in-order of $p$ and $\last_A$.
-					\item Execute \procedurehr{21} on $F$ and let $\langle M,D,,N\rangle$ receive the result.
+					\item Execute \procedurehr{2.20} on $F$ and let $\langle M,D,,N\rangle$ receive the result.
 					\item Verify that $D_{1,1}\ne 0$.
 					\item Let $g=g_0x^w+g_1x^{w-1}+g_2x^{w-2}+\cdots+g_wx^0=D_{1,1}$ in such a way that $g_0\ne 0$.
 					\item Verify that $F=M^{-1}DN^{-1}=DN^{-1}$.
@@ -1111,396 +1484,25 @@
 					\item Therefore verify that $u=\deg(\last_A)=\deg(D_{1,1}{N^{-1}}_{1,2})\ge\deg(D_{1,1})=\deg(g)=w$.
 					\item Verify that $D=MFN=FN$.
 					\item Therefore verify that $g=D_{1,1}=N_{1,1}p+N_{2,1}\last_A$.
-					\item Therefore using \procedurehr{46}, verify that $g(A)=N_{1,1}(A)p(A)+N_{2,1}(A)\last_A(A)=N_{1,1}(A)0_{m\times m}+N_{2,1}(A)0_{m\times m}=0_{m\times m}$.
-					\item Execute \procedurehr{42} on the matrix $A$ and let the tuple $\langle R_1,E,R_3\rangle$ receive the result.
-					\item Using \procedurehr{45}, and \procedurehr{42}, verify that $\bdiag(g(E))=I_m\bdiag(g(E))I_m=R_3R_1\bdiag(g(E))R_3R_1=R_3g(A)R_1=R_30_{m\times m}R_1=0_{m\times m}$.
+					\item Therefore using \procedurehr{2.45}, verify that $g(A)=N_{1,1}(A)p(A)+N_{2,1}(A)\last_A(A)=N_{1,1}(A)0_{m\times m}+N_{2,1}(A)0_{m\times m}=0_{m\times m}$.
+					\item Execute \procedurehr{2.41} on the matrix $A$ and let the tuple $\langle R_1,E,R_3\rangle$ receive the result.
+					\item Using \procedurehr{2.44}, and \procedurehr{2.41}, verify that $\bdiag(g(E))=I_m\bdiag(g(E))I_m=R_3R_1\bdiag(g(E))R_3R_1=R_3g(A)R_1=R_30_{m\times m}R_1=0_{m\times m}$.
 					\item Let $G=\rcan(\mon(\last_A))$.
 					\item Verify that $g(G)=g(E_{\lvert E\rvert})=\bdiag(g(E))_{[m-u+1:m+1],[m-u+1:m+1]}=0_{u\times u}$.
 					\item If $w<u$, then:
 					\begin{enumerate}
-						\item Using \procedurehr{49}, verify that $g(G)\ne 0_{u\times u}$.
+						\item Using \procedurehr{2.48}, verify that $g(G)\ne 0_{u\times u}$.
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 					\item Otherwise, do the following:
 					\begin{enumerate}
 						\item Verify that $w=u$.
-						\item Using \procedurehr{50}, verify that $g=g_0\last_A$.
+						\item Using \procedurehr{2.49}, verify that $g=g_0\last_A$.
 						\item \textbf{Therefore verify that $p=F_{1,1}=D_{1,1}{N^{-1}}_{1,1}+D_{1,2}{N^{-1}}_{2,1}={N^{-1}}_{1,1}g+{N^{-1}}_{2,1}*0={N^{-1}}_{1,1}g={N^{-1}}_{1,1}g_0\last_A$.}
 						\item \textbf{Yield the tuple $\langle {N^{-1}}_{1,1}g_0\rangle$.}
 					\end{enumerate}
 				\end{enumerate}
-		\procedure[Difference of powers]{52}
-			\objective
-				Choose an integer $n\ge 0$ and a $\mathbb{Q}[x]$ $p=p_0x^n+p_1x^{n-1}+\cdots+p_n$. Let $y,z$ be indeterminates. The objective of the following instructions is to construct a $\mathbb{Q}[y,z]$ $G$ such that $p(z)-p(y)=(z-y)G(y,z)$.
-			\implementation
-				\begin{enumerate}
-					\item Let the $\mathbb{Q}[y,z]$ $G=\sum_{r=1}^n p_{n-r}(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})$.
-					\item Verify that $p(z)-p(y)$
-					\begin{enumerate}
-						\item $=(p_0z^n+p_1z^{n-1}+\cdots+p_n)-(p_0y^n+p_1y^{n-1}+\cdots+p_n)$
-						\item $=(\sum_{r=0}^n p_{n-r}z^r)-(\sum_{r=0}^n p_{n-r}y^r)$
-						\item $=\sum_{r=1}^n p_{n-r}(z^r-y^r)$
-						\item $=\sum_{r=1}^n p_{n-r}(z-y)(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})$
-						\item $=(z-y)\sum_{r=1}^n p_{n-r}(z^{r-1}+z^{r-2}y+\cdots+zy^{r-2}+y^{r-1})$
-						\item $=(z-y)G(y,z)$.
-					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle G\rangle$.}
-				\end{enumerate}
-		\procedure{53}
-			\objective
-				Choose a $\mathbb{Q}[x]$ $p=x^n+p_1x^{n-1}+\cdots+p_n$ and $\mathbb{Q}$s $a_1<a_2<\cdots<a_n<a_{n+1}$ in such a way that for $i=1$ to $i=n+1$, $p(a_i)=0$. The objective of the following instructions is to show that $0\ne 0$.
-			\implementation
-				\begin{enumerate}
-					\item Write $p$ as $1*p$, so that it has two factors.
-					\item For $i=1$ up to $i=n$, do the following:
-					\begin{enumerate}
-						\item Let $g$ be the rightmost factor of $p$.
-						\item If $g(a_i)\ne 0$, do the following:
-						\begin{enumerate}
-							\item For $k=1$ to $k=i-1$, verify that $(a_i-a_k)\ne 0$.
-							\item Verify that $p(a_i)\ne 0$.
-							\item Therefore using (O) and (ii), verify that $0\ne 0$.
-							\item \textbf{Abort procedure.}
-						\end{enumerate}
-						\item Otherwise $g(a_i)=0$. Now do the following:
-						\begin{enumerate}
-							\item Execute \procedurehr{52} on $g$ and let the tuple $\langle G\rangle$ receive the result.
-							\item Let $x$ be an indeterminate.
-							\item Let the $\mathbb{Q}[x]$ $q=q(x)=G(a_i,x)$.
-							\item Verify that the $\mathbb{Q}[x]$ $g=g(x)=g(x)-g(a_i)=(x-a_i)G(a_i,x)=(x-a_i)q(x)=(x-a_i)q$.
-							\item Verify that $p=(x-a_1)(x-a_2)\cdots(x-a_i)q$.
-						\end{enumerate}
-					\end{enumerate}
-					\item Now verify that $p=(x-a_1)(x-a_2)\cdots(x-a_n)1$.
-					\item Using (3), verify that $p(a_{n+1})\ne 0$.
-					\item Therefore using (O) and (4), verify that $0\ne 0$.
-					\item \textbf{Abort procedure.}
-				\end{enumerate}
-		\procedure[Bisection]{54}
-			\objective
-				Choose a $\mathbb{Q}[x]$ $f$. Choose $\mathbb{Q}$s $a<b$ such that $\sgn(f(a))=-\sgn(f(b))$. Choose a rational number target $B>0$. The objective of the following instructions is to construct a $\mathbb{Q}$ $d$ such that $a\le d\le b$ and $\lvert f(d)\rvert<B$.
-			\implementation
-				\begin{enumerate}
-					\item Execute \procedurehr{52} on $f$ and let the tuple $\langle G\rangle$ receive the result.
-					\item Let $x,y$ be indeterminates.
-					\item Verify that the $\mathbb{Q}[x,y]$ $f(y)-f(x)=(y-x)G(x,y)$.
-					\item Let $c=a$ and $d=b$.
-					\item Until $\lvert d-c\rvert \lvert G\rvert(\lvert a\rvert,\lvert b\rvert)<B$
-					\begin{enumerate}
-						\item Let $e=\frac{c+d}{2}$.
-						\item If $\sgn(f(c))=-\sgn(f(e))$, then:
-						\begin{enumerate}
-							\item Let $d=e$.
-						\end{enumerate}
-						\item Otherwise if $\sgn(f(e))=-\sgn(f(d))$, then:
-						\begin{enumerate}
-							\item Let $c=e$.
-						\end{enumerate}
-						\item Otherwise if $f(e)=0$, then do the following:
-						\begin{enumerate}
-							\item \textbf{Verify that $\lvert f(e)\rvert=0<B$.}
-							\item Yield the tuple $\langle e\rangle$.
-						\end{enumerate}
-					\end{enumerate}
-					\item \textbf{Verify that $\lvert f(c)\rvert,\lvert f(d)\rvert<\lvert f(d)-f(c)\rvert=\lvert(d-c)G(c,d)\rvert=\lvert d-c\rvert\lvert G(c,d)\rvert\le\lvert d-c\rvert\lvert G\rvert(\lvert c\rvert,\lvert d\rvert)\le\lvert d-c\rvert\lvert G\rvert(\lvert a\rvert,\lvert b\rvert)<B$.}
-					\item \textbf{Yield the tuple $\langle c\rangle$.}
-				\end{enumerate}
-		\procedure{55}
-			\objective
-				Choose a $\mathbb{Q}[x]$ $f=x^n+p_1x^{n-1}+\cdots+p_n$ and pairs of $\mathbb{Q}$s $(a_n,b_n),(a_{n-1},b_{n-1}),\cdots,(a_0,b_0)$ in such a way that:
-				\begin{enumerate}
-					\item $a_n<b_n\le a_{n-1}<b_{n-1}\le\cdots\le a_1<b_1\le a_0<b_0$.
-					\item $\sgn(f(a_i))=-\sgn(f(b_i))$ for $i=0$ to $i=n$.
-				\end{enumerate}
-				The objective of the following instructions is to show that $1=-1$.
-			\implementation
-				\begin{enumerate}
-					\item If $n>0$:
-					\begin{enumerate}
-						\item Let $B=\min_{k=0}^{n-1}\min(\lvert f(a_k)\rvert,\lvert f(b_k)\rvert)$.
-						\item For $k=0$ to $k=n-1$, verify that $\lvert f(a_k)\rvert\ge B$.
-						\item Execute \procedurehr{54} on the formal polynomial $f$, interval $(a_n, b_n)$, and target of $B$. Let the tuple $\langle d\rangle$ receive the result.
-						\item Verify that $\lvert f(d)\rvert<B$.
-						\item Execute \procedurehr{52} on the formal polynomial $f$ and let the tuple $\langle G\rangle$ receive the result.
-						\item Let $x$ be an indeterminate.
-						\item Let the formal polynomial $h=G(d,x)$.
-						\item Verify that $h$ is a monic $(n-1)^{th}$ degree formal polynomial.
-						\item Verify that the formal polynomial $f=f(x)=f(x)-f(d)+f(d)=(x-d)G(d,x)+f(d)=(x-d)h(x)+f(d)=(x-d)h+f(d)$.
-						\item For $k=0$ to $k=n-1$, do the following:
-						\begin{enumerate}
-							\item If $f(a_k)\ge B$, in-order verify that:
-							\begin{enumerate}
-								\item $f(a_k)\ge B>\lvert f(d)\rvert\ge f(d)$.
-								\item $f(a_k)-f(d)>0$.
-								\item $(a_k-d)h(a_k)>0$.
-								\item \textbf{$h(a_k)>0$.}
-								\item $f(b_k)\le-B<-\lvert f(d)\rvert\le f(d)$.
-								\item $f(b_k)-f(d)<0$.
-								\item $(b_k-d)h(b_k)<0$.
-								\item \textbf{$h(b_k)<0$.}
-							\end{enumerate}
-							\item Otherwise, if $f(a_k)\le -B$, do the following:
-							\begin{enumerate}
-								\item \textbf{Using steps analogous to (ji), verify that $h(a_k)<0$.}
-								\item \textbf{Using steps analogous to (ji), verify that $h(b_k)>0$.}
-							\end{enumerate}
-						\end{enumerate}
-						\item Execute \procedurehr{55} on $h$ and $a_{n-1}<b_{n-1}\le a_{n-2}<b_{n-2}\le\cdots\le a_1<b_1\le a_0<b_0$.
-					\end{enumerate}
-					\item Otherwise, do the following:
-					\begin{enumerate}
-						\item Verify that $n=0$.
-						\item Therefore verify that $h=1$.
-						\item \textbf{Therefore verify that $1=\sgn(1)=\sgn(f_0(a_0))=-\sgn(f_0(b_0))=-\sgn(1)=-1$.}
-						\item \textbf{Abort procedure.}
-					\end{enumerate}
-				\end{enumerate}
-		\procedure[Sturm's procedure initialization]{56}
-			\objective
-				Choose two lists of $\mathbb{Q}[x]$s $s,q$ in such a way that, letting $m=\lvert s\rvert-1$,
-				\begin{enumerate}
-					\item For $i=0$ to $i=m$, $\deg(s_i)=i$.
-					\item For $i=0$ to $i=m$, $\sgn(x^i\circ s_i)=\sgn(x^m\circ s_m)$.
-					\item For $i=1$ to $i=m-1$, $s_{i-1}+s_{i+1}=q_is_i$.
-				\end{enumerate}
-				Let $x,y$ be indeterminates. The objective of the following instructions is to construct lists of $\mathbb{Q}[x]$s $g,h$ such that $g_is_{i+1}+h_is_i=1$ for $i=1$ to $i=m-1$.
-			\implementation
-				\begin{enumerate}
-					\item Let $g=h=\langle\rangle$.
-					\item If $m>2$, do the following:
-					\begin{enumerate}
-						\item Verify that $q_{m-1}s_{m-1}-s_{m}=s_{m-2}$.
-						\item Execute \procedurehr{56} on $s_{[0:m]}$ and $q_{[1:m-1]}$ and let the tuple $\langle,,g,h\rangle$ receive.
-						\item Verify that $g_{m-2}s_{m-1}+h_{m-2}s_{m-2}=1$.
-						\item Let $g_{m-1}=-h_{m-2}$.
-						\item Let $h_{m-1}=g_{m-2}+h_{m-2}q_{m-1}$.
-						\item \textbf{Therefore verify that $g_{m-1}s_{m}+h_{m-1}s_{m-1}=g_{m-2}s_{m-1}+h_{m-2}(q_{m-1}s_{m-1}-s_{m})=g_{m-2}s_{m-1}+h_{m-2}s_{m-2}=1$.}
-					\end{enumerate}
-					\item Otherwise, if $m=2$ do the following:
-					\begin{enumerate}
-						\item Verify that $s_{0}+s_{2}=q_1s_1$.
-						\item Let $g_1=-\frac{1}{s_0}$.
-						\item Let $h_1=\frac{q_1}{s_0}$.
-						\item \textbf{Therefore verify that $g_1s_2+h_1s_1=1$.}
-					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle s,q,g,h\rangle$.}
-				\end{enumerate}
-		\notation{29}
-			Let us use the notation $J_{s}(x)$ as a shorthand for "the number of sign changes in the list $s_0(x),s_1(x),\cdots,s_{\lvert s\rvert-1}(x)$".
-		\procedure[Change in number of sign changes verification]{57}
-			\objective
-				Execute \procedurehr{56} and let $\langle s,q,g,h\rangle$ receive. Execute \procedurehr{52} on $s$ and let $\langle G\rangle$ receive the result. Choose $\mathbb{Q}$s $c$ and $d$ in such a way that:
-				\begin{enumerate}
-					\item $J_m(c)$ and $J_m(d)$ are well defined.
-					\item Letting $B=\max_{i=1}^m \lvert G_i(c,d)\rvert$.
-					\item Letting $C=\max_{i=1}^{m-1}\max(\lvert g_i(c)\rvert,\lvert h_i(c)\rvert,\lvert g_i(d)\rvert,\lvert h_i(d))\rvert$.
-					\item Letting $D=\max_{i=1}^{m-1}\max(\lvert q_i(c)\rvert,\lvert q_i(d)\rvert,2)$.
-					\item $\lvert d-c\rvert\le\frac{1}{BCD}$.
-				\end{enumerate}
-				The objective of the following instructions is to show that either $0<0$ or $\lvert J_m(d)-J_m(c)\rvert=[\sgn(s_m(c))\ne\sgn(s_m(d))]$.
-			\implementation
-				\begin{enumerate}
-					\item Let $i=0$.
-					\item Do the following:
-					\begin{enumerate}
-						\item Verify that $\sgn(s_i(c))=\sgn(s_i(d))$.
-						\item Verify that $J_i(c)=J_i(d)$.
-						\item If $\sgn(s_{i+1}(c))=\sgn(s_{i+1}(d))$, do the following:
-						\begin{enumerate}
-							\item Verify that $J_{i+1}(c)=J_{i+1}(d)$.
-							\item Set $i$ to $i+1$ and go to (2) if the new $i<m$.
-						\end{enumerate}
-						\item Otherwise, if $\sgn(s_{i+1}(c))\ne\sgn(s_{i+1}(d))$ and $i+2\le m$, do the following:
-						\begin{enumerate}
-							\item Execute \hyperref[sec:procedure 57 auxilliary procedure]{procedure 57 auxilliary procedure} on $i$.
-							\item If $\sgn(s_{i+2}(c))\ne\sgn(s_{i+2}(d))$, do the following:
-							\begin{enumerate}
-								\item Verify that $\lvert s_{i+2}(c)\rvert<\lvert s_{i+2}(d)-s_{i+2}(c)\rvert=\lvert (d-c)G_{i+2}(c,d)\rvert\le\frac{1}{BCD}\cdot B=\frac{1}{CD}=\frac{1}{C}\cdot\frac{1}{D}\le\frac{1}{C}(1-\frac{1}{D})$.
-								\item Using (A) and (i), verify that $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i+2}(c)\rvert<\frac{1}{C}(1-\frac{1}{D})$.
-								\item \textbf{Abort procedure.}
-							\end{enumerate}
-							\item Otherwise if $\sgn(s_i(c))=\sgn(s_{i+2}(c))$, do the following:
-							\begin{enumerate}
-								\item Verify that $2\frac{1}{C}(1-\frac{1}{D})<\lvert s_i(c)\rvert+\lvert s_{i+2}(c)\rvert=\lvert s_i(c)+s_{i+2}(c)\rvert=\lvert q_{i+1}(c)s_{i+1}(c)\rvert<D\frac{1}{CD}$.
-								\item Verify that $2(1-\frac{1}{D})<1$.
-								\item Using (B) and the construction of $D$, verify that $2\le D<2$.
-								\item \textbf{Abort procedure.}
-							\end{enumerate}
-							\item Otherwise, do the following:
-							\begin{enumerate}
-								\item Verify that $\sgn(s_i(d))=\sgn(s_i(c))\ne\sgn(s_{i+2}(c))=\sgn(s_{i+2}(d))$.
-								\item Therefore verify that $1=J_{i+2}(c)-J_{i}(c)=J_{i+2}(d)-J_{i}(d)$.
-								\item Therefore verify that $J_{i}(c)+1=J_{i+2}(c)=J_{i+2}(d)=J_{i}(d)+1$.
-								\item Set $i$ to $i+2$ and go to (2).
-							\end{enumerate}
-						\end{enumerate}
-						\item Otherwise, verify the following:
-						\begin{enumerate}
-							\item $\sgn(s_{i+1}(c))\ne\sgn(s_{i+1}(d))$.
-							\item $\lvert J_{i+1}(c)-J_{i+1}(d)\rvert=1$.
-							\item $i+1=m$.
-						\end{enumerate}
-					\end{enumerate}
-					\textbf{
-						\item If $\sgn(s_m(c))=\sgn(s_m(d))$, then do the following:
-						\begin{enumerate}
-							\item Verify that $J_m(c)=J_m(d)$.
-						\end{enumerate}
-						\item Otherwise do the following:
-						\begin{enumerate}
-							\item Verify that $\lvert J_m(d)-J_m(c)\rvert=1$.
-						\end{enumerate}
-					}
-				\end{enumerate}
-			\subsubsection*{Auxilliary Procedure}\label{sec:procedure 57 auxilliary procedure}
-				\paragraph{Objective}
-					Choose a non-negative integer $i<m$ such that $\sgn(s_{i+1}(c))\ne\sgn(s_{i+1}(d))$ and $i+2\le m$. The objective of the following instructions is to show that $\lvert s_{i+1}(c)\rvert<\frac{1}{CD}$, $\lvert s_{i+1}(d)\rvert<\frac{1}{CD}$, $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i}(c)\rvert$, $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i}(d)\rvert$, $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i+2}(c)\rvert$, and $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i+2}(d)\rvert$.
-				\paragraph{Implementation}
-					\begin{enumerate}
-						\item Verify the following in order:
-						\begin{enumerate}
-							\item $\lvert s_{i+1}(c)\rvert<\lvert s_{i+1}(c)-s_{i+1}(d)\rvert=\lvert c-d\rvert\lvert G_{i+1}(c,d)\rvert\le\lvert c-d\rvert B\le lB=\frac{1}{CD}$
-							\item $\lvert s_{i+1}(d)\rvert<\lvert s_{i+1}(c)-s_{i+1}(d)\rvert\le\frac{1}{CD}$
-							\item $1=g_{i}(c)s_{i+1}(c)+h_{i}(c)s_{i}(c)=\lvert g_{i}(c)s_{i+1}(c)+h_{i}(c)s_{i}(c)\rvert\le\lvert g_{i}(c)\rvert\lvert s_{i+1}(c)\rvert+\lvert h_{i}(c)\rvert\lvert s_{i}(c)\rvert<C(\frac{1}{CD}+\lvert s_{i}(c)\rvert)$
-							\item $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i}(c)\rvert$
-							\item $1<C(\frac{1}{CD}+\lvert s_{i}(d)\rvert)$
-							\item $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i}(d)\rvert$
-							\item $1=g_{i+1}(c)s_{i+2}(c)+h_{i+1}(c)s_{i+1}(c)=\lvert g_{i+1}(c)s_{i+2}(c)+h_{i+1}(c)s_{i+1}(c)\rvert\le\lvert g_{i+1}(c)\rvert\lvert s_{i+2}(c)\rvert+\lvert h_{i+1}(c)\rvert\lvert s_{i+1}(c)\rvert<C(\lvert s_{i+2}(c)\rvert+\frac{1}{CD})$
-							\item $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i+2}(c)\rvert$
-							\item $1<C(\lvert s_{i+2}(d)\rvert+\frac{1}{CD})$
-							\item $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i+2}(d)\rvert$
-						\end{enumerate}
-					\end{enumerate}
-		\procedure[Cauchy's positive verification]{58}
-			\objective
-				Choose a $\mathbb{Q}[x]$ $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0\ne 0$. Choose a $\mathbb{Q}$ $k>1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert$. The objective of the following instructions is to show that $\sgn(p(k))=\sgn(p_0)$.
-			\implementation
-				\begin{enumerate}
-					\item In reverse order verify the following:
-					\begin{enumerate}
-						\item \textbf{$\sgn(p_0k^n+p_1k^{n-1}+\cdots+p_nk^0)=\sgn(p_0)$}
-						\item $\sgn(k^n+\frac{p_1}{p_0}k^{n-1}+\cdots+\frac{p_n}{p_0}k^0)=1$
-						\item $k^n+\frac{p_1}{p_0}k^{n-1}+\cdots+\frac{p_n}{p_0}k^0>0$
-						\item $k^n>-(\frac{p_1}{p_0}k^{n-1}+\cdots+\frac{p_n}{p_0}k^0)$
-						\item $k^n>\lvert \frac{p_1}{p_0}k^{n-1}+\cdots+\frac{p_n}{p_0}k^0\rvert$
-						\item $k^n>\lvert\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert(k^{n-1}+\cdots+k^0)\rvert$
-						\item $k^n>\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert\frac{k^n-1}{k-1}$
-						\item $k^{n+1}-k^n>\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert(k^n-1)$
-						\item $k^{n+1}-(1+\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert)k^n+\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert>0$
-						\item $k>1+\max_{i=1}^t\lvert \frac{p_i}{p_0}\rvert$
-					\end{enumerate}
-				\end{enumerate}
-		\procedure[Cauchy's alternation verification]{59}
-			\objective
-				Choose a $\mathbb{Q}[x]$ $p=p_0x^t+p_1x^{t-1}+p_2x^{t-2}+\cdots+p_tx^0$, where $p_0\ne 0$. Choose a $\mathbb{Q}$ $k<-(1+\max_{i=1}^t\lvert\frac{p_i}{p_0}\rvert)$. The objective of the following instructions is to show that $\sgn(p(k))=(-1)^t\sgn(p_0)$.
-			\implementation
-				\begin{enumerate}
-					\item Let $q=q_0x^t+q_1x^{t-1}+q_2x^{t-2}+\cdots+q_tx^0$, where $q_i=(-1)^ip_i$.
-					\item Verify that $k<-(1+\max_{i=1}^t\lvert\frac{q_i}{q_0}\rvert)$.
-					\item Therefore verify that $-k>1+\max_{i=1}^t\lvert\frac{q_i}{q_0}\rvert$.
-					\item Execute \procedurehr{58} on $q$ and $-k$.
-					\item Hence verify that $(-1)^t\sgn(p(k))$
-					\begin{enumerate}
-						\item $=\sgn((-1)^tp(k))$
-						\item $=\sgn((-1)^t\sum_{i=0}^t p_ik^{t-i})$
-						\item $=\sgn(\sum_{i=0}^t (-1)^i(-1)^{t-i}p_ik^{t-i})$
-						\item $=\sgn(\sum_{i=0}^t q_i(-k)^{t-i})$
-						\item $=\sgn(q(-k))$
-						\item $=\sgn(q_0)$
-						\item $=\sgn(p_0)$.
-					\end{enumerate}
-					\item \textbf{Therefore verify that $\sgn(p(k))=(-1)^t(-1)^t\sgn(p(k))=(-1)^t\sgn(p_0)$.}
-				\end{enumerate}
-		\procedure[Range subdivision]{60}
-			\objective
-				Choose a list of $\mathbb{Q}[x]$s, $s$, and $\mathbb{Q}$s $a,l,c$ such that $a<c$ and $l>0$. The objective of the following instructions is to either show that $0<0$ or to construct a list of $\mathbb{Q}$s, $b$, such that $a=b_1<b_2<\cdots<b_{\lvert b\rvert}=c$, $b_{i+1}-b_i\le l$ for $i=1$ to $i=\lvert b\rvert-1$, and $J_s(b)$ is defined for $i=1$ to $i=\lvert b\rvert-1$.
-			\implementation
-				\begin{enumerate}
-					\item Let $e=\langle\langle\rangle,\langle\rangle,\cdots,\langle\rangle\rangle$.
-					\item Let $f=\sum_{r=1}^{\lvert s\rvert}\deg(s_r)$.
-					\item Let $b=\langle a\rangle$.
-					\item Let $d=b_1$.
-					\item While $d+l<c$, do the following:
-					\begin{enumerate}
-						\item Let $m=l$.
-						\item While $J_s(d+m)$ is not defined and $\lvert e\rvert\le f$, do the following:
-						\begin{enumerate}
-							\item Let $1\le i\le\lvert s\rvert$ be an integer such that $s_i(d+m)=0$.
-							\item Append $d+m$ onto $e_i$.
-							\item Set $m=\frac{m}{2}$
-						\end{enumerate}
-						\item If $\sum\lvert e\rvert>f$, then do the following:
-						\begin{enumerate}
-							\item If $\lvert e_i\rvert\le\deg(s_i)$ for $1\le i\le\lvert s\rvert$, then do the following:
-							\begin{enumerate}
-								\item Verify that $\sum\lvert e\rvert\le f$.
-								\item Therefore using (c), verify that $\sum\lvert e\rvert\le f<\sum\lvert e\rvert$.
-								\item \textbf{Abort procedure.}
-							\end{enumerate}
-							\item Otherwise, do the following:
-							\begin{enumerate}
-								\item Let $1\le i\le\lvert s\rvert$ be an integer such that $\lvert e_i\rvert>\deg(s_i)$.
-								\item Execute \procedurehr{53} on $s_i$ and a sorted $e_i$.
-								\item \textbf{Abort procedure.}
-							\end{enumerate}
-						\end{enumerate}
-						\item Otherwise, do the following:
-						\begin{enumerate}
-							\item \textbf{Verify that $J_s(d+m)$ is defined.}
-							\item Append $d+m$ onto $b$.
-							\item \textbf{Verify that $0<b_{\lvert b\rvert}-b_{\lvert b\rvert-1}=m\le l$.}
-							\item Set $d$ to $d+m$.
-							\item Using (5), verify that $d<c$.
-						\end{enumerate}
-					\end{enumerate}
-					\item Verify that $d<c$.
-					\item Verify that $d+l\ge c$.
-					\item \textbf{Therefore verify that $0<c-d\le l$.}
-					\item Append $c$ onto $b$.
-					\item \textbf{Yield $\langle b\rangle$.}
-				\end{enumerate}
-		\procedure[Sturm's sign change]{61}
-			\objective
-				Execute \procedurehr{56} and let $\langle s,q,g,h\rangle$ receive. Let $m=\lvert s\rvert-1$. The objective of the following instructions is to either show that $0<0$ or to construct two lists of rational numbers $c,d$ such that $c_1<d_1\le c_2<d_2\le\cdots\le c_m<d_m$ and $\sgn(s_m(c_i))=-\sgn(s_m(d_i))$ for $i=1$ to $i=m$.
-			\implementation
-				\begin{enumerate}
-					\item Let $U=1+\max_{i=0}^m\left(1+\max_{j=1}^i\lvert\frac{x^{i-j}\circ s_i}{x^i\circ s_i}\rvert\right)$
-					\item Using \procedurehr{58}, verify that $J(U)=0$.
-					\item Using \procedurehr{59}, verify that $J(-U)=m$.
-					\item Execute \procedurehr{52} on $s$ and let $\langle G\rangle$ receive the result.
-					\item Let the rational $B=\max_{i=1}^m \lvert G_i\rvert(U,U)$.
-					\item Let $C=\max_{i=1}^m \max(\lvert g_i\rvert(U),\lvert h_i\rvert(U))$.
-					\item Let $D=\max(3, \max_{i=1}^m \lvert q_i\rvert(U))$
-					\item Let $l=\frac{1}{BCD}$.
-					\item Execute \procedurehr{60} on $s$ with endpoints $-U,U$ and a step size of $l$ and let $\langle e\rangle$ receive the result.
-					\item Let $c=d=\langle\rangle$.
-					\item For $i=1$ to $i=\lvert e\rvert-1$:
-					\begin{enumerate}
-						\item Execute \procedurehr{57} on the tuple $\langle e_i,e_{i+1}\rangle$.
-						\item If $J_m(c)\ne J_m(d)$, then do the following:
-						\begin{enumerate}
-							\item Append $e_i$ to $c$.
-							\item Append $e_{i+1}$ to $d$.
-							\item Cognizant of \procedurehr{57}, verify that $\lvert J_m(d)-J_m(c)\rvert=1$.
-							\item Therefore verify that $\sgn(s_m(c_{\lvert c\rvert}))=-\sgn(s_m(d_{\lvert d\rvert}))$.
-							\item Also verify that $d_{\lvert d\rvert-1}\le c_{\lvert c\rvert}<d_{\lvert d\rvert}$.
-						\end{enumerate}
-					\end{enumerate}
-					\item If less than $m$ pairs of rational numbers were recorded, then do the following:
-					\begin{enumerate}
-						\item Verify that each change of $J_m(x)$ over the course of (12) was by $1$.
-						\item Verify that $J_m(x)$ changed less than $m$ times over the course of (12).
-						\item Therefore verify that $\lvert J_m(U)-J_m(-U)\rvert<m$.
-						\item Therefore using (2) and (3), verify that $m=\lvert J_m(U)-J_m(-U)\rvert<m$.
-						\item \textbf{Abort procedure.}
-					\end{enumerate}
-					\item Otherwise, do the following:
-					\begin{enumerate}
-						\item Verify that $m\le\lvert c\rvert=\lvert d\rvert$.
-						\item \textbf{Yield the tuple $\langle c,d\rangle$.}
-					\end{enumerate}
-				\end{enumerate}
-		\procedure{62}
+		\procedure{2.51}
 			\objective
 				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. The objective of the following instructions is to construct a $\mathcal{M}_{m^2,*}(\mathbb{Q})$, $\pows(A)$.
 			\implementation
@@ -1509,9 +1511,9 @@
 					\item Make an $m^2\times t$ matrix, $\pows(A)$, whose $i^{th}$ column is the sequential concatenation of the columns of $A^{t-i}$.
 					\item Yield $\langle\pows(A)\rangle$.
 				\end{enumerate}
-		\notation{30}
-			Let us use the notation $\pows(A)$ as a shorthand for the result yielded by executing \procedurehr{62} on $A$.
-		\procedure{63}
+		\notation{2.23}
+			Let us use the notation $\pows(A)$ as a shorthand for the result yielded by executing \procedurehr{2.51} on $A$.
+		\procedure{2.52}
 			\objective
 				Choose an $\mathcal{M}_{m,n}(\mathbb{Q})$, $A$, and an $\mathcal{M}_{n,m}(\mathbb{Q})$, $B$, such that $AB=I_m$. The objective of the following instructions is to show that either $0=1$ or every column of $B$ is non-zero.
 			\implementation
@@ -1523,25 +1525,25 @@
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 				\end{enumerate}
-		\procedure{64}
+		\procedure{2.53}
 			\objective
 				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Choose a $\mathbb{Q}[x]$ $p$ such that $p\ne 0$, $p(A)=0$, and $\deg(p)<\deg(\last_A)$. The objective of the following instructions is to show that $0<0$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{51} on $A$ and $p$ and let $f$ receive.
+					\item Execute \procedurehr{2.50} on $A$ and $p$ and let $f$ receive.
 					\item Now verify that $p=f\last_A$.
 					\item Verify that $f\ne 0$ and $\last_A\ne 0$.
 					\item \textbf{Therefore using (O), (2), and (3), verify that $\deg(\last_A)>\deg(p)=\deg(f\last_A)\ge\deg(\last_A)$.}
 					\item \textbf{Abort procedure.}
 				\end{enumerate}
-		\procedure{65}
+		\procedure{2.54}
 			\objective
-				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \procedurehr{21} on $\pows(A)$ and let the tuple $\langle M,D,,N\rangle$ receive the result. Let $t=\cols(\pows(A))$. The objective of the following instructions is to show that either $0<0$ or to show that ${C_t(D)}={C_t(D)}_{1,1}e_1\ne 0$.
+				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \procedurehr{2.20} on $\pows(A)$ and let the tuple $\langle M,D,,N\rangle$ receive the result. Let $t=\cols(\pows(A))$. The objective of the following instructions is to show that either $0<0$ or to show that ${C_t(D)}={C_t(D)}_{1,1}e_1\ne 0$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{21} on $\pows(A)$ and let the tuple $\langle M,D,,N\rangle$ receive the result.
+					\item Execute \procedurehr{2.20} on $\pows(A)$ and let the tuple $\langle M,D,,N\rangle$ receive the result.
 					\item Verify that $M_*\pows(A)N_*=D$.
-					\item Using \procedurehr{6}, verify that $M^{-1}MFN=I_{m^2}FN=FN=M^{-1}D$.
+					\item Using \procedurehr{2.5}, verify that $M^{-1}MFN=I_{m^2}FN=FN=M^{-1}D$.
 					\item If ${C_t(D)}_{1,1}=0$, then:
 					\begin{enumerate}
 						\item Verify that for some $1\le i\le t$, $D_{i,i}=0$.
@@ -1549,59 +1551,59 @@
 						\item Therefore verify that $F(Ne_i)=(FN)e_i=(M^{-1}D)e_i=M^{-1}(De_i)=0_{m^2\times 1}$.
 						\item Let $p=N_{1,i}x^{t-1}+N_{2,i}x^{t-2}+\cdots+N_{t,i}x^0$.
 						\item Therefore verify that $p(A)=0_{m\times m}$.
-						\item Execute \procedurehr{63} on ${N^{-1}}_*$ and $N_*$.
+						\item Execute \procedurehr{2.52} on ${N^{-1}}_*$ and $N_*$.
 						\item Therefore verify that $p\ne 0$.
-						\item Execute \procedurehr{64} on $A$ and $p$.
+						\item Execute \procedurehr{2.53} on $A$ and $p$.
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 					\item Otherwise, do the following:
 					\begin{enumerate}
-						\item Execute \procedurehr{19} on $D,I_t,t$ and let $E$ receive.
+						\item Execute \procedurehr{2.18} on $D,I_t,t$ and let $E$ receive.
 						\item Verify that $C_t(D)=C_t(DI_t)=EC_t(I_t)=E*1=E$.
 						\item Verify that $E$ is a $\mathcal{D}_{\binom{m^2}{t},\binom{t}{t}}(\mathbb{Q}[x])$.
 						\item Therefore verify that $C_t(D)$ is a $\mathcal{D}_{\binom{m^2}{t},1}(\mathbb{Q}[x])$.
 						\item \textbf{Therefore verify that $C_t(D)={C_t(D)}_{1,1}e_1\ne 0$.}
 					\end{enumerate}
 				\end{enumerate}
-		\procedure{66}
+		\procedure{2.55}
 			\objective
 				Choose a $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\cols(\pows(A))$. The objective of the following instructions is to show that either $0<0$ or to show that ${C_t(\pows(A))}\ne 0$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{21} on $\pows(A)$ and let the tuple $\langle M,D,,N\rangle$ receive the result.
+					\item Execute \procedurehr{2.20} on $\pows(A)$ and let the tuple $\langle M,D,,N\rangle$ receive the result.
 					\item Verify that $\pows(A)={M^{-1}}_*D{N^{-1}}_*$.
-					\item Execute \procedurehr{63} on $C_t(M_*),C_t({M^{-1}}_*)$.
+					\item Execute \procedurehr{2.52} on $C_t(M_*),C_t({M^{-1}}_*)$.
 					\item Verify that all columns of $C_t(M^{-1})$ are non-zero.
 					\item Let $t=\cols(\pows(A))$.
-					\item Execute \procedurehr{65} on $A$.
+					\item Execute \procedurehr{2.54} on $A$.
 					\item Verify that $C_t(D)={C_t(D)}_{1,1}e_1\ne 0$.
 					\item Therefore verify that ${C_t(D)}_{1,1}\ne 0$.
-					\item Execute \procedurehr{63} on $C_t(N_*),C_t({N^{-1}}_*)$.
+					\item Execute \procedurehr{2.52} on $C_t(N_*),C_t({N^{-1}}_*)$.
 					\item Verify that $C_t(N^{-1})\ne 0$.
 					\item \textbf{Verify that $C_t(\pows(A))=C_t(M^{-1}DN^{-1})=C_t(M^{-1})C_t(D)C_t(N^{-1})=C_t(M^{-1}){C_t(D)}_{1,1}e_1C_t(N^{-1})={C_t(D)}_{1,1}C_t(N^{-1})C_t(M^{-1})e_1\ne 0_{\binom{m^2}{t}\times 1}$.}
 				\end{enumerate}
-		\notation{31}
+		\notation{2.24}
 			Let us use the notation $\mat_t(p)$ as a shorthand for "$(x^{t-1}\circ p)e_1+(x^{t-2}\circ p)e_2+\cdots+(x^0\circ p)e_t$".
-		\notation{32}
+		\notation{2.25}
 			Let us use the notation $\pol(P)$ as a shorthand for "$P_{1,1}x^{t-1}+P_{2,1}x^{t-2}+\cdots+P_{t,1}$ where $t=\rows(P)$".
-		\procedure{67}
+		\procedure{2.56}
 			\objective
 				Choose an $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. The objective of the following instructions is to either show that $0<0$ or to construct a $\mathbb{Q}[x]$, $\sel_A$.
 			\implementation
 				\begin{enumerate}
-					\item Using \procedurehr{27} and \procedurehr{66}, verify that $C_t(\pows(A)^T\pows(A))=C_t(\pows(A)^T)C_t(\pows(A))={C_t(\pows(A))}^TC_t(\pows(A))=\lVert C_t(\pows(A))\rVert^2>0$.
+					\item Using \procedurehr{2.26} and \procedurehr{2.55}, verify that $C_t(\pows(A)^T\pows(A))=C_t(\pows(A)^T)C_t(\pows(A))={C_t(\pows(A))}^TC_t(\pows(A))=\lVert C_t(\pows(A))\rVert^2>0$.
 					\item Let $H=(\pows(A)^T\pows(A))\backslash e_1$.
 					\item Let $t=\deg(\last_A)$.
 					\item Let $\sel_A=\frac{\pol(H)}{x^t\circ\last_A}$.
 					\item Yield $\langle\sel_A\rangle$.
 				\end{enumerate}
-		\notation{33}
-			Let us use the notation $\sel_A$ as a shorthand for the result yielded by executing \procedurehr{67} on $A$.
-		\notation{34}
+		\notation{2.26}
+			Let us use the notation $\sel_A$ as a shorthand for the result yielded by executing \procedurehr{2.56} on $A$.
+		\notation{2.27}
 			Let us use the notation $\tr(X)$ as a shorthand for "the sum of the diagonal entries of the square matrix $X$".
-		\notation{35}
+		\notation{2.28}
 			Let us use the notation "$A$ is symmetric" as a shorthand for "$A^T=A$".
-		\procedure{68}
+		\procedure{2.57}
 			\objective
 				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. Choose two $\mathbb{Q}[x]$s $u=u_1x^{t-1}+u_2x^{t-2}+\cdots+u_tx^0,w=w_1x^{t-1}+w_2x^{t-2}+\cdots+w_tx^0$. The objective of the following instructions is to show that $\tr(u(A)w(A))=\mat(u)^T\pows(A)^T\pows(A)\mat_t(w)$.
 			\implementation
@@ -1619,12 +1621,12 @@
 						\item $=\mat_t(u)^T\pows(A)^T\pows(A)\mat_t(w)$
 					\end{enumerate}
 				\end{enumerate}
-		\procedure{69}
+		\procedure{2.58}
 			\objective
 				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. Choose a $\mathbb{Q}[x]$ $u$ such that $\deg(u)<t$. The objective of the following instructions is to show that $\tr(u(A)\sel_A(A))=\frac{x^{t-1}\circ u}{x^t\circ\last_A}$.
 			\implementation
 				\begin{enumerate}
-					\item Using \procedurehr{68} and \procedurehr{67}, verify that $\tr(u(A)\sel_A(A))$
+					\item Using \procedurehr{2.57} and \procedurehr{2.56}, verify that $\tr(u(A)\sel_A(A))$
 					\begin{enumerate}
 						\item $=\mat(u)^T\pows(A)^T\pows(A)\mat_t(\sel_A)$
 						\item $=\frac{\mat(u)^T\pows(A)^T\pows(A)((\pows(A)^T\pows(A))\backslash e_1)}{x^t\circ\last_A}$
@@ -1633,14 +1635,14 @@
 						\item $=\frac{x^{t-1}\circ u}{x^t\circ\last_A}$.
 					\end{enumerate}
 				\end{enumerate}
-		\procedure{70}
+		\procedure{2.59}
 			\objective
 				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. The objective of the following instructions is to either show that $0\ne 0$ or construct $\mathbb{Q}[x]$s $u,v$ such that $u\last_A+v\sel_A=1$.
 			\implementation
 				\begin{enumerate}
 					\item Let $t=\deg(\last_A)$.
 					\item Let $G$ be a $\mathcal{M}_{1,2}(\mathbb{Q}[x])$ where $G_{1,1}=\last_A$ and $G_{1,2}=\sel_A$.
-					\item Execute \procedurehr{21} on $G$ and let the tuple $\langle M,D,,N\rangle$ receive.
+					\item Execute \procedurehr{2.20} on $G$ and let the tuple $\langle M,D,,N\rangle$ receive.
 					\item Verify that $G={M^{-1}}_*D{N^{-1}}_*$.
 					\item Verify that $\last_A\ne 0$.
 					\item Therefore verify that $D_{1,1}\ne 0$.
@@ -1653,7 +1655,7 @@
 						\item Let $c={{N^{-1}}_*}_{1,2}$.
 						\item Verify that $\sel_A=cD_{1,1}$.
 						\item Let $u=x^{t-z-1}b$.
-						\item Execute \procedurehr{69} on $A$ and $u$.
+						\item Execute \procedurehr{2.58} on $A$ and $u$.
 						\item Hence verify that $\tr(u(A)\sel_A(A))=x^{t-1}\circ u=x^z\circ b\ne 0$.
 						\item Also verify that $\tr(u(A)\sel_A(A))=\tr(A^{z-1}b(A)c(A)D_{1,1}(A))=\tr(A^{z-1}c(A)b(A)D_{1,1}(A))=\tr(A^{z-1}c(A)\last_A(A))=\tr(A^{z-1}c(A)0_{m\times m})=\tr(0_{m\times m})=0$.
 						\item Therefore verify that $0\ne 0$.
@@ -1668,7 +1670,7 @@
 						\item \textbf{Yield the tuple $\langle u,v\rangle$.}
 					\end{enumerate}
 				\end{enumerate}
-		\procedure[Euclidean division]{71}
+		\procedure[Euclidean division]{2.60}
 			\objective
 				Choose two $\mathbb{Q}[x]$s, $\langle a,b\rangle$. The objective of the following instructions is to construct two $\mathbb{Q}[x]$s $u,w$ such that $a=ub+w$ and $\deg(w)<\deg(b)$.
 			\implementation
@@ -1678,7 +1680,7 @@
 						\item Let $y=\frac{x^{\deg(a)}\circ a}{x^{\deg(b)}\circ b}x^{\deg(a)-\deg(b)}$
 						\item Let $e=a-yb$.
 						\item Verify that $\deg(e)<\deg(a)$.
-						\item Execute \procedurehr{71} on the tuple $\langle e,b\rangle$. Let the tuple $\langle c,d\rangle$ receive the result.
+						\item Execute \procedurehr{2.60} on the tuple $\langle e,b\rangle$. Let the tuple $\langle c,d\rangle$ receive the result.
 						\item Verify that $cb+d=e$.
 						\item Verify that $\deg(d)<\deg(b)$.
 						\item Therefore verify that $cb+d=a-yb$
@@ -1693,7 +1695,7 @@
 						\item \textbf{Yield the tuple $\langle 0,a\rangle$.}
 					\end{enumerate}
 				\end{enumerate}
-		\procedure{72}
+		\procedure{2.61}
 			\objective
 				Choose two lists of $\mathbb{Q}[x]$s $s,q$ and a non-negative integer $k$ in such a way that, letting $m=\lvert s\rvert-1$,
 				\begin{enumerate}
@@ -1708,11 +1710,11 @@
 					\begin{enumerate}
 						\item Verify that $s_k+s_{k+2}=q_{k+1}s_{k+1}$.
 						\item Therefore verify that $s_k=q_{k+1}s_{k+1}-s_{k+2}$.
-						\item Execute \procedurehr{72} on $s,q,k+1$ and let the tuple $\langle g_1,h_1\rangle$ receive.
+						\item Execute \procedurehr{2.61} on $s,q,k+1$ and let the tuple $\langle g_1,h_1\rangle$ receive.
 						\item Verify that $s_{k+1}=g_1s_{m-1}+h_1s_m$.
 						\item Verify that $\deg(g_1)=m-1-(k+1)=m-k-2$.
 						\item Verify that $\deg(h_1)=m-2-(k+1)=m-k-3$.
-						\item Execute \procedurehr{72} on $s,q,k+2$ and let the tuple $\langle g_2,h_2\rangle$ receive.
+						\item Execute \procedurehr{2.61} on $s,q,k+2$ and let the tuple $\langle g_2,h_2\rangle$ receive.
 						\item Verify that $s_{k+2}=g_2s_{m-1}+h_2s_m$.
 						\item Verify that $\deg(g_2)=m-1-(k+2)=m-k-3$.
 						\item Verify that $\deg(h_2)=m-2-(k+2)=m-k-4$.
@@ -1741,7 +1743,7 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle g,h\rangle$.}
 				\end{enumerate}
-		\procedure[Edwards' Sturm chain construction]{73}
+		\procedure[Edwards' Sturm chain construction]{2.62}
 			\objective
 				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. The objective of the following instructions is to either show that $0\ne 0$ or to construct lists of $\mathbb{Q}[x]$s $s,q$ such that
 				\begin{enumerate}
@@ -1752,29 +1754,29 @@
 				\end{enumerate}
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{70} on $A$ and let $\langle u,s_{t+1}\rangle$ receive the result.
+					\item Execute \procedurehr{2.59} on $A$ and let $\langle u,s_{t+1}\rangle$ receive the result.
 					\item Verify that $us_t+s_{t+1}\sel_A=1$.
-					\item Execute \procedurehr{71} on the tuple $\langle s_{t+1},s_t\rangle$. Let the tuple $\langle q_t,s_{t-1}\rangle$ receive the result.
+					\item Execute \procedurehr{2.60} on the tuple $\langle s_{t+1},s_t\rangle$. Let the tuple $\langle q_t,s_{t-1}\rangle$ receive the result.
 					\item Verify that $s_{t+1}=q_ts_t+s_{t-1}$, where $\deg(s_{t-1})<\deg(s_t)=t$.
 					\item Therefore verify that $us_t+(q_ts_t+s_{t-1})\sel_A=1$.
 					\item Therefore verify that $s_{t-1}(A)\sel_A(A)=u(A)s_t(A)+(q_t(A)s_t(A)+s_{t-1}(A))\sel_A(A)=I_{m,m}$.
-					\item Therefore using \procedurehr{69}, verify that $\frac{x^{t-1}\circ s_{t-1}}{x^t\circ s_t}=\tr(s_{t-1}(A)\sel_A(A))=\tr(I_{m,m})=m>0$.
+					\item Therefore using \procedurehr{2.58}, verify that $\frac{x^{t-1}\circ s_{t-1}}{x^t\circ s_t}=\tr(s_{t-1}(A)\sel_A(A))=\tr(I_{m,m})=m>0$.
 					\item For $i=t-1$ down to $i=1$, do the following:
 					\begin{enumerate}
-						\item Execute \procedurehr{71} on the tuple $\langle -s_{i+1},-s_i\rangle$. Let the tuple $\langle q_i,s_{i-1}\rangle$ receive the result.
+						\item Execute \procedurehr{2.60} on the tuple $\langle -s_{i+1},-s_i\rangle$. Let the tuple $\langle q_i,s_{i-1}\rangle$ receive the result.
 						\item Verify that $\deg(q_i)=1$.
 						\item Verify that $x\circ q_i=\frac{x^{i+1}\circ s_{i+1}}{x^i\circ s_i}$.
 						\item Also verify that $-s_{i+1}=-q_is_i+s_{i-1}$.
 						\item Therefore verify that $q_is_i=s_{i+1}+s_{i-1}$.
 						\item Therefore verify that $q_is_i-s_{i+1}=s_{i-1}$.
-						\item Execute \procedurehr{72} on the tuple $\langle s,q,i-1\rangle$ and let $\langle p,j\rangle$ receive.
+						\item Execute \procedurehr{2.61} on the tuple $\langle s,q,i-1\rangle$ and let $\langle p,j\rangle$ receive.
 						\item Verify that $s_{i-1}=ps_{t-1}+q_3s_t$.
 						\item Verify that $\deg(p)=t-1-(i-1)=t-i$.
 						\item Verify that $\deg(q_3)=t-2-(i-1)=t-1-i$
 						\item Therefore verify that $s_{i-1}(A)=p(A)s_{t-1}(A)+j(A)s_t(A)=p(A)s_{t-1}(A)+j(A)0_{m\times m}=p(A)s_{t-1}(A)$.
 						\item If $p(A)=0$, then do the following:
 						\begin{enumerate}
-							\item Execute \procedurehr{64} on $A$ and $p$.
+							\item Execute \procedurehr{2.53} on $A$ and $p$.
 							\item \textbf{Abort procedure.}
 						\end{enumerate}
 						\item Otherwise, if $s_{i-1}(A)=0_{m\times m}$, then do the following:
@@ -1838,20 +1840,20 @@
 							\end{enumerate}
 						\end{enumerate}
 					\end{enumerate}
-		\procedure{74}
+		\procedure{2.63}
 			\objective
 				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. The objective of the following instructions is to either show that $0<0$ or to construct two lists of rational numbers $c,d$ such that $c_1<d_1\le c_2<d_2\le\cdots\le c_t<d_t$ and $\sgn(\last_A(c_i))=-\sgn(\last_A(d_i))$ for $i=1$ to $i=t$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{73} on the matrix $A$ and let the tuple $\langle s,q\rangle$ receive the result.
-					\item Execute \procedurehr{60} supplying the tuple $\langle s,q\rangle$. Let the tuple $\langle c,d\rangle$ receive the result.
+					\item Execute \procedurehr{2.62} on the matrix $A$ and let the tuple $\langle s,q\rangle$ receive the result.
+					\item Execute \procedurehr{1.9} supplying the tuple $\langle s,q\rangle$. Let the tuple $\langle c,d\rangle$ receive the result.
 					\item \textbf{Verify that $c_1<d_1\le c_2<d_2\le\cdots\le c_t<d_t$.}
 					\item \textbf{Verify that $\sgn(\last_A(c_i))=-\sgn(\last_A(d_i))$ for $i=1$ to $i=t$.}
 					\item \textbf{Yield $\langle c,d\rangle$.}
 				\end{enumerate}
-		\procedure{75}
+		\procedure{2.64}
 			\objective
-				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. Execute \procedurehr{74} on $A$ and let the tuple $\langle c,d\rangle$ receive the result. Execute \procedurehr{21} on $A$ and let the tuple $\langle,,u,\rangle$ receive the result. The objective of the following instructions is to either show that $1=-1$ or to construct a list of non-negative integers $k$ such that $\sgn(u_{k_i}(c_i))=-\sgn(u_{k_i}(d_i))$ for $i=1$ to $i=t$.
+				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. Execute \procedurehr{2.63} on $A$ and let the tuple $\langle c,d\rangle$ receive the result. Execute \procedurehr{2.20} on $A$ and let the tuple $\langle,,u,\rangle$ receive the result. The objective of the following instructions is to either show that $1=-1$ or to construct a list of non-negative integers $k$ such that $\sgn(u_{k_i}(c_i))=-\sgn(u_{k_i}(d_i))$ for $i=1$ to $i=t$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that $\last_A=u_1u_2\cdots u_m$.
@@ -1862,7 +1864,7 @@
 							\item Verify that $\sgn(u_1(c_i))\sgn(u_2(c_i))\cdots\sgn(u_m(c_i))=\sgn(u_1(d_i))\sgn(u_2(d_i))\cdots\sgn(u_m(d_i))$.
 							\item Therefore verify that $\sgn(u_1(c_i)u_2(c_i)\cdots u_m(c_i))=\sgn(u_1(d_i)u_2(d_i)\cdots u_m(d_i))$.
 							\item Therefore verify that $\sgn(s_t(c_i))=\sgn(s_t(d_i))$.
-							\item Cognizant of the execution of \procedurehr{60}, verify that $\sgn(s_t(c_i))=-\sgn(s_t(d_i))$.
+							\item Cognizant of the execution of \procedurehr{1.8}, verify that $\sgn(s_t(c_i))=-\sgn(s_t(d_i))$.
 							\item Therefore verify that $\sgn(s_t(c_i))=-\sgn(s_t(c_i))$.
 							\item Therefore verify that $1=-1$.
 							\item \textbf{Abort procedure.}
@@ -1875,15 +1877,15 @@
 					\end{enumerate}
 					\item \textbf{Yield $\langle k\rangle$.}
 				\end{enumerate}
-		\procedure{76}
+		\procedure{2.65}
 			\objective
-				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \procedurehr{21} on $A$ and let the tuple $\langle,,u,\rangle$ receive the result. Execute \procedurehr{55} on $A$ and let $k$ receive. Let $t=\deg(\last_A)$. Let $n_j=\sum_{i=1}^t [k_i=j]$. The objective of the following instructions is to either show that $0<0$, or to show that $n_i=\deg(u_i)$ for $i=1$ to $i=m$.
+				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \procedurehr{2.20} on $A$ and let the tuple $\langle,,u,\rangle$ receive the result. Execute \procedurehr{1.3} on $A$ and let $k$ receive. Let $t=\deg(\last_A)$. Let $n_j=\sum_{i=1}^t [k_i=j]$. The objective of the following instructions is to either show that $0<0$, or to show that $n_i=\deg(u_i)$ for $i=1$ to $i=m$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that $\sum_{j=1}^m n_j=\sum_{j=1}^m\sum_{i=1}^t [k_i=j]=\sum_{i=1}^t\sum_{j=1}^m [k_i=j]=\sum_{i=1}^t 1=t$.
 					\item If for any $i=1$ to $i=m$, $n_i>\deg(u_i)$, then do the following:
 					\begin{enumerate}
-						\item Execute \procedurehr{55} on the polynomial $u_i$ along with $\deg(u_i)+1$ of the distinct pairs $\langle c_l,d_l\rangle$ such that $k_l=i$.
+						\item Execute \procedurehr{1.3} on the polynomial $u_i$ along with $\deg(u_i)+1$ of the distinct pairs $\langle c_l,d_l\rangle$ such that $k_l=i$.
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 					\item Otherwise if for any $i=1$ to $i=m$, $n_i<\deg(u_i)$, then do the following:
@@ -1897,9 +1899,9 @@
 						\item \textbf{For all $i=1$ to $i=m$, verify that $n_i=\deg(u_i)$.}
 					\end{enumerate}
 				\end{enumerate}
-		\notation{36}
+		\notation{2.29}
 			Let us use the notation "$A$ is upper triangular" as a shorthand for "all the entries of $A$ below the diagonal are zero" in what follows. 
-		\procedure[Upper triangular matrix multiplication]{77}
+		\procedure[Upper triangular matrix multiplication]{2.66}
 			\objective
 				Choose two upper triangular $\mathcal{M}_{m,m}(\mathbb{Q}[x])$s, $A$ and $B$. Let $C=AB$. The objective of the following instructions is to show that $C$ is an upper triangular matrix where $C_{i,i}=A_{i,i}B_{i,i}$ for $i=1$ to $i=m$.
 			\implementation
@@ -1917,12 +1919,12 @@
 					\end{enumerate}
 					\item \textbf{Therefore verify that $C$ is upper triangular.}
 				\end{enumerate}
-		\procedure{78}
+		\procedure{2.67}
 			\objective
 				Choose integers $m\ge n\ge 0$. Choose a $\mathcal{M}_{n,m}(\mathbb{Q}[x])$, $M$, and a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A_0$, such that $MA_0=I_n$. The objective of the following instructions is to either show that $1=0$ or to construct $\mathcal{M}_{m,n}(\mathbb{Q}[x])$s $A_1,A_2,\cdots,A_n$.
 			\implementation
 				\begin{enumerate}
-					\item Using \procedurehr{11}, verify that $C_n(M_0A_0)=C_n(I_n)=1$.
+					\item Using \procedurehr{2.10}, verify that $C_n(M_0A_0)=C_n(I_n)=1$.
 					\item If $C_n(A_0)=0_{\binom{m}{n}\times 1}$, then do the following:
 					\begin{enumerate}
 						\item Verify that $C_n(M_0A_0)=C_n(M_0)C_n(A_0)=C_n(M_0)0_{\binom{m}{n}\times 1}=0$.
@@ -1943,15 +1945,15 @@
 						\item Let $D_i$ be a $n\times n$ diagonal matrix comprising $i$ $1$s followed by $n-i$ $\lVert A_{i-1}e_i\rVert^2$s.
 						\item Verify that $C_n(D_i)=(\lVert A_{i-1}e_i\rVert^2)^{n-i}\ne 0$.
 						\item Let $N_i=I_n$ except that its $i^{th}$ row is $i-1$ $0$s followed by a $1$ followed by $-({A_{i-1}}^TA_{i-1})_{i,i+1}$, then $-({A_{i-1}}^TA_{i-1})_{i,i+2}$, all the way up to $-({A_{i-1}}^TA_{i-1})_{i,n}$.
-						\item Using \procedurehr{11}, verify that $C_n(N_i)=1\ne 0$.
+						\item Using \procedurehr{2.10}, verify that $C_n(N_i)=1\ne 0$.
 						\item Let $A_i=A_{i-1}D_iN_i$.
 						\item \textbf{Verify that $C_n(A_i)=C_n(A_{i-1}D_iN_i)=C_n(A_{i-1})C_n(D_i)C_n(N_i)=C_n(A_{i-1})C_n(D_i)\ne 0$}.
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle A_0,A_1,\cdots,A_n\rangle$.}
 				\end{enumerate}
-		\procedure{79}
+		\procedure{2.68}
 			\objective
-				Choose integers $m\ge n\ge 0$. Choose a $\mathcal{M}_{n,m}(\mathbb{Q}[x])$, $M$, and a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A_0$, such that $MA_0=I_n$. Execute \procedurehr{78} on $M$ and $A_0$ and let the tuple $\langle A_1,\cdots,A_n\rangle$ receive the result. The objective of the following instructions is to either show that $1=0$ or to show that $({A_i}^TA_i)_{[1:i+1],[1:i+1]}$ is a $\mathcal{D}_{i,i}(\mathbb{Q}[x])$ and ${A_i}^TA_i=\bdiag(({A_i}^TA_i)_{[1:i+1],[1:i+1]},({A_i}^TA_i)_{[i+1:n+1],[i+1:n+1]})$ for $i=1$ to $i=n$.
+				Choose integers $m\ge n\ge 0$. Choose a $\mathcal{M}_{n,m}(\mathbb{Q}[x])$, $M$, and a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A_0$, such that $MA_0=I_n$. Execute \procedurehr{2.67} on $M$ and $A_0$ and let the tuple $\langle A_1,\cdots,A_n\rangle$ receive the result. The objective of the following instructions is to either show that $1=0$ or to show that $({A_i}^TA_i)_{[1:i+1],[1:i+1]}$ is a $\mathcal{D}_{i,i}(\mathbb{Q}[x])$ and ${A_i}^TA_i=\bdiag(({A_i}^TA_i)_{[1:i+1],[1:i+1]},({A_i}^TA_i)_{[i+1:n+1],[i+1:n+1]})$ for $i=1$ to $i=n$.
 			\implementation
 				\begin{enumerate}
 					\item For $i=1$ to $i=n$, do the following:
@@ -1960,16 +1962,16 @@
 						\item Let $N_i=I_n$ except that its $i^{th}$ row is $i-1$ $0$s followed by a $1$ followed by $-({A_{i-1}}^TA_{i-1})_{i,i+1}$, then $-({A_{i-1}}^TA_{i-1})_{i,i+2}$, all the way up to $-({A_{i-1}}^TA_{i-1})_{i,n}$.
 						\item Verify that $A_i=A_{i-1}D_iN_i$.
 						\item Verify that ${A_i}^TA_i=(A_{i-1}D_iN_i)^T(A_{i-1}D_iN_i)={N_i}^T{D_i}^T({A_{i-1}}^TA_{i-1})D_iN_i$.
-						\item Now using \procedurehr{9}, verify that ${A_i}^TA_i$ and ${A_{i-1}}^TA_{i-1}$ are the same modulo the bottom-right $(n-i+1)\times(n-i+1)$ block.
+						\item Now using \procedurehr{2.8}, verify that ${A_i}^TA_i$ and ${A_{i-1}}^TA_{i-1}$ are the same modulo the bottom-right $(n-i+1)\times(n-i+1)$ block.
 						\item \textbf{Therefore using (1e) and the previous instance of (1i), verify that $({A_i}^TA_i)_{[1:i+1],[1:i+1]}$ is a $\mathcal{D}_{i,i}(\mathbb{Q}[x])$.}
 						\item Also verify that $({A_i}^TA_i)_{i,[i+1:n+1]}=0$.
 						\item Also verify that $({A_i}^TA_i)_{[i+1:n+1],i}=0$.
 						\item \textbf{Therefore using (1g), (1h), and the previous instance of (1i), verify that ${A_i}^TA_i=\bdiag(({A_i}^TA_i)_{[1:i+1],[1:i+1]},({A_i}^TA_i)_{[i+1:n+1],[i+1:n+1]})$.}
 					\end{enumerate}
 				\end{enumerate}
-		\procedure{80}
+		\procedure{2.69}
 			\objective
-				Choose integers $m\ge n\ge 0$. Choose a $\mathcal{M}_{n,m}(\mathbb{Q}[x])$, $M$, and a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A_0$, such that $MA_0=I_n$. Execute \procedurehr{78} on $M$ and $A_0$ and let the tuple $\langle A_1,\cdots,A_n\rangle$ receive the result. The objective of the following instructions is to either show that $1=0$ or to show that $A_0MA_i=A_i$ and $({e_j}^TM)(A_ie_j)=\lVert A_0e_1\rVert^2\cdots\lVert A_{\min(i,j-1)-1}e_{\min(i,j-1)}\rVert^2$ for $j=1$ to $j=n$, for $i=1$ to $i=n$.
+				Choose integers $m\ge n\ge 0$. Choose a $\mathcal{M}_{n,m}(\mathbb{Q}[x])$, $M$, and a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A_0$, such that $MA_0=I_n$. Execute \procedurehr{2.67} on $M$ and $A_0$ and let the tuple $\langle A_1,\cdots,A_n\rangle$ receive the result. The objective of the following instructions is to either show that $1=0$ or to show that $A_0MA_i=A_i$ and $({e_j}^TM)(A_ie_j)=\lVert A_0e_1\rVert^2\cdots\lVert A_{\min(i,j-1)-1}e_{\min(i,j-1)}\rVert^2$ for $j=1$ to $j=n$, for $i=1$ to $i=n$.
 			\implementation
 				\begin{enumerate}
 					\item For $i=1$ to $i=n$, do the following:
@@ -1982,7 +1984,7 @@
 						\item Verify that $A_i=A_0(D_1N_1)\cdots (D_iN_i)$.
 						\item Verify that $MA_i=(D_1N_1)\cdots (D_iN_i)$.
 						\item \textbf{Therefore verify that $A_0MA_i=A_i$.}
-						\item Using \procedurehr{77}, for $j=1$ to $j=n$, verify that $({e_j}^TM)(A_ie_j)$
+						\item Using \procedurehr{2.66}, for $j=1$ to $j=n$, verify that $({e_j}^TM)(A_ie_j)$
 						\begin{enumerate}
 							\item $={e_j}^T(MA_i)e_j$
 							\item $={e_j}^T((D_1N_1)\cdots (D_iN_i))e_j$
@@ -1993,7 +1995,7 @@
 						\end{enumerate}
 					\end{enumerate}
 				\end{enumerate}
-		\procedure[Cauchy-Schwarz inequality]{81}
+		\procedure[Cauchy-Schwarz inequality]{2.70}
 			\objective
 				Choose a $\mathcal{M}_{1,m}(\mathbb{Q})$, $A$, and a $\mathcal{M}_{m,1}(\mathbb{Q})$, $B$. The objective of the following instructions is to show that $(AB)^2\le(AA^T)(B^TB)$.
 			\implementation
@@ -2008,15 +2010,15 @@
 					\end{enumerate}
 					\item \textbf{Therefore verify that $(AB)^2\le(AA^T)(B^TB)$.}
 				\end{enumerate}
-		\procedure{82}
+		\procedure{2.71}
 			\objective
 				Choose integers $m\ge n>0$. Choose a $\mathcal{M}_{n,m}(\mathbb{Q}[x])$, $M$, and a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A_0$, such that $MA_0=I_n$. Choose a $\mathbb{Q}$, $x$. Let $a=\max(\lVert M(x)\rVert^2,1)$. Choose a column index $1\le j\le n$ such that $\lVert A_n(x)e_j\rVert^2<\frac{1}{a^{(2n+2)!!}}$. The objective of the following instructions is to show that $1<1$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{78} on $M$ and $A_0$ and let the tuple $\langle A_0,A_1,\cdots,A_n\rangle$ receive the result.
+					\item Execute \procedurehr{2.67} on $M$ and $A_0$ and let the tuple $\langle A_0,A_1,\cdots,A_n\rangle$ receive the result.
 					\item Let $i=n$.
 					\item Verify that $\lVert A_i(x)e_j\rVert^2<\frac{1}{a^{(2i+2)!!}}$.
-					\item Using \procedurehr{81}, verify that $({e_j}^TM(x)A_i(x)e_j)^2\le\lVert{e_j}^TM(x)\rVert^2\lVert A_i(x)e_j\rVert^2<\lVert M(x)\rVert^2\frac{1}{a^{(2i+2)!!}}\le a\frac{1}{a^{(2i+2)!!}}\le\frac{1}{a^{(2i)!!*2i}}\le 1$.
+					\item Using \procedurehr{2.70}, verify that $({e_j}^TM(x)A_i(x)e_j)^2\le\lVert{e_j}^TM(x)\rVert^2\lVert A_i(x)e_j\rVert^2<\lVert M(x)\rVert^2\frac{1}{a^{(2i+2)!!}}\le a\frac{1}{a^{(2i+2)!!}}\le\frac{1}{a^{(2i)!!*2i}}\le 1$.
 					\item If $i=0$, then do the following:
 					\begin{enumerate}
 						\item Verify that $({e_j}^TM(x)A_i(x)e_j)^2=({e_j}^TM(x)A_0(x)e_j)^2=({e_j}^TI_ne_j)^2=1$.
@@ -2024,7 +2026,7 @@
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 					\item Otherwise, do the following:
-					\item Using \procedurehr{80}, verify that $(1\lVert A_0e_1\rVert^2\cdots\lVert A_{\min(i,j-1)-1}e_{\min(i,j-1)}\rVert^2)^2=({e_j}^TM(x)A_i(x)e_j)^2<\frac{1}{a^{(2i)!!*2i}}\le 1$.
+					\item Using \procedurehr{2.69}, verify that $(1\lVert A_0e_1\rVert^2\cdots\lVert A_{\min(i,j-1)-1}e_{\min(i,j-1)}\rVert^2)^2=({e_j}^TM(x)A_i(x)e_j)^2<\frac{1}{a^{(2i)!!*2i}}\le 1$.
 					\item If $\min(i,j-1)=0$, then do the following:
 					\begin{enumerate}
 						\item Verify that $(1\lVert A_0(x)e_1\rVert^2\cdots\allowbreak\lVert A_{\min(i,j-1)-1}(x)e_{\min(i,j-1)}\rVert^2)^2=1^2=1$.
@@ -2049,13 +2051,13 @@
 						\end{enumerate}
 					\end{enumerate}
 				\end{enumerate}
-		\procedure{83}
+		\procedure{2.72}
 			\objective
-				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \procedurehr{75} on the matrix $A$ and let the tuple $\langle k\rangle$ receive the result. The objective of the following instructions is to either show that $0<0$ or to show that $\sum_{i=1}^t(m+1-k_i)=m$.
+				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \procedurehr{2.64} on the matrix $A$ and let the tuple $\langle k\rangle$ receive the result. The objective of the following instructions is to either show that $0<0$ or to show that $\sum_{i=1}^t(m+1-k_i)=m$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{21} on the matrix $A$ and let the tuple $\langle,D,u,\rangle$.
-					\item Using \procedurehr{76}, verify that $\sum_{i=1}^t(m+1-k_i)$
+					\item Execute \procedurehr{2.20} on the matrix $A$ and let the tuple $\langle,D,u,\rangle$.
+					\item Using \procedurehr{2.65}, verify that $\sum_{i=1}^t(m+1-k_i)$
 					\begin{enumerate}
 						\item $=\sum_{i=1}^t\sum_{j=1}^m [k_i\le j]$
 						\item $=\sum_{j=1}^m\sum_{i=1}^t [k_i\le j]$
@@ -2069,40 +2071,40 @@
 						\item $=m$
 					\end{enumerate}
 				\end{enumerate}
-		\notation{37}
+		\notation{2.30}
 			Let us use the notation $(2k)!!$ as a shorthand for "$2^k(k!)$".
-		\procedure{84}
+		\procedure{2.73}
 			\objective
 				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. The objective of the following instructions is to either show that $0<0$ or to construct the rational, $\disc(A)$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{74} on the matrix $A$ and let the tuple $\langle c,d\rangle$ receive the result.
-					\item Execute \procedurehr{5} with $xI_m-A$ as the choice matrix. Let the tuple $\langle M,D,,N\rangle$ receive the result.
+					\item Execute \procedurehr{2.63} on the matrix $A$ and let the tuple $\langle c,d\rangle$ receive the result.
+					\item Execute \procedurehr{2.4} with $xI_m-A$ as the choice matrix. Let the tuple $\langle M,D,,N\rangle$ receive the result.
 					\item Let $L=\lvert(\lVert N^{-1}\rVert^2)^{(2m+2)!!}\rvert$.
 					\item Let $\disc(A)=\frac{1}{\max(1,L(\lvert c_1\rvert),L(\lvert d_t\rvert))}$.
 					\item \textbf{Verify that $\disc(A)>0$.}
 					\item \textbf{Yield the tuple $\langle\disc(A)\rangle$.}
 				\end{enumerate}
-		\notation{38}
-			Let us use the notation $\disc(A)$ to refer to the result yielded by executing \procedurehr{84} on the matrix $A$.
-		\procedure{85}
+		\notation{2.31}
+			Let us use the notation $\disc(A)$ to refer to the result yielded by executing \procedurehr{2.73} on the matrix $A$.
+		\procedure{2.74}
 			\objective
 				Choose integers $0<k\le m$ and a list of $\mathcal{T}_m(\mathbb{Q}[x])$, $N$. Let $Q=(I_m)_{*,[k:m]}$. The objective of the following instructions is to either show that $1=0$ or to construct an $\mathcal{M}_{m,m+1-k}(\mathbb{Q}[x])$, $K$, and an $\mathcal{M}_{m+1-k,m+1-k}(\mathbb{Q}[x])$, $E$, such that $K_i=NQE$ and $K^TK$ is a $\mathcal{D}_{m+1-k,m+1-k}(\mathbb{Q}[x])$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that $(Q^TN^{-1})(NQ)=Q^T(N^{-1}N)Q=Q^TI_mQ=Q^TQ=I_{m+1-k}$.
-					\item Execute \procedurehr{78} on the matrices $Q^TN^{-1}$ and $NQ$. Let the tuple $\langle ,,\cdots,,K\rangle$ receive the result.
+					\item Execute \procedurehr{2.67} on the matrices $Q^TN^{-1}$ and $NQ$. Let the tuple $\langle ,,\cdots,,K\rangle$ receive the result.
 					\item \textbf{Verify that $K$ is a $\mathcal{M}_{m,m+1-k}(\mathbb{Q}[x])$.}
-					\item \textbf{Using \procedurehr{79}, verify that $K^TK$ is a $\mathcal{D}_{m+1-k,m+1-k}(\mathbb{Q}[x])$.}
+					\item \textbf{Using \procedurehr{2.68}, verify that $K^TK$ is a $\mathcal{D}_{m+1-k,m+1-k}(\mathbb{Q}[x])$.}
 					\item Let $E=Q^TN^{-1}K$.
 					\item \textbf{Verify that $E$ is a $\mathcal{M}_{m+1-k,m+1-k}(\mathbb{Q}[x])$.}
-					\item Execute \procedurehr{80} on the matrices $Q^TN^{-1}$ and $NQ$.
+					\item Execute \procedurehr{2.69} on the matrices $Q^TN^{-1}$ and $NQ$.
 					\item \textbf{Now verify that $K=NQE$.}
 					\item \textbf{Yield $\langle K,E\rangle$.}
 				\end{enumerate}
-		\procedure[Symmetric matrix spectral procedure initialization]{86}
+		\procedure[Symmetric matrix spectral procedure initialization]{2.75}
 			\objective
-				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Choose a $\mathbb{Q}$ $\epsilon>0$. Execute \procedurehr{75} on the matrix $A$ and let the tuple $\langle k\rangle$ receive the result. The objective of the following instructions is to either show that $1<1$ or to construct $\mathbb{Q}$s, $0<\delta\le 1\le K'$, a list of $\mathcal{M}_{m,*}(\mathbb{Q})$s, $K$, and a list of $\mathbb{Q}$s, $g$, such that for $1\le i\le\lvert k\rvert$:
+				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Choose a $\mathbb{Q}$ $\epsilon>0$. Execute \procedurehr{2.64} on the matrix $A$ and let the tuple $\langle k\rangle$ receive the result. The objective of the following instructions is to either show that $1<1$ or to construct $\mathbb{Q}$s, $0<\delta\le 1\le K'$, a list of $\mathcal{M}_{m,*}(\mathbb{Q})$s, $K$, and a list of $\mathbb{Q}$s, $g$, such that for $1\le i\le\lvert k\rvert$:
 				\begin{enumerate}
 					\item $\cols(K_i)=m+1-k_i$.
 					\item $(K_i)_{p,q}\le K'm$, for $1\le p\le m$, for $1\le q\le\cols(K_i)$.
@@ -2113,13 +2115,13 @@
 				\end{enumerate}
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{74} on the matrix $A$ and let the tuple $\langle c,d\rangle$ receive the result.
-					\item Execute \procedurehr{21} with $xI_m-A$ as the choice matrix. Let the tuple $\langle M,D,u,N\rangle$ receive the result.
+					\item Execute \procedurehr{2.63} on the matrix $A$ and let the tuple $\langle c,d\rangle$ receive the result.
+					\item Execute \procedurehr{2.20} with $xI_m-A$ as the choice matrix. Let the tuple $\langle M,D,u,N\rangle$ receive the result.
 					\item Let $M'=1+\max_{i=1}^m\max_{j=1}^m\lvert {{M^{-1}}_*}_{i,j}\rvert(\max(\lvert c_1\rvert,\lvert d_{\lvert d\rvert}\rvert))$.
 					\item Let $N'=1+\max_{i=1}^m\max_{j=1}^m\lvert {N_*}_{i,j}\rvert(\max(\lvert c_1\rvert,\lvert d_{\lvert d\rvert}\rvert))$.
 					\item Let $\delta=\min(1,\min_{i=1}^{\lvert d\rvert-1}(d_{i+1}-c_i))$.
-					\item Execute \procedurehr{85} on $\langle k,m,N\rangle$ and let the tuple $\langle\langle K_1,E_1\rangle,\langle K_2,E_2\rangle,\cdots,\langle K_{\lvert k\rvert},E_{\lvert k\rvert}\rangle\rangle$ receive.
-					\item \textbf{Using \procedurehr{83}, verify that $\sum_{p=1}^{\lvert k\rvert}\cols(K_p)=\sum_{p=1}^{\lvert k\rvert} m+1-k_p=m$.}
+					\item Execute \procedurehr{2.74} on $\langle k,m,N\rangle$ and let the tuple $\langle\langle K_1,E_1\rangle,\langle K_2,E_2\rangle,\cdots,\langle K_{\lvert k\rvert},E_{\lvert k\rvert}\rangle\rangle$ receive.
+					\item \textbf{Using \procedurehr{2.72}, verify that $\sum_{p=1}^{\lvert k\rvert}\cols(K_p)=\sum_{p=1}^{\lvert k\rvert} m+1-k_p=m$.}
 					\item Let $E'=1+\max_{i=1}^t\max_{j=1}^{m+1-k_i}\max_{l=1}^{m+1-k_i}\lvert E_{j,l}\rvert(\max(\lvert c_1\rvert,\lvert d_{\lvert d\rvert}\rvert))$.
 					\item Let $U=(1+\lvert u_1\rvert)(1+\lvert u_2\rvert)\cdots(1+\lvert u_m\rvert)$.
 					\item Let $U'=U(\max(\lvert c_1\rvert,\lvert d_{\lvert d\rvert}\rvert))$.
@@ -2127,7 +2129,7 @@
 					\item For $i=1$ to $i=\lvert k\rvert$, do the following:
 					\begin{enumerate}
 						\item Verify that $\sgn(u_{k_i}(c_i))\ne\sgn(u_{k_i}(d_i))$.
-						\item Execute \procedurehr{54} on the formal polynomial $u_{k_i}$, interval $(c_i, d_i)$, and target of $\frac{b}{U'}$. Let $\langle g_i\rangle$ receive the result.
+						\item Execute \procedurehr{1.2} on the formal polynomial $u_{k_i}$, interval $(c_i, d_i)$, and target of $\frac{b}{U'}$. Let $\langle g_i\rangle$ receive the result.
 						\item Now verify that $\lvert u_{k_i}(g_i)\rvert<\frac{b}{U'}$.
 						\item Also verify that $c_i\le g_i\le d_i$.
 						\item For $j=k_i$ to $j=m$, do the following:
@@ -2139,7 +2141,7 @@
 						\begin{enumerate}
 							\item Let $z$ be the column index of the diagonal entry less than $\disc(A)$.
 							\item Verify that $\disc(A)\le\frac{1}{\max(\lVert (Q^TN^{-1})(g_i)\rVert^2,1)^{(2(m+1-k_i)+2)!!}}$.
-							\item Execute \procedurehr{82} with matrices $Q^TN^{-1}$ and $NQ$, rational number $g_i$, and column index $z$.
+							\item Execute \procedurehr{2.71} with matrices $Q^TN^{-1}$ and $NQ$, rational number $g_i$, and column index $z$.
 							\item \textbf{Abort procedure.}
 						\end{enumerate}
 						\item Otherwise, do the following:
@@ -2152,7 +2154,7 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle\delta,N'E',\langle K_1(g_1),\cdots,K_t(g_t)\rangle,g\rangle$.}
 				\end{enumerate}
-		\procedure[Symmetric matrix spectral]{87}
+		\procedure[Symmetric matrix spectral]{2.76}
 			\objective
 				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Choose a $\mathbb{Q}$ $\epsilon>0$. The objective of the following instructions is to either show that $1<1$ or to construct an $\mathcal{M}_{m,m}(\mathbb{Q})$, $K$, and a $\mathcal{D}_{m,m}(\mathbb{Q})$, $C$, such that:
 				\begin{enumerate}
@@ -2162,11 +2164,11 @@
 				\end{enumerate}
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{86} on matrix $A$ and rational $\epsilon$. Let the tuple $\langle\delta,K',K,g\rangle$ receive the result.
+					\item Execute \procedurehr{2.75} on matrix $A$ and rational $\epsilon$. Let the tuple $\langle\delta,K',K,g\rangle$ receive the result.
 					\item Let $C$ be a diagonal matrix whose $i^{th}$, where $1\le i\le t$, group of entries are $m+1-k_i$ $g_i$s.
-					\item \textbf{Using \procedurehr{83}, verify that $C$ is $m\times m$.}
+					\item \textbf{Using \procedurehr{2.72}, verify that $C$ is $m\times m$.}
 					\item Let $K$ be a matrix whose columns are the in-order concatenation of those of $K_1,K_2,\cdots,K_t$.
-					\item \textbf{Using \procedurehr{83}, verify that $K$ is $m\times m$.}
+					\item \textbf{Using \procedurehr{2.72}, verify that $K$ is $m\times m$.}
 					\item \textbf{Using (1), verify that $\sum_{p=1}^m\sum_{q=1}^m\lvert(KC-AK)_{p,q}\rvert<\sum_{p=1}^m\sum_{q=1}^m \frac{\epsilon\delta}{K'm^2}=\frac{\epsilon\delta}{K'}\le\epsilon$.}
 					\item For $i=1$ to $i=m$, do the following: For $j=1$ to $j=m$, do the following:
 					\begin{enumerate}
