@@ -1,4 +1,5 @@
-# Strictured Programming
+# Arithmetic
+## A Programmatic Approach
 
 ### What is this?
 What is [linked](project.pdf) is an experiment where I construct programs according to certain rules. While I do not list what these rules are, the following are a sketch of the sort of rules I have in mind:
