@@ -58,7 +58,9 @@
 	\tableofcontents
 	\section{Rational Arithmetic}
 		\notation{1.0}
-			Let us use the notation $\mathbb{Q}[x_1,x_2,\cdots,x_n]$ as a shorthand for "formal polynomial with rational coefficients in the indeterminates $x_1,x_2,\cdots,x_n$".
+			Let us use the notation $\mathbb{Q}$ as a shorthand for "rational".
+		\notation{1.1}
+			Let us use the notation $A[x_1,x_2,\cdots,x_n]$ as a shorthand for "formal polynomial with $A$ coefficients in the indeterminates $x_1,x_2,\cdots,x_n$".
 		\procedure[Difference of powers]{1.0}
 			\objective
 				Choose an integer $n\ge 0$ and a $\mathbb{Q}[x]$ $p=p_0x^n+p_1x^{n-1}+\cdots+p_n$. Let $y,z$ be indeterminates. The objective of the following instructions is to construct a $\mathbb{Q}[y,z]$ $G$ such that $p(z)-p(y)=(z-y)G(y,z)$.
@@ -185,9 +187,9 @@
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 				\end{enumerate}
-		\notation{1.1}
-			Let us use the notation $p\circ q$ as a shorthand for "the sum of products where each product is the coefficient of a monomial in $p$ times the coefficient of the same monomial in $q$".
 		\notation{1.2}
+			Let us use the notation $p\circ q$ as a shorthand for "the sum of products where each product is the coefficient of a monomial in $p$ times the coefficient of the same monomial in $q$".
+		\notation{1.3}
 			Let us use the notation $[a:b]$ as a shorthand for "the list $\langle a,a+1,\cdots b-1\rangle$".
 		\procedure[Sturm's procedure initialization]{1.4}
 			\objective
@@ -219,9 +221,9 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle s,q,g,h\rangle$.}
 				\end{enumerate}
-		\notation{1.3}
-			Let us use the notation $[P]$ as a shorthand for "if $P$, then yield $1$, otherwise yield $0$".
 		\notation{1.4}
+			Let us use the notation $[P]$ as a shorthand for "if $P$, then yield $1$, otherwise yield $0$".
+		\notation{1.5}
 			Let us use the notation $J_{s}(x)$ as a shorthand for "the number of sign changes in the list $s_0(x),s_1(x),\cdots,s_{\lvert s\rvert-1}(x)$".
 		\procedure[Change in number of sign changes verification]{1.5}
 			\objective
@@ -395,7 +397,7 @@
 					\item Append $c$ onto $b$.
 					\item \textbf{Yield $\langle b\rangle$.}
 				\end{enumerate}
-		\notation{1.5}
+		\notation{1.6}
 			Let us use the notation $\lvert A\rvert$ as a shorthand for "the number of items in the list $A$".
 		\procedure[Sturm's sign change]{1.9}
 			\objective
@@ -1586,6 +1588,8 @@
 			Let us use the notation $\mat_t(p)$ as a shorthand for "$(x^{t-1}\circ p)e_1+(x^{t-2}\circ p)e_2+\cdots+(x^0\circ p)e_t$".
 		\notation{2.25}
 			Let us use the notation $\pol(P)$ as a shorthand for "$P_{1,1}x^{t-1}+P_{2,1}x^{t-2}+\cdots+P_{t,1}$ where $t=\rows(P)$".
+		\notation{2.26}
+			Let us use the notation $\lVert A\rVert^2$ as a shorthand for "$\sum_{i=1}^{\rows(A)}\sum_{j=1}^{\cols(A)}{A_{i,j}}^2$".
 		\procedure{2.56}
 			\objective
 				Choose an $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. The objective of the following instructions is to either show that $0<0$ or to construct a $\mathbb{Q}[x]$, $\sel_A$.
@@ -1597,11 +1601,11 @@
 					\item Let $\sel_A=\frac{\pol(H)}{x^t\circ\last_A}$.
 					\item Yield $\langle\sel_A\rangle$.
 				\end{enumerate}
-		\notation{2.26}
-			Let us use the notation $\sel_A$ as a shorthand for the result yielded by executing \procedurehr{2.56} on $A$.
 		\notation{2.27}
-			Let us use the notation $\tr(X)$ as a shorthand for "the sum of the diagonal entries of the square matrix $X$".
+			Let us use the notation $\sel_A$ as a shorthand for the result yielded by executing \procedurehr{2.56} on $A$.
 		\notation{2.28}
+			Let us use the notation $\tr(X)$ as a shorthand for "the sum of the diagonal entries of the square matrix $X$".
+		\notation{2.29}
 			Let us use the notation "$A$ is symmetric" as a shorthand for "$A^T=A$".
 		\procedure{2.57}
 			\objective
@@ -1899,7 +1903,7 @@
 						\item \textbf{For all $i=1$ to $i=m$, verify that $n_i=\deg(u_i)$.}
 					\end{enumerate}
 				\end{enumerate}
-		\notation{2.29}
+		\notation{2.30}
 			Let us use the notation "$A$ is upper triangular" as a shorthand for "all the entries of $A$ below the diagonal are zero" in what follows. 
 		\procedure[Upper triangular matrix multiplication]{2.66}
 			\objective
@@ -2071,7 +2075,7 @@
 						\item $=m$
 					\end{enumerate}
 				\end{enumerate}
-		\notation{2.30}
+		\notation{2.31}
 			Let us use the notation $(2k)!!$ as a shorthand for "$2^k(k!)$".
 		\procedure{2.73}
 			\objective
@@ -2085,7 +2089,7 @@
 					\item \textbf{Verify that $\disc(A)>0$.}
 					\item \textbf{Yield the tuple $\langle\disc(A)\rangle$.}
 				\end{enumerate}
-		\notation{2.31}
+		\notation{2.32}
 			Let us use the notation $\disc(A)$ to refer to the result yielded by executing \procedurehr{2.73} on the matrix $A$.
 		\procedure{2.74}
 			\objective
