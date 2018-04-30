@@ -617,7 +617,7 @@
 				\end{enumerate}
 		\procedure{1.28}
 			\objective
-				Choose a positive integer $a$. The objective of the following instructions is to construct a prime $b$ such that $b>a$ and $c$ is not prime for $c=a+1$ up to $c=b-1$.
+				Choose a positive integer $a$. The objective of the following instructions is to either show that $0=1$ or to construct a prime $b$ such that $b>a$ and $c$ is not prime for $c=a+1$ up to $c=b-1$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that $a!+1>1$.
@@ -713,16 +713,16 @@
 			Let us use the notation $[a,b]$ as a shorthand for "the first part of the triple yielded by executing \procedurehr{1.32} on $\langle a,b\rangle$".
 		\procedure{1.33}
 			\objective
-				Choose two positive integers $a,b$. The objective of the following instructions is to show that $[a,b]=[b,a]$.
+				Choose two positive integers $a,b$. The objective of the following instructions is to show that either $0<0$ or $[a,b]=[b,a]$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that $(a,b)>0$.
-					\item Verify that $[a,b](a,b)=ab=ba=[b,a](b,a)=[b,a](a,b)$.
+					\item Using \procedurehr{1.16}, verify that $[a,b](a,b)=ab=ba=[b,a](b,a)=[b,a](a,b)$.
 					\item \textbf{Therefore verify that $[a,b]=[b,a]$.}
 				\end{enumerate}
 		\procedure{1.34}
 			\objective
-				Choose an integer $a$ and two positive integers $b,c$. The objective of the following instructions is to show that $[ca,cb]=c[a,b]$.
+				Choose an integer $a$ and two positive integers $b,c$. The objective of the following instructions is to show that either $0<0$ or $[ca,cb]=c[a,b]$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that $(ca,cb)>0$.
@@ -731,10 +731,10 @@
 				\end{enumerate}
 		\procedure{1.35}
 			\objective
-				Choose an integer $a$ and two positive integers $b,c$. The objective of the following instructions is to show that $[[a,b],c]=[a,[b,c]]$.
+				Choose an integer $a$ and two positive integers $b,c$. The objective of the following instructions is to show that either $0<0$ or $[[a,b],c]=[a,[b,c]]$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $(a,b)(ab,(ac,bc))(b,c)[[a,b],c]$
+					\item Using \procedurehr{1.19}, verify that $(a,b)(ab,(ac,bc))(b,c)[[a,b],c]$
 					\begin{enumerate}
 						\item $=(ab,(ac,bc))(b,c)[(a,b)[a,b],(a,b)c]$
 						\item $=(ab,(ac,bc))(b,c)[ab,(ac,bc)]$
@@ -753,7 +753,7 @@
 			Let us use the notation $[a_1,a_2,\cdots,a_n]$ as a shorthand for "either $[a_1,[a_2,a_3,\cdots,a_n]]$ or $[[a_1,a_2],[a_3,a_4,\cdots,a_n]]$ or $\cdots$ or $[[a_1,a_2,\cdots,a_{n-1}],a_n]$".
 		\procedure{1.36}
 			\objective
-				Choose three positive integers $a,b,c$. The objective of the following instructions is to show that $([a,b],c)=[(a,c),(b,c)]$.
+				Choose three positive integers $a,b,c$. The objective of the following instructions is to show that either $0<0$ or $([a,b],c)=[(a,c),(b,c)]$.
 			\implementation
 				\begin{enumerate}
 					\item Using \procedurehr{1.32}, \procedurehr{1.18}, \procedurehr{1.19}, \procedurehr{1.16}, and \procedurehr{1.10}, verify that $(a,b)((a,c),(b,c))([a,b],c)$
@@ -770,7 +770,7 @@
 				\end{enumerate}
 		\procedure{1.37}
 			\objective
-				Choose three positive integers $a,b,c$. The objective of the following instructions is to show that $[(a,b),c]=([a,c],[b,c])$.
+				Choose three positive integers $a,b,c$. The objective of the following instructions is to show that either $0<0$ or $[(a,b),c]=([a,c],[b,c])$.
 			\implementation
 				\begin{enumerate}
 					\item Using \procedurehr{1.32}, \procedurehr{1.18}, \procedurehr{1.19}, \procedurehr{1.16}, and \procedurehr{1.10}, verify that $((a,b),c)(a,c)(b,c)[(a,b),c]$
@@ -829,7 +829,7 @@
 				\end{enumerate}
 		\procedure{1.40}
 			\objective
-				Choose two integers $a,c$ and two positive integers $b,d$ in such a way that $a\equiv c(\mod(b,d))$. The objective of the following instructions is to show that $\chi_{b,d}(a,c)=\chi_{d,b}(c,a)$.
+				Choose two integers $a,c$ and two positive integers $b,d$ in such a way that $a\equiv c(\mod(b,d))$. The objective of the following instructions is to show that either $0<0$ or $\chi_{b,d}(a,c)=\chi_{d,b}(c,a)$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.09} on $\langle b,d\rangle$ and let $\langle f,g,h,i,j\rangle$ receive.
@@ -838,7 +838,7 @@
 					\item Verify that $pb+nd=k=(d,b)=(b,d)$.
 					\item Execute \procedurehr{1.12} on $\langle b,p,n,d\rangle$ and let $\langle q\rangle$ receive.
 					\item Therefore verify that $n=j-qg$.
-					\item Verify that $\chi_{b,d}(a,c)$
+					\item Now using \procedurehr{1.33}, verify that $\chi_{b,d}(a,c)$
 					\begin{enumerate}
 						\item $=(a+((c-a)\div(b,d))ib)\mod[b,d]$
 						\item $=(a+((c-a)\div(b,d))(f-jd))\mod[b,d]$
@@ -847,6 +847,7 @@
 						\item $=(c+((a-c)\div(d,b))(n+qg)d)\mod[b,d]$
 						\item $=(c+((a-c)\div(d,b))dn+((a-c)\div(d,b))q[b,d])\mod[b,d]$
 						\item $=(c+((a-c)\div(d,b))dn)\mod[b,d]$
+						\item $=(c+((a-c)\div(d,b))dn)\mod[d,b]$
 						\item $=\chi_{d,b}(c,a)$.
 					\end{enumerate}
 				\end{enumerate}
@@ -863,12 +864,12 @@
 				\end{enumerate}
 		\procedure{1.42}
 			\objective
-				Choose three integers $x,a,c$ and two positive integers $b,d$ such that $a\equiv c(\mod(b,d))$ and $x\equiv\chi_{b,d}(a,c)(\mod[b,d])$. The objective of the following instructions is to show that $x\equiv a(\mod b)$ and $x\equiv c(\mod d)$.
+				Choose three integers $x,a,c$ and two positive integers $b,d$ such that $a\equiv c(\mod(b,d))$ and $x\equiv\chi_{b,d}(a,c)(\mod[b,d])$. The objective of the following instructions is to either show that $0<0$ or to show that $x\equiv a(\mod b)$ and $x\equiv c(\mod d)$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.41} on $\langle x,a,c,b,d\rangle$.
 					\item \textbf{Therefore verify that $x\equiv a(\mod b)$.}
-					\item Now verify that $x\equiv\chi_{b,d}(a,c)\equiv\chi_{d,b}(c,a)(\mod[d,b])$
+					\item Now using \procedurehr{1.40}, verify that $x\equiv\chi_{b,d}(a,c)\equiv\chi_{d,b}(c,a)(\mod[d,b])$
 					\item Execute \procedurehr{1.41} on $\langle x,c,a,d,b\rangle$.
 					\item \textbf{Therefore verify that $x\equiv c(\mod d)$.}
 				\end{enumerate}
@@ -901,7 +902,7 @@
 				\end{enumerate}
 		\procedure{1.45}
 			\objective
-				Choose three integers $a,c,e$ and three positive integers $b,d,f$ such that $a\equiv e(\mod(b,f))$, and $c\equiv e(\mod(d,f))$. The objective of the following instructions is to show that $\chi_{b,d}(a,c)\equiv e(\mod([b,d],f))$.
+				Choose three integers $a,c,e$ and three positive integers $b,d,f$ such that $a\equiv e(\mod(b,f))$, and $c\equiv e(\mod(d,f))$. The objective of the following instructions is to show that either $0<0$ or $\chi_{b,d}(a,c)\equiv e(\mod([b,d],f))$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.09} on $\langle b,f\rangle$ and let $\langle g_0,h_0,i_0,j_0,k_0\rangle$ receive.
@@ -935,7 +936,7 @@
 			Let us use the notation $\phi(n)$ as a shorthand for "the list of distinct non-negative integers less than $n$ where each integer $x$ is such that $(x,n)=1$".
 		\procedure{1.47}
 			\objective
-				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to show that each element of $a\phi(b)\mod b$ is in $\phi(b)$.
+				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to either show that $0<0$ or to show that each element of $a\phi(b)\mod b$ is in $\phi(b)$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that $(a,b)=1$.
@@ -953,7 +954,7 @@
 				\end{enumerate}
 		\procedure{1.48}
 			\objective
-				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to show that each element of $a\phi(b)\mod b$ is distinct.
+				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to either show that $0\ne 0$ or to show that each element of $a\phi(b)\mod b$ is distinct.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle r,t,u,v,w\rangle$ receive.
@@ -982,7 +983,7 @@
 				\end{enumerate}
 		\procedure{1.49}
 			\objective
-				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to show that $a\phi(b)\mod b$ is a rearrangement of $\phi(b)$.
+				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to either show that $0<0$ or to show that $a\phi(b)\mod b$ is a rearrangement of $\phi(b)$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.47} on $\langle a,b\rangle$.
@@ -994,7 +995,7 @@
 				\end{enumerate}
 		\procedure{1.50}
 			\objective
-				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to show that $a^{\lvert\phi(b)\rvert}\equiv 1(\mod b)$.
+				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to show that either $0<0$ or $a^{\lvert\phi(b)\rvert}\equiv 1(\mod b)$.
 			\implementation
 				\begin{enumerate}
 					\item For $i=1$ to $i=\lvert\phi(b)\rvert$, do the following:
@@ -1013,16 +1014,13 @@
 				Choose two positive integers $a,b$ such that $(a,b)=1$. The objective of the following instructions is to show that each entry of $\chi_{a,b}([0:a]\times[0:b])$ is in $[0:ab]$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle c,d,e,f,g\rangle$ receive.
 					\item Let $h=\chi_{a,b}([0:a]\times[0:b])$.
-					\item Verify that $c=(a,b)=1$.
-					\item Therefore verify that $b=ce=(1)e=e$.
-					\item Therefore verify that $0\le h_{i,j}<[a,b]=ae=ab$ for $1\le i\le a$, for $1\le j\le b$.
+					\item Therefore verify that $0\le h_{i,j}<[a,b]=[a,b](a,b)=ab$ for $1\le i\le a$, for $1\le j\le b$.
 					\item \textbf{Therefore verify that each entry of $h$ is in $[0:ab]$.}
 				\end{enumerate}
 		\procedure{1.53}
 			\objective
-				Choose two positive integers $a,b$ such that $(a,b)=1$. The objective of the following instructions is to show that each entry of $\chi_{a,b}([0:a]\times[0:b])$ is distinct.
+				Choose two positive integers $a,b$ such that $(a,b)=1$. The objective of the following instructions is to either show that $0<0$ or to show that each entry of $\chi_{a,b}([0:a]\times[0:b])$ is distinct.
 			\implementation
 				\begin{enumerate}
 					\item Let $h=\chi_{a,b}([0:a]\times[0:b])$.
@@ -1032,9 +1030,9 @@
 						\begin{enumerate}
 							\item Verify that $\chi_{a,b}([0:a]_i,[0:b]_j)=h_{i,j}=h_{k,l}=\chi_{a,b}([0:a]_k,[0:b]_l)$.
 							\item Verify that $\chi_{a,b}(i-1,j-1)=\chi_{a,b}(k-1,l-1)$.
-							\item Therefore verify that $i-1\equiv\chi_{a,b}(i-1,j-1)=\chi_{a,b}(k-1,l-1)\equiv k-1(\mod a)$.
+							\item Therefore using \procedurehr{1.42}, verify that $i-1\equiv\chi_{a,b}(i-1,j-1)=\chi_{a,b}(k-1,l-1)\equiv k-1(\mod a)$.
 							\item Therefore verify that $i=k$.
-							\item Also verify that $j-1\equiv\chi_{a,b}(i-1,j-1)=\chi_{a,b}(k-1,l-1)\equiv l-1(\mod b)$.
+							\item Also using \procedurehr{1.42}, verify that $j-1\equiv\chi_{a,b}(i-1,j-1)=\chi_{a,b}(k-1,l-1)\equiv l-1(\mod b)$.
 							\item Therefore verify that $j=l$.
 							\item Therefore verify that $\langle i,j\rangle=\langle k,l\rangle$.
 							\item Using (2), verify that $\langle i,j\rangle\ne\langle k,l\rangle$.
@@ -1050,7 +1048,7 @@
 				\end{enumerate}
 		\procedure{1.54}
 			\objective
-				Choose two positive integers $a,b$ such that $(a,b)=1$. The objective of the following instructions is to show that $\chi_{a,b}([0:a]\times[0:b])$ is a rearrangement $[0:ab]$.
+				Choose two positive integers $a,b$ such that $(a,b)=1$. The objective of the following instructions is to show that either $0<0$ or $\chi_{a,b}([0:a]\times[0:b])$ is a rearrangement $[0:ab]$.
 			\implementation
 				\begin{enumerate}
 					\item Let $h=\chi_{a,b}([0:a]\times[0:b])$.
@@ -1063,7 +1061,7 @@
 				\end{enumerate}
 		\procedure{1.55}
 			\objective
-				Choose two positive integers $a,b$ such that $(a,b)=1$. The objective of the following instructions is to show that each entry of $\chi_{a,b}(\phi(a)\times\phi(b))$ is in $\phi(ab)$.
+				Choose two positive integers $a,b$ such that $(a,b)=1$. The objective of the following instructions is to either show that $0<0$ or to show that each entry of $\chi_{a,b}(\phi(a)\times\phi(b))$ is in $\phi(ab)$.
 			\implementation
 				\begin{enumerate}
 					\item Let $h=\chi_{a,b}(\phi(a)\times\phi(b))$.
@@ -1083,22 +1081,22 @@
 				\end{enumerate}
 		\procedure{1.56}
 			\objective
-				Choose two positive integers $a,b$ such that $(a,b)=1$. The objective of the following instructions is to show that each entry of $\phi(ab)$ is in $\chi_{a,b}(\phi(a)\times\phi(b))$.
+				Choose two positive integers $a,b$ such that $(a,b)=1$. The objective of the following instructions is to either show that $0<0$ or to show that each entry of $\phi(ab)$ is in $\chi_{a,b}(\phi(a)\times\phi(b))$.
 			\implementation
 				\begin{enumerate}
 					\item For $i=1$ to $i=\lvert\phi(ab)\rvert$, do the following:
 					\begin{enumerate}
 						\item Verify that $(\phi(ab)_i,ab)=1$.
 						\item Verify that $\phi(ab)_i\equiv\phi(ab)_i\mod a(\mod a)$.
-						\item Therefore verify that $(\phi(ab)_i\mod a,a)=(\phi(ab)_i,a)=1$.
+						\item Therefore using \procedurehr{1.17}, verify that $(\phi(ab)_i\mod a,a)=(\phi(ab)_i,a)=1$.
 						\item Also verify that $0\le \phi(ab)_i\mod a<a$.
 						\item Therefore verify that $\phi(ab)_i\mod a$ is amongst $\phi(a)$.
 						\item Verify that $\phi(ab)_i\equiv\phi(ab)_i\mod b(\mod b)$.
-						\item Also verify that $(\phi(ab)_i\mod b,b)=(\phi(ab)_i,b)=1$.
+						\item Also using \procedurehr{1.17}, verify that $(\phi(ab)_i\mod b,b)=(\phi(ab)_i,b)=1$.
 						\item Also verify that $0\le \phi(ab)_i\mod b<b$.
 						\item Therefore verify that $\phi(ab)_i\mod b$ is amongst $\phi(b)$.
 						\item Therefore verify that $\langle \phi(ab)_i\mod a,\phi(ab)_i\mod b\rangle$ is amongst $\phi(a)\times\phi(b)$.
-						\item Also using (b) and (f), verify that $\phi(ab)_i\equiv\chi_{a,b}(\phi(ab)_i\mod a,\phi(ab)_i\mod b)(\mod[a,b]=[a,b](a,b)=ab)$.
+						\item Also using (b) and (f) and \procedurehr{1.39}, verify that $\phi(ab)_i\equiv\chi_{a,b}(\phi(ab)_i\mod a,\phi(ab)_i\mod b)(\mod[a,b]=[a,b](a,b)=ab)$.
 						\item Therefore verify that $\phi(ab)_i=\chi_{a,b}(\phi(ab)_i\mod a,\phi(ab)_i\mod b)$.
 						\item Therefore using (j) and (l), verify that $\phi(ab)_i$ is amongst $\chi_{a,b}(\phi(a)\times\phi(b))$.
 					\end{enumerate}
@@ -1106,7 +1104,7 @@
 				\end{enumerate}
 		\procedure{1.57}
 			\objective
-				Choose two positive integers $a,b$ such that $(a,b)=1$. The objective of the following instructions is to show that $\phi(ab)$ is a rearrangement of $\chi_{a,b}(\phi(a)\times\phi(b))$ and that $\lvert\phi(ab)\rvert=\lvert\phi(a)\rvert\lvert\phi(b)\rvert$.
+				Choose two positive integers $a,b$ such that $(a,b)=1$. The objective of the following instructions is to either show that $0<0$ or to show that $\phi(ab)$ is a rearrangement of $\chi_{a,b}(\phi(a)\times\phi(b))$ and that $\lvert\phi(ab)\rvert=\lvert\phi(a)\rvert\lvert\phi(b)\rvert$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.54} on $\langle a,b\rangle$.
@@ -1125,7 +1123,7 @@
 			Let us use the notation $[P]$ as a shorthand for "$1$ if $P$, $0$ if otherwise".
 		\procedure{1.58}
 			\objective
-				Choose a positive integer $a$ and a prime $b$. The objective of the following instructions is to show that $\lvert\phi(b^a)\rvert=b^a-b^{a-1}$.
+				Choose a positive integer $a$ and a prime $b$. The objective of the following instructions is to show that either $0<0$ or $\lvert\phi(b^a)\rvert=b^a-b^{a-1}$.
 			\implementation
 				\begin{enumerate}
 					\item Using \procedurehr{1.21}, verify that $\sum_{r=0}^{b^a-1}[(r,b^a)=1]\le\sum_{r=0}^{b^a-1}[(r,b)=1]$.
@@ -1138,7 +1136,7 @@
 				\end{enumerate}
 		\procedure{1.59}
 			\objective
-				Choose a list of primes $a$. Let $b$ be the list of distinct primes in $a$. Let $c$ be a list such that $c_i$ is the multiplicity of $b_i$ in $a$ for $i=1$ to $i=\lvert b\rvert$. The objective of the following instructions is to show that $\lvert\phi(a_*)\rvert=\prod_{i=1}^{\lvert b\rvert}({b_i}^{c_i}-{b_i}^{c_i-1})$.
+				Choose a list of primes $a$. Let $b$ be the list of distinct primes in $a$. Let $c$ be a list such that $c_i$ is the multiplicity of $b_i$ in $a$ for $i=1$ to $i=\lvert b\rvert$. The objective of the following instructions is to show that either $0<0$ or $\lvert\phi(a_*)\rvert=\prod_{i=1}^{\lvert b\rvert}({b_i}^{c_i}-{b_i}^{c_i-1})$.
 			\implementation
 				\begin{enumerate}
 					\item If $a=\langle\rangle$, then do the following:
@@ -1192,7 +1190,7 @@
 			Let us use the notation $\binom{n}{r}$ as a shorthand for "$n^{\ul{r}}\div(r!)$".
 		\procedure{1.61}
 			\objective
-				Choose a list of distinct elements $n$ and a non-negative integer $r$ such that $r\le\lvert n\rvert$. Let $b$ be the largest list of length-$r$ sublists of $n$ such that no two of them are permutations of each other. The objective of the following instructions is to either show that $1>2$ or to show that $\lvert b\rvert=\binom{\lvert n\rvert}{r}$ and that $n^{\ul{r}}\mod r!=0$.
+				Choose a list of distinct elements $n$ and a non-negative integer $r$ such that $r\le\lvert n\rvert$. Let $b$ be the largest list of length-$r$ sublists of $n$ such that no two of them are permutations of each other. The objective of the following instructions is to either show that $b$ contains at least two permutations of the same list, construct a list larger than $b$ that is also a list of length-$r$ sublists of $n$ such that no two of them are permutations of each other, or to show that $\lvert b\rvert=\binom{\lvert n\rvert}{r}$ and that $n^{\ul{r}}\mod r!=0$.
 			\implementation
 				\begin{enumerate}
 					\item Let $a$ and $f$ be a list of all the permutations of $n$.
@@ -1307,7 +1305,7 @@
 				\end{enumerate}
 		\procedure{1.65}
 			\objective
-				Choose a non-negative integer $a$ and a prime $b$. The objective of the following instructions is to show that the $\mathbb{Z}[x]$ $\sum_{r=0}^a\binom{a}{r}x^r\equiv\sum_{r=0}^a\binom{a\div b}{r\div b}\binom{a\mod b}{r\mod b}x^r(\mod b)$.
+				Choose a non-negative integer $a$ and a prime $b$. The objective of the following instructions is to show that either $0\ne 0$ or the $\mathbb{Z}[x]$ $\sum_{r=0}^a\binom{a}{r}x^r\equiv\sum_{r=0}^a\binom{a\div b}{r\div b}\binom{a\mod b}{r\mod b}x^r(\mod b)$.
 			\implementation
 				\begin{enumerate}
 					\item Using \procedurehr{1.02}, \procedurehr{1.63}, and \procedurehr{1.64}, verify that $\sum_{r=0}^a\binom{a}{r}x^r$
@@ -3466,6 +3464,10 @@
 			Edited by Rush Rhees.
 			Translated by Anthony Kenny.
 			Basil Blackwell, Oxford, 1974.
+		\bibitem{introductiontheoryofnumbers}
+			Ivan Niven, Herbert S. Zuckerman, Hugh L. Montgomery.
+			\textit{An Introduction to the Theory of Numbers}.
+			John Wiley \& Sons, 1991.
 	\end{thebibliography}
 \end{document}
 \grid
