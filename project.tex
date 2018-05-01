@@ -1926,10 +1926,15 @@
 				\end{enumerate}
 		\procedure{3.08}
 			\objective
-				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$, and a $\mathcal{M}_{n,k}(\mathbb{Q}[x])$, $B$. Choose integers $1\le a\le m$, $1\le b\le n$, and $1\le c\le k$. The objective of the following instructions is to show that $(AB)_{[1:a],[1:c]}=A_{[1:a],[1:b]}B_{[1:b],[1:c]}+A_{[1:a],[b:n+1]}B_{[b:n+1],[1:c]}$.
+				Choose a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $A$, and a $\mathcal{M}_{n,k}(\mathbb{Q}[x])$, $B$. Choose integers $1\le a\le m$, $1\le b\le n$, and $1\le c\le k$. The objective of the following instructions is to show that
+				\begin{enumerate}
+					\item $(AB)_{[1:a],[1:c]}=A_{[1:a],[1:b]}B_{[1:b],[1:c]}+A_{[1:a],[b:n+1]}B_{[b:n+1],[1:c]}$
+					\item $(AB)_{[1:a],[c:k+1]}=A_{[1:a],[1:b]}B_{[1:b],[c:k+1]}+A_{[1:a],[b:n+1]}B_{[b:n+1],[c:k+1]}$
+					\item $(AB)_{[a:m+1],[1:c]}=A_{[a:m+1],[1:b]}B_{[1:b],[1:c]}+A_{[a:m+1],[b:n+1]}B_{[b:n+1],[1:c]}$
+					\item $(AB)_{[a:m+1],[c:k+1]}=A_{[a:m+1],[1:b]}B_{[1:b],[c:k+1]}+A_{[a:m+1],[b:n+1]}B_{[b:n+1],[c:k+1]}$.
+				\end{enumerate}
 			\implementation
 				\begin{enumerate}
-					\item Multiply matrix $A$ by matrix $B$.
 					\item For each $1\le i\le a-1$, do the following:
 					\begin{enumerate}
 						\item For each $1\le j\le c-1$, do the following:
@@ -1938,7 +1943,7 @@
 							\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Therefore verify that $(AB)_{[1:a],[1:c]}=A_{[1:a],[1:b]}B_{[1:b],[1:c]}+A_{[1:a],[b:n+1]}B_{[b:n+1],[1:c]}$.}
-					\item \textbf{Do similar computations to verify that the other three blocks of $AB$ are computed in an analogous way to multiplying two $2\times 2$ matrices.}
+					\item \textbf{Using computations analogous to (1) and (2), show items (2), (3), and (4) of the objective.}
 				\end{enumerate}
 		\procedure{3.09}
 			\objective
@@ -1993,7 +1998,9 @@
 					\end{enumerate}
 					\item Otherwise, do the following:
 					\begin{enumerate}
-						\item \textbf{Yield the tuple $\langle\sum_{r=1}^m (-1)^{r-1}A_{r,1}\det(A_{[1:r]^\frown[r+1,m+1],[2:m+1]})\rangle$.}
+						\item Let $h_r=A_{[1:r]^\frown[r+1,m+1],[2:m+1]}$ for $r=1$ to $r=m$.
+						\item Verify that $h_r$ is $(m-1)\times(m-1)$ for $r=1$ to $r=m$.
+						\item \textbf{Yield the tuple $\langle\sum_{r=1}^m (-1)^{r-1}A_{r,1}\det(h_r)\rangle$.}
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{3.11}
@@ -2080,7 +2087,7 @@
 			\textbf{Make an analogous procedure to verify that matrix choices with repeated rows yield determinants equal to zero.}
 		\procedure{3.14}
 			\objective
-				Choose integers $1\le i\le m$. Choose an integer $0<j\le m-i$. Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$. Let $A'$ be $A$ but with column $i$ moved $j$ places. The objective of the following instructions is to show that $\det(A')=(-1)^j\det(A)$.
+				Choose integers $1\le i\le m$. Choose an integer $1-i\le j\le m-i$. Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$. Let $A'$ be $A$ but with column $i$ moved $j$ places. The objective of the following instructions is to show that $\det(A')=(-1)^j\det(A)$.
 			\implementation
 				\begin{enumerate}
 					\item Let $A_i=A$.
@@ -2092,8 +2099,6 @@
 					\item Verify that $A'=A_{i+j}$.
 					\item \textbf{Therefore verify that $\det(A')=\det(A_{i+j})=(-1)^1\det(A_{i+j-1})=\cdots=(-1)^j\det(A_{i})=(-1)^j\det(A)$.}
 				\end{enumerate}
-			\textbf{Make an analogous procedure that verifies that $\det(A')=(-1)^j\det(A)$ when a non-positive integer, $j$, is chosen.}
-			
 			\textbf{Also make an analogous procedure that does the verification for moved rows.}
 		\procedure{3.15}
 			\objective
