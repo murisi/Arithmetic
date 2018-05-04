@@ -1325,7 +1325,7 @@
 	\section{Rational Arithmetic}
 		\notation{2.00}
 			Let us use the notation $\mathbb{Q}$ as a shorthand for "rational".
-		\procedure{2.0}
+		\procedure{2.00}
 			\objective
 				Choose an integer $n\ge 0$ and a $\mathbb{Q}[x]$ $p=p_0x^n+p_1x^{n-1}+\cdots+p_n$. Let $y,z$ be indeterminates. The objective of the following instructions is to construct a $\mathbb{Q}[y,z]$ $G$ such that $p(z)-p(y)=(z-y)G(y,z)$.
 			\implementation
@@ -1360,7 +1360,7 @@
 						\end{enumerate}
 						\item Otherwise $g(a_i)=0$. Now do the following:
 						\begin{enumerate}
-							\item Execute \procedurehr{2.0} on $g$ and let the tuple $\langle G\rangle$ receive the result.
+							\item Execute \procedurehr{2.00} on $g$ and let the tuple $\langle G\rangle$ receive the result.
 							\item Let $x$ be an indeterminate.
 							\item Let the $\mathbb{Q}[x]$ $q=q(x)=G(a_i,x)$.
 							\item Verify that the $\mathbb{Q}[x]$ $g=g(x)=g(x)-g(a_i)=(x-a_i)G(a_i,x)=(x-a_i)q(x)=(x-a_i)q$.
@@ -1377,7 +1377,7 @@
 				Choose a $\mathbb{Q}[x]$ $f$. Choose $\mathbb{Q}$s $a<b$ such that $\sgn(f(a))=-\sgn(f(b))$. Choose a rational number target $B>0$. The objective of the following instructions is to construct a $\mathbb{Q}$ $d$ such that $a\le d\le b$ and $\lvert f(d)\rvert<B$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{2.0} on $f$ and let the tuple $\langle G\rangle$ receive the result.
+					\item Execute \procedurehr{2.00} on $f$ and let the tuple $\langle G\rangle$ receive the result.
 					\item Let $x,y$ be indeterminates.
 					\item Verify that the $\mathbb{Q}[x,y]$ $f(y)-f(x)=(y-x)G(x,y)$.
 					\item Let $c=a$ and $d=b$.
@@ -1417,7 +1417,7 @@
 						\item For $k=0$ to $k=n-1$, verify that $\lvert f(a_k)\rvert\ge B$.
 						\item Execute \procedurehr{2.02} on the formal polynomial $f$, interval $(a_n, b_n)$, and target of $B$. Let the tuple $\langle d\rangle$ receive the result.
 						\item Verify that $\lvert f(d)\rvert<B$.
-						\item Execute \procedurehr{2.0} on the formal polynomial $f$ and let the tuple $\langle G\rangle$ receive the result.
+						\item Execute \procedurehr{2.00} on the formal polynomial $f$ and let the tuple $\langle G\rangle$ receive the result.
 						\item Let $x$ be an indeterminate.
 						\item Let the formal polynomial $h=G(d,x)$.
 						\item Verify that $h$ is a monic $(n-1)^{th}$ degree formal polynomial.
@@ -1487,7 +1487,7 @@
 			Let us use the notation $J_{s}(x)$ as a shorthand for "the number of sign changes in the list $s_0(x),s_1(x),\cdots,s_{\lvert s\rvert-1}(x)$".
 		\procedure{2.05}
 			\objective
-				Execute \procedurehr{2.04} and let $\langle s,q,g,h\rangle$ receive. Execute \procedurehr{2.0} on $s$ and let $\langle G\rangle$ receive the result. Choose $\mathbb{Q}$s $c$ and $d$ in such a way that:
+				Execute \procedurehr{2.04} and let $\langle s,q,g,h\rangle$ receive. Execute \procedurehr{2.00} on $s$ and let $\langle G\rangle$ receive the result. Choose $\mathbb{Q}$s $c$ and $d$ in such a way that:
 				\begin{enumerate}
 					\item $J_m(c)$ and $J_m(d)$ are well defined.
 					\item Letting $B=\max_{i=1}^m \lvert G_i(c,d)\rvert$.
@@ -1665,7 +1665,7 @@
 					\item Let $U=1+\max_{i=0}^m\left(1+\max_{j=1}^i\lvert\frac{x^{i-j}\circ s_i}{x^i\circ s_i}\rvert\right)$
 					\item Using \procedurehr{2.06}, verify that $J(U)=0$.
 					\item Using \procedurehr{2.07}, verify that $J(-U)=m$.
-					\item Execute \procedurehr{2.0} on $s$ and let $\langle G\rangle$ receive the result.
+					\item Execute \procedurehr{2.00} on $s$ and let $\langle G\rangle$ receive the result.
 					\item Let the rational $B=\max_{i=1}^m \lvert G_i\rvert(U,U)$.
 					\item Let $C=\max_{i=1}^m \max(\lvert g_i\rvert(U),\lvert h_i\rvert(U))$.
 					\item Let $D=\max(3, \max_{i=1}^m \lvert q_i\rvert(U))$
@@ -1701,7 +1701,7 @@
 	\section{Matrix Arithmetic}
 		\notation{3.00}
 			Let us use the notation $\mathcal{M}_{m,n}(A)$ as a shorthand for "$m\times n$ matrix of $A$s".
-		\procedure{3.0}
+		\procedure{3.00}
 			\objective
 				Choose a $\mathcal{M}_{m,2}(\mathbb{Q}[x])$, $A$. Let $\deg(0)=\infty$. Let $k=\min(\deg(A_{1,1}),\deg(A_{1,2}))$ and $q=\deg(A_{1,1})$. The objective of the following instructions is to make $A_{1,2}=0$, $\deg(A_{1,1})\le k$, and either leave $A_{*,1}$ unchanged or make $\deg(A_{1,1})<q$ by a sequence of operations whereby, in each step a $\mathbb{Q}[x]$ times either of the columns is added to the other.
 			\implementation
@@ -1768,7 +1768,7 @@
 						\item While there are non-zero entries in the top row less its first entry, do the following:
 						\begin{enumerate}
 							\item In the first row, select the $\mathcal{M}_{m,2}(\mathbb{Q}[x])$ whose top-right entry coincides with the last non-zero entry of the first row
-							\item Apply \procedurehr{3.0} on this submatrix.
+							\item Apply \procedurehr{3.00} on this submatrix.
 							\item Verify that the top-left and top-right entries of the submatrix are now non-zero and zero respectively.
 							\item If the first column of $A$ was modified by (5aii), then do the following:
 							\begin{enumerate}
@@ -1895,7 +1895,7 @@
 						\item Set $A'=A$ and let $A'$ be our working matrix.
 						\item Let $\langle M,N\rangle$ receive the results of executing \procedurehr{3.03} on the pair $\langle m,n\rangle$ and the following procedure:
 						\begin{enumerate}
-							\item Execute \procedurehr{3.0} on the submatrix of $A'$ formed by selecting row $1$ and columns $1$ and $j$ as if there were nothing in between.
+							\item Execute \procedurehr{3.00} on the submatrix of $A'$ formed by selecting columns $1$ and $j$ as if there were nothing in between.
 						\end{enumerate}
 						\item Now verify that:
 						\begin{enumerate}
@@ -2065,24 +2065,11 @@
 				Choose integers $1<i\le m$. Choose a $\mathcal{M}_{m,m}(\mathbb{Q}[x])$, $A$, such that columns $i-1$ and $i$ are the same. The objective of the following instructions is to show that $\det(A)=0$.
 			\implementation
 				\begin{enumerate}
-					\item If $i=2$, then verify that $\det(A)$
-					\begin{enumerate}
-						\item $=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\det(A_{[1:r]^\frown[r+1:m+1],[2:m+1]})$
-						\item $=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\sum_{t=r+1}^m (-1)^{t-2}A_{t,2}\cdot\det(A_{[1:r]^\frown[r+1:t]^\frown[t+1:m+1],[3:m+1]})+\sum_{t=1}^m (-1)^{t-1}A_{t,1}\sum_{r=1}^{t-1} (-1)^{r-1}A_{r,2}\cdot\det(A_{[1:r]^\frown[r+1:t]^\frown[t+1:m+1],[3:m+1]})$
-						\item $=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\sum_{t=r+1}^m (-1)^{t-2}A_{t,2}\cdot\det(A_{[1:r]^\frown[r+1:t]^\frown[t+1:m+1],[3:m+1]})+\sum_{r=1}^m (-1)^{r-1}A_{r,2}\sum_{t=r+1}^m (-1)^{t-1}A_{t,1}\cdot\det(A_{[1:r]^\frown[r+1:t]^\frown[t+1:m+1],[3:m+1]})$
-						\item $=-\sum_{r=1}^m (-1)^{r-1}A_{r,1}\sum_{t=r+1}^m (-1)^{t-1}A_{t,2}\cdot\det(A_{[1:r]^\frown[r+1:t]^\frown[t+1:m+1],[3:m+1]})+\sum_{r=1}^m (-1)^{r-1}A_{r,1}\sum_{t=r+1}^m (-1)^{t-1}A_{t,2}\cdot\det(A_{[1:r]^\frown[r+1:t]^\frown[t+1:m+1],[3:m+1]})$
-						\item $=0$.
-					\end{enumerate}
-					\item Otherwise do the following:
-					\begin{enumerate}
-						\item Verify that $i>2$.
-						\item For $r=1$ to $r=m$, do the following:
-						\begin{enumerate}
-							\item Execute \procedurehr{3.13} on $\langle i-1,\allowbreak A_{[1:r]^\frown[r+1:m+1],[2:m+1]}\rangle$.
-							\item Therefore verify that $\det(A_{[1:r]^\frown[r+1:m+1],[2:m+1]})=0$.
-						\end{enumerate}
-						\item Therefore using (b), verify that $\det(A)=\sum_{r=1}^m (-1)^{r-1}A_{r,1}\det(A_{[1:r]^\frown[r+1:m+1],[2:m+1]})=\sum_{r=1}^m (-1)^{r-1}A_{r,1}*0=0$.
-					\end{enumerate}
+					\item Let $A'$ be $A$ with columns $i-1$ and $i$ swapped.
+					\item Execute \procedurehr{3.12} on $\langle A, i\rangle$.
+					\item Also, verify that $A'=A$.
+					\item Therefore verify that $\det(A)=\det(A')=-\det(A)$.
+					\item \textbf{Therefore verify that $\det(A)=0$.}
 				\end{enumerate}
 			\textbf{Make an analogous procedure to verify that matrix choices with repeated rows yield determinants equal to zero.}
 		\procedure{3.14}
