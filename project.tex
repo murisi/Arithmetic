@@ -1706,6 +1706,79 @@
 						\item \textbf{Yield the tuple $\langle c,d\rangle$.}
 					\end{enumerate}
 				\end{enumerate}
+		\procedure{2.10}
+			\objective
+				Choose two $\mathbb{Q}[x]$s, $\langle a,b\rangle$. The objective of the following instructions is to construct two $\mathbb{Q}[x]$s $u,w$ such that $a=ub+w$ and $\deg(w)<\deg(b)$.
+			\implementation
+				\begin{enumerate}
+					\item If $\deg(a)\ge\deg(b)$:
+					\begin{enumerate}
+						\item Let $y=\frac{x^{\deg(a)}\circ a}{x^{\deg(b)}\circ b}x^{\deg(a)-\deg(b)}$
+						\item Let $e=a-yb$.
+						\item Verify that $\deg(e)<\deg(a)$.
+						\item Execute \procedurehr{2.10} on the tuple $\langle e,b\rangle$. Let the tuple $\langle c,d\rangle$ receive the result.
+						\item Verify that $cb+d=e$.
+						\item Verify that $\deg(d)<\deg(b)$.
+						\item Therefore verify that $cb+d=a-yb$
+						\item \textbf{Therefore verify that $(y+c)b+d=a$.}
+						\item \textbf{Also verify that $\deg(d)<\deg(b)$.}
+						\item \textbf{Now yield the tuple $\langle y+c, d\rangle$.}
+					\end{enumerate}
+					\item Otherwise:
+					\begin{enumerate}
+						\item \textbf{Verify that $0*b+a=a$.}
+						\item \textbf{Verify that $\deg(a)<\deg(b)$.}
+						\item \textbf{Yield the tuple $\langle 0,a\rangle$.}
+					\end{enumerate}
+				\end{enumerate}
+		\procedure{2.11}
+			\objective
+				Choose two lists of $\mathbb{Q}[x]$s $s,q$ and a non-negative integer $k$ in such a way that, letting $m=\lvert s\rvert-1$,
+				\begin{enumerate}
+					\item $k<m$.
+					\item For $k\le i\le m$, $\deg(s_i)=i$.
+					\item For $k<i<m$, $s_{i-1}+s_{i+1}=q_is_i$.
+				\end{enumerate}
+				Let $\deg(0)=-1$. The objective of the following instructions is to construct $\mathbb{Q}[x]$s $g,h$ such that $s_k=gs_{m-1}+hs_m$, $\deg(g)=m-1-k$, and $\deg(h)=m-2-k$.
+			\implementation
+				\begin{enumerate}
+					\item If $k<m-2$, do the following:
+					\begin{enumerate}
+						\item Verify that $s_k+s_{k+2}=q_{k+1}s_{k+1}$.
+						\item Therefore verify that $s_k=q_{k+1}s_{k+1}-s_{k+2}$.
+						\item Execute \procedurehr{2.11} on $s,q,k+1$ and let the tuple $\langle g_1,h_1\rangle$ receive.
+						\item Verify that $s_{k+1}=g_1s_{m-1}+h_1s_m$.
+						\item Verify that $\deg(g_1)=m-1-(k+1)=m-k-2$.
+						\item Verify that $\deg(h_1)=m-2-(k+1)=m-k-3$.
+						\item Execute \procedurehr{2.11} on $s,q,k+2$ and let the tuple $\langle g_2,h_2\rangle$ receive.
+						\item Verify that $s_{k+2}=g_2s_{m-1}+h_2s_m$.
+						\item Verify that $\deg(g_2)=m-1-(k+2)=m-k-3$.
+						\item Verify that $\deg(h_2)=m-2-(k+2)=m-k-4$.
+						\item Let $g=q_{k+1}g_1-g_2$.
+						\item \textbf{Verify that $\deg(g)=\max(1+(m-k-2),m-k-3)=m-1-k$.}
+						\item Let $h=q_{k+1}h_1-h_2$.
+						\item \textbf{Verify that $\deg(h)=\max(1+(m-k-3),m-k-4)=m-2-k$.}
+						\item \textbf{Verify that $s_k=q_{k+1}(g_1s_{m-1}+h_1s_m)-(g_2s_{m-1}+h_2s_m)=(q_{k+1}g_1-g_2)s_{m-1}+(q_{k+1}h_1-h_2)s_m=gs_{m-1}+hs_m$.}
+					\end{enumerate}
+					\item Otherwise, if $k=m-2$ do the following:
+					\begin{enumerate}
+						\item Verify that $s_{m-2}+s_m=q_{m-1}s_{m-1}$.
+						\item Let $g=q_{m-1}$.
+						\item \textbf{Verify that $\deg(g)=1=m-1-k$.}
+						\item Let $h=-1$.
+						\item \textbf{Verify that $\deg(h)=0=m-2-k$.}
+						\item \textbf{Therefore verify that $s_k=s_{m-2}=q_{m-1}s_{m-1}-s_m=gs_{m-1}+hs_m$.}
+					\end{enumerate}
+					\item Otherwise, if $k=m-1$ do the following:
+					\begin{enumerate}
+						\item Let $g=1$.
+						\item \textbf{Verify that $\deg(g)=0=m-1-k$.}
+						\item Let $h=0$.
+						\item \textbf{Verify that $\deg(h)=-1=m-2-k$.}
+						\item \textbf{Verify that $s_k=s_{m-1}=gs_{m-1}+hs_m$.}
+					\end{enumerate}
+					\item \textbf{Yield the tuple $\langle g,h\rangle$.}
+				\end{enumerate}
 	\section{Matrix Arithmetic}
 		\notation{3.00}
 			Let us use the notation $\mathcal{M}_{m,n}(A)$ as a shorthand for "$m\times n$ matrix of $A$s".
@@ -3039,79 +3112,6 @@
 				\end{enumerate}
 		\procedure{3.71}
 			\objective
-				Choose two $\mathbb{Q}[x]$s, $\langle a,b\rangle$. The objective of the following instructions is to construct two $\mathbb{Q}[x]$s $u,w$ such that $a=ub+w$ and $\deg(w)<\deg(b)$.
-			\implementation
-				\begin{enumerate}
-					\item If $\deg(a)\ge\deg(b)$:
-					\begin{enumerate}
-						\item Let $y=\frac{x^{\deg(a)}\circ a}{x^{\deg(b)}\circ b}x^{\deg(a)-\deg(b)}$
-						\item Let $e=a-yb$.
-						\item Verify that $\deg(e)<\deg(a)$.
-						\item Execute \procedurehr{3.71} on the tuple $\langle e,b\rangle$. Let the tuple $\langle c,d\rangle$ receive the result.
-						\item Verify that $cb+d=e$.
-						\item Verify that $\deg(d)<\deg(b)$.
-						\item Therefore verify that $cb+d=a-yb$
-						\item \textbf{Therefore verify that $(y+c)b+d=a$.}
-						\item \textbf{Also verify that $\deg(d)<\deg(b)$.}
-						\item \textbf{Now yield the tuple $\langle y+c, d\rangle$.}
-					\end{enumerate}
-					\item Otherwise:
-					\begin{enumerate}
-						\item \textbf{Verify that $0*b+a=a$.}
-						\item \textbf{Verify that $\deg(a)<\deg(b)$.}
-						\item \textbf{Yield the tuple $\langle 0,a\rangle$.}
-					\end{enumerate}
-				\end{enumerate}
-		\procedure{3.72}
-			\objective
-				Choose two lists of $\mathbb{Q}[x]$s $s,q$ and a non-negative integer $k$ in such a way that, letting $m=\lvert s\rvert-1$,
-				\begin{enumerate}
-					\item $k<m$.
-					\item For $k\le i\le m$, $\deg(s_i)=i$.
-					\item For $k<i<m$, $s_{i-1}+s_{i+1}=q_is_i$.
-				\end{enumerate}
-				Let $\deg(0)=-1$. The objective of the following instructions is to construct $\mathbb{Q}[x]$s $g,h$ such that $s_k=gs_{m-1}+hs_m$, $\deg(g)=m-1-k$, and $\deg(h)=m-2-k$.
-			\implementation
-				\begin{enumerate}
-					\item If $k<m-2$, do the following:
-					\begin{enumerate}
-						\item Verify that $s_k+s_{k+2}=q_{k+1}s_{k+1}$.
-						\item Therefore verify that $s_k=q_{k+1}s_{k+1}-s_{k+2}$.
-						\item Execute \procedurehr{3.72} on $s,q,k+1$ and let the tuple $\langle g_1,h_1\rangle$ receive.
-						\item Verify that $s_{k+1}=g_1s_{m-1}+h_1s_m$.
-						\item Verify that $\deg(g_1)=m-1-(k+1)=m-k-2$.
-						\item Verify that $\deg(h_1)=m-2-(k+1)=m-k-3$.
-						\item Execute \procedurehr{3.72} on $s,q,k+2$ and let the tuple $\langle g_2,h_2\rangle$ receive.
-						\item Verify that $s_{k+2}=g_2s_{m-1}+h_2s_m$.
-						\item Verify that $\deg(g_2)=m-1-(k+2)=m-k-3$.
-						\item Verify that $\deg(h_2)=m-2-(k+2)=m-k-4$.
-						\item Let $g=q_{k+1}g_1-g_2$.
-						\item \textbf{Verify that $\deg(g)=\max(1+(m-k-2),m-k-3)=m-1-k$.}
-						\item Let $h=q_{k+1}h_1-h_2$.
-						\item \textbf{Verify that $\deg(h)=\max(1+(m-k-3),m-k-4)=m-2-k$.}
-						\item \textbf{Verify that $s_k=q_{k+1}(g_1s_{m-1}+h_1s_m)-(g_2s_{m-1}+h_2s_m)=(q_{k+1}g_1-g_2)s_{m-1}+(q_{k+1}h_1-h_2)s_m=gs_{m-1}+hs_m$.}
-					\end{enumerate}
-					\item Otherwise, if $k=m-2$ do the following:
-					\begin{enumerate}
-						\item Verify that $s_{m-2}+s_m=q_{m-1}s_{m-1}$.
-						\item Let $g=q_{m-1}$.
-						\item \textbf{Verify that $\deg(g)=1=m-1-k$.}
-						\item Let $h=-1$.
-						\item \textbf{Verify that $\deg(h)=0=m-2-k$.}
-						\item \textbf{Therefore verify that $s_k=s_{m-2}=q_{m-1}s_{m-1}-s_m=gs_{m-1}+hs_m$.}
-					\end{enumerate}
-					\item Otherwise, if $k=m-1$ do the following:
-					\begin{enumerate}
-						\item Let $g=1$.
-						\item \textbf{Verify that $\deg(g)=0=m-1-k$.}
-						\item Let $h=0$.
-						\item \textbf{Verify that $\deg(h)=-1=m-2-k$.}
-						\item \textbf{Verify that $s_k=s_{m-1}=gs_{m-1}+hs_m$.}
-					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle g,h\rangle$.}
-				\end{enumerate}
-		\procedure{3.73}
-			\objective
 				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. The objective of the following instructions is to either show that $0\ne 0$ or to construct lists of $\mathbb{Q}[x]$s $s,q$ such that
 				\begin{enumerate}
 					\item For $i=0$ to $i=t$, $\deg(s_i)=i$.
@@ -3123,20 +3123,20 @@
 				\begin{enumerate}
 					\item Execute \procedurehr{3.70} on $A$ and let $\langle u,s_{t+1}\rangle$ receive the result.
 					\item Verify that $us_t+s_{t+1}\sel_A=1$.
-					\item Execute \procedurehr{3.71} on the tuple $\langle s_{t+1},s_t\rangle$. Let the tuple $\langle q_t,s_{t-1}\rangle$ receive the result.
+					\item Execute \procedurehr{2.10} on the tuple $\langle s_{t+1},s_t\rangle$. Let the tuple $\langle q_t,s_{t-1}\rangle$ receive the result.
 					\item Verify that $s_{t+1}=q_ts_t+s_{t-1}$, where $\deg(s_{t-1})<\deg(s_t)=t$.
 					\item Therefore verify that $us_t+(q_ts_t+s_{t-1})\sel_A=1$.
 					\item Therefore verify that $s_{t-1}(A)\sel_A(A)=u(A)s_t(A)+(q_t(A)s_t(A)+s_{t-1}(A))\sel_A(A)=I_{m,m}$.
 					\item Therefore using \procedurehr{3.69}, verify that $\frac{x^{t-1}\circ s_{t-1}}{x^t\circ s_t}=\tr(s_{t-1}(A)\sel_A(A))=\tr(I_{m,m})=m>0$.
 					\item For $i=t-1$ down to $i=1$, do the following:
 					\begin{enumerate}
-						\item Execute \procedurehr{3.71} on the tuple $\langle -s_{i+1},-s_i\rangle$. Let the tuple $\langle q_i,s_{i-1}\rangle$ receive the result.
+						\item Execute \procedurehr{2.10} on the tuple $\langle -s_{i+1},-s_i\rangle$. Let the tuple $\langle q_i,s_{i-1}\rangle$ receive the result.
 						\item Verify that $\deg(q_i)=1$.
 						\item Verify that $x\circ q_i=\frac{x^{i+1}\circ s_{i+1}}{x^i\circ s_i}$.
 						\item Also verify that $-s_{i+1}=-q_is_i+s_{i-1}$.
 						\item Therefore verify that $q_is_i=s_{i+1}+s_{i-1}$.
 						\item Therefore verify that $q_is_i-s_{i+1}=s_{i-1}$.
-						\item Execute \procedurehr{3.72} on the tuple $\langle s,q,i-1\rangle$ and let $\langle p,j\rangle$ receive.
+						\item Execute \procedurehr{2.11} on the tuple $\langle s,q,i-1\rangle$ and let $\langle p,j\rangle$ receive.
 						\item Verify that $s_{i-1}=ps_{t-1}+q_3s_t$.
 						\item Verify that $\deg(p)=t-1-(i-1)=t-i$.
 						\item Verify that $\deg(q_3)=t-2-(i-1)=t-1-i$
@@ -3207,20 +3207,20 @@
 							\end{enumerate}
 						\end{enumerate}
 					\end{enumerate}
-		\procedure{3.74}
+		\procedure{3.72}
 			\objective
 				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. The objective of the following instructions is to either show that $0<0$ or to construct two lists of rational numbers $c,d$ such that $c_0<d_0\le c_1<d_1\le\cdots\le c_{t-1}<d_{t-1}$ and $\sgn(\last_A(c_i))=-\sgn(\last_A(d_i))$ for $i$ in $[0:t]$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{3.73} on the matrix $A$ and let the tuple $\langle s,q\rangle$ receive the result.
+					\item Execute \procedurehr{3.71} on the matrix $A$ and let the tuple $\langle s,q\rangle$ receive the result.
 					\item Execute \procedurehr{2.09} supplying the tuple $\langle s,q\rangle$. Let the tuple $\langle c,d\rangle$ receive the result.
 					\item \textbf{Verify that $c_0<d_0\le c_1<d_1\le\cdots\le c_{t-1}<d_{t-1}$.}
 					\item \textbf{Verify that $\sgn(\last_A(c_i))=-\sgn(\last_A(d_i))$ for $i$ in $[0:t]$.}
 					\item \textbf{Yield $\langle c,d\rangle$.}
 				\end{enumerate}
-		\procedure{3.75}
+		\procedure{3.73}
 			\objective
-				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. Execute \procedurehr{3.74} on $A$ and let the tuple $\langle c,d\rangle$ receive the result. Execute \procedurehr{3.28} on $A$ and let the tuple $\langle,,u,\rangle$ receive the result. The objective of the following instructions is to either show that $1=-1$ or to construct a list of non-negative integers $k$ such that $\sgn(u_{k_i}(c_i))=-\sgn(u_{k_i}(d_i))$ for $i$ in $[0:t]$.
+				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. Execute \procedurehr{3.72} on $A$ and let the tuple $\langle c,d\rangle$ receive the result. Execute \procedurehr{3.28} on $A$ and let the tuple $\langle,,u,\rangle$ receive the result. The objective of the following instructions is to either show that $1=-1$ or to construct a list of non-negative integers $k$ such that $\sgn(u_{k_i}(c_i))=-\sgn(u_{k_i}(d_i))$ for $i$ in $[0:t]$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that $\last_A=u_0u_1\cdots u_{m-1}$.
@@ -3244,7 +3244,7 @@
 					\end{enumerate}
 					\item \textbf{Yield $\langle k\rangle$.}
 				\end{enumerate}
-		\procedure{3.76}
+		\procedure{3.74}
 			\objective
 				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Execute \procedurehr{3.28} on $A$ and let the tuple $\langle,,u,\rangle$ receive the result. Execute \procedurehr{2.03} on $A$ and let $k$ receive. Let $t=\deg(\last_A)$. Let $n_j=\sum_{i=0}^t [k_i=j]$ for $j$ in $[0:m]$. The objective of the following instructions is to either show that $0<0$, or to show that $n_i=\deg(u_i)$ for $i$ in $[0:m]$.
 			\implementation
@@ -3268,7 +3268,7 @@
 				\end{enumerate}
 		\notation{3.28}
 			Let us use the notation "$A$ is upper triangular" as a shorthand for "all the entries of $A$ below the diagonal are zero" in what follows. 
-		\procedure{3.77}
+		\procedure{3.75}
 			\objective
 				Choose two upper triangular $\mathcal{M}_{m,m}(\mathbb{Q}[x])$s, $A$ and $B$. Let $C=AB$. The objective of the following instructions is to show that $C$ is an upper triangular matrix where $C_{i,i}=A_{i,i}B_{i,i}$ for $i$ in $[0:m]$.
 			\implementation
@@ -3286,7 +3286,7 @@
 					\end{enumerate}
 					\item \textbf{Therefore verify that $C$ is upper triangular.}
 				\end{enumerate}
-		\procedure{3.78}
+		\procedure{3.76}
 			\objective
 				Choose integers $m\ge n\ge 0$. Choose a $\mathcal{M}_{n,m}(\mathbb{Q}[x])$, $M$, and a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $B$, such that $MB=I_n$. The objective of the following instructions is to either show that $1=0$ or to construct a list of $\mathcal{M}_{m,n}(\mathbb{Q}[x])$s, $A$, such that $A_0=B$ and for $i=0$ to $i=n$:
 				\begin{enumerate}
@@ -3314,7 +3314,7 @@
 						\item Using (1e), verify that $A_i=A_0(D_1N_1)\cdots(D_iN_i)$.
 						\item Therefore verify that $MA_i=(D_1N_1)\cdots(D_iN_i)$.
 						\item \textbf{Therefore verify that $A_0MA_i=A_i$.}
-						\item Using \procedurehr{3.77}, for $j$ in $[0:n]$, verify that $({e_j}^TM)(A_ie_j)$
+						\item Using \procedurehr{3.75}, for $j$ in $[0:n]$, verify that $({e_j}^TM)(A_ie_j)$
 						\begin{enumerate}
 							\item $={e_j}^T(MA_i)e_j$
 							\item $={e_j}^T((D_1N_1)\cdots (D_iN_i))e_j$
@@ -3327,7 +3327,7 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle A\rangle$.}
 				\end{enumerate}
-		\procedure{3.79}
+		\procedure{3.77}
 			\objective
 				Choose a $\mathcal{M}_{1,m}(\mathbb{Q})$, $A$, and a $\mathcal{M}_{m,1}(\mathbb{Q})$, $B$. The objective of the following instructions is to show that $(AB)^2\le(AA^T)(B^TB)$.
 			\implementation
@@ -3344,14 +3344,14 @@
 				\end{enumerate}
 		\notation{3.29}
 			Let us use the notation $(2k)!!$ as a shorthand for "$2^k(k!)$".
-		\procedure{3.80}
+		\procedure{3.78}
 			\objective
-				Choose integers $m\ge n>0$. Choose a $\mathcal{M}_{n,m}(\mathbb{Q}[x])$, $M$, and a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $B$, such that $MB=I_n$. Choose a $\mathbb{Q}$, $x$. Let $a=\max(\lVert M(x)\rVert^2,1)$. Execute \procedurehr{3.78} on $\langle M,B\rangle$ and let the tuple $\langle A\rangle$ receive the result. Choose a column index $0\le j<n$ such that $\lVert A_n(x)e_j\rVert^2<\frac{1}{a^{(2n+2)!!}}$. The objective of the following instructions is to show that $1<1$.
+				Choose integers $m\ge n>0$. Choose a $\mathcal{M}_{n,m}(\mathbb{Q}[x])$, $M$, and a $\mathcal{M}_{m,n}(\mathbb{Q}[x])$, $B$, such that $MB=I_n$. Choose a $\mathbb{Q}$, $x$. Let $a=\max(\lVert M(x)\rVert^2,1)$. Execute \procedurehr{3.76} on $\langle M,B\rangle$ and let the tuple $\langle A\rangle$ receive the result. Choose a column index $0\le j<n$ such that $\lVert A_n(x)e_j\rVert^2<\frac{1}{a^{(2n+2)!!}}$. The objective of the following instructions is to show that $1<1$.
 			\implementation
 				\begin{enumerate}
 					\item Let $i=n$.
 					\item Verify that $\lVert A_i(x)e_j\rVert^2<\frac{1}{a^{(2i+2)!!}}$.
-					\item Using \procedurehr{3.79}, verify that $({e_j}^TM(x)A_i(x)e_j)^2\le\lVert{e_j}^TM(x)\rVert^2\lVert A_i(x)e_j\rVert^2<\lVert M(x)\rVert^2\frac{1}{a^{(2i+2)!!}}\le a\frac{1}{a^{(2i+2)!!}}\le\frac{1}{a^{(2i)!!*2i}}\le 1$.
+					\item Using \procedurehr{3.77}, verify that $({e_j}^TM(x)A_i(x)e_j)^2\le\lVert{e_j}^TM(x)\rVert^2\lVert A_i(x)e_j\rVert^2<\lVert M(x)\rVert^2\frac{1}{a^{(2i+2)!!}}\le a\frac{1}{a^{(2i+2)!!}}\le\frac{1}{a^{(2i)!!*2i}}\le 1$.
 					\item If $i=0$, then do the following:
 					\begin{enumerate}
 						\item Verify that $({e_j}^TM(x)A_i(x)e_j)^2=({e_j}^TM(x)A_0(x)e_j)^2=({e_j}^TI_ne_j)^2=1$.
@@ -3384,13 +3384,13 @@
 						\end{enumerate}
 					\end{enumerate}
 				\end{enumerate}
-		\procedure{3.81}
+		\procedure{3.79}
 			\objective
-				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. Execute \procedurehr{3.75} on the matrix $A$ and let the tuple $\langle k\rangle$ receive the result. The objective of the following instructions is to either show that $0<0$ or to show that $\sum_{i=0}^t(m-k_i)=m$.
+				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Let $t=\deg(\last_A)$. Execute \procedurehr{3.73} on the matrix $A$ and let the tuple $\langle k\rangle$ receive the result. The objective of the following instructions is to either show that $0<0$ or to show that $\sum_{i=0}^t(m-k_i)=m$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.28} on the matrix $A$ and let the tuple $\langle,D,u,\rangle$.
-					\item Using \procedurehr{3.76}, verify that $\sum_{i=0}^t(m-k_i)$
+					\item Using \procedurehr{3.74}, verify that $\sum_{i=0}^t(m-k_i)$
 					\begin{enumerate}
 						\item $=\sum_{i=0}^t\sum_{j=0}^m [k_i\le j]$
 						\item $=\sum_{j=0}^m\sum_{i=0}^t [k_i\le j]$
@@ -3404,12 +3404,12 @@
 						\item $=m$
 					\end{enumerate}
 				\end{enumerate}
-		\procedure{3.82}
+		\procedure{3.80}
 			\objective
 				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. The objective of the following instructions is to either show that $0<0$ or to construct a rational, $\disc(A)$, such that $\disc(A)>0$.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{3.74} on the matrix $A$ and let the tuple $\langle c,d\rangle$ receive the result.
+					\item Execute \procedurehr{3.72} on the matrix $A$ and let the tuple $\langle c,d\rangle$ receive the result.
 					\item Execute \procedurehr{3.04} with $xI_m-A$ as the choice matrix. Let the tuple $\langle M,D,,N\rangle$ receive the result.
 					\item Let $L=\lvert(\lVert {N^{-1}}_*\rVert^2)^{(2m+2)!!}\rvert$.
 					\item Let $\disc(A)=\frac{1}{\max(1,L(\lvert c_1\rvert),L(\lvert d_t\rvert))}$.
@@ -3417,14 +3417,14 @@
 					\item \textbf{Yield the tuple $\langle\disc(A)\rangle$.}
 				\end{enumerate}
 		\notation{3.30}
-			Let us use the notation $\disc(A)$ to refer to the result yielded by executing \procedurehr{3.82} on the matrix $A$.
-		\procedure{3.83}
+			Let us use the notation $\disc(A)$ to refer to the result yielded by executing \procedurehr{3.80} on the matrix $A$.
+		\procedure{3.81}
 			\objective
 				Choose integers $0\le k\le m$ and a list of $\mathcal{T}_m(\mathbb{Q}[x])$, $N$. Let $Q=(I_m)_{*,[k:m]}$. The objective of the following instructions is to either show that $1=0$ or to construct an $\mathcal{M}_{m,m-k}(\mathbb{Q}[x])$, $K$, and an $\mathcal{M}_{m-k,m-k}(\mathbb{Q}[x])$, $E$, such that $K=N_*QE$ and $K^TK$ is a $\mathcal{D}_{m-k,m-k}(\mathbb{Q}[x])$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that $(Q^T{N^{-1}}_*)(N_*Q)=Q^T({N^{-1}}_*N_*)Q=Q^TI_mQ=Q^TQ=I_{m-k}$.
-					\item Execute \procedurehr{3.78} on the matrices $Q^T{N^{-1}}_*$ and $N_*Q$ and let the tuple $\langle Z\rangle$ receive.
+					\item Execute \procedurehr{3.76} on the matrices $Q^T{N^{-1}}_*$ and $N_*Q$ and let the tuple $\langle Z\rangle$ receive.
 					\item Let $K=Z_{m-k}$.
 					\item \textbf{Verify that $K$ is a $\mathcal{M}_{m,m-k}(\mathbb{Q}[x])$.}
 					\item \textbf{Using (2), verify that $K^TK$ is a $\mathcal{D}_{m-k,m-k}(\mathbb{Q}[x])$.}
@@ -3433,9 +3433,9 @@
 					\item \textbf{Now, using (2) verify that $K=N_*QE$.}
 					\item \textbf{Yield $\langle K,E\rangle$.}
 				\end{enumerate}
-		\procedure{3.84}
+		\procedure{3.82}
 			\objective
-				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Choose a $\mathbb{Q}$ $\epsilon>0$. Execute \procedurehr{3.75} on the matrix $A$ and let the tuple $\langle k\rangle$ receive the result. The objective of the following instructions is to either show that $1<1$ or to construct $\mathbb{Q}$s, $0<\delta\le 1\le K'$, a list of $\mathcal{M}_{m,*}(\mathbb{Q})$s, $K$, and a list of $\mathbb{Q}$s, $g$, such that for $i$ in $[0:\lvert k\rvert]$:
+				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Choose a $\mathbb{Q}$ $\epsilon>0$. Execute \procedurehr{3.73} on the matrix $A$ and let the tuple $\langle k\rangle$ receive the result. The objective of the following instructions is to either show that $1<1$ or to construct $\mathbb{Q}$s, $0<\delta\le 1\le K'$, a list of $\mathcal{M}_{m,*}(\mathbb{Q})$s, $K$, and a list of $\mathbb{Q}$s, $g$, such that for $i$ in $[0:\lvert k\rvert]$:
 				\begin{enumerate}
 					\item ${K_i}^T{K_i}$ is a $\mathcal{D}_{m-k_i}(\mathbb{Q})$.
 					\item $(K_i)_{p,q}\le K'm$, for $0\le p<m$, for $0\le q<\cols(K_i)$.
@@ -3445,13 +3445,13 @@
 				\end{enumerate}
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{3.74} on the matrix $A$ and let the tuple $\langle c,d\rangle$ receive the result.
+					\item Execute \procedurehr{3.72} on the matrix $A$ and let the tuple $\langle c,d\rangle$ receive the result.
 					\item Execute \procedurehr{3.28} with $xI_m-A$ as the choice matrix. Let the tuple $\langle M,D,u,N\rangle$ receive the result.
 					\item Let $M'=1+\max_{i=0}^m\max_{j=0}^m\lvert {{M^{-1}}_*}_{i,j}\rvert(\max(\lvert c_0\rvert,\lvert d_{\lvert d\rvert-1}\rvert))$.
 					\item Let $N'=1+\max_{i=0}^m\max_{j=0}^m\lvert {N_*}_{i,j}\rvert(\max(\lvert c_0\rvert,\lvert d_{\lvert d\rvert-1}\rvert))$.
 					\item Let $\delta=\min(1,\min_{i=1}^{\lvert d\rvert}(d_{i}-c_{i-1}))$.
-					\item Execute \procedurehr{3.83} on $\langle k,m,N\rangle$ and let the tuple $\langle\langle K_0,E_0\rangle,\langle K_1,E_1\rangle,\cdots,\langle K_{\lvert k\rvert-1},E_{\lvert k\rvert-1}\rangle\rangle$ receive.
-					\item \textbf{Using \procedurehr{3.81}, verify that $\sum_{p=0}^{\lvert k\rvert}\cols(K_p)=\sum_{p=0}^{\lvert k\rvert} m-k_p=m$.}
+					\item Execute \procedurehr{3.81} on $\langle k,m,N\rangle$ and let the tuple $\langle\langle K_0,E_0\rangle,\langle K_1,E_1\rangle,\cdots,\langle K_{\lvert k\rvert-1},E_{\lvert k\rvert-1}\rangle\rangle$ receive.
+					\item \textbf{Using \procedurehr{3.79}, verify that $\sum_{p=0}^{\lvert k\rvert}\cols(K_p)=\sum_{p=0}^{\lvert k\rvert} m-k_p=m$.}
 					\item Let $E'=1+\max_{i=0}^t\max_{j=0}^{m-k_i}\max_{l=0}^{m-k_i}\lvert E_{j,l}\rvert(\max(\lvert c_0\rvert,\lvert d_{\lvert d\rvert-1}\rvert))$.
 					\item Let $U=\prod_{r=0}^m(1+\lvert u_r\rvert)$.
 					\item Let $U'=U(\max(\lvert c_0\rvert,\lvert d_{\lvert d\rvert-1}\rvert))$.
@@ -3471,7 +3471,7 @@
 						\begin{enumerate}
 							\item Let $z$ be the column index of the diagonal entry less than $\disc(A)$.
 							\item Verify that $\disc(A)\le\frac{1}{\max(\lVert (Q^TN^{-1})(g_i)\rVert^2,1)^{(2(m-k_i)+2)!!}}$.
-							\item Execute \procedurehr{3.80} with matrices $Q^TN^{-1}$ and $NQ$, rational number $g_i$, and column index $z$.
+							\item Execute \procedurehr{3.78} with matrices $Q^TN^{-1}$ and $NQ$, rational number $g_i$, and column index $z$.
 							\item \textbf{Abort procedure.}
 						\end{enumerate}
 						\item Otherwise, do the following:
@@ -3486,7 +3486,7 @@
 				\end{enumerate}
 		\notation{3.31}
 			Let us use the notation $J_{m\times n}$ as a shorthand for "the $\mathcal{M}_{m,n}(\mathbb{Q})$ such that every entry is $1$".
-		\procedure{3.85}
+		\procedure{3.83}
 			\objective
 				Choose a symmetric $\mathcal{M}_{m,m}(\mathbb{Q})$, $A$. Choose a $\mathbb{Q}$ $\epsilon>0$. The objective of the following instructions is to either show that $1<1$ or to construct an $\mathcal{M}_{m,m}(\mathbb{Q})$, $K$, and a $\mathcal{D}_{m,m}(\mathbb{Q})$, $C$, such that:
 				\begin{enumerate}
@@ -3496,11 +3496,11 @@
 				\end{enumerate}
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{3.84} on matrix $A$ and rational $\epsilon$. Let the tuple $\langle\delta,K',K,g\rangle$ receive the result.
+					\item Execute \procedurehr{3.82} on matrix $A$ and rational $\epsilon$. Let the tuple $\langle\delta,K',K,g\rangle$ receive the result.
 					\item Let $C$ be a diagonal matrix whose $i^{th}$, where $0\le i<t$, group of entries are $m-k_i$ $g_i$s.
-					\item \textbf{Using \procedurehr{3.81}, verify that $C$ is $m\times m$.}
+					\item \textbf{Using \procedurehr{3.79}, verify that $C$ is $m\times m$.}
 					\item Let $K$ be a matrix whose columns are the in-order concatenation of those of $K_0,K_1,\cdots,K_{t-1}$.
-					\item \textbf{Using \procedurehr{3.81}, verify that $K$ is $m\times m$.}
+					\item \textbf{Using \procedurehr{3.79}, verify that $K$ is $m\times m$.}
 					\item \textbf{Using (1), verify that $\sum_{p=0}^m\sum_{q=0}^m\lvert(KC-AK)_{p,q}\rvert<\sum_{p=0}^m\sum_{q=0}^m \frac{\epsilon\delta}{K'm^2}=\frac{\epsilon\delta}{K'}\le\epsilon$.}
 					\item For $i$ in $[0:m]$, do the following: For $j$ in $[0:m]$, do the following:
 					\begin{enumerate}
