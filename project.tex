@@ -494,9 +494,9 @@
 			Let us use the notation $\lvert A\rvert$ as a shorthand for "the number of items in the list $A$".
 		\notation{1.07}
 			Let us use the notation $\prod_{r=a}^b c_r$ as a shorthand for "$1$ if $a=b$, otherwise $c_a\prod_{r=a+1}^b c_r$".
-		\notation{1.07}
-			Let us use the notation $a_*$ as a shorthand for "$\prod_{i=0}^{\lvert a\rvert}a_i$".
 		\notation{1.08}
+			Let us use the notation $a_*$ as a shorthand for "$\prod_{i=0}^{\lvert a\rvert}a_i$".
+		\notation{1.09}
 			Let us use the notation $A^\frown B$ as a shorthand for "the list formed by concatenating $B$ onto $A$".
 		\procedure{1.24}
 			\objective
@@ -576,7 +576,7 @@
 						\end{enumerate}
 					\end{enumerate}
 				\end{enumerate}
-		\notation{1.09}
+		\notation{1.10}
 			Let us use the notation $[a:b]$ as a shorthand for "if $b>a$, the list $\langle a,a+1,\cdots,b-1\rangle$, if $b=a$, the list $\langle\rangle$, if $b<a$, the list $\langle a-1,a-2,\cdots,b\rangle$".
 		\procedure{1.26}
 			\objective
@@ -704,7 +704,7 @@
 					\item \textbf{Verify that $c=af=def=be$.}
 					\item \textbf{Yield the tuple $\langle c,f,e\rangle$.}
 				\end{enumerate}
-		\notation{1.10}
+		\notation{1.11}
 			Let us use the notation $[a,b]$ as a shorthand for "the first part of the triple yielded by executing \procedurehr{1.32} on $\langle a,b\rangle$".
 		\procedure{1.33}
 			\objective
@@ -744,7 +744,7 @@
 					\item Verify that $(a,b)(ab,(ac,bc))(b,c)>0$.
 					\item \textbf{Therefore verify that $[[a,b],c]=[a,[b,c]]$.}
 				\end{enumerate}
-		\notation{1.11}
+		\notation{1.12}
 			Let us use the notation $[a_0,a_1,\cdots,a_{n-1}]$ as a shorthand for "either $[[a_0],[a_1,a_2,\cdots,a_{n-1}]]$ or $[[a_0,a_1],[a_2,a_3,\cdots,a_{n-1}]]$ or $\cdots$ or $[[a_0,a_1,\cdots,a_{n-2}],[a_{n-1}]]$".
 		\procedure{1.36}
 			\objective
@@ -788,7 +788,7 @@
 					\item Execute \procedurehr{1.09} on $\langle b,d\rangle$ and let $\langle f,g,h,i,j\rangle$ receive.
 					\item \textbf{Yield the tuple $\langle (a+((c-a)\div(b,d))ib)\mod[b,d]\rangle$.}
 				\end{enumerate}
-		\notation{1.12}
+		\notation{1.13}
 			Let us use the notation $\chi_{b,d}(a,c)$ as a shorthand for "the result yielded by executing \procedurehr{1.38} on $\langle a,c,b,d\rangle$.
 		\procedure{1.39}
 			\objective
@@ -925,7 +925,7 @@
 					\item Therefore using (3), (5), and \procedurehr{1.39}, verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv\chi_{b,[d,f]}(a,\chi_{d,f}(c,e))(\mod [b,[d,f]]=[[b,d],f])$.
 					\item \textbf{Therefore verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)=\chi_{b,[d,f]}(a,\chi_{d,f}(c,e))$.}
 				\end{enumerate}
-		\notation{1.13}
+		\notation{1.14}
 			Let us use the notation $\chi_{b_0,b_1,\cdots,b_{n-1}}(a_0,a_1,\cdots,a_{n-1})$ as a shorthand for "one of
 			\begin{enumerate}
 				\item $\chi_{b_0,[b_1,b_2,\cdots,b_{n-1}]}(a_0,\allowbreak\chi_{b_1,b_2,\cdots,b_{n-1}}(a_1,a_2,\cdots,a_{n-1}))$
@@ -933,7 +933,7 @@
 				\item $\vdots$
 				\item $\chi_{[b_0,b_1,\cdots,b_{n-2}],b_{n-1}}(\chi_{b_0,b_1,\cdots,b_{n-2}}(a_0,a_1,\cdots,a_{n-2}),\allowbreak a_{n-1})$".
 			\end{enumerate}
-		\notation{1.14}
+		\notation{1.15}
 			Let us use the notation $\phi(n)$ as a shorthand for "the sublist of $[0:n]$ where each integer $x$ is such that $(x,n)=1$".
 		\procedure{1.47}
 			\objective
@@ -1008,7 +1008,7 @@
 					\item Therefore using \procedurehr{1.49}, verify that $\prod_{i=0}^{\lvert\phi(b)\rvert}\phi(b)_i\equiv\prod_{i=0}^{\lvert\phi(b)\rvert}a\phi(b)_i\equiv a^{\lvert\phi(b)\rvert}\prod_{i=0}^{\lvert\phi(b)\rvert}\phi(b)_i(\mod b)$.
 					\item \textbf{Therefore verify that $1\equiv\prod_{i=0}^{\lvert\phi(b)\rvert}(v_i\phi(b)_i)=\prod_{i=0}^{\lvert\phi(b)\rvert}v_i\prod_{i=0}^{\lvert\phi(b)\rvert}\phi(b)_i\equiv a^{\lvert\phi(b)\rvert}\prod_{i=0}^{\lvert\phi(b)\rvert}\phi(b)_i\prod_{i=0}^{\lvert\phi(b)\rvert}v_i\equiv a^{\lvert\phi(b)\rvert}(\mod b)$.}
 				\end{enumerate}
-		\notation{1.15}
+		\notation{1.16}
 			Let us use the notation $a\times b$ as a shorthand for "the $\lvert a\rvert\times\lvert b\rvert$ matrix such that for $i$ in $[0:\lvert a\rvert]$, for $j$ in $[0:\lvert b\rvert]$, $(a\times b)_{i,j}=\langle a_i,b_j\rangle$".
 		\procedure{1.52}
 			\objective
@@ -1120,9 +1120,9 @@
 					\item \textbf{Therefore verify that $\phi(ab)$ is a rearrangement of $\chi_{a,b}(\phi(a)\times\phi(b))$.}
 					\item \textbf{Therefore verify that $\lvert\phi(ab)\rvert=\lvert\chi_{a,b}(\phi(a)\times\phi(b))\rvert=\lvert\phi(a)\times\phi(b)\rvert=\lvert\phi(a)\rvert\lvert\phi(b)\rvert$.}
 				\end{enumerate}
-		\notation{1.16}
+		\notation{1.17}
 			Let us use the notation $[P]$ as a shorthand for "$1$ if $P$, $0$ if otherwise".
-		\notation{1.07}
+		\notation{1.18}
 			Let us use the notation $\sum_{r=a}^b c_r$ as a shorthand for "$0$ if $a=b$, otherwise $c_a+\sum_{r=a+1}^b c_r$".
 		\procedure{1.58}
 			\objective
@@ -1160,7 +1160,7 @@
 						\item \textbf{Therefore using (d), (h), \procedurehr{1.57} and \procedurehr{1.58}, verify that $\lvert\phi(a_*)\rvert=\lvert\phi(\prod_{i=0}^{\lvert b\rvert} {b_i}^{c_i})\rvert=\lvert\phi({b_0}^{c_0}\prod_{i=1}^{\lvert b\rvert}{b_i}^{c_i})\rvert=\lvert\phi({b_0}^{c_0})\rvert\lvert\phi(\prod_{i=1}^{\lvert b\rvert}{b_i}^{c_i})\rvert=({b_0}^{c_0}-{b_0}^{c_0-1})\lvert\phi(\prod_{i=1}^{\lvert b\rvert}{b_i}^{c_i})\rvert=({b_0}^{c_0}-{b_0}^{c_0-1})\prod_{i=1}^{\lvert b\rvert}({b_i}^{c_i}-{b_i}^{c_i-1})=\prod_{i=0}^{\lvert b\rvert}({b_i}^{c_i}-{b_i}^{c_i-1})$.}
 					\end{enumerate}
 				\end{enumerate}
-		\notation{1.17}
+		\notation{1.19}
 			Let us use the notation $a^{\ul{b}}$ as a shorthand for "$\prod_{i=0}^b(a-i)$".
 		\procedure{1.60}
 			\objective
@@ -1189,7 +1189,7 @@
 						\item \textbf{Therefore verify that $\lvert c\rvert=1=\lvert a\rvert^{\ul{0}}=\lvert a\rvert^{\ul{b}}$.}
 					\end{enumerate}
 				\end{enumerate}
-		\notation{1.18}
+		\notation{1.20}
 			Let us use the notation $\binom{n}{r}$ as a shorthand for "$n^{\ul{r}}\div(r!)$".
 		\procedure{1.61}
 			\objective
@@ -1256,9 +1256,9 @@
 						\item $=\binom{a}{b}$.
 					\end{enumerate}
 				\end{enumerate}
-		\notation{1.19}
+		\notation{1.21}
 			Let us use the notation $\mathbb{Z}$ as a shorthand for "integer".
-		\notation{1.20}
+		\notation{1.22}
 			Let us use the notation $A[x_1,x_2,\cdots,x_n]$ as a shorthand for "formal polynomial with $A$ coefficients in the indeterminates $x_1,x_2,\cdots,x_n$".
 		\procedure{1.63}
 			\objective
@@ -1404,7 +1404,7 @@
 					\item \textbf{Verify that $\lvert f(c)\rvert,\lvert f(d)\rvert<\lvert f(d)-f(c)\rvert=\lvert(d-c)G(c,d)\rvert=\lvert d-c\rvert\lvert G(c,d)\rvert\le\lvert d-c\rvert\lvert G\rvert(\lvert c\rvert,\lvert d\rvert)\le\lvert d-c\rvert\lvert G\rvert(\lvert a\rvert,\lvert b\rvert)<B$.}
 					\item \textbf{Yield the tuple $\langle c\rangle$.}
 				\end{enumerate}
-		\notation{2.07}
+		\notation{2.01}
 			Let us use the notation $\min_{r=a}^b c_r$ as a shorthand for "$\infty$ if $a=b$, otherwise $\min(c_a,\min_{r=a+1}^b c_r)$".
 		\procedure{2.03}
 			\objective
@@ -1456,7 +1456,7 @@
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 				\end{enumerate}
-		\notation{2.01}
+		\notation{2.02}
 			Let us use the notation $p\circ q$ as a shorthand for "the sum of products where each product is the coefficient of a monomial in $p$ times the coefficient of the same monomial in $q$".
 		\procedure{2.04}
 			\objective
@@ -1489,9 +1489,9 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle s,q,g,h\rangle$.}
 				\end{enumerate}
-		\notation{2.02}
+		\notation{2.03}
 			Let us use the notation $J_{s}(x)$ as a shorthand for "the number of changes in the list $\sgn(s(x))$".
-		\notation{2.07}
+		\notation{2.04}
 			Let us use the notation $\max_{r=a}^b c_r$ as a shorthand for "$-\infty$ if $a=b$, otherwise $\max(c_a,\max_{r=a+1}^b c_r)$".
 		\procedure{2.05}
 			\objective
@@ -1969,9 +1969,9 @@
 					\item \textbf{Therefore verify that $(AB)_{[0:a],[0:c]}=A_{[0:a],[0:b]}B_{[0:b],[0:c]}+A_{[0:a],[b:n]}B_{[b:n],[0:c]}$.}
 					\item \textbf{Using computations analogous to (1) and (2), show items (2), (3), and (4) of the objective.}
 				\end{enumerate}
-		\notation{3.13}
+		\notation{3.06}
 			Let us use the notation $\cols(A)$ as a shorthand for "the number of columns of $A$".
-		\notation{3.14}
+		\notation{3.07}
 			Let us use the notation $\rows(A)$ as a shorthand for "the number of rows of $A$".
 		\procedure{3.10}
 			\objective
@@ -1988,7 +1988,7 @@
 					\item Verify that $\cols(E)=\sum_{i=0}^{\lvert C\rvert}\cols(C_i)=m$.
 					\item \textbf{Yield the tuple $\langle E\rangle$.}
 				\end{enumerate}
-		\notation{3.15}
+		\notation{3.08}
 			Let us use the notation $\bdiag(C)$ as a shorthand for the result yielded by executing \procedurehr{3.10} on $C$.
 		\procedure{3.11}
 			\objective
@@ -2023,7 +2023,7 @@
 						\item \textbf{Yield the tuple $\langle u\rangle$.}
 					\end{enumerate}
 				\end{enumerate}
-		\notation{3.06}
+		\notation{3.09}
 			Let us use the notation $\det(A)$ as a shorthand for the result yielded by executing \procedurehr{3.12} on $A$.
 		\procedure{3.12}
 			\objective
@@ -2217,9 +2217,9 @@
 						\item For each row label $I$: For each column label $J$: Let the entry at position $(I,J)$ be $\det(A_{I,J})$.
 					\end{enumerate}
 				\end{enumerate}
-		\notation{3.07}
+		\notation{3.10}
 			We will use the notation $C_k(A)$ to refer to the result yielded by executing \procedurehr{3.21} on the matrix $A$ and integer $k$.
-		\notation{3.08}
+		\notation{3.11}
 			We will use the notation $A_{\ul{I},\ul{J}}$ to refer to the entry of $A$ with row label $I$ and column label $J$.
 		\procedure{3.22}
 			\objective
@@ -2408,7 +2408,7 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle A^T\rangle$.}
 				\end{enumerate}
-		\notation{3.09}
+		\notation{3.12}
 			Let us use the notation $A^T$ for the result yielded by executing \procedurehr{3.31} on $A$.
 		\procedure{3.32}
 			\objective
@@ -2475,14 +2475,14 @@
 					\item \textbf{Therefore using \procedurehr{3.05}, verify that $AE={M^{-1}}_*D{N^{-1}}_*E={M^{-1}}_*D{N^{-1}}_*N_*C={M^{-1}}_*DI_nC={M^{-1}}_*DC={M^{-1}}_*M_*B=I_mB=B$.}
 					\item \textbf{Yield the tuple $\langle E\rangle$.}
 				\end{enumerate}
-		\notation{3.10}
+		\notation{3.13}
 			The notation $A\backslash B$ shall be used to refer to the result yielded by executing \procedurehr{3.35} on $\langle A,B\rangle$.
 		\procedure{3.36}
 			\objective
 				Choose a $\mathcal{M}_{m,n}(\mathbb{Q})$, $A$, and a $\mathcal{M}_{p,n}(\mathbb{Q})$, $B$. Execute \procedurehr{3.28} on $A$ and let $\langle M,D,,N\rangle$ receive the result. If the indices of the columns of $D$ that are entirely zero are also the indices of the columns of $BN_*$ that are entirely zero, then the objective of the following instructions is to construct a $\mathcal{M}_{p,m}(\mathbb{Q})$ $E$ such that $EA=B$.
 			\implementation
 				Instructions are analogous to those of \procedurehr{3.35}.
-		\notation{3.11}
+		\notation{3.14}
 			The notation $B/A$ shall be used to refer to the result yielded by executing \procedurehr{3.36} on $\langle A,B\rangle$.
 		\procedure{3.37}
 			\objective
@@ -2604,7 +2604,7 @@
 					\item Use \procedurehr{3.44} to negate the $i^{th}$ row and swap it with the $j^{th}$ row.
 					\item \textbf{Therefore, overall verify that $B_{i,i}$ has been multiplied by $k$, and $B_{j,j}$ by $\frac{1}{k}$.}
 				\end{enumerate}
-		\notation{3.12}
+		\notation{3.15}
 			Let us use the notation "$p$ is monic" as a shorthand for "$x^{\deg(p)}\circ p=1$".
 		\procedure{3.47}
 			\objective
@@ -3484,7 +3484,7 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle\delta,N'E',\langle K_0(g_0),\cdots,K_{t-1}(g_{t-1})\rangle,g\rangle$.}
 				\end{enumerate}
-		\notation{3.00}
+		\notation{3.31}
 			Let us use the notation $J_{m\times n}$ as a shorthand for "the $\mathcal{M}_{m,n}(\mathbb{Q})$ such that every entry is $1$".
 		\procedure{3.85}
 			\objective
