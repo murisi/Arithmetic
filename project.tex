@@ -1,4 +1,4 @@
-\documentclass[twocolumn]{article}
+\documentclass{article}
 \usepackage{fullpage}
 \usepackage{parskip}
 \usepackage{amsmath}
@@ -8,6 +8,8 @@
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{glossaries}
+\usepackage{multicol}
+\usepackage{tikz}
 \hypersetup{
 	colorlinks = true,
 	linktoc = all,
@@ -51,6 +53,8 @@
 \newcommand{\objective}{\subsubsection*{Objective}}
 \newcommand{\implementation}{\subsubsection*{Implementation}}
 \newcommand{\procedurehr}[1]{\hyperref[sec:procedure #1]{procedure \expandafter\csname procedure#1\endcsname}}
+\newcounter{mfigure}[part]
+\newcommand{\mfigure}{\subsubsection*{Figure \thepart:\themfigure}\addtocounter{mfigure}{1}}
 
 \makenoidxglossaries
 \newglossaryentry{integer}{name={integer},description={}}
@@ -72,6 +76,7 @@
 \newglossaryentry{intprime}{name={prime number},description={}}
 \newglossaryentry{int|a|}{name=\ensuremath{\lvert a\rvert},description={length of list}}
 \newglossaryentry{inta^b}{name=\ensuremath{a^{\frown}b},description={list concatenation}}
+\newglossaryentry{intf(R)}{name=\ensuremath{f(R)},description={elementwise operation}}
 \newglossaryentry{inta_*}{name=\ensuremath{a_*},description={product of list}}
 \newglossaryentry{intpif(r)}{name=\ensuremath{\prod_r^Rf(r)},description={pi product notation}}
 \newglossaryentry{int[a:b]}{name=\ensuremath{[a:b]},description={integer range}}
@@ -178,15 +183,19 @@
 	\author{Murisi Tarusenga}
 	\date{\today{} \currenttime}
 	\maketitle
-	\section*{Introduction}
-		What follows is a reformulation of the elementary parts of number theory, hard analysis, and linear algebra in terms of a system of procedures for achieving particular objectives, objectives like showing that modular exponentiation of a specific integer with specific properties yields a stated result. So, while formal mathematics usually takes the format of definition-theorem-proof, this project has the format of declaration-procedure objective-procedure implementation. So where there usually would have been a statement and proof of Euler's totient theorem, \procedurehr{1.50} is provided, and where there would have been a definition of Euler's totient function, \declarationhr{1.16} is provided.
+	\begin{multicols}{2}
+		\section*{Introduction}
+			What follows is a reformulation of the elementary parts of number theory, hard analysis, and linear algebra in terms of a system of procedures for achieving particular objectives, objectives like showing that modular exponentiation of a specific integer with specific properties yields a stated result. So, while formal mathematics usually takes the format of definition-theorem-proof, this project has the format of declaration-procedure objective-procedure implementation. So where there usually would have been a statement and proof of Euler's totient theorem, \procedurehr{1.50} is provided, and where there would have been a definition of Euler's totient function, \declarationhr{1.16} is provided.
 		
-		At this point the natural question is that of how we are to know that the following procedure implementations achieve the corresponding procedure objectives for all inputs. Well, strictly speaking, the only way to know that the following procedures always achieve their respective objectives is to actually execute them on all possible inputs and actually verify that the objective is met. However, when the input can be any integer, this proposal is in-principle not possible. So the actual question is that of how we can see the \textit{potential} of the following procedure implementations to achieve their respective objectives on different inputs, that is, of how we can get that feeling that if the input is changed to this or that, the objective should still be achieved. And the answer to this question is that we can see the potential of the following procedure implementations by simply looking at their (purposefully chosen) syntax in the same way that we can simply see from the syntax of the code fragment, "if $a=b$ and $b=c$, then verify that $a=c$, otherwise verify that $a\ne c$", the potential of the instructions to be carried out successfully on different integer inputs.
+			At this point the natural question is that of how we are to know that the following procedure implementations achieve the corresponding procedure objectives for all inputs. Well, strictly speaking, the only way to know that the following procedures always achieve their respective objectives is to actually execute them on all possible inputs and actually verify that the objective is met. However, when the input can be any integer, this proposal is in-principle not possible. So the actual question is that of how we can see the \textit{potential} of the following procedure implementations to achieve their respective objectives on different inputs, that is, of how we can get that feeling that if the input is changed to this or that, the objective should still be achieved. And the answer to this question is that we can see the potential of the following procedure implementations by simply looking at their (purposefully chosen) syntax in the same way that we can simply see from the syntax of the code fragment, "if $a=b$ and $b=c$, then verify that $a=c$, otherwise verify that $a\ne c$", the potential of the instructions to be carried out successfully on different integer inputs.
 		
-		For the purposes of storage and transmission of knowledge pertaining to the elementary parts of number theory and linear algebra, the following procedures are interchangeable with their analogous proofs in the sense that, assuming equal competence in programming and proving, if you have the procedure objective and implementation, you can trivially generate the analogous theorem and proof, and if you are in possession of the theorem and proof, then you can trivially generate the analogous procedure objective and implementation.
-	\tableofcontents
-	\printnoidxglossary[title={Declarations},sort=def]
-	\twocolumn[\part{Integer Arithmetic}]
+			For the purposes of storage and transmission of knowledge pertaining to the elementary parts of number theory and linear algebra, the following procedures are interchangeable with their analogous proofs in the sense that, assuming equal competence in programming and proving, if you have the procedure objective and implementation, you can trivially generate the analogous theorem and proof, and if you are in possession of the theorem and proof, then you can trivially generate the analogous procedure objective and implementation.
+		\tableofcontents
+		\printnoidxglossary[title={Declarations},sort=def]
+	\end{multicols}
+	\clearpage
+	\part{Integer Arithmetic}
+	\begin{multicols}{2}
 		\declaration{1.22}
 			The phrase "\gls{integer}" will be used as a shorthand for an ordered pair of natural numbers.
 		\declaration{1.23}
@@ -1029,7 +1038,7 @@
 		\declaration{1.10}
 			The notation \gls{inta^b} will be used to refer to the list formed by concatenating $a$ and $b$.
 		\declaration{1.31}
-			The notation $f(R)$, where $R$ is a list and $f[r]$ is a function of $r$, will contextually be used as a shorthand for the list $\langle f(R_0),f(R_1),\cdots,f(R_{\lvert R\rvert-1})\rangle$.
+			The notation \gls{intf(R)}, where $R$ is a list and $f[r]$ is a function of $r$, will contextually be used as a shorthand for the list $\langle f(R_0),f(R_1),\cdots,f(R_{\lvert R\rvert-1})\rangle$.
 		\declaration{1.09}
 			The notation \gls{inta_*}, where $a$ is a list, will be used as a shorthand for $1$ if $a$ is empty, otherwise it will be a shorthand for the product of the entries of $a$.
 		\declaration{1.08}
@@ -1849,7 +1858,10 @@
 						\item \textbf{Verify that $\binom{n}{r}\mod n=0$.}
 					\end{enumerate}
 				\end{enumerate}
-	\twocolumn[\part{Rational Arithmetic}]
+	\end{multicols}
+	\clearpage
+	\part{Rational Arithmetic}
+	\begin{multicols}{2}
 		\declaration{2.12}
 			The phrase "\gls{rational}" will be used as a shorthand for an ordered pair comprising an integer followed by a non-zero natural number.
 		\declaration{2.13}
@@ -3274,7 +3286,10 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle g,h\rangle$.}
 				\end{enumerate}
-	\twocolumn[\part{Complex Arithmetic}]
+	\end{multicols}
+	\clearpage
+	\part{Complex Arithmetic}
+	\begin{multicols}{2}
 		\declaration{3.19}
 			The phrase "\gls{complex}" will be used as a shorthand for an ordered pair of rational numbers.
 		\declaration{3.20}
@@ -3977,6 +3992,81 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,N,p\rangle$.}
 				\end{enumerate}
+	\end{multicols}
+	\mfigure
+	\begin{minipage}[c]{0.65\textwidth}
+		\begin{tikzpicture}[scale=1,every node/.style={scale=0.9}]
+			\draw[step=1,help lines] (-5.000000,-5.000000) grid (5.000000,3.000000);
+			\draw[->] (-5.000000,0) -- (5.000000,0);
+			\draw[->] (0,-5.000000) -- (0,3.000000);
+			\draw (-5.000000, 0.100000) -- (-5.000000,-0.100000);
+			\draw (-4.000000, 0.100000) -- (-4.000000,-0.100000);
+			\draw (-3.000000, 0.100000) -- (-3.000000,-0.100000);
+			\draw (-2.000000, 0.100000) -- (-2.000000,-0.100000);
+			\draw (-1.000000, 0.100000) -- (-1.000000,-0.100000);
+			\draw (0.000000, 0.100000) -- (0.000000,-0.100000);
+			\draw (1.000000, 0.100000) -- (1.000000,-0.100000);
+			\draw (2.000000, 0.100000) -- (2.000000,-0.100000);
+			\draw (3.000000, 0.100000) -- (3.000000,-0.100000);
+			\draw (4.000000, 0.100000) -- (4.000000,-0.100000);
+			\draw (0.100000, -5.000000) -- (-0.100000,-5.000000);
+			\draw (0.100000, -4.000000) -- (-0.100000,-4.000000);
+			\draw (0.100000, -3.000000) -- (-0.100000,-3.000000);
+			\draw (0.100000, -2.000000) -- (-0.100000,-2.000000);
+			\draw (0.100000, -1.000000) -- (-0.100000,-1.000000);
+			\draw (0.100000, 0.000000) -- (-0.100000,0.000000);
+			\draw (0.100000, 1.000000) -- (-0.100000,1.000000);
+			\draw (0.100000, 2.000000) -- (-0.100000,2.000000);
+			\draw (1,-0.100000) node[anchor=north,fill=white]{$1$};
+			\draw (-0.100000,1) node[anchor=east,fill=white]{$i$};
+			\draw (1.000000,0.000000) node[anchor=south west,fill=white]{$(1+\frac{6i}{10})^{0}$};
+			\filldraw (1.000000,0.000000) circle (2pt);
+			\draw (1.000000,0.000000) -- (1.000000,0.600000);
+			\filldraw (1.000000,0.600000) circle (2pt);
+			\draw (1.000000,0.600000) node[anchor=south west,fill=white]{$(1+\frac{6i}{10})^{1}$};
+			\filldraw (1.000000,0.600000) circle (2pt);
+			\draw (1.000000,0.600000) -- (0.640000,1.200000);
+			\filldraw (0.640000,1.200000) circle (2pt);
+			\draw (0.640000,1.200000) node[anchor=south west,fill=white]{$(1+\frac{6i}{10})^{2}$};
+			\filldraw (0.640000,1.200000) circle (2pt);
+			\draw (0.640000,1.200000) -- (-0.080000,1.584000);
+			\filldraw (-0.080000,1.584000) circle (2pt);
+			\draw (-0.080000,1.584000) node[anchor=south east,fill=white]{$(1+\frac{6i}{10})^{3}$};
+			\filldraw (-0.080000,1.584000) circle (2pt);
+			\draw (-0.080000,1.584000) -- (-1.030400,1.536000);
+			\filldraw (-1.030400,1.536000) circle (2pt);
+			\draw (-1.030400,1.536000) node[anchor=south east,fill=white]{$(1+\frac{6i}{10})^{4}$};
+			\filldraw (-1.030400,1.536000) circle (2pt);
+			\draw (-1.030400,1.536000) -- (-1.952000,0.917760);
+			\filldraw (-1.952000,0.917760) circle (2pt);
+			\draw (-1.952000,0.917760) node[anchor=south east,fill=white]{$(1+\frac{6i}{10})^{5}$};
+			\filldraw (-1.952000,0.917760) circle (2pt);
+			\draw (-1.952000,0.917760) -- (-2.502656,-0.253440);
+			\filldraw (-2.502656,-0.253440) circle (2pt);
+			\draw (-2.502656,-0.253440) node[anchor=north east,fill=white]{$(1+\frac{6i}{10})^{6}$};
+			\filldraw (-2.502656,-0.253440) circle (2pt);
+			\draw (-2.502656,-0.253440) -- (-2.350592,-1.755034);
+			\filldraw (-2.350592,-1.755034) circle (2pt);
+			\draw (-2.350592,-1.755034) node[anchor=north east,fill=white]{$(1+\frac{6i}{10})^{7}$};
+			\filldraw (-2.350592,-1.755034) circle (2pt);
+			\draw (-2.350592,-1.755034) -- (-1.297572,-3.165389);
+			\filldraw (-1.297572,-3.165389) circle (2pt);
+			\draw (-1.297572,-3.165389) node[anchor=north east,fill=white]{$(1+\frac{6i}{10})^{8}$};
+			\filldraw (-1.297572,-3.165389) circle (2pt);
+			\draw (-1.297572,-3.165389) -- (0.601661,-3.943932);
+			\filldraw (0.601661,-3.943932) circle (2pt);
+			\draw (0.601661,-3.943932) node[anchor=north west,fill=white]{$(1+\frac{6i}{10})^{9}$};
+			\filldraw (0.601661,-3.943932) circle (2pt);
+			\draw (0.601661,-3.943932) -- (2.968021,-3.582935);
+			\filldraw (2.968021,-3.582935) circle (2pt);
+			\draw (2.968021,-3.582935) node[anchor=north west,fill=white]{$(1+\frac{6i}{10})^{10}$};
+			\filldraw (2.968021,-3.582935) circle (2pt);
+		\end{tikzpicture}
+	\end{minipage}
+	\begin{minipage}[c]{0.35\textwidth}
+		A plot of the list of complex numbers $(1+\frac{6i}{10})^{[0:11]}$. Notice that each multiplication of a complex number by $1+\frac{6i}{10}$ results in an anti-clockwise rotation about the origin and a small radial movement outwards. This can be seen to reflect the computation $(1+\frac{6i}{10})a=a+\frac{6}{10}(ai)$ after one notes that $ai$ is perpendicular to $a$.
+	\end{minipage}
+	\begin{multicols}{2}
 		\declaration{3.17}
 			The notation \gls{complexcos}, where $z$ is a complex number and $n$ is a positive integer, will be used as a shorthand for $\frac{\exp_n(iz)+\exp_n(-iz)}{2}$.
 		\procedure{3.22}
@@ -4543,6 +4633,65 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				\end{enumerate}
+	\end{multicols}
+	\mfigure
+	\begin{minipage}[c]{0.65\textwidth}
+		\begin{tikzpicture}[scale=1.25,every node/.style={scale=0.9}]
+			\draw[step=1,help lines] (-4.000000,-3.000000) grid (4.000000,3.000000);
+			\draw[->] (-4.000000,0) -- (4.000000,0);
+			\draw[->] (0,-3.000000) -- (0,3.000000);
+			\draw (-4.000000, 0.100000) -- (-4.000000,-0.100000);
+			\draw (-3.000000, 0.100000) -- (-3.000000,-0.100000);
+			\draw (-2.000000, 0.100000) -- (-2.000000,-0.100000);
+			\draw (-1.000000, 0.100000) -- (-1.000000,-0.100000);
+			\draw (0.000000, 0.100000) -- (0.000000,-0.100000);
+			\draw (1.000000, 0.100000) -- (1.000000,-0.100000);
+			\draw (2.000000, 0.100000) -- (2.000000,-0.100000);
+			\draw (3.000000, 0.100000) -- (3.000000,-0.100000);
+			\draw (0.100000, -3.000000) -- (-0.100000,-3.000000);
+			\draw (0.100000, -2.000000) -- (-0.100000,-2.000000);
+			\draw (0.100000, -1.000000) -- (-0.100000,-1.000000);
+			\draw (0.100000, 0.000000) -- (-0.100000,0.000000);
+			\draw (0.100000, 1.000000) -- (-0.100000,1.000000);
+			\draw (0.100000, 2.000000) -- (-0.100000,2.000000);
+			\draw (1,-0.100000) node[anchor=north,fill=white]{$1$};
+			\draw (-0.100000,1) node[anchor=east,fill=white]{$i$};
+			\draw (1.000000,0.000000) node[anchor=south west,fill=white]{$\exp_{30}(\frac{0}{10}\tau_{10}i)$};
+			\filldraw (1.000000,0.000000) circle (2pt);
+			\draw (0,0) -- (1.000000,0.000000);
+			\draw (0.791604,0.623136) node[anchor=south west,fill=white]{$\exp_{30}(\frac{1}{10}\tau_{10}i)$};
+			\filldraw (0.791604,0.623136) circle (2pt);
+			\draw (0,0) -- (0.791604,0.623136);
+			\draw (0.242553,1.001108) node[anchor=south west,fill=white]{$\exp_{30}(\frac{2}{10}\tau_{10}i)$};
+			\filldraw (0.242553,1.001108) circle (2pt);
+			\draw (0,0) -- (0.242553,1.001108);
+			\draw (-0.442850,0.972791) node[anchor=south east,fill=white]{$\exp_{30}(\frac{3}{10}\tau_{10}i)$};
+			\filldraw (-0.442850,0.972791) circle (2pt);
+			\draw (0,0) -- (-0.442850,0.972791);
+			\draw (-0.997912,0.520351) node[anchor=south east,fill=white]{$\exp_{30}(\frac{4}{10}\tau_{10}i)$};
+			\filldraw (-0.997912,0.520351) circle (2pt);
+			\draw (0,0) -- (-0.997912,0.520351);
+			\draw (-1.182928,-0.214887) node[anchor=north east,fill=white]{$\exp_{30}(\frac{5}{10}\tau_{10}i)$};
+			\filldraw (-1.182928,-0.214887) circle (2pt);
+			\draw (0,0) -- (-1.182928,-0.214887);
+			\draw (-0.872691,-0.967418) node[anchor=north east,fill=white]{$\exp_{30}(\frac{6}{10}\tau_{10}i)$};
+			\filldraw (-0.872691,-0.967418) circle (2pt);
+			\draw (0,0) -- (-0.872691,-0.967418);
+			\draw (-0.115353,-1.427214) node[anchor=north east,fill=white]{$\exp_{30}(\frac{7}{10}\tau_{10}i)$};
+			\filldraw (-0.115353,-1.427214) circle (2pt);
+			\draw (0,0) -- (-0.115353,-1.427214);
+			\draw (0.858648,-1.344725) node[anchor=north west,fill=white]{$\exp_{30}(\frac{8}{10}\tau_{10}i)$};
+			\filldraw (0.858648,-1.344725) circle (2pt);
+			\draw (0,0) -- (0.858648,-1.344725);
+			\draw (1.687338,-0.632350) node[anchor=north west,fill=white]{$\exp_{30}(\frac{9}{10}\tau_{10}i)$};
+			\filldraw (1.687338,-0.632350) circle (2pt);
+			\draw (0,0) -- (1.687338,-0.632350);
+		\end{tikzpicture}
+	\end{minipage}
+	\begin{minipage}[c]{0.35\textwidth}
+		A plot of the list of complex numbers $\exp_{30}(\frac{[0:11]}{10}\tau_{10}i)$. Notice that when measurements are done relative to the complex number $1$, $\exp_{30}(\frac{1}{10}\tau_{10}i)$ is roughly $\frac{1}{10}$\textsuperscript{th} of a revolution, and also that each complex number has an angle that is roughly an integral multiple of that of $\exp_{30}(\frac{1}{10}\tau_{10}i)$.
+	\end{minipage}
+	\begin{multicols}{2}
 		\procedure{3.90}
 			\objective
 				Choose a two rationals $M,N$ such that $0<M$ and $N^2<12$. The objective of the following instructions is to construct rational numbers $a,b$ such that $a>0$, and a procedure, $p(x,n)$, to show that $\lVert\cos_n(x)-1\rVert^2\ge a$ when a rational number $x$ and a positive integer $n$ such that $M\le\lvert x\rvert\le N$ and $n>b$ are chosen.
@@ -4872,7 +5021,10 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				\end{enumerate}
-	\twocolumn[\part{Matrix Arithmetic}]
+	\end{multicols}
+	\clearpage
+	\part{Matrix Arithmetic}
+	\begin{multicols}{2}
 		\declaration{4.28}
 			The phrase "\gls{matrix}" will be used as a shorthand for a list of equally lengthed lists of polynomials. In particular, the phrase "$m\times n$ matrix" will be used as a shorthand for a length-$m$ list of length-$n$ lists of polynomials.
 		\declaration{4.29}
@@ -6633,6 +6785,7 @@
 						\item $=m$
 					\end{enumerate}
 				\end{enumerate}
+	\end{multicols}
 	\clearpage
 	\begingroup
 		\renewcommand{\addcontentsline}[3]{}
