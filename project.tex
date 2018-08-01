@@ -46,10 +46,10 @@
 \newcommand{\ol}[1]{\overline{#1}}
 \newcommand{\conj}[1]{\overline{#1}}
 \newcounter{declaration}[part]
-\newcommand{\declaration}[1]{\subsubsection*{Declaration \thepart:\thedeclaration}\label{sec:declaration #1}\expandafter\edef\csname declaration#1\endcsname{\thepart:\thedeclaration}\addtocounter{declaration}{1}}
+\newcommand{\declaration}[1]{\subsubsection*{Declaration \thepart:\thedeclaration}\label{sec:declaration #1}\global\expandafter\edef\csname declaration#1\endcsname{\thepart:\thedeclaration}\addtocounter{declaration}{1}}
 \newcommand{\declarationhr}[1]{\hyperref[sec:declaration #1]{declaration \expandafter\csname declaration#1\endcsname}}
 \newcounter{procedure}[part]
-\newcommand{\procedure}[1]{\subsection*{Procedure \thepart:\theprocedure}\label{sec:procedure #1}\expandafter\edef\csname procedure#1\endcsname{\thepart:\theprocedure}\addtocounter{procedure}{1}}
+\newcommand{\procedure}[1]{\subsection*{Procedure \thepart:\theprocedure}\label{sec:procedure #1}\global\expandafter\edef\csname procedure#1\endcsname{\thepart:\theprocedure}\addtocounter{procedure}{1}}
 \newcommand{\objective}{\subsubsection*{Objective}}
 \newcommand{\implementation}{\subsubsection*{Implementation}}
 \newcommand{\procedurehr}[1]{\hyperref[sec:procedure #1]{procedure \expandafter\csname procedure#1\endcsname}}
@@ -403,6 +403,15 @@
 						\item $=\langle\Po(a)\Po(b)+\Ne(a)\Ne(b),\Po(a)\Ne(b)+\Ne(a)\Po(b)\rangle+\langle\Po(a)\Po(c)+\Ne(a)\Ne(c),\Po(a)\Ne(c)+\Ne(a)\Po(c)\rangle$
 						\item $=ab+ac$.
 					\end{enumerate}
+				\end{enumerate}
+		\procedure{1.91}
+			\objective
+				Choose an integer $a$. The objective of the following instructions is to show that $(-1)^{2a}=1$ and $(-1)^{2a+1}=-1$.
+			\implementation
+				\begin{enumerate}
+					\item Verify that $(-1)^2=(-1)(-1)+1+(-1)=(-1)((-1)+1)+1=(-1)0+1=1$.
+					\item \textbf{Hence verify that $(-1)^{2a}=((-1)^2)^a=1^a=1$.}
+					\item \textbf{Hence verify that $(-1)^{2a+1}=(-1)^{2a}(-1)=1(-1)=-1$.}
 				\end{enumerate}
 		\declaration{1.30}
 			The phrase "\gls{inta<b}", where $a,b$ are rational numbers, will be used as a shorthand for "$\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$".
@@ -2142,6 +2151,11 @@
 						\item $=ab+ac$.
 					\end{enumerate}
 				\end{enumerate}
+		\procedure{2.09}
+			\objective
+				Choose an integer $a$. The objective of the following instructions is to show that $(-1)^{2a}=1$ and $(-1)^{2a+1}=-1$.
+			\implementation
+				Implementation is analogous to that of \procedurehr{1.91}.
 		\declaration{2.22}
 			The phrase "\gls{rata<b}", where $a,b$ are rational numbers, will be used as a shorthand for "$\Nu(a)\De(b)<\De(a)\Nu(b)$".
 		\procedure{2.43}
@@ -3566,6 +3580,18 @@
 				\end{enumerate}
 		\declaration{3.28}
 			The notation \gls{complexi} will be used as a shorthand for $\langle 0,1\rangle$.
+		\procedure{3.03}
+			\objective
+				Choose an integer $a$. The objective of the following instructions is to show that $i^{4a}=1$, $i^{4a+1}=i$, $i^{4a+2}=-1$, and $i^{4a+3}=-i$.
+			\implementation
+				\begin{enumerate}
+					\item Verify that $i^2=-1$.
+					\item Hence verify that $i^4=(-1)^2=1$.
+					\item \textbf{Hence verify that $i^{4a}=(i^4)^a=1^a=1$.}
+					\item \textbf{Hence verify that $i^{4a+1}=i^{4a}i=1i=i$.}
+					\item \textbf{Hence verify that $i^{4a+2}=i^{4a+1}i=i^2=-1$.}
+					\item \textbf{Hence verify that $i^{4a+3}=i^{4a+2}i=(-1)i=-i$.}
+				\end{enumerate}
 		\declaration{3.05}
 			The notation \gls{complexexp}, where $a$ is a complex number, will be used as a shorthand for $(1+\frac{a}{n})^n$.
 		\procedure{3.07}
@@ -4064,7 +4090,7 @@
 		\end{tikzpicture}
 	\end{minipage}
 	\begin{minipage}[c]{0.35\textwidth}
-		A plot of the list of complex numbers $(1+\frac{6i}{10})^{[0:11]}$. Notice that each multiplication of a complex number by $1+\frac{6i}{10}$ results in an anti-clockwise rotation about the origin and a small radial movement outwards. This can be seen to reflect the computation $(1+\frac{6i}{10})a=a+\frac{6}{10}(ai)$ after one notes that $ai$ is perpendicular to $a$.
+		A plot of the list of complex numbers $(1+\frac{6i}{10})^{[0:11]}$. Notice that each multiplication of a complex number by $1+\frac{6i}{10}$ results in an anti-clockwise rotation about the origin and a small radial movement outwards. This can be seen to reflect the computation $(1+\frac{6i}{10})a=1a+\frac{6}{10}(ai)$ after one notes that $ai$ is perpendicular to $a$.
 	\end{minipage}
 	\begin{multicols}{2}
 		\declaration{3.17}
@@ -6787,25 +6813,27 @@
 				\end{enumerate}
 	\end{multicols}
 	\clearpage
-	\begingroup
-		\renewcommand{\addcontentsline}[3]{}
-		\begin{thebibliography}{9}
-			\bibitem{linearalgebra} 
-				Harold Edwards.
-				\textit{Linear Algebra}. 
-				Springer Science+Business Media, 1995.
-			\bibitem{introductiontheoryofnumbers}
-				Hugh L. Montgomery, Ivan Niven, Herbert S. Zuckerman.
-				\textit{An Introduction to the Theory of Numbers}.
-				John Wiley \& Sons, 1991.
-			\bibitem{philosophicalgrammar}
-				Ludwig Wittgenstein.
-				\textit{Philosophical Grammar}.
-				Edited by Rush Rhees.
-				Translated by Anthony Kenny.
-				Basil Blackwell, Oxford, 1974.
-		\end{thebibliography}
-	\endgroup
+	\begin{multicols}{2}
+		\begingroup
+			\renewcommand{\addcontentsline}[3]{}
+			\begin{thebibliography}{9}
+				\bibitem{linearalgebra} 
+					Harold Edwards.
+					\textit{Linear Algebra}. 
+					Springer Science+Business Media, 1995.
+				\bibitem{introductiontheoryofnumbers}
+					Hugh L. Montgomery, Ivan Niven, Herbert S. Zuckerman.
+					\textit{An Introduction to the Theory of Numbers}.
+					John Wiley \& Sons, 1991.
+				\bibitem{philosophicalgrammar}
+					Ludwig Wittgenstein.
+					\textit{Philosophical Grammar}.
+					Edited by Rush Rhees.
+					Translated by Anthony Kenny.
+					Basil Blackwell, Oxford, 1974.
+			\end{thebibliography}
+		\endgroup
+	\end{multicols}
 \end{document}
 \grid
 \grid
