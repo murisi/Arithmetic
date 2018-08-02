@@ -3508,6 +3508,15 @@
 						\item $=\conj{a}\conj{b}$.
 					\end{enumerate}
 				\end{enumerate}
+		\declaration{3.03}
+			The notation \gls{complexabs^2}, where $a$ is a complex number, will be used as a shorthand for $\Re(a)^2+\Im(a)^2$.
+		\procedure{3.02}
+			\objective
+				Choose a complex number $a$. The objective of the following instructions is to show that $a\conj{a}=\lVert a\rVert^2$.
+			\implementation
+				\begin{enumerate}
+					\item \textbf{Verify that $a\conj{a}=\lVert a\rVert^2$.}
+				\end{enumerate}
 		\procedure{3.04}
 			\objective
 				Choose a list of complex numbers $a$. The objective of the following instructions is to show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2\le\lvert a\rvert\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2$.
@@ -3537,15 +3546,6 @@
 						\item $\le \lvert a\rvert\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2+\lvert a\rvert\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$
 					\end{enumerate}
 					\item \textbf{Therefore verify that $\frac{\lVert a_0\rVert^2}{\lvert a\rvert}-\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2\le\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$.}
-				\end{enumerate}
-		\declaration{3.03}
-			The notation \gls{complexabs^2}, where $a$ is a complex number, will be used as a shorthand for $\Re(a)^2+\Im(a)^2$.
-		\procedure{3.02}
-			\objective
-				Choose a complex number $a$. The objective of the following instructions is to show that $a\conj{a}=\lVert a\rVert^2$.
-			\implementation
-				\begin{enumerate}
-					\item \textbf{Verify that $a\conj{a}=\lVert a\rVert^2$.}
 				\end{enumerate}
 		\declaration{3.27}
 			The notation \gls{complex1/a}, where $a$ is a complex number, will be used as a shorthand for the pair $\frac{1}{\lVert a\rVert^2}\conj{a}$.
