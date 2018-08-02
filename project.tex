@@ -16,7 +16,6 @@
 }
 
 \setcounter{page}{0}
-\setcounter{section}{-1}
 \setlist[enumerate,2,3,4]{leftmargin=0.3cm}
 \setlength{\columnsep}{0.7cm}
 
@@ -80,7 +79,10 @@
 \newcommand{\implementation}{\subsubsection*{Implementation}}
 
 \newcounter{mfigure}[part]
-\newcommand{\mfigure}{\subsubsection*{Figure \thepart:\themfigure}\addtocounter{mfigure}{1}}
+\newcommand{\mfigure}{
+	\subsubsection*{Figure \thepart:\themfigure}
+	\addtocounter{mfigure}{1}
+}
 
 \makenoidxglossaries
 \newglossaryentry{integer}{name={integer},description={}}
