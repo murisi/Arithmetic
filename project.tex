@@ -20,6 +20,13 @@
 \setlist[enumerate,2,3,4]{leftmargin=0.3cm}
 \setlength{\columnsep}{0.7cm}
 
+\mathchardef\mathcomma\mathcode`\,
+\mathcode`\,="8000
+{
+	\catcode`,=\active
+	\gdef,{\mathcomma\discretionary{}{}{}}
+}
+
 \DeclareMathOperator*{\diff}{\Delta}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\mat}{mat}
@@ -45,14 +52,33 @@
 \newcommand{\ul}[1]{\protect\underline{#1}}
 \newcommand{\ol}[1]{\overline{#1}}
 \newcommand{\conj}[1]{\overline{#1}}
+
 \newcounter{declaration}[part]
-\newcommand{\declaration}[1]{\subsubsection*{Declaration \thepart:\thedeclaration}\label{sec:declaration #1}\global\expandafter\edef\csname declaration#1\endcsname{\thepart:\thedeclaration}\addtocounter{declaration}{1}}
-\newcommand{\declarationhr}[1]{\hyperref[sec:declaration #1]{declaration \expandafter\csname declaration#1\endcsname}}
+\newcounter{declarationtemp}
+\newcommand{\declaration}[1]{
+	\renewcommand\thedeclarationtemp{\thepart:\thedeclaration}
+	\subsubsection*{Declaration \thedeclarationtemp}
+	\label{sec:declaration #1}
+	\refstepcounter{declarationtemp}
+	\label{declaration#1}
+	\addtocounter{declaration}{1}
+}
+\newcommand{\declarationhr}[1]{\hyperref[sec:declaration #1]{declaration \ref{declaration#1}}}
+
 \newcounter{procedure}[part]
-\newcommand{\procedure}[1]{\subsection*{Procedure \thepart:\theprocedure}\label{sec:procedure #1}\global\expandafter\edef\csname procedure#1\endcsname{\thepart:\theprocedure}\addtocounter{procedure}{1}}
+\newcounter{proceduretemp}
+\newcommand{\procedure}[1]{
+	\renewcommand\theproceduretemp{\thepart:\theprocedure}
+	\subsection*{Procedure \theproceduretemp}
+	\label{sec:procedure #1}
+	\refstepcounter{proceduretemp}
+	\label{procedure#1}
+	\addtocounter{procedure}{1}
+}
+\newcommand{\procedurehr}[1]{\hyperref[sec:procedure #1]{procedure \ref{procedure#1}}}
 \newcommand{\objective}{\subsubsection*{Objective}}
 \newcommand{\implementation}{\subsubsection*{Implementation}}
-\newcommand{\procedurehr}[1]{\hyperref[sec:procedure #1]{procedure \expandafter\csname procedure#1\endcsname}}
+
 \newcounter{mfigure}[part]
 \newcommand{\mfigure}{\subsubsection*{Figure \thepart:\themfigure}\addtocounter{mfigure}{1}}
 
@@ -4020,78 +4046,78 @@
 				\end{enumerate}
 	\end{multicols}
 	\mfigure
-	\begin{minipage}[c]{0.65\textwidth}
-		\begin{tikzpicture}[scale=1,every node/.style={scale=0.9}]
-			\draw[step=1,help lines] (-5.000000,-5.000000) grid (5.000000,3.000000);
-			\draw[->] (-5.000000,0) -- (5.000000,0);
-			\draw[->] (0,-5.000000) -- (0,3.000000);
-			\draw (-5.000000, 0.100000) -- (-5.000000,-0.100000);
-			\draw (-4.000000, 0.100000) -- (-4.000000,-0.100000);
-			\draw (-3.000000, 0.100000) -- (-3.000000,-0.100000);
-			\draw (-2.000000, 0.100000) -- (-2.000000,-0.100000);
-			\draw (-1.000000, 0.100000) -- (-1.000000,-0.100000);
-			\draw (0.000000, 0.100000) -- (0.000000,-0.100000);
-			\draw (1.000000, 0.100000) -- (1.000000,-0.100000);
-			\draw (2.000000, 0.100000) -- (2.000000,-0.100000);
-			\draw (3.000000, 0.100000) -- (3.000000,-0.100000);
-			\draw (4.000000, 0.100000) -- (4.000000,-0.100000);
-			\draw (0.100000, -5.000000) -- (-0.100000,-5.000000);
-			\draw (0.100000, -4.000000) -- (-0.100000,-4.000000);
-			\draw (0.100000, -3.000000) -- (-0.100000,-3.000000);
-			\draw (0.100000, -2.000000) -- (-0.100000,-2.000000);
-			\draw (0.100000, -1.000000) -- (-0.100000,-1.000000);
-			\draw (0.100000, 0.000000) -- (-0.100000,0.000000);
-			\draw (0.100000, 1.000000) -- (-0.100000,1.000000);
-			\draw (0.100000, 2.000000) -- (-0.100000,2.000000);
-			\draw (1,-0.100000) node[anchor=north,fill=white]{$1$};
-			\draw (-0.100000,1) node[anchor=east,fill=white]{$i$};
-			\draw (1.000000,0.000000) node[anchor=south west,fill=white]{$(1+\frac{6i}{10})^{0}$};
-			\filldraw (1.000000,0.000000) circle (2pt);
-			\draw (1.000000,0.000000) -- (1.000000,0.600000);
-			\filldraw (1.000000,0.600000) circle (2pt);
-			\draw (1.000000,0.600000) node[anchor=south west,fill=white]{$(1+\frac{6i}{10})^{1}$};
-			\filldraw (1.000000,0.600000) circle (2pt);
-			\draw (1.000000,0.600000) -- (0.640000,1.200000);
-			\filldraw (0.640000,1.200000) circle (2pt);
-			\draw (0.640000,1.200000) node[anchor=south west,fill=white]{$(1+\frac{6i}{10})^{2}$};
-			\filldraw (0.640000,1.200000) circle (2pt);
-			\draw (0.640000,1.200000) -- (-0.080000,1.584000);
-			\filldraw (-0.080000,1.584000) circle (2pt);
-			\draw (-0.080000,1.584000) node[anchor=south east,fill=white]{$(1+\frac{6i}{10})^{3}$};
-			\filldraw (-0.080000,1.584000) circle (2pt);
-			\draw (-0.080000,1.584000) -- (-1.030400,1.536000);
-			\filldraw (-1.030400,1.536000) circle (2pt);
-			\draw (-1.030400,1.536000) node[anchor=south east,fill=white]{$(1+\frac{6i}{10})^{4}$};
-			\filldraw (-1.030400,1.536000) circle (2pt);
-			\draw (-1.030400,1.536000) -- (-1.952000,0.917760);
-			\filldraw (-1.952000,0.917760) circle (2pt);
-			\draw (-1.952000,0.917760) node[anchor=south east,fill=white]{$(1+\frac{6i}{10})^{5}$};
-			\filldraw (-1.952000,0.917760) circle (2pt);
-			\draw (-1.952000,0.917760) -- (-2.502656,-0.253440);
-			\filldraw (-2.502656,-0.253440) circle (2pt);
-			\draw (-2.502656,-0.253440) node[anchor=north east,fill=white]{$(1+\frac{6i}{10})^{6}$};
-			\filldraw (-2.502656,-0.253440) circle (2pt);
-			\draw (-2.502656,-0.253440) -- (-2.350592,-1.755034);
-			\filldraw (-2.350592,-1.755034) circle (2pt);
-			\draw (-2.350592,-1.755034) node[anchor=north east,fill=white]{$(1+\frac{6i}{10})^{7}$};
-			\filldraw (-2.350592,-1.755034) circle (2pt);
-			\draw (-2.350592,-1.755034) -- (-1.297572,-3.165389);
-			\filldraw (-1.297572,-3.165389) circle (2pt);
-			\draw (-1.297572,-3.165389) node[anchor=north east,fill=white]{$(1+\frac{6i}{10})^{8}$};
-			\filldraw (-1.297572,-3.165389) circle (2pt);
-			\draw (-1.297572,-3.165389) -- (0.601661,-3.943932);
-			\filldraw (0.601661,-3.943932) circle (2pt);
-			\draw (0.601661,-3.943932) node[anchor=north west,fill=white]{$(1+\frac{6i}{10})^{9}$};
-			\filldraw (0.601661,-3.943932) circle (2pt);
-			\draw (0.601661,-3.943932) -- (2.968021,-3.582935);
-			\filldraw (2.968021,-3.582935) circle (2pt);
-			\draw (2.968021,-3.582935) node[anchor=north west,fill=white]{$(1+\frac{6i}{10})^{10}$};
-			\filldraw (2.968021,-3.582935) circle (2pt);
-		\end{tikzpicture}
-	\end{minipage}
-	\begin{minipage}[c]{0.35\textwidth}
-		A plot of the list of complex numbers $(1+\frac{6i}{10})^{[0:11]}$. Notice that each multiplication of a complex number by $1+\frac{6i}{10}$ results in an anti-clockwise rotation about the origin and a small radial movement outwards. This can be seen to reflect the computation $(1+\frac{6i}{10})a=1a+\frac{6}{10}(ai)$ after one notes that $ai$ is perpendicular to $a$.
-	\end{minipage}
+		\begin{minipage}[c]{0.65\textwidth}
+			\begin{tikzpicture}[scale=1,every node/.style={scale=0.9}]
+				\draw[step=1,help lines] (-5.000000,-5.000000) grid (5.000000,3.000000);
+				\draw[->] (-5.000000,0) -- (5.000000,0);
+				\draw[->] (0,-5.000000) -- (0,3.000000);
+				\draw (-5.000000, 0.100000) -- (-5.000000,-0.100000);
+				\draw (-4.000000, 0.100000) -- (-4.000000,-0.100000);
+				\draw (-3.000000, 0.100000) -- (-3.000000,-0.100000);
+				\draw (-2.000000, 0.100000) -- (-2.000000,-0.100000);
+				\draw (-1.000000, 0.100000) -- (-1.000000,-0.100000);
+				\draw (0.000000, 0.100000) -- (0.000000,-0.100000);
+				\draw (1.000000, 0.100000) -- (1.000000,-0.100000);
+				\draw (2.000000, 0.100000) -- (2.000000,-0.100000);
+				\draw (3.000000, 0.100000) -- (3.000000,-0.100000);
+				\draw (4.000000, 0.100000) -- (4.000000,-0.100000);
+				\draw (0.100000, -5.000000) -- (-0.100000,-5.000000);
+				\draw (0.100000, -4.000000) -- (-0.100000,-4.000000);
+				\draw (0.100000, -3.000000) -- (-0.100000,-3.000000);
+				\draw (0.100000, -2.000000) -- (-0.100000,-2.000000);
+				\draw (0.100000, -1.000000) -- (-0.100000,-1.000000);
+				\draw (0.100000, 0.000000) -- (-0.100000,0.000000);
+				\draw (0.100000, 1.000000) -- (-0.100000,1.000000);
+				\draw (0.100000, 2.000000) -- (-0.100000,2.000000);
+				\draw (1,-0.100000) node[anchor=north,fill=white]{$1$};
+				\draw (-0.100000,1) node[anchor=east,fill=white]{$i$};
+				\draw (1.000000,0.000000) node[anchor=south west,fill=white]{$(1+\frac{6i}{10})^{0}$};
+				\filldraw (1.000000,0.000000) circle (2pt);
+				\draw (1.000000,0.000000) -- (1.000000,0.600000);
+				\filldraw (1.000000,0.600000) circle (2pt);
+				\draw (1.000000,0.600000) node[anchor=south west,fill=white]{$(1+\frac{6i}{10})^{1}$};
+				\filldraw (1.000000,0.600000) circle (2pt);
+				\draw (1.000000,0.600000) -- (0.640000,1.200000);
+				\filldraw (0.640000,1.200000) circle (2pt);
+				\draw (0.640000,1.200000) node[anchor=south west,fill=white]{$(1+\frac{6i}{10})^{2}$};
+				\filldraw (0.640000,1.200000) circle (2pt);
+				\draw (0.640000,1.200000) -- (-0.080000,1.584000);
+				\filldraw (-0.080000,1.584000) circle (2pt);
+				\draw (-0.080000,1.584000) node[anchor=south east,fill=white]{$(1+\frac{6i}{10})^{3}$};
+				\filldraw (-0.080000,1.584000) circle (2pt);
+				\draw (-0.080000,1.584000) -- (-1.030400,1.536000);
+				\filldraw (-1.030400,1.536000) circle (2pt);
+				\draw (-1.030400,1.536000) node[anchor=south east,fill=white]{$(1+\frac{6i}{10})^{4}$};
+				\filldraw (-1.030400,1.536000) circle (2pt);
+				\draw (-1.030400,1.536000) -- (-1.952000,0.917760);
+				\filldraw (-1.952000,0.917760) circle (2pt);
+				\draw (-1.952000,0.917760) node[anchor=south east,fill=white]{$(1+\frac{6i}{10})^{5}$};
+				\filldraw (-1.952000,0.917760) circle (2pt);
+				\draw (-1.952000,0.917760) -- (-2.502656,-0.253440);
+				\filldraw (-2.502656,-0.253440) circle (2pt);
+				\draw (-2.502656,-0.253440) node[anchor=north east,fill=white]{$(1+\frac{6i}{10})^{6}$};
+				\filldraw (-2.502656,-0.253440) circle (2pt);
+				\draw (-2.502656,-0.253440) -- (-2.350592,-1.755034);
+				\filldraw (-2.350592,-1.755034) circle (2pt);
+				\draw (-2.350592,-1.755034) node[anchor=north east,fill=white]{$(1+\frac{6i}{10})^{7}$};
+				\filldraw (-2.350592,-1.755034) circle (2pt);
+				\draw (-2.350592,-1.755034) -- (-1.297572,-3.165389);
+				\filldraw (-1.297572,-3.165389) circle (2pt);
+				\draw (-1.297572,-3.165389) node[anchor=north east,fill=white]{$(1+\frac{6i}{10})^{8}$};
+				\filldraw (-1.297572,-3.165389) circle (2pt);
+				\draw (-1.297572,-3.165389) -- (0.601661,-3.943932);
+				\filldraw (0.601661,-3.943932) circle (2pt);
+				\draw (0.601661,-3.943932) node[anchor=north west,fill=white]{$(1+\frac{6i}{10})^{9}$};
+				\filldraw (0.601661,-3.943932) circle (2pt);
+				\draw (0.601661,-3.943932) -- (2.968021,-3.582935);
+				\filldraw (2.968021,-3.582935) circle (2pt);
+				\draw (2.968021,-3.582935) node[anchor=north west,fill=white]{$(1+\frac{6i}{10})^{10}$};
+				\filldraw (2.968021,-3.582935) circle (2pt);
+			\end{tikzpicture}
+		\end{minipage}
+		\begin{minipage}[c]{0.35\textwidth}
+			A plot of the list of complex numbers $(1+\frac{6i}{10})^{[0:11]}$. Notice that each multiplication of a complex number by $1+\frac{6i}{10}$ results in an anti-clockwise rotation about the origin and a small radial movement outwards. This can be seen to reflect the computation $(1+\frac{6i}{10})a=1a+\frac{6}{10}(ai)$ after one notes that $ai$ is perpendicular to $a$.
+		\end{minipage}
 	\begin{multicols}{2}
 		\declaration{3.17}
 			The notation \gls{complexcos}, where $z$ is a complex number and $n$ is a positive integer, will be used as a shorthand for $\frac{\exp_n(iz)+\exp_n(-iz)}{2}$.
@@ -4661,62 +4687,62 @@
 				\end{enumerate}
 	\end{multicols}
 	\mfigure
-	\begin{minipage}[c]{0.65\textwidth}
-		\begin{tikzpicture}[scale=1.25,every node/.style={scale=0.9}]
-			\draw[step=1,help lines] (-4.000000,-3.000000) grid (4.000000,3.000000);
-			\draw[->] (-4.000000,0) -- (4.000000,0);
-			\draw[->] (0,-3.000000) -- (0,3.000000);
-			\draw (-4.000000, 0.100000) -- (-4.000000,-0.100000);
-			\draw (-3.000000, 0.100000) -- (-3.000000,-0.100000);
-			\draw (-2.000000, 0.100000) -- (-2.000000,-0.100000);
-			\draw (-1.000000, 0.100000) -- (-1.000000,-0.100000);
-			\draw (0.000000, 0.100000) -- (0.000000,-0.100000);
-			\draw (1.000000, 0.100000) -- (1.000000,-0.100000);
-			\draw (2.000000, 0.100000) -- (2.000000,-0.100000);
-			\draw (3.000000, 0.100000) -- (3.000000,-0.100000);
-			\draw (0.100000, -3.000000) -- (-0.100000,-3.000000);
-			\draw (0.100000, -2.000000) -- (-0.100000,-2.000000);
-			\draw (0.100000, -1.000000) -- (-0.100000,-1.000000);
-			\draw (0.100000, 0.000000) -- (-0.100000,0.000000);
-			\draw (0.100000, 1.000000) -- (-0.100000,1.000000);
-			\draw (0.100000, 2.000000) -- (-0.100000,2.000000);
-			\draw (1,-0.100000) node[anchor=north,fill=white]{$1$};
-			\draw (-0.100000,1) node[anchor=east,fill=white]{$i$};
-			\draw (1.000000,0.000000) node[anchor=south west,fill=white]{$\exp_{30}(\frac{0}{10}\tau_{10}i)$};
-			\filldraw (1.000000,0.000000) circle (2pt);
-			\draw (0,0) -- (1.000000,0.000000);
-			\draw (0.791604,0.623136) node[anchor=south west,fill=white]{$\exp_{30}(\frac{1}{10}\tau_{10}i)$};
-			\filldraw (0.791604,0.623136) circle (2pt);
-			\draw (0,0) -- (0.791604,0.623136);
-			\draw (0.242553,1.001108) node[anchor=south west,fill=white]{$\exp_{30}(\frac{2}{10}\tau_{10}i)$};
-			\filldraw (0.242553,1.001108) circle (2pt);
-			\draw (0,0) -- (0.242553,1.001108);
-			\draw (-0.442850,0.972791) node[anchor=south east,fill=white]{$\exp_{30}(\frac{3}{10}\tau_{10}i)$};
-			\filldraw (-0.442850,0.972791) circle (2pt);
-			\draw (0,0) -- (-0.442850,0.972791);
-			\draw (-0.997912,0.520351) node[anchor=south east,fill=white]{$\exp_{30}(\frac{4}{10}\tau_{10}i)$};
-			\filldraw (-0.997912,0.520351) circle (2pt);
-			\draw (0,0) -- (-0.997912,0.520351);
-			\draw (-1.182928,-0.214887) node[anchor=north east,fill=white]{$\exp_{30}(\frac{5}{10}\tau_{10}i)$};
-			\filldraw (-1.182928,-0.214887) circle (2pt);
-			\draw (0,0) -- (-1.182928,-0.214887);
-			\draw (-0.872691,-0.967418) node[anchor=north east,fill=white]{$\exp_{30}(\frac{6}{10}\tau_{10}i)$};
-			\filldraw (-0.872691,-0.967418) circle (2pt);
-			\draw (0,0) -- (-0.872691,-0.967418);
-			\draw (-0.115353,-1.427214) node[anchor=north east,fill=white]{$\exp_{30}(\frac{7}{10}\tau_{10}i)$};
-			\filldraw (-0.115353,-1.427214) circle (2pt);
-			\draw (0,0) -- (-0.115353,-1.427214);
-			\draw (0.858648,-1.344725) node[anchor=north west,fill=white]{$\exp_{30}(\frac{8}{10}\tau_{10}i)$};
-			\filldraw (0.858648,-1.344725) circle (2pt);
-			\draw (0,0) -- (0.858648,-1.344725);
-			\draw (1.687338,-0.632350) node[anchor=north west,fill=white]{$\exp_{30}(\frac{9}{10}\tau_{10}i)$};
-			\filldraw (1.687338,-0.632350) circle (2pt);
-			\draw (0,0) -- (1.687338,-0.632350);
-		\end{tikzpicture}
-	\end{minipage}
-	\begin{minipage}[c]{0.35\textwidth}
-		A plot of the list of complex numbers $\exp_{30}(\frac{[0:11]}{10}\tau_{10}i)$. Notice that when measurements are done relative to the complex number $1$, $\exp_{30}(\frac{1}{10}\tau_{10}i)$ is roughly $\frac{1}{10}$\textsuperscript{th} of a revolution, and also that each complex number has an angle that is roughly an integral multiple of that of $\exp_{30}(\frac{1}{10}\tau_{10}i)$.
-	\end{minipage}
+		\begin{minipage}[c]{0.65\textwidth}
+			\begin{tikzpicture}[scale=1.25,every node/.style={scale=0.9}]
+				\draw[step=1,help lines] (-4.000000,-3.000000) grid (4.000000,3.000000);
+				\draw[->] (-4.000000,0) -- (4.000000,0);
+				\draw[->] (0,-3.000000) -- (0,3.000000);
+				\draw (-4.000000, 0.100000) -- (-4.000000,-0.100000);
+				\draw (-3.000000, 0.100000) -- (-3.000000,-0.100000);
+				\draw (-2.000000, 0.100000) -- (-2.000000,-0.100000);
+				\draw (-1.000000, 0.100000) -- (-1.000000,-0.100000);
+				\draw (0.000000, 0.100000) -- (0.000000,-0.100000);
+				\draw (1.000000, 0.100000) -- (1.000000,-0.100000);
+				\draw (2.000000, 0.100000) -- (2.000000,-0.100000);
+				\draw (3.000000, 0.100000) -- (3.000000,-0.100000);
+				\draw (0.100000, -3.000000) -- (-0.100000,-3.000000);
+				\draw (0.100000, -2.000000) -- (-0.100000,-2.000000);
+				\draw (0.100000, -1.000000) -- (-0.100000,-1.000000);
+				\draw (0.100000, 0.000000) -- (-0.100000,0.000000);
+				\draw (0.100000, 1.000000) -- (-0.100000,1.000000);
+				\draw (0.100000, 2.000000) -- (-0.100000,2.000000);
+				\draw (1,-0.100000) node[anchor=north,fill=white]{$1$};
+				\draw (-0.100000,1) node[anchor=east,fill=white]{$i$};
+				\draw (1.000000,0.000000) node[anchor=south west,fill=white]{$\exp_{30}(\frac{0}{10}\tau_{20}i)$};
+				\filldraw (1.000000,0.000000) circle (2pt);
+				\draw (0,0) -- (1.000000,0.000000);
+				\draw (0.802961,0.607738) node[anchor=south west,fill=white]{$\exp_{30}(\frac{1}{10}\tau_{20}i)$};
+				\filldraw (0.802961,0.607738) circle (2pt);
+				\draw (0,0) -- (0.802961,0.607738);
+				\draw (0.279873,0.989544) node[anchor=south west,fill=white]{$\exp_{30}(\frac{2}{10}\tau_{20}i)$};
+				\filldraw (0.279873,0.989544) circle (2pt);
+				\draw (0,0) -- (0.279873,0.989544);
+				\draw (-0.385515,0.992634) node[anchor=south east,fill=white]{$\exp_{30}(\frac{3}{10}\tau_{20}i)$};
+				\filldraw (-0.385515,0.992634) circle (2pt);
+				\draw (0,0) -- (-0.385515,0.992634);
+				\draw (-0.949568,0.590148) node[anchor=south east,fill=white]{$\exp_{30}(\frac{4}{10}\tau_{20}i)$};
+				\filldraw (-0.949568,0.590148) circle (2pt);
+				\draw (0,0) -- (-0.949568,0.590148);
+				\draw (-1.185604,-0.102004) node[anchor=north east,fill=white]{$\exp_{30}(\frac{5}{10}\tau_{20}i)$};
+				\filldraw (-1.185604,-0.102004) circle (2pt);
+				\draw (0,0) -- (-1.185604,-0.102004);
+				\draw (-0.961134,-0.851123) node[anchor=north east,fill=white]{$\exp_{30}(\frac{6}{10}\tau_{20}i)$};
+				\filldraw (-0.961134,-0.851123) circle (2pt);
+				\draw (0,0) -- (-0.961134,-0.851123);
+				\draw (-0.293406,-1.372598) node[anchor=north east,fill=white]{$\exp_{30}(\frac{7}{10}\tau_{20}i)$};
+				\filldraw (-0.293406,-1.372598) circle (2pt);
+				\draw (0,0) -- (-0.293406,-1.372598);
+				\draw (0.635110,-1.419124) node[anchor=north west,fill=white]{$\exp_{30}(\frac{8}{10}\tau_{20}i)$};
+				\filldraw (0.635110,-1.419124) circle (2pt);
+				\draw (0,0) -- (0.635110,-1.419124);
+				\draw (1.511058,-0.871522) node[anchor=north west,fill=white]{$\exp_{30}(\frac{9}{10}\tau_{20}i)$};
+				\filldraw (1.511058,-0.871522) circle (2pt);
+				\draw (0,0) -- (1.511058,-0.871522);
+			\end{tikzpicture}
+		\end{minipage}
+		\begin{minipage}[c]{0.35\textwidth}
+			A plot of the list of complex numbers $\exp_{30}(\frac{[0:11]}{10}\tau_{20}i)$. Notice that when measurements are done relative to the complex number $1$, $\exp_{30}(\frac{1}{10}\tau_{20}i)$ is roughly $\frac{1}{10}$\textsuperscript{th} of a revolution, and also that each complex number has an angle that is roughly an integral multiple of that of $\exp_{30}(\frac{1}{10}\tau_{20}i)$.
+		\end{minipage}
 	\begin{multicols}{2}
 		\procedure{3.90}
 			\objective
@@ -5585,7 +5611,7 @@
 						\begin{enumerate}
 							\item $=\sum_r^{[0:m]} (-1)^rA_{r,0}\det(A_{[0:r]^\frown[r+1:m],[1:m]})$
 							\item $=\sum_r^{[0:i]} (-1)^rA_{r,0}\det(A_{[0:r]^\frown[r+1:m],[1:m]})+(-1)^iA_{i,0}\det(A_{[0:i]^\frown[i+1:m],[1:m]})+\sum_r^{[i+1:m]} (-1)^rA_{r,0}\det(A_{[0:r]^\frown[r+1:m],[1:m]})$
-							\item $=\sum_r^{[0:i]} (-1)^rA_{r,0}(\det(A'_{[0:r]^\frown[r+1:m],[1:m]})+p\det(A''_{[0:r]^\frown[r+1:m],[1:m]}))+(-1)^i(A'_{i,0}+pA''_{i,0})\det(A_{[0:i]^\frown[i+1:m],[1:m]})+\sum_r^{[i+1:m]} (-1)^rA_{r,0}(\det(A'_{[0:r]^\frown[r+1:m],[1:m]})+p\det(A''_{[0:r]^\frown[r+1:m],[1:m]}))$
+							\item $=\sum_r^{[0:i]} (-1)^rA_{r,0}(\det(A'_{[0:r]^\frown[r+1:m],[1:m]})+p\det(A''_{[0:r]^\frown[r+1:m],[1:m]}))+(-1)^i(A'_{i,0}+pA''_{i,0})\det(A_{[0:i]^\frown[i+1:m],[1:m]})+\\\sum_r^{[i+1:m]} (-1)^rA_{r,0}(\det(A'_{[0:r]^\frown[r+1:m],[1:m]})+p\det(A''_{[0:r]^\frown[r+1:m],[1:m]}))$
 							\item $=\sum_r^{[0:i]} (-1)^rA_{r,0}\det(A'_{[0:r]^\frown[r+1:m],[1:m]})+(-1)^iA'_{i,0}\det(A_{[0:i]^\frown[i+1:m],[1:m]})+\sum_r^{[i+1:m]} (-1)^rA_{r,0}\det(A'_{[0:r]^\frown[r+1:m],[1:m]})
 								+\sum_r^{[0:i]} (-1)^rA_{r,0}p\det(A''_{[0:r]^\frown[r+1:m],[1:m]})+(-1)^ipA''_{i,0}\det(A_{[0:i]^\frown[i+1:m],[1:m]})+\sum_r^{[i+1:m]} (-1)^rA_{r,0}p\det(A''_{[0:r]^\frown[r+1:m],[1:m]})$
 							\item $=\sum_r^{[0:m]} (-1)^rA'_{r,0}\det(A'_{[0:r]^\frown[r+1:m],[1:m]})+p\sum_r^{[0:m]} (-1)^rA''_{r,0}\det(A''_{[0:r]^\frown[r+1:m],[1:m]})$
@@ -5665,10 +5691,10 @@
 					\item If $i=1$, then verify that $\det(A)$
 					\begin{enumerate}
 						\item $=\sum_r^{[0:m]} (-1)^{r}A_{r,0}\det(A_{[0:r]^\frown[r+1:m],[1:m]})$
-						\item $=\sum_r^{[0:m]} (-1)^{r}A_{r,0}\sum_t^{[r+1:m]} (-1)^{t-1}A_{t,1}\cdot\det(A_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m]})+\sum_t^{[0:m]} (-1)^{t}A_{t,0}\sum_r^{[0:{t}]} (-1)^{r}A_{r,1}\cdot\det(A_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m+1]})$
-						\item $=\sum_t^{[0:m]} (-1)^{t-1}A_{t,1}\sum_r^{[0:{t}]} (-1)^{r}A_{r,0}\cdot\det(A_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m+1]})+\sum_r^{[0:m]} (-1)^{r}A_{r,1}\sum_t^{[r+1:m]} (-1)^{t}A_{t,0}\cdot\det(A_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m+1]})$
-						\item $=\sum_t^{[0:m]} (-1)^{t-1}A'_{t,0}\sum_r^{[0:{t}]} (-1)^{r}A'_{r,1}\cdot\det(A'_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m+1]})+\sum_r^{[0:m]} (-1)^{r}A'_{r,0}\sum_t^{[r+1:m]} (-1)^{t}A'_{t,1}\cdot\det(A'_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m]})$
-						\item $=-(\sum_r^{[0:m]} (-1)^{r}A'_{r,0}\sum_t^{[r+1:m]} (-1)^{t-1}A'_{t,1}\cdot\det(A'_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m]})+\sum_t^{[0:m]} (-1)^{t}A'_{t,0}\sum_r^{[0:{t}]} (-1)^{r}A'_{r,1}\cdot\det(A'_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m]}))$
+						\item $=\sum_r^{[0:m]} (-1)^{r}A_{r,0}\sum_t^{[r+1:m]} (-1)^{t-1}A_{t,1}*\\\det(A_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m]})+\\\sum_t^{[0:m]} (-1)^{t}A_{t,0}\sum_r^{[0:{t}]} (-1)^{r}A_{r,1}*\\\det(A_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m+1]})$
+						\item $=\sum_t^{[0:m]} (-1)^{t-1}A_{t,1}\sum_r^{[0:{t}]} (-1)^{r}A_{r,0}*\\\det(A_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m+1]})+\\\sum_r^{[0:m]} (-1)^{r}A_{r,1}\sum_t^{[r+1:m]} (-1)^{t}A_{t,0}*\\\det(A_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m+1]})$
+						\item $=\sum_t^{[0:m]} (-1)^{t-1}A'_{t,0}\sum_r^{[0:{t}]} (-1)^{r}A'_{r,1}*\\\det(A'_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m+1]})+\\\sum_r^{[0:m]} (-1)^{r}A'_{r,0}\sum_t^{[r+1:m]} (-1)^{t}A'_{t,1}*\\\det(A'_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m]})$
+						\item $=-(\sum_r^{[0:m]} (-1)^{r}A'_{r,0}\sum_t^{[r+1:m]} (-1)^{t-1}A'_{t,1}*\\\det(A'_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m]})+\\\sum_t^{[0:m]} (-1)^{t}A'_{t,0}\sum_r^{[0:{t}]} (-1)^{r}A'_{r,1}*\\\det(A'_{[0:r]^\frown[r+1:t]^\frown[t+1:m],[2:m]}))$
 						\item $=-\det(A')$.
 					\end{enumerate}
 					\item Otherwise do the following:
@@ -6191,7 +6217,12 @@
 						\item Now verify that $F_{i,i}=B_{i,i}$.
 					\end{enumerate}
 					\item Now verify that $\det(F)_{m}=\det(\lambda 1_m-\diag(E))_m=1=\det(\lambda 1_m-A)_m=\det(B)_m$.
-					\item Therefore verify that $(F_{m,m})_{\deg(F_{m,m})}=\frac{\det(F)_m}{(\det(F_{[1:m],[1:m]}))_{m-\deg(F_{m,m})}}=\frac{\det(B)_m}{(\det(B_{[1:m],[1:m]}))_{m-\deg(B_{m,m})}}=(B_{m,m})_{\deg(B_{m,m})}$.
+					\item Therefore verify that $(F_{m,m})_{\deg(F_{m,m})}$
+					\begin{enumerate}
+						\item $=\frac{\det(F)_m}{(\det(F_{[1:m],[1:m]}))_{m-\deg(F_{m,m})}}$
+						\item $=\frac{\det(B)_m}{(\det(B_{[1:m],[1:m]}))_{m-\deg(B_{m,m})}}$
+						\item $=(B_{m,m})_{\deg(B_{m,m})}$.
+					\end{enumerate}
 					\item Therefore verify that $F_{m,m}=B_{m,m}$.
 					\item \textbf{Therefore verify that $F=B$.}
 				\end{enumerate}
