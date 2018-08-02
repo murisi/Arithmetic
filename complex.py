@@ -81,6 +81,7 @@ class Complex:
     def __complex__(self):
         return complex(self.re, self.im)
 
+# the imaginary unit
 j = Complex(Fraction(0,1),Fraction(1,1))
 def exp(n, x):
     return (1 + (x/n))**n
@@ -93,7 +94,9 @@ def mu(a, b, n):
     for i in range(n):
         l.append(a + i*b)
     return l
+# tau is pi*2
 def tau(m):
+    # the following code integrates 1/x over a path from 1 to i
     path = mu(1, (j-1)/m, m+2)
     thesum = 0
     for i in range(0, m+1):
