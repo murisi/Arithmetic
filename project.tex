@@ -171,7 +171,7 @@
 \newglossaryentry{complexsin}{name=\ensuremath{\sin_n(z)},description={sine}}
 \newglossaryentry{complexintegral}{name=\ensuremath{\int_r^Rf(\#r,r,dr)},description={complex integral}}
 \newglossaryentry{complexDeltaX}{name=\ensuremath{\Delta X},description={first difference}}
-\newglossaryentry{complexmu}{name=\ensuremath{\mu(a,b,n)},description={arithmetic progression}}
+\newglossaryentry{binomialseries}{name=\ensuremath{(1+x)_n^a},description={binomial series}}
 \newglossaryentry{complextau}{name=\ensuremath{\tau_n},description={tau}}
 \newglossaryentry{complexpolynomial}{name={complex polynomial},description={}}
 \newglossaryentry{matrix}{name={matrix},description={}}
@@ -3509,6 +3509,11 @@
 						\item $=a$.
 					\end{enumerate}
 				\end{enumerate}
+		\procedure{sun2107190636}
+			\objective
+				Choose a non-negative integer $a$ and a complex number $x$. The objective of the following instructions is to show that $(1+x)^a=\sum_r^{[0:{a+1}]}\binom{a}{r}x^r$.
+			\implementation
+				Instructions are analogous to those of \procedurehr{1.63}.
 		\declaration{3.02}
 			The notation \gls{complexconj}, where $a$ is a complex number, will be used as a shorthand for $\langle\Re(a),-\Im(a)\rangle$.
 		\procedure{3.00}
@@ -3556,11 +3561,11 @@
 						\item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+2\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(\Re(a_r)\Re(a_k)+\Im(a_r)\Im(a_k))$
 						\item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+2\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(\Re(a_r)^2-(\Re(a_r)-\Re(a_k))^2+\Re(a_k)^2+\Im(a_r)^2-(\Im(a_r)-\Im(a_k))^2+\Im(a_k)^2)$
 						\item $\le\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(\Re(a_r)^2+\Re(a_k)^2+\Im(a_r)^2+\Im(a_k)^2)$
-						\item $\le\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(\lVert a_r\rVert^2+\lVert a_k\rVert^2)$
-						\item $\le\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\frac{1}{2}\sum_r^{[0:\lvert a\rvert]}\sum_k^{[0:r]^{\frown}[r+1:\lvert a\rvert]}(\lVert a_r\rVert^2+\lVert a_k\rVert^2)$
-						\item $\le\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\frac{1}{2}(\sum_r^{[0:{\lvert a\rvert}]}(\lvert a\rvert-1)\lVert a_r\rVert^2+\sum_k^{[0:{\lvert a\rvert}]}(\lvert a\rvert-1)\lVert a_k\rVert^2)$
-						\item $\le\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\sum_r^{[0:{\lvert a\rvert}]}(\lvert a\rvert-1)\lVert a_r\rVert^2$
-						\item $\le\lvert a\rvert\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2$
+						\item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(\lVert a_r\rVert^2+\lVert a_k\rVert^2)$
+						\item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\frac{1}{2}\sum_r^{[0:\lvert a\rvert]}\sum_k^{[0:r]^{\frown}[r+1:\lvert a\rvert]}(\lVert a_r\rVert^2+\lVert a_k\rVert^2)$
+						\item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\frac{1}{2}(\sum_r^{[0:{\lvert a\rvert}]}(\lvert a\rvert-1)\lVert a_r\rVert^2+\sum_k^{[0:{\lvert a\rvert}]}(\lvert a\rvert-1)\lVert a_k\rVert^2)$
+						\item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\sum_r^{[0:{\lvert a\rvert}]}(\lvert a\rvert-1)\lVert a_r\rVert^2$
+						\item $=\lvert a\rvert\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2$
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{3.05}
@@ -3574,6 +3579,37 @@
 						\item $\le \lvert a\rvert\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2+\lvert a\rvert\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$
 					\end{enumerate}
 					\item \textbf{Therefore verify that $\frac{\lVert a_0\rVert^2}{\lvert a\rvert}-\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2\le\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$.}
+				\end{enumerate}
+		\procedure{3.04aa}
+			\objective
+				Choose a list of complex numbers $a$ and a list of rational numbers $b$ such that $\lvert a\rvert=\lvert b\rvert$ and $\lVert a_i\rVert^2\le {b_i}^2$ for each $i\in[0:\lvert a\rvert]$. The objective of the following instructions is to show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2\le(\sum_r^{[0:{\lvert b\rvert}]}{b_r})^2$.
+			\implementation
+				\begin{enumerate}
+					\item If $\lvert a\rvert=0$, then do the following:
+					\begin{enumerate}
+						\item \textbf{Verify that $\lVert\sum_i^{[0:\lvert a\rvert]} a_i\rVert^2=\lVert 0\rVert^2=(\sum_i^{[0:\lvert b\rvert]}b_i)^2$.}
+					\end{enumerate}
+					\item Otherwise do the following:
+					\begin{enumerate}
+					  \item Verify that $\lvert a\rvert>0$.
+					  \item Using \procedurehr{3.04aa} on $a_{[1:\lvert a\rvert]}$ and $b_{[1:\lvert b\rvert]}$, verify that $\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2\le(\sum_i^{[1:\lvert b\rvert]} b_i)^2$.
+					  \item Verify that $\Re(\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i)^2$
+					  \begin{enumerate}
+					    \item $\le\lVert\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
+					    \item $=\lVert\conj{a_0}\rVert^2\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
+					    \item $\le{b_0}^2(\sum_i^{[1:\lvert a\rvert]}b_i)^2$.
+					  \end{enumerate}
+					  \item Hence verify that $\lVert\sum_i^{[0:\lvert a\rvert]}a_i\rVert^2$
+					  \begin{enumerate}
+					    \item $=(a_0+\sum_i^{[1:\lvert a\rvert]}a_i)(\conj{a_0+\sum_i^{[1:\lvert a\rvert]}a_i})$
+					    \item $=\lVert a_0\rVert^2+a_0\conj{\sum_i^{[1:\lvert a\rvert]}a_i}+\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i+\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
+					    \item $\le{b_0}^2+\conj{\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i}+\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i+(\sum_i^{[1:\lvert a\rvert]}b_i)^2$
+					    \item $={b_0}^2+2\Re(\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i)+(\sum_i^{[1:\lvert a\rvert]}b_i)^2$
+					    \item $\le{b_0}^2+2b_0\sum_i^{[1:\lvert a\rvert]} b_i+(\sum_i^{[1:\lvert a\rvert]}b_i)^2$
+					    \item $=(b_0+\sum_i^{[1:\lvert a\rvert]}b_i)^2$
+					    \item $=(\sum_i^{[0:\lvert a\rvert]}b_i)^2$.
+					  \end{enumerate}
+					\end{enumerate}
 				\end{enumerate}
 		\declaration{3.27}
 			The notation \gls{complex1/a}, where $a$ is a complex number, will be used as a shorthand for the pair $\frac{1}{\lVert a\rVert^2}\conj{a}$.
@@ -3668,33 +3704,33 @@
 				\end{enumerate}
 		\procedure{3.10}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p$, to show that $\exp_n(x)\le a$ when given a rational number $x$ and a positive integer $n\ge b$ such that $\lvert x\rvert\le X$.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a>1,b$, and a procedure, $p$, to show that $\exp_n(x)\le a^2$ when given a rational number $x$ and a positive integer $n\ge b$ such that $x^2\le X^2$.
 			\implementation
 				\begin{enumerate}
-					\item Let $a=2^{\lceil 2X\rceil}$.
+					\item Let $a=2^{\lceil X\rceil}$.
 					\item Let $b=X$.
 					\item Let $p(x,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $\lvert x\rvert\le X$.
+						\item Verify that $x^2\le X^2$.
 						\item Therefore verify that $-X\le x\le X$
 						\item Therefore verify that $-1\le\frac{x}{n}\le 1$.
 						\item Therefore verify that $0\le 1+\frac{x}{n}\le 2$.
 						\item Hence using \procedurehr{3.08} and \procedurehr{3.09}, verify that $\exp_n(x)$
 						\begin{enumerate}
 							\item $\le\exp_n(X)$
-							\item $\le(1+\frac{X}{\lceil 2X\rceil n})^{\lceil 2X\rceil n}$
-							\item $=((1+\frac{\frac{X}{\lceil 2X\rceil}}{n})^n)^{\lceil 2X\rceil}$
-							\item $=\exp_n(\frac{X}{\lceil 2X\rceil})^{\lceil 2X\rceil}$
-							\item $\le(\frac{1}{1-\frac{X}{\lceil 2X\rceil}})^{\lceil 2X\rceil}$
-							\item $\le 2^{\lceil 2X\rceil}$
-							\item $=a$.
+							\item $\le(1+\frac{X}{2\lceil X\rceil n})^{2\lceil X\rceil n}$
+							\item $=((1+\frac{\frac{X}{2\lceil X\rceil}}{n})^n)^{2\lceil X\rceil}$
+							\item $=\exp_n(\frac{X}{2\lceil X\rceil})^{2\lceil X\rceil}$
+							\item $\le(\frac{1}{1-\frac{X}{2\lceil X\rceil}})^{2\lceil X\rceil}$
+							\item $\le 2^{2\lceil X\rceil}$
+							\item $=a^2$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.11}
 			\objective
-				Choose a rational number $X\le 0$. The objective of the following instructions is to construct two rational numbers $a>0,b$, and a procedure $p(x,n)$ to show that $\exp_n(x)\ge a$ when given a rational number $x$ and a positive integer $n>b$ such that $X\le x\le 0$.
+				Choose a rational number $X\le 0$. The objective of the following instructions is to construct two rational numbers $a>0,b$, and a procedure $p(x,n)$ to show that $\exp_n(x)\ge a^2$ when given a rational number $x$ and a positive integer $n>b$ such that $X\le x\le 0$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.10} on $\langle -2X\rangle$ and let $\langle c,d,q\rangle$ receive.
@@ -3706,7 +3742,7 @@
 						\item Therefore verify that $2X\le 2x\le 0$.
 						\item Therefore verify that $0\le -2x\le -2X$.
 						\item Hence execute procedure $q$ on $\langle -2x,n\rangle$.
-						\item Therefore verify that $\exp_n(-2x)\le c$.
+						\item Therefore verify that $\exp_n(-2x)\le c^2$.
 						\item Also verify that $n>b\ge -2X\ge -2x\ge 0$.
 						\item Therefore verify that $-\frac{n}{2}\le x\le 0$.
 						\item Therefore verify that $\frac{n}{2}\le n+x<n$.
@@ -3718,15 +3754,15 @@
 							\item $\ge (1-\frac{x}{\frac{1}{2}n})^{-n}$
 							\item $=(1-\frac{2x}{n})^{-n}$
 							\item $=(\exp_n(-2x))^{-1}$
-							\item $\ge c^{-1}$
-							\item $=a$.
+							\item $\ge (c^2)^{-1}$
+							\item $=a^2$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.12}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a>0,b$, and a procedure $p(x,n)$ to show that $\exp_n(x)\ge a$ when given a rational number $x$ and a positive integer $n>b$ such that $\lvert x\rvert\le X$.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a>0,b$, and a procedure $p(x,n)$ to show that $\exp_n(x)\ge a^2$ when given a rational number $x$ and a positive integer $n>b$ such that $x^2\le X^2$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.11} on $\langle -X\rangle$ and let $\langle c,b,q\rangle$ receive.
@@ -3735,35 +3771,35 @@
 					\begin{enumerate}
 						\item If $x<0$, then do the following:
 						\begin{enumerate}
-							\item Verify that $\lvert x\rvert\le X$.
+							\item Verify that $x^2\le X^2$.
 							\item Therefore verify that $-X\le x\le 0$.
 							\item Hence execute procedure $q$ on $x$.
-							\item \textbf{Hence verify that $\exp_n(x)\ge c\ge a$.}
+							\item \textbf{Hence verify that $\exp_n(x)\ge c^2\ge a^2$.}
 						\end{enumerate}
 						\item Otherwise do the following:
 						\begin{enumerate}
 							\item Verify that $x\ge 0$.
-							\item \textbf{Using \procedurehr{3.07}, verify that $\exp_n(x)\ge 1+x\ge 1\ge a$.}
+							\item \textbf{Using \procedurehr{3.07}, verify that $\exp_n(x)\ge 1+x\ge 1\ge a^2$.}
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.13}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b$ and a procedure, $p(x,n)$, to show that $\lVert\exp_n(x)\rVert^2\le a$ when a complex number $x$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X$ are chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct rational numbers $a>1,b$ and a procedure, $p(x,n)$, to show that $\lVert\exp_n(x)\rVert^2\le a^2$ when a complex number $x$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X^2$ are chosen.
 			\implementation
 				\begin{enumerate}
-					\item Let $c=2\max(1,X)+X$.
+					\item Let $c=2X+X^2$.
 					\item Execute \procedurehr{3.10} on $\langle c\rangle$ and let $\langle a,b,q\rangle$.
 					\item Let $p(x,n)$ be the following procedure:
 					\begin{enumerate}
 						\item Verify that $n>b$.
 						\item Let $y=2\lvert\Re(x)\rvert+\lVert x\rVert^2$.
-						\item Verify that $\lvert\Re(x)\rvert^2\le\lVert x\rVert^2\le X$.
-						\item Therefore verify that $\lvert\Re(x)\rvert\le\max(1,X)$.
-						\item Therefore verify that $\lvert y\rvert=y\le 2\max(1,X)+X=c$.
+						\item Verify that $\lvert\Re(x)\rvert^2\le\lVert x\rVert^2\le X^2$.
+						\item Therefore verify that $\lvert\Re(x)\rvert\le X$.
+						\item Therefore verify that $\lvert y\rvert=y\le 2X+X^2=c$.
 						\item Hence execute procedure $q$ on $\langle y,n\rangle$.
-						\item Hence verify that $\exp_n(y)\le a$.
+						\item Hence verify that $\exp_n(y)\le a^2$.
 						\item Now using \procedurehr{3.02} verify that $\lVert\exp_n(x)\rVert^2$
 						\begin{enumerate}
 							\item $=\exp_n(x)\conj{\exp_n(x)}$
@@ -3772,26 +3808,26 @@
 							\item $\le(1+\frac{2\lvert\Re(x)\rvert}{n}+\frac{\lVert x\rVert^2}{n^2})^n$
 							\item $\le(1+\frac{2\lvert\Re(x)\rvert+\lVert x\rVert^2}{n})^n$
 							\item $=\exp_n(y)$
-							\item $\le a$.
+							\item $\le a^2$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.14}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$ and a procedure, $p(x,n)$, to show that $\lVert\exp_n(x)\rVert^2\ge a$ when a rational number $x$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X$ are chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$ and a procedure, $p(x,n)$, to show that $\lVert\exp_n(x)\rVert^2\ge a^2$ when a rational number $x$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X^2$ are chosen.
 			\implementation
 				\begin{enumerate}
-					\item Let $c=2\max(1,X)+X$.
+					\item Let $c=2X+X^2$.
 					\item Execute \procedurehr{3.12} on $\langle c\rangle$ and let $\langle a,d,q\rangle$ receive.
 					\item Let $b=\max(c,d)$.
 					\item Let $p(x,n)$ be the following procedure:
 					\begin{enumerate}
 						\item Verify that $n>b\ge d$.
 						\item Let $y=2\lvert\Re(x)\rvert+\lVert x\rVert^2$.
-						\item Verify that $\lvert -y\rvert=y\le 2\max(1,X)+X=c$.
+						\item Verify that $\lvert -y\rvert=y\le 2X+X^2=c$.
 						\item Hence execute procedure $q$ on $\langle -y,n\rangle$.
-						\item Hence verify that $\exp_n(-y)\ge a$.
+						\item Hence verify that $\exp_n(-y)\ge a^2$.
 						\item Also, verify that $n>b\ge c\ge y$.
 						\item Hence verify that $\lVert\exp_n(x)\rVert^2$
 						\begin{enumerate}
@@ -3801,29 +3837,29 @@
 							\item $\ge(1-\frac{2\lvert\Re(x)\rvert}{n}-\frac{\lVert x\rVert^2}{n^2})^n$
 							\item $\ge(1-\frac{2\lvert\Re(x)\rvert+\lVert x\rVert^2}{n})^n$
 							\item $=\exp_n(-y)$
-							\item $\ge a$.
+							\item $\ge a^2$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.15}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b$ such that $a>0$, and a procedure, $p$, to show that $\lVert\exp_n(x)\exp_n(y)-\exp_n(x+y)\rVert^2\le\frac{a\lVert xy\rVert^2}{n^2}$ when two complex numbers $x,y$ and a positive integer $n>b$ such that $2(\lVert x\rVert^2+\lVert y\rVert^2)\le X$ are chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b$ such that $a>0$, and a procedure, $p$, to show that $\lVert\exp_n(x)\exp_n(y)-\exp_n(x+y)\rVert^2\le\frac{a^2\lVert xy\rVert^2}{n^2}$ when two complex numbers $x,y$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X^2$, $\lVert y\rVert^2\le X^2$ are chosen.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{3.13} on $\langle X\rangle$ and let $\langle c,b,q\rangle$ receive.
+					\item Execute \procedurehr{3.13} on $\langle 2X\rangle$ and let $\langle c,b,q\rangle$ receive.
 					\item Let $a=\max(1,c)^3$.
 					\item Let $p(x,y,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $\lVert x\rVert^2\le X$.
+						\item Verify that $\lVert x\rVert^2\le X^2$.
 						\item Hence execute $q$ on $\langle x,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(x)\rVert^2\le c$.
-						\item Verify that $\lVert y\rVert^2\le X$.
+						\item Hence verify that $\lVert\exp_n(x)\rVert^2\le c^2$.
+						\item Verify that $\lVert y\rVert^2\le X^2$.
 						\item Hence execute $q$ on $\langle y,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(y)\rVert^2\le c$.
-						\item Verify that $\lVert x+y\rVert^2\le 2(\lVert x\rVert^2+\lVert y\rVert^2)\le X$.
+						\item Hence verify that $\lVert\exp_n(y)\rVert^2\le c^2$.
+						\item Verify that $\lVert x+y\rVert^2\le(2X)^2$.
 						\item Hence execute $q$ on $\langle x+y,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(x+y)\rVert^2\le c$.
+						\item Hence verify that $\lVert\exp_n(x+y)\rVert^2\le c^2$.
 						\item Hence using \procedurehr{3.04}, verify that $\lVert\exp_n(x)\exp_n(y)-\exp_n(x+y)\rVert^2$
 						\begin{enumerate}
 							\item $=\lVert(1+\frac{x}{n})^n(1+\frac{y}{n})^n-(1+\frac{x+y}{n})^n\rVert^2$
@@ -3832,216 +3868,73 @@
 							\item $=\frac{\lVert xy\rVert^2}{n^4}\lVert\sum_r^{[0:n]}(1+\frac{x}{n})^r(1+\frac{y}{n})^r(1+\frac{x+y}{n})^{n-1-r}\rVert^2$
 							\item $=\frac{\lVert xy\rVert^2}{n^3}\sum_r^{[0:n]}\lVert 1+\frac{x}{n}\rVert^{2r}\lVert 1+\frac{y}{n}\rVert^{2r}\lVert 1+\frac{x+y}{n}\rVert^{2(n-1-r)}$
 							\item $\le\frac{\lVert xy\rVert^2}{n^3}\sum_r^{[0:n]}\max(1,\lVert\exp_n(x)\rVert^{2})\allowbreak\max(1,\lVert\exp_n(y)\rVert^{2})\allowbreak\max(1,\lVert\exp_n(x+y)\rVert^{2})$
-							\item $\le\frac{\lVert xy\rVert^2}{n^3}\sum_r^{[0:n]}\max(1,c)^3$
-							\item $=\frac{\lVert xy\rVert^2\max(1,c)^3}{n^2}$
-							\item $=\frac{a\lVert xy\rVert^2}{n^2}$.
+							\item $\le\frac{\lVert xy\rVert^2}{n^3}\sum_r^{[0:n]}\max(1,c^2)^3$
+							\item $=\frac{\lVert xy\rVert^2\max(1,c)^6}{n^2}$
+							\item $=\frac{a^2\lVert xy\rVert^2}{n^2}$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.16}
 			\objective
-				Choose a rational number $X\ge 0$ and an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b$ and a procedure, $p(x,k,n)$, to show that $\lVert\exp_n(kx)-\exp_n(x)^k\rVert^2\le\frac{a\lVert x\rVert^4}{n^2}$ when a complex number $x$, a non-negative integer $k$, and a positive integer $n$ such that $n>b$, $k\le K$, $\lVert x\rVert^2\le X$ are chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $c>1$ and a procedure, $p(x,k,n)$, to show that $\lVert\exp_n(kx)-\exp_n(x)^k\rVert^2\le(\frac{ac^k}{n})^2$ when a complex number $x$, a non-negative integer $k$, and a positive integer $n$ such that $n>b$, $\lVert kx\rVert^2\le X^2$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.13} on $\langle X\rangle$ and let $\langle c,d,q\rangle$ receive.
-					\item Execute \procedurehr{3.15} on $\langle 2K^2X\rangle$ and let $\langle e,f,t\rangle$ receive.
-					\item Let $a=e\max(1,c)^KK^4$
+					\item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle e,f,t\rangle$ receive.
+					\item Let $a=\frac{eX^2}{c-1}$
 					\item Let $b=\max(d,f)$.
 					\item Let $p(x,k,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Execute procedure $q$ on $\langle x,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(x)\rVert^2\le c$.
+					  \item If $k>0$, then do the following:
+					  \begin{enumerate}
+						  \item Execute procedure $q$ on $\langle x,n\rangle$.
+						  \item Hence verify that $\lVert\exp_n(x)\rVert^2\le c^2$.
+						\end{enumerate}
 						\item For $r$ in $[0:k]$, do the following:
 						\begin{enumerate}
-							\item Verify that $2(\lVert x\rVert^2+\lVert(k-r-1)x\rVert^2)$
-							\begin{enumerate}
-								\item $=2(\lVert x\rVert^2+(k-r-1)^2\lVert x\rVert^2)$
-								\item $\le 2(\lVert x\rVert^2+(k-1)^2\lVert x\rVert^2)$
-								\item $=2(k^2-2k+2)\lVert x\rVert^2$
-								\item $\le 2k^2\lVert x\rVert^2$
-								\item $\le 2K^2X$.
-							\end{enumerate}
+						  \item Verify that $\lVert x\rVert^2\le X^2$.
+						  \item Verify that $\lVert(k-r-1)x\rVert^2\le\lVert kx\rVert^2\le X^2$.
 							\item Now execute procedure $t$ on $\langle x, (k-r-1)x,n\rangle$.
-							\item Hence verify that $\lVert\exp_n(x)\exp_n((k-r-1)x)-\exp_n((k-r)x)\rVert^2\le\frac{e\lVert x\rVert^2\lVert(k-r-1)x\rVert^2}{n^2}\le\frac{ek^2\lVert x\rVert^4}{n^2}$.
+							\item Hence verify that $\lVert\exp_n(x)\exp_n((k-r-1)x)-\exp_n((k-r)x)\rVert^2\le\frac{e^2\lVert x\rVert^2\lVert(k-r-1)x\rVert^2}{n^2}\le\frac{e^2X^4}{n^2}$.
 						\end{enumerate}
 						\item Hence using (ciii), verify that $\lVert\exp_n(kx)-\exp_n(x)^k\rVert^2$
 						\begin{enumerate}
 							\item $=\lVert\sum_r^{[0:k]}(\exp_n(x)^r\exp_n((k-r)x)-\exp_n(x)^{r+1}\exp_n((k-r-1)x))\rVert^2$
-							\item $\le k\sum_r^{[0:k]}\lVert\exp_n(x)^r\exp_n((k-r)x)-\exp_n(x)^{r+1}\exp_n((k-r-1)x)\rVert^2$
-							\item $=k\sum_r^{[0:k]}\lVert\exp_n(x)\rVert^{2r}\lVert\exp_n((k-r)x)-\exp_n(x)\exp_n((k-r-1)x)\rVert^2$
-							\item $\le k\sum_r^{[0:k]}\max(1,c)^k\cdot\frac{ek^2\lVert x\rVert^4}{n^2}$
-							\item $=\max(1,c)^k\cdot\frac{ek^4\lVert x\rVert^4}{n^2}$
-							\item \textbf{$\le\frac{a\lVert x\rVert^4}{n^2}$.}
+							\item $=\lVert\sum_r^{[0:k]}\exp_n(x)^r(\exp_n((k-r)x)-\exp_n(x)\exp_n((k-r-1)x))\rVert^2$
+							\item $\le(\sum_r^{[0:k]}c^r\frac{eX^2}{n})^2$
+							\item $=(\frac{eX^2}{n}\cdot\frac{c^k-1}{c-1})^2$
+							\item \textbf{$\le(\frac{ac^k}{n})^2$.}
 						\end{enumerate}
 					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
+					\item \textbf{Yield the tuple $\langle a,b,c,p\rangle$.}
 				\end{enumerate}
-		\declaration{3.29}
-			The notation \gls{complexdiff}, where $x,z$ are complex numbers such that $z\ne 0$ and $f[x]$ is a function of $x$, will be used as a shorthand for $\frac{f(y+z)-f(y)}{z}$.
-		\procedure{3.83}
-			\objective
-				Choose two functions $f[x],g[x]$ and two complex numbers $y,z$ such that $z\ne 0$. The objective of the following instructions is to show that $\diff_{x=y}^z(f(x)+g(x))=\diff_{x=y}^zf(x)+\diff_{x=y}^zg(x)$.
-			\implementation
-				\begin{enumerate}
-					\item Verify that $\diff_{x=y}^z(f(x)+g(x))$
-					\begin{enumerate}
-						\item $=\frac{(f(y+z)+g(y+z))-(f(y)+g(y))}{z}$
-						\item $=\frac{f(y+z)-f(y)}{z}+\frac{g(y+z)-g(y)}{z}$
-						\item $=\diff_{x=y}^zf(x)+\diff_{x=y}^zg(x)$.
-					\end{enumerate}
-				\end{enumerate}
-		\procedure{3.84}
-			\objective
-				Choose a functions $f[x]$ and complex numbers $a,y,z$ such that $z\ne 0$. The objective of the following instructions is to show that $\diff_{x=y}^z(af(x))=a\diff_{x=y}^zf(x)$.
-			\implementation
-				\begin{enumerate}
-					\item Verify that $\diff_{x=y}^z(af(x))$
-					\begin{enumerate}
-						\item $=\frac{af(y+z)-af(y)}{z}$
-						\item $=a\frac{f(y+z)-f(y)}{z}$
-						\item $=a\diff_{x=y}^zf(x)$.
-					\end{enumerate}
-				\end{enumerate}
-		\procedure{3.17}
-			\objective
-				Choose a complex number $x$. The objective of the following instructions is to show that $\lvert\Re(x)\rvert\le\max(1,\lVert x\rVert^2)$.
-			\implementation
-				\begin{enumerate}
-					\item If $\lvert\Re(x)\rvert<1$, then do the following:
-					\begin{enumerate}
-						\item \textbf{Verify that $\lvert\Re(x)\rvert<1\le\max(1,\lVert x\rVert^2)$.}
-					\end{enumerate}
-					\item Otherwise do the following:
-					\begin{enumerate}
-						\item \textbf{Verify that $\lvert\Re(x)\rvert\le\Re(x)^2\le\lVert x\rVert^2\le\max(1,\lVert x\rVert^2)$.}
-					\end{enumerate}
-				\end{enumerate}
-		\procedure{3.18}
-			\objective
-				Choose a rational number $D\ge 0$. The objective of the following instructions is to construct two rational numbers $a,c$ and a procedure, $p(dx,n)$, to show that $\lVert\diff_{x=0}^{+dx}\exp_n(x)-1\rVert^2\le a\lVert dx\rVert^2$ when a complex number $dx$ and a positive integer $n>c$ such that $\lVert dx\rVert^2\le D$ is chosen.
-			\implementation
-				\begin{enumerate}
-					\item Let $e=2\max(1,D)+D$.
-					\item Execute \procedurehr{3.10} on $\langle e\rangle$ and let $\langle d,c,q\rangle$ receive.
-					\item Let $a=\max(1,d)$.
-					\item Let $p(dx,n)$ be the following procedure:
-					\begin{enumerate}
-						\item Verify that $n>c$.
-						\item Hence execute procedure $q$ on $\langle D,n\rangle$.
-						\item Hence verify that $\exp_n(D)\le d$.
-						\item Now using \procedurehr{2.04}, \procedurehr{3.04} and \procedurehr{3.17}, verify that $\lVert\exp_n(dx)-1-dx\rVert^2$
-						\begin{enumerate}
-							\item $=\lVert(1+\frac{dx}{n})^n-1-dx\rVert^2$
-							\item $=\lVert\frac{dx}{n}\sum_r^{[0:n]}(1+\frac{dx}{n})^r-n\frac{dx}{n}\rVert^2$
-							\item $=\lVert\frac{dx}{n}\sum_r^{[0:n]}((1+\frac{dx}{n})^r-1)\rVert^2$
-							\item $=\lVert\frac{dx}{n}\sum_r^{[0:n]}\frac{dx}{n}\sum_k^{[0:r]}(1+\frac{dx}{n})^k\rVert^2$
-							\item $=\frac{\lVert dx\rVert^4}{n^4}\lVert\sum_r^{[0:n]}\sum_k^{[0:r]}(1+\frac{dx}{n})^k\rVert^2$
-							\item $\le\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\lVert 1+\frac{dx}{n}\rVert^{2k}$
-							\item $\le\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,\lVert 1+\frac{dx}{n}\rVert^{2n})$
-							\item $=\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,(1+\frac{2\Re(dx)}{n}+\frac{\lVert dx\rVert^2}{n^2})^{n})$
-							\item $\le\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,(1+\frac{2\lvert\Re(dx)\rvert}{n}+\frac{\lVert dx\rVert^2}{n^2})^{n})$
-							\item $\le\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,(1+\frac{e}{n})^{n})$
-							\item $\le\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,d)$
-							\item $\le a\lVert dx\rVert^4$.
-						\end{enumerate}
-						\item \textbf{Therefore verify that $\lVert\diff_{x=0}^{+dx}\exp_n(x)-1\rVert^2\le a\lVert dx\rVert^2$.}
-					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle a,c,p\rangle$.}
-				\end{enumerate}
-		\procedure{3.19}
-			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct three rational numbers $a,b,d$, and a procedure, $p(x,dx,n)$, to show that $\lVert\diff_{y=x}^{+dx}\exp_n(y)-\exp_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$ when two complex numbers $x,dx$ and a positive integer $n>d$ such that $2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$ are chosen. 
-			\implementation
-				\begin{enumerate}
-					\item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle e,f,q\rangle$ receive.
-					\item Execute \procedurehr{3.18} on $\langle X\rangle$ and let $\langle h,j,r\rangle$ receive.
-					\item Execute \procedurehr{3.13} on $\langle X\rangle$ and let $\langle l,m,t\rangle$ receive.
-					\item Let $a=2eX$.
-					\item Let $b=2lh$.
-					\item Let $d=\max(f,j,m)$.
-					\item Let $p(x,dx,n)$ be the following procedure:
-					\begin{enumerate}
-						\item Verify that $n>d\ge f$.
-						\item Hence execute procedure $q$ on $\langle x,dx,n\rangle$.
-						\item Therefore verify that $\lVert\exp_n(x)\exp_n(dx)-\exp_n(x+dx)\rVert^2\le\frac{e\lVert xdx\rVert^2}{n^2}$.
-						\item Verify that $n>d\ge j$.
-						\item Execute procedure $r$ on $\langle dx,n\rangle$.
-						\item Therefore verify that $\lVert\frac{\exp_n(dx)-1}{dx}-1\rVert^2\le h\lVert dx\rVert^2$.
-						\item Verify that $n>d\ge m$.
-						\item Execute procedure $t$ on $\langle x,n\rangle$.
-						\item Therefore verify that $\lVert\exp_n(x)\rVert^2\le l$.
-						\item Using \procedurehr{3.04}, verify that $\lVert\exp_n(x+dx)-\exp_n(x)-dx\exp_n(x)\rVert^2$
-						\begin{enumerate}
-							\item $=\lVert\exp_n(x+dx)-\exp_n(x)\exp_n(dx)+\exp_n(x)\exp_n(dx)-\exp_n(x)-dx\exp_n(x)\rVert^2$
-							\item $\le 2\lVert\exp_n(x+dx)-\exp_n(x)\exp_n(dx)\rVert^2+2\lVert\exp_n(x)\rVert^2\lVert\exp_n(dx)-1-dx\rVert^2$
-							\item $\le\frac{2e\lVert x\rVert^2\lVert dx\rVert^2}{n^2}+2lh\lVert dx\rVert^4$
-							\item $\le\frac{2eX\lVert dx\rVert^2}{n^2}+2lh\lVert dx\rVert^4$
-						\end{enumerate}
-						\item \textbf{Therefore verify that $\lVert\diff_{y=x}^{+dx}\exp_n(y)-\exp_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$.}
-					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle a,b,d,p\rangle$.}
-				\end{enumerate}
-		\procedure{3.20}
-			\objective
-				Choose two rational numbers $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,c$ and a procedure, $p(x,dx,n)$, to show that $\lVert\diff_{y=x}^{+dx}\exp_n(y)\rVert^2\le a$ when two rational numbers $x,dx$ and a positive integer $n>c$ such that $2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$ are chosen.
-			\implementation
-				\begin{enumerate}
-					\item Execute \procedurehr{3.19} on $\langle X\rangle$ and let $\langle d,e,f,q\rangle$ receive.
-					\item Execute \procedurehr{3.13} on $\langle X\rangle$ and let $\langle h,j,r\rangle$ receive.
-					\item Let $a=(2d+eX+2h)$.
-					\item Let $c=\max(j,f)$.
-					\item Let $p(x,dx,n)$ be the following procedure:
-					\begin{enumerate}
-						\item Verify that $n>c\ge f$.
-						\item Execute procedure $q$ on $\langle x,dx,n\rangle$.
-						\item Hence verify that $\lVert\frac{\exp_n(x+dx)-\exp_n(x)}{dx}-\exp_n(x)\rVert^2\le\frac{d}{n^2}+e\lVert dx\rVert^2$.
-						\item Verify that $n>c\ge j$.
-						\item Execute procedure $r$ on $\langle x,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(x)\rVert^2\le h$.
-						\item Now using \procedurehr{3.04}, verify that $\lVert\exp_n(x+dx)-\exp_n(x)\rVert^2$
-						\begin{enumerate}
-							\item $=\lVert\exp_n(x+dx)-\exp_n(x)-dx\exp_n(x)+dx\exp_n(x)\rVert^2$
-							\item $\le 2\lVert\exp_n(x+dx)-\exp_n(x)-dx\exp_n(x)\rVert^2+2\lVert dx\rVert^2\lVert\exp_n(x)\rVert^2$
-							\item $\le 2d\frac{\lVert dx\rVert^2}{n^2}+2e\lVert dx\rVert^4+2h\lVert dx\rVert^2$
-							\item $\le (2d+eX+2h)\lVert dx\rVert^2$.
-						\end{enumerate}
-						\item Therefore verify that $\lVert\diff_{y=x}^{+dx}\exp_n(y)\rVert^2\le a$.
-					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle a,c,p\rangle$.}
-				\end{enumerate}
-		\declaration{3.15}
-			The notation \gls{complexisqrt}, where $x$ is a non-negative rational number, will be used as a shorthand for the result of executing the following instructions:
-			\begin{enumerate}
-				\item Verify that $\lceil x\rceil^2>x$.
-				\item \textbf{Yield the smallest integer $r$ in $[0:\lceil x\rceil+1]$ such that $r^2>x$.}
-			\end{enumerate}
 		\procedure{3.21}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p(x,n)$, to show that $\lVert\sum_r^{[0:{n+1}]}\frac{x^r}{r!}-\exp_n(x)\rVert^2\le\frac{a\lVert x\rVert^4}{n}$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X$ are chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p(x,n)$, to show that $\lVert\sum_r^{[0:{n+1}]}\frac{x^r}{r!}-\exp_n(x)\rVert^2\le(\frac{a}{n})^2$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X^2$ are chosen.
 			\implementation
 				\begin{enumerate}
-					\item Let $N=\lceil\sqrt{2X}\rceil$.
-					\item Let $a=\sum_r^{[0:{N}]}\frac{X^{r}}{r!^2}+2\frac{X^{N}}{N!^2}$.
+					\item Let $N=\lfloor X\rfloor+1$.
+					\item Let $a=X^2(\sum_r^{[0:N]}\frac{X^r}{r!}+\frac{X^N}{N!}\cdot\frac{1}{1-\frac{X}{N}})$.
 					\item Let $p(x,n)$ be the following procedure:
 					\begin{enumerate}
 						\item Using \procedurehr{2.06}, \procedurehr{3.04}, \procedurehr{2.05}, and \procedurehr{2.07}, verify that $\lVert\sum_r^{[0:{n+1}]}\frac{x^r}{r!}-\exp_n(x)\rVert^2$
 						\begin{enumerate}
 							\item $=\lVert\sum_r^{[0:{n+1}]}\frac{x^r}{r!}-\sum_r^{[0:{n+1}]}\frac{n^{\ul{r}}}{r!}\cdot\frac{x^r}{n^r}\rVert^2$
 							\item $=\lVert\sum_r^{[1:{n+1}]}(1-\frac{n^{\ul{r}}}{n^r})\frac{x^r}{r!}\rVert^2$
-							\item $\le n\sum_r^{[1:{n+1}]}\lVert 1-\frac{n^{\ul{r}}}{n^r}\rVert^2\lVert\frac{x^r}{r!}\rVert^2$
-							\item $\le n\sum_r^{[2:{n+1}]}\lVert 1-\frac{(n-r+1)^{r}}{n^r}\rVert^2\lVert\frac{x^r}{r!}\rVert^2$
-							\item $\le n\sum_r^{[2:{n+1}]}\lVert 1-(1-\frac{r-1}{n})^{r}\rVert^2\lVert\frac{x^r}{r!}\rVert^2$
-							\item $\le n\sum_r^{[2:{n+1}]}\lVert 1-(1-\frac{(r-1)r}{n})\rVert^2\lVert\frac{x^r}{r!}\rVert^2$
-							\item $=n\sum_r^{[2:{n+1}]}\lVert \frac{(r-1)r}{n}\rVert^2\lVert\frac{x^r}{r!}\rVert^2$
-							\item $=\frac{1}{n}\sum_r^{[2:{n+1}]}\lVert\frac{x^r}{(r-2)!}\rVert^2$
-							\item $=\frac{\lVert x\rVert^4}{n}\sum_r^{[0:{n-1}]}\frac{\lVert x\rVert^{2r}}{r!^2}$
-							\item $\le\frac{\lVert x\rVert^4}{n}\sum_r^{[0:{n-1}]}\frac{X^{r}}{r!^2}$
-							\item $=\frac{\lVert x\rVert^4}{n}(\sum_r^{[0:{N}]}\frac{X^{r}}{r!^2}+\sum_r^{[N:{n-1}]}\frac{X^{r}}{r!^2})$
-							\item $\le\frac{\lVert x\rVert^4}{n}(\sum_r^{[0:{N}]}\frac{X^{r}}{r!^2}+\frac{X^{N}}{N!^2}\sum_r^{[0:{n-N-1}]}\frac{X^{r}}{N^{2r}})$
-							\item $\le\frac{\lVert x\rVert^4}{n}(\sum_r^{[0:{N}]}\frac{X^{r}}{r!^2}+\frac{X^{N}}{N!^2}\sum_r^{[0:{n-N-1}]}(\frac{1}{2})^r)$
-							\item $\le\frac{\lVert x\rVert^4}{n}(\sum_r^{[0:{N}]}\frac{X^{r}}{r!^2}+2\frac{X^{N}}{N!^2})$
-							\item $\le\frac{a\lVert x\rVert^4}{n}$
+							\item $\le(\sum_r^{[1:{n+1}]}(1-\frac{n^{\ul{r}}}{n^r})\frac{X^r}{r!})^2$
+							\item $\le(\sum_r^{[2:{n+1}]}(1-\frac{(n-r+1)^{r}}{n^r})\frac{X^r}{r!})^2$
+							\item $=(\sum_r^{[2:{n+1}]}(1-(1-\frac{r-1}{n})^{r})\frac{X^r}{r!})^2$
+							\item $\le(\sum_r^{[2:{n+1}]}(1-(1-\frac{(r-1)r}{n}))\frac{X^r}{r!})^2$
+							\item $=(\sum_r^{[2:{n+1}]}\frac{(r-1)r}{n}\frac{X^r}{r!})^2$
+							\item $=(\frac{1}{n}\sum_r^{[2:{n+1}]}\frac{X^r}{(r-2)!})^2$
+							\item $=(\frac{X^2}{n}\sum_r^{[0:{n-1}]}\frac{X^r}{r!})^2$
+							\item $=(\frac{X^2}{n}(\sum_r^{[0:N]}\frac{X^r}{r!}+\sum_r^{[N:{n-1}]}\frac{X^r}{r!}))^2$
+							\item $\le(\frac{X^2}{n}(\sum_r^{[0:N]}\frac{X^r}{r!}+\sum_r^{[N:{n-1}]}\frac{X^r}{N!N^{r-N}}))^2$
+							\item $=(\frac{X^2}{n}(\sum_r^{[0:N]}\frac{X^r}{r!}+\frac{X^N}{N!}\sum_r^{[N:{n-1}]}\frac{X^{r-N}}{N^{r-N}}))^2$
+							\item $=(\frac{X^2}{n}(\sum_r^{[0:N]}\frac{X^r}{r!}+\frac{X^N}{N!}\sum_r^{[0:{n-N-1}]}\frac{X^{r}}{N^{r}}))^2$
+							\item $=(\frac{X^2}{n}(\sum_r^{[0:N]}\frac{X^r}{r!}+\frac{X^N}{N!}\cdot\frac{1}{1-\frac{X}{N}}))^2$
+							\item $=(\frac{a}{n})^2$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,N,p\rangle$.}
@@ -4153,89 +4046,60 @@
 				\end{enumerate}
 		\procedure{3.24}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,y,n)$, to show that $\lVert\cos_n(x)\cos_n(y)-\sin_n(x)\sin_n(y)-\cos_n(x+y)\rVert^2\le\frac{a\lVert xy\rVert^2}{n^2}$ when two complex numbers $x,y$ and a positive integer $n>b$ such that $2(\lVert x\rVert^2+\lVert y\rVert^2)\le X$ are chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,y,n)$, to show that $\lVert\cos_n(x)\cos_n(y)-\sin_n(x)\sin_n(y)-\cos_n(x+y)\rVert^2\le\frac{a^2\lVert xy\rVert^2}{n^2}$ when two complex numbers $x,y$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X^2$ and $\lVert y\rVert^2\le X^2$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle a,b,q\rangle$ receive.
 					\item Let $p(x,y,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $2(\lVert ix\rVert^2+\lVert iy\rVert^2)=2(\lVert x\rVert^2+\lVert y\rVert^2)\le X$.
+						\item Verify that $\lVert ix\rVert^2\le X^2$.
+						\item Verify that $\lVert iy\rVert^2\le X^2$.
 						\item Execute procedure $q$ on $\langle ix,iy,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(ix)\exp_n(iy)-\exp_n(ix+iy)\rVert^2\le\frac{a\lVert i^2xy\rVert^2}{n^2}=\frac{a\lVert xy\rVert^2}{n^2}$.
-						\item Verify that $2(\lVert -ix\rVert^2+\lVert -iy\rVert^2)=2(\lVert x\rVert^2+\lVert y\rVert^2)\le X$.
+						\item Hence verify that $\lVert\exp_n(ix)\exp_n(iy)-\exp_n(ix+iy)\rVert^2\le\frac{a^2\lVert i^2xy\rVert^2}{n^2}=\frac{a^2\lVert xy\rVert^2}{n^2}$.
+						\item Verify that $\lVert -ix\rVert^2\le X$.
+						\item Verify that $\lVert -iy\rVert^2\le X$.
 						\item Execute procedure $q$ on $\langle -ix,-iy,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(-ix)\exp_n(-iy)-\exp_n(-ix-iy)\rVert^2\le\frac{a\lVert (-i)^2xy\rVert^2}{n^2}=\frac{a\lVert xy\rVert^2}{n^2}$.
+						\item Hence verify that $\lVert\exp_n(-ix)\exp_n(-iy)-\exp_n(-ix-iy)\rVert^2\le\frac{a^2\lVert (-i)^2xy\rVert^2}{n^2}=\frac{a^2\lVert xy\rVert^2}{n^2}$.
 						\item Using \procedurehr{3.04}, verify that $\lVert\cos_n(x)\cos_n(y)-\sin_n(x)\sin_n(y)-\cos_n(x+y)\rVert^2$
 						\begin{enumerate}
 							\item $=\lVert\frac{(\exp_n(ix)+\exp_n(-ix))(\exp_n(iy)+\exp_n(-iy))}{4}-\frac{\exp_n(ix)-\exp_n(-ix))(\exp_n(iy)-\exp_n(-iy))}{4i^2}-\cos_n(x+y)\rVert^2$
 							\item $=\lVert\frac{\exp_n(ix)\exp_n(iy)}{2}+\frac{\exp_n(-ix)\exp_n(-iy)}{2}-\frac{\exp_n(i(x+y))+\exp_n(-i(x+y))}{2}\rVert^2$
 							\item $\le\frac{\lVert\exp_n(ix)\exp_n(iy)-\exp_n(i(x+y))\rVert^2}{2}+\frac{\lVert\exp_n(-ix)\exp_n(-iy)-\exp_n(-i(x+y))\rVert^2}{2}$
-							\item $\le\frac{a\lVert xy\rVert^2}{n^2}$.
+							\item $\le\frac{a^2\lVert xy\rVert^2}{n^2}$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.25}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,y,n)$, to show that $\lVert\sin_n(x)\cos_n(y)-\cos_n(x)\sin_n(y)-\sin_n(x+y)\rVert^2\le\frac{a\lVert xy\rVert^2}{n^2}$ when two complex numbers $x,y$ and a positive integer $n>b$ such that $2(\lVert x\rVert^2+\lVert y\rVert^2)\le X$ are chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,y,n)$, to show that $\lVert\sin_n(x)\cos_n(y)-\cos_n(x)\sin_n(y)-\sin_n(x+y)\rVert^2\le\frac{a^2\lVert xy\rVert^2}{n^2}$ when two complex numbers $x,y$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X^2$ and $\lVert y\rVert^2\le X^2$ are chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.24}.
 		\procedure{3.26}
 			\objective
-				 Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p$, to show that $\lVert\cos_n(x)^2+\sin_n(x)^2-1\rVert^2\le\frac{a\lVert x\rVert^4}{n^2}$ when a complex number $x$ and a positive integer $n$ such that $4\lVert x\rVert^2\le X$ are chosen.
+				 Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p$, to show that $\lVert\cos_n(x)^2+\sin_n(x)^2-1\rVert^2\le\frac{a^2\lVert x\rVert^4}{n^2}$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle a,b,q\rangle$ receive.
 					\item Let $p(x,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $2(\lVert ix\rVert^2+\lVert -ix\rVert^2)=4\lVert X\rVert^2\le X$.
+						\item Verify that $\lVert ix\rVert^2\le X^2$.
+						\item Verify that $\lVert -ix\rVert^2\le X^2$.
 						\item Execute procedure $q$ on $\langle ix,-ix,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(ix)\exp_n(-ix)-\exp_n(ix-ix)\rVert^2\le\frac{a\lVert-i^2x^2\rVert^2}{n^2}=\frac{a\lVert x\rVert^4}{n^2}$.
+						\item Hence verify that $\lVert\exp_n(ix)\exp_n(-ix)-\exp_n(ix-ix)\rVert^2\le\frac{a^2\lVert-i^2x^2\rVert^2}{n^2}=\frac{a^2\lVert x\rVert^4}{n^2}$.
 						\item Hence verify that $\lVert\cos_n(x)^2+\sin_n(x)^2-1\rVert^2$
 						\begin{enumerate}
 							\item $=\lVert\frac{(\exp_n(ix)+\exp_n(-ix))^2}{4}+\frac{(\exp_n(ix)-\exp_n(-ix))^2}{4i^2}-1\rVert^2$
 							\item $=\lVert\exp_n(ix)\exp_n(-ix)-1\rVert^2$
 							\item $=\lVert\exp_n(ix)\exp_n(-ix)-\exp_n(ix-ix)\rVert^2$
-							\item $\le\frac{a\lVert x\rVert^4}{n^2}$.
+							\item $\le\frac{a^2\lVert x\rVert^4}{n^2}$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
-		\procedure{3.27}
-			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct three rational numbers $a,b,d$ and a procedure, $p(x,dx,n)$, to show that $\lVert\diff_{y=x}^{+dx}\cos_n(y)+\sin_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$ when two complex numbers $x,dx$ and a positive integer $n>d$ such that $2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$ are chosen.
-			\implementation
-				\begin{enumerate}
-					\item Execute \procedurehr{3.19} on $\langle X\rangle$ and let $\langle a,b,d,q\rangle$.
-					\item Let $p(x,dx,n)$ be the following procedure:
-					\begin{enumerate}
-						\item Verify that $2(\lVert ix\rVert^2+\lVert idx\rVert^2)=2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$.
-						\item Verify that $\lVert idx\rVert^2=\lVert dx\rVert^2\le X$.
-						\item Hence execute procedure $q$ on $\langle ix,idx,n\rangle$.
-						\item Hence verify that $\lVert\frac{\exp_n(ix+idx)-\exp_n(ix)}{idx}-\exp_n(ix)\rVert^2\le\frac{a}{n^2}+b\lVert idx\rVert^2$.
-						\item Verify that $2(\lVert -ix\rVert^2+\lVert -idx\rVert^2)=2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$.
-						\item Verify that $\lVert -idx\rVert^2=\lVert dx\rVert^2\le X$.
-						\item Hence execute procedure $q$ on $\langle -ix,-idx,n\rangle$.
-						\item Hence verify that $\lVert\frac{\exp_n(-ix-idx)-\exp_n(-ix)}{-idx}-\exp_n(-ix)\rVert^2\le\frac{a}{n^2}+b\lVert -idx\rVert^2$.
-						\item Using \procedurehr{3.04}, verify that $\lVert\cos_n(x+dx)-\cos_n(x)+\sin_n(x)dx\rVert^2$
-						\begin{enumerate}
-							\item $=\lVert\frac{\exp_n(i(x+dx))+\exp_n(-i(x+dx))}{2}-\frac{\exp_n(ix)+\exp_n(-ix)}{2}+\frac{dx\exp_n(ix)-dx\exp_n(-ix)}{2i}\rVert^2$
-							\item $\le\frac{\lVert\exp_n(ix+idx)-\exp_n(ix)-idx\exp_n(ix)\rVert^2}{2}+\frac{\lVert\exp_n(-ix-idx)-\exp_n(-ix)-(-idx)\exp_n(-ix)\rVert^2}{2}$
-							\item $\le\frac{\lVert idx\rVert^2(\frac{a}{n^2}+b\lVert idx\rVert^2)}{2}+\frac{\lVert -idx\rVert^2(\frac{a}{n^2}+b\lVert -idx\rVert^2)}{2}$
-							\item $=\lVert dx\rVert^2(\frac{a}{n^2}+b\lVert dx\rVert^2)$.
-						\end{enumerate}
-						\item \textbf{Therefore verify that $\lVert\diff_{y=x}^{+dx}\cos_n(y)+\sin_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$.}
-					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle a,b,d,p\rangle$.}
-				\end{enumerate}
-		\procedure{3.28}
-			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct three rational numbers $a,b,d$ and a procedure, $p(x,dx,n)$, to show that $\lVert\diff_{y=x}^{+dx}\sin_n(y)-\cos_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$ when two complex numbers $x,dx$ and a positive integer $n>d$ such that $2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$ are chosen.
-			\implementation
-				Implementation is analogous to that of \procedurehr{3.27}.
 		\procedure{3.29}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p$, to show that $\lVert\sum_r^{[0:{\lceil\frac{n}]}{2}\rceil}\frac{(-1)^rx^{2r}}{(2r)!}-\cos_n(x)\rVert^2\le\frac{a\lVert x\rVert^4}{n}$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X$ is chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p$, to show that $\lVert\sum_r^{[0:\lceil\frac{n}{2}\rceil]}\frac{(-1)^rx^{2r}}{(2r)!}-\cos_n(x)\rVert^2\le(\frac{a}{n})^2$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X^2$ is chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.21} on $\langle X\rangle$ and let $\langle a,N,q\rangle$ receive.
@@ -4243,192 +4107,283 @@
 					\begin{enumerate}
 						\item Verify that $\lVert ix\rVert^2=\lVert x\rVert^2\le X$.
 						\item Execute procedure $q$ on $\langle ix,n\rangle$.
-						\item Hence verify that $\lVert\sum_r^{[0:{n+1}]}\frac{(ix)^r}{r!}-\exp_n(ix)\rVert^2\le\frac{a\lVert ix\rVert^4}{n}$.
+						\item Hence verify that $\lVert\sum_r^{[0:{n+1}]}\frac{(ix)^r}{r!}-\exp_n(ix)\rVert^2\le(\frac{a}{n})^2$.
 						\item Verify that $\lVert -ix\rVert^2=\lVert x\rVert^2\le X$.
 						\item Execute procedure $q$ on $\langle -ix,n\rangle$.
-						\item Hence verify that $\lVert\sum_r^{[0:{n+1}]}\frac{(-ix)^r}{r!}-\exp_n(-ix)\rVert^2\le\frac{a\lVert -ix\rVert^4}{n}$.
+						\item Hence verify that $\lVert\sum_r^{[0:{n+1}]}\frac{(-ix)^r}{r!}-\exp_n(-ix)\rVert^2\le(\frac{a}{n})^2$.
 						\item Hence using \procedurehr{3.04}, verify that $\lVert\sum_r^{[0:{\lceil\frac{n}]}{2}\rceil}\frac{(-1)^rx^{2r}}{(2r)!}-\cos_n(x)\rVert^2$
 						\begin{enumerate}
 							\item $=\lVert\sum_r^{[0:{n+1}]}\frac{[r\mod 2=0](-1)^{\frac{r}{2}}x^{r}}{r!}-\cos_n(x)\rVert^2$
 							\item $=\lVert\sum_r^{[0:{n+1}]}\frac{(i^r+(-i)^r)x^{r}}{2(r!)}-\frac{\exp_n(ix)+\exp_n(-ix)}{2}\rVert^2$
 							\item $=\frac{1}{4}\lVert\sum_r^{[0:{n+1}]}\frac{(ix)^{r}}{r!}-\exp_n(ix)+\sum_r^{[0:{n+1}]}\frac{(-ix)^{r}}{r!}-\exp_n(-ix)\rVert^2$
 							\item $\le\frac{1}{2}(\lVert\sum_r^{[0:{n+1}]}\frac{(ix)^{r}}{r!}-\exp_n(ix)\rVert^2+\lVert\sum_r^{[0:{n+1}]}\frac{(-ix)^{r}}{r!}-\exp_n(-ix)\rVert^2)$
-							\item $\le\frac{1}{2}(\frac{a\lVert ix\rVert^4}{n}+\frac{a\lVert -ix\rVert^4}{n})$
-							\item $\le\frac{a\lVert x\rVert^4}{n}$.
+							\item $\le\frac{1}{2}((\frac{a}{n})^2+(\frac{a}{n})^2)$
+							\item $\le(\frac{a}{n})^2$.
 						\end{enumerate}
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{3.30}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p$, to show that $\lVert\sum_r^{[0:{\lfloor\frac{n+1}]}{2}\rfloor}\frac{(-1)^rx^{2r+1}}{(2r+1)!}-\sin_n(x)\rVert^2\le\frac{a\lVert x\rVert^4}{n}$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X$ is chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p$, to show that $\lVert\sum_r^{[0:\lfloor\frac{n+1}{2}\rfloor]}\frac{(-1)^rx^{2r+1}}{(2r+1)!}-\sin_n(x)\rVert^2\le(\frac{a}{n})^2$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X^2$ is chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.29}.
-		\declaration{3.30}
-			The notation \gls{complexintegral}, where $R$ is a non-empty list of complex numbers and $f[\#r,r,dr]$ is a function of $\#r,r,dr$, will be used as a shorthand for $\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_{t})$.
-		\procedure{3.86}
-			\objective
-				Choose two functions $f[\#r,r,dr],g[\#r,r,dr]$, and a non-empty list of complex numbers $R$. The objective of the following instructions is to show that $\int_r^R(f(\#r,r,dr)+g(\#r,r,dr))=\int_r^Rf(\#r,r,dr)+\int_r^Rg(\#r,r,dr)$.
-			\implementation
-				\begin{enumerate}
-					\item Verify that $\int_r^R(f(\#r,r,dr)+g(\#r,r,dr))$
-					\begin{enumerate}
-						\item $=\sum_t^{[0:\lvert R\rvert-1]}(f(t,R_t,R_{t+1}-R_t)+g(t,R_t,R_{t+1}-R_t))$
-						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_t)+\sum_t^{[0:\lvert R\rvert-1]}g(t,R_t,R_{t+1}-R_t)$
-						\item $=\int_r^Rf(\#r,r,dr)+\int_r^Rg(\#r,r,dr)$
-					\end{enumerate}
-				\end{enumerate}
-		\procedure{3.87}
-			\objective
-				Choose a complex number $a$, a function $f[\#r,r,dr]$, and a non-empty list of complex numbers $R$. The objective of the following instructions is to show that $\int_r^Raf(\#r,r,dr)=a\int_r^Rf(\#r,r,dr)$.
-			\implementation
-				\begin{enumerate}
-					\item Verify that $\int_r^Raf(\#r,r,dr)$
-					\begin{enumerate}
-						\item $=\sum_t^{[0:\lvert R\rvert-1]}af(t,R_t,R_{t+1}-R_t)$
-						\item $=a\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_t)$
-						\item $=a\int_r^Rf(\#r,r,dr)$
-					\end{enumerate}
-				\end{enumerate}
-		\procedure{3.88}
-			\objective
-				Choose a function $f[r]$ and two non-empty lists of complex numbers $R,S$ such that $R_{\lvert R\rvert-1}=S_0$. The objective of the following instructions is to show that $\int_r^{R^\frown S}f(r)dr=\int_r^Rf(r)dr+\int_r^Sf(r)dr$.
-			\implementation
-				\begin{enumerate}
-					\item Let $T=R^\frown S$.
-					\item Verify that $\int_r^{T}f(r)dr$
-					\begin{enumerate}
-						\item $=\sum_t^{[0:\lvert T\rvert-1]}f(T_t)(T_{t+1}-T_t)$
-						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(T_t)(T_{t+1}-T_t)+\sum_t^{[\lvert R\rvert-1:\lvert R\rvert]}f(T_t)(T_{t+1}-T_t)+\sum_t^{[\lvert R\rvert:\lvert T\rvert-1]}f(T_t)(T_{t+1}-T_t)$
-						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(R_t)(R_{t+1}-R_t)+f(T_{\lvert R\rvert-1})(T_{\lvert R\rvert}-T_{\lvert R\rvert-1})+\sum_t^{[\lvert R\rvert:\lvert T\rvert-1]}f(S_{t-\lvert R\rvert})(S_{t+1-\lvert R\rvert}-S_{t-\lvert R\rvert})$
-						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(R_t)(R_{t+1}-R_t)+f(T_{\lvert R\rvert-1})(S_0-R_{\lvert R\rvert-1})+\sum_t^{[0:\lvert S\rvert-1]}f(S_{t})(S_{t+1}-S_{t})$
-						\item $=\int_r^Rf(r)dr+\int_r^Sf(r)dr$.
-					\end{enumerate}
-				\end{enumerate}
-		\procedure{3.33}
-			\objective
-				Choose a function $f[r]$ and a list of complex numbers $R$. The objective of the following instructions is to show that $\lVert\int_r^Rf(r)dr\rVert^2\le(\lvert R\rvert-1)^2\max(\lVert\Delta R\rVert^2)\max(\lVert f(R_{[0:\lvert R\rvert-1]})\rVert^2)$
-			\implementation
-				\begin{enumerate}
-					\item Verify that $\lVert\int_r^Rf(r)dr\rVert^2$
-					\begin{enumerate}
-						\item $\le(\lvert R\rvert-1)\int_r^R\lVert f(r)\rVert^2\lVert dr\rVert^2$
-						\item $\le(\lvert R\rvert-1)\int_r^R\max(\lVert f(R_{[0:\lvert R\rvert-1]})\rVert^2)\max(\lVert\Delta R\rVert^2)$
-						\item $\le(\lvert R\rvert-1)^2\max(\lVert f(R_{[0:\lvert R\rvert-1]})\rVert^2)\max(\lVert\Delta R\rVert^2)$.
-					\end{enumerate}
-				\end{enumerate}
-		\procedure{3.34}
-			\objective
-				Choose a list of functions $F$ and a list of complex numbers $R$ such that $F_0(R_1)=F_1(R_1),F_1(R_2)=F_2(R_2),\cdots,F_{\lvert R\rvert-3}(R_{\lvert R\rvert-2})=F_{\lvert R\rvert-2}(R_{\lvert R\rvert-2})$. The objective of the following instructions is to show that $\int_r^Rdr\diff_{z=r}^{dr}F_{\#r}(z)=F_{\lvert R\rvert-2}(R_{\lvert R\rvert-1})-F_0(R_0)$.
-			\implementation
-				\begin{enumerate}
-					\item Verify that $\int_r^Rdr\diff_{z=r}^{dr}F_{\#r}(z)$
-					\begin{enumerate}
-						\item $=\int_r^Rdr(\frac{F_{\#r}(r+dr)-F_{\#r}(r)}{dr})$
-						\item $=\int_r^R(F_{\#r}(r+dr)-F_{\#r}(r))$
-						\item $=\sum_k^{[0:\lvert R\rvert-1]}(F_{k}(R_{k+1})-F_{k}(R_k))$
-						\item $=-F_0(R_0)+\sum_k^{[0:\lvert R\rvert-2]}(F_{k}(R_{k+1})-F_{k+1}(R_{k+1}))+F_{\lvert R\rvert-2}(R_{\lvert R\rvert-1})$
-						\item $=-F_0(R_0)+\sum_k^{[0:\lvert R\rvert-2]}0+F_{\lvert R\rvert-2}(R_{\lvert R\rvert-1})$
-						\item $=F_{\lvert R\rvert-2}(R_{\lvert R\rvert-1})-F_0(R_0)$.
-					\end{enumerate}
-				\end{enumerate}
-		\procedure{3.41}
-			\objective
-				Choose three rational numbers $X>0$, $Y\ge 0$, and $Z\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,d$, and a procedure, $p(x,y[x],dx,n)$, to show that $\lVert\diff_{z=x}^{+dx}(z\exp_n(-y(z)))\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$ when a function $y[x]$, two complex numbers $x,dx$ and two positive integers $n>d,m$ such that $\diff_{z=x}^{+dx}y(z)=\frac{1}{x}$, $\lVert x\rVert^2\ge X$, $\lVert dx\rVert^2\le Y$, and $\lVert y(x)\rVert^2\le Z$ are chosen.
-			\implementation
-				\begin{enumerate}
-					\item Execute \procedurehr{3.13} on $\langle Z\rangle$ and let $\langle a_3,b_3,p_3\rangle$ receive.
-					\item Execute \procedurehr{3.19} on $\langle 2(Z+\frac{Y}{X})\rangle$ and let $\langle a_4,b_4,c_4,p_4\rangle$ receive.
-					\item Let $a=4a_4(1+\frac{Y}{X})$.
-					\item Let $b=\frac{2}{X}(2b_4+\frac{2b_4Y}{X}+a_3)$.
-					\item Let $d=\max(b_3,c_4)$.
-					\item Let $p(x,y[x],dx,n)$ be the following procedure:
-					\begin{enumerate}
-						\item Execute procedure $p_3$ on $\langle-y(x),n\rangle$.
-						\item Hence verify that $\lVert\exp_n(-y(x))\rVert^2\le a_3$.
-						\item Execute procedure $p_4$ on $\langle -y(x),-\frac{dx}{x},n\rangle$.
-						\item Hence verify that $\lVert dx\rVert^2\lVert\diff_{z=x}^{+dx}\exp_n(-y(z))+\frac{1}{x}\exp_n(-y(x))\rVert^2=\lVert\frac{dx}{x}\rVert^2\lVert\diff_{z=-y(x)}^{-\frac{dx}{x}}\exp_n(z)-\exp_n(-y(x))\rVert^2\le\frac{a_4}{n^2}\lVert\frac{dx}{x}\rVert^2+b_4\lVert\frac{dx}{x}\rVert^4$.
-						\item Hence verify that\footnote{Certain techniques were used to construct instructions (ii), (iii), and (iv); these techniques go by the name of "the chain rule" and "the product rule".} $\lVert dx\diff_{z=x}^{dx}(z\exp_n(-y(z)))\rVert^2$
-						\begin{enumerate}
-							\item $=\lVert(x+dx)(\exp_n(-y(x)-\frac{dx}{x})-\exp_n(-y(x))+\frac{dx}{x}\exp_n(-y(x)))-\frac{dx^2}{x}\exp_n(-y(x))\rVert^2$
-							\item $\le 2\lVert x+dx\rVert^2\lVert \exp_n(-y(x)-\frac{dx}{x})-\exp_n(-y(x))+\frac{dx}{x}\exp_n(-y(x))\rVert^2+2\frac{\lVert dx\rVert^4}{\lVert x\rVert^2}\lVert\exp_n(-y(x))\rVert^2$
-							\item $\le 4(\lVert x\rVert^2+\lVert dx\rVert^2)(\frac{a_4}{n^2}\frac{\lVert dx\rVert^2}{\lVert x\rVert^2}+b_4\frac{\lVert dx\rVert^4}{\lVert x\rVert^4})+2\frac{\lVert dx\rVert^4}{X}a_3$
-							\item $\le 4(\frac{a_4}{n^2}\lVert dx\rVert^2+b_4\frac{\lVert dx\rVert^4}{\lVert x\rVert^2})+4(\frac{a_4}{n^2}\frac{\lVert dx\rVert^4}{\lVert x\rVert^2}+b_4\frac{\lVert dx\rVert^6}{\lVert x\rVert^4})+2\frac{\lVert dx\rVert^4}{X}a_3$.
-							\item $\le 4(\frac{a_4}{n^2}\lVert dx\rVert^2+b_4\frac{\lVert dx\rVert^4}{X})+4(\frac{a_4}{n^2}\frac{\lVert dx\rVert^4}{X}+b_4\frac{\lVert dx\rVert^6}{X^2})+2\frac{\lVert dx\rVert^4}{X}a_3$.
-						\end{enumerate}
-						\item \textbf{Therefore verify that $\lVert\diff_{z=x}^{dx}(z\exp_n(-y(z)))\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$.}
-					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle a,b,d,p\rangle$.}
-				\end{enumerate}
-		\declaration{3.31}
-			The notation \gls{complexDeltaX}, where $X$ is a list, will be used as a shorthand for $\langle X_1-X_0,X_2-X_1,\cdots,X_{\lvert X\rvert-1}-X_{\lvert X\rvert-2}\rangle$.
-		\procedure{3.42}
-			\objective
-				Choose two rational numbers $X>0,Z\ge 0$. The objective of the following instructions is to construct rational numbers $a,h,e$ and a procedure $p(R,n)$ to show that $\lVert R_{\lvert R\rvert-1}\exp_n(-\int_r^R\frac{dr}{r})-R_0\rVert^2\le\frac{a}{n^2}+h\max(\lVert\Delta R\rVert^2)$ when a non-empty list of complex numbers $R$ and a positive integer $n$ such that $n>e$, $\min(\lVert R_{[0:\lvert R\rvert-1]}\rVert^2)\ge X$, and $(\lvert R\rvert-1)^2\max(\lVert\Delta R\rVert^2)\le Z$ are chosen.
-			\implementation
-				\begin{enumerate}
-					\item Execute \procedurehr{3.41} on $\langle X,Z,\frac{Z}{X}\rangle$ and let $\langle c,d,e,q\rangle$ receive.
-					\item Let $a=cZ$.
-					\item Let $h=dZ$.
-					\item Let $p(R,n)$ be the following procedure:
-					\begin{enumerate}
-						\item For $k$ in $[0:\lvert R\rvert-1]$, do the following:
-						\begin{enumerate}
-							\item Let $y_k(R_{k})=\int_r^{R_{[0:k+1]}}\frac{dr}{r}$.
-							\item Let $y_k(R_{k+1})=\int_r^{R_{[0:k+2]}}\frac{dr}{r}$.
-							\item Verify that $\diff_{z=R_{k}}^{R_{k+1}-R_{k}}y_k(z)=\frac{1}{R_{k}}$.
-							\item Using \procedurehr{3.33}, verify that $\lVert y_k(R_{k})\rVert^2\le\frac{Z}{X}$.
-							\item Verify that $\lVert R_{k}\rVert^2\ge X$.
-							\item Verify that $\lVert R_{k+1}-R_{k}\rVert^2\le Z$.
-							\item Execute procedure $q$ on $\langle R_{k},y_{k+1},R_{k+1}-R_{k},n\rangle$.
-							\item Hence verify that $\lVert\diff_{z=R_{k}}^{R_{k+1}-R_{k}}(z\exp_n(-y_k(z)))\rVert^2\le\lVert R_{k+1}-R_{k}\rVert^2(\frac{c}{n^2}+d\lVert R_{k+1}-R_{k}\rVert^2)$
-						\end{enumerate}
-						\item Hence using \procedurehr{3.34}, verify that $\lVert R_{\lvert R\rvert-1}\exp_n(-\int_r^R\frac{dr}{r})-R_0\rVert^2$
-						\begin{enumerate}
-							\item $=\lVert R_{\lvert R\rvert-1}\exp_n(-y_{\lvert R\rvert-2}(R_{\lvert R\rvert-1}))-R_0\exp_n(-y_0(R_0))\rVert^2$
-							\item $=\lVert\int_{k}^{R}dk\diff_{z=k}^{dk}(z\exp_n(-y_{\#k}(z))\rVert^2$
-							\item $\le(\lvert R\rvert-1)\int_{k}^{R}\lVert dk\diff_{z=k}^{dk}(z\exp_n(-y_{\#k}(z))\rVert^2$
-							\item $\le(\lvert R\rvert-1)\int_{k}^{R}\lVert dk\rVert^2(\frac{c}{n^2}+d\lVert dk\rVert^2)$
-							\item $\le(\lvert R\rvert-1)^2\max(\lVert\Delta R\rVert^2)(\frac{c}{n^2}+d\lVert\max(\lVert\Delta R\rVert^2)\rVert^2)$
-							\item $\le Z(\frac{c}{n^2}+d\lVert\max(\lVert\Delta R\rVert^2)\rVert^2)$
-							\item $\le\frac{a}{n^2}+h\max(\lVert\Delta R\rVert^2)$
-						\end{enumerate}
-					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle a,h,e,p\rangle$.}
-				\end{enumerate}
-		\procedure{3.43}
-			\objective
-				Choose two rational numbers $X>0,Y\ge 0,Z\ge 0$. The objective of the following instructions is to construct rational numbers $a,z,b$ and a procedure $p(R,n)$ to show that $\lVert R_{\lvert R\rvert-1}-R_0\exp_n(\int_r^R\frac{dr}{r})\rVert^2\le\frac{a}{n^2}+z\max(\lVert\Delta R\rVert^2)$ when a list of complex numbers $R$ and an integer $n$ such that $n>b$, $\min(\lVert R_{[0:\lvert R\rvert-1]}\rVert^2)\ge X$, $\lVert R_{\lvert R\rvert-1}\rVert^2\le Y$, and $(\lvert R\rvert-1)^2\max(\lVert\Delta R\rVert^2)\le Z$ are chosen.
-			\implementation
-				\begin{enumerate}
-					\item Execute \procedurehr{3.13} on $\langle\frac{Z}{X}\rangle$ and let $\langle g,h,t\rangle$ receive.
-					\item Execute \procedurehr{3.15} on $\langle\frac{4Z}{X}\rangle$ and let $\langle c,d,q\rangle$ receive.
-					\item Execute \procedurehr{3.42} on $\langle X,Z\rangle$ and let $\langle e,k,f,r\rangle$ receive.
-					\item Let $a=2(\frac{cYZ^2}{X^2}+2ge)$.
-					\item Let $z=2gk$.
-					\item Let $b=\max(d,f,h)$.
-					\item Let $p(R,n)$ be the following procedure:
-					\begin{enumerate}
-						\item Now execute procedure $r$ on $\langle R,n\rangle$.
-						\item Hence verify that $\lVert R_{\lvert R\rvert-1}\exp_n(-\int_r^R\frac{dr}{r})-R_0\rVert^2\le\frac{e}{n^2}+k\max(\lVert\Delta R\rVert^2)$.
-						\item Using \procedurehr{3.33}, verify that $\lVert\int_r^R\frac{dr}{r}\rVert^2\le\frac{Z}{X}$.
-						\item Execute procedure $t$ on $\langle\int_r^R\frac{dr}{r},n\rangle$.
-						\item Hence verify that $\lVert\exp_n(\int_r^R\frac{dr}{r})\rVert^2\le g$.
-						\item Now verify that $2(\lVert\int_r^R\frac{dr}{r}\rVert^2+\lVert-\int_r^R\frac{dr}{r}\rVert^2)\le\frac{4Z}{X}$.
-						\item Execute procedure $q$ on $\langle\int_r^R\frac{dr}{r},-\int_r^R\frac{dr}{r},n\rangle$.
-						\item Hence verify that $\lVert\exp_n(\int_r^R\frac{dr}{r})\exp_n(-\int_r^R\frac{dr}{r})-\exp_n(0)\rVert^2\le\frac{c\lVert\int_r^R\frac{dr}{r}\rVert^4}{n^2}\le\frac{cZ^2}{n^2X^2}$.
-						\item Hence verify that $\lVert R_{\lvert R\rvert-1}-R_0\exp_n(\int_r^R\frac{dr}{r})\rVert^2$
-						\begin{enumerate}
-							\item $=\lVert R_{\lvert R\rvert-1}\exp_n(0)-R_0\exp_n(\int_r^R\frac{dr}{r})\rVert^2$
-							\item $=\lVert R_{\lvert R\rvert-1}\exp_n(0)-R_{\lvert R\rvert-1}\exp_n(\int_r^R\frac{dr}{r})\exp_n(-\int_r^R\frac{dr}{r})+R_{\lvert R\rvert-1}\exp_n(\int_r^R\frac{dr}{r})\exp_n(-\int_r^R\frac{dr}{r})-R_0\exp_n(\int_r^R\frac{dr}{r})\rVert^2$
-							\item $\le 2\lVert R_{\lvert R\rvert-1}\rVert^2\lVert\exp_n(0)-\exp_n(\int_r^R\frac{dr}{r})\exp_n(-\int_r^R\frac{dr}{r})\rVert^2+2\lVert\exp_n(\int_r^R\frac{dr}{r})\rVert^2\lVert R_{\lvert R\rvert-1}\exp_n(-\int_r^R\frac{dr}{r})-R_0\rVert^2$
-							\item $\le 2\frac{cZ^2\lVert R_{\lvert R\rvert-1}\rVert^2}{n^2X^2}+2g(\frac{e}{n^2}+k\max(\lVert\Delta R\rVert^2))$
-							\item $=\frac{a}{n^2}+z\max(\lVert\Delta R\rVert^2)$.
-						\end{enumerate}
-					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle a,z,b,p\rangle$.}
-				\end{enumerate}
-		\declaration{3.32}
-			The notation \gls{complexmu}, where $a,b$ are complex numbers and $n$ is a positive integer, will be used as a shorthand for $\langle a+0b,a+1b,\cdots,a+(n-1)b\rangle$.
+		\declaration{sun2107190610}
+			The notation \gls{binomialseries}, where $x,a$ are complex numbers and $n$ is a positive integer, will be used as a shorthand for $\sum_r^{[0:n]}\binom{a}{r}x^r$.
+	  \procedure{sun2107190619}
+	    \objective
+	      Choose a complex number $x$ and two non-negative integers $a,n$ such that $n>a$. The objective of the following instructions is to show that $(1+x)_n^a=(1+x)^a$.
+	    \implementation
+	      \begin{enumerate}
+	        \item Using \procedurehr{sun2107190636}, verify that $(1+x)^a_n=$
+	        \begin{enumerate}
+	          \item $=\sum_r^{[0:n]}\binom{a}{r}x^r$
+	          \item $=\sum_r^{[0:n]}\frac{a^{\ul{r}}}{r!}x^r$
+	          \item $=\sum_r^{[0:a+1]}\frac{a^{\ul{r}}}{r!}x^r+\sum_r^{[a+1:n]}\frac{a^{\ul{r}}}{r!}x^r$
+	          \item $=\sum_r^{[0:a+1]}\frac{a^{\ul{r}}}{r!}x^r+\sum_r^{[a+1:n]}\frac{0}{r!}x^r$
+	          \item $=\sum_r^{[0:a+1]}\binom{a}{r}x^r$
+	          \item $=(1+x)^a$.
+	        \end{enumerate}
+	      \end{enumerate}
+	  \procedure{sun2107190640}
+	    \objective
+	      Choose two complex numbers $x,y$ and a positive integer $N$. The objective of the following instructions is to show that $\binom{x+y}{N}=\sum_k^{N+1}\binom{x}{k}\binom{y}{N-k}$.
+	    \implementation
+	      \begin{enumerate}
+	        \item If $N=0$, then do the following:
+	        \begin{enumerate}
+	          \item Verify that $\binom{x+y}{N}=1=\sum_k^{[0:N+1]}\binom{x}{k}\binom{y}{N-k}$.
+	        \end{enumerate}
+	        \item Otherwise do the following:
+	        \begin{enumerate}
+	          \item Verify that $N>0$.
+	          \item Execute \procedurehr{sun2107190640} on $\langle x-1,y,N-1\rangle$.
+	          \item Hence verify that $\binom{x+y-1}{N-1}=\sum_k^{[0:N]}\binom{x-1}{k}\binom{y}{N-1-k}$.
+	          \item Execute \procedurehr{sun2107190640} on $\langle x,y-1,N-1\rangle$.
+	          \item Hence verify that $\binom{x+y-1}{N-1}=\sum_k^{[0:N]}\binom{x}{k}\binom{y-1}{N-1-k}$.
+	          \item Hence verify that $\binom{x+y}{N}$
+	          \begin{enumerate}
+	            \item $=\frac{x+y}{N}\binom{x+y-1}{N-1}$
+	            \item $=\frac{x}{N}\binom{x+y-1}{N-1}+\frac{y}{N}\binom{x+y-1}{N-1}$
+	            \item $=\frac{x}{N}\sum_k^{[0:N]}\binom{x-1}{k}\binom{y}{N-1-k}+\frac{y}{N}\sum_k^{[0:N]}\binom{x}{k}\binom{y-1}{N-1-k}$
+	            \item $=\frac{x}{N}\sum_k^{[1:N+1]}\binom{x-1}{k-1}\binom{y}{N-k}+\frac{y}{N}\sum_k^{[0:N]}\binom{x}{k}\binom{y-1}{N-1-k}$
+	            \item $=\sum_k^{[0:N+1]}\frac{k}{N}\binom{x}{k}\binom{y}{N-k}+\sum_k^{[0:N+1]}\frac{N-k}{N}\binom{x}{k}\binom{y}{N-k}$
+	            \item $=\sum_k^{[0:N+1]}\binom{x}{k}\binom{y}{N-k}$.
+	          \end{enumerate}
+	        \end{enumerate}
+	      \end{enumerate}
+	  \procedure{sun2107191133}
+	    \objective
+	      Choose complex numbers $a,b,x$ and a natural number $n$. The objective of the following instructions is to show that $(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}=\sum_k^{[1:n]}\sum_r^{[k:n]}\binom{a}{k+n-1-r}\binom{b}{r}x^{k+n-1}$.
+	    \implementation
+	      \begin{enumerate}
+	        \item Verify that $(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}$
+	        \begin{enumerate}
+	          \item $=(\sum_k^{[0:n]}\binom{a}{k}x^k)(\sum_r^{[0:n]}\binom{b}{r}x^r)-\sum_k^{[0:n]}\binom{a+b}{k}x^k$
+	          \item $=\sum_k^{[0:n]}\sum_r^{[0:n]}\binom{a}{k}\binom{b}{r}x^{k+r}-\sum_k^{[0:n]}\binom{a+b}{k}x^k$
+	          \item $=\sum_k^{[0:n]}\sum_r^{[0:k+1]}\binom{a}{k-r}\binom{b}{r}x^k+\sum_k^{[n:2n-1]}\sum_r^{[k-n+1:n]}\binom{a}{k-r}\binom{b}{r}x^k-\sum_k^{[0:n]}\binom{a+b}{k}x^k$
+	          \item $=\sum_k^{[0:n]}\binom{a+b}{k}x^k+\sum_k^{[1:n]}\sum_r^{[k:n]}\binom{a}{k+n-1-r}\binom{b}{r}x^{k+n-1}-\sum_k^{[0:n]}\binom{a+b}{k}x^k$
+	          \item $=\sum_k^{[1:n]}\sum_r^{[k:n]}\binom{a}{k+n-1-r}\binom{b}{r}x^{k+n-1}$.
+	        \end{enumerate}
+	      \end{enumerate}
+	  \procedure{sun2107191247}
+	    \objective
+	      Choose two rational numbers $A>0$ and $0<X<1$. The objective of the following instructions is to construct rational numbers $Y>0$, $0<Z<1$ and a procedure $p(a,x,n)$ to show that $\lVert\binom{a}{n}x^n\rVert^2\le(YZ^n)^2$ when complex numbers $a,x$ such that $\lVert a+1\rVert^2<A^2$ and $\lVert x\rVert^2<X^2$ are chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Let $e=\frac{AX}{1-X}-1$.
+	        \item Let $d=\lfloor\frac{AX}{1-X}\rfloor$.
+	        \item Verify that $d>e>-1$.
+	        \item Let $Z=(1+\frac{A}{d+1})X$.
+	        \item Verify that $0<Z<(1+\frac{A}{e+1})X=1$.
+	        \item Let $Y=Z^{-d}\prod_k^{[0:d]}\frac{(A+k+1)X}{k+1}=Z^{-d}\prod_k^{[0:d]}X(1+\frac{A}{k+1})$.
+	        \item Let $p(a,x,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item Verify that $\Re(a+1)^2\le\lVert a+1\rVert^2\le A^2$.
+	          \item Hence verify that $\lvert\Re(a+1)\rvert\le A$.
+	          \item Hence verify that $\lVert\binom{a}{n}x^n\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert\frac{a^{\ul{n}}}{n!}x^n\rVert^2$
+	            \item $=\lVert\prod_k^{[0:n]}(\frac{a+1-(k+1)}{k+1}\cdot x)\rVert^2$
+	            \item $=\prod_k^{[0:n]}\frac{\lVert(a+1)-(k+1)\rVert^2\lVert x\rVert^2}{(k+1)^2}$
+	            \item $=\prod_k^{[0:n]}\frac{(\lVert a+1\rVert^2-2\Re(a+1)(k+1)+(k+1)^2)\lVert x\rVert^2}{(k+1)^2}$
+	            \item $\le\prod_k^{[0:n]}\frac{(A^2+2A(k+1)+(k+1)^2)X^2}{(k+1)^2}$
+	            \item $=(\prod_k^{[0:n]}\frac{(A+k+1)X}{k+1})^2$
+	            \item $=(\prod_k^{[0:n]}X(1+\frac{A}{k+1}))^2$.
+	          \end{enumerate}
+	          \item If $n\le d$, then do the following:
+	          \begin{enumerate}
+	            \item Verify that $\lVert\binom{a}{n}x^n\rVert^2$
+	            \begin{enumerate}
+	              \item $\le(\prod_k^{[0:n]}X(1+\frac{A}{k+1}))^2$
+	              \item $=(\prod_k^{[0:d]}X(1+\frac{A}{k+1}))^2(\prod_k^{[n:d]}X(1+\frac{A}{k+1}))^{-2}$
+	              \item $\le(\prod_k^{[0:d]}X(1+\frac{A}{k+1}))^2(X(1+\frac{A}{d+1}))^{-2(d-n)}$
+	              \item $=Y^2Z^{2n}$.
+	            \end{enumerate}
+	          \end{enumerate}
+	          \item Otherwise do the following:
+	          \begin{enumerate}
+	            \item Verify that $\lVert\binom{a}{n}x^n\rVert^2$
+	            \begin{enumerate}
+	              \item $\le(\prod_k^{[0:n]}X(1+\frac{A}{k+1}))^2$
+	              \item $=(\prod_k^{[0:d]}X(1+\frac{A}{k+1}))^2(\prod_k^{[d:n]}X(1+\frac{A}{k+1}))^2$
+	              \item $\le(\prod_k^{[0:d]}X(1+\frac{A}{k+1}))^2(X(1+\frac{A}{d+1}))^{2(n-d)}$
+	              \item $=Y^2Z^{2n}$.
+	            \end{enumerate}
+	          \end{enumerate}
+	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle Y,Z,p\rangle$.}
+	      \end{enumerate}
+	  \procedure{wed2407191348}
+	    \objective
+	      Choose a non-negative integer $r$ and a rational number $x>-1$ such that $(r-1)x<1$. The objective of the following instructions is to show that $(1+x)^r\le\frac{1+x}{1-(r-1)x}$.
+	    \implementation
+	      \begin{enumerate}
+	        \item Verify that $1-\frac{x}{1+x}=\frac{1}{1+x}>0$.
+	        \item Hence using \procedurehr{2.07}, verify that $(1-\frac{x}{1+x})^r\ge 1-\frac{rx}{1+x}$.
+	        \item Verify that $0<1+x-rx$.
+	        \item Hence verify that $0<1-\frac{rx}{1+x}$.
+	        \item Hence verify that $(1-\frac{x}{1+x})^r\ge 1-\frac{rx}{1+x}>0$.
+	        \item Hence verify that $(1+x)^r$
+	        \begin{enumerate}
+	          \item $=(\frac{1}{1+x})^{-r}$
+	          \item $=(1-\frac{x}{1+x})^{-r}$
+	          \item $\le(1-\frac{rx}{1+x})^{-1}$
+	          \item $=\frac{1+x}{1-(r-1)x}$.
+	        \end{enumerate}
+	      \end{enumerate}
+	  \procedure{wed2407191422}
+	    \objective
+	      Choose a rational number $0<X<1$ and a positive integer $k$. The objective of the following instructions is to construct rational numbers $Y>0$, $0<Z<1$ and a procedure $p(x,n)$ to show that $\lVert n^kx^n\rVert^2\le(YZ^n)^2$ when a complex number $x$ such that $\lVert x\rVert^2\le X^2$ is chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Let $e=\frac{k}{1-X}-1$.
+	        \item Let $d=\lfloor\frac{k}{1-X}\rfloor$.
+	        \item Verify that $d>e>k-1$.
+	        \item Let $Z=(1+\frac{1}{d})^kX$.
+	        \item Verify that $Z<(1+\frac{1}{e})^kX$.
+	        \item Now using \procedurehr{wed2407191348}, verify that $0<Z<(1+\frac{1}{e})^kX\le\frac{1+\frac{1}{e}}{1-(k-1)\frac{1}{e}}\cdot X=1$.
+	        \item Let $Y=Z^{-d}X\prod_r^{[1:d]}X(1+\frac{1}{r})^k$.
+	        \item Let $p(x,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item Verify that $\lVert n^kx^n\rVert^2$
+	          \begin{enumerate}
+	            \item $\le\lVert x\prod_r^{[1:n]}x\cdot\frac{(r+1)^k}{r^k}\rVert^2$
+	            \item $=\lVert x\rVert^2\prod_r^{[1:n]}\lVert x\rVert^2(\frac{(r+1)^k}{r^k})^2$
+	            \item $\le X^2\prod_r^{[1:n]}((1+\frac{1}{r})^kX)^2$.
+	          \end{enumerate}
+	          \item If $n\le d$, then do the following:
+	          \begin{enumerate}
+	            \item Verify that $\lVert n^kx^n\rVert^2$
+	            \begin{enumerate}
+	              \item $\le X^2(\prod_r^{[1:n]}X(1+\frac{1}{r})^k)^2$
+	              \item $=X^2(\prod_r^{[1:d]}X(1+\frac{1}{r})^k)^2\cdot(\prod_r^{[n:d]}X(1+\frac{1}{r})^k)^{-2}$
+	              \item $\le X^2(\prod_r^{[1:d]}X(1+\frac{1}{r})^k)^2(X(1+\frac{1}{d})^k)^{-2(d-n)}$
+	              \item $=Y^2Z^{2n}$.
+	            \end{enumerate}
+	          \end{enumerate}
+	          \item Otherwise do the following:
+	          \begin{enumerate}
+	            \item Verify that $\lVert n^kx^n\rVert^2$
+	            \begin{enumerate}
+	              \item $\le X^2(\prod_r^{[1:n]}X(1+\frac{1}{r})^k)^2$
+	              \item $=X^2(\prod_r^{[1:d]}X(1+\frac{1}{r})^k)^2(\prod_r^{[d:n]}X(1+\frac{1}{r})^k)^2$
+	              \item $\le X^2(\prod_r^{[1:d]}X(1+\frac{1}{r})^k)^2(X(1+\frac{1}{d})^k)^{2(n-d)}$
+	              \item $=Y^2Z^{2n}$.
+	            \end{enumerate}
+	          \end{enumerate}
+	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle Y,Z,p\rangle$.}
+	      \end{enumerate}
+	  \procedure{wed2407191521}
+	    \objective
+	      Choose two rational numbers $A>0$, $1>X>0$. The objective of the following instructions is to construct rational numbers $D>0$, $0<G<1$, and a procedure $p(x,a,b,n)$ to show that $\lVert(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}\rVert^2\le(DG^n)^2$ when $\lVert x\rVert^2\le X$, and $\lVert a\rVert^2,\lVert b\rVert^2<A$.
+	    \implementation
+	      \begin{enumerate}
+	        \item Execute \procedurehr{sun2107191247} on $\langle A,X\rangle$ and let $\langle B,C,q\rangle$ receive.
+	        \item Execute \procedurehr{wed2407191422} on $\langle C,1\rangle$ and let $\langle F,G,t\rangle$ receive.
+	        \item Let $D=\frac{B^2F}{1-C}$.
+	        \item Let $p(x,a,b,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item For each $r\in[1:n]$, do the following:
+	          \begin{enumerate}
+	            \item Execute procedure $q$ on $\langle a,x,r\rangle$.
+	            \item Hence verify that $\lVert\binom{a}{r}x^r\rVert^2\le(BC^r)^2$.
+	            \item Execute procedure $q$ on $\langle b,x,r\rangle$.
+	            \item Hence verify that $\lVert\binom{b}{r}x^r\rVert^2\le(BC^r)^2$.
+	          \end{enumerate}
+	          \item Execute procedure $t$ on $\langle C,n\rangle$.
+	          \item Hence verify that $\lVert nC^n\rVert^2\le(FG^n)^2$.
+	          \item Hence verify that $\lVert(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert\sum_k^{[1:n]}\sum_r^{[k:n]}\binom{a}{k+n-1-r}\binom{b}{r}x^{k+n-1}\rVert^2$
+	            \item $=\lVert\sum_k^{[1:n]}\sum_r^{[k:n]}\binom{a}{k+n-1-r}x^{k+n-1-r}\binom{b}{r}x^r\rVert^2$
+	            \item $\le(\sum_k^{[1:n]}\sum_r^{[k:n]}BC^{k+n-1-r}BC^r)^2$
+	            \item $=(B^2C^n\sum_k^{[1:n]}\sum_r^{[k:n]}C^{k-1})^2$
+	            \item $=(B^2C^n\sum_r^{[1:n]}\sum_k^{[1:r+1]}C^{k-1})^2$
+	            \item $\le(B^2C^n\sum_r^{[1:n]}\frac{1}{1-C})^2$
+	            \item $<(\frac{B^2}{1-C}\cdot nC^n)^2$
+	            \item $\le(\frac{B^2F}{1-C}G^n)^2$
+	            \item $=(DG^n)^2$.
+	          \end{enumerate}
+	        \end{enumerate}
+	      \end{enumerate}
+	  \procedure{wed2407191611}
+	    \objective
+	      Choose two rational numbers $A>0$, $1>X>0$. The objective of the following instructions is to construct a rational number $D$ and a procedure $p(a,x,n)$ to show that $\lVert(1+x)_n^a\rVert^2<D^2$ when complex numbers $\lVert x\rVert^2<X^2$, $\lVert a\rVert^2<A^2$, and a positive integer $n$ are chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Execute \procedurehr{sun2107191247} on $\langle A,X\rangle$ and let $\langle B,C,q\rangle$ receive.
+	        \item Let $D=\frac{B}{1-C}$.
+	        \item Let $p(a,x,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item For each $r\in[1:n]$, do the following:
+	          \begin{enumerate}
+	            \item Execute procedure $q$ on $\langle a,x,r\rangle$.
+	            \item Hence verify that $\lVert\binom{a}{r}x^r\rVert^2\le(BC^r)^2$.
+	          \end{enumerate}
+	          \item Hence verify that $\lVert(1+x)_n^a\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert\sum_r^{[0:n]}\binom{a}{r}x^r\rVert^2$
+	            \item $\le(\sum_r^{[0:n]}BC^r)^2$
+	            \item $\le(\frac{B}{1-C})^2=D^2$.
+	          \end{enumerate}
+	        \end{enumerate}
+	        \item \textbf{Yield $\langle D,p\rangle$.}
+	      \end{enumerate}
+	  \procedure{wed2407191627}
+	    \objective
+	      Choose two rational numbers $A>0$, $1>X>0$. The objective of the following instructions is to construct rational numbers $G>0$, $0<C<1$, $D>1$, and a procedure $p(x,a,k,n)$ to show that $\lVert(1+x)_n^{ka}-((1+x)_n^a)^k\rVert^2\le(GC^nD^k)^2$ when a non-negative integer $k$ and complex numbers $x,a$ such that $\lVert x\rVert^2\le X^2$ and $\lVert ka\rVert^2<A^2$ are chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Execute \procedurehr{wed2407191611} on $\langle A,X\rangle$ and let $\langle D,t\rangle$ receive.
+	        \item Execute \procedurehr{wed2407191521} on $\langle A,X\rangle$ and let $\langle B,C,q\rangle$ receive.
+	        \item Let $G=\frac{B}{D-1}$.
+	        \item Let $p(x,a,k,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item If $k>0$, then do the following:
+	          \begin{enumerate}
+	            \item Execute procedure $t$ on $\langle a,x,n\rangle$.
+	            \item Hence verify that $\lVert(1+x)_n^a\rVert^2<D^2$.
+	          \end{enumerate}
+	          \item For $r$ in $[0:k]$, do the following:
+	          \begin{enumerate}
+	            \item Verify that $\lVert a\rVert^2\le\lVert ka\rVert^2<A^2$.
+	            \item Verify that $\lVert(k-r-1)a\rVert^2\le\lVert ka\rVert^2<A^2$.
+	            \item Execute procedure $q$ on $\langle x,a,(k-r-1)a,n\rangle$.
+	            \item Hence verify that $\lVert(1+x)_n^a(1+x)_n^{(k-r-1)a}-(1+x)_n^{(k-r)a}\rVert^2\le(BC^n)^2$.
+	          \end{enumerate}
+	          \item Hence verify that $\lVert(1+x)_n^{ka}-((1+x)_n^a)^k\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert\sum_r^{[0:k]}(((1+x)_n^a)^r(1+x)_n^{(k-r)a}-((1+x)_n^a)^{r+1}(1+x)_n^{(k-r-1)a})\rVert^2$
+	            \item $=\lVert\sum_r^{[0:k]}((1+x)_n^a)^r((1+x)_n^{(k-r)a}-(1+x)_n^a(1+x)_n^{(k-r-1)a})\rVert^2$
+	            \item $\le(\sum_r^{[0:k]}D^rBC^n)^2$
+	            \item $=(BC^n\sum_r^{[0:k]}D^r)^2$
+	            \item $=(B\cdot\frac{D^k-1}{D-1}\cdot C^n)^2$
+	            \item $=(GC^nD^k)^2$.
+	          \end{enumerate}
+	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle G,C,D,p\rangle$.}
+	      \end{enumerate}
 		\declaration{3.33}
 			The notation \gls{complextau}, where $n$ is a positive integer, will be used as a shorthand for $\frac{4}{i}\int_r^{\mu(1,\frac{i-1}{n},n+2)}\frac{dr}{r}$.
 		\procedure{3.47}
@@ -4804,6 +4759,12 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,p\rangle$.}
 				\end{enumerate}
+		\declaration{3.15}
+			The notation \gls{complexisqrt}, where $x$ is a non-negative rational number, will be used as a shorthand for the result of executing the following instructions:
+			\begin{enumerate}
+				\item Verify that $\lceil x\rceil^2>x$.
+				\item \textbf{Yield the smallest integer $r$ in $[0:\lceil x\rceil+1]$ such that $r^2>x$.}
+			\end{enumerate}
 		\procedure{3.61}
 			\objective
 				Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,j,k,m)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a$ when positive integers $n,j,k,m$ such that $-K<j\le k<K$, $0<k-j\le\frac{K}{2}$, $n\ge b$, and $m\ge c$ are chosen.
@@ -5074,6 +5035,339 @@
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
+				\end{enumerate}
+	\end{multicols}
+	\clearpage
+	\part{Differential Arithmetic}
+	\begin{multicols}{2}
+	  \declaration{3.29}
+			The notation \gls{complexdiff}, where $x,z$ are complex numbers such that $z\ne 0$ and $f[x]$ is a function of $x$, will be used as a shorthand for $\frac{f(y+z)-f(y)}{z}$.
+		\procedure{3.83}
+			\objective
+				Choose two functions $f[x],g[x]$ and two complex numbers $y,z$ such that $z\ne 0$. The objective of the following instructions is to show that $\diff_{x=y}^z(f(x)+g(x))=\diff_{x=y}^zf(x)+\diff_{x=y}^zg(x)$.
+			\implementation
+				\begin{enumerate}
+					\item Verify that $\diff_{x=y}^z(f(x)+g(x))$
+					\begin{enumerate}
+						\item $=\frac{(f(y+z)+g(y+z))-(f(y)+g(y))}{z}$
+						\item $=\frac{f(y+z)-f(y)}{z}+\frac{g(y+z)-g(y)}{z}$
+						\item $=\diff_{x=y}^zf(x)+\diff_{x=y}^zg(x)$.
+					\end{enumerate}
+				\end{enumerate}
+		\procedure{3.84}
+			\objective
+				Choose a functions $f[x]$ and complex numbers $a,y,z$ such that $z\ne 0$. The objective of the following instructions is to show that $\diff_{x=y}^z(af(x))=a\diff_{x=y}^zf(x)$.
+			\implementation
+				\begin{enumerate}
+					\item Verify that $\diff_{x=y}^z(af(x))$
+					\begin{enumerate}
+						\item $=\frac{af(y+z)-af(y)}{z}$
+						\item $=a\frac{f(y+z)-f(y)}{z}$
+						\item $=a\diff_{x=y}^zf(x)$.
+					\end{enumerate}
+				\end{enumerate}
+		\procedure{3.17}
+			\objective
+				Choose a complex number $x$. The objective of the following instructions is to show that $\lvert\Re(x)\rvert\le\max(1,\lVert x\rVert^2)$.
+			\implementation
+				\begin{enumerate}
+					\item If $\lvert\Re(x)\rvert<1$, then do the following:
+					\begin{enumerate}
+						\item \textbf{Verify that $\lvert\Re(x)\rvert<1\le\max(1,\lVert x\rVert^2)$.}
+					\end{enumerate}
+					\item Otherwise do the following:
+					\begin{enumerate}
+						\item \textbf{Verify that $\lvert\Re(x)\rvert\le\Re(x)^2\le\lVert x\rVert^2\le\max(1,\lVert x\rVert^2)$.}
+					\end{enumerate}
+				\end{enumerate}
+		\procedure{3.18}
+			\objective
+				Choose a rational number $D\ge 0$. The objective of the following instructions is to construct two rational numbers $a,c$ and a procedure, $p(dx,n)$, to show that $\lVert\diff_{x=0}^{+dx}\exp_n(x)-1\rVert^2\le a\lVert dx\rVert^2$ when a complex number $dx$ and a positive integer $n>c$ such that $\lVert dx\rVert^2\le D$ is chosen.
+			\implementation
+				\begin{enumerate}
+					\item Let $e=2\max(1,D)+D$.
+					\item Execute \procedurehr{3.10} on $\langle e\rangle$ and let $\langle d,c,q\rangle$ receive.
+					\item Let $a=\max(1,d)$.
+					\item Let $p(dx,n)$ be the following procedure:
+					\begin{enumerate}
+						\item Verify that $n>c$.
+						\item Hence execute procedure $q$ on $\langle D,n\rangle$.
+						\item Hence verify that $\exp_n(D)\le d$.
+						\item Now using \procedurehr{2.04}, \procedurehr{3.04} and \procedurehr{3.17}, verify that $\lVert\exp_n(dx)-1-dx\rVert^2$
+						\begin{enumerate}
+							\item $=\lVert(1+\frac{dx}{n})^n-1-dx\rVert^2$
+							\item $=\lVert\frac{dx}{n}\sum_r^{[0:n]}(1+\frac{dx}{n})^r-n\frac{dx}{n}\rVert^2$
+							\item $=\lVert\frac{dx}{n}\sum_r^{[0:n]}((1+\frac{dx}{n})^r-1)\rVert^2$
+							\item $=\lVert\frac{dx}{n}\sum_r^{[0:n]}\frac{dx}{n}\sum_k^{[0:r]}(1+\frac{dx}{n})^k\rVert^2$
+							\item $=\frac{\lVert dx\rVert^4}{n^4}\lVert\sum_r^{[0:n]}\sum_k^{[0:r]}(1+\frac{dx}{n})^k\rVert^2$
+							\item $\le\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\lVert 1+\frac{dx}{n}\rVert^{2k}$
+							\item $\le\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,\lVert 1+\frac{dx}{n}\rVert^{2n})$
+							\item $=\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,(1+\frac{2\Re(dx)}{n}+\frac{\lVert dx\rVert^2}{n^2})^{n})$
+							\item $\le\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,(1+\frac{2\lvert\Re(dx)\rvert}{n}+\frac{\lVert dx\rVert^2}{n^2})^{n})$
+							\item $\le\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,(1+\frac{e}{n})^{n})$
+							\item $\le\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,d)$
+							\item $\le a\lVert dx\rVert^4$.
+						\end{enumerate}
+						\item \textbf{Therefore verify that $\lVert\diff_{x=0}^{+dx}\exp_n(x)-1\rVert^2\le a\lVert dx\rVert^2$.}
+					\end{enumerate}
+					\item \textbf{Yield the tuple $\langle a,c,p\rangle$.}
+				\end{enumerate}
+		\procedure{3.19}
+			\objective
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct three rational numbers $a,b,d$, and a procedure, $p(x,dx,n)$, to show that $\lVert\diff_{y=x}^{+dx}\exp_n(y)-\exp_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$ when two complex numbers $x,dx$ and a positive integer $n>d$ such that $2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$ are chosen. 
+			\implementation
+				\begin{enumerate}
+					\item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle e,f,q\rangle$ receive.
+					\item Execute \procedurehr{3.18} on $\langle X\rangle$ and let $\langle h,j,r\rangle$ receive.
+					\item Execute \procedurehr{3.13} on $\langle X\rangle$ and let $\langle l,m,t\rangle$ receive.
+					\item Let $a=2eX$.
+					\item Let $b=2lh$.
+					\item Let $d=\max(f,j,m)$.
+					\item Let $p(x,dx,n)$ be the following procedure:
+					\begin{enumerate}
+						\item Verify that $n>d\ge f$.
+						\item Hence execute procedure $q$ on $\langle x,dx,n\rangle$.
+						\item Therefore verify that $\lVert\exp_n(x)\exp_n(dx)-\exp_n(x+dx)\rVert^2\le\frac{e\lVert xdx\rVert^2}{n^2}$.
+						\item Verify that $n>d\ge j$.
+						\item Execute procedure $r$ on $\langle dx,n\rangle$.
+						\item Therefore verify that $\lVert\frac{\exp_n(dx)-1}{dx}-1\rVert^2\le h\lVert dx\rVert^2$.
+						\item Verify that $n>d\ge m$.
+						\item Execute procedure $t$ on $\langle x,n\rangle$.
+						\item Therefore verify that $\lVert\exp_n(x)\rVert^2\le l$.
+						\item Using \procedurehr{3.04}, verify that $\lVert\exp_n(x+dx)-\exp_n(x)-dx\exp_n(x)\rVert^2$
+						\begin{enumerate}
+							\item $=\lVert\exp_n(x+dx)-\exp_n(x)\exp_n(dx)+\exp_n(x)\exp_n(dx)-\exp_n(x)-dx\exp_n(x)\rVert^2$
+							\item $\le 2\lVert\exp_n(x+dx)-\exp_n(x)\exp_n(dx)\rVert^2+2\lVert\exp_n(x)\rVert^2\lVert\exp_n(dx)-1-dx\rVert^2$
+							\item $\le\frac{2e\lVert x\rVert^2\lVert dx\rVert^2}{n^2}+2lh\lVert dx\rVert^4$
+							\item $\le\frac{2eX\lVert dx\rVert^2}{n^2}+2lh\lVert dx\rVert^4$
+						\end{enumerate}
+						\item \textbf{Therefore verify that $\lVert\diff_{y=x}^{+dx}\exp_n(y)-\exp_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$.}
+					\end{enumerate}
+					\item \textbf{Yield the tuple $\langle a,b,d,p\rangle$.}
+				\end{enumerate}
+		\procedure{3.20}
+			\objective
+				Choose two rational numbers $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,c$ and a procedure, $p(x,dx,n)$, to show that $\lVert\diff_{y=x}^{+dx}\exp_n(y)\rVert^2\le a$ when two rational numbers $x,dx$ and a positive integer $n>c$ such that $2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$ are chosen.
+			\implementation
+				\begin{enumerate}
+					\item Execute \procedurehr{3.19} on $\langle X\rangle$ and let $\langle d,e,f,q\rangle$ receive.
+					\item Execute \procedurehr{3.13} on $\langle X\rangle$ and let $\langle h,j,r\rangle$ receive.
+					\item Let $a=(2d+eX+2h)$.
+					\item Let $c=\max(j,f)$.
+					\item Let $p(x,dx,n)$ be the following procedure:
+					\begin{enumerate}
+						\item Verify that $n>c\ge f$.
+						\item Execute procedure $q$ on $\langle x,dx,n\rangle$.
+						\item Hence verify that $\lVert\frac{\exp_n(x+dx)-\exp_n(x)}{dx}-\exp_n(x)\rVert^2\le\frac{d}{n^2}+e\lVert dx\rVert^2$.
+						\item Verify that $n>c\ge j$.
+						\item Execute procedure $r$ on $\langle x,n\rangle$.
+						\item Hence verify that $\lVert\exp_n(x)\rVert^2\le h$.
+						\item Now using \procedurehr{3.04}, verify that $\lVert\exp_n(x+dx)-\exp_n(x)\rVert^2$
+						\begin{enumerate}
+							\item $=\lVert\exp_n(x+dx)-\exp_n(x)-dx\exp_n(x)+dx\exp_n(x)\rVert^2$
+							\item $\le 2\lVert\exp_n(x+dx)-\exp_n(x)-dx\exp_n(x)\rVert^2+2\lVert dx\rVert^2\lVert\exp_n(x)\rVert^2$
+							\item $\le 2d\frac{\lVert dx\rVert^2}{n^2}+2e\lVert dx\rVert^4+2h\lVert dx\rVert^2$
+							\item $\le (2d+eX+2h)\lVert dx\rVert^2$.
+						\end{enumerate}
+						\item Therefore verify that $\lVert\diff_{y=x}^{+dx}\exp_n(y)\rVert^2\le a$.
+					\end{enumerate}
+					\item \textbf{Yield the tuple $\langle a,c,p\rangle$.}
+				\end{enumerate}
+		 \procedure{3.27}
+			\objective
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct three rational numbers $a,b,d$ and a procedure, $p(x,dx,n)$, to show that $\lVert\diff_{y=x}^{+dx}\cos_n(y)+\sin_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$ when two complex numbers $x,dx$ and a positive integer $n>d$ such that $2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$ are chosen.
+			\implementation
+				\begin{enumerate}
+					\item Execute \procedurehr{3.19} on $\langle X\rangle$ and let $\langle a,b,d,q\rangle$.
+					\item Let $p(x,dx,n)$ be the following procedure:
+					\begin{enumerate}
+						\item Verify that $2(\lVert ix\rVert^2+\lVert idx\rVert^2)=2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$.
+						\item Verify that $\lVert idx\rVert^2=\lVert dx\rVert^2\le X$.
+						\item Hence execute procedure $q$ on $\langle ix,idx,n\rangle$.
+						\item Hence verify that $\lVert\frac{\exp_n(ix+idx)-\exp_n(ix)}{idx}-\exp_n(ix)\rVert^2\le\frac{a}{n^2}+b\lVert idx\rVert^2$.
+						\item Verify that $2(\lVert -ix\rVert^2+\lVert -idx\rVert^2)=2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$.
+						\item Verify that $\lVert -idx\rVert^2=\lVert dx\rVert^2\le X$.
+						\item Hence execute procedure $q$ on $\langle -ix,-idx,n\rangle$.
+						\item Hence verify that $\lVert\frac{\exp_n(-ix-idx)-\exp_n(-ix)}{-idx}-\exp_n(-ix)\rVert^2\le\frac{a}{n^2}+b\lVert -idx\rVert^2$.
+						\item Using \procedurehr{3.04}, verify that $\lVert\cos_n(x+dx)-\cos_n(x)+\sin_n(x)dx\rVert^2$
+						\begin{enumerate}
+							\item $=\lVert\frac{\exp_n(i(x+dx))+\exp_n(-i(x+dx))}{2}-\frac{\exp_n(ix)+\exp_n(-ix)}{2}+\frac{dx\exp_n(ix)-dx\exp_n(-ix)}{2i}\rVert^2$
+							\item $\le\frac{\lVert\exp_n(ix+idx)-\exp_n(ix)-idx\exp_n(ix)\rVert^2}{2}+\frac{\lVert\exp_n(-ix-idx)-\exp_n(-ix)-(-idx)\exp_n(-ix)\rVert^2}{2}$
+							\item $\le\frac{\lVert idx\rVert^2(\frac{a}{n^2}+b\lVert idx\rVert^2)}{2}+\frac{\lVert -idx\rVert^2(\frac{a}{n^2}+b\lVert -idx\rVert^2)}{2}$
+							\item $=\lVert dx\rVert^2(\frac{a}{n^2}+b\lVert dx\rVert^2)$.
+						\end{enumerate}
+						\item \textbf{Therefore verify that $\lVert\diff_{y=x}^{+dx}\cos_n(y)+\sin_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$.}
+					\end{enumerate}
+					\item \textbf{Yield the tuple $\langle a,b,d,p\rangle$.}
+				\end{enumerate}
+		\procedure{3.28}
+			\objective
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct three rational numbers $a,b,d$ and a procedure, $p(x,dx,n)$, to show that $\lVert\diff_{y=x}^{+dx}\sin_n(y)-\cos_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$ when two complex numbers $x,dx$ and a positive integer $n>d$ such that $2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$ are chosen.
+			\implementation
+				Implementation is analogous to that of \procedurehr{3.27}.
+		\declaration{3.30}
+			The notation \gls{complexintegral}, where $R$ is a non-empty list of complex numbers and $f[\#r,r,dr]$ is a function of $\#r,r,dr$, will be used as a shorthand for $\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_{t})$.
+		\procedure{3.86}
+			\objective
+				Choose two functions $f[\#r,r,dr],g[\#r,r,dr]$, and a non-empty list of complex numbers $R$. The objective of the following instructions is to show that $\int_r^R(f(\#r,r,dr)+g(\#r,r,dr))=\int_r^Rf(\#r,r,dr)+\int_r^Rg(\#r,r,dr)$.
+			\implementation
+				\begin{enumerate}
+					\item Verify that $\int_r^R(f(\#r,r,dr)+g(\#r,r,dr))$
+					\begin{enumerate}
+						\item $=\sum_t^{[0:\lvert R\rvert-1]}(f(t,R_t,R_{t+1}-R_t)+g(t,R_t,R_{t+1}-R_t))$
+						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_t)+\sum_t^{[0:\lvert R\rvert-1]}g(t,R_t,R_{t+1}-R_t)$
+						\item $=\int_r^Rf(\#r,r,dr)+\int_r^Rg(\#r,r,dr)$
+					\end{enumerate}
+				\end{enumerate}
+		\procedure{3.87}
+			\objective
+				Choose a complex number $a$, a function $f[\#r,r,dr]$, and a non-empty list of complex numbers $R$. The objective of the following instructions is to show that $\int_r^Raf(\#r,r,dr)=a\int_r^Rf(\#r,r,dr)$.
+			\implementation
+				\begin{enumerate}
+					\item Verify that $\int_r^Raf(\#r,r,dr)$
+					\begin{enumerate}
+						\item $=\sum_t^{[0:\lvert R\rvert-1]}af(t,R_t,R_{t+1}-R_t)$
+						\item $=a\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_t)$
+						\item $=a\int_r^Rf(\#r,r,dr)$
+					\end{enumerate}
+				\end{enumerate}
+		\procedure{3.88}
+			\objective
+				Choose a function $f[r]$ and two non-empty lists of complex numbers $R,S$ such that $R_{\lvert R\rvert-1}=S_0$. The objective of the following instructions is to show that $\int_r^{R^\frown S}f(r)dr=\int_r^Rf(r)dr+\int_r^Sf(r)dr$.
+			\implementation
+				\begin{enumerate}
+					\item Let $T=R^\frown S$.
+					\item Verify that $\int_r^{T}f(r)dr$
+					\begin{enumerate}
+						\item $=\sum_t^{[0:\lvert T\rvert-1]}f(T_t)(T_{t+1}-T_t)$
+						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(T_t)(T_{t+1}-T_t)+\sum_t^{[\lvert R\rvert-1:\lvert R\rvert]}f(T_t)(T_{t+1}-T_t)+\sum_t^{[\lvert R\rvert:\lvert T\rvert-1]}f(T_t)(T_{t+1}-T_t)$
+						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(R_t)(R_{t+1}-R_t)+f(T_{\lvert R\rvert-1})(T_{\lvert R\rvert}-T_{\lvert R\rvert-1})+\sum_t^{[\lvert R\rvert:\lvert T\rvert-1]}f(S_{t-\lvert R\rvert})(S_{t+1-\lvert R\rvert}-S_{t-\lvert R\rvert})$
+						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(R_t)(R_{t+1}-R_t)+f(T_{\lvert R\rvert-1})(S_0-R_{\lvert R\rvert-1})+\sum_t^{[0:\lvert S\rvert-1]}f(S_{t})(S_{t+1}-S_{t})$
+						\item $=\int_r^Rf(r)dr+\int_r^Sf(r)dr$.
+					\end{enumerate}
+				\end{enumerate}
+		\procedure{3.33}
+			\objective
+				Choose a function $f[r]$ and a list of complex numbers $R$. The objective of the following instructions is to show that $\lVert\int_r^Rf(r)dr\rVert^2\le(\lvert R\rvert-1)^2\max(\lVert\Delta R\rVert^2)\max(\lVert f(R_{[0:\lvert R\rvert-1]})\rVert^2)$
+			\implementation
+				\begin{enumerate}
+					\item Verify that $\lVert\int_r^Rf(r)dr\rVert^2$
+					\begin{enumerate}
+						\item $\le(\lvert R\rvert-1)\int_r^R\lVert f(r)\rVert^2\lVert dr\rVert^2$
+						\item $\le(\lvert R\rvert-1)\int_r^R\max(\lVert f(R_{[0:\lvert R\rvert-1]})\rVert^2)\max(\lVert\Delta R\rVert^2)$
+						\item $\le(\lvert R\rvert-1)^2\max(\lVert f(R_{[0:\lvert R\rvert-1]})\rVert^2)\max(\lVert\Delta R\rVert^2)$.
+					\end{enumerate}
+				\end{enumerate}
+		\procedure{3.34}
+			\objective
+				Choose a list of functions $F$ and a list of complex numbers $R$ such that $F_0(R_1)=F_1(R_1),F_1(R_2)=F_2(R_2),\cdots,F_{\lvert R\rvert-3}(R_{\lvert R\rvert-2})=F_{\lvert R\rvert-2}(R_{\lvert R\rvert-2})$. The objective of the following instructions is to show that $\int_r^Rdr\diff_{z=r}^{dr}F_{\#r}(z)=F_{\lvert R\rvert-2}(R_{\lvert R\rvert-1})-F_0(R_0)$.
+			\implementation
+				\begin{enumerate}
+					\item Verify that $\int_r^Rdr\diff_{z=r}^{dr}F_{\#r}(z)$
+					\begin{enumerate}
+						\item $=\int_r^Rdr(\frac{F_{\#r}(r+dr)-F_{\#r}(r)}{dr})$
+						\item $=\int_r^R(F_{\#r}(r+dr)-F_{\#r}(r))$
+						\item $=\sum_k^{[0:\lvert R\rvert-1]}(F_{k}(R_{k+1})-F_{k}(R_k))$
+						\item $=-F_0(R_0)+\sum_k^{[0:\lvert R\rvert-2]}(F_{k}(R_{k+1})-F_{k+1}(R_{k+1}))+F_{\lvert R\rvert-2}(R_{\lvert R\rvert-1})$
+						\item $=-F_0(R_0)+\sum_k^{[0:\lvert R\rvert-2]}0+F_{\lvert R\rvert-2}(R_{\lvert R\rvert-1})$
+						\item $=F_{\lvert R\rvert-2}(R_{\lvert R\rvert-1})-F_0(R_0)$.
+					\end{enumerate}
+				\end{enumerate}
+		\procedure{3.41}
+			\objective
+				Choose three rational numbers $X>0$, $Y\ge 0$, and $Z\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,d$, and a procedure, $p(x,y[x],dx,n)$, to show that $\lVert\diff_{z=x}^{+dx}(z\exp_n(-y(z)))\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$ when a function $y[x]$, two complex numbers $x,dx$ and two positive integers $n>d,m$ such that $\diff_{z=x}^{+dx}y(z)=\frac{1}{x}$, $\lVert x\rVert^2\ge X$, $\lVert dx\rVert^2\le Y$, and $\lVert y(x)\rVert^2\le Z$ are chosen.
+			\implementation
+				\begin{enumerate}
+					\item Execute \procedurehr{3.13} on $\langle Z\rangle$ and let $\langle a_3,b_3,p_3\rangle$ receive.
+					\item Execute \procedurehr{3.19} on $\langle 2(Z+\frac{Y}{X})\rangle$ and let $\langle a_4,b_4,c_4,p_4\rangle$ receive.
+					\item Let $a=4a_4(1+\frac{Y}{X})$.
+					\item Let $b=\frac{2}{X}(2b_4+\frac{2b_4Y}{X}+a_3)$.
+					\item Let $d=\max(b_3,c_4)$.
+					\item Let $p(x,y[x],dx,n)$ be the following procedure:
+					\begin{enumerate}
+						\item Execute procedure $p_3$ on $\langle-y(x),n\rangle$.
+						\item Hence verify that $\lVert\exp_n(-y(x))\rVert^2\le a_3$.
+						\item Execute procedure $p_4$ on $\langle -y(x),-\frac{dx}{x},n\rangle$.
+						\item Hence verify that $\lVert dx\rVert^2\lVert\diff_{z=x}^{+dx}\exp_n(-y(z))+\frac{1}{x}\exp_n(-y(x))\rVert^2=\lVert\frac{dx}{x}\rVert^2\lVert\diff_{z=-y(x)}^{-\frac{dx}{x}}\exp_n(z)-\exp_n(-y(x))\rVert^2\le\frac{a_4}{n^2}\lVert\frac{dx}{x}\rVert^2+b_4\lVert\frac{dx}{x}\rVert^4$.
+						\item Hence verify that\footnote{Certain techniques were used to construct instructions (ii), (iii), and (iv); these techniques go by the name of "the chain rule" and "the product rule".} $\lVert dx\diff_{z=x}^{dx}(z\exp_n(-y(z)))\rVert^2$
+						\begin{enumerate}
+							\item $=\lVert(x+dx)(\exp_n(-y(x)-\frac{dx}{x})-\exp_n(-y(x))+\frac{dx}{x}\exp_n(-y(x)))-\frac{dx^2}{x}\exp_n(-y(x))\rVert^2$
+							\item $\le 2\lVert x+dx\rVert^2\lVert \exp_n(-y(x)-\frac{dx}{x})-\exp_n(-y(x))+\frac{dx}{x}\exp_n(-y(x))\rVert^2+2\frac{\lVert dx\rVert^4}{\lVert x\rVert^2}\lVert\exp_n(-y(x))\rVert^2$
+							\item $\le 4(\lVert x\rVert^2+\lVert dx\rVert^2)(\frac{a_4}{n^2}\frac{\lVert dx\rVert^2}{\lVert x\rVert^2}+b_4\frac{\lVert dx\rVert^4}{\lVert x\rVert^4})+2\frac{\lVert dx\rVert^4}{X}a_3$
+							\item $\le 4(\frac{a_4}{n^2}\lVert dx\rVert^2+b_4\frac{\lVert dx\rVert^4}{\lVert x\rVert^2})+4(\frac{a_4}{n^2}\frac{\lVert dx\rVert^4}{\lVert x\rVert^2}+b_4\frac{\lVert dx\rVert^6}{\lVert x\rVert^4})+2\frac{\lVert dx\rVert^4}{X}a_3$.
+							\item $\le 4(\frac{a_4}{n^2}\lVert dx\rVert^2+b_4\frac{\lVert dx\rVert^4}{X})+4(\frac{a_4}{n^2}\frac{\lVert dx\rVert^4}{X}+b_4\frac{\lVert dx\rVert^6}{X^2})+2\frac{\lVert dx\rVert^4}{X}a_3$.
+						\end{enumerate}
+						\item \textbf{Therefore verify that $\lVert\diff_{z=x}^{dx}(z\exp_n(-y(z)))\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$.}
+					\end{enumerate}
+					\item \textbf{Yield the tuple $\langle a,b,d,p\rangle$.}
+				\end{enumerate}
+		\declaration{3.31}
+			The notation \gls{complexDeltaX}, where $X$ is a list, will be used as a shorthand for $\langle X_1-X_0,X_2-X_1,\cdots,X_{\lvert X\rvert-1}-X_{\lvert X\rvert-2}\rangle$.
+		\procedure{3.42}
+			\objective
+				Choose two rational numbers $X>0,Z\ge 0$. The objective of the following instructions is to construct rational numbers $a,h,e$ and a procedure $p(R,n)$ to show that $\lVert R_{\lvert R\rvert-1}\exp_n(-\int_r^R\frac{dr}{r})-R_0\rVert^2\le\frac{a}{n^2}+h\max(\lVert\Delta R\rVert^2)$ when a non-empty list of complex numbers $R$ and a positive integer $n$ such that $n>e$, $\min(\lVert R_{[0:\lvert R\rvert-1]}\rVert^2)\ge X$, and $(\lvert R\rvert-1)^2\max(\lVert\Delta R\rVert^2)\le Z$ are chosen.
+			\implementation
+				\begin{enumerate}
+					\item Execute \procedurehr{3.41} on $\langle X,Z,\frac{Z}{X}\rangle$ and let $\langle c,d,e,q\rangle$ receive.
+					\item Let $a=cZ$.
+					\item Let $h=dZ$.
+					\item Let $p(R,n)$ be the following procedure:
+					\begin{enumerate}
+						\item For $k$ in $[0:\lvert R\rvert-1]$, do the following:
+						\begin{enumerate}
+							\item Let $y_k(R_{k})=\int_r^{R_{[0:k+1]}}\frac{dr}{r}$.
+							\item Let $y_k(R_{k+1})=\int_r^{R_{[0:k+2]}}\frac{dr}{r}$.
+							\item Verify that $\diff_{z=R_{k}}^{R_{k+1}-R_{k}}y_k(z)=\frac{1}{R_{k}}$.
+							\item Using \procedurehr{3.33}, verify that $\lVert y_k(R_{k})\rVert^2\le\frac{Z}{X}$.
+							\item Verify that $\lVert R_{k}\rVert^2\ge X$.
+							\item Verify that $\lVert R_{k+1}-R_{k}\rVert^2\le Z$.
+							\item Execute procedure $q$ on $\langle R_{k},y_{k+1},R_{k+1}-R_{k},n\rangle$.
+							\item Hence verify that $\lVert\diff_{z=R_{k}}^{R_{k+1}-R_{k}}(z\exp_n(-y_k(z)))\rVert^2\le\lVert R_{k+1}-R_{k}\rVert^2(\frac{c}{n^2}+d\lVert R_{k+1}-R_{k}\rVert^2)$
+						\end{enumerate}
+						\item Hence using \procedurehr{3.34}, verify that $\lVert R_{\lvert R\rvert-1}\exp_n(-\int_r^R\frac{dr}{r})-R_0\rVert^2$
+						\begin{enumerate}
+							\item $=\lVert R_{\lvert R\rvert-1}\exp_n(-y_{\lvert R\rvert-2}(R_{\lvert R\rvert-1}))-R_0\exp_n(-y_0(R_0))\rVert^2$
+							\item $=\lVert\int_{k}^{R}dk\diff_{z=k}^{dk}(z\exp_n(-y_{\#k}(z))\rVert^2$
+							\item $\le(\lvert R\rvert-1)\int_{k}^{R}\lVert dk\diff_{z=k}^{dk}(z\exp_n(-y_{\#k}(z))\rVert^2$
+							\item $\le(\lvert R\rvert-1)\int_{k}^{R}\lVert dk\rVert^2(\frac{c}{n^2}+d\lVert dk\rVert^2)$
+							\item $\le(\lvert R\rvert-1)^2\max(\lVert\Delta R\rVert^2)(\frac{c}{n^2}+d\lVert\max(\lVert\Delta R\rVert^2)\rVert^2)$
+							\item $\le Z(\frac{c}{n^2}+d\lVert\max(\lVert\Delta R\rVert^2)\rVert^2)$
+							\item $\le\frac{a}{n^2}+h\max(\lVert\Delta R\rVert^2)$
+						\end{enumerate}
+					\end{enumerate}
+					\item \textbf{Yield the tuple $\langle a,h,e,p\rangle$.}
+				\end{enumerate}
+		\procedure{3.43}
+			\objective
+				Choose two rational numbers $X>0,Y\ge 0,Z\ge 0$. The objective of the following instructions is to construct rational numbers $a,z,b$ and a procedure $p(R,n)$ to show that $\lVert R_{\lvert R\rvert-1}-R_0\exp_n(\int_r^R\frac{dr}{r})\rVert^2\le\frac{a}{n^2}+z\max(\lVert\Delta R\rVert^2)$ when a list of complex numbers $R$ and an integer $n$ such that $n>b$, $\min(\lVert R_{[0:\lvert R\rvert-1]}\rVert^2)\ge X$, $\lVert R_{\lvert R\rvert-1}\rVert^2\le Y$, and $(\lvert R\rvert-1)^2\max(\lVert\Delta R\rVert^2)\le Z$ are chosen.
+			\implementation
+				\begin{enumerate}
+					\item Execute \procedurehr{3.13} on $\langle\frac{Z}{X}\rangle$ and let $\langle g,h,t\rangle$ receive.
+					\item Execute \procedurehr{3.15} on $\langle\frac{4Z}{X}\rangle$ and let $\langle c,d,q\rangle$ receive.
+					\item Execute \procedurehr{3.42} on $\langle X,Z\rangle$ and let $\langle e,k,f,r\rangle$ receive.
+					\item Let $a=2(\frac{cYZ^2}{X^2}+2ge)$.
+					\item Let $z=2gk$.
+					\item Let $b=\max(d,f,h)$.
+					\item Let $p(R,n)$ be the following procedure:
+					\begin{enumerate}
+						\item Now execute procedure $r$ on $\langle R,n\rangle$.
+						\item Hence verify that $\lVert R_{\lvert R\rvert-1}\exp_n(-\int_r^R\frac{dr}{r})-R_0\rVert^2\le\frac{e}{n^2}+k\max(\lVert\Delta R\rVert^2)$.
+						\item Using \procedurehr{3.33}, verify that $\lVert\int_r^R\frac{dr}{r}\rVert^2\le\frac{Z}{X}$.
+						\item Execute procedure $t$ on $\langle\int_r^R\frac{dr}{r},n\rangle$.
+						\item Hence verify that $\lVert\exp_n(\int_r^R\frac{dr}{r})\rVert^2\le g$.
+						\item Now verify that $2(\lVert\int_r^R\frac{dr}{r}\rVert^2+\lVert-\int_r^R\frac{dr}{r}\rVert^2)\le\frac{4Z}{X}$.
+						\item Execute procedure $q$ on $\langle\int_r^R\frac{dr}{r},-\int_r^R\frac{dr}{r},n\rangle$.
+						\item Hence verify that $\lVert\exp_n(\int_r^R\frac{dr}{r})\exp_n(-\int_r^R\frac{dr}{r})-\exp_n(0)\rVert^2\le\frac{c\lVert\int_r^R\frac{dr}{r}\rVert^4}{n^2}\le\frac{cZ^2}{n^2X^2}$.
+						\item Hence verify that $\lVert R_{\lvert R\rvert-1}-R_0\exp_n(\int_r^R\frac{dr}{r})\rVert^2$
+						\begin{enumerate}
+							\item $=\lVert R_{\lvert R\rvert-1}\exp_n(0)-R_0\exp_n(\int_r^R\frac{dr}{r})\rVert^2$
+							\item $=\lVert R_{\lvert R\rvert-1}\exp_n(0)-R_{\lvert R\rvert-1}\exp_n(\int_r^R\frac{dr}{r})\exp_n(-\int_r^R\frac{dr}{r})+R_{\lvert R\rvert-1}\exp_n(\int_r^R\frac{dr}{r})\exp_n(-\int_r^R\frac{dr}{r})-R_0\exp_n(\int_r^R\frac{dr}{r})\rVert^2$
+							\item $\le 2\lVert R_{\lvert R\rvert-1}\rVert^2\lVert\exp_n(0)-\exp_n(\int_r^R\frac{dr}{r})\exp_n(-\int_r^R\frac{dr}{r})\rVert^2+2\lVert\exp_n(\int_r^R\frac{dr}{r})\rVert^2\lVert R_{\lvert R\rvert-1}\exp_n(-\int_r^R\frac{dr}{r})-R_0\rVert^2$
+							\item $\le 2\frac{cZ^2\lVert R_{\lvert R\rvert-1}\rVert^2}{n^2X^2}+2g(\frac{e}{n^2}+k\max(\lVert\Delta R\rVert^2))$
+							\item $=\frac{a}{n^2}+z\max(\lVert\Delta R\rVert^2)$.
+						\end{enumerate}
+					\end{enumerate}
+					\item \textbf{Yield the tuple $\langle a,z,b,p\rangle$.}
 				\end{enumerate}
 	\end{multicols}
 	\clearpage
