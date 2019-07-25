@@ -3875,6 +3875,36 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
+		\procedure{thu2507191359}
+		  \objective
+		    Choose a rational number $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b$ such that $a>0$ and a procedure $p(x,y,n)$ to show that $\lVert\exp_n(x-y)-\frac{\exp_n(x)}{\exp_n(y)}\rVert^2\le(\frac{a}{n})^2$ when two complex numbers $x,y$ and a positive integer $n$ such that $\lVert x\rVert^2\le X$, $\lVert y\rVert^2\le X$, and $n>b$ are chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle c,d,q\rangle$ receive.
+		      \item Execute \procedurehr{3.14} on $\langle X\rangle$ and let $\langle e,f,r\rangle$ receive.
+		      \item Execute \procedurehr{3.13} on $\langle X\rangle$ and let $\langle g,h,t\rangle$ receive.
+		      \item Let $b=\max(d,f,h)$.
+		      \item Let $a=c(1+\frac{g}{e})X^2$.
+		      \item Let $p(x,y,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $r$ on $\langle y,n\rangle$.
+		        \item Hence verify that $\lVert\exp_n(y)\rVert^2\ge e^2$.
+		        \item Execute procedure $q$ on $\langle y,-y,n\rangle$.
+		        \item Hence verify that $\lVert\exp_n(y)\exp_n(-y)-1\rVert^2=\lVert\exp_n(y)\exp_n(-y)-\exp_n(y-y)\rVert^2\le\frac{c^2\lVert y\rVert^2}{n^2}$.
+		        \item Hence verify that $\lVert\exp_n(-y)-\frac{1}{\exp_n(y)}\rVert^2=\frac{\lVert\exp_n(y)\exp_n(-y)-1\rVert^2}{\lVert\exp_n(y)\rVert^2}\le\frac{c^2\lVert y\rVert^4}{e^2n^2}$.
+		        \item Execute procedure $t$ on $\langle x,n\rangle$.
+		        \item Hence verify that $\lVert\exp_n(x)\rVert^2\le g^2$.
+		        \item Execute procedure $q$ on $\langle x,-y,n\rangle$.
+		        \item Hence verify that $\lVert\exp_n(x)\exp_n(-y)-\exp_n(x-y)\rVert^2\le\frac{c^2\lVert x\rVert^2\lVert y\rVert^2}{n^2}$.
+		        \item Hence verify that $\lVert\exp_n(x-y)-\frac{\exp_n(x)}{\exp_n(y)}\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert\exp_n(x-y)-\exp_n(x)\exp_n(-y)+\exp_n(x)(\exp_n(-y)-\frac{1}{\exp_n(y)})\rVert^2$
+		          \item $\le(\frac{cX^2}{n}+\frac{gcX^2}{en})^2$
+		          \item $=(\frac{a}{n})^2$.
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
+		    \end{enumerate}
 		\procedure{3.16}
 			\objective
 				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $c>1$ and a procedure, $p(x,k,n)$, to show that $\lVert\exp_n(kx)-\exp_n(x)^k\rVert^2\le(\frac{ac^k}{n})^2$ when a complex number $x$, a non-negative integer $k$, and a positive integer $n$ such that $n>b$, $\lVert kx\rVert^2\le X^2$ are chosen.
@@ -3909,6 +3939,43 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,p\rangle$.}
 				\end{enumerate}
+		\procedure{thu2507191307}
+		  \objective
+		    Choose a rational number $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b$ such that $a>0$, and a procedure $p(x,y,n)$ to show that $\lVert\exp_n(y)-\exp_n(x)\rVert^2\le\lVert x-y\rVert^2a^2$ when two complex numbers $x,y$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X$ and $\lVert y\rVert^2\le X$ are chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute \procedurehr{3.13} on $\langle X\rangle$ and let $\langle c,b,q\rangle$ receive.
+		      \item Let $a=\max(1,c)^2$.
+		      \item Let $p(x,y,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Verify that $\lVert x\rVert^2\le X$.
+		        \item Execute procedure $q$ on $\langle x,n\rangle$.
+		        \item Hence verify that $\lVert\exp_n(x)\rVert^2\le c^2$.
+		        \item Verify that $\lVert y\rVert^2\le X$.
+		        \item Execute procedure $q$ on $\langle y,n\rangle$.
+		        \item Hence verify that $\lVert\exp_n(y)\rVert^2\le c^2$.
+		        \item For each $r\in[0:n]$, do the following:
+		        \begin{enumerate}
+		          \item Verify that $\lVert(1+\frac{x}{n})^r\rVert^2$
+		          \begin{enumerate}
+		            \item $=(\lVert 1+\frac{x}{n}\rVert^2)^r$
+		            \item $\le\max((\lVert 1+\frac{x}{n}\rVert^2)^n,1)$
+		            \item $=\max(\lVert\exp_n(x)\rVert^2,1)$
+		            \item $\le\max(c^2,1)$
+		            \item $=\max(c,1)^2$.
+		          \end{enumerate}
+		          \item Using analogous steps, also verify that $\lVert(1+\frac{y}{n})^r\rVert^2\le\max(c,1)^2$.
+		        \end{enumerate}
+		        \item Hence verify that $\lVert\exp_n(y)-\exp_n(x)\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert(1+\frac{y}{n})^n-(1+\frac{x}{n})^n\rVert^2$
+		          \item $=\lVert(\frac{y}{n}-\frac{x}{n})\sum_r^{[0:n]}(1+\frac{y}{n})^r(1+\frac{x}{n})^{n-1-r}\rVert^2$
+		          \item $\le\lVert y-x\rVert^2(\frac{1}{n}\sum_r^{[0:n]}\max(c,1)^2)^2$
+		          \item $=\lVert y-x\rVert^2a^2$.
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
+		    \end{enumerate}
 		\procedure{3.21}
 			\objective
 				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p(x,n)$, to show that $\lVert\sum_r^{[0:{n+1}]}\frac{x^r}{r!}-\exp_n(x)\rVert^2\le(\frac{a}{n})^2$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X^2$ are chosen.
