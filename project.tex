@@ -4384,6 +4384,141 @@
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle G,C,D,p\rangle$.}
 	      \end{enumerate}
+	  \procedure{wed2407191824}
+	    \objective
+	      Choose a rational number $A>0$. The objective of the following instructions is to construct rational numbers $M>1$, $N>0$, and a procedure $p(a,n)$ to show that $\lVert\binom{a}{n}\rVert^2\le(\frac{M}{n})^{2(\lfloor a\rfloor+1)}$ and $\frac{M}{n}<1$ when a rational number $-1<a<A$ and an integer $n>N$ are chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Let $M=2A$.
+	        \item Let $N=2A$.
+	        \item Let $p(a,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item Verify that $-1<a<A$.
+	          \item Verify that $n>N=2A>2a$.
+	          \item Hence verify that $\frac{2a}{n}<\frac{2A}{2A}=1$.
+	          \item Verify that $\frac{n}{2}>a$.
+	          \item Therefore verify that $n-\lfloor a\rfloor>n-a>n-\frac{n}{2}=\frac{n}{2}$.
+	          \item Hence verify that $\lVert\binom{a}{n}\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert\frac{a^{\ul{n}}}{n!}\rVert^2$
+	            \item $=\lVert\prod_k^{[0:n]}\frac{a-k}{k+1}\rVert^2$
+	            \item $=\prod_k^{[0:n]}\frac{(a-k)^2}{(k+1)^2}$
+	            \item $=\prod_k^{[0:\lfloor a\rfloor+1]}(k-a)^2\cdot\prod_k^{[0:n]}\frac{(k+\lfloor a\rfloor+1-a)^2}{(k+1)^2}\cdot\prod_k^{[n-\lfloor a\rfloor-1:n]}\frac{1}{(k+1)^2}$
+	            \item $\le(a^{\lfloor a\rfloor+1}\cdot 1^n\cdot(\frac{1}{n-\lfloor a\rfloor})^{\lfloor a\rfloor+1})^2$
+	            \item $=(\frac{a}{n-\lfloor a\rfloor})^{2(\lfloor a\rfloor+1)}$
+	            \item $\le(\frac{2a}{n})^{2(\lfloor a\rfloor+1)}$
+	            \item $\le(\frac{M}{n})^{2(\lfloor a\rfloor+1)}$.
+	          \end{enumerate}
+	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle M,N,p\rangle$.}
+	      \end{enumerate}
+	  \procedure{thu2507190646}
+	    \objective
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct rational numbers $B>0$, $N>0$, and a procedure $p(x,a,b,n)$ to show that $\lVert(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}\rVert^2\le(\frac{B}{n})^2$ when a complex number $x$, two rational numbers $a,b$, and a positive integer $n$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $0<a<1$, and $0<b<1$ are chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Execute \procedurehr{wed2407191824} on $\langle 1\rangle$ and let $\langle M,N,q\rangle$ receive.
+	        \item Let $B=\frac{6M^2}{X}$.
+	        \item Let $p(x,a,b,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item For $r\in[1:n]$, for $k\in[0:r]$, verify the following in order:
+	          \begin{enumerate}
+	            \item $1\le r-k\le r<n$
+	            \item $1<n+k-r+1$
+	            \item $0<\frac{1}{n+k-r+1}<1$
+	            \item $0<\frac{a}{n+k-r+1}<a$
+	            \item $-1<\frac{a}{n+k-r+1}-1<a-1\le 0$
+	            \item $-\lvert\binom{a}{k+n-r}\rvert<(\frac{a}{n+k-r+1}-1)\lvert\binom{a}{k+n-r}\rvert=-\lvert\binom{a}{k+1+n-r}\rvert\le 0$
+	            \item $\sgn(\binom{a}{k+1+n-r})=\sgn((\frac{a}{k+1+n-r}-1)\binom{a}{k+n-r})=-\sgn(\binom{a}{k+n-r})$
+	            \item $\lvert\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k\rvert=\lvert\binom{a}{k+1+n-r}+\binom{a}{k+n-r}\rvert=\lvert\binom{a}{k+n-r}\rvert-\lvert\binom{a}{k+1+n-r}\rvert$
+	          \end{enumerate}
+	          \item Now use procedure $q$ to verify the following:
+	          \begin{enumerate}
+	            \item $\lVert\binom{a+b}{n}\rVert^2\le(\frac{M}{n})^{2(\lfloor a+b\rfloor+1)}\le(\frac{M^2}{n})^2$
+	            \item $\lVert\binom{a}{n}\rVert^2\le(\frac{M}{n})^{2(\lfloor a\rfloor+1)}\le(\frac{M^1}{n})^2\le(\frac{M^2}{n})^2$
+	            \item $\lVert\binom{b}{n}\rVert^2\le(\frac{M}{n})^{2(\lfloor b\rfloor+1)}\le(\frac{M^1}{n})^2\le(\frac{M^2}{n})^2$
+	          \end{enumerate}
+	          \item Hence using \procedurehr{sun2107191133}, verify that $\lVert(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert\sum_k^{[1:n]}\sum_r^{[k:n]}\binom{a}{k+n-1-r}\binom{b}{r}x^{k+n-1}\rVert^2$
+	            \item $=\lVert x^n\rVert^2\lVert\sum_r^{[1:n]}\binom{b}{r}\sum_k^{[0:r]}\binom{a}{k+n-r}x^k\rVert^2$
+	            \item $=\lVert x^n\rVert^2\lVert\sum_r^{[1:n]}\binom{b}{r}\sum_k^{[0:r]}(\binom{a}{k+1+n-r}(-1)^{k+1}\cdot\frac{(-x)^{k+1}}{-x-1}-\binom{a}{k+n-r}(-1)^k\cdot\frac{(-x)^k}{-x-1}-\frac{(-x)^{k+1}}{-x-1}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k))\rVert^2$
+	            \item $=\frac{\lVert x^n\rVert^2}{\lVert x+1\rVert^2}\lVert\sum_r^{[1:n]}\binom{b}{r}(\binom{a}{n}x^r-\binom{a}{n-r}-\sum_k^{[0:r]}(-x)^{k+1}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k))\rVert^2$
+	            \item $\le\frac{1}{\Re(x+1)^2+\Im(x)^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\sum_k^{[0:r]}\lvert\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k\rvert))^2$
+	            \item $\le\frac{1}{X^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\sum_k^{[0:r]}(\lvert\binom{a}{k+n-r}\rvert-\lvert\binom{a}{k+1+n-r}\rvert)))^2$
+	            \item $=\frac{1}{X^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\lvert\binom{a}{n-r}\rvert-\lvert\binom{a}{n}\rvert))^2$
+	            \item $=\frac{1}{X^2}(2\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert\lvert\binom{a}{n-r}\rvert)^2$
+	            \item $=(\frac{2}{X})^2(\lvert\binom{a+b}{n}\rvert+\lvert\binom{a}{n}\rvert+\lvert\binom{b}{n}\rvert)^2$
+	            \item $\le(\frac{6M^2}{Xn})^2$
+	            \item $=(\frac{B}{n})^2$.
+	          \end{enumerate}
+	        \end{enumerate}
+	      \end{enumerate}
+	  \procedure{thu2507191017}
+	    \objective
+	      Choose a rational number $0<X<2$, and a positive integer $A$. The objective of the following instructions is to construct rational numbers $D>1$, $N>0$, and a procedure $p(a,x,n)$ to show that $\lVert(1+x)_n^a\rVert^2<D^2$ when a complex number $x$, a rational number $a$, and a positive integer $n$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $A>a>1$, and $n>N$ are chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Let $D=\frac{2+M^{A+1}+M^{A+2}}{X}$.
+	        \item Execute \procedurehr{wed2407191824} on $\langle A\rangle$ and let $\langle M,N,q\rangle$ receive.
+	        \item Let $p(a,x,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item For $r\in[0:n]$, do the following:
+	          \begin{enumerate}
+	            \item Execute procedure $q$ on $\langle a+1,r+1\rangle$.
+	            \item Hence verify that $\lVert\binom{a+1}{r+1}\rVert^2\le(\frac{M}{r+1})^{\lfloor a\rfloor+2}$
+	          \end{enumerate}
+	          \item Hence verify that $\lVert(1+x)_n^a\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert\sum_r^{[0:n]}\binom{a}{r}x^r\rVert^2$
+	            \item $=\lVert\sum_r^{[0:n]}\binom{a}{r}(-1)^r(-x)^r\rVert^2$
+	            \item $=\lVert\sum_r^{[0:n]}(\binom{a}{r+1}(-1)^{r+1}\frac{(-x)^{r+1}}{-x-1}-\binom{a}{r}(-1)^r\frac{(-x)^r}{-x-1}-\frac{(-x)^{r+1}}{-x-1}(\binom{a}{r+1}(-1)^{r+1}-\binom{a}{r}(-1)^r))\rVert^2$
+	            \item $=\frac{1}{\lVert x+1\rVert^2}\lVert\binom{a}{n}x^n-\binom{a}{0}x^0-\sum_r^{[0:n]}x^{r+1}(\binom{a}{r+1}+\binom{a}{r})\rVert^2$
+	            \item $\le\frac{1}{\Re(x+1)^2+\Im(x)^2}(\lvert\binom{a}{n}\rvert+1+\sum_r^{[0:n]}\lvert\binom{a+1}{r+1}\rvert)^2$
+	            \item $\le\frac{1}{X^2}((\frac{M}{n})^{\lfloor a\rfloor+1}+1+\sum_r^{[0:n]}(\frac{M}{r+1})^{\lfloor a\rfloor+2})^2$
+	            \item $\le\frac{1}{X^2}(\frac{M^{A+1}}{n}+1+\sum_r^{[0:n]}\frac{M^{A+2}}{(r+1)^2})^2$
+	            \item $\le\frac{1}{X^2}(M^{A+1}+M^{A+2}+1+\sum_r^{[1:n]}\frac{1}{(r+1)r})^2$
+	            \item $=\frac{1}{X^2}(M^{A+1}+M^{A+2}+1+\sum_r^{[1:n]}(\frac{1}{r}-\frac{1}{r+1}))^2$
+	            \item $=\frac{1}{X^2}(M^{A+1}+M^{A+2}+2-\frac{1}{n})^2$
+	            \item $\le D^2$.
+	          \end{enumerate}
+	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle D,N,p\rangle$.}
+	      \end{enumerate}
+	  \procedure{thu2507190752}
+	    \objective
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct rational numbers $G>0$, $D>1$, $N>0$ and a procedure $p(x,a,k,n)$ to show that $\lVert(1+x)_n^{ka}-((1+x)_n^a)^k\rVert^2\le(\frac{GD^k}{n})^2$ when a positive integer $n$, a non-negative integer $k$, a rational number $a$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x+1)\ge X$, $0<a<1$, $(ka)^2\le 1$, and $n>N$ are chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Execute \procedurehr{thu2507191017} on $\langle 1,1\rangle$ and let $\langle D,M,t\rangle$ receive.
+	        \item Execute \procedurehr{thu2507190646} on $\langle X\rangle$ and let $\langle B,Q,q\rangle$ receive.
+	        \item Let $N=\max(M,Q)$.
+	        \item Let $G=\frac{B}{D-1}$.
+	        \item Let $p(x,a,k,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item If $k>0$, then do the following:
+	          \begin{enumerate}
+	            \item Execute procedure $t$ on $\langle a,x,n\rangle$.
+	            \item Hence verify that $\lVert(1+x)_n^a\rVert^2\le D^2$.
+	          \end{enumerate}
+	          \item For $r\in[0:k]$, do the following:
+	          \begin{enumerate}
+	            \item Verify that $a^2\le(ka)^2\le 1$.
+	            \item Verify that $((k-r-1)a)^2\le(ka)^2\le 1$.
+	            \item Execute procedure $q$ on $\langle x,a,(k-r-1)a,n\rangle$.
+	            \item Hence verify that $\lVert(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}\rVert^2\le(\frac{B}{n})^2$.
+	          \end{enumerate}
+	          \item Hence verify that $\lVert(1+x)_n^{ka}-((1+x)_n^a)^k\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert\sum_r^{[0:k]}(((1+x)_n^a)^r(1+x)_n^{(k-r)a}-((1+x)_n^a)^{r+1}(1+x)_n^{(k-r-1)a})\rVert^2$
+	            \item $=\lVert\sum_r^{[0:k]}((1+x)_n^a)^r((1+x)_n^{(k-r)a}-(1+x)_n^a(1+x)_n^{(k-r-1)a})\rVert^2$
+	            \item $\le(\sum_r^{[0:k]}D^r\cdot\frac{B}{n})^2$
+	            \item $=(\frac{B}{n}\cdot\frac{D^k-1}{D-1})^2$
+	            \item $\le(\frac{GD^k}{n})^2$.
+	          \end{enumerate}
+	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle G,D,N,p\rangle$.}
+	      \end{enumerate}
 		\declaration{3.33}
 			The notation \gls{complextau}, where $n$ is a positive integer, will be used as a shorthand for $\frac{4}{i}\int_r^{\mu(1,\frac{i-1}{n},n+2)}\frac{dr}{r}$.
 		\procedure{3.47}
