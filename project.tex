@@ -172,6 +172,7 @@
 \newglossaryentry{complexintegral}{name=\ensuremath{\int_r^Rf(\#r,r,dr)},description={complex integral}}
 \newglossaryentry{complexDeltaX}{name=\ensuremath{\Delta X},description={first difference}}
 \newglossaryentry{binomialseries}{name=\ensuremath{(1+x)_n^a},description={binomial series}}
+\newglossaryentry{naturallogarithm}{name=\ensuremath{\ln_k(1+x)},description={natural logarithm}}
 \newglossaryentry{complextau}{name=\ensuremath{\tau_n},description={tau}}
 \newglossaryentry{complexpolynomial}{name={complex polynomial},description={}}
 \newglossaryentry{matrix}{name={matrix},description={}}
@@ -4585,6 +4586,93 @@
 	          \end{enumerate}
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle G,D,N,p\rangle$.}
+	      \end{enumerate}
+	  \procedure{fri2607191210}
+	    \objective
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct rational numbers $G>0$, $D>1$, $K>0$, and a procedure $p(x,k,n)$ to show that $\lVert\exp_n(n((1+x)_k^{\frac{1}{n}}-1))-(1+x)\rVert^2\le(\frac{GD^n}{k})^2$ when a complex number $x$, and positive integers $n,k$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $n>1$, and $k>K$ are chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Execute \procedurehr{thu2507190752} on $\langle X\rangle$ and let $\langle G,D,K,q\rangle$ receive.
+	        \item Let $p(x,k,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item Using \procedurehr{sun2107190619}, verify that $(1+x)_k^1=(1+x)^1=1+x$.
+	          \item Execute procedure $q$ on $\langle x,\frac{1}{n},n,k\rangle$.
+	          \item Hence verify that $\lVert(1+x)_k^1-((1+x)_k^{\frac{1}{n}})^n\rVert^2\le(\frac{GD^n}{k})^2$.
+	          \item Hence verify that $\lVert\exp_n(n((1+x)_k^{\frac{1}{n}}-1))-(1+x)\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert(1+\frac{1}{n}(n((1+x)_k^{\frac{1}{n}}-1)))^n-(1+x)\rVert^2$
+	            \item $=\lVert((1+x)_k^{\frac{1}{n}})^n-(1+x)_k^1\rVert^2$
+	            \item $\le(\frac{GD^n}{k})^2$.
+	           \end{enumerate}
+	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle G,D,K,p\rangle$.}
+	      \end{enumerate}
+	   \procedure{fri2607191243}
+	    \objective
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct a rational number $A>0$ and a procedure $p(x,k,n)$ to show that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le A^2$ when positive integers $n,k$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$ and $\Re(x)+1\ge X$ are chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Let $A=\frac{2}{X}$.
+	        \item Let $p(x,k,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item Verify that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert n(\sum_r^{[0:k]}\binom{\frac{1}{n}}{r}x^r-1)\rVert^2$
+	            \item $=\lVert n\sum_r^{[1:k]}\binom{\frac{1}{n}}{r}(-1)^r(-x)^r\rVert^2$
+	            \item $=n^2\lVert\sum_r^{[1:k]}(\binom{\frac{1}{n}}{r+1}(-1)^{r+1}\cdot\frac{(-x)^{r+1}}{-x-1}-\binom{\frac{1}{n}}{r}(-1)^r\cdot\frac{(-x)^r}{-x-1}-(\binom{\frac{1}{n}}{r+1}(-1)^{r+1}-\binom{\frac{1}{n}}{r}(-1)^r)\frac{(-x)^{r+1}}{-x-1})\rVert^2$
+	            \item $=\frac{n^2}{\lVert x+1\rVert^2}\lVert\binom{\frac{1}{n}}{k}x^k-\binom{\frac{1}{n}}{1}x^1-\sum_r^{[1:k]}(\binom{\frac{1}{n}}{r+1}(-1)^{r+1}-\binom{\frac{1}{n}}{r}(-1)^r)(-x)^{r+1}\rVert^2$
+	            \item $\le\frac{n^2}{\lVert x+1\rVert^2}\lVert\binom{\frac{1}{n}}{k}(-1)^{k-1}+\frac{1}{n}+\sum_r^{[1:k]}(\binom{\frac{1}{n}}{r+1}(-1)^{r+1}-\binom{\frac{1}{n}}{r}(-1)^r)\rVert^2$
+	            \item $=\frac{n^2}{(\Re(x)+1)^2+\Im(x)^2}(\binom{\frac{1}{n}}{k}(-1)^{k-1}+\frac{1}{n}+\binom{\frac{1}{n}}{k}(-1)^k-\binom{\frac{1}{n}}{1}(-1)^1)^2$
+	            \item $\le\frac{n^2}{X^2}(\frac{2}{n})^2$
+	            \item $=A^2$.
+	          \end{enumerate}
+	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle A,p\rangle$.}
+	      \end{enumerate}
+	  \declaration{fri2607191453}
+	    The notation \gls{naturallogarithm} will be used as a shorthand for $\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}x^r$.
+	  \procedure{fri2607191450}
+	    \objective
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct a rational number $A>0$ and a procedure $p(x,k,n)$ to show that $\lVert\ln_k(1+x)-n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le(\frac{A}{n})^2$ when positive integers $n,k$ and a complex number $x$ such that $\lVert x\rVert^2\le 1$ and $\Re(x)+1\ge X$ are chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Let $A=\frac{1}{X}$.
+	        \item Let $p(x,k,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item Let $f(r)$ be shorthand notation for $\frac{1}{r}(1-\prod_t^{[1:r]}(1-\frac{1}{nt}))$.
+	          \item For $r\in[2:k]$, verify that $\frac{f(r+1)}{f(r)}$:
+	          \begin{enumerate}
+	            \item $=\frac{\frac{1}{r+1}(1-\prod_t^{[1:r+1]}(1-\frac{1}{nt}))}{\frac{1}{r}(1-\prod_t^{[1:r]}(1-\frac{1}{nt}))}$
+	            \item $=\frac{r}{r+1}\cdot\frac{1-(1-\frac{1}{nr})\prod_t^{[1:r]}(1-\frac{1}{nt})}{1-\prod_t^{[1:r]}(1-\frac{1}{nt})}$
+	            \item $=\frac{r}{r+1}\left(1+\frac{\frac{1}{nr}\prod_t^{[1:r]}(1-\frac{1}{nt})}{1-\prod_t^{[1:r]}(1-\frac{1}{nt})}\right)$
+	            \item $=\frac{r}{r+1}\left(1+\frac{\frac{1}{nr}}{(\prod_t^{[1:r]}(1-\frac{1}{nt}))^{-1}-1}\right)$
+	            \item $\le\frac{r}{r+1}\left(1+\frac{\frac{1}{nr}}{(1-\frac{1}{n(r-1)})^{-(r-1)}-1}\right)$
+	            \item $=\frac{r}{r+1}\left(1+\frac{\frac{1}{nr}}{(1+\frac{1}{nr-n-1})^{r-1}-1}\right)$
+	            \item $\le\frac{r}{r+1}\left(1+\frac{\frac{1}{nr}}{(1+\frac{1}{n(r-1)})^{r-1}-1}\right)$
+	            \item $\le\frac{r}{r+1}\left(1+\frac{\frac{1}{nr}}{1+\frac{r-1}{n(r-1)}-1}\right)$
+	            \item $=\frac{r}{r+1}(1+\frac{1}{r})$
+	            \item $=1$.
+	          \end{enumerate}
+	          \item Hence verify that $\lVert\ln_k(1+x)-n((1+x)_k^{\frac{1}{n}}-1)\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}x^r-n(\sum_r^{[0:k]}\binom{\frac{1}{n}}{r}x^r-1)\rVert^2$
+	            \item $=\lVert\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}x^r-n\sum_r^{[1:k]}\binom{\frac{1}{n}}{r}x^r\rVert^2$
+	            \item $=\lVert\sum_r^{[1:k]}\frac{(-1)^{\ul{r-1}}}{r!}x^r-\sum_r^{[1:k]}\frac{(\frac{1}{n}-1)^{\ul{r-1}}}{r!}x^r\rVert^2$
+	            \item $=\lVert\sum_r^{[1:k]}\frac{1}{r!}((-1)^{\ul{r-1}}-(\frac{1}{n}-1)^{\ul{r-1}})x^r\rVert^2$
+	            \item $=\lVert\sum_r^{[1:k]}\frac{(-1)^{\ul{r-1}}}{r!}(1-\frac{(\frac{1}{n}-1)^{\ul{r-1}}}{(-1)^{\ul{r-1}}})x^r\rVert^2$
+	            \item $=\lVert\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}(1-\prod_t^{[1:r]}\frac{\frac{1}{n}-t}{-t})x^r\rVert^2$
+	            \item $=\lVert\sum_r^{[1:k]}f(r)(-x)^r\rVert^2$
+	            \item $=\lVert\sum_r^{[1:k]}(f(r+1)\cdot\frac{(-x)^{r+1}}{-x-1}-f(r)\cdot\frac{(-x)^r}{-x-1}-(f(r+1)-f(r))\cdot\frac{(-x)^{r+1}}{-x-1})\rVert^2$
+	            \item $=\frac{1}{\lVert x+1\rVert^2}\lVert f(k)(-x)^k-f(1)(-x)^1-\sum_r^{[1:k]}(f(r+1)-f(r))(-x)^{r+1}\rVert^2$
+	            \item $\le\frac{1}{\lVert x+1\rVert^2}(f(k)+f(1)+\sum_r^{[2:k]}(f(r)-f(r+1))+f(2)-f(1))^2$
+	            \item $=\frac{1}{\lVert x+1\rVert^2}(f(k)-f(k)+f(2)+f(2)+f(1)-f(1))^2$
+	            \item $=\frac{1}{n^2\lVert x+1\rVert^2}$
+	            \item $=\frac{1}{n^2((\Re(x)+1)^2+\Im(x)^2)}$
+	            \item $\le\frac{1}{n^2X^2}$
+	            \item $=(\frac{A}{n})^2$.
+	          \end{enumerate}
+	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle A,p\rangle$.}
 	      \end{enumerate}
 		\declaration{3.33}
 			The notation \gls{complextau}, where $n$ is a positive integer, will be used as a shorthand for $\frac{4}{i}\int_r^{\mu(1,\frac{i-1}{n},n+2)}\frac{dr}{r}$.
