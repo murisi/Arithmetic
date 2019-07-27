@@ -4821,31 +4821,40 @@
 				\end{enumerate}
 		\procedure{3.53}
 			\objective
-				The objective of the following instructions is to construct rational numbers $a,b,c$, and a procedure, $p(n,m)$, to show that $\lVert\exp_n(\frac{1}{4}\tau_m i)-i\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ when two positive integers $n,m$ such that $n>c$ are chosen.
+				The objective of the following instructions is to construct positive rational numbers $G,D,L,K,N$ such that $D>1$, and a procedure $p(k,n)$ to show that $\lVert\exp_n(\frac{1}{4}\tau_ki)-i\rVert^2\le(\frac{GD^n}{k}+\frac{L}{n})^2$ when integers $k,n$ such that $n>N$ and $k>K$ are chosen.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{3.43} on $\langle\frac{1}{2},5,8\rangle$ and let $\langle e,d,c,q\rangle$ receive.
-					\item Let $a=2e$.
-					\item Let $b=4(1+d)$.
-					\item Let $p(n,m)$ be the following procedure:
+					\item Execute \procedurehr{fri2607191736} on $\langle 1\rangle$ and let $\langle A,q\rangle$ receive.
+					\item Execute \procedurehr{thu2507191359} on $\langle A\rangle$ and let $\langle B,C,r\rangle$ receive.
+					\item Execute \procedurehr{3.14} on $\langle A\rangle$ and let $\langle E,F,t\rangle$ receive.
+					\item Execute \procedurehr{fri2607191801} on $\langle 1\rangle$ and let $\langle H,J,M,Q,R,u\rangle$ receive.
+					\item Let $G=\frac{2H}{E}$.
+					\item Let $D=J$.
+					\item Let $L=\frac{2Q}{E}+B$.
+					\item Let $N=\max(C,F,R)$.
+					\item Let $K=M$.
+					\item Let $p(k,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Let $R=\mu(1,\frac{i-1}{m},m+2)$.
-						\item Using \procedurehr{3.51}, verify that $\min(\lVert R_{[0:\lvert R\rvert-1]}\rVert^2)\ge\frac{1}{2}$.
-						\item Also verify that $\lVert R_{\lvert R\rvert-1}\rVert^2=\lVert 1+\frac{i-1}{m}(m+1)\rVert^2=(1+\frac{1}{m})^2+(\frac{1}{m})^2\le 5$.
-						\item Verify that $(\lvert R\rvert-1)^2\max(\lVert\Delta R\rVert^2)=(m+1)^2\lVert\frac{i-1}{m}\rVert^2=2(1+\frac{1}{m})^2\le 8$.
-						\item Now execute procedure $q$ on $\langle R,n\rangle$.
-						\item Hence verify that $\lVert R_{\lvert R\rvert-1}-R_0\exp_n(\int_r^R\frac{dr}{r})\rVert^2\le\frac{e}{n^2}+\frac{2}{m^2}d$.
-						\item Now verify that $R_0=1$.
-						\item Also verify that $R_{\lvert R\rvert-1}=i+\frac{i-1}{m}$.
-						\item Hence verify that $\lVert i-\exp_n(\frac{1}{4}\tau_m i)\rVert^2$
-						\begin{enumerate}
-							\item $=\lVert\frac{1-i}{m}+R_{\lvert R\rvert-1}-R_0\exp_n(\int_r^R\frac{dr}{r})\rVert^2$
-							\item $\le 2\lVert\frac{1-i}{m}\rVert^2+2\lVert R_{\lvert R\rvert-1}-R_0\exp_n(\int_r^R\frac{dr}{r})\rVert^2$
-							\item $\le 2\frac{2}{m^2}+2(\frac{e}{n^2}+\frac{2}{m^2}d)$
-							\item $\le\frac{a}{n^2}+\frac{b}{m^2}$.
-						\end{enumerate}
+					  \item Execute procedure $q$ on $\langle i,k\rangle$.
+					  \item Hence verify that $\lVert\ln_k(1+i)\rVert^2\le A^2$.
+					  \item Execute procedure $r$ on $\langle\ln_k(1+i),\conj{\ln_k(1+i)},n\rangle$.
+					  \item Hence  verify that $\lVert\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})-\frac{\exp_n(\ln_k(1+i))}{\exp_n(\conj{\ln_k(1+i)})}\rVert^2\le\frac{B^2}{n^2}$.
+					  \item Execute procedure $u$ on $\langle i,k,n\rangle$.
+					  \item Hence verify that $\lVert\exp_n(\ln_k(1+i))-(1+i)\rVert^2\le(\frac{HJ^n}{k}+\frac{Q}{n})^2$.
+					  \item Execute procedure $t$ on $\langle\ln_k(1+i),n\rangle$.
+					  \item Hence verify that $\lVert\exp_n(\ln_k(1+i))\rVert^2\ge E$.
+					  \item Hence verify that $\lVert\frac{\exp_n(\ln_k(1+i))}{\exp_n(\ln_k(1+i))}-\frac{1+i}{\exp_n(\ln_k(1+i))}\rVert^2\le\frac{1}{E^2}(\frac{HJ^n}{k}+\frac{Q}{n})^2$.
+					  \item Also verify that $\lVert\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}-\frac{1+i}{\conj{1+i}}\rVert^2=\lVert\frac{(1+i)(\conj{(1+i)-\exp_n(\ln_k(1+i))})}{\conj{\exp_n(\ln_k(1+i))(1+i)}}\rVert^2\le\frac{1}{E^2}(\frac{HJ^n}{k}+\frac{Q}{n})^2$.
+					  \item Hence verify that $\lVert\exp_n(\frac{1}{4}\tau_ki)-i\rVert^2$
+					  \begin{enumerate}
+					    \item $=\lVert\exp_n(2\Im(\ln_k(1+i))i)-i\rVert^2$
+					    \item $=\lVert\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})-i\rVert^2$
+					    \item $=\lVert\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})-\frac{\exp_n(\ln_k(1+i))}{\exp_n(\conj{\ln_k(1+i)})}+\frac{\exp_n(\ln_k(1+i))}{\exp_n(\conj{\ln_k(1+i)})}-\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}+\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}-\frac{1+i}{\conj{1+i}}\rVert^2$
+					    \item $\le(\frac{B}{n}+\frac{2}{E}(\frac{HJ^n}{k}+\frac{Q}{n}))^2$
+					    \item $=(\frac{GD^n}{k}+\frac{L}{n})^2$.
+					  \end{enumerate}
 					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle a,b,c,p\rangle$.}
+					\item \textbf{Yield the tuple $\langle G,D,L,K,N,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.54}
 			\objective
