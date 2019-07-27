@@ -4640,7 +4640,7 @@
 	        \item Let $p(x,k,n)$ be the following procedure:
 	        \begin{enumerate}
 	          \item Let $f(r)$ be shorthand notation for $\frac{1}{r}(1-\prod_t^{[1:r]}(1-\frac{1}{nt}))$.
-	          \item For $r\in[2:k]$, verify that $\frac{f(r+1)}{f(r)}$:
+	          \item For $r\in[2:k]$, use \procedurehr{2.07} to verify that $\frac{f(r+1)}{f(r)}$
 	          \begin{enumerate}
 	            \item $=\frac{\frac{1}{r+1}(1-\prod_t^{[1:r+1]}(1-\frac{1}{nt}))}{\frac{1}{r}(1-\prod_t^{[1:r]}(1-\frac{1}{nt}))}$
 	            \item $=\frac{r}{r+1}\cdot\frac{1-(1-\frac{1}{nr})\prod_t^{[1:r]}(1-\frac{1}{nt})}{1-\prod_t^{[1:r]}(1-\frac{1}{nt})}$
@@ -4665,17 +4665,67 @@
 	            \item $=\lVert\sum_r^{[1:k]}(f(r+1)\cdot\frac{(-x)^{r+1}}{-x-1}-f(r)\cdot\frac{(-x)^r}{-x-1}-(f(r+1)-f(r))\cdot\frac{(-x)^{r+1}}{-x-1})\rVert^2$
 	            \item $=\frac{1}{\lVert x+1\rVert^2}\lVert f(k)(-x)^k-f(1)(-x)^1-\sum_r^{[1:k]}(f(r+1)-f(r))(-x)^{r+1}\rVert^2$
 	            \item $\le\frac{1}{\lVert x+1\rVert^2}(f(k)+f(1)+\sum_r^{[2:k]}(f(r)-f(r+1))+f(2)-f(1))^2$
-	            \item $=\frac{1}{\lVert x+1\rVert^2}(f(k)-f(k)+f(2)+f(2)+f(1)-f(1))^2$
-	            \item $=\frac{1}{n^2\lVert x+1\rVert^2}$
-	            \item $=\frac{1}{n^2((\Re(x)+1)^2+\Im(x)^2)}$
-	            \item $\le\frac{1}{n^2X^2}$
-	            \item $=(\frac{A}{n})^2$.
+	            \item $=\frac{1}{((\Re(x)+1)^2+\Im(x)^2)}(f(k)-f(k)+f(2)+f(2)+f(1)-f(1))^2$
+	            \item $\le(\frac{A}{n})^2$.
 	          \end{enumerate}
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle A,p\rangle$.}
 	      \end{enumerate}
+	  \procedure{fri2607191736}
+	    \objective
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct a rational number $A>0$ and a procedure $p(x,k)$ to show that $\lVert\ln_k(1+x)\rVert^2\le A^2$ when a positive integer $k$ and a complex number $x$ such that $\lVert x\rVert^2\le 1$ and $\Re(x)+1\ge X$ are chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Let $A=\frac{2}{X}$.
+	        \item Let $p(x,k)$ be the following procedure:
+	        \begin{enumerate}
+	          \item Verify that $\lVert\ln_k(1+x)\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}x^r\rVert^2$
+	            \item $=\lVert\sum_r^{[1:k]}\frac{1}{r}(-x)^r\rVert^2$
+	            \item $=\lVert\sum_r^{[1:k]}(\frac{1}{r+1}\cdot\frac{(-x)^{r+1}}{-x-1}-\frac{1}{r}\cdot\frac{(-x)^r}{-x-1}-(\frac{1}{r+1}-\frac{1}{r})\cdot\frac{(-x)^{r+1}}{-x-1})\rVert^2$
+	            \item $=\frac{1}{\lVert x+1\rVert^2}\lVert\frac{1}{k}(-x)^k-\frac{1}{1}(-x)^1-\sum_r^{[1:k]}(\frac{1}{r+1}-\frac{1}{r})(-x)^{r+1}\rVert^2$
+	            \item $\le\frac{1}{\lVert x+1\rVert^2}(\frac{1}{k}+1+\sum_r^{[1:k]}(\frac{1}{r}-\frac{1}{r+1}))^2$
+	            \item $=\frac{1}{\lVert x+1\rVert^2}(\frac{1}{k}+1-\frac{1}{k}+1)^2$
+	            \item $=\frac{4}{(\Re(x)+1)^2+\Im(x)^2}$
+	            \item $\le A^2$
+	          \end{enumerate}
+	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle A,p\rangle$.}
+	      \end{enumerate}
+	  \procedure{fri2607191801}
+	    \objective
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct rational numbers $G>0$, $D>1$, $K>0$, $L>0$, $N$, and a procedure $p(x,k,n)$ to show that $\lVert\exp_n(\ln_k(1+x))-(1+x)\rVert^2\le(\frac{GD^n}{k}+\frac{L}{n})^2$ when positive integers $k,n$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $n>N$, and $k>K$ are chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Execute \procedurehr{fri2607191243} on $\langle X\rangle$ and let $\langle A,q\rangle$ receive.
+	        \item Execute \procedurehr{fri2607191736} on $\langle X\rangle$ and let $\langle B,r\rangle$ receive.
+	        \item Execute \procedurehr{thu2507191307} on $\langle\max(A,B)\rangle$ and let $\langle C,N,t\rangle$ receive.
+	        \item Execute \procedurehr{fri2607191450} on $\langle X\rangle$ and let $\langle E,u\rangle$ receive.
+	        \item Execute \procedurehr{fri2607191210} on $\langle X\rangle$ and let $\langle G,D,K,v\rangle$ receive.
+	        \item Let $L=EC$.
+	        \item Let $p(x,k,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item Execute procedure $q$ on $\langle x,k,n\rangle$.
+	          \item Hence verify that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le A^2$.
+	          \item Execute procedure $r$ on $\langle x,k\rangle$.
+	          \item Hence verify that $\lVert\ln_k(1+x)\rVert^2\le B^2$.
+	          \item Execute procedure $u$ on $\langle x,k,n\rangle$.
+	          \item Hence verify that $\lVert\ln_k(1+x)-n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le(\frac{E}{n})^2$.
+	          \item Execute procedure $t$ on $\langle\ln_k(1+x),n((1+x)_k^{\frac{1}{n}}-1),n\rangle$.
+	          \item Hence verify that $\lVert\exp_n(\ln_k(1+x))-\exp_n(n((1+x)_k^{\frac{1}{n}}-1))\rVert^2\le(\frac{E}{n})^2C^2=(\frac{L}{n})^2$.
+	          \item Execute procedure $v$ on $\langle x,k,n\rangle$.
+	          \item Hence verify that $\lVert\exp_n(n((1+x)_k^{\frac{1}{n}}-1))-(1+x)\rVert^2\le(\frac{GD^n}{k})^2$.
+	          \item Hence verify that $\lVert\exp_n(\ln_k(1+x))-(1+x)\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert\exp_n(\ln_k(1+x))-\exp_n(n((1+x)_k^{\frac{1}{n}}-1))+\exp_n(n((1+x)_k^{\frac{1}{n}}-1))-(1+x)\rVert^2$
+	            \item $\le(\frac{L}{n}+\frac{GD^n}{k})^2$.
+	          \end{enumerate}
+	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle G,D,K,L,N,p\rangle$.}
+	      \end{enumerate}
 		\declaration{3.33}
-			The notation \gls{complextau}, where $n$ is a positive integer, will be used as a shorthand for $\frac{4}{i}\int_r^{\mu(1,\frac{i-1}{n},n+2)}\frac{dr}{r}$.
+			The notation \gls{complextau}, where $n$ is a positive integer, will be used as a shorthand for $8\Im(\ln_n(1+i))$.
 		\procedure{3.47}
 			\objective
 				Choose a positive integer $n$. The objective of the following instructions is to show that $\tau_n=4\int_r^{\mu(0,\frac{1}{n},n+2)}\frac{dr}{2r^2-2r+1}$.
