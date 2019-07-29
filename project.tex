@@ -3908,19 +3908,21 @@
 		    \end{enumerate}
 		\procedure{3.16}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $c>1$ and a procedure, $p(x,k,n)$, to show that $\lVert\exp_n(kx)-\exp_n(x)^k\rVert^2\le(\frac{ac^k}{n})^2$ when a complex number $x$, a non-negative integer $k$, and a positive integer $n$ such that $n>b$, $\lVert kx\rVert^2\le X^2$ are chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct positive rational numbers $a,b$ and a procedure, $p(x,k,n)$, to show that $\lVert\exp_n(kx)-\exp_n(x)^k\rVert^2\le(\frac{ak}{n})^2$ when a complex number $x$, and non-negative integers $k,n$ such that $n>b$ and $\lVert kx\rVert^2\le X^2$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.13} on $\langle X\rangle$ and let $\langle c,d,q\rangle$ receive.
 					\item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle e,f,t\rangle$ receive.
-					\item Let $a=\frac{eX^2}{c-1}$
+					\item Let $a=ecX^2$
 					\item Let $b=\max(d,f)$.
 					\item Let $p(x,k,n)$ be the following procedure:
 					\begin{enumerate}
-					  \item If $k>0$, then do the following:
+					  \item If $k>0$, then for $r\in[1:k]$ do the following:
 					  \begin{enumerate}
-						  \item Execute procedure $q$ on $\langle x,n\rangle$.
-						  \item Hence verify that $\lVert\exp_n(x)\rVert^2\le c^2$.
+					    \item Verify that $\lVert xr\rVert^2\le\lVert kx\rVert^2\le X^2$.
+						  \item Execute procedure $q$ on $\langle xr,nr\rangle$.
+						  \item Hence verify that $\lVert\exp_{nr}(xr)\rVert^2\le c^2$.
+							\item Hence verify that $\lVert\exp_n(x)^r\rVert^2=\lVert(1+\frac{x}{n})^{nr}\rVert^2=\lVert(1+\frac{xr}{nr})^{nr}\rVert^2=\lVert\exp_{nr}(xr)\rVert^2\le c^2$
 						\end{enumerate}
 						\item For $r$ in $[0:k]$, do the following:
 						\begin{enumerate}
@@ -3933,12 +3935,11 @@
 						\begin{enumerate}
 							\item $=\lVert\sum_r^{[0:k]}(\exp_n(x)^r\exp_n((k-r)x)-\exp_n(x)^{r+1}\exp_n((k-r-1)x))\rVert^2$
 							\item $=\lVert\sum_r^{[0:k]}\exp_n(x)^r(\exp_n((k-r)x)-\exp_n(x)\exp_n((k-r-1)x))\rVert^2$
-							\item $\le(\sum_r^{[0:k]}c^r\frac{eX^2}{n})^2$
-							\item $=(\frac{eX^2}{n}\cdot\frac{c^k-1}{c-1})^2$
-							\item \textbf{$\le(\frac{ac^k}{n})^2$.}
+							\item $\le(\sum_r^{[0:k]}c\frac{eX^2}{n})^2$
+							\item \textbf{$=(\frac{ak}{n})^2$.}
 						\end{enumerate}
 					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle a,b,c,p\rangle$.}
+					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
 		\procedure{thu2507191307}
 		  \objective
@@ -4821,44 +4822,42 @@
 				\end{enumerate}
 		\procedure{3.53}
 			\objective
-				The objective of the following instructions is to construct positive rational numbers $G,D,L,K,N$ such that $D>1$, and a procedure $p(k,n)$ to show that $\lVert\exp_n(\frac{1}{4}\tau_ki)-i\rVert^2\le(\frac{GD^n}{k}+\frac{L}{n})^2$ when integers $k,n$ such that $n>N$ and $k>K$ are chosen.
+				The objective of the following instructions is to construct positive rational numbers $a,b,c,d,e$ such that $b>1$, and a procedure $p(k,n)$ to show that $\lVert\exp_n(\frac{1}{4}\tau_ki)-i\rVert^2\le(\frac{ab^n}{k}+\frac{c}{n})^2$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{fri2607191736} on $\langle 1\rangle$ and let $\langle A,q\rangle$ receive.
-					\item Execute \procedurehr{thu2507191359} on $\langle A\rangle$ and let $\langle B,C,r\rangle$ receive.
-					\item Execute \procedurehr{3.14} on $\langle A\rangle$ and let $\langle E,F,t\rangle$ receive.
-					\item Execute \procedurehr{fri2607191801} on $\langle 1\rangle$ and let $\langle H,J,M,Q,R,u\rangle$ receive.
-					\item Let $G=\frac{2H}{E}$.
-					\item Let $D=J$.
-					\item Let $L=\frac{2Q}{E}+B$.
-					\item Let $N=\max(C,F,R)$.
-					\item Let $K=M$.
+					\item Execute \procedurehr{fri2607191736} on $\langle 1\rangle$ and let $\langle a_1,p_1\rangle$ receive.
+					\item Execute \procedurehr{thu2507191359} on $\langle a_1\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
+					\item Execute \procedurehr{3.14} on $\langle a_1\rangle$ and let $\langle a_3,b_3,p_3\rangle$ receive.
+					\item Execute \procedurehr{fri2607191801} on $\langle 1\rangle$ and let $\langle a_4,b,c_4,d,e_4,p_4\rangle$ receive.
+					\item Let $a=\frac{2a_4}{a_3}$.
+					\item Let $c=\frac{2c_4}{a_3}+a_2$.
+					\item Let $e=\max(b_2,b_3,e_4)$.
 					\item Let $p(k,n)$ be the following procedure:
 					\begin{enumerate}
-					  \item Execute procedure $q$ on $\langle i,k\rangle$.
-					  \item Hence verify that $\lVert\ln_k(1+i)\rVert^2\le A^2$.
-					  \item Execute procedure $r$ on $\langle\ln_k(1+i),\conj{\ln_k(1+i)},n\rangle$.
-					  \item Hence  verify that $\lVert\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})-\frac{\exp_n(\ln_k(1+i))}{\exp_n(\conj{\ln_k(1+i)})}\rVert^2\le\frac{B^2}{n^2}$.
-					  \item Execute procedure $u$ on $\langle i,k,n\rangle$.
-					  \item Hence verify that $\lVert\exp_n(\ln_k(1+i))-(1+i)\rVert^2\le(\frac{HJ^n}{k}+\frac{Q}{n})^2$.
-					  \item Execute procedure $t$ on $\langle\ln_k(1+i),n\rangle$.
-					  \item Hence verify that $\lVert\exp_n(\ln_k(1+i))\rVert^2\ge E$.
-					  \item Hence verify that $\lVert\frac{\exp_n(\ln_k(1+i))}{\exp_n(\ln_k(1+i))}-\frac{1+i}{\exp_n(\ln_k(1+i))}\rVert^2\le\frac{1}{E^2}(\frac{HJ^n}{k}+\frac{Q}{n})^2$.
-					  \item Also verify that $\lVert\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}-\frac{1+i}{\conj{1+i}}\rVert^2=\lVert\frac{(1+i)(\conj{(1+i)-\exp_n(\ln_k(1+i))})}{\conj{\exp_n(\ln_k(1+i))(1+i)}}\rVert^2\le\frac{1}{E^2}(\frac{HJ^n}{k}+\frac{Q}{n})^2$.
+					  \item Execute procedure $p_1$ on $\langle i,k\rangle$.
+					  \item Hence verify that $\lVert\ln_k(1+i)\rVert^2\le {a_1}^2$.
+					  \item Execute procedure $p_2$ on $\langle\ln_k(1+i),\conj{\ln_k(1+i)},n\rangle$.
+					  \item Hence  verify that $\lVert\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})-\frac{\exp_n(\ln_k(1+i))}{\exp_n(\conj{\ln_k(1+i)})}\rVert^2\le\frac{{a_2}^2}{n^2}$.
+					  \item Execute procedure $p_4$ on $\langle i,k,n\rangle$.
+					  \item Hence verify that $\lVert\exp_n(\ln_k(1+i))-(1+i)\rVert^2\le(\frac{a_4b^n}{k}+\frac{c_4}{n})^2$.
+					  \item Execute procedure $p_3$ on $\langle\ln_k(1+i),n\rangle$.
+					  \item Hence verify that $\lVert\exp_n(\ln_k(1+i))\rVert^2\ge a_3$.
+					  \item Hence verify that $\lVert\frac{\exp_n(\ln_k(1+i))}{\exp_n(\ln_k(1+i))}-\frac{1+i}{\exp_n(\ln_k(1+i))}\rVert^2\le\frac{1}{{a_3}^2}(\frac{a_4b^n}{k}+\frac{c_4}{n})^2$.
+					  \item Also verify that $\lVert\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}-\frac{1+i}{\conj{1+i}}\rVert^2=\lVert\frac{(1+i)(\conj{(1+i)-\exp_n(\ln_k(1+i))})}{\conj{\exp_n(\ln_k(1+i))(1+i)}}\rVert^2\le\frac{1}{{a_3}^2}(\frac{a_4b^n}{k}+\frac{c_4}{n})^2$.
 					  \item Hence verify that $\lVert\exp_n(\frac{1}{4}\tau_ki)-i\rVert^2$
 					  \begin{enumerate}
 					    \item $=\lVert\exp_n(2\Im(\ln_k(1+i))i)-i\rVert^2$
 					    \item $=\lVert\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})-i\rVert^2$
 					    \item $=\lVert\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})-\frac{\exp_n(\ln_k(1+i))}{\exp_n(\conj{\ln_k(1+i)})}+\frac{\exp_n(\ln_k(1+i))}{\exp_n(\conj{\ln_k(1+i)})}-\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}+\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}-\frac{1+i}{\conj{1+i}}\rVert^2$
-					    \item $\le(\frac{B}{n}+\frac{2}{E}(\frac{HJ^n}{k}+\frac{Q}{n}))^2$
-					    \item $=(\frac{GD^n}{k}+\frac{L}{n})^2$.
+					    \item $\le(\frac{a_2}{n}+\frac{2}{a_3}(\frac{a_4b^n}{k}+\frac{c_4}{n}))^2$
+					    \item $=(\frac{ab^n}{k}+\frac{c}{n})^2$.
 					  \end{enumerate}
 					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle G,D,L,K,N,p\rangle$.}
+					\item \textbf{Yield the tuple $\langle a,b,c,d,e,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.54}
 			\objective
-				The objective of the following instructions is to construct rational numbers $a,b,c$, and a procedure, $p(n,m)$, to show that $\lVert\exp_n(-\frac{1}{4}\tau_m i)+i\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ when two positive integers $n,m$ such that $n>c$ are chosen.
+				The objective of the following instructions is to construct positive rational numbers $a,b,c,d,e$ such that $b>1$, and a procedure, $p(k,n)$, to show that $\lVert\exp_n(-\frac{1}{4}\tau_ki)+i\rVert^2\le(\frac{ab^n}{k}+\frac{c}{n})^2$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.53}.
 		\procedure{3.55}
@@ -4897,7 +4896,7 @@
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
-				\end{enumerate}
+\end{enumerate}
 		\procedure{3.56}
 			\objective
 				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,k,m)$, to show that $\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
