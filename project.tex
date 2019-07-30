@@ -4483,23 +4483,19 @@
 	      \end{enumerate}
 	  \procedure{thu2507190646}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct rational numbers $B>0$, $N>0$, and a procedure $p(x,a,b,n)$ to show that $\lVert(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}\rVert^2\le(\frac{B}{n})^2$ when a complex number $x$, two rational numbers $a,b$, and a positive integer $n$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $0<a<1$, and $0<b<1$ are chosen.
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct rational numbers $B>0$, $N>0$, and a procedure $p(x,a,b,n)$ to show that $\lVert(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}\rVert^2\le(\frac{B}{n})^2$ when a complex number $x$, two rational numbers $a,b$, and a positive integer $n$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $0<a<1$, $0<b<1$, and $n>N$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Execute \procedurehr{wed2407191824} on $\langle 1\rangle$ and let $\langle M,N,q\rangle$ receive.
 	        \item Let $B=\frac{6M^2}{X}$.
 	        \item Let $p(x,a,b,n)$ be the following procedure:
 	        \begin{enumerate}
-	          \item For $r\in[1:n]$, for $k\in[0:r]$, verify the following in order:
+	          \item For $r\in[1:n]$, for $k\in[0:r]$, verify that $\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k$
 	          \begin{enumerate}
-	            \item $1\le r-k\le r<n$
-	            \item $1<n+k-r+1$
-	            \item $0<\frac{1}{n+k-r+1}<1$
-	            \item $0<\frac{a}{n+k-r+1}<a$
-	            \item $-1<\frac{a}{n+k-r+1}-1<a-1\le 0$
-	            \item $-\lvert\binom{a}{k+n-r}\rvert<(\frac{a}{n+k-r+1}-1)\lvert\binom{a}{k+n-r}\rvert=-\lvert\binom{a}{k+1+n-r}\rvert\le 0$
-	            \item $\sgn(\binom{a}{k+1+n-r})=\sgn((\frac{a}{k+1+n-r}-1)\binom{a}{k+n-r})=-\sgn(\binom{a}{k+n-r})$
-	            \item $\lvert\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k\rvert=\lvert\binom{a}{k+1+n-r}+\binom{a}{k+n-r}\rvert=\lvert\binom{a}{k+n-r}\rvert-\lvert\binom{a}{k+1+n-r}\rvert$
+	            \item $=(-1)^{k+1}(\binom{a}{k+1+n-r}+\binom{a}{k+n-r})$
+	            \item $=(-1)^{k+1}\binom{a+1}{k+1+n-r}$
+	            \item $=(-1)^{-(k+1)}\lvert\binom{a+1}{k+1+n-r}\rvert(-1)^{k+1+n-r}$
+	            \item $=\lvert\binom{a+1}{k+1+n-r}\rvert(-1)^{n-r}$.
 	          \end{enumerate}
 	          \item Now use procedure $q$ to verify the following:
 	          \begin{enumerate}
@@ -4514,61 +4510,84 @@
 	            \item $=\lVert x^n\rVert^2\lVert\sum_r^{[1:n]}\binom{b}{r}\sum_k^{[0:r]}(\binom{a}{k+1+n-r}(-1)^{k+1}\cdot\frac{(-x)^{k+1}}{-x-1}-\binom{a}{k+n-r}(-1)^k\cdot\frac{(-x)^k}{-x-1}-\frac{(-x)^{k+1}}{-x-1}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k))\rVert^2$
 	            \item $=\frac{\lVert x^n\rVert^2}{\lVert x+1\rVert^2}\lVert\sum_r^{[1:n]}\binom{b}{r}(\binom{a}{n}x^r-\binom{a}{n-r}-\sum_k^{[0:r]}(-x)^{k+1}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k))\rVert^2$
 	            \item $\le\frac{1}{\Re(x+1)^2+\Im(x)^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\sum_k^{[0:r]}\lvert\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k\rvert))^2$
-	            \item $\le\frac{1}{X^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\sum_k^{[0:r]}(\lvert\binom{a}{k+n-r}\rvert-\lvert\binom{a}{k+1+n-r}\rvert)))^2$
-	            \item $=\frac{1}{X^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\lvert\binom{a}{n-r}\rvert-\lvert\binom{a}{n}\rvert))^2$
+	            \item $\le\frac{1}{X^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\lvert\sum_k^{[0:r]}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k)\rvert))^2$
+	            \item $=\frac{1}{X^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\lvert\binom{a}{n}(-1)^r-\binom{a}{n-r}\rvert))^2$
 	            \item $=\frac{1}{X^2}(2\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert\lvert\binom{a}{n-r}\rvert)^2$
 	            \item $=(\frac{2}{X})^2(\lvert\binom{a+b}{n}\rvert+\lvert\binom{a}{n}\rvert+\lvert\binom{b}{n}\rvert)^2$
-	            \item $\le(\frac{6M^2}{Xn})^2$
-	            \item $=(\frac{B}{n})^2$.
+	            \item $\le(\frac{B}{n})^2$.
 	          \end{enumerate}
 	        \end{enumerate}
 	      \end{enumerate}
 	  \procedure{thu2507191017}
 	    \objective
-	      Choose a rational number $0<X<2$, and a positive integer $A$. The objective of the following instructions is to construct rational numbers $D>1$, $N>0$, and a procedure $p(a,x,n)$ to show that $\lVert(1+x)_n^a\rVert^2<D^2$ when a complex number $x$, a rational number $a$, and a positive integer $n$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $A>a>1$, and $n>N$ are chosen.
+	      Choose a rational number $0<X<2$. The objective of the following instructions is to construct a positive rational number $D$ such that $D>1$, and a procedure $p(x,n,a,k)$ to show that $\lVert((1+x)_n^a)^k\rVert^2<D^2$ when a complex number $x$, a rational number $a$, and positive integers $n,k$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, and $(ka)^2<1$ are chosen.
 	    \implementation
 	      \begin{enumerate}
-	        \item Let $D=\frac{2+M^{A+1}+M^{A+2}}{X}$.
-	        \item Execute \procedurehr{wed2407191824} on $\langle A\rangle$ and let $\langle M,N,q\rangle$ receive.
-	        \item Let $p(a,x,n)$ be the following procedure:
+	        \item Execute \procedurehr{3.13} on $\langle\frac{2}{X}\rangle$ and let $\langle E,N,q\rangle$ receive.
+	        \item Let $D=\max(E,(1+\frac{2}{X})^{\lfloor N\rfloor})$.
+	        \item Let $p(x,n,a,k)$ be the following procedure:
 	        \begin{enumerate}
-	          \item For $r\in[0:n]$, do the following:
+	          \item For $t\in[1:n]$, verify that $\binom{a}{t+1}(-1)^{t+1}-\binom{a}{t}(-1)^t$
 	          \begin{enumerate}
-	            \item Execute procedure $q$ on $\langle a+1,r+1\rangle$.
-	            \item Hence verify that $\lVert\binom{a+1}{r+1}\rVert^2\le(\frac{M}{r+1})^{\lfloor a\rfloor+2}$
+	            \item $=(-1)^{t+1}(\binom{a}{t+1}+\binom{a}{t})$
+	            \item $=(-1)^{t+1}\cdot\frac{(a+1)^{\ul{t+1}}}{(t+1)!}$
+	            \item $>0$.
 	          \end{enumerate}
-	          \item Hence verify that $\lVert(1+x)_n^a\rVert^2$
+	          \item Hence verify that $\lVert k\sum_t^{[1:n]}\binom{a}{t}x^t\rVert^2$
 	          \begin{enumerate}
-	            \item $=\lVert\sum_r^{[0:n]}\binom{a}{r}x^r\rVert^2$
-	            \item $=\lVert\sum_r^{[0:n]}\binom{a}{r}(-1)^r(-x)^r\rVert^2$
-	            \item $=\lVert\sum_r^{[0:n]}(\binom{a}{r+1}(-1)^{r+1}\frac{(-x)^{r+1}}{-x-1}-\binom{a}{r}(-1)^r\frac{(-x)^r}{-x-1}-\frac{(-x)^{r+1}}{-x-1}(\binom{a}{r+1}(-1)^{r+1}-\binom{a}{r}(-1)^r))\rVert^2$
-	            \item $=\frac{1}{\lVert x+1\rVert^2}\lVert\binom{a}{n}x^n-\binom{a}{0}x^0-\sum_r^{[0:n]}x^{r+1}(\binom{a}{r+1}+\binom{a}{r})\rVert^2$
-	            \item $\le\frac{1}{\Re(x+1)^2+\Im(x)^2}(\lvert\binom{a}{n}\rvert+1+\sum_r^{[0:n]}\lvert\binom{a+1}{r+1}\rvert)^2$
-	            \item $\le\frac{1}{X^2}((\frac{M}{n})^{\lfloor a\rfloor+1}+1+\sum_r^{[0:n]}(\frac{M}{r+1})^{\lfloor a\rfloor+2})^2$
-	            \item $\le\frac{1}{X^2}(\frac{M^{A+1}}{n}+1+\sum_r^{[0:n]}\frac{M^{A+2}}{(r+1)^2})^2$
-	            \item $\le\frac{1}{X^2}(M^{A+1}+M^{A+2}+1+\sum_r^{[1:n]}\frac{1}{(r+1)r})^2$
-	            \item $=\frac{1}{X^2}(M^{A+1}+M^{A+2}+1+\sum_r^{[1:n]}(\frac{1}{r}-\frac{1}{r+1}))^2$
-	            \item $=\frac{1}{X^2}(M^{A+1}+M^{A+2}+2-\frac{1}{n})^2$
-	            \item $\le D^2$.
+	            \item $=\lVert k\sum_t^{[1:n]}(\binom{a}{t+1}(-1)^{t+1}\cdot\frac{(-x)^{t+1}}{-x-1}-\binom{a}{t}(-1)^t\cdot\frac{(-x)^t}{-x-1}-\frac{(-x)^{t+1}}{-x-1}(\binom{a}{t+1}(-1)^{t+1}-\binom{a}{t}(-1)^t))\rVert^2$
+	            \item $=\frac{k^2}{\lVert x+1\rVert^2}\lVert\binom{a}{n}x^n-\binom{a}{1}x^1-\sum_t^{[1:n]}(-x)^{t+1}(\binom{a}{t+1}(-1)^{t+1}-\binom{a}{t}(-1)^t)\rVert^2$
+	            \item $\le\frac{k^2}{(\Re(x)+1)^2+\Im(x)^2}(\lvert\binom{a}{n}\rvert+a+\sum_t^{[1:n]}\lvert\binom{a}{t+1}(-1)^{t+1}-\binom{a}{t}(-1)^t\rvert)^2$
+	            \item $\le\frac{k^2}{X^2}(\lvert\binom{a}{n}\rvert+a+\sum_t^{[1:n]}(\binom{a}{t+1}(-1)^{t+1}-\binom{a}{t}(-1)^t))^2$
+	            \item $=\frac{k^2}{X^2}(\lvert\binom{a}{n}\rvert+a+\binom{a}{n}(-1)^n-\binom{a}{1}(-1)^1)^2$
+	            \item $=\frac{k^2}{X^2}(\lvert\binom{a}{n}\rvert+a-\lvert\binom{a}{n}\rvert+a)^2$
+	            \item $=(\frac{2ak}{X})^2$
+	            \item $\le(\frac{2}{X})^2$.
+	          \end{enumerate}
+	          \item If $k>N$, then do the following:
+	          \begin{enumerate}
+	            \item Execute procedure $q$ on $\langle k\sum_t^{[1:n]}\binom{a}{t}x^t,k\rangle$.
+	            \item Hence verify that $\lVert((1+x)_n^a)^k\rVert^2$
+	            \begin{enumerate}
+	              \item $=\lVert(\sum_t^{[0:n]}\binom{a}{t}x^t)^k\rVert^2$
+	              \item $=\lVert(1+\sum_t^{[1:n]}\binom{a}{t}x^t)^k\rVert^2$
+	              \item $=\lVert\exp_k(k\sum_t^{[1:n]}\binom{a}{t}x^t)\rVert^2$
+	              \item $\le E^2$.
+	              \item $\le D^2$.
+	            \end{enumerate}
+	          \end{enumerate}
+	          \item Otherwise do the following:
+	          \begin{enumerate}
+	            \item Verify that $\lVert\sum_t^{[1:n]}\binom{a}{t}x^t\rVert^2$
+	            \begin{enumerate}
+	              \item $\le\lVert k\sum_t^{[1:n]}\binom{a}{t}x^t\rVert^2$
+	              \item $\le(\frac{2}{X})^2$.
+	            \end{enumerate}
+	            \item Verify that $\lVert((1+x)_n^a)^k\rVert^2$
+	            \begin{enumerate}
+	              \item $=(\lVert(1+x)_n^a\rVert^2)^k$
+	              \item $=(\lVert 1+\sum_t^{[1:n]}\binom{a}{t}x^t\rVert^2)^k$
+	              \item $\le(1+\frac{2}{X})^{2k}$
+	              \item $\le D^2$.
+	            \end{enumerate}
 	          \end{enumerate}
 	        \end{enumerate}
-	        \item \textbf{Yield the tuple $\langle D,N,p\rangle$.}
+	        \item \textbf{Yield the tuple $\langle D,p\rangle$.}
 	      \end{enumerate}
 	  \procedure{thu2507190752}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct rational numbers $G>0$, $D>1$, $N>0$ and a procedure $p(x,a,k,n)$ to show that $\lVert(1+x)_n^{ka}-((1+x)_n^a)^k\rVert^2\le(\frac{GD^k}{n})^2$ when a positive integer $n$, a non-negative integer $k$, a rational number $a$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x+1)\ge X$, $0<a<1$, $(ka)^2\le 1$, and $n>N$ are chosen.
+	      Choose a rational number $0<X<2$. The objective of the following instructions is to construct positive rational numbers $G,N$ and a procedure $p(x,n,a,k)$ to show that $\lVert(1+x)_n^{ka}-((1+x)_n^a)^k\rVert^2\le(\frac{Gk}{n})^2$ when positive integers $n,k$, a rational number $a$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x+1)\ge X$, $k>1$, $0<ka\le 1$, and $n>N$ are chosen.
 	    \implementation
 	      \begin{enumerate}
-	        \item Execute \procedurehr{thu2507191017} on $\langle 1,1\rangle$ and let $\langle D,M,t\rangle$ receive.
-	        \item Execute \procedurehr{thu2507190646} on $\langle X\rangle$ and let $\langle B,Q,q\rangle$ receive.
-	        \item Let $N=\max(M,Q)$.
-	        \item Let $G=\frac{B}{D-1}$.
-	        \item Let $p(x,a,k,n)$ be the following procedure:
+	        \item Execute \procedurehr{thu2507191017} on $\langle X\rangle$ and let $\langle D,t\rangle$ receive.
+	        \item Execute \procedurehr{thu2507190646} on $\langle X\rangle$ and let $\langle B,N,q\rangle$ receive.
+	        \item Let $G=DB$.
+	        \item Let $p(x,n,a,k)$ be the following procedure:
 	        \begin{enumerate}
-	          \item If $k>0$, then do the following:
+	          \item If $k>0$, then for $r\in[0:k]$ do the following:
 	          \begin{enumerate}
-	            \item Execute procedure $t$ on $\langle a,x,n\rangle$.
-	            \item Hence verify that $\lVert(1+x)_n^a\rVert^2\le D^2$.
+	            \item Execute procedure $t$ on $\langle x,n,a,k\rangle$.
+	            \item Hence verify that $\lVert((1+x)_n^a)^k\rVert^2\le D^2$.
 	          \end{enumerate}
 	          \item For $r\in[0:k]$, do the following:
 	          \begin{enumerate}
@@ -4581,40 +4600,39 @@
 	          \begin{enumerate}
 	            \item $=\lVert\sum_r^{[0:k]}(((1+x)_n^a)^r(1+x)_n^{(k-r)a}-((1+x)_n^a)^{r+1}(1+x)_n^{(k-r-1)a})\rVert^2$
 	            \item $=\lVert\sum_r^{[0:k]}((1+x)_n^a)^r((1+x)_n^{(k-r)a}-(1+x)_n^a(1+x)_n^{(k-r-1)a})\rVert^2$
-	            \item $\le(\sum_r^{[0:k]}D^r\cdot\frac{B}{n})^2$
-	            \item $=(\frac{B}{n}\cdot\frac{D^k-1}{D-1})^2$
-	            \item $\le(\frac{GD^k}{n})^2$.
+	            \item $\le(\sum_r^{[0:k]}\frac{DB}{n})^2$
+	            \item $=(\frac{Gk}{n})^2$.
 	          \end{enumerate}
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle G,D,N,p\rangle$.}
 	      \end{enumerate}
 	  \procedure{fri2607191210}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct positive rational numbers $a,b,c$ such that $b>1$, and a procedure $p(x,k,n)$ to show that $\lVert\exp_n(n((1+x)_k^{\frac{1}{n}}-1))-(1+x)\rVert^2\le(\frac{ab^n}{k})^2$ when a complex number $x$, and positive integers $n,k$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $n>1$, and $k>c$ are chosen.
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct positive rational numbers $a,c$ such that $b>1$, and a procedure $p(x,n,k)$ to show that $\lVert\exp_n(n((1+x)_k^{\frac{1}{n}}-1))-(1+x)\rVert^2\le(\frac{an}{k})^2$ when a complex number $x$, and positive integers $n,k$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $n>1$, and $k>c$ are chosen.
 	    \implementation
 	      \begin{enumerate}
-	        \item Execute \procedurehr{thu2507190752} on $\langle X\rangle$ and let $\langle a,b,c,p_1\rangle$ receive.
-	        \item Let $p(x,k,n)$ be the following procedure:
+	        \item Execute \procedurehr{thu2507190752} on $\langle X\rangle$ and let $\langle a,c,p_1\rangle$ receive.
+	        \item Let $p(x,n,k)$ be the following procedure:
 	        \begin{enumerate}
 	          \item Using \procedurehr{sun2107190619}, verify that $(1+x)_k^1=(1+x)^1=1+x$.
-	          \item Execute procedure $p_1$ on $\langle x,\frac{1}{n},n,k\rangle$.
-	          \item Hence verify that $\lVert(1+x)_k^1-((1+x)_k^{\frac{1}{n}})^n\rVert^2\le(\frac{ab^n}{k})^2$.
+	          \item Execute procedure $p_1$ on $\langle x,k,\frac{1}{n},n\rangle$.
+	          \item Hence verify that $\lVert(1+x)_k^1-((1+x)_k^{\frac{1}{n}})^n\rVert^2\le(\frac{an}{k})^2$.
 	          \item Hence verify that $\lVert\exp_n(n((1+x)_k^{\frac{1}{n}}-1))-(1+x)\rVert^2$
 	          \begin{enumerate}
 	            \item $=\lVert(1+\frac{1}{n}(n((1+x)_k^{\frac{1}{n}}-1)))^n-(1+x)\rVert^2$
 	            \item $=\lVert((1+x)_k^{\frac{1}{n}})^n-(1+x)_k^1\rVert^2$
-	            \item $\le(\frac{ab^n}{k})^2$.
+	            \item $\le(\frac{an}{k})^2$.
 	           \end{enumerate}
 	        \end{enumerate}
-	        \item \textbf{Yield the tuple $\langle a,b,c,p\rangle$.}
+	        \item \textbf{Yield the tuple $\langle a,c,p\rangle$.}
 	      \end{enumerate}
 	   \procedure{fri2607191243}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct a rational number $a>0$ and a procedure $p(x,k,n)$ to show that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le a^2$ when positive integers $n,k$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$ and $\Re(x)+1\ge X$ are chosen.
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct a rational number $a>0$ and a procedure $p(x,n,k)$ to show that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le a^2$ when positive integers $n,k$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$ and $\Re(x)+1\ge X$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Let $a=\frac{2}{X}$.
-	        \item Let $p(x,k,n)$ be the following procedure:
+	        \item Let $p(x,n,k)$ be the following procedure:
 	        \begin{enumerate}
 	          \item Verify that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2$
 	          \begin{enumerate}
@@ -4634,11 +4652,11 @@
 	    The notation \gls{naturallogarithm} will be used as a shorthand for $\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}x^r$.
 	  \procedure{fri2607191450}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct a positive rational number $a$ and a procedure $p(x,k,n)$ to show that $\lVert\ln_k(1+x)-n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le(\frac{a}{n})^2$ when positive integers $n,k$ and a complex number $x$ such that $\lVert x\rVert^2\le 1$ and $\Re(x)+1\ge X$ are chosen.
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct a positive rational number $a$ and a procedure $p(x,n,k)$ to show that $\lVert n((1+x)_k^{\frac{1}{n}}-1)-\ln_k(1+x)\rVert^2\le(\frac{a}{n})^2$ when positive integers $n,k$ and a complex number $x$ such that $\lVert x\rVert^2\le 1$ and $\Re(x)+1\ge X$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Let $a=\frac{1}{X}$.
-	        \item Let $p(x,k,n)$ be the following procedure:
+	        \item Let $p(x,n,k)$ be the following procedure:
 	        \begin{enumerate}
 	          \item Let $f(r)$ be shorthand notation for $\frac{1}{r}(1-\prod_t^{[1:r]}(1-\frac{1}{nt}))$.
 	          \item For $r\in[2:k]$, use \procedurehr{2.07} to verify that $\frac{f(r+1)}{f(r)}$
@@ -4696,34 +4714,34 @@
 	      \end{enumerate}
 	  \procedure{fri2607191801}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct positive rational numbers $a,b,c,d,e$ such that $b>1$, and a procedure $p(x,k,n)$ to show that $\lVert\exp_n(\ln_k(1+x))-(1+x)\rVert^2\le(\frac{ab^n}{k}+\frac{c}{n})^2$ when positive integers $k,n$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $k>d$, and $n>e$ are chosen.
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ such that $b>1$, and a procedure $p(x,n,k)$ to show that $\lVert\exp_n(\ln_k(1+x))-(1+x)\rVert^2\le(\frac{an}{k}+\frac{c}{n})^2$ when positive integers $n,k$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $k>d$, and $n>e$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Execute \procedurehr{fri2607191243} on $\langle X\rangle$ and let $\langle a_1,p_1\rangle$ receive.
 	        \item Execute \procedurehr{fri2607191736} on $\langle X\rangle$ and let $\langle a_2,p_2\rangle$ receive.
 	        \item Execute \procedurehr{thu2507191307} on $\langle\max(a_1,a_2)\rangle$ and let $\langle a_3,e,p_3\rangle$ receive.
 	        \item Execute \procedurehr{fri2607191450} on $\langle X\rangle$ and let $\langle a_4,p_4\rangle$ receive.
-	        \item Execute \procedurehr{fri2607191210} on $\langle X\rangle$ and let $\langle a,b,d,p_5\rangle$ receive.
+	        \item Execute \procedurehr{fri2607191210} on $\langle X\rangle$ and let $\langle a,d,p_5\rangle$ receive.
 	        \item Let $c=a_4a_3$.
-	        \item Let $p(x,k,n)$ be the following procedure:
+	        \item Let $p(x,n,k)$ be the following procedure:
 	        \begin{enumerate}
-	          \item Execute procedure $p_1$ on $\langle x,k,n\rangle$.
+	          \item Execute procedure $p_1$ on $\langle x,n,k\rangle$.
 	          \item Hence verify that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le {a_1}^2$.
 	          \item Execute procedure $p_2$ on $\langle x,k\rangle$.
 	          \item Hence verify that $\lVert\ln_k(1+x)\rVert^2\le {a_2}^2$.
-	          \item Execute procedure $p_4$ on $\langle x,k,n\rangle$.
+	          \item Execute procedure $p_4$ on $\langle x,n,k\rangle$.
 	          \item Hence verify that $\lVert\ln_k(1+x)-n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le(\frac{a_4}{n})^2$.
 	          \item Execute procedure $p_3$ on $\langle\ln_k(1+x),n((1+x)_k^{\frac{1}{n}}-1),n\rangle$.
 	          \item Hence verify that $\lVert\exp_n(\ln_k(1+x))-\exp_n(n((1+x)_k^{\frac{1}{n}}-1))\rVert^2\le(\frac{a_4}{n})^2{a_3}^2=(\frac{c}{n})^2$.
-	          \item Execute procedure $p_5$ on $\langle x,k,n\rangle$.
-	          \item Hence verify that $\lVert\exp_n(n((1+x)_k^{\frac{1}{n}}-1))-(1+x)\rVert^2\le(\frac{ab^n}{k})^2$.
+	          \item Execute procedure $p_5$ on $\langle x,n,k\rangle$.
+	          \item Hence verify that $\lVert\exp_n(n((1+x)_k^{\frac{1}{n}}-1))-(1+x)\rVert^2\le(\frac{an}{k})^2$.
 	          \item Hence verify that $\lVert\exp_n(\ln_k(1+x))-(1+x)\rVert^2$
 	          \begin{enumerate}
 	            \item $=\lVert\exp_n(\ln_k(1+x))-\exp_n(n((1+x)_k^{\frac{1}{n}}-1))+\exp_n(n((1+x)_k^{\frac{1}{n}}-1))-(1+x)\rVert^2$
-	            \item $\le(\frac{c}{n}+\frac{ab^n}{k})^2$.
+	            \item $\le(\frac{c}{n}+\frac{an}{k})^2$.
 	          \end{enumerate}
 	        \end{enumerate}
-	        \item \textbf{Yield the tuple $\langle a,b,c,d,e,p\rangle$.}
+	        \item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
 	      \end{enumerate}
 		\declaration{3.33}
 			The notation \gls{complextau}, where $n$ is a positive integer, will be used as a shorthand for $8\Im(\ln_n(1+i))$.
@@ -4822,95 +4840,92 @@
 				\end{enumerate}
 		\procedure{3.53}
 			\objective
-				The objective of the following instructions is to construct positive rational numbers $a,b,c,d,e$ such that $b>1$, and a procedure $p(k,n)$ to show that $\lVert\exp_n(\frac{1}{4}\tau_ki)-i\rVert^2\le(\frac{ab^n}{k}+\frac{c}{n})^2$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
+				The objective of the following instructions is to construct positive rational numbers $a,c,d,e$, and a procedure $p(n,k)$ to show that $\lVert\exp_n(\frac{1}{4}\tau_ki)-i\rVert^2\le(\frac{an}{k}+\frac{c}{n})^2$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{fri2607191736} on $\langle 1\rangle$ and let $\langle a_1,p_1\rangle$ receive.
 					\item Execute \procedurehr{thu2507191359} on $\langle a_1\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
 					\item Execute \procedurehr{3.14} on $\langle a_1\rangle$ and let $\langle a_3,b_3,p_3\rangle$ receive.
-					\item Execute \procedurehr{fri2607191801} on $\langle 1\rangle$ and let $\langle a_4,b,c_4,d,e_4,p_4\rangle$ receive.
+					\item Execute \procedurehr{fri2607191801} on $\langle 1\rangle$ and let $\langle a_4,c_4,d,e_4,p_4\rangle$ receive.
 					\item Let $a=\frac{2a_4}{a_3}$.
 					\item Let $c=\frac{2c_4}{a_3}+a_2$.
 					\item Let $e=\max(b_2,b_3,e_4)$.
-					\item Let $p(k,n)$ be the following procedure:
+					\item Let $p(n,k)$ be the following procedure:
 					\begin{enumerate}
 					  \item Execute procedure $p_1$ on $\langle i,k\rangle$.
 					  \item Hence verify that $\lVert\ln_k(1+i)\rVert^2\le {a_1}^2$.
 					  \item Execute procedure $p_2$ on $\langle\ln_k(1+i),\conj{\ln_k(1+i)},n\rangle$.
 					  \item Hence  verify that $\lVert\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})-\frac{\exp_n(\ln_k(1+i))}{\exp_n(\conj{\ln_k(1+i)})}\rVert^2\le\frac{{a_2}^2}{n^2}$.
-					  \item Execute procedure $p_4$ on $\langle i,k,n\rangle$.
-					  \item Hence verify that $\lVert\exp_n(\ln_k(1+i))-(1+i)\rVert^2\le(\frac{a_4b^n}{k}+\frac{c_4}{n})^2$.
+					  \item Execute procedure $p_4$ on $\langle i,n,k\rangle$.
+					  \item Hence verify that $\lVert\exp_n(\ln_k(1+i))-(1+i)\rVert^2\le(\frac{a_4n}{k}+\frac{c_4}{n})^2$.
 					  \item Execute procedure $p_3$ on $\langle\ln_k(1+i),n\rangle$.
 					  \item Hence verify that $\lVert\exp_n(\ln_k(1+i))\rVert^2\ge a_3$.
-					  \item Hence verify that $\lVert\frac{\exp_n(\ln_k(1+i))}{\exp_n(\ln_k(1+i))}-\frac{1+i}{\exp_n(\ln_k(1+i))}\rVert^2\le\frac{1}{{a_3}^2}(\frac{a_4b^n}{k}+\frac{c_4}{n})^2$.
-					  \item Also verify that $\lVert\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}-\frac{1+i}{\conj{1+i}}\rVert^2=\lVert\frac{(1+i)(\conj{(1+i)-\exp_n(\ln_k(1+i))})}{\conj{\exp_n(\ln_k(1+i))(1+i)}}\rVert^2\le\frac{1}{{a_3}^2}(\frac{a_4b^n}{k}+\frac{c_4}{n})^2$.
+					  \item Hence verify that $\lVert\frac{\exp_n(\ln_k(1+i))}{\exp_n(\ln_k(1+i))}-\frac{1+i}{\exp_n(\ln_k(1+i))}\rVert^2\le\frac{1}{{a_3}^2}(\frac{a_4n}{k}+\frac{c_4}{n})^2$.
+					  \item Also verify that $\lVert\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}-\frac{1+i}{\conj{1+i}}\rVert^2=\lVert\frac{(1+i)(\conj{(1+i)-\exp_n(\ln_k(1+i))})}{\conj{\exp_n(\ln_k(1+i))(1+i)}}\rVert^2\le\frac{1}{{a_3}^2}(\frac{a_4n}{k}+\frac{c_4}{n})^2$.
 					  \item Hence verify that $\lVert\exp_n(\frac{1}{4}\tau_ki)-i\rVert^2$
 					  \begin{enumerate}
 					    \item $=\lVert\exp_n(2\Im(\ln_k(1+i))i)-i\rVert^2$
 					    \item $=\lVert\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})-i\rVert^2$
 					    \item $=\lVert\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})-\frac{\exp_n(\ln_k(1+i))}{\exp_n(\conj{\ln_k(1+i)})}+\frac{\exp_n(\ln_k(1+i))}{\exp_n(\conj{\ln_k(1+i)})}-\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}+\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}-\frac{1+i}{\conj{1+i}}\rVert^2$
-					    \item $\le(\frac{a_2}{n}+\frac{2}{a_3}(\frac{a_4b^n}{k}+\frac{c_4}{n}))^2$
-					    \item $=(\frac{ab^n}{k}+\frac{c}{n})^2$.
+					    \item $\le(\frac{a_2}{n}+\frac{2}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n}))^2$
+					    \item $=(\frac{an}{k}+\frac{c}{n})^2$.
 					  \end{enumerate}
 					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle a,b,c,d,e,p\rangle$.}
+					\item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.54}
 			\objective
-				The objective of the following instructions is to construct positive rational numbers $a,b,c,d,e$ such that $b>1$, and a procedure, $p(k,n)$, to show that $\lVert\exp_n(-\frac{1}{4}\tau_ki)+i\rVert^2\le(\frac{ab^n}{k}+\frac{c}{n})^2$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
+				The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ such that $b>1$, and a procedure, $p(n,k)$, to show that $\lVert\exp_n(-\frac{1}{4}\tau_ki)+i\rVert^2\le(\frac{an}{k}+\frac{c}{n})^2$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.53}.
 		\procedure{3.55}
 			\objective
-				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,k,m)$, to show that $\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ when a non-negative integer $k$ and two positive integers $n,m$ such that $k\le K$, $n>c$, and $m>d$ are chosen.
+				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when a non-negative integer $k$ and two positive integers $n,m$ such that $k\le K$, $n>c$, and $m>d$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.50} and let $\langle a_1,d,p_1\rangle$ receive.
-					\item Execute \procedurehr{3.16} on $\langle(\frac{a_1}{4})^2,K\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
+					\item Execute \procedurehr{3.16} on $\langle(\frac{a_1}{4})^2\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
 					\item Execute \procedurehr{3.53} and let $\langle a_3,b_3,c_3,p_3\rangle$ receive.
 					\item Execute \procedurehr{3.13} on $\langle(\frac{a_1}{4})^2\rangle$ and let $\langle a_4,b_4,p_4\rangle$ receive.
-					\item Let $a=2a_2{a_1}^4+2K^2a_3\max(1,a_4)^K$.
-					\item Let $b=2K^2b_3\max(1,a_4)^K$.
+					\item Let $a=a_3\cdot\frac{{a_4}^K-1}{a_4-1}$.
+					\item Let $b=a_2K+b_3\cdot\frac{{a_4}^k-1}{a_4-1}$.
 					\item Let $c=\max(b_2,b_4,c_3)$.
 					\item Let $p(n,k,m)$ be the following procedure:
 					\begin{enumerate}
 						\item Execute procedure $p_1$ on $\langle m\rangle$.
-						\item Hence verify that $\tau_m\le z$.
+						\item Hence verify that $\tau_m\le a_1$.
 						\item Hence verify that $\lVert\frac{1}{4}\tau_m i\rVert^2=\lVert\frac{1}{4}\tau_m\rVert^2\le(\frac{a_1}{4})^2$.
 						\item Execute procedure $p_2$ on $\langle\frac{1}{4}\tau_m i,k,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{k}{4}\tau_m i)-\exp_n(\frac{1}{4}\tau_m i)^k\rVert^2\le\frac{a_2\lVert\frac{1}{4}\tau_m i\rVert^4}{n^2}\le\frac{a_2{a_1}^4}{n^2}$.
+						\item Hence verify that $\lVert\exp_n(\frac{k}{4}\tau_m i)-\exp_n(\frac{1}{4}\tau_m i)^k\rVert^2\le(\frac{a_2k}{n})^2\le(\frac{a_2K}{n})^2$.
 						\item Execute procedure $p_3$ on $\langle n,m\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{1}{4}\tau_m i)-i\rVert^2\le\frac{a_3}{n^2}+\frac{b_3}{m^2}$.
+						\item Hence verify that $\lVert\exp_n(\frac{1}{4}\tau_m i)-i\rVert^2\le(\frac{a_3n}{m}+\frac{b_3}{n})^2$.
 						\item Execute procedure $p_4$ on $\langle\frac{1}{4}\tau_m i,n\rangle$.
 						\item Hence verify that $\lVert\exp_n(\frac{1}{4}\tau_m i)\rVert^2\le a_4$.
 						\item Verify that $\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2$
 						\begin{enumerate}
-							\item $\le\lVert\exp_n(\frac{k}{4}\tau_m i)-\exp_n(\frac{1}{4}\tau_m i)^k+\exp_n(\frac{1}{4}\tau_m i)^k-i^k\rVert^2$
-							\item $\le 2\lVert\exp_n(\frac{k}{4}\tau_m i)-\exp_n(\frac{1}{4}\tau_m i)^k\rVert^2+2\lVert\exp_n(\frac{1}{4}\tau_m i)^k-i^k\rVert^2$
-							\item $\le\frac{2a_2{a_1}^4}{n^2}+2\lVert\exp_n(\frac{1}{4}\tau_m i)-i\rVert^2\lVert\sum_r^{[0:k]}\exp_n(\frac{1}{4}\tau_m i)^ri^{k-1-r}\rVert^2$
-							\item $\le\frac{2a_2{a_1}^4}{n^2}+2k(\frac{a_3}{n^2}+\frac{b_3}{m^2})\sum_r^{[0:k]}\lVert\exp_n(\frac{1}{4}\tau_m i)^ri^{k-1-r}\rVert^2$
-							\item $=\frac{2a_2{a_1}^4}{n^2}+2k(\frac{a_3}{n^2}+\frac{b_3}{m^2})\sum_r^{[0:k]}\lVert\exp_n(\frac{1}{4}\tau_m i)^r\rVert^2$
-							\item $\le\frac{2a_2{a_1}^4}{n^2}+2k(\frac{a_3}{n^2}+\frac{b_3}{m^2})\sum_r^{[0:k]}\max(1,a_4)^k$
-							\item $=\frac{2a_2{a_1}^4}{n^2}+2k^2(\frac{a_3}{n^2}+\frac{b_3}{m^2})\max(1,a_4)^k$
-							\item $\le\frac{a}{n^2}+\frac{b}{m^2}$.
+							\item $=\lVert\exp_n(\frac{k}{4}\tau_m i)-\exp_n(\frac{1}{4}\tau_m i)^k+\exp_n(\frac{1}{4}\tau_m i)^k-i^k\rVert^2$
+							\item $=\lVert\exp_n(\frac{k}{4}\tau_m i)-\exp_n(\frac{1}{4}\tau_m i)^k+(\exp_n(\frac{1}{4}\tau_m i)-i)\sum_t^{[0:k]}\exp_n(\frac{1}{4}\tau_m i)^ti^{k-1-t}\rVert^2$
+							\item $\le(\frac{a_2K}{n}+(\frac{a_3n}{m}+\frac{b_3}{n})\sum_t^{[0:k]}{a_4}^t)^2$
+							\item $=((a_2K+b_3\frac{{a_4}^k-1}{a_4-1})\frac{1}{n}+(a_3\frac{{a_4}^k-1}{a_4-1})\frac{n}{m})^2$
+							\item $\le(\frac{an}{m}+\frac{b}{n})^2$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 \end{enumerate}
 		\procedure{3.56}
 			\objective
-				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,k,m)$, to show that $\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
+				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
 			\implementation
 				Implementation is an extension of that of \procedurehr{3.55} using \procedurehr{3.54}.
 		\procedure{3.57}
 			\objective
-				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,k,m)$, to show that $\lVert\cos_n(\frac{k}{4}\tau_m)-\frac{i^k+(-i)^k}{2}\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
+				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\lVert\cos_n(\frac{k}{4}\tau_m)-\frac{i^k+(-i)^k}{2}\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.56} on $\langle K\rangle$ and let $\langle a,b,c,d,q\rangle$ receive.
-					\item Let $p(n,k,m)$ be the following procedure:
+					\item Let $p(n,m,k)$ be the following procedure:
 					\begin{enumerate}
-						\item Execute procedure $q$ on $\langle n,k,m\rangle$.
+						\item Execute procedure $q$ on $\langle n,m,k\rangle$.
 						\item Hence verify that $\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$.
 						\item Execute procedure $q$ on $\langle n,-k,m\rangle$.
 						\item Hence verify that $\lVert\exp_n(-\frac{k}{4}\tau_m i)-i^{-k}\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$.
@@ -4926,7 +4941,7 @@
 				\end{enumerate}
 		\procedure{3.58}
 			\objective
-				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,k,m)$, to show that $\lVert\sin_n(\frac{k}{4}\tau_m)-\frac{i^k-(-i)^k}{2i}\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
+				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\lVert\sin_n(\frac{k}{4}\tau_m)-\frac{i^k-(-i)^k}{2i}\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.57}.
 		\procedure{3.59}
@@ -4953,7 +4968,7 @@
 						\item Hence verify that $\lVert\exp_n(x)\exp_n(\frac{k}{4}\tau_m i)-\exp_n(x+\frac{k}{4}\tau_m i)\rVert^2\le\frac{a_2\lVert x\rVert^2\lVert\frac{k}{4}\tau_m i\rVert^2}{n^2}\le\frac{a_2XK^2{a_1}^2}{16n^2}$.
 						\item Execute procedure $p_3$ on $\langle x,n\rangle$.
 						\item Hence verify that $\lVert\exp_n(x)\rVert^2\le a_3$.
-						\item Execute procedure $p_4$ on $\langle n,k,m\rangle$.
+						\item Execute procedure $p_4$ on $\langle n,m,k\rangle$.
 						\item Hence verify that $\lVert\exp_n(\frac{k}{4}\tau_mi)-i^k\rVert^2\le\frac{a_4}{n^2}+\frac{b_4}{m^2}$.
 						\item Verify that $\lVert\exp_n(x+\frac{k}{4}\tau_m i)-i^k\exp_n(x)\rVert^2$
 						\begin{enumerate}
@@ -4983,7 +4998,7 @@
 						\item Hence verify that $\tau_m\le a_1$.
 						\item Execute procedure $p_2$ on $\langle\frac{k}{K}\tau_mi,K,n\rangle$.
 						\item Hence verify that $\lVert\exp_n(K\frac{k}{K}\tau_mi)-\exp_n(\frac{k}{K}\tau_mi)^K\rVert^2\le\frac{a_2\lVert\frac{k}{K}\tau_mi\rVert^2}{n^2}\le\frac{a_2\lVert\tau_m\rVert^2}{n^2}\le\frac{a_2{a_1}^2}{n^2}$.
-						\item Execute procedure $p_3$ on $\langle n,4k,m\rangle$.
+						\item Execute procedure $p_3$ on $\langle n,m,4k\rangle$.
 						\item Hence verify that $\lVert\exp_n(\frac{4k}{4}\tau_mi)-i^{4k}\rVert^2\le\frac{a_3}{n^2}+\frac{b_3}{m^2}$.
 						\item Verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)^K-1\rVert^2$
 						\begin{enumerate}
