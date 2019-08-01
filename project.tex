@@ -166,7 +166,6 @@
 \newglossaryentry{complexi}{name=\ensuremath{i},description={imaginary number}}
 \newglossaryentry{complexexp}{name=\ensuremath{\exp_n(a)},description={complex exponential function}}
 \newglossaryentry{complexdiff}{name=\ensuremath{\diff_{x=y}^zf(x)},description={differentiation}}
-\newglossaryentry{complexisqrt}{name=\ensuremath{\lceil\sqrt{x}\rceil},description={integer square root}}
 \newglossaryentry{complexcos}{name=\ensuremath{\cos_n(z)},description={cosine}}
 \newglossaryentry{complexsin}{name=\ensuremath{\sin_n(z)},description={sine}}
 \newglossaryentry{complexintegral}{name=\ensuremath{\int_r^Rf(\#r,r,dr)},description={complex integral}}
@@ -4911,7 +4910,7 @@
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
-\end{enumerate}
+        \end{enumerate}
 		\procedure{3.56}
 			\objective
 				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
@@ -4926,35 +4925,35 @@
 					\item Let $p(n,m,k)$ be the following procedure:
 					\begin{enumerate}
 						\item Execute procedure $q$ on $\langle n,m,k\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$.
-						\item Execute procedure $q$ on $\langle n,-k,m\rangle$.
-						\item Hence verify that $\lVert\exp_n(-\frac{k}{4}\tau_m i)-i^{-k}\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$.
+						\item Hence verify that $\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$.
+						\item Execute procedure $q$ on $\langle n,m,-k\rangle$.
+						\item Hence verify that $\lVert\exp_n(-\frac{k}{4}\tau_m i)-i^{-k}\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$.
 						\item Hence verify that $\lVert\cos_n(\frac{k}{4}\tau_m)-\frac{i^k+(-i)^k}{2}\rVert^2$
 						\begin{enumerate}
 							\item $=\lVert\frac{\exp_n(\frac{k}{4}\tau_m i)+\exp_n(-\frac{k}{4}\tau_m i)}{2}-\frac{i^k+(-i)^k}{2}\rVert^2$
 							\item $=\lVert\frac{\exp_n(\frac{k}{4}\tau_m i)-i^k}{2}+\frac{\exp_n(-\frac{k}{4}\tau_m i)-(-i)^k}{2}\rVert^2$
 							\item $\le\frac{1}{2}\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2+\frac{1}{2}\lVert\exp_n(-\frac{k}{4}\tau_m i)-(-i)^k\rVert^2$
-							\item $\le\frac{a}{n^2}+\frac{b}{m^2}$.
+							\item $\le(\frac{an}{m}+\frac{b}{n})^2$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.58}
 			\objective
-				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\lVert\sin_n(\frac{k}{4}\tau_m)-\frac{i^k-(-i)^k}{2i}\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
+				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\lVert\sin_n(\frac{k}{4}\tau_m)-\frac{i^k-(-i)^k}{2i}\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.57}.
 		\procedure{3.59}
 			\objective
-				Choose two integers $X\ge 0,K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,k,m)$, to show that $\lVert\exp_n(x+\frac{k}{4}\tau_m i)-i^k\exp_n(x)\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ when an integer $k$ and two positive integers $n,m$ such that $\lVert x\rVert^2\le X$, $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
+				Choose two integers $X\ge 0,K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m,k)$, to show that $\lVert\exp_n(x+\frac{k}{4}\tau_m i)-i^k\exp_n(x)\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when an integer $k$ and two positive integers $n,m$ such that $\lVert x\rVert^2\le X$, $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.50} and let $\langle a_1,b_1,p_1\rangle$ receive.
-					\item Execute \procedurehr{3.15} on $\langle 2X+\frac{K{a_1}^2}{8}\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
+					\item Execute \procedurehr{3.15} on $\langle\max(X,\frac{K^2{a_1}^2}{16})\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
 					\item Execute \procedurehr{3.13} on $\langle X\rangle$ and let $\langle a_3,b_3,p_3\rangle$ receive.
 					\item Execute \procedurehr{3.56} on $\langle K\rangle$ and let $\langle a_4,b_4,c_4,d_4,p_4\rangle$ receive.
-					\item Let $a=\frac{a_2XK^2{a_1}^2}{8}+2a_3a_4$.
-					\item Let $b=2a_3b_4$.
+					\item Let $a=a_3a_4$.
+					\item Let $b=\frac{a_2XKa_1}{4}+a_3b_4$.
 					\item Let $c=\max(b_2,b_3,c_4)$.
 					\item Let $d=\max(b_1,d_4)$.
 					\item Let $p(x,n,k,m)$ be the following procedure:
@@ -4963,49 +4962,48 @@
 						\item Execute procedure $p_1$ on $\langle m\rangle$.
 						\item Hence verify that $\tau_m\le a_1$.
 						\item Hence verify that $\lVert\frac{k}{4}\tau_m i\rVert^2=\frac{k^2{\tau_m}^2}{16}\le\frac{K^2{a_1}^2}{16}$.
-						\item Hence verify that $2(\lVert x\rVert^2+\lVert\frac{k}{4}\tau_m i\rVert^2)\le 2X+\frac{K^2{a_1}^2}{8}$.
 						\item Now execute procedure $p_2$ on $\langle x,\frac{k}{4}\tau_m i,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(x)\exp_n(\frac{k}{4}\tau_m i)-\exp_n(x+\frac{k}{4}\tau_m i)\rVert^2\le\frac{a_2\lVert x\rVert^2\lVert\frac{k}{4}\tau_m i\rVert^2}{n^2}\le\frac{a_2XK^2{a_1}^2}{16n^2}$.
+						\item Hence verify that $\lVert\exp_n(x)\exp_n(\frac{k}{4}\tau_m i)-\exp_n(x+\frac{k}{4}\tau_m i)\rVert^2\le\frac{{a_2}^2\lVert x\rVert^2\lVert\frac{k}{4}\tau_m i\rVert^2}{n^2}\le\frac{{a_2}^2X^2K^2{a_1}^2}{16n^2}$.
 						\item Execute procedure $p_3$ on $\langle x,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(x)\rVert^2\le a_3$.
+						\item Hence verify that $\lVert\exp_n(x)\rVert^2\le {a_3}^2$.
 						\item Execute procedure $p_4$ on $\langle n,m,k\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{k}{4}\tau_mi)-i^k\rVert^2\le\frac{a_4}{n^2}+\frac{b_4}{m^2}$.
+						\item Hence verify that $\lVert\exp_n(\frac{k}{4}\tau_mi)-i^k\rVert^2\le(\frac{a_4n}{m}+\frac{b_4}{n})^2$.
 						\item Verify that $\lVert\exp_n(x+\frac{k}{4}\tau_m i)-i^k\exp_n(x)\rVert^2$
 						\begin{enumerate}
 							\item $=\lVert\exp_n(x+\frac{k}{4}\tau_m i)-\exp_n(x)\exp_n(\frac{k}{4}\tau_m i)+\exp_n(x)\exp_n(\frac{k}{4}\tau_m i)-i^k\exp_n(x)\rVert^2$
-							\item $\le 2\lVert\exp_n(x+\frac{k}{4}\tau_m i)-\exp_n(x)\exp_n(\frac{k}{4}\tau_m i)\rVert^2+2\lVert\exp_n(x)\rVert^2\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2$
-							\item $\le\frac{a_2XK^2{a_1}^2}{8n^2}+2a_3(\frac{a_4}{n^2}+\frac{b_4}{m^2})$
-							\item $=\frac{a}{n^2}+\frac{b}{m^2}$.
+							\item $=\lVert\exp_n(x+\frac{k}{4}\tau_m i)-\exp_n(x)\exp_n(\frac{k}{4}\tau_m i)+\exp_n(x)(\exp_n(\frac{k}{4}\tau_m i)-i^k)\rVert^2$
+							\item $\le(\frac{a_2XKa_1}{4n}+a_3(\frac{a_4n}{m}+\frac{b_4}{n}))^2$
+							\item $=(\frac{an}{m}+\frac{b}{n})^2$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.89}
 			\objective
-				Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,k,m)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_m i)^K-1\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ when an integer $k$ and positive integers $n,m$ such that $0\le k<K$, $n\ge c$, and $m>d$ are chosen.
+				Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,k,m)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_m i)^K-1\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when an integer $k$ and positive integers $n,m$ such that $0\le k<K$, $n\ge c$, and $m>d$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.50} and let $\langle a_1,b_1,p_1\rangle$ receive.
-					\item Execute \procedurehr{3.16} on $\langle {a_1}^2,K\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
+					\item Execute \procedurehr{3.16} on $\langle Ka_1\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
 					\item Execute \procedurehr{3.56} on $\langle 4K\rangle$ and let $\langle a_3,b_3,c_3,d_3,p_3\rangle$ receive.
-					\item Let $a=2a_2{a_1}^2+2a_3$.
-					\item Let $b=2b_3$.
+					\item Let $a=a_3$.
+					\item Let $b=a_2K+b_3$.
 					\item Let $c=\max(b_2,c_3)$.
 					\item Let $d=\max(b_1,d_3)$.
 					\item Let $p(n,k,m)$ be the following procedure:
 					\begin{enumerate}
 						\item Execute procedure $p_1$ on $\langle m\rangle$.
 						\item Hence verify that $\tau_m\le a_1$.
+						\item Hence verify that $\lVert K\frac{k}{K}\tau_mi\rVert=\lVert k\tau_m\rVert^2\le(Ka_1)^2$.
 						\item Execute procedure $p_2$ on $\langle\frac{k}{K}\tau_mi,K,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(K\frac{k}{K}\tau_mi)-\exp_n(\frac{k}{K}\tau_mi)^K\rVert^2\le\frac{a_2\lVert\frac{k}{K}\tau_mi\rVert^2}{n^2}\le\frac{a_2\lVert\tau_m\rVert^2}{n^2}\le\frac{a_2{a_1}^2}{n^2}$.
+						\item Hence verify that $\lVert\exp_n(K\frac{k}{K}\tau_mi)-\exp_n(\frac{k}{K}\tau_mi)^K\rVert^2\le(\frac{a_2K}{n})^2$.
 						\item Execute procedure $p_3$ on $\langle n,m,4k\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{4k}{4}\tau_mi)-i^{4k}\rVert^2\le\frac{a_3}{n^2}+\frac{b_3}{m^2}$.
+						\item Hence verify that $\lVert\exp_n(\frac{4k}{4}\tau_mi)-i^{4k}\rVert^2\le(\frac{a_3n}{m}+\frac{b_3}{n})^2$.
 						\item Verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)^K-1\rVert^2$
 						\begin{enumerate}
 							\item $=\lVert\exp_n(\frac{k}{K}\tau_mi)^K-\exp_n(k\tau_mi)+\exp_n(k\tau_mi)-1\rVert^2$
-							\item $\le 2\lVert\exp_n(\frac{k}{K}\tau_mi)^K-\exp_n(k\tau_mi)\rVert^2+2\lVert\exp_n(k\tau_mi)-1\rVert^2$
-							\item $\le\frac{2a_2{a_1}^2}{n^2}+2(\frac{a_3}{n^2}+\frac{b_3}{m^2})$
-							\item $=\frac{a}{n^2}+\frac{b}{m^2}$.
+							\item $\le(\frac{a_2K}{n}+\frac{a_3n}{m}+\frac{b_3}{n})^2$
+							\item $=(\frac{an}{m}+\frac{b}{n})^2$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
@@ -5071,10 +5069,10 @@
 	\begin{multicols}{2}
 		\procedure{3.90}
 			\objective
-				Choose a two rationals $M,N$ such that $0<M$ and $N^2<12$. The objective of the following instructions is to construct rational numbers $a,b$ such that $a>0$, and a procedure, $p(x,n)$, to show that $\lVert\cos_n(x)-1\rVert^2\ge a$ when a rational number $x$ and a positive integer $n$ such that $M\le\lvert x\rvert\le N$ and $n>b$ are chosen.
+				Choose a two rationals $M,N$ such that $0<M$ and $N^2<12$. The objective of the following instructions is to construct rational numbers $a,b$ such that $a>0$, and a procedure, $p(x,n)$, to show that $\lVert\cos_n(x)-1\rVert^2\ge a^2$ when a rational number $x$ and a positive integer $n$ such that $M\le\lvert x\rvert\le N$ and $n>b$ are chosen.
 			\implementation
 				\begin{enumerate}
-					\item Let $a=\frac{M^4}{16}(-1+\frac{N^2}{12})^2$.
+					\item Let $a=\frac{M^2}{4}(1-\frac{N^2}{12})$.
 					\item \textbf{Verify that $a>0$.}
 					\item Let $b=4$.
 					\item Let $p(x,n)$ be the following procedure:
@@ -5083,24 +5081,24 @@
 						\begin{enumerate}
 							\item $=(\frac{1}{2}((1+\frac{xi}{n})^n+(1-\frac{xi}{n})^n)-1)^2$
 							\item $=(\frac{1}{2}(\sum_r^{[0:{n+1}]}\frac{n^{\ul{r}}}{r!}(\frac{x}{n})^ri^r+\sum_r^{[0:{n+1}]}\frac{n^{\ul{r}}}{r!}(\frac{x}{n})^r(-i)^r)-1)^2$
-							\item $=(\sum_r^{[0:{\lfloor\frac{n}]}{2}\rfloor+1}\frac{n^{\ul{2r}}}{(2r)!}(\frac{x}{n})^{2r}(-1)^r-1)^2$
-							\item $=(\sum_r^{[1:{\lfloor\frac{n}]}{2}\rfloor+1}\frac{n^{\ul{2r}}}{(2r)!}(\frac{x}{n})^{2r}(-1)^r)^2$
-							\item $=(\sum_r^{[1:{\lfloor\frac{\lfloor\frac{n}]}{2}\rfloor}{2}\rfloor+1}(-\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}+\frac{n^{\ul{4r}}}{(4r)!}(\frac{x}{n})^{4r})-\frac{n^{\ul{2\lfloor\frac{n}{2}\rfloor}}}{(2\lfloor\frac{n}{2}\rfloor)!}(\frac{x}{n})^{2\lfloor\frac{n}{2}\rfloor}[\lfloor\frac{n}{2}\rfloor\mod 2=1])^2$
-							\item $\ge(\sum_r^{[1:{\lfloor\frac{\lfloor\frac{n}]}{2}\rfloor}{2}\rfloor+1}\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}(-1+\frac{(n-4r+2)^{\ul{2}}}{(4r)^{\ul{2}}}(\frac{x}{n})^{2}))^2$
-							\item $\ge(\sum_r^{[1:{\lfloor\frac{\lfloor\frac{n}]}{2}\rfloor}{2}\rfloor+1}\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}(-1+\frac{1}{(4r)^{\ul{2}}}(x)^{2}))^2$
-							\item $\ge(\sum_r^{[1:{\lfloor\frac{\lfloor\frac{n}]}{2}\rfloor}{2}\rfloor+1}\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}(-1+\frac{1}{12}x^{2}))^2$
-							\item $\ge(\sum_r^{[1:{\lfloor\frac{\lfloor\frac{n}]}{2}\rfloor}{2}\rfloor+1}\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}(-1+\frac{N^2}{12}))^2$
+							\item $=(\sum_r^{[0:\lfloor\frac{n}{2}\rfloor+1]}\frac{n^{\ul{2r}}}{(2r)!}(\frac{x}{n})^{2r}(-1)^r-1)^2$
+							\item $=(\sum_r^{[1:\lfloor\frac{n}{2}\rfloor+1]}\frac{n^{\ul{2r}}}{(2r)!}(\frac{x}{n})^{2r}(-1)^r)^2$
+							\item $=(\sum_r^{[1:\lfloor\frac{\lfloor\frac{n}{2}\rfloor}{2}\rfloor+1]}(-\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}+\frac{n^{\ul{4r}}}{(4r)!}(\frac{x}{n})^{4r})-\frac{n^{\ul{2\lfloor\frac{n}{2}\rfloor}}}{(2\lfloor\frac{n}{2}\rfloor)!}(\frac{x}{n})^{2\lfloor\frac{n}{2}\rfloor}[\lfloor\frac{n}{2}\rfloor\mod 2=1])^2$
+							\item $\ge(\sum_r^{[1:\lfloor\frac{\lfloor\frac{n}{2}\rfloor}{2}\rfloor+1]}\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}(-1+\frac{(n-4r+2)^{\ul{2}}}{(4r)^{\ul{2}}}(\frac{x}{n})^{2}))^2$
+							\item $\ge(\sum_r^{[1:\lfloor\frac{\lfloor\frac{n}{2}\rfloor}{2}\rfloor+1]}\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}(-1+\frac{1}{(4r)^{\ul{2}}}(x)^{2}))^2$
+							\item $\ge(\sum_r^{[1:\lfloor\frac{\lfloor\frac{n}{2}\rfloor}{2}\rfloor+1]}\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}(-1+\frac{1}{12}x^{2}))^2$
+							\item $\ge(\sum_r^{[1:\lfloor\frac{\lfloor\frac{n}{2}\rfloor}{2}\rfloor+1]}\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}(-1+\frac{N^2}{12}))^2$
 							\item $\ge(\frac{n^{\ul{2}}}{2}(\frac{x}{n})^{2}(-1+\frac{N^2}{12}))^2$
 							\item $\ge(\frac{1}{4}x^{2}(-1+\frac{N^2}{12}))^2$
 							\item $\ge(\frac{M^2}{4}(-1+\frac{N^2}{12}))^2$
-							\item $=a$
+							\item $=a^2$
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.60}
 			\objective
-				Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,k,m)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-1\rVert^2\ge a$ when an integer $k$ and positive integers $n,m$ such that $0<\lvert k\rvert\le\frac{K}{2}$, $n>b$, and $m>c$ are chosen.
+				Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,m,k)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-1\rVert^2\ge a^2$ when an integer $k$ and positive integers $n,m$ such that $0<\lvert k\rvert\le\frac{K}{2}$, $n>b$, and $m>c$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.50} and let $\langle a_1,c,p_1\rangle$ receive.
@@ -5109,7 +5107,7 @@
 					\item Verify that $a_2>0$.
 					\item Execute \procedurehr{3.90} on $\langle\frac{a_2}{K},\frac{a_1}{2}\rangle$ and let $\langle a,b,p_3\rangle$ receive.
 					\item \textbf{Verify that $a>0$.}
-					\item Let $p(n,k,m)$ be the following procedure:
+					\item Let $p(n,m,k)$ be the following procedure:
 					\begin{enumerate}
 						\item Verify that $1\le\lvert k\rvert\le\frac{K}{2}$.
 						\item Hence verify that $\frac{1}{K}\le\frac{\lvert k\rvert}{K}\le\frac{1}{2}$.
@@ -5117,35 +5115,29 @@
 						\item Execute procedure $p_2$ on $\langle m\rangle$.
 						\item Hence verify that $0<\frac{a_2}{K}\le\frac{1}{K}\tau_m\le\frac{\lvert k\rvert}{K}\tau_m\le\frac{1}{2}\tau_m\le\frac{a_1}{2}$.
 						\item Hence execute procedure $p_3$ on $\langle\frac{k}{K}\tau_m,n\rangle$.
-						\item Hence verify that $(\cos_n(\frac{k}{K}\tau_m)-1)^2\ge a$.
+						\item Hence verify that $(\cos_n(\frac{k}{K}\tau_m)-1)^2\ge a^2$.
 						\item Using \procedurehr{3.22}, verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)-1\rVert^2$
 						\begin{enumerate}
 							\item $\ge\Re(\exp_n(\frac{k}{K}\tau_mi)-1)^2$
 							\item $=(\cos_n(\frac{k}{K}\tau_m)-1)^2$
-							\item $\ge a$
+							\item $\ge a^2$
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,p\rangle$.}
 				\end{enumerate}
-		\declaration{3.15}
-			The notation \gls{complexisqrt}, where $x$ is a non-negative rational number, will be used as a shorthand for the result of executing the following instructions:
-			\begin{enumerate}
-				\item Verify that $\lceil x\rceil^2>x$.
-				\item \textbf{Yield the smallest integer $r$ in $[0:\lceil x\rceil+1]$ such that $r^2>x$.}
-			\end{enumerate}
 		\procedure{3.61}
 			\objective
-				Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,j,k,m)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a$ when positive integers $n,j,k,m$ such that $-K<j\le k<K$, $0<k-j\le\frac{K}{2}$, $n\ge b$, and $m\ge c$ are chosen.
+				Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,m,j,k)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a^2$ when positive integers $n,j,k,m$ such that $-K<j\le k<K$, $0<k-j\le\frac{K}{2}$, $n\ge b$, and $m\ge c$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.50} and let $\langle a_1,b_1,p_1\rangle$ receive.
-					\item Execute \procedurehr{3.14} on $\langle {a_1}^2\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
+					\item Execute \procedurehr{3.14} on $\langle a_1\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
 					\item Execute \procedurehr{3.60} on $\langle K\rangle$ and let $\langle a_3,b_3,c_3,p_3\rangle$ receive.
-					\item Execute \procedurehr{3.15} on $\langle 4{a_1}^2\rangle$ and let $\langle a_4,b_4,p_4\rangle$ receive.
-					\item Let $a=\frac{1}{4}a_2a_3$.
-					\item Let $b=\max(\lceil\sqrt{\frac{4a_4{a_1}^4}{a_2a_3}}\rceil,b_3,b_4,b_2)$.
+					\item Execute \procedurehr{3.15} on $\langle a_1\rangle$ and let $\langle a_4,b_4,p_4\rangle$ receive.
+					\item Let $a=\frac{1}{2}a_2a_3$.
+					\item Let $b=\max(\frac{2a_4{a_1}^2}{a_2a_3},b_3,b_4,b_2)$.
 					\item Let $c=\max(b_1,c_3)$.
-					\item Let $p(n,j,k,m)$ be the following procedure:
+					\item Let $p(n,m,j,k)$ be the following procedure:
 					\begin{enumerate}
 						\item Verify that $-K<j<K$.
 						\item Hence verify that $-1<\frac{j}{K}<1$.
@@ -5153,60 +5145,62 @@
 						\item Execute procedure $p_1$ on $\langle m\rangle$.
 						\item Hence verify that $\lVert\frac{j}{K}\tau_mi\rVert^2=\lVert\frac{j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_1}^2$.
 						\item Execute procedure $p_2$ on $\langle\frac{j}{K}\tau_mi,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a_2>0$.
-						\item Execute procedure $p_3$ on $\langle n,k-j,m\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{k-j}{K}\tau_mi)-1\rVert^2\ge a_3>0$.
+						\item Hence verify that $\lVert\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge{a_2}^2>0$.
+						\item Execute procedure $p_3$ on $\langle n,m,k-j\rangle$.
+						\item Hence verify that $\lVert\exp_n(\frac{k-j}{K}\tau_mi)-1\rVert^2\ge{a_3}^2>0$.
 						\item Verify that $0<\frac{k-j}{K}\le\frac{1}{2}$.
 						\item Hence verify that $\lVert\frac{k-j}{K}\tau_mi\rVert^2\le\lVert\frac{k-j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_1}^2$.
-						\item Hence verify that $2(\lVert\frac{j}{K}\tau_mi\rVert^2+\lVert\frac{k-j}{K}\tau_mi\rVert^2)\le 4{a_1}^2$.
 						\item Execute procedure $p_4$ on $\langle\frac{k-j}{K}\tau_mi,\frac{j}{K}\tau_mi,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)\rVert^2\le\frac{a_4\lVert\frac{k-j}{K}\tau_mi\rVert^2\lVert\frac{j}{K}\tau_mi\rVert^2}{n^2}\le\frac{a_4{a_1}^4}{n^2}$.
+						\item Hence verify that $\lVert\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)\rVert^2\le\frac{{a_4}^2\lVert\frac{k-j}{K}\tau_mi\rVert^2\lVert\frac{j}{K}\tau_mi\rVert^2}{n^2}\le\frac{{a_4}^2{a_1}^4}{n^2}$.
 						\item Hence using \procedurehr{3.05}, verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
 						\begin{enumerate}
 							\item $=\lVert\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)+\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
 							\item $\ge\frac{1}{2}\lVert\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2-\lVert\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
 							\item $=\frac{1}{2}\lVert\exp_n(\frac{j}{K}\tau_mi)\rVert^2\lVert\exp_n(\frac{k-j}{K}\tau_mi)-1\rVert^2-\lVert\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
-							\item $\ge\frac{1}{2}a_2a_3-\frac{a_4{a_1}^4}{n^2}$
-							\item $\ge a$.
+							\item $\ge\frac{1}{2}{a_2}^2{a_3}^2-\frac{{a_4}^2{a_1}^4}{n^2}$
+							\item $\ge a^2$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.62}
 			\objective
-				Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,j,k,m)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a$ when positive integers $n,j,k,m$ such that $0\le j\le k<K$, $\frac{K}{2}\le k-j<K$, $n\ge b$, and $m\ge c$ are chosen.
+				Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,m,j,k)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a^2$ when positive integers $n,j,k,m$ such that $0\le j\le k<K$, $\frac{K}{2}\le k-j<K$, $n\ge b$, and $\frac{m}{n}\ge c$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.61} on $\langle K\rangle$ and let $\langle a_1,b_1,c_1,p_1\rangle$ receive.
 					\item Execute \procedurehr{3.50} and let $\langle a_2,b_2,p_2\rangle$ receive.
-					\item Execute \procedurehr{3.59} on $\langle {a_2}^2,4\rangle$ and let $\langle a_3,b_3,c_3,d_3,p_3\rangle$ receive.
-					\item Let $a=\frac{1}{4}a_1$.
-					\item Let $b=\max(\lceil\sqrt{\frac{8a_3}{a_1}}\rceil,b_1,c_3)$.
-					\item Let $c=\max(\lceil\sqrt{\frac{8b_3}{a_1}}\rceil,b_2,c_1,d_3)$.
-					\item Let $p(n,j,k,m)$ be the following procedure:
+					\item Execute \procedurehr{3.59} on $\langle a_2,4\rangle$ and let $\langle a_3,b_3,c_3,d_3,p_3\rangle$ receive.
+					\item Let $a=\frac{1}{2}a_1$.
+					\item Let $b=\max(\frac{4b_3}{a_1},b_1,c_3)$.
+					\item Let $c=\max(\frac{4a_3}{a_1},\frac{c_1}{b},\frac{b_2}{b},\frac{d_3}{b})$.
+					\item Let $p(n,m,j,k)$ be the following procedure:
 					\begin{enumerate}
 						\item Verify that $-\frac{K}{2}\le k-K<j<\frac{K}{2}$.
 						\item Also verify that $0<j-(k-K)\le\frac{K}{2}$.
-						\item Execute procedure $p_1$ on $\langle n,k-K,j,m\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{k-K}{K}\tau_mi)\rVert^2\ge a_1$.
+						\item Verify that $m\ge cn\ge\frac{c_1}{b}b=c_1$.
+						\item Hence execute procedure $p_1$ on $\langle n,m,k-K,j\rangle$.
+						\item Hence verify that $\lVert\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{k-K}{K}\tau_mi)\rVert^2\ge{a_1}^2$.
+						\item Verify that $m\ge cn\ge\frac{b_2}{b}b=b_2$.
 						\item Execute procedure $p_2$ on $\langle m\rangle$.
 						\item Hence verify that $\tau_m\le a_2$.
 						\item Hence verify that $\lVert\frac{k}{K}\tau_mi\rVert^2=\lVert\frac{k}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_2}^2$.
-						\item Now execute procedure $p_3$ on $\langle\frac{k}{K}\tau_mi,n,-4,m\rangle$.
-						\item Hence verify that $\lVert i^{-4}\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{k}{K}\tau_mi-\frac{4}{4}\tau_mi)\rVert^2\le\frac{a_3}{n^2}+\frac{b_3}{m^2}$.
+						\item Also verify that $m\ge cn\ge\frac{d_3}{b}b=d_3$.
+						\item Now execute procedure $p_3$ on $\langle\frac{k}{K}\tau_mi,n,m,-4\rangle$.
+						\item Hence verify that $\lVert i^{-4}\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{k}{K}\tau_mi-\frac{4}{4}\tau_mi)\rVert^2\le(\frac{a_3n}{m}+\frac{b_3}{n})^2\le(\frac{a_1}{2})^2$.
 						\item Now verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
 						\begin{enumerate}
 							\item $=\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{k}{K}\tau_mi-\tau_mi)+\exp_n(\frac{k-K}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
 							\item $\ge\frac{1}{2}\lVert\exp_n(\frac{k-K}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2-\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{k}{K}\tau_mi-\tau_mi)\rVert^2$
-							\item $\ge\frac{1}{2}a_1-\frac{a_3}{n^2}-\frac{b_3}{m^2}$
-							\item $\ge a$.
+							\item $\ge\frac{1}{2}{a_1}^2-(\frac{a_1}{2})^2$
+							\item $\ge a^2$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.63}
 			\objective
-				Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,j,k,m)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a$ when positive integers $n,j,k,m$ such that $0\le j\le k<K$, $0<k-j<K$, $n\ge b$, and $m\ge c$ are chosen.
+				Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,m,j,k)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a^2$ when positive integers $n,j,k,m$ such that $0\le j\le k<K$, $0<k-j<K$, $n\ge b$, and $\frac{m}{n}\ge c$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.61} on $\langle K\rangle$ and let $\langle a_1,b_1,c_1,p_1\rangle$ receive.
@@ -5215,7 +5209,7 @@
 					\item \textbf{Verify that $a>0$.}
 					\item Let $b=\max(b_1,b_2)$.
 					\item Let $c=\max(c_1,c_2)$.
-					\item Let $p(n,j,k,m)$ be the following procedure:
+					\item Let $p(n,m,j,k)$ be the following procedure:
 					\begin{enumerate}
 						\item If $k-j\le\frac{K}{2}$, then do the following:
 						\begin{enumerate}
