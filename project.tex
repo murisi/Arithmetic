@@ -4397,41 +4397,73 @@
 	      \end{enumerate}
 	  \procedure{wed2407191611}
 	    \objective
-	      Choose two rational numbers $A>0$, $1>X>0$. The objective of the following instructions is to construct a rational number $D$ and a procedure $p(a,x,n)$ to show that $\lVert(1+x)_n^a\rVert^2<D^2$ when complex numbers $\lVert x\rVert^2<X^2$, $\lVert a\rVert^2<A^2$, and a positive integer $n$ are chosen.
+	      Choose two rational numbers $A>0$, $1>X>0$. The objective of the following instructions is to construct a rational number $D$ and a procedure $p(x,n,a,k)$ to show that $\lVert((1+x)_n^a)^k\rVert^2<D^2$ when complex numbers $x,a$ and positive integers $n,k$ such that $\lVert x\rVert^2<X^2$ and $\lVert ka\rVert^2<A^2$.
 	    \implementation
 	      \begin{enumerate}
-	        \item Execute \procedurehr{sun2107191247} on $\langle A,X\rangle$ and let $\langle B,C,q\rangle$ receive.
-	        \item Let $D=\frac{B}{1-C}$.
-	        \item Let $p(a,x,n)$ be the following procedure:
+	        \item Execute \procedurehr{3.13} on $\langle\frac{ABX}{1-C}\rangle$ and let $\langle E,N,t\rangle$ receive.
+	        \item Execute \procedurehr{sun2107191247} on $\langle A+1,X\rangle$ and let $\langle B,C,q\rangle$ receive.
+	        \item Let $D=\max(E,(1+\frac{ABX}{1-C})^{\lfloor N\rfloor})$.
+	        \item Let $p(x,n,a,k)$ be the following procedure:
 	        \begin{enumerate}
 	          \item For each $r\in[1:n]$, do the following:
 	          \begin{enumerate}
-	            \item Execute procedure $q$ on $\langle a,x,r\rangle$.
-	            \item Hence verify that $\lVert\binom{a}{r}x^r\rVert^2\le(BC^r)^2$.
+	            \item Verify that $\lVert a\rVert^2\le\lVert ka\rVert^2\le A^2$.
+	            \item Verify that $\lVert a-1\rVert^2\le(A+1)^2$.
+	            \item Execute procedure $q$ on $\langle a-1,x,r-1\rangle$.
+	            \item Hence verify that $\lVert\binom{a-1}{r-1}x^{r-1}\rVert^2\le(BC^r)^2$.
 	          \end{enumerate}
-	          \item Hence verify that $\lVert(1+x)_n^a\rVert^2$
+	          \item Hence verify that $\lVert k\sum_r^{[1:n]}\binom{a}{r}x^r\rVert^2$
 	          \begin{enumerate}
-	            \item $=\lVert\sum_r^{[0:n]}\binom{a}{r}x^r\rVert^2$
-	            \item $\le(\sum_r^{[0:n]}BC^r)^2$
-	            \item $\le(\frac{B}{1-C})^2=D^2$.
+	            \item $=\lVert k\sum_r^{[1:n]}\frac{a}{r}\binom{a-1}{r-1}x^r\rVert^2$
+	            \item $=\lVert kax\sum_r^{[1:n]}\frac{1}{r}\binom{a-1}{r-1}x^{r-1}\rVert^2$
+	            \item $\le(AX\sum_r^{[1:n]}BC^{r-1})^2$
+	            \item $\le(\frac{ABX}{1-C})^2$.
+	          \end{enumerate}
+	          \item If $k>N$, then do the following:
+	          \begin{enumerate}
+	            \item Execute procedure $t$ on $\langle k\sum_r^{[1:n]}\binom{a}{r}x^r\rangle$.
+	            \item Hence verify that $\lVert((1+x)_n^a)^k\rVert^2$
+	            \begin{enumerate}
+	              \item $=\lVert(\sum_r^{[0:n]}\binom{a}{r}x^r)^k\rVert^2$
+	              \item $=\lVert(1+\sum_r^{[1:n]}\binom{a}{r}x^r)^k\rVert^2$
+	              \item $=\lVert\exp_k(k\sum_r^{[1:n]}\binom{a}{r}x^r)\rVert^2$
+	              \item $\le E^2$
+	              \item $\le D^2$.
+	            \end{enumerate}
+	          \end{enumerate}
+	          \item Otherwise do the following:
+	          \begin{enumerate}
+	            \item Verify that $\lVert\sum_r^{[1:n]}\binom{a}{r}x^r)^k\rVert^2$
+	            \begin{enumerate}
+	              \item $\le\lVert k\sum_r^{[1:n]}\binom{a}{r}x^r\rVert^2$
+	              \item $\le(\frac{ABX}{1-C})^2$.
+	            \end{enumerate}
+	            \item Hence verify that $\lVert((1+x)_n^a)^k\rVert^2$
+	            \begin{enumerate}
+	              \item $=(\lVert(1+x)_n^a\rVert^2)^k$
+	              \item $=(\lVert 1+\sum_r^{[1:n]}\binom{a}{r}x^r\rVert^2)^k$
+	              \item $\le(1+\frac{ABX}{1-C})^{2k}$
+	              \item $\le D^2$.
+	            \end{enumerate}
 	          \end{enumerate}
 	        \end{enumerate}
 	        \item \textbf{Yield $\langle D,p\rangle$.}
 	      \end{enumerate}
 	  \procedure{wed2407191627}
 	    \objective
-	      Choose two rational numbers $A>0$, $1>X>0$. The objective of the following instructions is to construct rational numbers $G>0$, $0<C<1$, $D>1$, and a procedure $p(x,a,k,n)$ to show that $\lVert(1+x)_n^{ka}-((1+x)_n^a)^k\rVert^2\le(GC^nD^k)^2$ when a non-negative integer $k$ and complex numbers $x,a$ such that $\lVert x\rVert^2\le X^2$ and $\lVert ka\rVert^2<A^2$ are chosen.
+	      Choose two rational numbers $A>0$, $1>X>0$. The objective of the following instructions is to construct rational numbers $G>0$, $0<C<1$, and a procedure $p(x,n,a,k)$ to show that $\lVert(1+x)_n^{ka}-((1+x)_n^a)^k\rVert^2\le(GkC^n)^2$ when a non-negative integer $k$ and complex numbers $x,a$ such that $\lVert x\rVert^2\le X^2$ and $\lVert ka\rVert^2<A^2$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Execute \procedurehr{wed2407191611} on $\langle A,X\rangle$ and let $\langle D,t\rangle$ receive.
 	        \item Execute \procedurehr{wed2407191521} on $\langle A,X\rangle$ and let $\langle B,C,q\rangle$ receive.
-	        \item Let $G=\frac{B}{D-1}$.
-	        \item Let $p(x,a,k,n)$ be the following procedure:
+	        \item Let $G=DB$.
+	        \item Let $p(x,n,a,k)$ be the following procedure:
 	        \begin{enumerate}
-	          \item If $k>0$, then do the following:
+	          \item If $k>0$, then for $r\in[1:k]$ do the following:
 	          \begin{enumerate}
-	            \item Execute procedure $t$ on $\langle a,x,n\rangle$.
-	            \item Hence verify that $\lVert(1+x)_n^a\rVert^2<D^2$.
+	            \item Verify that $\lVert ar\rVert^2\le\lVert ak\rVert^2<A^2$.
+	            \item Execute procedure $t$ on $\langle x,n,a,r\rangle$.
+	            \item Hence verify that $\lVert((1+x)_n^a)^r\rVert^2<D^2$.
 	          \end{enumerate}
 	          \item For $r$ in $[0:k]$, do the following:
 	          \begin{enumerate}
@@ -4444,10 +4476,9 @@
 	          \begin{enumerate}
 	            \item $=\lVert\sum_r^{[0:k]}(((1+x)_n^a)^r(1+x)_n^{(k-r)a}-((1+x)_n^a)^{r+1}(1+x)_n^{(k-r-1)a})\rVert^2$
 	            \item $=\lVert\sum_r^{[0:k]}((1+x)_n^a)^r((1+x)_n^{(k-r)a}-(1+x)_n^a(1+x)_n^{(k-r-1)a})\rVert^2$
-	            \item $\le(\sum_r^{[0:k]}D^rBC^n)^2$
-	            \item $=(BC^n\sum_r^{[0:k]}D^r)^2$
-	            \item $=(B\cdot\frac{D^k-1}{D-1}\cdot C^n)^2$
-	            \item $=(GC^nD^k)^2$.
+	            \item $\le(\sum_r^{[0:k]}DBC^n)^2$
+	            \item $=(kDBC^n)^2$
+	            \item $=(GkC^n)^2$.
 	          \end{enumerate}
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle G,C,D,p\rangle$.}
@@ -4583,10 +4614,11 @@
 	        \item Let $G=DB$.
 	        \item Let $p(x,n,a,k)$ be the following procedure:
 	        \begin{enumerate}
-	          \item If $k>0$, then for $r\in[0:k]$ do the following:
+	          \item If $k>0$, then for $r\in[1:k]$ do the following:
 	          \begin{enumerate}
-	            \item Execute procedure $t$ on $\langle x,n,a,k\rangle$.
-	            \item Hence verify that $\lVert((1+x)_n^a)^k\rVert^2\le D^2$.
+	            \item Verify that $\lVert ar\rVert^2\le\lVert ak\rVert^2\le 1$.
+	            \item Execute procedure $t$ on $\langle x,n,a,r\rangle$.
+	            \item Hence verify that $\lVert((1+x)_n^a)^r\rVert^2\le D^2$.
 	          \end{enumerate}
 	          \item For $r\in[0:k]$, do the following:
 	          \begin{enumerate}
@@ -4648,13 +4680,13 @@
 	        \item \textbf{Yield the tuple $\langle a,p\rangle$.}
 	      \end{enumerate}
 	  \declaration{fri0108191325}
-	    The notation $f(r)$ will be used as a shorthand notation for $\frac{1}{r}(1-\prod_t^{[1:r]}(1-\frac{1}{nt}))$.
+	    The notation $\omega(r)$ will be used as a shorthand notation for $\frac{1}{r}(1-\prod_t^{[1:r]}(1-\frac{1}{nt}))$.
 	  \procedure{thu0108191318}
 	    \objective
-	      Choose two positive integers $r,n$ such that $r>1$. The objective of the following instructions is to show that $\frac{f(r+1)}{f(r)}\le 1$.
+	      Choose two positive integers $r,n$ such that $r>1$. The objective of the following instructions is to show that $\frac{\omega(r+1)}{\omega(r)}\le 1$.
 	    \implementation
 	      \begin{enumerate}
-	        \item Using \procedurehr{2.07}, verify that $\frac{f(r+1)}{f(r)}$
+	        \item Using \procedurehr{2.07}, verify that $\frac{\omega(r+1)}{\omega(r)}$
           \begin{enumerate}
             \item $=\frac{\frac{1}{r+1}(1-\prod_t^{[1:r+1]}(1-\frac{1}{nt}))}{\frac{1}{r}(1-\prod_t^{[1:r]}(1-\frac{1}{nt}))}$
             \item $=\frac{r}{r+1}\cdot\frac{1-(1-\frac{1}{nr})\prod_t^{[1:r]}(1-\frac{1}{nt})}{1-\prod_t^{[1:r]}(1-\frac{1}{nt})}$
@@ -4678,7 +4710,7 @@
 	        \item Let $a=\frac{1}{X}$.
 	        \item Let $p(x,n,k)$ be the following procedure:
 	        \begin{enumerate}
-	          \item For $r\in[2:k]$, use \procedurehr{thu0108191318} to verify that $\frac{f(r+1)}{f(r)}\le 1$.
+	          \item For $r\in[2:k]$, use \procedurehr{thu0108191318} to verify that $\frac{\omega(r+1)}{\omega(r)}\le 1$.
 	          \item Hence verify that $\lVert\ln_k(1+x)-n((1+x)_k^{\frac{1}{n}}-1)\rVert^2$
 	          \begin{enumerate}
 	            \item $=\lVert\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}x^r-n(\sum_r^{[0:k]}\binom{\frac{1}{n}}{r}x^r-1)\rVert^2$
@@ -4687,11 +4719,11 @@
 	            \item $=\lVert\sum_r^{[1:k]}\frac{1}{r!}((-1)^{\ul{r-1}}-(\frac{1}{n}-1)^{\ul{r-1}})x^r\rVert^2$
 	            \item $=\lVert\sum_r^{[1:k]}\frac{(-1)^{\ul{r-1}}}{r!}(1-\frac{(\frac{1}{n}-1)^{\ul{r-1}}}{(-1)^{\ul{r-1}}})x^r\rVert^2$
 	            \item $=\lVert\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}(1-\prod_t^{[1:r]}\frac{\frac{1}{n}-t}{-t})x^r\rVert^2$
-	            \item $=\lVert\sum_r^{[1:k]}f(r)(-x)^r\rVert^2$
-	            \item $=\lVert\sum_r^{[1:k]}(f(r+1)\cdot\frac{(-x)^{r+1}}{-x-1}-f(r)\cdot\frac{(-x)^r}{-x-1}-(f(r+1)-f(r))\cdot\frac{(-x)^{r+1}}{-x-1})\rVert^2$
-	            \item $=\frac{1}{\lVert x+1\rVert^2}\lVert f(k)(-x)^k-f(1)(-x)^1-\sum_r^{[1:k]}(f(r+1)-f(r))(-x)^{r+1}\rVert^2$
-	            \item $\le\frac{1}{\lVert x+1\rVert^2}(f(k)+f(1)+\sum_r^{[2:k]}(f(r)-f(r+1))+f(2)-f(1))^2$
-	            \item $=\frac{1}{((\Re(x)+1)^2+\Im(x)^2)}(f(k)-f(k)+f(2)+f(2)+f(1)-f(1))^2$
+	            \item $=\lVert\sum_r^{[1:k]}\omega(r)(-x)^r\rVert^2$
+	            \item $=\lVert\sum_r^{[1:k]}(\omega(r+1)\cdot\frac{(-x)^{r+1}}{-x-1}-\omega(r)\cdot\frac{(-x)^r}{-x-1}-(\omega(r+1)-\omega(r))\cdot\frac{(-x)^{r+1}}{-x-1})\rVert^2$
+	            \item $=\frac{1}{\lVert x+1\rVert^2}\lVert \omega(k)(-x)^k-\omega(1)(-x)^1-\sum_r^{[1:k]}(\omega(r+1)-\omega(r))(-x)^{r+1}\rVert^2$
+	            \item $\le\frac{1}{\lVert x+1\rVert^2}(\omega(k)+\omega(1)+\sum_r^{[2:k]}(\omega(r)-\omega(r+1))+\omega(2)-\omega(1))^2$
+	            \item $=\frac{1}{((\Re(x)+1)^2+\Im(x)^2)}(\omega(k)-\omega(k)+\omega(2)+\omega(2)+\omega(1)-\omega(1))^2$
 	            \item $\le(\frac{a}{n})^2$.
 	          \end{enumerate}
 	        \end{enumerate}
