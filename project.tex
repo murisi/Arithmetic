@@ -5208,17 +5208,18 @@
 					\item Let $a=\min(a_1,a_2)$.
 					\item \textbf{Verify that $a>0$.}
 					\item Let $b=\max(b_1,b_2)$.
-					\item Let $c=\max(c_1,c_2)$.
+					\item Let $c=\max(\frac{c_1}{b},c_2)$.
 					\item Let $p(n,m,j,k)$ be the following procedure:
 					\begin{enumerate}
 						\item If $k-j\le\frac{K}{2}$, then do the following:
 						\begin{enumerate}
-							\item Execute procedure $p_1$ on $\langle n,j,k,m\rangle$.
+						  \item Verify that $m\ge cn\ge\frac{c_1}{b}b=c_1$.
+							\item Execute procedure $p_1$ on $\langle n,m,j,k\rangle$.
 							\item \textbf{Hence verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a_1\ge a$.}
 						\end{enumerate}
 						\item Otherwise if $k-j>\frac{K}{2}$, then do the following:
 						\begin{enumerate}
-							\item Execute procedure $p_2$ on $\langle n,j,k,m\rangle$.
+							\item Execute procedure $p_2$ on $\langle n,m,j,k\rangle$.
 							\item \textbf{Hence verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a_2\ge a$.}
 						\end{enumerate}
 					\end{enumerate}
