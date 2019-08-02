@@ -5274,7 +5274,7 @@
 					\item $z_k=\exp_n(\frac{k}{K}\tau_mi)$ for $k\in[0:K]$
 					\item $q_K=\lambda^K-1$
 					\item $q_{K-1}=\sum_r^{[0:K]}\lambda^r$
-					\item $q_{k+1}=(\lambda-z'_k)q_k+\Lambda(q_{k+1},z'_k)$ for $k\in[0:K]$
+					\item $q_{k+1}=(\lambda-z_k)q_k+\Lambda(q_{k+1},z_k)$ for $k\in[0:K]$
 					\item $(q_k)_{\deg(q_k)}=1$ for $k\in[0:K+1]$
 					\item $\lVert\Lambda(q_k,z_j)\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ for $j\in[0:k]$, for $k\in[0:K+1]$
 				\end{enumerate}
@@ -5298,34 +5298,19 @@
 						\end{enumerate}
 						\item For $k\in[K:0]$, do the following:
 						\begin{enumerate}
-							\item Let $q_k=q_{k+1}\div(\lambda-z'_k)$.
-							\item Let $r_k=q_{k+1}\mod(\lambda-z'_k)$.
-							\item Verify that $\deg(r_k)<\deg(\lambda-z'_k)=1$.
+							\item Let $q_k=q_{k+1}\div(\lambda-z_k)$.
+							\item Let $r_k=q_{k+1}\mod(\lambda-z_k)$.
+							\item Verify that $\deg(r_k)<\deg(\lambda-z_k)=1$.
 							\item Hence verify that $\deg(r_k)=0$.
-							\item Verify that $q_{k+1}=(\lambda-z'_k)q_k+r_k$.
-							\item \textbf{Hence verify that $1=(q_{k+1})_{\deg(q_{k+1})}=((\lambda-z'_k)q_k+r_k)_{\deg(q_{k+1})}=(q_k)_{\deg(q_k)}$.}
-							\item Also verify that $\Lambda(q_{k+1},z'_k)=\Lambda(\lambda-z'_k,z'_k)\Lambda(q_k,z'_k)+\Lambda(r_k,z'_k)=(z'_k-z'_k)\Lambda(q_k,z'_k)+r_k=r_k$.
-							\item \textbf{Hence verify that $q_{k+1}=(\lambda-z'_k)q_k+\Lambda(q_{k+1},z'_k)$.}
-							\item For $j\in[k:0]$, do the following:
-							\begin{enumerate}
-								\item Verify that $\Lambda(q_{k+1},z_j)=\Lambda(\lambda-z'_k,z_j)\Lambda(q_k,z_j)+\Lambda(q_{k+1},z'_k)$.
-								\item Hence verify that $\Lambda(q_{k+1},z_j)-\Lambda(q_{k+1},z'_k)=(z_j-z'_k)\Lambda(q_k,z_j)$.
-								\item Execute procedure $p_2$ on $\langle n,m,\min(j,k),\max(j,k)\rangle$.
-								\item Hence verify that $\lVert z_j-z'_k\rVert^2\ge {a_2}^2$.
-								\item Hence verify that ${a_2}^2\lVert\Lambda(q_k,z_j)\rVert^2$
-								\item $\le\lVert z_j-z'_k\rVert^2\lVert\Lambda(q_k,z_j)\rVert^2$
-								\item $=\lVert(z_j-z'_k)\Lambda(q_k,z_j)\rVert^2$
-								\item $=\lVert\Lambda(q_{k+1},z_j)-\Lambda(q_{k+1},z'_k)\rVert^2$
-								\item $\le((\frac{2}{a_2})^{K-k-1}(\frac{a_1n}{m}+\frac{b_1}{n})+(\frac{2}{a_2})^{K-k-1}(\frac{a_1n}{m}+\frac{b_1}{n}))^2$
-								\item $=(2(\frac{2}{a_2})^{K-k-1}(\frac{a_1n}{m}+\frac{b_1}{n}))^2$
-								\item $={a_2}^2((\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n}))^2$.
-								\item \textbf{Hence verify that $\lVert\Lambda(q_k,z_j)\rVert^2\le((\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n}))^2\le(\frac{an}{m}+\frac{b}{n})^2$.}
-							\end{enumerate}
+							\item Verify that $q_{k+1}=(\lambda-z_k)q_k+r_k$.
+							\item \textbf{Hence verify that $1=(q_{k+1})_{\deg(q_{k+1})}=((\lambda-z_k)q_k+r_k)_{\deg(q_{k+1})}=(q_k)_{\deg(q_k)}$.}
+							\item Also verify that $\Lambda(q_{k+1},z_k)=\Lambda(\lambda-z_k,z_k)\Lambda(q_k,z_k)+\Lambda(r_k,z_k)=(z_k-z_k)\Lambda(q_k,z_k)+r_k=r_k$.
+							\item \textbf{Hence verify that $q_{k+1}=(\lambda-z_k)q_k+\Lambda(q_{k+1},z_k)$.}
+							\item Execute the \hyperref[sec:procedure 73 auxilliary procedure]{auxilliary procedure} on $\langle k,q_{k+1},z\rangle$.
 							\item Now using (cvii), verify that $(\lambda-1)\sum_r^{[0:K]}\lambda^r$
 							\begin{enumerate}
-								\item $=\lambda^K-1$
 								\item $=q_K$
-								\item $=(\lambda-z'_{K-1})q_{K-1}+\Lambda(q_K,z'_{K-1})$
+								\item $=(\lambda-z_{K-1})q_{K-1}+\Lambda(q_K,z_{K-1})$
 								\item $=(\lambda-1)q_{K-1}+\Lambda(\lambda^K-1,1)$
 								\item $=(\lambda-1)q_{K-1}$.
 							\end{enumerate}
@@ -5335,6 +5320,29 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				\end{enumerate}
+			\subsubsection*{Auxilliary procedure}\label{sec:procedure 77 auxilliary procedure}
+			  \paragraph{Objective}
+			    Choose a non-negative integer $k$, a complex polynomial $q_{k+1}$, and a list of complex numbers $z$ such that $z_j=\exp_n(\frac{j}{K}\tau_mi)$ and $\lVert\Lambda(q_{k+1},z_j)\rVert^2\le(\frac{2}{a_2})^{K-(k+1)}$ for $j\in[k+1:0]$. Let $q_k=q_{k+1}\div(\lambda-z_k)$. The objective of the following instructions is to show that $\lVert\Lambda(q_{k},z_j)\rVert^2\le(\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n}))^2\le(\frac{an}{m}+\frac{b}{n})^2$ for $j\in[k:0]$.
+			  \paragraph{Implementation}
+			    \begin{enumerate}
+			      \item For $j\in[k:0]$, do the following:
+						\begin{enumerate}
+							\item Verify that $\Lambda(q_{k+1},z_j)=\Lambda(\lambda-z_k,z_j)\Lambda(q_k,z_j)+\Lambda(q_{k+1},z_k)$.
+							\item Hence verify that $\Lambda(q_{k+1},z_j)-\Lambda(q_{k+1},z_k)=(z_j-z_k)\Lambda(q_k,z_j)$.
+							\item Execute procedure $p_2$ on $\langle n,m,\min(j,k),\max(j,k)\rangle$.
+							\item Hence verify that $\lVert z_j-z_k\rVert^2\ge {a_2}^2$.
+							\item Hence verify that ${a_2}^2\lVert\Lambda(q_k,z_j)\rVert^2$
+							\begin{enumerate}
+							  \item $\le\lVert z_j-z_k\rVert^2\lVert\Lambda(q_k,z_j)\rVert^2$
+							  \item $=\lVert(z_j-z_k)\Lambda(q_k,z_j)\rVert^2$
+							  \item $=\lVert\Lambda(q_{k+1},z_j)-\Lambda(q_{k+1},z_k)\rVert^2$
+							  \item $\le((\frac{2}{a_2})^{K-k-1}(\frac{a_1n}{m}+\frac{b_1}{n})+(\frac{2}{a_2})^{K-k-1}(\frac{a_1n}{m}+\frac{b_1}{n}))^2$
+							  \item $=(2(\frac{2}{a_2})^{K-k-1}(\frac{a_1n}{m}+\frac{b_1}{n}))^2$
+							  \item $={a_2}^2((\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n}))^2$.
+							\end{enumerate}
+							\item \textbf{Hence verify that $\lVert\Lambda(q_k,z_j)\rVert^2\le((\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n}))^2\le(\frac{an}{m}+\frac{b}{n})^2$.}
+						\end{enumerate}
+					\end{enumerate}
 		\procedure{3.65}
 			\objective
 				Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\lVert \sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $m>d$, and $\lVert x\rVert^2\le X$ are chosen.
