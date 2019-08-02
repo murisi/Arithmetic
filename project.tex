@@ -5020,7 +5020,7 @@
 				\end{enumerate}
 		\procedure{3.89}
 			\objective
-				Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,k,m)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_m i)^K-1\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when an integer $k$ and positive integers $n,m$ such that $0\le k<K$, $n\ge c$, and $m>d$ are chosen.
+				Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_m i)^K-1\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when an integer $k$ and positive integers $n,m$ such that $0\le k<K$, $n\ge c$, and $m>d$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.50} and let $\langle a_1,b_1,p_1\rangle$ receive.
@@ -5030,7 +5030,7 @@
 					\item Let $b=a_2K+b_3$.
 					\item Let $c=\max(b_2,c_3)$.
 					\item Let $d=\max(b_1,d_3)$.
-					\item Let $p(n,k,m)$ be the following procedure:
+					\item Let $p(n,m,k)$ be the following procedure:
 					\begin{enumerate}
 						\item Execute procedure $p_1$ on $\langle m\rangle$.
 						\item Hence verify that $\tau_m\le a_1$.
@@ -5276,25 +5276,25 @@
 					\item $q_{K-1}=\sum_r^{[0:K]}\lambda^r$
 					\item $q_{k+1}=(\lambda-z'_k)q_k+\Lambda(q_{k+1},z'_k)$ for $k\in[0:K]$
 					\item $(q_k)_{\deg(q_k)}=1$ for $k\in[0:K+1]$
-					\item $\lVert\Lambda(q_k,z_j)\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ for $j\in[0:k]$, for $k\in[0:K+1]$
+					\item $\lVert\Lambda(q_k,z_j)\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ for $j\in[0:k]$, for $k\in[0:K+1]$
 				\end{enumerate}
-				when two positive integers $n,m$ such that $n>c$ and $m>d$ are chosen.
+				when two positive integers $n,m$ such that $n>c$ and $\frac{m}{n}>d$ are chosen.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{3.59} on $\langle K\rangle$ and let $\langle a_1,b_1,c_1,d_1,p_1\rangle$ receive.
+					\item Execute \procedurehr{3.89} on $\langle K\rangle$ and let $\langle a_1,b_1,c_1,d_1,p_1\rangle$ receive.
 					\item Execute \procedurehr{3.63} on $\langle K\rangle$ and let $\langle a_2,b_2,c_2,p_2\rangle$ receive.
-					\item Let $a=\max(1,\frac{4}{a_2})^Ka_1$.
-					\item Let $b=\max(1,\frac{4}{a_2})^Kb_1$.
+					\item Let $a=\max(1,\frac{2}{a_2})^Ka_1$.
+					\item Let $b=\max(1,\frac{2}{a_2})^Kb_1$.
 					\item Let $c=\max(c_1,b_2)$.
-					\item Let $d=\max(c_2,d_1)$.
+					\item Let $d=\max(d_1,c_2)$.
 					\item Let $p(n,m)$ be the following procedure:
 					\begin{enumerate}
 						\item \textbf{Let $q_K=\lambda^K-1$.}
 						\item For $k\in[K:0]$, do the following:
 						\begin{enumerate}
 							\item \textbf{Let $z_k=\exp_n(\frac{k}{K}\tau_mi)$.}
-							\item Execute procedure $p_1$ on $\langle n,k,m\rangle$.
-							\item \textbf{Hence verify that $\lVert\Lambda(q_K,z_k)\rVert^2\le\frac{a_1}{n^2}+\frac{b_1}{m^2}$.}
+							\item Execute procedure $p_1$ on $\langle n,m,k\rangle$.
+							\item \textbf{Hence verify that $\lVert\Lambda(q_K,z_k)\rVert^2\le(\frac{a_1n}{m}+\frac{b_1}{n})^2$.}
 						\end{enumerate}
 						\item For $k\in[K:0]$, do the following:
 						\begin{enumerate}
@@ -5310,15 +5310,16 @@
 							\begin{enumerate}
 								\item Verify that $\Lambda(q_{k+1},z_j)=\Lambda(\lambda-z'_k,z_j)\Lambda(q_k,z_j)+\Lambda(q_{k+1},z'_k)$.
 								\item Hence verify that $\Lambda(q_{k+1},z_j)-\Lambda(q_{k+1},z'_k)=(z_j-z'_k)\Lambda(q_k,z_j)$.
-								\item Execute procedure $p_2$ on $\langle n,\min(j,k),\max(j,k),m\rangle$.
-								\item Hence verify that $\lVert z_j-z'_k\rVert^2\ge a_2$.
-								\item Hence verify that $2\lVert\Lambda(q_{k+1},z_j)\rVert^2+2\lVert\Lambda(q_{k+1},z'_k)\rVert^2\ge\lVert z_j-z'_k\rVert^2\lVert\Lambda(q_k,z_j)\rVert^2\ge a_2\lVert\Lambda(q_k,z_j)\rVert^2$.
-								\item Hence verify that $\lVert\Lambda(q_k,z_j)\rVert^2$
-								\item $\le\frac{1}{a_2}(2\lVert\Lambda(q_{k+1},z_j)\rVert^2+2\lVert\Lambda(q_{k+1},z'_k)\rVert^2)$
-								\item $=\frac{2}{a_2}(\lVert\Lambda(q_{k+1},z_j)\rVert^2+\lVert\Lambda(q_{k+1},z'_k)\rVert^2)$
-								\item $\le\frac{2}{a_2}((\frac{4}{a_2})^{K-k-1}(\frac{a_1}{n^2}+\frac{b_1}{m^2})+(\frac{4}{a_2})^{K-k-1}(\frac{a_1}{n^2}+\frac{b_1}{m^2}))$
-								\item $=\frac{4}{a_2}(\frac{4}{a_2})^{K-k-1}(\frac{a_1}{n^2}+\frac{b_1}{m^2})$
-								\item $=(\frac{4}{a_2})^{K-k}(\frac{a_1}{n^2}+\frac{b_1}{m^2})$
+								\item Execute procedure $p_2$ on $\langle n,m,\min(j,k),\max(j,k)\rangle$.
+								\item Hence verify that $\lVert z_j-z'_k\rVert^2\ge {a_2}^2$.
+								\item Hence verify that ${a_2}^2\lVert\Lambda(q_k,z_j)\rVert^2$
+								\item $\le\lVert z_j-z'_k\rVert^2\lVert\Lambda(q_k,z_j)\rVert^2$
+								\item $=\lVert(z_j-z'_k)\Lambda(q_k,z_j)\rVert^2$
+								\item $=\lVert\Lambda(q_{k+1},z_j)-\Lambda(q_{k+1},z'_k)\rVert^2$
+								\item $\le((\frac{2}{a_2})^{K-k-1}(\frac{a_1n}{m}+\frac{b_1}{n})+(\frac{2}{a_2})^{K-k-1}(\frac{a_1n}{m}+\frac{b_1}{n}))^2$
+								\item $=(2(\frac{2}{a_2})^{K-k-1}(\frac{a_1n}{m}+\frac{b_1}{n}))^2$
+								\item $={a_2}^2((\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n}))^2$.
+								\item \textbf{Hence verify that $\lVert\Lambda(q_k,z_j)\rVert^2\le((\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n}))^2\le(\frac{an}{m}+\frac{b}{n})^2$.}
 							\end{enumerate}
 							\item Now using (cvii), verify that $(\lambda-1)\sum_r^{[0:K]}\lambda^r$
 							\begin{enumerate}
