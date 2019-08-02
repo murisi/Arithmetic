@@ -5383,7 +5383,7 @@
 				\end{enumerate}
 		\procedure{3.66}
 			\objective
-				Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\lVert x^K-1-\prod_r^{[0:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $m>d$, and $\lVert x\rVert^2\le X$ are chosen.
+				Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\lVert x^K-1-\prod_r^{[0:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $\frac{m}{n}>d$, and $\lVert x\rVert^2\le X$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.65} on $\langle X,K\rangle$ and let $\langle a_1,b_1,c,d,p_1\rangle$ receive.
@@ -5405,41 +5405,39 @@
 				\end{enumerate}
 		\procedure{3.67}
 			\objective
-				Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\lVert\exp_K(x)-1-x\prod_r^{[1:K]}(1-\frac{x}{K(\exp_n(\frac{r}{K}\tau_mi)-1)})\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $m>d$, and $\lVert x\rVert^2\le X$ are chosen.
+				Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\lVert\exp_K(x)-1-x\prod_r^{[1:K]}(1-\frac{x}{K(\exp_n(\frac{r}{K}\tau_mi)-1)})\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $\frac{m}{n}>d$, and $\lVert x\rVert^2\le X$ are chosen.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{3.66} on $\langle 2(1+\frac{X}{K^2}),K\rangle$ and let $\langle a_1,b_1,c_1,d_1,p_1\rangle$ receive.
+					\item Execute \procedurehr{3.66} on $\langle 1+\frac{X}{K},K\rangle$ and let $\langle a_1,b_1,c_1,d_1,p_1\rangle$ receive.
 					\item Execute \procedurehr{3.65} on $\langle 1,K\rangle$ and let $\langle a_2,b_2,c_2,d_2,p_2\rangle$ receive.
 					\item Execute \procedurehr{3.63} on $\langle K\rangle$ and let $\langle a_3,b_3,c_3,p_3\rangle$ receive.
-					\item Let $l=2\frac{X}{K^2}2^{K-1}(1+\frac{X}{K^2a_3})^{K-1}$.
-					\item Let $a=2a_1+la_2$.
-					\item Let $b=2b_1+lb_2$.
+					\item Let $l=\frac{X}{K}(1+\frac{X}{Ka_3})^{K-1}$.
+					\item Let $a=a_1+la_2$.
+					\item Let $b=b_1+lb_2$.
 					\item Let $c=\max(c_1,c_2,b_3)$.
 					\item Let $d=\max(d_1,d_2,c_3)$.
 					\item Let $p(x,n,m)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $\lVert 1+\frac{x}{K}\rVert^2\le 2(\lVert 1\rVert^2+\lVert\frac{x}{K}\rVert^2)\le 2(1+\frac{X}{K^2})$.
+						\item Verify that $\lVert 1+\frac{x}{K}\rVert^2\le (1+\frac{X}{K})^2$.
 						\item Hence execute procedure $p_1$ on $\langle 1+\frac{x}{K},n,m\rangle$.
-						\item Hence verify that $\lVert(1+\frac{x}{K})^K-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le\frac{a_1}{n^2}+\frac{b_1}{m^2}$.
+						\item Hence verify that $\lVert(1+\frac{x}{K})^K-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{a_1n}{m}+\frac{b_1}{n})^2$.
 						\item Execute procedure $p_2$ on $\langle 1,n,m\rangle$.
-						\item Hence verify that $\lVert K-\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))\rVert^2=\sum_r^{[0:K]}1^r-\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le\frac{a_2}{n^2}+\frac{b_2}{m^2}$.
+						\item Hence verify that $\lVert K-\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))\rVert^2=\sum_r^{[0:K]}1^r-\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{a_2n}{m}+\frac{b_2}{n})^2$.
 						\item For $j\in[1:K]$, do the following:
 						\begin{enumerate}
-							\item Execute procedure $p_3$ on $\langle n,0,j,m\rangle$.
-							\item Hence verify that $\lVert\exp_n(\frac{j}{K}\tau_mi)-1\rVert^2\ge a_3$.
-							\item Let $z_j=K(\exp_n(\frac{r}{K}\tau_mi)-1)$.
+							\item Execute procedure $p_3$ on $\langle n,m,0,j\rangle$.
+							\item Hence verify that $\lVert\exp_n(\frac{j}{K}\tau_mi)-1\rVert^2\ge{a_3}^2$.
+							\item Let $z_j=K(\exp_n(\frac{j}{K}\tau_mi)-1)$.
 						\end{enumerate}
 						\item Hence verify that $\lVert\exp_K(x)-1-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
 						\begin{enumerate}
 							\item $=\lVert\exp_K(x)-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))+\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
-							\item $\le 2\lVert\exp_K(x)-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))\rVert^2+2\lVert\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
-							\item $\le 2(\frac{a_1}{n^2}+\frac{b_1}{m^2})+2\lVert\frac{x}{K}\prod_r^{[1:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
-							\item $=2(\frac{a_1}{n^2}+\frac{b_1}{m^2})+2\lVert\frac{x}{K}\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))\prod_r^{[1:K]}(1-\frac{x}{z_r})-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
-							\item $=2(\frac{a_1}{n^2}+\frac{b_1}{m^2})+2\lVert\frac{x}{K}\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2\lVert\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))-K\rVert^2$
-							\item $\le 2(\frac{a_1}{n^2}+\frac{b_1}{m^2})+2\frac{X}{K^2}(\prod_r^{[1:K]}\lVert 1-\frac{x}{z_r}\rVert^2)(\frac{a_2}{n^2}+\frac{b_2}{m^2})$
-							\item $\le 2(\frac{a_1}{n^2}+\frac{b_1}{m^2})+2\frac{X}{K^2}(\prod_r^{[1:K]} 2(\lVert 1\rVert^2+\lVert\frac{x}{z_r}\rVert^2))(\frac{a_2}{n^2}+\frac{b_2}{m^2})$
-							\item $\le 2(\frac{a_1}{n^2}+\frac{b_1}{m^2})+2\frac{X}{K^2}(\prod_r^{[1:K]} 2(1+\frac{X}{K^2a_3}))(\frac{a_2}{n^2}+\frac{b_2}{m^2})$
-							\item $=\frac{a}{n^2}+\frac{b}{m^2}$.
+							\item $=\lVert\exp_K(x)-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))+\frac{x}{K}\prod_r^{[1:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
+							\item $=\lVert\exp_K(x)-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))+\frac{x}{K}\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))\prod_r^{[1:K]}(1-\frac{x}{z_r})-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
+							\item $=\lVert(\exp_K(x)-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi)))+\frac{x}{K}\prod_r^{[1:K]}(1-\frac{x}{z_r})(\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))-K)\rVert^2$
+							\item $\le((\frac{a_1n}{m}+\frac{b_1}{n})+\frac{X}{K}(\prod_r^{[1:K]}(1+\frac{X}{Ka_3}))(\frac{a_2n}{m}+\frac{b_2}{n}))^2$
+							\item $=((\frac{a_1n}{m}+\frac{b_1}{n})+\frac{X}{K}(1+\frac{X}{Ka_3})^{K-1}(\frac{a_2n}{m}+\frac{b_2}{n}))^2$
+							\item $=(\frac{an}{m}+\frac{b}{n})^2$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
