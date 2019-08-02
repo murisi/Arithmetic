@@ -11,7 +11,7 @@ y2 = 3
 step = 1
 ticksize = 0.1
 expN = 30
-tauN = 20
+tauN = 100
 
 print("\\draw[step=%i,help lines] (%f,%f) grid (%f,%f);" % (step, x1, y1, x2, y2)) # grid
 print("\\draw[->] (%f,0) -- (%f,0);" % (x1, x2)) # x-axis

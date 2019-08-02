@@ -13,14 +13,6 @@ class Complex:
             return i
         else:
             return Complex(i, 0)
-            
-    def __imul__(self, o):
-        o = self.__coerce(o)
-        rp = (self.re * o.re) - (self.im*o.im)
-        ip = (self.re * o.im) + (self.im * o.re)
-        self.re = rp
-        self.im = ip
-        return self
     def __mul__(self, o):
         o = self.__coerce(o)
         return Complex((self.re * o.re) - (self.im*o.im),
@@ -89,16 +81,22 @@ def sin(n, x):
     return (exp(n, x*j) - exp(n, -x*j)) / (2*j)
 def cos(n, x):
     return (exp(n, x*j) + exp(n, -x*j)) / (2)
-def mu(a, b, n):
-    l = []
-    for i in range(n):
-        l.append(a + i*b)
-    return l
+def binom_coeff(a, b):
+    if b == 0:
+      return Complex(Fraction(1,1),Fraction(0,1))
+    else:
+      return a*binom_coeff(a-1,b-1)/b
+def binom_series(x, a, n):
+    ans = Complex(Fraction(0,1),Fraction(0,1))
+    for k in range(0, n):
+      ans += binom_coeff(a, k)*(x**k)
+    return ans
+def ln_series(x, n):
+    ans = Complex(Fraction(0,1),Fraction(0,1))
+    for k in range(1, n):
+      ans += Fraction((-1)**(k-1), k)*(x**k)
+    return ans
 # tau is pi*2
 def tau(m):
-    # the following code integrates 1/x over a path from 1 to i
-    path = mu(1, (j-1)/m, m+2)
-    thesum = 0
-    for i in range(0, m+1):
-        thesum += (path[i+1] - path[i])/path[i]
-    return thesum * (4/j)
+    return 8*ln_series(j,m).im
+
