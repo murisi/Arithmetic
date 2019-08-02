@@ -3,11 +3,11 @@
 from complex import *
 
 x = Complex(1, 0)
-k = 6
+k = 4
 N = 10
-x1 = -5
-y1 = -5
-x2 = 5
+x1 = -4
+y1 = -2
+x2 = 3
 y2 = 3
 step = 1
 ticksize = 0.1

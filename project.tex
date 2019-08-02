@@ -4009,76 +4009,70 @@
 	\end{multicols}
 	\mfigure
 		\begin{minipage}[c]{0.65\textwidth}
-			\begin{tikzpicture}[scale=1,every node/.style={scale=0.9}]
-				\draw[step=1,help lines] (-5.000000,-5.000000) grid (5.000000,3.000000);
-				\draw[->] (-5.000000,0) -- (5.000000,0);
-				\draw[->] (0,-5.000000) -- (0,3.000000);
-				\draw (-5.000000, 0.100000) -- (-5.000000,-0.100000);
-				\draw (-4.000000, 0.100000) -- (-4.000000,-0.100000);
-				\draw (-3.000000, 0.100000) -- (-3.000000,-0.100000);
-				\draw (-2.000000, 0.100000) -- (-2.000000,-0.100000);
-				\draw (-1.000000, 0.100000) -- (-1.000000,-0.100000);
-				\draw (0.000000, 0.100000) -- (0.000000,-0.100000);
-				\draw (1.000000, 0.100000) -- (1.000000,-0.100000);
-				\draw (2.000000, 0.100000) -- (2.000000,-0.100000);
-				\draw (3.000000, 0.100000) -- (3.000000,-0.100000);
-				\draw (4.000000, 0.100000) -- (4.000000,-0.100000);
-				\draw (0.100000, -5.000000) -- (-0.100000,-5.000000);
-				\draw (0.100000, -4.000000) -- (-0.100000,-4.000000);
-				\draw (0.100000, -3.000000) -- (-0.100000,-3.000000);
-				\draw (0.100000, -2.000000) -- (-0.100000,-2.000000);
-				\draw (0.100000, -1.000000) -- (-0.100000,-1.000000);
-				\draw (0.100000, 0.000000) -- (-0.100000,0.000000);
-				\draw (0.100000, 1.000000) -- (-0.100000,1.000000);
-				\draw (0.100000, 2.000000) -- (-0.100000,2.000000);
-				\draw (1,-0.100000) node[anchor=north,fill=white]{$1$};
-				\draw (-0.100000,1) node[anchor=east,fill=white]{$i$};
-				\draw (1.000000,0.000000) node[anchor=south west,fill=white]{$(1+\frac{6i}{10})^{0}$};
-				\filldraw (1.000000,0.000000) circle (2pt);
-				\draw (1.000000,0.000000) -- (1.000000,0.600000);
-				\filldraw (1.000000,0.600000) circle (2pt);
-				\draw (1.000000,0.600000) node[anchor=south west,fill=white]{$(1+\frac{6i}{10})^{1}$};
-				\filldraw (1.000000,0.600000) circle (2pt);
-				\draw (1.000000,0.600000) -- (0.640000,1.200000);
-				\filldraw (0.640000,1.200000) circle (2pt);
-				\draw (0.640000,1.200000) node[anchor=south west,fill=white]{$(1+\frac{6i}{10})^{2}$};
-				\filldraw (0.640000,1.200000) circle (2pt);
-				\draw (0.640000,1.200000) -- (-0.080000,1.584000);
-				\filldraw (-0.080000,1.584000) circle (2pt);
-				\draw (-0.080000,1.584000) node[anchor=south east,fill=white]{$(1+\frac{6i}{10})^{3}$};
-				\filldraw (-0.080000,1.584000) circle (2pt);
-				\draw (-0.080000,1.584000) -- (-1.030400,1.536000);
-				\filldraw (-1.030400,1.536000) circle (2pt);
-				\draw (-1.030400,1.536000) node[anchor=south east,fill=white]{$(1+\frac{6i}{10})^{4}$};
-				\filldraw (-1.030400,1.536000) circle (2pt);
-				\draw (-1.030400,1.536000) -- (-1.952000,0.917760);
-				\filldraw (-1.952000,0.917760) circle (2pt);
-				\draw (-1.952000,0.917760) node[anchor=south east,fill=white]{$(1+\frac{6i}{10})^{5}$};
-				\filldraw (-1.952000,0.917760) circle (2pt);
-				\draw (-1.952000,0.917760) -- (-2.502656,-0.253440);
-				\filldraw (-2.502656,-0.253440) circle (2pt);
-				\draw (-2.502656,-0.253440) node[anchor=north east,fill=white]{$(1+\frac{6i}{10})^{6}$};
-				\filldraw (-2.502656,-0.253440) circle (2pt);
-				\draw (-2.502656,-0.253440) -- (-2.350592,-1.755034);
-				\filldraw (-2.350592,-1.755034) circle (2pt);
-				\draw (-2.350592,-1.755034) node[anchor=north east,fill=white]{$(1+\frac{6i}{10})^{7}$};
-				\filldraw (-2.350592,-1.755034) circle (2pt);
-				\draw (-2.350592,-1.755034) -- (-1.297572,-3.165389);
-				\filldraw (-1.297572,-3.165389) circle (2pt);
-				\draw (-1.297572,-3.165389) node[anchor=north east,fill=white]{$(1+\frac{6i}{10})^{8}$};
-				\filldraw (-1.297572,-3.165389) circle (2pt);
-				\draw (-1.297572,-3.165389) -- (0.601661,-3.943932);
-				\filldraw (0.601661,-3.943932) circle (2pt);
-				\draw (0.601661,-3.943932) node[anchor=north west,fill=white]{$(1+\frac{6i}{10})^{9}$};
-				\filldraw (0.601661,-3.943932) circle (2pt);
-				\draw (0.601661,-3.943932) -- (2.968021,-3.582935);
-				\filldraw (2.968021,-3.582935) circle (2pt);
-				\draw (2.968021,-3.582935) node[anchor=north west,fill=white]{$(1+\frac{6i}{10})^{10}$};
-				\filldraw (2.968021,-3.582935) circle (2pt);
+			\begin{tikzpicture}[scale=1.4,every node/.style={scale=0.9}]
+				\draw[step=1,help lines] (-4.000000,-2.000000) grid (3.000000,3.000000);
+        \draw[->] (-4.000000,0) -- (3.000000,0);
+        \draw[->] (0,-2.000000) -- (0,3.000000);
+        \draw (-4.000000, 0.100000) -- (-4.000000,-0.100000);
+        \draw (-3.000000, 0.100000) -- (-3.000000,-0.100000);
+        \draw (-2.000000, 0.100000) -- (-2.000000,-0.100000);
+        \draw (-1.000000, 0.100000) -- (-1.000000,-0.100000);
+        \draw (0.000000, 0.100000) -- (0.000000,-0.100000);
+        \draw (1.000000, 0.100000) -- (1.000000,-0.100000);
+        \draw (2.000000, 0.100000) -- (2.000000,-0.100000);
+        \draw (0.100000, -2.000000) -- (-0.100000,-2.000000);
+        \draw (0.100000, -1.000000) -- (-0.100000,-1.000000);
+        \draw (0.100000, 0.000000) -- (-0.100000,0.000000);
+        \draw (0.100000, 1.000000) -- (-0.100000,1.000000);
+        \draw (0.100000, 2.000000) -- (-0.100000,2.000000);
+        \draw (1,-0.100000) node[anchor=north,fill=white]{$1$};
+        \draw (-0.100000,1) node[anchor=east,fill=white]{$i$};
+        \draw (1.000000,0.000000) node[anchor=south west,fill=white]{$(1+\frac{4i}{10})^{0}$};
+        \filldraw (1.000000,0.000000) circle (2pt);
+        \draw (1.000000,0.000000) -- (1.000000,0.400000);
+        \filldraw (1.000000,0.400000) circle (2pt);
+        \draw (1.000000,0.400000) node[anchor=south west,fill=white]{$(1+\frac{4i}{10})^{1}$};
+        \filldraw (1.000000,0.400000) circle (2pt);
+        \draw (1.000000,0.400000) -- (0.840000,0.800000);
+        \filldraw (0.840000,0.800000) circle (2pt);
+        \draw (0.840000,0.800000) node[anchor=south west,fill=white]{$(1+\frac{4i}{10})^{2}$};
+        \filldraw (0.840000,0.800000) circle (2pt);
+        \draw (0.840000,0.800000) -- (0.520000,1.136000);
+        \filldraw (0.520000,1.136000) circle (2pt);
+        \draw (0.520000,1.136000) node[anchor=south west,fill=white]{$(1+\frac{4i}{10})^{3}$};
+        \filldraw (0.520000,1.136000) circle (2pt);
+        \draw (0.520000,1.136000) -- (0.065600,1.344000);
+        \filldraw (0.065600,1.344000) circle (2pt);
+        \draw (0.065600,1.344000) node[anchor=south west,fill=white]{$(1+\frac{4i}{10})^{4}$};
+        \filldraw (0.065600,1.344000) circle (2pt);
+        \draw (0.065600,1.344000) -- (-0.472000,1.370240);
+        \filldraw (-0.472000,1.370240) circle (2pt);
+        \draw (-0.472000,1.370240) node[anchor=south east,fill=white]{$(1+\frac{4i}{10})^{5}$};
+        \filldraw (-0.472000,1.370240) circle (2pt);
+        \draw (-0.472000,1.370240) -- (-1.020096,1.181440);
+        \filldraw (-1.020096,1.181440) circle (2pt);
+        \draw (-1.020096,1.181440) node[anchor=south east,fill=white]{$(1+\frac{4i}{10})^{6}$};
+        \filldraw (-1.020096,1.181440) circle (2pt);
+        \draw (-1.020096,1.181440) -- (-1.492672,0.773402);
+        \filldraw (-1.492672,0.773402) circle (2pt);
+        \draw (-1.492672,0.773402) node[anchor=south east,fill=white]{$(1+\frac{4i}{10})^{7}$};
+        \filldraw (-1.492672,0.773402) circle (2pt);
+        \draw (-1.492672,0.773402) -- (-1.802033,0.176333);
+        \filldraw (-1.802033,0.176333) circle (2pt);
+        \draw (-1.802033,0.176333) node[anchor=south east,fill=white]{$(1+\frac{4i}{10})^{8}$};
+        \filldraw (-1.802033,0.176333) circle (2pt);
+        \draw (-1.802033,0.176333) -- (-1.872566,-0.544480);
+        \filldraw (-1.872566,-0.544480) circle (2pt);
+        \draw (-1.872566,-0.544480) node[anchor=north east,fill=white]{$(1+\frac{4i}{10})^{9}$};
+        \filldraw (-1.872566,-0.544480) circle (2pt);
+        \draw (-1.872566,-0.544480) -- (-1.654774,-1.293507);
+        \filldraw (-1.654774,-1.293507) circle (2pt);
+        \draw (-1.654774,-1.293507) node[anchor=north east,fill=white]{$(1+\frac{4i}{10})^{10}$};
+        \filldraw (-1.654774,-1.293507) circle (2pt);
 			\end{tikzpicture}
 		\end{minipage}
 		\begin{minipage}[c]{0.35\textwidth}
-			A plot of the list of complex numbers $(1+\frac{6i}{10})^{[0:11]}$. Notice that each multiplication of a complex number by $1+\frac{6i}{10}$ results in an anti-clockwise rotation about the origin and a small radial movement outwards. This can be seen to reflect the computation $(1+\frac{6i}{10})a=1a+\frac{6}{10}(ai)$ after one notes that $ai$ is perpendicular to $a$.
+			A plot of the list of complex numbers $(1+\frac{4i}{10})^{[0:11]}$. Notice that each multiplication of a complex number by $1+\frac{4i}{10}$ results in an anti-clockwise rotation about the origin and a small radial movement outwards. This can be seen to reflect the computation $(1+\frac{4i}{10})a=1a+\frac{4}{10}(ai)$ after one notes that $ai$ is perpendicular to $a$. Also note that each line segment has a length of roughly $\frac{4}{10}$ units. Hence the entire path has a length of approximately $10*\frac{4}{10}=4$ units.
 		\end{minipage}
 	\begin{multicols}{2}
 		\declaration{3.17}
