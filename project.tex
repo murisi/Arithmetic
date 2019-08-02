@@ -5345,13 +5345,13 @@
 					\end{enumerate}
 		\procedure{3.65}
 			\objective
-				Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\lVert \sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $m>d$, and $\lVert x\rVert^2\le X$ are chosen.
+				Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\lVert \sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $\frac{m}{n}>d$, and $\lVert x\rVert^2\le X$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.64} on $\langle K\rangle$ and let $\langle a_1,b_1,c_1,d_1,p_1\rangle$ receive.
 					\item Execute \procedurehr{3.50} and let $\langle a_2,b_2,p_2\rangle$ receive.
-					\item Execute \procedurehr{3.13} on $\langle {a_2}^2\rangle$ and let $\langle a_3,b_3,p_3\rangle$ receive.
-					\item Let $l=(K-1)\sum_k^{[0:K-1]}2^{K-k-2}(X+a_3)^{K-k-2}$.
+					\item Execute \procedurehr{3.13} on $\langle a_2\rangle$ and let $\langle a_3,b_3,p_3\rangle$ receive.
+					\item Let $l=\sum_k^{[0:K-1]}\prod_j^{[k+1:K-1]}(X+a_3)$.
 					\item Let $a=a_1l$.
 					\item Let $b=b_1l$.
 					\item Let $c=\max(c_1,b_3)$.
@@ -5374,35 +5374,31 @@
 							\item $=\lVert\Lambda(\prod_j^{[0:K-1]}(\lambda-z'_j)+\sum_k^{[0:K-1]}\Lambda(t_{k+1},z'_{k})\prod_j^{[k+1:K-1]}(\lambda-z'_j),x)-\prod_r^{[1:K]}(x-z_r)\rVert^2$
 							\item $=\lVert\prod_j^{[0:K-1]}(x-z'_j)+\sum_k^{[0:K-1]}\Lambda(t_{k+1},z'_{k})\prod_j^{[k+1:K-1]}(x-z'_j)-\prod_r^{[1:K]}(x-z_r)\rVert^2$
 							\item $=\lVert\sum_k^{[0:K-1]}\Lambda(t_{k+1},z'_{k})\prod_j^{[k+1:K-1]}(x-z'_j)\rVert^2$
-							\item $\le(K-1)\sum_k^{[0:K-1]}\lVert\Lambda(t_{k+1},z'_{k})\rVert^2\lVert\prod_j^{[k+1:K-1]}(x-z'_j)\rVert^2$
-							\item $\le(K-1)\sum_k^{[0:K-1]}(\frac{a_1}{n^2}+\frac{b_1}{m^2})\prod_j^{[k+1:K-1]}\lVert x-z'_j\rVert^2$
-							\item $\le(\frac{a_1}{n^2}+\frac{b_1}{m^2})(K-1)\sum_k^{[0:K-1]}\prod_j^{[k+1:K-1]}2(\lVert x\rVert^2+\lVert z'_j\rVert^2)$
-							\item $\le(\frac{a_1}{n^2}+\frac{b_1}{m^2})(K-1)\sum_k^{[0:K-1]}2^{K-k-2}(X+a_3)^{K-k-2}$
-							\item $=\frac{a}{n^2}+\frac{b}{m^2}$.
+							\item $\le(\sum_k^{[0:K-1]}(\frac{a_1n}{m}+\frac{b_1}{n})\prod_j^{[k+1:K-1]}(X+a_3))^2$
+							\item $=((\frac{a_1n}{m}+\frac{b_1}{n})\sum_k^{[0:K-1]}\prod_j^{[k+1:K-1]}(X+a_3))^2$
+							\item $=(\frac{an}{m}+\frac{b}{n})^2$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.66}
 			\objective
-				Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\lVert x^K-1-\prod_r^{[0:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le\frac{a}{n^2}+\frac{b}{m^2}$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $m>d$, and $\lVert x\rVert^2\le X$ are chosen.
+				Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\lVert x^K-1-\prod_r^{[0:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $m>d$, and $\lVert x\rVert^2\le X$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.65} on $\langle X,K\rangle$ and let $\langle a_1,b_1,c,d,p_1\rangle$ receive.
-					\item Let $a=2(X+1)a_1$.
-					\item Let $b=2(X+1)b_1$.
+					\item Let $a=(X+1)a_1$.
+					\item Let $b=(X+1)b_1$.
 					\item Let $p(x,n,m)$ be the following procedure:
 					\begin{enumerate}
 						\item Execute procedure $p_1$ on $\langle x,n,m\rangle$.
-						\item Hence verify that $\lVert\sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le\frac{a_1}{n^2}+\frac{b_1}{m^2}$.
+						\item Hence verify that $\lVert\sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{a_1n}{m}+\frac{b_1}{n})^2$.
 						\item Hence verify that $\lVert x^K-1-\prod_r^{[0:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2$
 						\begin{enumerate}
 							\item $=\lVert(x-1)\sum_r^{[0:K]}x^r-(x-1)\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2$
 							\item $=\lVert x-1\rVert^2\lVert\sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2$
-							\item $\le\lVert x-1\rVert^2(\frac{a_1}{n^2}+\frac{b_1}{m^2})$
-							\item $\le 2(\lVert x\rVert^2+\lVert 1\rVert^2)(\frac{a_1}{n^2}+\frac{b_1}{m^2})$
-							\item $\le 2(X+1)(\frac{a_1}{n^2}+\frac{b_1}{m^2})$
-							\item $=\frac{a}{n^2}+\frac{b}{m^2}$.
+							\item $\le(X+1)^2(\frac{a_1n}{m}+\frac{b_1}{n})^2$
+							\item $=(\frac{an}{m}+\frac{b}{n})^2$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
