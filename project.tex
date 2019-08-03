@@ -4138,7 +4138,7 @@
 				Implementation is analogous to that of \procedurehr{3.24}.
 		\procedure{3.26}
 			\objective
-				 Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p$, to show that $\lVert\cos_n(x)^2+\sin_n(x)^2-1\rVert^2\le\frac{a^2\lVert x\rVert^4}{n^2}$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ are chosen.
+				 Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,n)$, to show that $\lVert\cos_n(x)^2+\sin_n(x)^2-1\rVert^2\le\frac{a^2\lVert x\rVert^4}{n^2}$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>b$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle a,b,q\rangle$ receive.
@@ -4158,9 +4158,28 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
+		\procedure{sat0308190647}
+		  \objective
+		    Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,y,n)$, to show that $\lVert\lVert x\exp_n(iy)\rVert^2-\lVert x\rVert^2\rVert^2\le\frac{a^2\lVert x\rVert^4\lVert y\rVert^4}{n^2}$ when a complex number $x$, a rational number $y$, and a positive integer $n$ such that $\lVert y\rVert^2\le X^2$ and $n>b$ are chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute \procedurehr{3.26} on $\langle X\rangle$ and let $\langle a,b,q\rangle$ receive.
+		      \item Let $p(x,y,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $q$ on $\langle y,n\rangle$.
+		        \item Hence verify that $\lVert\cos_n(y)^2+\sin_n(y)^2-1\rVert^2\le\frac{a^2\lVert y\rVert^4}{n^2}$.
+		        \item Hence using \procedurehr{3.22} and \procedurehr{3.23}, verify that $\lVert\lVert x\exp_n(iy)\rVert^2-\lVert x\rVert^2\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert\lVert x\rVert^2\lVert\exp_n(iy)\rVert^2-\lVert x\rVert^2\rVert^2$
+		          \item $=\lVert x\rVert^4\lVert\Re(\exp_n(iy))^2+\Im(\exp_n(iy))^2-1\rVert^2$
+		          \item $=\lVert x\rVert^4\lVert\cos_n(y)^2+\sin_n(y)^2-1\rVert^2$
+		          \item $\le\frac{a^2\lVert y\rVert^4\lVert x\rVert^4}{n^2}$.
+		        \end{enumerate}
+		      \end{enumerate}
+		    \end{enumerate}
 		\procedure{3.29}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p$, to show that $\lVert\sum_r^{[0:\lceil\frac{n}{2}\rceil]}\frac{(-1)^rx^{2r}}{(2r)!}-\cos_n(x)\rVert^2\le(\frac{a}{n})^2$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X^2$ is chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p(x,n)$, to show that $\lVert\sum_r^{[0:\lceil\frac{n}{2}\rceil]}\frac{(-1)^rx^{2r}}{(2r)!}-\cos_n(x)\rVert^2\le(\frac{a}{n})^2$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X^2$ is chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.21} on $\langle X\rangle$ and let $\langle a,N,q\rangle$ receive.
@@ -4185,7 +4204,7 @@
 				\end{enumerate}
 		\procedure{3.30}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p$, to show that $\lVert\sum_r^{[0:\lfloor\frac{n+1}{2}\rfloor]}\frac{(-1)^rx^{2r+1}}{(2r+1)!}-\sin_n(x)\rVert^2\le(\frac{a}{n})^2$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X^2$ is chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p(x,n)$, to show that $\lVert\sum_r^{[0:\lfloor\frac{n+1}{2}\rfloor]}\frac{(-1)^rx^{2r+1}}{(2r+1)!}-\sin_n(x)\rVert^2\le(\frac{a}{n})^2$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X^2$ is chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.29}.
 		\declaration{sun2107190610}
