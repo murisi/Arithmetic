@@ -5232,13 +5232,12 @@
 						\item Verify that $0<\frac{k-j}{K}\le\frac{1}{2}$.
 						\item Hence verify that $\lVert\frac{k-j}{K}\tau_mi\rVert^2\le\lVert\frac{k-j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_1}^2$.
 						\item Execute procedure $p_4$ on $\langle\frac{k-j}{K}\tau_mi,\frac{j}{K}\tau_mi,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)\rVert^2\le\frac{{a_4}^2\lVert\frac{k-j}{K}\tau_mi\rVert^2\lVert\frac{j}{K}\tau_mi\rVert^2}{n^2}\le\frac{{a_4}^2{a_1}^4}{n^2}$.
-						\item Hence using \procedurehr{3.05}, verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
+						\item Hence verify that $\lVert\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)\rVert^2\le\frac{{a_4}^2\lVert\frac{k-j}{K}\tau_mi\rVert^2\lVert\frac{j}{K}\tau_mi\rVert^2}{n^2}\le\frac{{a_4}^2{a_1}^4}{n^2}\le(\frac{a_2a_3}{2})^2$.
+						\item Hence using \procedurehr{sat1708191238}, verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
 						\begin{enumerate}
 							\item $=\lVert\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)+\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
-							\item $\ge\frac{1}{2}\lVert\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2-\lVert\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
-							\item $=\frac{1}{2}\lVert\exp_n(\frac{j}{K}\tau_mi)\rVert^2\lVert\exp_n(\frac{k-j}{K}\tau_mi)-1\rVert^2-\lVert\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
-							\item $\ge\frac{1}{2}{a_2}^2{a_3}^2-\frac{{a_4}^2{a_1}^4}{n^2}$
+							\item $=\lVert\exp_n(\frac{j}{K}\tau_mi)(\exp_n(\frac{k-j}{K}\tau_mi)-1)-(\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi))\rVert^2$
+							\item $\ge (a_2a_3-\frac{a_2a_3}{2})^2$
 							\item $\ge a^2$.
 						\end{enumerate}
 					\end{enumerate}
