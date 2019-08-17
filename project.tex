@@ -3631,6 +3631,32 @@
 					  \end{enumerate}
 					\end{enumerate}
 				\end{enumerate}
+		\procedure{sat1708191238}
+		  \objective
+		    Choose two complex numbers $a,d$ and two rational numbers $b,c$ such that $\lVert a\rVert^2\le b^2<c^2\le\lVert d\rVert^2$. The objective of the following instructions is to show that $\lVert d-a\rVert^2\ge(c-b)^2$.
+		  \implementation
+		    \begin{enumerate}
+		      \item Verify that $\Re(\frac{a}{d})^2$
+		      \begin{enumerate}
+		        \item $=\Re(\frac{a\conj{d}}{\lVert d\rVert^2})^2$
+		        \item $=\frac{\Re(a\conj{d})^2}{\lVert d\rVert^4}$
+		        \item $\le\frac{\lVert a\conj{d}\rVert^2}{\lVert d\rVert^4}$
+		        \item $=\frac{\lVert a\rVert^2\lVert d\rVert^2}{\lVert d\rVert^4}$
+		        \item $=\frac{\lVert a\rVert^2}{\lVert d\rVert^2}$
+		        \item $\le\frac{b^2}{c^2}$
+		        \item $=(\frac{b}{c})^2$.
+		      \end{enumerate}
+		      \item Now verify that $\Re(\frac{a}{d})\le\frac{b}{c}<1$.
+		      \item Hence verify that $\lVert d-a\rVert^2$
+		      \begin{enumerate}
+		        \item $=\lVert\frac{d-a}{d}\rVert^2\lVert d\rVert^2$
+		        \item $=(\Re(1-\frac{a}{d})^2+\Im(1-\frac{a}{d})^2)\lVert d\rVert^2$
+		        \item $\ge\Re(1-\frac{a}{d})^2\lVert d\rVert^2$
+		        \item $=(1-\Re(\frac{a}{d}))^2\lVert d\rVert^2$
+		        \item $\ge(1-\frac{b}{c})^2c^2$
+		        \item $=(c-b)^2$.
+		      \end{enumerate}
+		    \end{enumerate}
 		\declaration{3.27}
 			The notation \gls{complex1/a}, where $a$ is a complex number, will be used as a shorthand for the pair $\frac{1}{\lVert a\rVert^2}\conj{a}$.
 		\procedure{3.81}
