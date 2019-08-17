@@ -2353,6 +2353,24 @@
 						\end{enumerate}
 					\end{enumerate}
 				\end{enumerate}
+		\procedure{wed2407191348}
+	    \objective
+	      Choose a non-negative integer $r$ and a rational number $x>-1$ such that $(r-1)x<1$. The objective of the following instructions is to show that $(1+x)^r\le\frac{1+x}{1-(r-1)x}$.
+	    \implementation
+	      \begin{enumerate}
+	        \item Verify that $1-\frac{x}{1+x}=\frac{1}{1+x}>0$.
+	        \item Hence using \procedurehr{2.07}, verify that $(1-\frac{x}{1+x})^r\ge 1-\frac{rx}{1+x}$.
+	        \item Verify that $0<1+x-rx$.
+	        \item Hence verify that $0<1-\frac{rx}{1+x}$.
+	        \item Hence verify that $(1-\frac{x}{1+x})^r\ge 1-\frac{rx}{1+x}>0$.
+	        \item Hence verify that $(1+x)^r$
+	        \begin{enumerate}
+	          \item $=(\frac{1}{1+x})^{-r}$
+	          \item $=(1-\frac{x}{1+x})^{-r}$
+	          \item $\le(1-\frac{rx}{1+x})^{-1}$
+	          \item $=\frac{1+x}{1-(r-1)x}$.
+	        \end{enumerate}
+	      \end{enumerate}
 		\declaration{2.08}
 			The notation \gls{ratminc}, where $c$ is a list, will be used as a shorthand for $\infty$ if $c$ is empty, otherwise it will stand for the minimum entry of $c$.
 		\declaration{2.23}
@@ -4316,24 +4334,6 @@
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle Y,Z,p\rangle$.}
 	      \end{enumerate}
-	  \procedure{wed2407191348}
-	    \objective
-	      Choose a non-negative integer $r$ and a rational number $x>-1$ such that $(r-1)x<1$. The objective of the following instructions is to show that $(1+x)^r\le\frac{1+x}{1-(r-1)x}$.
-	    \implementation
-	      \begin{enumerate}
-	        \item Verify that $1-\frac{x}{1+x}=\frac{1}{1+x}>0$.
-	        \item Hence using \procedurehr{2.07}, verify that $(1-\frac{x}{1+x})^r\ge 1-\frac{rx}{1+x}$.
-	        \item Verify that $0<1+x-rx$.
-	        \item Hence verify that $0<1-\frac{rx}{1+x}$.
-	        \item Hence verify that $(1-\frac{x}{1+x})^r\ge 1-\frac{rx}{1+x}>0$.
-	        \item Hence verify that $(1+x)^r$
-	        \begin{enumerate}
-	          \item $=(\frac{1}{1+x})^{-r}$
-	          \item $=(1-\frac{x}{1+x})^{-r}$
-	          \item $\le(1-\frac{rx}{1+x})^{-1}$
-	          \item $=\frac{1+x}{1-(r-1)x}$.
-	        \end{enumerate}
-	      \end{enumerate}
 	  \procedure{wed2407191422}
 	    \objective
 	      Choose a rational number $0<X<1$ and a positive integer $k$. The objective of the following instructions is to construct rational numbers $Y>0$, $0<Z<1$ and a procedure $p(x,n)$ to show that $\lVert n^kx^n\rVert^2\le(YZ^n)^2$ when a complex number $x$ such that $\lVert x\rVert^2\le X^2$ is chosen.
@@ -5498,8 +5498,10 @@
 		    \end{enumerate}
 		    The objective of the following instructions is to construct the following:
 		    \begin{enumerate}
-		      \item A procedure $q_5(x,n,\delta)$ to show that $\lVert\frac{p_n(t_n(x+\delta))-p_n(t_n(x))}{\delta}-p'_n(t_n(x))t'_n(x)\rVert^2\le \frac{a_5}{n^2}+b_5\lVert\delta\rVert^2$ when two complex numbers $x,dx$ such that $R(x)$,$S(x)$,$P(t_n(x))$,$Q(t_n(x))$, $n>c_5$, and $\lVert\delta\rVert^2<d_5$ are chosen
-		      \item A procedure $q_6(x,n)$ to show that $\lVert p'_n(t_n(x))t'_n(x)\rVert^2\le a_6$ when a complex number $x$ such that $Q(t_n(x))$, $S(x)$, and $n>b_6$ are chosen.
+		      \item Rational numbers $a_5,b_5,c_5,d_5,a_6,b_6$.
+		      \item Predicates $T(x), U(x)$.
+		      \item A procedure $q_5(x,n,\delta)$ to show that $\lVert\frac{p_n(t_n(x+\delta))-p_n(t_n(x))}{\delta}-p'_n(t_n(x))t'_n(x)\rVert^2\le \frac{a_5}{n^2}+b_5\lVert\delta\rVert^2$ when two complex numbers $x,dx$ such that $T(x)$, $n>c_5$, and $\lVert\delta\rVert^2<d_5$ are chosen
+		      \item A procedure $q_6(x,n)$ to show that $\lVert p'_n(t_n(x))t'_n(x)\rVert^2\le a_6$ when a complex number $x$ such that $U(x)$, and $n>b_6$ are chosen.
 		    \end{enumerate}
 		  \implementation
 		    \begin{enumerate}
@@ -5509,6 +5511,8 @@
 		      \item Let $d_5=\min(1,d_3,\frac{d_1}{2(a_3+b_3+a_4)})$.
 		      \item Let $a_6=a_2a_4$.
 		      \item Let $b_6=\max(c_1,b_2,c_3,b_4)$.
+		      \item Let $T(x)$ be $R(x),S(x),P(t_n(x)),Q(t_n(x))$.
+		      \item Let $U(x)$ be $Q(t_n(x)),S(x)$.
 		      \item Let $q_5(x,n,\delta)$ be the following procedure:
 		      \begin{enumerate}
 		        \item Execute procedure $q_3$ on $\langle x,n,\delta\rangle$.
