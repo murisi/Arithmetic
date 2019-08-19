@@ -43,10 +43,10 @@
 \DeclareMathOperator{\Po}{po}
 \DeclareMathOperator{\Ne}{ne}
 \let\div\relax\DeclareMathOperator{\div}{div}
-\let\mod\relax\DeclareMathOperator{\mod}{mod}
 \let\Re\relax\DeclareMathOperator{\Re}{re}
 \let\Im\relax\DeclareMathOperator{\Im}{im}
 
+\newcommand{\err}[1]{\ (\mathrm{err}\ #1)}
 \newcommand{\for}{\text{ for }}
 \newcommand{\ul}[1]{\protect\underline{#1}}
 \newcommand{\ol}[1]{\overline{#1}}
@@ -97,8 +97,8 @@
 \newglossaryentry{int||a||}{name=\ensuremath{\lVert a\rVert},description={absolute value}}
 \newglossaryentry{intsgn(a)}{name=\ensuremath{\sgn(a)},description={sign function}}
 \newglossaryentry{intadivb}{name=\ensuremath{a\div b},description={integer division}}
-\newglossaryentry{intamodb}{name=\ensuremath{a\mod b},description={integer modulus}}
-\newglossaryentry{inta=bmodc}{name=\ensuremath{a\equiv b(\mod c)},description={modular equality}}
+\newglossaryentry{intamodb}{name=\ensuremath{a\bmod b},description={integer modulus}}
+\newglossaryentry{inta=bmodc}{name=\ensuremath{a\equiv b\pmod{c}},description={modular equality}}
 \newglossaryentry{int(a,b)}{name=\ensuremath{(a,b)},description={}}
 \newglossaryentry{int(a_0,a_1,...,a_n-1)}{name=\ensuremath{(a_0,a_1,\cdots,a_{n-1})},description={}}
 \newglossaryentry{intprime}{name={prime number},description={}}
@@ -150,7 +150,7 @@
 \newglossaryentry{ratpolymonic}{name={monic polynomial},description={}}
 \newglossaryentry{ratpolymon}{name=\ensuremath{\mon(p)},description={}}
 \newglossaryentry{ratpolydiv}{name=\ensuremath{a\div b},description={polynomial division}}
-\newglossaryentry{ratpolymod}{name=\ensuremath{a\mod b},description={polynomial modulus}}
+\newglossaryentry{ratpolymod}{name=\ensuremath{a\bmod b},description={polynomial modulus}}
 \newglossaryentry{ratpolyJ}{name=\ensuremath{J_s(x)},description={}}
 \newglossaryentry{complex}{name={complex number},description={}}
 \newglossaryentry{complexRe}{name=$\Re(a)$,description={real part of $a$}}
@@ -659,113 +659,113 @@
 		\declaration{1.01}
 			The notation \gls{intamodb} will be used to refer to the second part of the pair yielded by executing \procedurehr{1.00} on $\langle a,b\rangle$.
 		\declaration{1.02}
-			The notation \gls{inta=bmodc} will be used as a shorthand for "$a\mod c=b\mod c$".
+			The notation \gls{inta=bmodc} will be used as a shorthand for "$a\bmod c=b\bmod c$".
 		\procedure{1.01}
 			\objective
-				Choose four integers $a,b,c,d$ and a positive integer $e$ in such a way that $a\equiv c(\mod e)$ and $b\equiv d(\mod e)$. The objective of the following instructions is to show that $a+b\equiv c+d(\mod e)$.
+				Choose four integers $a,b,c,d$ and a positive integer $e$ in such a way that $a\equiv c\pmod{e}$ and $b\equiv d\pmod{e}$. The objective of the following instructions is to show that $a+b\equiv c+d\pmod{e}$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that $a+b$
 					\begin{enumerate}
-						\item $\equiv(a\div e)e+(a\mod e)+(b\div e)e+(b\mod e)$
-						\item $\equiv(a\mod e)+(b\mod e)$
-						\item $\equiv(c\mod e)+(d\mod e)$
-						\item $\equiv(c\div e)e+(c\mod e)+(d\div e)e+(d\mod e)$
-						\item \textbf{$\equiv c+d(\mod e)$.}
+						\item $\equiv(a\div e)e+(a\bmod e)+(b\div e)e+(b\bmod e)$
+						\item $\equiv(a\bmod e)+(b\bmod e)$
+						\item $\equiv(c\bmod e)+(d\bmod e)$
+						\item $\equiv(c\div e)e+(c\bmod e)+(d\div e)e+(d\bmod e)$
+						\item \textbf{$\equiv c+d\pmod{e}$.}
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{1.02}
 			\objective
-				Choose four integers $a,b,c,d$ and a positive integer $e$ in such a way that $a\equiv c(\mod e)$ and $b\equiv d(\mod e)$. The objective of the following instructions is to show that $ab\equiv cd(\mod e)$.
+				Choose four integers $a,b,c,d$ and a positive integer $e$ in such a way that $a\equiv c\pmod{e}$ and $b\equiv d\pmod{e}$. The objective of the following instructions is to show that $ab\equiv cd\pmod{e}$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that $ab$
 					\begin{enumerate}
-						\item $\equiv((a\div e)e+(a\mod e))((b\div e)e+(b\mod e))$
-						\item $\equiv(a\div e)(b\div e)e^2+(a\div e)(b\mod e)e+(a\mod e)(b\div e)e+(a\mod e)(b\mod e)$
-						\item $\equiv(a\mod e)(b\mod e)$
-						\item $\equiv(c\mod e)(d\mod e)$
-						\item $\equiv(c\div e)(d\div e)e^2+(c\div e)(d\mod e)e+(c\mod e)(d\div e)e+(c\mod e)(d\mod e)$
-						\item \textbf{$\equiv cd(\mod e)$.}
+						\item $\equiv((a\div e)e+(a\bmod e))((b\div e)e+(b\bmod e))$
+						\item $\equiv(a\div e)(b\div e)e^2+(a\div e)(b\bmod e)e+(a\bmod e)(b\div e)e+(a\bmod e)(b\bmod e)$
+						\item $\equiv(a\bmod e)(b\bmod e)$
+						\item $\equiv(c\bmod e)(d\bmod e)$
+						\item $\equiv(c\div e)(d\div e)e^2+(c\div e)(d\bmod e)e+(c\bmod e)(d\div e)e+(c\bmod e)(d\bmod e)$
+						\item \textbf{$\equiv cd\pmod{e}$.}
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{1.03}
 			\objective
-				Choose an integer $a$ and two positive integers $b,c$. The objective of the following instructions is to show that $(a\mod bc)\mod b=a\mod b$.
+				Choose an integer $a$ and two positive integers $b,c$. The objective of the following instructions is to show that $(a\bmod bc)\bmod b=a\bmod b$.
 			\implementation
 				\begin{enumerate}
-					\item \textbf{Verify that $(a\mod bc)\mod b=(a-(a\div bc)bc)\mod b=a\mod b$.}
+					\item \textbf{Verify that $(a\bmod bc)\bmod b=(a-(a\div bc)bc)\bmod b=a\bmod b$.}
 				\end{enumerate}
 		\procedure{1.04}
 			\objective
 				Choose a positive integer $a$ and four integers $b_1,b_0,c_1,c_0$ such that $0\le b_0<a$, $0\le c_0<a$, and $b_1a+b_0=c_1a+c_0$. The objective of the following instructions is to show that $b_1=c_1$ and $b_0=c_0$.
 			\implementation
 				\begin{enumerate}
-					\item \textbf{Verify that $b_0=b_0\mod a=(b_1a+b_0)\mod a=(c_1a+c_0)\mod a=c_0\mod a=c_0$.}
+					\item \textbf{Verify that $b_0=b_0\bmod a=(b_1a+b_0)\bmod a=(c_1a+c_0)\bmod a=c_0\bmod a=c_0$.}
 					\item Therefore verify that $b_1a=c_1a$.
 					\item \textbf{Therefore verify that $b_1=c_1$.}
 				\end{enumerate}
 		\procedure{1.05}
 			\objective
-				Choose an integer $a$ and two positive integers $b,c$. The objective of the following instructions is to show that $ca\mod cb=c(a\mod b)$ and that $ca\div cb=a\div b$.
+				Choose an integer $a$ and two positive integers $b,c$. The objective of the following instructions is to show that $ca\bmod cb=c(a\bmod b)$ and that $ca\div cb=a\div b$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $bc(a\div b)+c(a\mod b)=c(b(a\div b)+a\mod b)=ca=cb(ca\div cb)+ca\mod cb$.
-					\item Now verify that $0\le a\mod b<b$.
-					\item Therefore verify that $0\le c(a\mod b)<cb$.
-					\item Now verify that $0\le ca\mod cb<cb$.
-					\item Execute \procedurehr{1.04} on $\langle bc,a\div b,c(a\mod b),ca\div cb,ca\mod cb\rangle$.
-					\item \textbf{Therefore verify that $c(a\mod b)=ca\mod cb$.}
+					\item Verify that $bc(a\div b)+c(a\bmod b)=c(b(a\div b)+a\bmod b)=ca=cb(ca\div cb)+ca\bmod cb$.
+					\item Now verify that $0\le a\bmod b<b$.
+					\item Therefore verify that $0\le c(a\bmod b)<cb$.
+					\item Now verify that $0\le ca\bmod cb<cb$.
+					\item Execute \procedurehr{1.04} on $\langle bc,a\div b,c(a\bmod b),ca\div cb,ca\bmod cb\rangle$.
+					\item \textbf{Therefore verify that $c(a\bmod b)=ca\bmod cb$.}
 					\item \textbf{Also verify that $a\div b=ca\div cb$.}
 				\end{enumerate}
 		\procedure{1.06}
 			\objective
-				Choose two integers $a,b$ and a positive integer $c$ such that $a\mod c+b\mod c<c$. The objective of the following instructions is to show that $a\div c+b\div c=(a+b)\div c$ and $a\mod c+b\mod c=(a+b)\mod c$.
+				Choose two integers $a,b$ and a positive integer $c$ such that $a\bmod c+b\bmod c<c$. The objective of the following instructions is to show that $a\div c+b\div c=(a+b)\div c$ and $a\bmod c+b\bmod c=(a+b)\bmod c$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $a=c(a\div c)+a\mod c$.
-					\item Verify that $b=c(b\div c)+b\mod c$.
-					\item Therefore verify that $a+b=c(a\div c+b\div c)+(a\mod c+b\mod c)$.
-					\item Verify that $0\le a\mod c+b\mod c<c$.
-					\item Also verify that $a+b=((a+b)\div c)c+(a+b)\mod c$.
-					\item Verify that $0\le(a+b)\mod c<c$.
-					\item Execute \procedurehr{1.04} on $\langle c,a\div c+b\div c,a\mod c+b\mod c,(a+b)\div c,(a+b)\mod c\rangle$.
+					\item Verify that $a=c(a\div c)+a\bmod c$.
+					\item Verify that $b=c(b\div c)+b\bmod c$.
+					\item Therefore verify that $a+b=c(a\div c+b\div c)+(a\bmod c+b\bmod c)$.
+					\item Verify that $0\le a\bmod c+b\bmod c<c$.
+					\item Also verify that $a+b=((a+b)\div c)c+(a+b)\bmod c$.
+					\item Verify that $0\le(a+b)\bmod c<c$.
+					\item Execute \procedurehr{1.04} on $\langle c,a\div c+b\div c,a\bmod c+b\bmod c,(a+b)\div c,(a+b)\bmod c\rangle$.
 					\item \textbf{Therefore verify that $a\div c+b\div c=(a+b)\div c$.}
-					\item \textbf{Also verify that $a\mod c+b\mod c=(a+b)\mod c$.}
+					\item \textbf{Also verify that $a\bmod c+b\bmod c=(a+b)\bmod c$.}
 				\end{enumerate}
 		\procedure{1.07}
 			\objective
-				Choose two integers $a,b$ and a positive integer $c$ such that $a\mod c+b\mod c\ge c$. The objective of the following instructions is to show that $1+a\div c+b\div c=(a+b)\div c$ and $a\mod c+b\mod c-c=(a+b)\mod c$.
+				Choose two integers $a,b$ and a positive integer $c$ such that $a\bmod c+b\bmod c\ge c$. The objective of the following instructions is to show that $1+a\div c+b\div c=(a+b)\div c$ and $a\bmod c+b\bmod c-c=(a+b)\bmod c$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $a=c(a\div c)+a\mod c$.
-					\item Verify that $b=c(b\div c)+b\mod c$.
-					\item Therefore verify that $a+b=c(a\div c+b\div c)+a\mod c+b\mod c=c(1+a\div c+b\div c)+(a\mod c+b\mod c-c)$.
-					\item Verify that $c\le a\mod c+b\mod c<2c$.
-					\item Therefore verify that $0\le a\mod c+b\mod c-c<c$.
-					\item Also verify that $a+b=c((a+b)\div c)+(a+b)\mod c$.
-					\item Verify that $0\le (a+b)\mod c<c$.
-					\item Execute \procedurehr{1.04} on $\langle c,1+a\div c+b\div c,a\mod c+b\mod c-c,(a+b)\div c,(a+b)\mod c\rangle$.
+					\item Verify that $a=c(a\div c)+a\bmod c$.
+					\item Verify that $b=c(b\div c)+b\bmod c$.
+					\item Therefore verify that $a+b=c(a\div c+b\div c)+a\bmod c+b\bmod c=c(1+a\div c+b\div c)+(a\bmod c+b\bmod c-c)$.
+					\item Verify that $c\le a\bmod c+b\bmod c<2c$.
+					\item Therefore verify that $0\le a\bmod c+b\bmod c-c<c$.
+					\item Also verify that $a+b=c((a+b)\div c)+(a+b)\bmod c$.
+					\item Verify that $0\le (a+b)\bmod c<c$.
+					\item Execute \procedurehr{1.04} on $\langle c,1+a\div c+b\div c,a\bmod c+b\bmod c-c,(a+b)\div c,(a+b)\bmod c\rangle$.
 					\item \textbf{Therefore verify that $1+a\div c+b\div c=(a+b)\div c$.}
-					\item \textbf{Therefore verify that $a\mod c+b\mod c-c=(a+b)\mod c$.}
+					\item \textbf{Therefore verify that $a\bmod c+b\bmod c-c=(a+b)\bmod c$.}
 				\end{enumerate}
 		\procedure{1.08}
 			\objective
-				Choose an integer $a$ and two positive integers $b,c$. The objective of the following instructions is to show that $a\div bc=(a\div b)\div c$ and $a\mod bc=((a\div b)\mod c)b+a\mod b$.
+				Choose an integer $a$ and two positive integers $b,c$. The objective of the following instructions is to show that $a\div bc=(a\div b)\div c$ and $a\bmod bc=((a\div b)\bmod c)b+a\bmod b$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $a=(a\div b)b+a\mod b$.
-					\item Verify that $a\div b=((a\div b)\div c)c+(a\div b)\mod c$.
-					\item Therefore verify that $a=(((a\div b)\div c)c+(a\div b)\mod c)b+a\mod b=((a\div b)\div c)bc+((a\div b)\mod c)b+a\mod b$.
-					\item Verify that $0\le(a\div b)\mod c\le c-1$.
-					\item Therefore verify that $0\le((a\div b)\mod c)b\le cb-b$.
-					\item Verify that $0\le a\mod b<b$.
-					\item Therefore verify that $0\le ((a\div b)\mod c)b+a\mod b<cb$.
-					\item Now verify that $a=(a\div bc)bc+a\mod bc$.
-					\item Verify that $0\le a\mod bc<bc$.
-					\item Execute \procedurehr{1.04} on $\langle bc,(a\div b)\div c,((a\div b)\mod c)b+a\mod b,a\div bc,a\mod bc\rangle$.
+					\item Verify that $a=(a\div b)b+a\bmod b$.
+					\item Verify that $a\div b=((a\div b)\div c)c+(a\div b)\bmod c$.
+					\item Therefore verify that $a=(((a\div b)\div c)c+(a\div b)\bmod c)b+a\bmod b=((a\div b)\div c)bc+((a\div b)\bmod c)b+a\bmod b$.
+					\item Verify that $0\le(a\div b)\bmod c\le c-1$.
+					\item Therefore verify that $0\le((a\div b)\bmod c)b\le cb-b$.
+					\item Verify that $0\le a\bmod b<b$.
+					\item Therefore verify that $0\le ((a\div b)\bmod c)b+a\bmod b<cb$.
+					\item Now verify that $a=(a\div bc)bc+a\bmod bc$.
+					\item Verify that $0\le a\bmod bc<bc$.
+					\item Execute \procedurehr{1.04} on $\langle bc,(a\div b)\div c,((a\div b)\bmod c)b+a\bmod b,a\div bc,a\bmod bc\rangle$.
 					\item \textbf{Therefore verify that $(a\div b)\div c=a\div bc$.}
-					\item \textbf{Also verify that $((a\div b)\mod c)b+a\mod b=a\mod bc$.}
+					\item \textbf{Also verify that $((a\div b)\bmod c)b+a\bmod b=a\bmod bc$.}
 				\end{enumerate}
 		\procedure{1.09}
 			\objective
@@ -781,19 +781,19 @@
 					\end{enumerate}
 					\item Otherwise do the following:
 					\begin{enumerate}
-						\item Verify that $0\le a\mod b<b$.
-						\item Execute \procedurehr{1.09} on $\langle b,a\mod b\rangle$ and let $\langle c,d,e,f,g\rangle$ receive.
+						\item Verify that $0\le a\bmod b<b$.
+						\item Execute \procedurehr{1.09} on $\langle b,a\bmod b\rangle$ and let $\langle c,d,e,f,g\rangle$ receive.
 						\item \textbf{Now verify that $b=cd$.}
-						\item Also verify that $a\mod b=ce$.
-						\item \textbf{Therefore verify that $a=(a\div b)b+(a\mod b)=c(d(a\div b)+e)$.}
-						\item \textbf{Also verify that $(f-g(a\div b))b+ga=fb+g(a-(a\div b)b)=fb+g(a\mod b)=c$.}
-						\item If $a\mod b=0$, then do the following:
+						\item Also verify that $a\bmod b=ce$.
+						\item \textbf{Therefore verify that $a=(a\div b)b+(a\bmod b)=c(d(a\div b)+e)$.}
+						\item \textbf{Also verify that $(f-g(a\div b))b+ga=fb+g(a-(a\div b)b)=fb+g(a\bmod b)=c$.}
+						\item If $a\bmod b=0$, then do the following:
 						\begin{enumerate}
 							\item \textbf{Using (2) and (b), verify that $0<b=c\le b$.}
 						\end{enumerate}
 						\item Otherwise do the following:
 						\begin{enumerate}
-							\item \textbf{Using (b), verify that $0<c\le a\mod b<b$.}
+							\item \textbf{Using (b), verify that $0<c\le a\bmod b<b$.}
 						\end{enumerate}
 						\item \textbf{Therefore yield $\langle c,d(a\div b)+e,d,g,f-g(a\div b)\rangle$.}
 					\end{enumerate}
@@ -802,25 +802,25 @@
 			The notation \gls{int(a,b)} will be used to refer to the first part of the quintuple yielded by executing \procedurehr{1.09} on the pair $\langle a,b\rangle$.
 		\procedure{1.10}
 			\objective
-				Choose an integer $a$ and a positive integer $b$. Let $1\le c\le b$ be the largest integer such that $a\mod c=0$ and $b\mod c=0$. The objective of the following instructions is to either show that $0\ne 0$ or $(a,b)=c$.
+				Choose an integer $a$ and a positive integer $b$. Let $1\le c\le b$ be the largest integer such that $a\bmod c=0$ and $b\bmod c=0$. The objective of the following instructions is to either show that $0\ne 0$ or $(a,b)=c$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle d,e,f,g,h\rangle$ receive.
 					\item Verify that $0<d\le b$.
 					\item If $d>c$, then do the following:
 					\begin{enumerate}
-						\item Using the precondition, verify that $a\mod d\ne 0$ or $b\mod d\ne 0$.
-						\item If $a\mod d\ne 0$, then do the following:
+						\item Using the precondition, verify that $a\bmod d\ne 0$ or $b\bmod d\ne 0$.
+						\item If $a\bmod d\ne 0$, then do the following:
 						\begin{enumerate}
 							\item Using (1), verify that $a=ed$.
-							\item Therefore verify that $a\mod d=0$.
+							\item Therefore verify that $a\bmod d=0$.
 							\item \textbf{Therefore using (3b) and (3bii), verify that $0\ne 0$.}
 							\item \textbf{Abort procedure.}
 						\end{enumerate}
-						\item Otherwise if $b\mod d\ne 0$, then do the following:
+						\item Otherwise if $b\bmod d\ne 0$, then do the following:
 						\begin{enumerate}
 							\item Using (1), verify that $b=fd$.
-							\item Therefore verify that $b\mod d=0$.
+							\item Therefore verify that $b\bmod d=0$.
 							\item \textbf{Therefore using (3c) and (3cii), verify that $0\ne 0$.}
 							\item \textbf{Abort procedure.}
 						\end{enumerate}
@@ -828,7 +828,7 @@
 					\item Otherwise if $d<c$, then do the following:
 					\begin{enumerate}
 						\item Verify that $ga+hb=d$.
-						\item Therefore verify that $0\equiv gc(a\div c)+hc(b\div c)=g(c(a\div c)+a\mod c)+h(c(b\div c)+b\mod c)=ga+hb=d\not\equiv 0(\mod c)$.
+						\item Therefore verify that $0\equiv gc(a\div c)+hc(b\div c)=g(c(a\div c)+a\bmod c)+h(c(b\div c)+b\bmod c)=ga+hb=d\not\equiv 0\pmod{c}$.
 						\item \textbf{Therefore verify that $0\ne 0$.}
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
@@ -861,19 +861,19 @@
 				\end{enumerate}
 		\procedure{1.13}
 			\objective
-				Choose an integer $a$ and a positive integer $b$ such that $0<(a,b)<b$. The objective of the following instructions is to show that $0\ne 0$ or $a\mod b\ne 0$.
+				Choose an integer $a$ and a positive integer $b$ such that $0<(a,b)<b$. The objective of the following instructions is to show that $0\ne 0$ or $a\bmod b\ne 0$.
 			\implementation
 				\begin{enumerate}
-					\item If $a\mod b=0$, then do the following:
+					\item If $a\bmod b=0$, then do the following:
 					\begin{enumerate}
-						\item Using (1), verify that $af\equiv 0f\equiv 0(\mod b)$.
+						\item Using (1), verify that $af\equiv 0f\equiv 0\pmod{b}$.
 						\item Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle c,d,e,f,g\rangle$ receive.
 						\item Verify that $0<(a,b)=c=fa+gb<b$.
-						\item Therefore verify $fa\equiv(a,b)\not\equiv 0(\mod b)$.
+						\item Therefore verify $fa\equiv(a,b)\not\equiv 0\pmod{b}$.
 						\item Therefore using (1a) and (1d), verify that $0\ne 0$.
 						\item \textbf{Abort ptocedure.}
 					\end{enumerate}
-					\item \textbf{Otherwise verify that $a\mod b\ne 0$.}
+					\item \textbf{Otherwise verify that $a\bmod b\ne 0$.}
 				\end{enumerate}
 		\procedure{1.14}
 			\objective
@@ -940,7 +940,7 @@
 				\end{enumerate}
 		\procedure{1.17}
 			\objective
-				Choose two integers $a,b$ and a positive integer $c$ such that $a\equiv b(\mod c)$. The objective of the following instructions is to show that $0<0$ or $(a,c)=(b,c)$.
+				Choose two integers $a,b$ and a positive integer $c$ such that $a\equiv b\pmod{c}$. The objective of the following instructions is to show that $0<0$ or $(a,c)=(b,c)$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.09} on $\langle a,c\rangle$ and let $\langle d,e,f,g,h\rangle$ receive.
@@ -1031,10 +1031,10 @@
 					\item \textbf{Therefore verify that $(a,b)=1$.}
 				\end{enumerate}
 		\declaration{1.06}
-			The phrase "\gls{intprime}" will be used to refer to integers $a$ such that $a>1$ and $a\mod k\ne 0$ for $1<k<a$.
+			The phrase "\gls{intprime}" will be used to refer to integers $a$ such that $a>1$ and $a\bmod k\ne 0$ for $1<k<a$.
 		\procedure{1.22}
 			\objective
-				Choose an integer $a$ and a prime $b$ such that $a\mod b\ne 0$. The objective of the following instructions is to show that either $0\ne 0$ or $(a,b)=1$.
+				Choose an integer $a$ and a prime $b$ such that $a\bmod b\ne 0$. The objective of the following instructions is to show that either $0\ne 0$ or $(a,b)=1$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle c,d,e,f,g\rangle$ receive.
@@ -1042,14 +1042,14 @@
 					\item If $c=b$, then do the following:
 					\begin{enumerate}
 						\item Verify that $a=cd=bd$.
-						\item Therefore verify that $a\mod b=0$.
+						\item Therefore verify that $a\bmod b=0$.
 						\item \textbf{Therefore using the precondition and (3b), verify that $0\ne 0$.}
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 					\item Otherwise if $1<c<b$, then do the following:
 					\begin{enumerate}
 						\item Verify that $b=ce$.
-						\item Therefore verify that $b\mod c=0$.
+						\item Therefore verify that $b\bmod c=0$.
 						\item \textbf{Therefore using the precondition and (4b), verify that $0\ne 0$.}
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
@@ -1060,7 +1060,7 @@
 				\end{enumerate}
 		\procedure{1.23}
 			\objective
-				Choose two integers $a,b$ and a prime $c$ such that $a\mod c\ne 0$ and $b\mod c\ne 0$. The objective of the following instructions is to show that either $0\ne 0$ or $ab\mod c\ne 0$.
+				Choose two integers $a,b$ and a prime $c$ such that $a\bmod c\ne 0$ and $b\bmod c\ne 0$. The objective of the following instructions is to show that either $0\ne 0$ or $ab\bmod c\ne 0$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.22} on $\langle a,c\rangle$.
@@ -1070,7 +1070,7 @@
 					\item Execute \procedurehr{1.20} on $\langle a,b,c\rangle$.
 					\item Now verify that $0<(ab,c)=1<c$.
 					\item Execute \procedurehr{1.13} on $\langle ab,c\rangle$.
-					\item \textbf{Now verify that $ab\mod c\ne 0$.}
+					\item \textbf{Now verify that $ab\bmod c\ne 0$.}
 				\end{enumerate}
 		\declaration{1.07}
 			The notation \gls{int|a|} will be used to refer to the number of items in the list $a$.
@@ -1097,7 +1097,7 @@
 						\item Verify that $a>1$.
 						\item For $c=2$ up to $c=a-1$, do the following:
 						\begin{enumerate}
-							\item If $a\mod c=0$, then do the following:
+							\item If $a\bmod c=0$, then do the following:
 							\begin{enumerate}
 								\item Verify that $a=(a\div c)c$.
 								\item Therefore verify that $1<a\div c<a$.
@@ -1124,32 +1124,32 @@
 				\end{enumerate}
 		\procedure{1.25}
 			\objective
-				Choose a prime $a$ and a list of primes $b$ such that $b_*\equiv 0(\mod a)$. The objective of the following instructions is to either show that $0=1$ or to construct a $k$ such that $a=b_k$.
+				Choose a prime $a$ and a list of primes $b$ such that $b_*\equiv 0\pmod{a}$. The objective of the following instructions is to either show that $0=1$ or to construct a $k$ such that $a=b_k$.
 			\implementation
 				\begin{enumerate}
 					\item Using \declarationhr{1.06}, verify that $a>1$.
 					\item If $\lvert b\rvert=0$, then do the following:
 					\begin{enumerate}
-						\item Verify that $1=b_*\equiv 0(\mod a)$.
+						\item Verify that $1=b_*\equiv 0\pmod{a}$.
 						\item \textbf{Therefore using (1) and (a), verify that $0=1$.}
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
-					\item Otherwise if $0\not\in b\mod a$, then do the following:
+					\item Otherwise if $0\not\in b\bmod a$, then do the following:
 					\begin{enumerate}
-						\item Using \procedurehr{1.23}, verify that $b_*\not\equiv 0 (\mod a)$.
+						\item Using \procedurehr{1.23}, verify that $b_*\not\equiv 0 \pmod{a}$.
 						\item \textbf{Therefore using the precondition and (a), verify that $0\ne 0$.}
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 					\item Otherwise do the following:
 					\begin{enumerate}
-						\item Let $k$ be such that $b_k\mod a=0$.
+						\item Let $k$ be such that $b_k\bmod a=0$.
 						\item Verify that $b_k=(b_k\div a)a$.
 						\item Verify that $b_k\div a\ge 1$.
 						\item If $b_k\div a>1$, then do the following:
 						\begin{enumerate}
 							\item Using (1),(b), and (d), verify that $1<a<b_k$.
-							\item Now, using \declarationhr{1.06} verify that $b_k\mod a\ne 0$.
-							\item \textbf{Hence using (a) and (ii), verify that $0\ne b_k\mod a=0$.}
+							\item Now, using \declarationhr{1.06} verify that $b_k\bmod a\ne 0$.
+							\item \textbf{Hence using (a) and (ii), verify that $0\ne b_k\bmod a=0$.}
 							\item \textbf{Abort procedure.}
 						\end{enumerate}
 						\item Otherwise do the following:
@@ -1179,7 +1179,7 @@
 					\item Otherwise, do the following:
 					\begin{enumerate}
 						\item Verify that $\lvert a\rvert>0$.
-						\item Verify that $b_*\equiv a_*\equiv 0 (\mod a_0)$.
+						\item Verify that $b_*\equiv a_*\equiv 0 \pmod{a_0}$.
 						\item Execute \procedurehr{1.25} on $\langle a_0, b\rangle$ and let $\langle k\rangle$ receive.
 						\item Therefore verify that $b_k=a_0$.
 						\item Now verify $(a_{[1:\lvert a\rvert]})_*=(b_{[0:k]^\frown[k+1:\lvert b\rvert]})_*$.
@@ -1207,13 +1207,13 @@
 					\item Verify that $a!+1>1$.
 					\item Execute \procedurehr{1.24} on $\langle a!+1\rangle$ and let $\langle d\rangle$ receive.
 					\item Therefore using (1) and (2), verify that $\lvert d\rvert>0$.
-					\item Now verify that $(a!+1)\mod d_0=0$.
+					\item Now verify that $(a!+1)\bmod d_0=0$.
 					\item For $e=2$ up to $e=a$, do the following:
 					\begin{enumerate}
-						\item Verify that $a!+1\equiv 1 (\mod e)$.
+						\item Verify that $a!+1\equiv 1 \pmod{e}$.
 						\item If $e=d_0$, then do the following:
 						\begin{enumerate}
-							\item Using (4) and (a), verify that $0\equiv a!+1\equiv 1(\mod e=d_0)$.
+							\item Using (4) and (a), verify that $0\equiv a!+1\equiv 1\pmod{e=d_0}$.
 							\item \textbf{Therefore verify that $0=1$.}
 							\item \textbf{Abort procedure.}
 						\end{enumerate}
@@ -1236,7 +1236,7 @@
 					\item For $i=1$ up to $i=a-1$, do the following:
 					\begin{enumerate}
 						\item Verify that $b+i=a!+1+i=i!(i+1)(i+2)\cdots(a)+1+i=(1+i)(i!(i+2)(i+3)\cdots(a) +1)$.
-						\item Therefore verify that $b+i\equiv 0 (\mod i+1)$.
+						\item Therefore verify that $b+i\equiv 0 \pmod{i+1}$.
 						\item Also verify that $b+i=a!+1+i>a!\ge a\ge i+1>1$.
 						\item \textbf{Therefore verify that $b+i$ is not prime.}
 					\end{enumerate}
@@ -1253,9 +1253,9 @@
 					\begin{enumerate}
 						\item Execute \procedurehr{1.24} on $\langle c\rangle$ and let $\langle h\rangle$ receive.
 						\item Using (3) and (a), verify that $\lvert h\rvert>0$.
-						\item Now verify that $a_*=dc=dh_*=dh_0(h_{[1:\vert h\rvert]})_*\equiv 0(\mod h_0)$.
+						\item Now verify that $a_*=dc=dh_*=dh_0(h_{[1:\vert h\rvert]})_*\equiv 0\pmod{h_0}$.
 						\item Execute \procedurehr{1.25} on $\langle h_0,a\rangle$ and let $\langle k\rangle$ receive.
-						\item Now verify that $b_*=ec=eh_*=eh_0(h_{[1:\vert h\rvert]})_*\equiv 0(\mod h_0)$.
+						\item Now verify that $b_*=ec=eh_*=eh_0(h_{[1:\vert h\rvert]})_*\equiv 0\pmod{h_0}$.
 						\item Execute \procedurehr{1.25} on $\langle h_0,b\rangle$ and let $\langle m\rangle$ receive.
 						\item \textbf{Therefore verify that $a_k=h_0=b_m$.}
 						\item \textbf{Abort procedure.}
@@ -1376,14 +1376,14 @@
 					\item \textbf{Therefore verify that $[(a,b),c]=([a,c],[b,c])$.}
 				\end{enumerate}
 		\declaration{1.14}
-			The notation \gls{intchibdac}, where $a,c$ are two integers and $b,d$ are two positive integers such that $a\equiv c(\mod(b,d))$,  will be used to refer to the result yielded by executing the following instructions:
+			The notation \gls{intchibdac}, where $a,c$ are two integers and $b,d$ are two positive integers such that $a\equiv c\pmod{(b,d)}$,  will be used to refer to the result yielded by executing the following instructions:
 			\begin{enumerate}
 				\item Execute \procedurehr{1.09} on $\langle b,d\rangle$ and let $\langle f,g,h,i,j\rangle$ receive.
-				\item \textbf{Yield the tuple $\langle (a+((c-a)\div(b,d))ib)\mod[b,d]\rangle$.}
+				\item \textbf{Yield the tuple $\langle (a+((c-a)\div(b,d))ib)\bmod[b,d]\rangle$.}
 			\end{enumerate}
 		\procedure{1.39}
 			\objective
-				Choose three integers $x,a,c$ and two positive integers $b,d$ such that $x\equiv a(\mod b)$ and $x\equiv c(\mod d)$. The objective of the following instructions is to show that $0\ne 0$ if $a\not\equiv d(\mod(b,d))$, otherwise $x\equiv\chi_{b,d}(a,c)(\mod[b,d])$.
+				Choose three integers $x,a,c$ and two positive integers $b,d$ such that $x\equiv a\pmod{b}$ and $x\equiv c\pmod{d}$. The objective of the following instructions is to show that $0\ne 0$ if $a\not\equiv d\pmod{(b,d)}$, otherwise $x\equiv\chi_{b,d}(a,c)\pmod{[b,d]}$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.09} on $\langle b,d\rangle$ and let $\langle e,f,g,h,i\rangle$ receive.
@@ -1392,30 +1392,30 @@
 					\item Let $k=x\div d-c\div d$.
 					\item Verify that $x=c+kd$.
 					\item Therefore verify that $c-a=jb-kd$.
-					\item If $a\not\equiv c(\mod(b,d))$, then do the following:
+					\item If $a\not\equiv c\pmod{(b,d)}$, then do the following:
 					\begin{enumerate}
-						\item Verify that $0\not\equiv d-a=jb-kd=jef-keg\equiv 0(\mod e)$.
+						\item Verify that $0\not\equiv d-a=jb-kd=jef-keg\equiv 0\pmod{e}$.
 						\item \textbf{Therefore verify that $0\ne 0$.}
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 					\item Otherwise do the following:
 					\begin{enumerate}
-						\item Verify that $c-a\equiv 0(\mod(b,d))$.
+						\item Verify that $c-a\equiv 0\pmod{(b,d)}$.
 						\item Let $l=(c-a)\div(b,d)$.
 						\item Verify that $l(b,d)=le=c-a=jb-kd=jef-keg$.
 						\item Therefore verify that $l=jf-kg$.
-						\item Therefore verify that $l\equiv jf(\mod g)$.
+						\item Therefore verify that $l\equiv jf\pmod{g}$.
 						\item Also, using (1) verify that $efh+egi=bh+di=e$.
 						\item Therefore verify that $fh+gi=1$.
-						\item Therefore verify that $fh\equiv 1(\mod g)$.
-						\item Therefore verify that $lh\equiv jfh\equiv j(\mod g)$.
-						\item Therefore using \procedurehr{1.05}, verify that $lhb\equiv jb(\mod bg=[b,d])$.
-						\item \textbf{Therefore verify that $x\equiv a+jb\equiv a+lhb\equiv\chi_{b,d}(a,c)(\mod[b,d])$.}
+						\item Therefore verify that $fh\equiv 1\pmod{g}$.
+						\item Therefore verify that $lh\equiv jfh\equiv j\pmod{g}$.
+						\item Therefore using \procedurehr{1.05}, verify that $lhb\equiv jb\pmod{bg=[b,d]}$.
+						\item \textbf{Therefore verify that $x\equiv a+jb\equiv a+lhb\equiv\chi_{b,d}(a,c)\pmod{[b,d]}$.}
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{1.40}
 			\objective
-				Choose two integers $a,c$ and two positive integers $b,d$ in such a way that $a\equiv c(\mod(b,d))$. The objective of the following instructions is to show that either $0<0$ or $\chi_{b,d}(a,c)=\chi_{d,b}(c,a)$.
+				Choose two integers $a,c$ and two positive integers $b,d$ in such a way that $a\equiv c\pmod{(b,d)}$. The objective of the following instructions is to show that either $0<0$ or $\chi_{b,d}(a,c)=\chi_{d,b}(c,a)$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.09} on $\langle b,d\rangle$ and let $\langle f,g,h,i,j\rangle$ receive.
@@ -1426,94 +1426,94 @@
 					\item Therefore verify that $n=j-qg$.
 					\item Now using \procedurehr{1.33}, verify that $\chi_{b,d}(a,c)$
 					\begin{enumerate}
-						\item $=(a+((c-a)\div(b,d))ib)\mod[b,d]$
-						\item $=(a+((c-a)\div(b,d))(f-jd))\mod[b,d]$
-						\item $=(a+((c-a)\div(b,d))f+((a-c)\div(b,d))jd)\mod[b,d]$
-						\item $=(a+(c-a)+((a-c)\div(b,d))jd)\mod[b,d]$
-						\item $=(c+((a-c)\div(d,b))(n+qg)d)\mod[b,d]$
-						\item $=(c+((a-c)\div(d,b))dn+((a-c)\div(d,b))q[b,d])\mod[b,d]$
-						\item $=(c+((a-c)\div(d,b))dn)\mod[b,d]$
-						\item $=(c+((a-c)\div(d,b))dn)\mod[d,b]$
+						\item $=(a+((c-a)\div(b,d))ib)\bmod[b,d]$
+						\item $=(a+((c-a)\div(b,d))(f-jd))\bmod[b,d]$
+						\item $=(a+((c-a)\div(b,d))f+((a-c)\div(b,d))jd)\bmod[b,d]$
+						\item $=(a+(c-a)+((a-c)\div(b,d))jd)\bmod[b,d]$
+						\item $=(c+((a-c)\div(d,b))(n+qg)d)\bmod[b,d]$
+						\item $=(c+((a-c)\div(d,b))dn+((a-c)\div(d,b))q[b,d])\bmod[b,d]$
+						\item $=(c+((a-c)\div(d,b))dn)\bmod[b,d]$
+						\item $=(c+((a-c)\div(d,b))dn)\bmod[d,b]$
 						\item $=\chi_{d,b}(c,a)$.
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{1.41}
 			\objective
-				Choose three integers $x,a,c$ and two positive integers $b,d$ such that $a\equiv c(\mod(b,d))$ and $x\equiv\chi_{b,d}(a,c)(\mod[b,d])$. The objective of the following instructions is to show that $x\equiv a(\mod b)$.
+				Choose three integers $x,a,c$ and two positive integers $b,d$ such that $a\equiv c\pmod{(b,d)}$ and $x\equiv\chi_{b,d}(a,c)\pmod{[b,d]}$. The objective of the following instructions is to show that $x\equiv a\pmod{b}$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.09} on $\langle b,d\rangle$ and let $\langle e,f,g,h,i\rangle$.
-					\item Verify that $x\mod[b,d]=\chi_{b,d}(a,c)\mod[b,d]$.
-					\item Therefore verify that $x\mod(bg)=\chi_{b,d}(a,c)\mod(bg)$.
-					\item Therefore verify that $(x\mod(bg))\mod b=(\chi_{b,d}(a,c)\mod(bg))\mod b$.
-					\item \textbf{Therefore using \procedurehr{1.03}, verify that $x\mod b=\chi_{b,d}(a,c)\mod b=(a+((c-a)\div(b,d))hb)\mod b=a\mod b$.}
+					\item Verify that $x\bmod[b,d]=\chi_{b,d}(a,c)\bmod[b,d]$.
+					\item Therefore verify that $x\bmod(bg)=\chi_{b,d}(a,c)\bmod(bg)$.
+					\item Therefore verify that $(x\bmod(bg))\bmod b=(\chi_{b,d}(a,c)\bmod(bg))\bmod b$.
+					\item \textbf{Therefore using \procedurehr{1.03}, verify that $x\bmod b=\chi_{b,d}(a,c)\bmod b=(a+((c-a)\div(b,d))hb)\bmod b=a\bmod b$.}
 				\end{enumerate}
 		\procedure{1.42}
 			\objective
-				Choose three integers $x,a,c$ and two positive integers $b,d$ such that $a\equiv c(\mod(b,d))$ and $x\equiv\chi_{b,d}(a,c)(\mod[b,d])$. The objective of the following instructions is to either show that $0<0$ or to show that $x\equiv a(\mod b)$ and $x\equiv c(\mod d)$.
+				Choose three integers $x,a,c$ and two positive integers $b,d$ such that $a\equiv c\pmod{(b,d)}$ and $x\equiv\chi_{b,d}(a,c)\pmod{[b,d]}$. The objective of the following instructions is to either show that $0<0$ or to show that $x\equiv a\pmod{b}$ and $x\equiv c\pmod{d}$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.41} on $\langle x,a,c,b,d\rangle$.
-					\item \textbf{Therefore verify that $x\equiv a(\mod b)$.}
-					\item Now using \procedurehr{1.40}, verify that $x\equiv\chi_{b,d}(a,c)\equiv\chi_{d,b}(c,a)(\mod[d,b])$
+					\item \textbf{Therefore verify that $x\equiv a\pmod{b}$.}
+					\item Now using \procedurehr{1.40}, verify that $x\equiv\chi_{b,d}(a,c)\equiv\chi_{d,b}(c,a)\pmod{[d,b]}$
 					\item Execute \procedurehr{1.41} on $\langle x,c,a,d,b\rangle$.
-					\item \textbf{Therefore verify that $x\equiv c(\mod d)$.}
+					\item \textbf{Therefore verify that $x\equiv c\pmod{d}$.}
 				\end{enumerate}
 		\procedure{1.43}
 			\objective
-				Choose two integers $a,c$ and three positive integers $b,d,e$ such that $a\equiv c(\mod(b,d))$. The objective of the following instructions is to show that $\chi_{b,d}(ea,ec)=e\chi_{b,d}(a,c)$.
+				Choose two integers $a,c$ and three positive integers $b,d,e$ such that $a\equiv c\pmod{(b,d)}$. The objective of the following instructions is to show that $\chi_{b,d}(ea,ec)=e\chi_{b,d}(a,c)$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $\chi_{b,d}(a,c)\equiv a(\mod b)$.
-					\item Therefore using \procedurehr{1.05}, verify that $e\chi_{b,d}(a,c)\equiv ea(\mod b)$.
-					\item Verify that $\chi_{b,d}(a,c)\equiv c(\mod d)$.
-					\item Therefore using \procedurehr{1.05}, verify that $e\chi_{b,d}(a,c)\equiv ec(\mod d)$.
-					\item Also using \procedurehr{1.02} and the precondition, verify that $ea\equiv ec(\mod(b,d))$.
-					\item Therefore using \procedurehr{1.39}, verify that $e\chi_{b,d}(a,c)\equiv\chi_{b,d}(ea,ec)(\mod[b,d])$.
+					\item Verify that $\chi_{b,d}(a,c)\equiv a\pmod{b}$.
+					\item Therefore using \procedurehr{1.05}, verify that $e\chi_{b,d}(a,c)\equiv ea\pmod{b}$.
+					\item Verify that $\chi_{b,d}(a,c)\equiv c\pmod{d}$.
+					\item Therefore using \procedurehr{1.05}, verify that $e\chi_{b,d}(a,c)\equiv ec\pmod{d}$.
+					\item Also using \procedurehr{1.02} and the precondition, verify that $ea\equiv ec\pmod{(b,d)}$.
+					\item Therefore using \procedurehr{1.39}, verify that $e\chi_{b,d}(a,c)\equiv\chi_{b,d}(ea,ec)\pmod{[b,d]}$.
 					\item \textbf{Therefore verify that $e\chi_{b,d}(a,c)=\chi_{b,d}(ea,ec)$.}
 				\end{enumerate}
 		\procedure{1.44}
 			\objective
-				Choose two integers $a,c$ and three positive integers $b,d,e$ such that $a\equiv c(\mod(eb,ed))$. The objective of the following instructions is to show that $\chi_{eb,ed}(a,c)\mod[b,d]=\chi_{b,d}(a,c)$.
+				Choose two integers $a,c$ and three positive integers $b,d,e$ such that $a\equiv c\pmod{(eb,ed)}$. The objective of the following instructions is to show that $\chi_{eb,ed}(a,c)\bmod[b,d]=\chi_{b,d}(a,c)$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $\chi_{eb,ed}(a,c)\equiv a(\mod eb)$.
-					\item Therefore using \procedurehr{1.03}, verify that $\chi_{eb,ed}(a,c)\equiv a(\mod b)$.
-					\item Verify that $\chi_{eb,ed}(a,c)\equiv c(\mod ed)$.
-					\item Therefore using \procedurehr{1.03}, verify that $\chi_{eb,ed}(a,c)\equiv c(\mod d)$.
-					\item Now verify that $a\equiv c(\mod e(b,d))$.
-					\item Therefore using \procedurehr{1.03}, verify that $a\equiv c(\mod (b,d))$.
-					\item Therefore using \procedurehr{1.39}, verify that $\chi_{eb,ed}(a,c)\equiv\chi_{b,d}(a,c)(\mod[b,d])$.
-					\item \textbf{Therefore verify that $\chi_{eb,ed}(a,c)\mod[b,d]=\chi_{b,d}(a,c)$.}
+					\item Verify that $\chi_{eb,ed}(a,c)\equiv a\pmod{eb}$.
+					\item Therefore using \procedurehr{1.03}, verify that $\chi_{eb,ed}(a,c)\equiv a\pmod{b}$.
+					\item Verify that $\chi_{eb,ed}(a,c)\equiv c\pmod{ed}$.
+					\item Therefore using \procedurehr{1.03}, verify that $\chi_{eb,ed}(a,c)\equiv c\pmod{d}$.
+					\item Now verify that $a\equiv c\pmod{e(b,d)}$.
+					\item Therefore using \procedurehr{1.03}, verify that $a\equiv c\pmod{(b,d)}$.
+					\item Therefore using \procedurehr{1.39}, verify that $\chi_{eb,ed}(a,c)\equiv\chi_{b,d}(a,c)\pmod{[b,d]}$.
+					\item \textbf{Therefore verify that $\chi_{eb,ed}(a,c)\bmod[b,d]=\chi_{b,d}(a,c)$.}
 				\end{enumerate}
 		\procedure{1.45}
 			\objective
-				Choose three integers $a,c,e$ and three positive integers $b,d,f$ such that $a\equiv e(\mod(b,f))$, and $c\equiv e(\mod(d,f))$. The objective of the following instructions is to show that either $0<0$ or $\chi_{b,d}(a,c)\equiv e(\mod([b,d],f))$.
+				Choose three integers $a,c,e$ and three positive integers $b,d,f$ such that $a\equiv e\pmod{(b,f)}$, and $c\equiv e\pmod{(d,f)}$. The objective of the following instructions is to show that either $0<0$ or $\chi_{b,d}(a,c)\equiv e\pmod{([b,d],f)}$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.09} on $\langle b,f\rangle$ and let $\langle g_0,h_0,i_0,j_0,k_0\rangle$ receive.
 					\item Execute \procedurehr{1.09} on $\langle d,f\rangle$ and let $\langle g_1,h_1,i_1,j_1,k_1\rangle$ receive.
-					\item Verify that $e\equiv a(\mod(b,f))$.
-					\item Verify that $e\equiv c(\mod(d,f))$.
+					\item Verify that $e\equiv a\pmod{(b,f)}$.
+					\item Verify that $e\equiv c\pmod{(d,f)}$.
 					\item Therefore using \procedurehr{1.39} and \procedurehr{1.44}, verify that $e$
 					\begin{enumerate}
 						\item $\equiv\chi_{(b,f),(d,f)}(a,c)$
 						\item $\equiv\chi_{(b,f)h_1,(d,f)h_2}(a,c)$
-						\item $=\chi_{b,d}(a,c)(\mod[(b,f),(d,f)])$.
+						\item $=\chi_{b,d}(a,c)\pmod{[(b,f),(d,f)]}$.
 					\end{enumerate}
-					\item \textbf{Therefore using \procedurehr{1.36}, verify that $e\equiv\chi_{b,d}(a,c)(\mod([b,d],f))$.}
+					\item \textbf{Therefore using \procedurehr{1.36}, verify that $e\equiv\chi_{b,d}(a,c)\pmod{([b,d],f)}$.}
 				\end{enumerate}
 		\procedure{1.46}
 			\objective
-				Choose three integers $a,c,e$ and three positive integers $b,d,f$ such that $a\equiv c(\mod(b,d))$, $a\equiv e(\mod(b,f))$, and $c\equiv e(\mod(d,f))$. Execute \procedurehr{1.45} on $\langle a,c,e,b,d,f\rangle$. Execute \procedurehr{1.45} on $\langle c,e,a,d,f,b\rangle$. The objective of the following instructions is to show that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)=\chi_{b,[d,f]}(a,\chi_{d,f}(c,e))$.
+				Choose three integers $a,c,e$ and three positive integers $b,d,f$ such that $a\equiv c\pmod{(b,d)}$, $a\equiv e\pmod{(b,f)}$, and $c\equiv e\pmod{(d,f)}$. Execute \procedurehr{1.45} on $\langle a,c,e,b,d,f\rangle$. Execute \procedurehr{1.45} on $\langle c,e,a,d,f,b\rangle$. The objective of the following instructions is to show that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)=\chi_{b,[d,f]}(a,\chi_{d,f}(c,e))$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv e(\mod f)$.
-					\item Verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv \chi_{b,d}(a,c)(\mod [b,d]=gb=hd)$.
-					\item Therefore using \procedurehr{1.03}, verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv \chi_{b,d}(a,c)\equiv a(\mod b)$.
-					\item Also using \procedurehr{1.03}, verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv \chi_{b,d}(a,c)\equiv c(\mod d)$.
-					\item Therefore using (1), (4), and \procedurehr{1.39}, verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv\chi_{d,f}(c,e)(\mod[d,f])$.
-					\item Therefore using (3), (5), and \procedurehr{1.39}, verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv\chi_{b,[d,f]}(a,\chi_{d,f}(c,e))(\mod [b,[d,f]]=[[b,d],f])$.
+					\item Verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv e\pmod{f}$.
+					\item Verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv \chi_{b,d}(a,c)\pmod{[b,d]=gb=hd}$.
+					\item Therefore using \procedurehr{1.03}, verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv \chi_{b,d}(a,c)\equiv a\pmod{b}$.
+					\item Also using \procedurehr{1.03}, verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv \chi_{b,d}(a,c)\equiv c\pmod{d}$.
+					\item Therefore using (1), (4), and \procedurehr{1.39}, verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv\chi_{d,f}(c,e)\pmod{[d,f]}$.
+					\item Therefore using (3), (5), and \procedurehr{1.39}, verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv\chi_{b,[d,f]}(a,\chi_{d,f}(c,e))\pmod{[b,[d,f]]=[[b,d],f]}$.
 					\item \textbf{Therefore verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)=\chi_{b,[d,f]}(a,\chi_{d,f}(c,e))$.}
 				\end{enumerate}
 		\declaration{1.15}
@@ -1528,7 +1528,7 @@
 			The notation \gls{intphi(n)} will be used as a shorthand for the sublist of $[0:n]$ where each entry $x$ is such that $(x,n)=1$.
 		\procedure{1.47}
 			\objective
-				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to either show that $0<0$ or to show that each element of $a\phi(b)\mod b$ is in $\phi(b)$.
+				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to either show that $0<0$ or to show that each element of $a\phi(b)\bmod b$ is in $\phi(b)$.
 			\implementation
 				\begin{enumerate}
 					\item Verify that $(a,b)=1$.
@@ -1537,28 +1537,28 @@
 						\item Using \declarationhr{1.16}, verify that $(\phi(b)_i,b)=1$.
 						\item Execute \procedurehr{1.20} on $\langle a,\phi(b)_i,b\rangle$.
 						\item Therefore verify that $(a\phi(b)_i,b)=1$.
-						\item Execute \procedurehr{1.17} on $\langle a\phi(b)_i\mod b,a\phi(b)_i,b\rangle$.
-						\item Therefore verify that $(a\phi(b)_i\mod b,b)=(a\phi(b)_i,b)=1$.
-						\item Also verify that $0\le a\phi(b)_i\mod b<b$.
-						\item Therefore verify that $a\phi(b)_i\mod b$ is contained in the list $\phi(b)$.
+						\item Execute \procedurehr{1.17} on $\langle a\phi(b)_i\bmod b,a\phi(b)_i,b\rangle$.
+						\item Therefore verify that $(a\phi(b)_i\bmod b,b)=(a\phi(b)_i,b)=1$.
+						\item Also verify that $0\le a\phi(b)_i\bmod b<b$.
+						\item Therefore verify that $a\phi(b)_i\bmod b$ is contained in the list $\phi(b)$.
 					\end{enumerate}
-					\item \textbf{Therefore verify that each element of $a\phi(b)\mod b$ is in $\phi(b)$.}
+					\item \textbf{Therefore verify that each element of $a\phi(b)\bmod b$ is in $\phi(b)$.}
 				\end{enumerate}
 		\procedure{1.48}
 			\objective
-				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to either show that $0\ne 0$ or to show that each element of $a\phi(b)\mod b$ is distinct.
+				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to either show that $0\ne 0$ or to show that each element of $a\phi(b)\bmod b$ is distinct.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle r,t,u,v,w\rangle$ receive.
 					\item Verify that $va+wb=r=(a,b)=1$.
-					\item Therefore verify that $va\equiv 1(\mod b)$.
+					\item Therefore verify that $va\equiv 1\pmod{b}$.
 					\item Now for $i$ in $[0:\lvert\phi(b)\rvert]$, do the following:
 					\begin{enumerate}
 						\item For $j$ in $[i+1:\lvert\phi(b)\rvert]$, do the following:
 						\begin{enumerate}
-							\item If $a\phi(b)_i\equiv a\phi(b)_j(\mod b)$, then do the following:
+							\item If $a\phi(b)_i\equiv a\phi(b)_j\pmod{b}$, then do the following:
 							\begin{enumerate}
-								\item Verify that $\phi(b)_i\equiv va\phi(b)_i\equiv va\phi(b)_j\equiv\phi(b)_j(\mod b)$.
+								\item Verify that $\phi(b)_i\equiv va\phi(b)_i\equiv va\phi(b)_j\equiv\phi(b)_j\pmod{b}$.
 								\item Therefore verify that $\phi(b)_i=\phi(b)_j$.
 								\item Also verify that $i\ne j$.
 								\item Therefore using \declarationhr{1.16}, verify that $\phi(b)_i\ne\phi(b)_j$.
@@ -1567,37 +1567,37 @@
 							\end{enumerate}
 							\item Otherwise, do the following:
 							\begin{enumerate}
-								\item Verify that $a\phi(b)_i\not\equiv a\phi(b)_j(\mod b)$.
+								\item Verify that $a\phi(b)_i\not\equiv a\phi(b)_j\pmod{b}$.
 							\end{enumerate}
 						\end{enumerate}
 					\end{enumerate}
-					\item \textbf{Therefore verify that $a\phi(b)\mod b$ is composed of distinct elements.}
+					\item \textbf{Therefore verify that $a\phi(b)\bmod b$ is composed of distinct elements.}
 				\end{enumerate}
 		\procedure{1.49}
 			\objective
-				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to either show that $0<0$ or to show that $a\phi(b)\mod b$ is a rearrangement of $\phi(b)$.
+				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to either show that $0<0$ or to show that $a\phi(b)\bmod b$ is a rearrangement of $\phi(b)$.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{1.47} on $\langle a,b\rangle$.
-					\item Therefore verify that each element of $a\phi(b)\mod b$ is in $\phi(b)$.
-					\item Verify that $\lvert a\phi(b)\mod b\rvert=\lvert \phi(b)\rvert$.
+					\item Therefore verify that each element of $a\phi(b)\bmod b$ is in $\phi(b)$.
+					\item Verify that $\lvert a\phi(b)\bmod b\rvert=\lvert \phi(b)\rvert$.
 					\item Execute \procedurehr{1.48} on $\langle a,b\rangle$.
-					\item Therefore verify that $a\phi(b)\mod b$ is composed of distinct elements.
-					\item \textbf{Therefore verify that $a\phi(b)\mod b$ is a rearrangement of $\phi(b)$.}
+					\item Therefore verify that $a\phi(b)\bmod b$ is composed of distinct elements.
+					\item \textbf{Therefore verify that $a\phi(b)\bmod b$ is a rearrangement of $\phi(b)$.}
 				\end{enumerate}
 		\procedure{1.50}
 			\objective
-				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to show that either $0<0$ or $a^{\lvert\phi(b)\rvert}\equiv 1(\mod b)$.
+				Choose an integer $a$ and a positive integer $b$ such that $(a,b)=1$. The objective of the following instructions is to show that either $0<0$ or $a^{\lvert\phi(b)\rvert}\equiv 1\pmod{b}$.
 			\implementation
 				\begin{enumerate}
 					\item For $i$ in $[0:\lvert\phi(b)\rvert]$, do the following:
 					\begin{enumerate}
 						\item Execute \procedurehr{1.09} on $\langle\phi(b)_i,b\rangle$ and let $\langle r_i,t_i,u_i,v_i,w_i\rangle$.
 						\item Using \declarationhr{1.16}, verify that $v_i\phi(b)_i+w_ib=r_i=(\phi(b)_i,b)=1$.
-						\item Therefore verify that $v_i\phi(b)_i\equiv 1(\mod b)$.
+						\item Therefore verify that $v_i\phi(b)_i\equiv 1\pmod{b}$.
 					\end{enumerate}
-					\item Therefore using \procedurehr{1.49}, verify that $\prod_i^{[0:{\lvert\phi(b)\rvert}]}\phi(b)_i\equiv\prod_i^{[0:{\lvert\phi(b)\rvert}]}a\phi(b)_i\equiv a^{\lvert\phi(b)\rvert}\prod_i^{[0:{\lvert\phi(b)\rvert}]}\phi(b)_i(\mod b)$.
-					\item \textbf{Therefore verify that $1\equiv\prod_i^{[0:{\lvert\phi(b)\rvert}]}(v_i\phi(b)_i)=\prod_i^{[0:{\lvert\phi(b)\rvert}]}v_i\prod_i^{[0:{\lvert\phi(b)\rvert}]}\phi(b)_i\equiv a^{\lvert\phi(b)\rvert}\prod_i^{[0:{\lvert\phi(b)\rvert}]}\phi(b)_i\prod_i^{[0:{\lvert\phi(b)\rvert}]}v_i\equiv a^{\lvert\phi(b)\rvert}(\mod b)$.}
+					\item Therefore using \procedurehr{1.49}, verify that $\prod_i^{[0:{\lvert\phi(b)\rvert}]}\phi(b)_i\equiv\prod_i^{[0:{\lvert\phi(b)\rvert}]}a\phi(b)_i\equiv a^{\lvert\phi(b)\rvert}\prod_i^{[0:{\lvert\phi(b)\rvert}]}\phi(b)_i\pmod{b}$.
+					\item \textbf{Therefore verify that $1\equiv\prod_i^{[0:{\lvert\phi(b)\rvert}]}(v_i\phi(b)_i)=\prod_i^{[0:{\lvert\phi(b)\rvert}]}v_i\prod_i^{[0:{\lvert\phi(b)\rvert}]}\phi(b)_i\equiv a^{\lvert\phi(b)\rvert}\prod_i^{[0:{\lvert\phi(b)\rvert}]}\phi(b)_i\prod_i^{[0:{\lvert\phi(b)\rvert}]}v_i\equiv a^{\lvert\phi(b)\rvert}\pmod{b}$.}
 				\end{enumerate}
 		\declaration{1.17}
 			The notation \gls{intatimesb} as a shorthand for the $\lvert a\rvert\times\lvert b\rvert$ matrix such that for $i$ in $[0:\lvert a\rvert]$, for $j$ in $[0:\lvert b\rvert]$, $(a\times b)_{i,j}=\langle a_i,b_j\rangle$.
@@ -1622,9 +1622,9 @@
 						\begin{enumerate}
 							\item Verify that $\chi_{a,b}([0:a]_i,[0:b]_j)=h_{i,j}=h_{k,l}=\chi_{a,b}([0:a]_k,[0:b]_l)$.
 							\item Verify that $\chi_{a,b}(i,j)=\chi_{a,b}(k,l)$.
-							\item Therefore using \procedurehr{1.42}, verify that $i\equiv\chi_{a,b}(i,j)=\chi_{a,b}(k,l)\equiv k(\mod a)$.
+							\item Therefore using \procedurehr{1.42}, verify that $i\equiv\chi_{a,b}(i,j)=\chi_{a,b}(k,l)\equiv k\pmod{a}$.
 							\item Therefore verify that $i=k$.
-							\item Also using \procedurehr{1.42}, verify that $j\equiv\chi_{a,b}(i,j)=\chi_{a,b}(k,l)\equiv l(\mod b)$.
+							\item Also using \procedurehr{1.42}, verify that $j\equiv\chi_{a,b}(i,j)=\chi_{a,b}(k,l)\equiv l\pmod{b}$.
 							\item Therefore verify that $j=l$.
 							\item Therefore verify that $\langle i,j\rangle=\langle k,l\rangle$.
 							\item Using (2), verify that $\langle i,j\rangle\ne\langle k,l\rangle$.
@@ -1660,10 +1660,10 @@
 					\item Now, for each index pair $\langle i,j\rangle$ of $h$, do the following:
 					\begin{enumerate}
 						\item Verify that $0\le h_{i,j}<[a,b]=[a,b](a,b)=ab$.
-						\item Verify that $h_{i,j}=\chi_{a,b}(\phi(a)_i,\phi(b)_j)\equiv\phi(a)_i(\mod a)$.
+						\item Verify that $h_{i,j}=\chi_{a,b}(\phi(a)_i,\phi(b)_j)\equiv\phi(a)_i\pmod{a}$.
 						\item Execute \procedurehr{1.17} on $\langle h_{i,j},\phi(a)_i,a\rangle$.
 						\item Therefore verify that $(a,h_{i,j})=(h_{i,j},a)=(\phi(a)_i,a)=1$.
-						\item Verify that $h_{i,j}=\chi_{a,b}(\phi(a)_i,\phi(b)_j)\equiv\phi(b)_j(\mod b)$.
+						\item Verify that $h_{i,j}=\chi_{a,b}(\phi(a)_i,\phi(b)_j)\equiv\phi(b)_j\pmod{b}$.
 						\item Execute \procedurehr{1.17} on $\langle h_{i,j},\phi(b)_j,b\rangle$.
 						\item Therefore verify that $(b,h_{i,j})=(h_{i,j},b)=(\phi(b)_j,b)=1$.
 						\item Therefore verify that $(h_{i,j},ab)=(ab,h_{i,j})=1$.
@@ -1679,17 +1679,17 @@
 					\item For $i$ in $[0:\lvert\phi(ab)\rvert]$, do the following:
 					\begin{enumerate}
 						\item Verify that $(\phi(ab)_i,ab)=1$.
-						\item Verify that $\phi(ab)_i\equiv\phi(ab)_i\mod a(\mod a)$.
-						\item Therefore using \procedurehr{1.17}, verify that $(\phi(ab)_i\mod a,a)=(\phi(ab)_i,a)=1$.
-						\item Also verify that $0\le \phi(ab)_i\mod a<a$.
-						\item Therefore verify that $\phi(ab)_i\mod a$ is amongst $\phi(a)$.
-						\item Verify that $\phi(ab)_i\equiv\phi(ab)_i\mod b(\mod b)$.
-						\item Also using \procedurehr{1.17}, verify that $(\phi(ab)_i\mod b,b)=(\phi(ab)_i,b)=1$.
-						\item Also verify that $0\le \phi(ab)_i\mod b<b$.
-						\item Therefore verify that $\phi(ab)_i\mod b$ is amongst $\phi(b)$.
-						\item Therefore verify that $\langle \phi(ab)_i\mod a,\phi(ab)_i\mod b\rangle$ is amongst $\phi(a)\times\phi(b)$.
-						\item Also using (b) and (f) and \procedurehr{1.39}, verify that $\phi(ab)_i\equiv\chi_{a,b}(\phi(ab)_i\mod a,\phi(ab)_i\mod b)(\mod[a,b]=[a,b](a,b)=ab)$.
-						\item Therefore verify that $\phi(ab)_i=\chi_{a,b}(\phi(ab)_i\mod a,\phi(ab)_i\mod b)$.
+						\item Verify that $\phi(ab)_i\equiv\phi(ab)_i\bmod a\pmod{a}$.
+						\item Therefore using \procedurehr{1.17}, verify that $(\phi(ab)_i\bmod a,a)=(\phi(ab)_i,a)=1$.
+						\item Also verify that $0\le \phi(ab)_i\bmod a<a$.
+						\item Therefore verify that $\phi(ab)_i\bmod a$ is amongst $\phi(a)$.
+						\item Verify that $\phi(ab)_i\equiv\phi(ab)_i\bmod b\pmod{b}$.
+						\item Also using \procedurehr{1.17}, verify that $(\phi(ab)_i\bmod b,b)=(\phi(ab)_i,b)=1$.
+						\item Also verify that $0\le \phi(ab)_i\bmod b<b$.
+						\item Therefore verify that $\phi(ab)_i\bmod b$ is amongst $\phi(b)$.
+						\item Therefore verify that $\langle \phi(ab)_i\bmod a,\phi(ab)_i\bmod b\rangle$ is amongst $\phi(a)\times\phi(b)$.
+						\item Also using (b) and (f) and \procedurehr{1.39}, verify that $\phi(ab)_i\equiv\chi_{a,b}(\phi(ab)_i\bmod a,\phi(ab)_i\bmod b)\pmod{[a,b]=[a,b](a,b)=ab}$.
+						\item Therefore verify that $\phi(ab)_i=\chi_{a,b}(\phi(ab)_i\bmod a,\phi(ab)_i\bmod b)$.
 						\item Therefore using (j) and (l), verify that $\phi(ab)_i$ is amongst $\chi_{a,b}(\phi(a)\times\phi(b))$.
 					\end{enumerate}
 					\item \textbf{Therefore verify that each entry of $\phi(ab)$ is in $\chi_{a,b}(\phi(a)\times\phi(b))$.}
@@ -1725,10 +1725,10 @@
 					\item Using \procedurehr{1.21}, verify that $\sum_r^{[0:{b^a}]}[(r,b^a)=1]\le\sum_r^{[0:{b^a}]}[(r,b)=1]$.
 					\item Using \procedurehr{1.20}, verify that $\sum_r^{[0:{b^a}]}[(r,b)=1]\le\sum_r^{[0:{b^a}]}[(r,b^a)=1]$.
 					\item Therefore verify that $\sum_r^{[0:{b^a}]}[(r,b^a)=1]=\sum_r^{[0:{b^a}]}[(r,b)=1]$.
-					\item Using \procedurehr{1.13}, verify that $\sum_r^{[0:{b^a}]}[(r,b)=1]\le\sum_r^{[0:{b^a}]}[r\mod b\ne 0]$.
-					\item Using \procedurehr{1.22}, verify that $\sum_r^{[0:{b^a}]}[r\mod b\ne 0]\le\sum_r^{[0:{b^a}]}[(r,b)=1]$.
-					\item Therefore verify that $\sum_r^{[0:{b^a}]}[(r,b)=1]=\sum_r^{[0:{b^a}]}[r\mod b\ne 0]$.
-					\item \textbf{Therefore using (3) and (6), verify that $\lvert\phi(b^a)\rvert=\sum_r^{[0:{b^a}]}[(r,b^a)=1]=\sum_r^{[0:{b^a}]}[(r,b)=1]=\sum_r^{[0:{b^a}]}[r\mod b\ne 0]=\sum_r^{[0:{b^a}]}(1-[r\mod b=0])=b^a-b^{a-1}$.}
+					\item Using \procedurehr{1.13}, verify that $\sum_r^{[0:{b^a}]}[(r,b)=1]\le\sum_r^{[0:{b^a}]}[r\bmod b\ne 0]$.
+					\item Using \procedurehr{1.22}, verify that $\sum_r^{[0:{b^a}]}[r\bmod b\ne 0]\le\sum_r^{[0:{b^a}]}[(r,b)=1]$.
+					\item Therefore verify that $\sum_r^{[0:{b^a}]}[(r,b)=1]=\sum_r^{[0:{b^a}]}[r\bmod b\ne 0]$.
+					\item \textbf{Therefore using (3) and (6), verify that $\lvert\phi(b^a)\rvert=\sum_r^{[0:{b^a}]}[(r,b^a)=1]=\sum_r^{[0:{b^a}]}[(r,b)=1]=\sum_r^{[0:{b^a}]}[r\bmod b\ne 0]=\sum_r^{[0:{b^a}]}(1-[r\bmod b=0])=b^a-b^{a-1}$.}
 				\end{enumerate}
 		\procedure{1.59}
 			\objective
@@ -1788,7 +1788,7 @@
 			The notation \gls{intnchooser} will be used as a shorthand for $n^{\ul{r}}\div(r!)$.
 		\procedure{1.61}
 			\objective
-				Choose a list of distinct elements $n$ and a non-negative integer $r$ such that $r\le\lvert n\rvert$. Let $b$ be the largest list of length-$r$ sublists of $n$ such that no two of them are permutations of each other. The objective of the following instructions is to either show that $b$ contains at least two permutations of the same list, construct a list larger than $b$ that is also a list of length-$r$ sublists of $n$ such that no two of them are permutations of each other, or to show that $\lvert b\rvert=\binom{\lvert n\rvert}{r}$ and that $\lvert n\rvert^{\ul{r}}\mod r!=0$.
+				Choose a list of distinct elements $n$ and a non-negative integer $r$ such that $r\le\lvert n\rvert$. Let $b$ be the largest list of length-$r$ sublists of $n$ such that no two of them are permutations of each other. The objective of the following instructions is to either show that $b$ contains at least two permutations of the same list, construct a list larger than $b$ that is also a list of length-$r$ sublists of $n$ such that no two of them are permutations of each other, or to show that $\lvert b\rvert=\binom{\lvert n\rvert}{r}$ and that $\lvert n\rvert^{\ul{r}}\bmod r!=0$.
 			\implementation
 				\begin{enumerate}
 					\item Let $a$ and $f$ be a list of all the permutations of $n$.
@@ -1827,10 +1827,10 @@
 					\end{enumerate}
 					\item Otherwise do the following:
 					\begin{enumerate}
-						\item Verify that $\lvert n\rvert!\mod(r!(\lvert n\rvert-r)!)=0$.
+						\item Verify that $\lvert n\rvert!\bmod(r!(\lvert n\rvert-r)!)=0$.
 						\item Therefore verify that $\lvert n\rvert!=(\lvert n\rvert!\div(r!(\lvert n\rvert-r)!))r!(\lvert n\rvert-r)!$.
 						\item Therefore verify that $\lvert n\rvert!\div(\lvert n\rvert-r)!=(\lvert n\rvert!\div(r!(\lvert n\rvert-r)!))r!$.
-						\item \textbf{Therefore verify that $n^{\ul{r}}\mod r!=(\lvert n\rvert!\div(\lvert n\rvert-r)!)\mod r!=0$.}
+						\item \textbf{Therefore verify that $n^{\ul{r}}\bmod r!=(\lvert n\rvert!\div(\lvert n\rvert-r)!)\bmod r!=0$.}
 						\item Also verify that (3) iterated $\lvert n\rvert!\div(r!(\lvert n\rvert-r)!)$ times.
 						\item \textbf{Therefore using \procedurehr{1.08}, verify that $\lvert b\rvert=\lvert n\rvert!\div(r!(\lvert n\rvert-r)!)=(\lvert n\rvert!\div(\lvert n\rvert-r)!)\div(r!)=n^{\ul{r}}\div(r!)=\binom{n}{r}$.}
 					\end{enumerate}
@@ -1880,21 +1880,21 @@
 				\end{enumerate}
 		\procedure{1.64}
 			\objective
-				Choose an integer $r$ and a prime $n$ such that $0<r<n$. The objective of the following instructions is to show that either $0\ne 0$ or $\binom{n}{r}\mod n=0$.
+				Choose an integer $r$ and a prime $n$ such that $0<r<n$. The objective of the following instructions is to show that either $0\ne 0$ or $\binom{n}{r}\bmod n=0$.
 			\implementation
 				\begin{enumerate}
-					\item Using \procedurehr{1.61}, verify that $\binom{n}{r}r!=n^{\ul{r}}\equiv 0(\mod n)$.
-					\item If $\binom{n}{r}\mod n\ne 0$, then do the following:
+					\item Using \procedurehr{1.61}, verify that $\binom{n}{r}r!=n^{\ul{r}}\equiv 0\pmod{n}$.
+					\item If $\binom{n}{r}\bmod n\ne 0$, then do the following:
 					\begin{enumerate}
-						\item Verify that $i\mod n\ne 0$ for $i=1$ to $i=r$.
-						\item Therefore using \procedurehr{1.23}, verify that $r!\mod n\ne 0$.
-						\item Therefore using (2) and (b), verify that $\binom{n}{r}r!\mod n\ne 0$.
+						\item Verify that $i\bmod n\ne 0$ for $i=1$ to $i=r$.
+						\item Therefore using \procedurehr{1.23}, verify that $r!\bmod n\ne 0$.
+						\item Therefore using (2) and (b), verify that $\binom{n}{r}r!\bmod n\ne 0$.
 						\item \textbf{Therefore using (1) and (c), verify that $0\ne 0$.}
 						\item \textbf{Abort procedure.}
 					\end{enumerate}
 					\item Otherwise, do the following:
 					\begin{enumerate}
-						\item \textbf{Verify that $\binom{n}{r}\mod n=0$.}
+						\item \textbf{Verify that $\binom{n}{r}\bmod n=0$.}
 					\end{enumerate}
 				\end{enumerate}
 	\end{multicols}
@@ -2871,24 +2871,24 @@
 			The notation \gls{ratpolymod}, where $a,b$ are polynomials, will be used to refer to the second part of the pair yielded by executing \procedurehr{2.25} on $\langle a,b\rangle$.
 		\procedure{2.79}
 			\objective
-				Choose a polynomial $a$ and a rational number $b$. The objective of the following instructions is to show that $a\mod(\lambda-b)=\Lambda(a,b)$.
+				Choose a polynomial $a$ and a rational number $b$. The objective of the following instructions is to show that $a\bmod(\lambda-b)=\Lambda(a,b)$.
 			\implementation
 				\begin{enumerate}
 					\item Let $d=\lambda-b$.
 					\item Verify that $d\ne 0$.
 					\item Let $c=a\div d$.
-					\item Verify that $a=cd+(a\mod d)$.
-					\item Also verify that $\deg(a\mod d)<\deg(d)=1$.
-					\item Hence verify that $\deg(a\mod d)=0$.
+					\item Verify that $a=cd+(a\bmod d)$.
+					\item Also verify that $\deg(a\bmod d)<\deg(d)=1$.
+					\item Hence verify that $\deg(a\bmod d)=0$.
 					\item Now verify that $\Lambda(a,b)$
 					\begin{enumerate}
-						\item $=\Lambda(cd+(a\mod d),b)$
-						\item $=\Lambda(cd,b)+\Lambda(a\mod d,b)$
-						\item $=\Lambda(c,b)\Lambda(d,b)+\Lambda(a\mod d,b)$
-						\item $=\Lambda(c,b)(-b+b)+\Lambda(a\mod d,b)$
-						\item $=0\Lambda(c,b)+\Lambda(a\mod d,b)$
-						\item $=\Lambda(a\mod d,b)$
-						\item $=a\mod d$.
+						\item $=\Lambda(cd+(a\bmod d),b)$
+						\item $=\Lambda(cd,b)+\Lambda(a\bmod d,b)$
+						\item $=\Lambda(c,b)\Lambda(d,b)+\Lambda(a\bmod d,b)$
+						\item $=\Lambda(c,b)(-b+b)+\Lambda(a\bmod d,b)$
+						\item $=0\Lambda(c,b)+\Lambda(a\bmod d,b)$
+						\item $=\Lambda(a\bmod d,b)$
+						\item $=a\bmod d$.
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{2.80}
@@ -2913,7 +2913,7 @@
 							\item Let $q=b\div(\lambda-a_i)$.
 							\item Verify that $\Lambda(b,a_i)=0$.
 							\item Execute \procedurehr{2.79} on $\langle b,a_i\rangle$.
-							\item Hence verify that $b=(\lambda-a_i)q+b\mod(\lambda-a_i)=(\lambda-a_i)q$.
+							\item Hence verify that $b=(\lambda-a_i)q+b\bmod(\lambda-a_i)=(\lambda-a_i)q$.
 							\item Hence verify that $p=q\prod_j^{[0:{i+1}]}(\lambda-a_j)$.
 						\end{enumerate}
 					\end{enumerate}
@@ -3010,7 +3010,7 @@
 						\item Verify that $\lvert\Lambda(f,d)\rvert<B$.
 						\item Let $h=f\div(\lambda-d)$.
 						\item Execute \procedurehr{2.79} on $\langle f,d\rangle$.
-						\item Hence verify that $f=(\lambda-d)h+f\mod(\lambda-d)=(\lambda-d)h+\Lambda(f,d)$.
+						\item Hence verify that $f=(\lambda-d)h+f\bmod(\lambda-d)=(\lambda-d)h+\Lambda(f,d)$.
 						\item Hence verify that $0\ne f-\Lambda(f,d)=(\lambda-d)h$.
 						\item Hence verify that $h\ne 0$.
 						\item Hence verify that $\deg(f)=\deg(f-\Lambda(f,d))=\deg((\lambda-d)h)=\deg(\lambda-d)+\deg(h)=1+\deg(h)$.
@@ -3923,7 +3923,7 @@
 				\end{enumerate}
 		\procedure{thu2507191359}
 		  \objective
-		    Choose a rational number $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b$ such that $a>0$ and a procedure $p(x,y,n)$ to show that $\lVert\exp_n(x-y)-\frac{\exp_n(x)}{\exp_n(y)}\rVert^2\le(\frac{a}{n})^2$ when two complex numbers $x,y$ and a positive integer $n$ such that $\lVert x\rVert^2\le X$, $\lVert y\rVert^2\le X$, and $n>b$ are chosen.
+		    Choose a rational number $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b$ such that $a>0$ and a procedure $p(x,y,n)$ to show that $\exp_n(x-y)\equiv\frac{\exp_n(x)}{\exp_n(y)}\err{\frac{a}{n}}$ when two complex numbers $x,y$ and a positive integer $n$ such that $\lVert x\rVert^2\le X$, $\lVert y\rVert^2\le X$, and $n>b$ are chosen.
 		  \implementation
 		    \begin{enumerate}
 		      \item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle c,d,q\rangle$ receive.
@@ -3953,7 +3953,7 @@
 		    \end{enumerate}
 		\procedure{3.16}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct positive rational numbers $a,b$ and a procedure, $p(x,k,n)$, to show that $\lVert\exp_n(kx)-\exp_n(x)^k\rVert^2\le(\frac{ak}{n})^2$ when a complex number $x$, and non-negative integers $k,n$ such that $n>b$ and $\lVert kx\rVert^2\le X^2$ are chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct positive rational numbers $a,b$ and a procedure, $p(x,k,n)$, to show that $\exp_n(kx)\equiv\exp_n(x)^k\err{\frac{ak}{n}}$ when a complex number $x$, and non-negative integers $k,n$ such that $n>b$ and $\lVert kx\rVert^2\le X^2$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.13} on $\langle X\rangle$ and let $\langle c,d,q\rangle$ receive.
@@ -4025,7 +4025,7 @@
 		    \end{enumerate}
 		\procedure{3.21}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p(x,n)$, to show that $\lVert\sum_r^{[0:{n+1}]}\frac{x^r}{r!}-\exp_n(x)\rVert^2\le(\frac{a}{n})^2$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X^2$ are chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p(x,n)$, to show that $\exp_n(x)\equiv\sum_r^{[0:{n+1}]}\frac{x^r}{r!}\err{\frac{a}{n}}$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X^2$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Let $N=\lfloor X\rfloor+1$.
@@ -4226,7 +4226,7 @@
 		    \end{enumerate}
 		\procedure{3.29}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p(x,n)$, to show that $\lVert\sum_r^{[0:\lceil\frac{n}{2}\rceil]}\frac{(-1)^rx^{2r}}{(2r)!}-\cos_n(x)\rVert^2\le(\frac{a}{n})^2$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X^2$ is chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p(x,n)$, to show that $\cos_n(x)\equiv\sum_r^{[0:\lceil\frac{n}{2}\rceil]}\frac{(-1)^rx^{2r}}{(2r)!}\err{\frac{a}{n}}$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X^2$ is chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.21} on $\langle X\rangle$ and let $\langle a,N,q\rangle$ receive.
@@ -4240,7 +4240,7 @@
 						\item Hence verify that $\lVert\sum_r^{[0:{n+1}]}\frac{(-ix)^r}{r!}-\exp_n(-ix)\rVert^2\le(\frac{a}{n})^2$.
 						\item Hence using \procedurehr{3.04}, verify that $\lVert\sum_r^{[0:{\lceil\frac{n}]}{2}\rceil}\frac{(-1)^rx^{2r}}{(2r)!}-\cos_n(x)\rVert^2$
 						\begin{enumerate}
-							\item $=\lVert\sum_r^{[0:{n+1}]}\frac{[r\mod 2=0](-1)^{\frac{r}{2}}x^{r}}{r!}-\cos_n(x)\rVert^2$
+							\item $=\lVert\sum_r^{[0:{n+1}]}\frac{[r\bmod 2=0](-1)^{\frac{r}{2}}x^{r}}{r!}-\cos_n(x)\rVert^2$
 							\item $=\lVert\sum_r^{[0:{n+1}]}\frac{(i^r+(-i)^r)x^{r}}{2(r!)}-\frac{\exp_n(ix)+\exp_n(-ix)}{2}\rVert^2$
 							\item $=\frac{1}{4}\lVert\sum_r^{[0:{n+1}]}\frac{(ix)^{r}}{r!}-\exp_n(ix)+\sum_r^{[0:{n+1}]}\frac{(-ix)^{r}}{r!}-\exp_n(-ix)\rVert^2$
 							\item $\le\frac{1}{2}(\lVert\sum_r^{[0:{n+1}]}\frac{(ix)^{r}}{r!}-\exp_n(ix)\rVert^2+\lVert\sum_r^{[0:{n+1}]}\frac{(-ix)^{r}}{r!}-\exp_n(-ix)\rVert^2)$
@@ -4251,7 +4251,7 @@
 				\end{enumerate}
 		\procedure{3.30}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p(x,n)$, to show that $\lVert\sum_r^{[0:\lfloor\frac{n+1}{2}\rfloor]}\frac{(-1)^rx^{2r+1}}{(2r+1)!}-\sin_n(x)\rVert^2\le(\frac{a}{n})^2$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X^2$ is chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,N$, and a procedure, $p(x,n)$, to show that $\sin_n(x)\equiv\sum_r^{[0:\lfloor\frac{n+1}{2}\rfloor]}\frac{(-1)^rx^{2r+1}}{(2r+1)!}\err{\frac{a}{n}}$ when a complex number $x$ and an integer $n>N$ such that $\lVert x\rVert^2\le X^2$ is chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.29}.
 		\declaration{sun2107190610}
@@ -4405,7 +4405,7 @@
 	      \end{enumerate}
 	  \procedure{wed2407191521}
 	    \objective
-	      Choose two rational numbers $A>0$, $1>X>0$. The objective of the following instructions is to construct rational numbers $D>0$, $0<G<1$, and a procedure $p(x,a,b,n)$ to show that $\lVert(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}\rVert^2\le(DG^n)^2$ when $\lVert x\rVert^2\le X$, and $\lVert a\rVert^2,\lVert b\rVert^2<A$.
+	      Choose two rational numbers $A>0$, $1>X>0$. The objective of the following instructions is to construct rational numbers $D>0$, $0<G<1$, and a procedure $p(x,a,b,n)$ to show that $(1+x)_n^{a+b}\equiv(1+x)_n^a(1+x)_n^b\err{DG^n}$ when $\lVert x\rVert^2\le X$, and $\lVert a\rVert^2,\lVert b\rVert^2<A$.
 	    \implementation
 	      \begin{enumerate}
 	        \item Execute \procedurehr{sun2107191247} on $\langle A,X\rangle$ and let $\langle B,C,q\rangle$ receive.
@@ -4492,7 +4492,7 @@
 	      \end{enumerate}
 	  \procedure{wed2407191627}
 	    \objective
-	      Choose two rational numbers $A>0$, $1>X>0$. The objective of the following instructions is to construct rational numbers $G>0$, $0<C<1$, and a procedure $p(x,n,a,k)$ to show that $\lVert(1+x)_n^{ka}-((1+x)_n^a)^k\rVert^2\le(GkC^n)^2$ when a non-negative integer $k$ and complex numbers $x,a$ such that $\lVert x\rVert^2\le X^2$ and $\lVert ka\rVert^2<A^2$ are chosen.
+	      Choose two rational numbers $A>0$, $1>X>0$. The objective of the following instructions is to construct rational numbers $G>0$, $0<C<1$, and a procedure $p(x,n,a,k)$ to show that $(1+x)_n^{ka}\equiv((1+x)_n^a)^k\err{GkC^n}$ when a non-negative integer $k$ and complex numbers $x,a$ such that $\lVert x\rVert^2\le X^2$ and $\lVert ka\rVert^2<A^2$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Execute \procedurehr{wed2407191611} on $\langle A,X\rangle$ and let $\langle D,t\rangle$ receive.
@@ -4554,7 +4554,7 @@
 	      \end{enumerate}
 	  \procedure{thu2507190646}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct rational numbers $B>0$, $N>0$, and a procedure $p(x,a,b,n)$ to show that $\lVert(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}\rVert^2\le(\frac{B}{n})^2$ when a complex number $x$, two rational numbers $a,b$, and a positive integer $n$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $0<a<1$, $0<b<1$, and $n>N$ are chosen.
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct rational numbers $B>0$, $N>0$, and a procedure $p(x,a,b,n)$ to show that $(1+x)_n^{a+b}\equiv(1+x)_n^a(1+x)_n^b\err{\frac{B}{n}}$ when a complex number $x$, two rational numbers $a,b$, and a positive integer $n$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $0<a<1$, $0<b<1$, and $n>N$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Execute \procedurehr{wed2407191824} on $\langle 1\rangle$ and let $\langle M,N,q\rangle$ receive.
@@ -4647,7 +4647,7 @@
 	      \end{enumerate}
 	  \procedure{thu2507190752}
 	    \objective
-	      Choose a rational number $0<X<2$. The objective of the following instructions is to construct positive rational numbers $G,N$ and a procedure $p(x,n,a,k)$ to show that $\lVert(1+x)_n^{ka}-((1+x)_n^a)^k\rVert^2\le(\frac{Gk}{n})^2$ when positive integers $n,k$, a rational number $a$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x+1)\ge X$, $k>1$, $0<ka\le 1$, and $n>N$ are chosen.
+	      Choose a rational number $0<X<2$. The objective of the following instructions is to construct positive rational numbers $G,N$ and a procedure $p(x,n,a,k)$ to show that $(1+x)_n^{ka}\equiv((1+x)_n^a)^k\err{\frac{Gk}{n}}$ when positive integers $n,k$, a rational number $a$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x+1)\ge X$, $k>1$, $0<ka\le 1$, and $n>N$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Execute \procedurehr{thu2507191017} on $\langle X\rangle$ and let $\langle D,t\rangle$ receive.
@@ -4680,7 +4680,7 @@
 	      \end{enumerate}
 	  \procedure{fri2607191210}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct positive rational numbers $a,c$ such that $b>1$, and a procedure $p(x,n,k)$ to show that $\lVert\exp_n(n((1+x)_k^{\frac{1}{n}}-1))-(1+x)\rVert^2\le(\frac{an}{k})^2$ when a complex number $x$, and positive integers $n,k$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $n>1$, and $k>c$ are chosen.
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct positive rational numbers $a,c$ such that $b>1$, and a procedure $p(x,n,k)$ to show that $\exp_n(n((1+x)_k^{\frac{1}{n}}-1))\equiv 1+x\err{\frac{an}{k}}$ when a complex number $x$, and positive integers $n,k$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $n>1$, and $k>c$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Execute \procedurehr{thu2507190752} on $\langle X\rangle$ and let $\langle a,c,p_1\rangle$ receive.
@@ -4745,7 +4745,7 @@
 	    The notation \gls{complexnaturallogarithm} will be used as a shorthand for $\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}x^r$.
 	  \procedure{fri2607191450}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct a positive rational number $a$ and a procedure $p(x,n,k)$ to show that $\lVert n((1+x)_k^{\frac{1}{n}}-1)-\ln_k(1+x)\rVert^2\le(\frac{a}{n})^2$ when positive integers $n,k$ and a complex number $x$ such that $\lVert x\rVert^2\le 1$ and $\Re(x)+1\ge X$ are chosen.
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct a positive rational number $a$ and a procedure $p(x,n,k)$ to show that $\ln_k(1+x)\equiv n((1+x)_k^{\frac{1}{n}}-1)\err{\frac{a}{n}}$ when positive integers $n,k$ and a complex number $x$ such that $\lVert x\rVert^2\le 1$ and $\Re(x)+1\ge X$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Let $a=\frac{1}{X}$.
@@ -4794,7 +4794,7 @@
 	      \end{enumerate}
 	  \procedure{fri2607191801}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ such that $b>1$, and a procedure $p(x,n,k)$ to show that $\lVert\exp_n(\ln_k(1+x))-(1+x)\rVert^2\le(\frac{an}{k}+\frac{c}{n})^2$ when positive integers $n,k$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $k>d$, and $n>e$ are chosen.
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ such that $b>1$, and a procedure $p(x,n,k)$ to show that $\exp_n(\ln_k(1+x))\equiv(1+x)\err{\frac{an}{k}+\frac{c}{n}}$ when positive integers $n,k$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $k>d$, and $n>e$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Execute \procedurehr{fri2607191243} on $\langle X\rangle$ and let $\langle a_1,p_1\rangle$ receive.
@@ -4849,7 +4849,7 @@
 					\item Let $p(n)$ be the following procedure:
 					\begin{enumerate}
 						\item Let $d=n\div 4$.
-						\item Let $g=n\mod 4$.
+						\item Let $g=n\bmod 4$.
 						\item Hence verify that $n=4d+g$.
 						\item If $g=0$ or $g=1$, then do the following:
 						\begin{enumerate}
@@ -4889,7 +4889,7 @@
 					\item Let $p(n)$ be the following procedure:
 					\begin{enumerate}
 						\item Let $d=n\div 4$.
-						\item Let $g=n\mod 4$.
+						\item Let $g=n\bmod 4$.
 						\item Hence verify that $n=4d+g$.
 						\item If $g=0$ or $g=1$, then do the following:
 						\begin{enumerate}
@@ -4920,7 +4920,7 @@
 				\end{enumerate}
 		\procedure{3.53}
 			\objective
-				The objective of the following instructions is to construct positive rational numbers $a,c,d,e$, and a procedure $p(n,k)$ to show that $\lVert\exp_n(\frac{1}{4}\tau_ki)-i\rVert^2\le(\frac{an}{k}+\frac{c}{n})^2$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
+				The objective of the following instructions is to construct positive rational numbers $a,c,d,e$, and a procedure $p(n,k)$ to show that $\exp_n(\frac{1}{4}\tau_ki)\equiv i\err{\frac{an}{k}+\frac{c}{n}}$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{fri2607191736} on $\langle 1\rangle$ and let $\langle a_1,p_1\rangle$ receive.
@@ -4955,12 +4955,12 @@
 				\end{enumerate}
 		\procedure{3.54}
 			\objective
-				The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ such that $b>1$, and a procedure, $p(n,k)$, to show that $\lVert\exp_n(-\frac{1}{4}\tau_ki)+i\rVert^2\le(\frac{an}{k}+\frac{c}{n})^2$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
+				The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ such that $b>1$, and a procedure, $p(n,k)$, to show that $\exp_n(-\frac{1}{4}\tau_ki)\equiv -i\err{\frac{an}{k}+\frac{c}{n}}$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.53}.
 		\procedure{3.55}
 			\objective
-				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when a non-negative integer $k$ and two positive integers $n,m$ such that $k\le K$, $n>c$, and $m>d$ are chosen.
+				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\exp_n(\frac{k}{4}\tau_m i)\equiv i^k\err{\frac{an}{m}+\frac{b}{n}}$ when a non-negative integer $k$ and two positive integers $n,m$ such that $k\le K$, $n>c$, and $m>d$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.50} and let $\langle a_1,d,p_1\rangle$ receive.
@@ -4994,12 +4994,12 @@
         \end{enumerate}
 		\procedure{3.56}
 			\objective
-				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
+				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\exp_n(\frac{k}{4}\tau_m i)\equiv i^k\err{\frac{an}{m}+\frac{b}{n}}$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
 			\implementation
 				Implementation is an extension of that of \procedurehr{3.55} using \procedurehr{3.54}.
 		\procedure{3.57}
 			\objective
-				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\lVert\cos_n(\frac{k}{4}\tau_m)-\frac{i^k+(-i)^k}{2}\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
+				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\cos_n(\frac{k}{4}\tau_m)\equiv\frac{i^k+(-i)^k}{2}\err{\frac{an}{m}+\frac{b}{n}}$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.56} on $\langle K\rangle$ and let $\langle a,b,c,d,q\rangle$ receive.
@@ -5021,12 +5021,12 @@
 				\end{enumerate}
 		\procedure{3.58}
 			\objective
-				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\lVert\sin_n(\frac{k}{4}\tau_m)-\frac{i^k-(-i)^k}{2i}\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
+				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\sin_n(\frac{k}{4}\tau_m)\equiv\frac{i^k-(-i)^k}{2i}(\err \frac{an}{m}+\frac{b}{n})$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.57}.
 		\procedure{3.59}
 			\objective
-				Choose two integers $X\ge 0,K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m,k)$, to show that $\lVert\exp_n(x+\frac{k}{4}\tau_m i)-i^k\exp_n(x)\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when an integer $k$ and two positive integers $n,m$ such that $\lVert x\rVert^2\le X$, $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
+				Choose two integers $X\ge 0,K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m,k)$, to show that $\exp_n(x+\frac{k}{4}\tau_m i)\equiv i^k\exp_n(x)\err{\frac{an}{m}+\frac{b}{n}}$ when an integer $k$ and two positive integers $n,m$ such that $\lVert x\rVert^2\le X$, $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.50} and let $\langle a_1,b_1,p_1\rangle$ receive.
@@ -5061,7 +5061,7 @@
 				\end{enumerate}
 		\procedure{3.89}
 			\objective
-				Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_m i)^K-1\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when an integer $k$ and positive integers $n,m$ such that $0\le k<K$, $n\ge c$, and $m>d$ are chosen.
+				Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\exp_n(\frac{k}{K}\tau_m i)^K\equiv 1\err{\frac{an}{m}+\frac{b}{n}}$ when an integer $k$ and positive integers $n,m$ such that $0\le k<K$, $n\ge c$, and $m>d$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.50} and let $\langle a_1,b_1,p_1\rangle$ receive.
@@ -5164,7 +5164,7 @@
 							\item $=(\frac{1}{2}(\sum_r^{[0:{n+1}]}\frac{n^{\ul{r}}}{r!}(\frac{x}{n})^ri^r+\sum_r^{[0:{n+1}]}\frac{n^{\ul{r}}}{r!}(\frac{x}{n})^r(-i)^r)-1)^2$
 							\item $=(\sum_r^{[0:\lfloor\frac{n}{2}\rfloor+1]}\frac{n^{\ul{2r}}}{(2r)!}(\frac{x}{n})^{2r}(-1)^r-1)^2$
 							\item $=(\sum_r^{[1:\lfloor\frac{n}{2}\rfloor+1]}\frac{n^{\ul{2r}}}{(2r)!}(\frac{x}{n})^{2r}(-1)^r)^2$
-							\item $=(\sum_r^{[1:\lfloor\frac{\lfloor\frac{n}{2}\rfloor}{2}\rfloor+1]}(-\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}+\frac{n^{\ul{4r}}}{(4r)!}(\frac{x}{n})^{4r})-\frac{n^{\ul{2\lfloor\frac{n}{2}\rfloor}}}{(2\lfloor\frac{n}{2}\rfloor)!}(\frac{x}{n})^{2\lfloor\frac{n}{2}\rfloor}[\lfloor\frac{n}{2}\rfloor\mod 2=1])^2$
+							\item $=(\sum_r^{[1:\lfloor\frac{\lfloor\frac{n}{2}\rfloor}{2}\rfloor+1]}(-\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}+\frac{n^{\ul{4r}}}{(4r)!}(\frac{x}{n})^{4r})-\frac{n^{\ul{2\lfloor\frac{n}{2}\rfloor}}}{(2\lfloor\frac{n}{2}\rfloor)!}(\frac{x}{n})^{2\lfloor\frac{n}{2}\rfloor}[\lfloor\frac{n}{2}\rfloor\bmod 2=1])^2$
 							\item $\ge(\sum_r^{[1:\lfloor\frac{\lfloor\frac{n}{2}\rfloor}{2}\rfloor+1]}\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}(-1+\frac{(n-4r+2)^{\ul{2}}}{(4r)^{\ul{2}}}(\frac{x}{n})^{2}))^2$
 							\item $\ge(\sum_r^{[1:\lfloor\frac{\lfloor\frac{n}{2}\rfloor}{2}\rfloor+1]}\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}(-1+\frac{1}{(4r)^{\ul{2}}}(x)^{2}))^2$
 							\item $\ge(\sum_r^{[1:\lfloor\frac{\lfloor\frac{n}{2}\rfloor}{2}\rfloor+1]}\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}(-1+\frac{1}{12}x^{2}))^2$
@@ -5231,6 +5231,7 @@
 						\item Hence verify that $\lVert\exp_n(\frac{k-j}{K}\tau_mi)-1\rVert^2\ge{a_3}^2>0$.
 						\item Verify that $0<\frac{k-j}{K}\le\frac{1}{2}$.
 						\item Hence verify that $\lVert\frac{k-j}{K}\tau_mi\rVert^2\le\lVert\frac{k-j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_1}^2$.
+						\item Verify that $n\ge b\ge\frac{2a_4{a_1}^2}{a_2a_3}$.
 						\item Execute procedure $p_4$ on $\langle\frac{k-j}{K}\tau_mi,\frac{j}{K}\tau_mi,n\rangle$.
 						\item Hence verify that $\lVert\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)\rVert^2\le\frac{{a_4}^2\lVert\frac{k-j}{K}\tau_mi\rVert^2\lVert\frac{j}{K}\tau_mi\rVert^2}{n^2}\le\frac{{a_4}^2{a_1}^4}{n^2}\le(\frac{a_2a_3}{2})^2$.
 						\item Hence using \procedurehr{sat1708191238}, verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
@@ -5316,7 +5317,7 @@
 					\item $q_{K-1}=\sum_r^{[0:K]}\lambda^r$
 					\item $q_{k+1}=(\lambda-z_k)q_k+\Lambda(q_{k+1},z_k)$ for $k\in[0:K]$
 					\item $(q_k)_{\deg(q_k)}=1$ for $k\in[0:K+1]$
-					\item $\lVert\Lambda(q_k,z_j)\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ for $j\in[0:k]$, for $k\in[0:K+1]$
+					\item $\Lambda(q_k,z_j)\equiv 0\err{\frac{an}{m}+\frac{b}{n}}$ for $j\in[0:k]$, for $k\in[0:K+1]$
 				\end{enumerate}
 				when two positive integers $n,m$ such that $n>c$ and $\frac{m}{n}>d$ are chosen.
 			\implementation
@@ -5339,7 +5340,7 @@
 						\item For $k\in[K:0]$, do the following:
 						\begin{enumerate}
 							\item Let $q_k=q_{k+1}\div(\lambda-z_k)$.
-							\item Let $r_k=q_{k+1}\mod(\lambda-z_k)$.
+							\item Let $r_k=q_{k+1}\bmod(\lambda-z_k)$.
 							\item Verify that $\deg(r_k)<\deg(\lambda-z_k)=1$.
 							\item Hence verify that $\deg(r_k)=0$.
 							\item Verify that $q_{k+1}=(\lambda-z_k)q_k+r_k$.
@@ -5362,7 +5363,7 @@
 				\end{enumerate}
 			\subsubsection*{Auxilliary procedure}\label{sec:procedure 77 auxilliary procedure}
 			  \paragraph{Objective}
-			    Choose a non-negative integer $k$, a complex polynomial $q_{k+1}$, and a list of complex numbers $z$ such that $z_j=\exp_n(\frac{j}{K}\tau_mi)$ and $\lVert\Lambda(q_{k+1},z_j)\rVert^2\le(\frac{2}{a_2})^{K-(k+1)}$ for $j\in[k+1:0]$. Let $q_k=q_{k+1}\div(\lambda-z_k)$. The objective of the following instructions is to show that $\lVert\Lambda(q_{k},z_j)\rVert^2\le(\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n}))^2\le(\frac{an}{m}+\frac{b}{n})^2$ for $j\in[k:0]$.
+			    Choose a non-negative integer $k$, a complex polynomial $q_{k+1}$, and a list of complex numbers $z$ such that $z_j=\exp_n(\frac{j}{K}\tau_mi)$ and $\lVert\Lambda(q_{k+1},z_j)\rVert^2\le(\frac{2}{a_2})^{K-(k+1)}$ for $j\in[k+1:0]$. Let $q_k=q_{k+1}\div(\lambda-z_k)$. The objective of the following instructions is to show that $\lVert\Lambda(q_{k},z_j)\rVert^2\le((\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n}))^2\le(\frac{an}{m}+\frac{b}{n})^2$ for $j\in[k:0]$.
 			  \paragraph{Implementation}
 			    \begin{enumerate}
 			      \item For $j\in[k:0]$, do the following:
@@ -5385,7 +5386,7 @@
 					\end{enumerate}
 		\procedure{3.65}
 			\objective
-				Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\lVert \sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $\frac{m}{n}>d$, and $\lVert x\rVert^2\le X$ are chosen.
+				Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\sum_r^{[0:K]}x^r\equiv\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\err{\frac{an}{m}+\frac{b}{n}}$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $\frac{m}{n}>d$, and $\lVert x\rVert^2\le X$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.64} on $\langle K\rangle$ and let $\langle a_1,b_1,c_1,d_1,p_1\rangle$ receive.
@@ -5423,7 +5424,7 @@
 				\end{enumerate}
 		\procedure{3.66}
 			\objective
-				Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\lVert x^K-1-\prod_r^{[0:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $\frac{m}{n}>d$, and $\lVert x\rVert^2\le X$ are chosen.
+				Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $x^K-1\equiv\prod_r^{[0:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\err{\frac{an}{m}+\frac{b}{n}}$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $\frac{m}{n}>d$, and $\lVert x\rVert^2\le X$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.65} on $\langle X,K\rangle$ and let $\langle a_1,b_1,c,d,p_1\rangle$ receive.
@@ -5445,7 +5446,7 @@
 				\end{enumerate}
 		\procedure{3.67}
 			\objective
-				Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\lVert\exp_K(x)-1-x\prod_r^{[1:K]}(1-\frac{x}{K(\exp_n(\frac{r}{K}\tau_mi)-1)})\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $\frac{m}{n}>d$, and $\lVert x\rVert^2\le X$ are chosen.
+				Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\exp_K(x)-1\equiv x\prod_r^{[1:K]}(1-\frac{x}{K(\exp_n(\frac{r}{K}\tau_mi)-1)})\err{\frac{an}{m}+\frac{b}{n}}$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $\frac{m}{n}>d$, and $\lVert x\rVert^2\le X$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.66} on $\langle 1+\frac{X}{K},K\rangle$ and let $\langle a_1,b_1,c_1,d_1,p_1\rangle$ receive.
@@ -7334,7 +7335,7 @@
 					\item Execute \procedurehr{4.63} on $A$ and let $\langle u,s_{t+1}\rangle$ receive the result.
 					\item Hence verify that $us_t+s_{t+1}\sel_A=1$.
 					\item Let $q_t=s_{t+1}\div s_t$.
-					\item Let $s_{t-1}=s_{t+1}\mod s_t$.
+					\item Let $s_{t-1}=s_{t+1}\bmod s_t$.
 					\item Verify that $s_{t+1}=q_ts_t+s_{t-1}$, where $\deg(s_{t-1})<\deg(s_t)=t$.
 					\item Therefore verify that $us_t+(q_ts_t+s_{t-1})\sel_A=1$.
 					\item Therefore verify that $\Lambda(s_{t-1}\sel_A,A)=\Lambda(us_t+(q_ts_t+s_{t-1})\sel_A,A)=\Lambda(1,A)=1_{m}$.
@@ -7342,7 +7343,7 @@
 					\item For $i\in[t:1]$, do the following:
 					\begin{enumerate}
 						\item Let $q_i=(-s_{i+1})\div(-s_i)$.
-						\item Let $s_{i-1}=(-s_{i+1})\mod(-s_i)$.
+						\item Let $s_{i-1}=(-s_{i+1})\bmod(-s_i)$.
 						\item Verify that $\deg(q_i)=1$.
 						\item Verify that $(q_i)_1=\frac{(s_{i+1})_{i+1}}{(s_i)_i}$.
 						\item Also verify that $-s_{i+1}=-q_is_i+s_{i-1}$.
