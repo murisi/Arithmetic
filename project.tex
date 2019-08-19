@@ -5363,7 +5363,7 @@
 				\end{enumerate}
 			\subsubsection*{Auxilliary procedure}\label{sec:procedure 77 auxilliary procedure}
 			  \paragraph{Objective}
-			    Choose a non-negative integer $k$, a complex polynomial $q_{k+1}$, and a list of complex numbers $z$ such that $z_j=\exp_n(\frac{j}{K}\tau_mi)$ and $\lVert\Lambda(q_{k+1},z_j)\rVert^2\le(\frac{2}{a_2})^{K-(k+1)}$ for $j\in[k+1:0]$. Let $q_k=q_{k+1}\div(\lambda-z_k)$. The objective of the following instructions is to show that $\lVert\Lambda(q_{k},z_j)\rVert^2\le((\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n}))^2\le(\frac{an}{m}+\frac{b}{n})^2$ for $j\in[k:0]$.
+			    Choose a non-negative integer $k$, a complex polynomial $q_{k+1}$, and a list of complex numbers $z$ such that $z_j=\exp_n(\frac{j}{K}\tau_mi)$ and $\Lambda(q_{k+1},z_j)\equiv 0\err{(\frac{2}{a_2})^{K-(k+1)}(\frac{a_1n}{m}+\frac{b_1}{n})}$ for $j\in[k+1:0]$. Let $q_k=q_{k+1}\div(\lambda-z_k)$. The objective of the following instructions is to show that $\Lambda(q_{k},z_j)\equiv 0\err{(\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n})}\err{\frac{an}{m}+\frac{b}{n}}$ for $j\in[k:0]$.
 			  \paragraph{Implementation}
 			    \begin{enumerate}
 			      \item For $j\in[k:0]$, do the following:
