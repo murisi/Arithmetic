@@ -3890,7 +3890,7 @@
 				\end{enumerate}
 		\procedure{3.15}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b$ such that $a>0$, and a procedure, $p$, to show that $\lVert\exp_n(x)\exp_n(y)-\exp_n(x+y)\rVert^2\le\frac{a^2\lVert xy\rVert^2}{n^2}$ when two complex numbers $x,y$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X^2$, $\lVert y\rVert^2\le X^2$ are chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b$ such that $a>0$, and a procedure, $p$, to show that $\exp_n(x+y)\equiv\exp_n(x)\exp_n(y)\err{\frac{axy}{n}}\err{\frac{aX^2}{n}}$ when two complex numbers $x,y$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X^2$, $\lVert y\rVert^2\le X^2$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.13} on $\langle 2X\rangle$ and let $\langle c,b,q\rangle$ receive.
@@ -4154,7 +4154,7 @@
 				\end{enumerate}
 		\procedure{3.24}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,y,n)$, to show that $\lVert\cos_n(x)\cos_n(y)-\sin_n(x)\sin_n(y)-\cos_n(x+y)\rVert^2\le\frac{a^2\lVert xy\rVert^2}{n^2}$ when two complex numbers $x,y$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X^2$ and $\lVert y\rVert^2\le X^2$ are chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,y,n)$, to show that $\cos_n(x+y)\equiv\cos_n(x)\cos_n(y)-\sin_n(x)\sin_n(y)\err{\frac{axy}{n}}\err{\frac{aX^2}{n}}$ when two complex numbers $x,y$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X^2$ and $\lVert y\rVert^2\le X^2$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle a,b,q\rangle$ receive.
@@ -4180,12 +4180,12 @@
 				\end{enumerate}
 		\procedure{3.25}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,y,n)$, to show that $\lVert\sin_n(x)\cos_n(y)-\cos_n(x)\sin_n(y)-\sin_n(x+y)\rVert^2\le\frac{a^2\lVert xy\rVert^2}{n^2}$ when two complex numbers $x,y$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X^2$ and $\lVert y\rVert^2\le X^2$ are chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,y,n)$, to show that $\sin_n(x+y)\equiv\sin_n(x)\cos_n(y)-\cos_n(x)\sin_n(y)\err{\frac{axy}{n}}\err{\frac{aX^2}{n}}$ when two complex numbers $x,y$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X^2$ and $\lVert y\rVert^2\le X^2$ are chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.24}.
 		\procedure{3.26}
 			\objective
-				 Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,n)$, to show that $\lVert\cos_n(x)^2+\sin_n(x)^2-1\rVert^2\le\frac{a^2\lVert x\rVert^4}{n^2}$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>b$ are chosen.
+				 Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,n)$, to show that $\cos_n(x)^2+\sin_n(x)^2\equiv 1\err{\frac{a\lVert x\rVert^2}{n}}\err{\frac{aX^2}{n}}$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>b$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle a,b,q\rangle$ receive.
@@ -4207,7 +4207,7 @@
 				\end{enumerate}
 		\procedure{sat0308190647}
 		  \objective
-		    Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,y,n)$, to show that $\lVert\lVert x\exp_n(iy)\rVert^2-\lVert x\rVert^2\rVert^2\le\frac{a^2\lVert x\rVert^4\lVert y\rVert^4}{n^2}$ when a complex number $x$, a rational number $y$, and a positive integer $n$ such that $\lVert y\rVert^2\le X^2$ and $n>b$ are chosen.
+		    Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,y,n)$, to show that $\lVert x\exp_n(iy)\rVert^2\equiv\lVert x\rVert^2\err{\frac{a\lVert x\rVert^2\lVert y\rVert^2}{n}}\err{\frac{a\lVert x\rVert^2X^2}{n}}$ when a complex number $x$, a rational number $y$, and a positive integer $n$ such that $\lVert y\rVert^2\le X^2$ and $n>b$ are chosen.
 		  \implementation
 		    \begin{enumerate}
 		      \item Execute \procedurehr{3.26} on $\langle X\rangle$ and let $\langle a,b,q\rangle$ receive.
@@ -5021,7 +5021,7 @@
 				\end{enumerate}
 		\procedure{3.58}
 			\objective
-				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\sin_n(\frac{k}{4}\tau_m)\equiv\frac{i^k-(-i)^k}{2i}(\err \frac{an}{m}+\frac{b}{n})$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
+				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\sin_n(\frac{k}{4}\tau_m)\equiv\frac{i^k-(-i)^k}{2i}\err{\frac{an}{m}+\frac{b}{n}}$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.57}.
 		\procedure{3.59}
@@ -5513,6 +5513,14 @@
 						\item $=a\diff_{x=y}^zf(x)$.
 					\end{enumerate}
 				\end{enumerate}
+		\procedure{mon1908191506}
+		  \objective
+		    Choose the following:
+		    \begin{enumerate}
+		      \item A procedure $q_0(x,n)$ to show that $\lVert p'_n(x)\rVert^2\le{a_0}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>b_0$ are chosen.
+		      \item A procedure $q_1(x,n,\delta)$ to show that $\lVert\frac{p_n(x+\delta)-p_n(x)}{\delta}-p'_n(x)\rVert^2\le(\frac{a_1}{n}+b_1\{\delta\})^2$
+		    \end{enumerate}
+		  \implementation
 		\procedure{sat0308191134}
 		  \objective
 		    Choose the following:
