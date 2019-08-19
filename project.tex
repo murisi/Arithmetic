@@ -5518,16 +5518,16 @@
 		    Choose the following:
 		    \begin{enumerate}
 		      \item A procedure $q_0(x,n)$ to show that $\lVert p'_n(x)\rVert^2\le{a_0}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$, and $n>b_0$ are chosen
-		      \item A procedure $q_1(x,n,\delta)$ to show that $\frac{p_n(x+\delta)-p_n(x)}{\delta}\equiv p'_n(x)\err{\frac{a_1}{n}+b_1\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $P(x)$, $n>b_0$, and $\lVert\delta\rVert^2<{c_1}^2$ are chosen
+		      \item A procedure $q_1(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}p_n(y)\equiv p'_n(x)\err{\frac{a_1}{n}+b_1\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $P(x)$, $n>b_0$, and $\lVert\delta\rVert^2<{c_1}^2$ are chosen
 		      \item A procedure $q_2(x,n)$ to show that $\lVert t'_n(x)\rVert^2\le{a_2}^2$ when a complex number $x$ and a positive integer $n$ such that $R(x)$, and $n>b_2$ are chosen
-		      \item A procedure $q_3(x,n,\delta)$ to show that $\frac{t_n(x+\delta)-t_n(x)}{\delta}\equiv t'_n(x)\err{\frac{a_3}{n}+b_3\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $R(x)$, $n>b_2$, and $\lVert\delta\rVert^2<{c_3}^2$ are chosen
+		      \item A procedure $q_3(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}t_n(y)\equiv t'_n(x)\err{\frac{a_3}{n}+b_3\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $R(x)$, $n>b_2$, and $\lVert\delta\rVert^2<{c_3}^2$ are chosen
 		      \item A procedure $q_4(x,n)$ to show that $P(t_n(x))$ when a complex number $x$ and a positive integer $n$ such that $R(x)$ and $n>b_2$ are chosen
 		    \end{enumerate}
 		    The objective of the following instructions is to construct the following:
 		    \begin{enumerate}
 		      \item Rational numbers $a_5,b_5,a_6,b_6,c_6$.
 		      \item A procedure $q_5(x,n)$ to show that $\lVert p'_n(t_n(x))t'_n(x)\rVert^2\le{a_5}^2$ when a complex number $x$ such that $R(x)$, and $n>b_5$ are chosen.
-		      \item A procedure $q_6(x,n,\delta)$ to show that $\frac{p_n(t_n(x+\delta))-p_n(t_n(x))}{\delta}\equiv p'_n(t_n(x))t'_n(x)\err{\frac{a_6}{n}+b_6\{\delta\}}$ when two complex numbers $x,dx$ such that $R(x)$, $n>b_5$, and $\lVert\delta\rVert^2<{c_6}^2$ are chosen.
+		      \item A procedure $q_6(x,n,\delta)$ to show that $\Delta_{y=x}^{x+\delta}p_n(t_n(y))\equiv p'_n(t_n(x))t'_n(x)\err{\frac{a_6}{n}+b_6\{\delta\}}$ when two complex numbers $x,dx$ such that $R(x)$, $n>b_5$, and $\lVert\delta\rVert^2<{c_6}^2$ are chosen.
 		    \end{enumerate}
 		  \implementation
 		    \begin{enumerate}
@@ -5542,6 +5542,8 @@
 		        \item Hence verify that $\lVert\frac{t_n(x+\delta)-t_n(x)}{\delta}-t'_n(x)\rVert^2\le(\frac{a_3}{n}+b_3\{\delta\})^2$.
 		        \item Execute procedure $q_4$ on $\langle x,n\rangle$.
 		        \item Hence verify that $\lVert t'_n(x)\rVert^2\le {a_2}^2$.
+		        \item Verify that $\{\delta\}^2\le 2\lVert\delta\rVert^2\le 4{c_6}^2$.
+		        \item Hence verify that $\{\delta\}\le 2c_6\le 2c_3$.
 		        \item Verify that $\lVert t_n(x+\delta)-t_n(x)\rVert^2$
 		        \begin{enumerate}
 		          \item $=\lVert\frac{t_n(x+\delta)-t_n(x)}{\delta}\rVert^2\lVert\delta\rVert^2$
@@ -5550,10 +5552,10 @@
 		          \item $\le(a_3+2b_3c_3+a_2)^2{c_6}^2$
 		          \item $\le{c_1}^2$.
 		        \end{enumerate}
-		        \item Execute procedure $q_1$ on $\langle t_n(x),n,t_n(x+\delta)-t_n(x)\rangle$.
-		        \item Hence verify that $\lVert\frac{p_n(t_n(x)+(t_n(x+\delta)-t_n(x)))-p_n(t_n(x))}{t_n(x+\delta)-t_n(x)}-p'_n(t_n(x))\rVert^2\le(\frac{a_1}{n}+b_1\{\delta\})^2$.
 		        \item Execute procedure $q_4$ on $\langle x,n\rangle$.
 		        \item Hence verify that $P(t_n(x))$.
+		        \item Execute procedure $q_1$ on $\langle t_n(x),n,t_n(x+\delta)-t_n(x)\rangle$.
+		        \item Hence verify that $\lVert\frac{p_n(t_n(x)+(t_n(x+\delta)-t_n(x)))-p_n(t_n(x))}{t_n(x+\delta)-t_n(x)}-p'_n(t_n(x))\rVert^2\le(\frac{a_1}{n}+b_1\{\delta\})^2$.
 		        \item Execute procedure $q_0$ on $\langle t_n(x),n\rangle$.
 		        \item Hence verify that $\lVert p'_n(t_n(x))\rVert^2\le{a_0}^2$.
 		        \item Verify that $\lVert\frac{p(t(x+\delta))-p(t(x))}{\delta}-p'(t(x))t'(x)\rVert^2$
@@ -5576,6 +5578,69 @@
 		        \item Hence verify that $\lVert p'_n(t_n(x))t'_n(x)\rVert^2\le(a_0a_2)^2={a_5}^2$.
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a_5,b_5,a_6,b_6,c_6,q_5,q_6\rangle$.}
+		    \end{enumerate}
+		\procedure{mon1908191207}
+		  \objective
+		    Choose the following:
+		    \begin{enumerate}
+		      \item A procedure $q_0(x,n)$ to show that $\lVert p_n(x)\rVert^2\le{a_0}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>b_0$ are chosen.
+		      \item A procedure $q_1(x,n)$ to show that $\lVert p'_n(x)\rVert^2\le {a_1}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>b_0$ are chosen.
+		      \item A procedure $q_2(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}p_n(y)\equiv p'_n(x)\err{\frac{a_2}{n}+b_2\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $P(x)$, $n>b_0$, and $\lVert\delta\rVert^2<{c_2}^2$ are chosen.
+		      \item A procedure $q_3(x,n)$ to show that $\lVert t_n(x)\rVert^2\le{a_3}^2$ when a complex number $x$ and a positive integer $n$ such that $R(x)$ and $n>b_3$ are chosen.
+		      \item A procedure $q_4(x,n)$ to show that $\lVert t'_n(x)\rVert^2\le {a_4}^2$ when a complex number $x$ and a positive integer $n$ such that $R(x)$ and $n>b_3$ are chosen.
+		      \item A procedure $q_5(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}t_n(y)\equiv t'_n(x)\err{\frac{a_5}{n}+b_5\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $R(x)$, $n>b_3$, and $\lVert\delta\rVert^2<{c_5}^2$ are chosen.
+		    \end{enumerate}
+		    The objective of the following instructions is to construct the following:
+		    \begin{enumerate}
+		      \item Rational numbers $a_6,b_6,a_7,b_7,c_7$.
+		      \item A procedure $q_6(x,n)$ to show that $\lVert p_n(x)t'_n(x)+p'_n(x)t_n(x)\rVert^2\le {a_6}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$, $R(x)$, and $n>b_6$ are chosen.
+		      \item A procedure $q_7(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}(p_n(y)t_n(y))\equiv p_n(x)t'_n(x)+p'_n(x)t_n(x)\err{\frac{a_7}{n}+b_7\{\delta\}}$ when two complex numbers $x,\delta$ such that $P(x)$, $R(x)$, $n>b_6$, and $\lVert\delta\rVert^2<{c_7}^2$ are chosen.
+		    \end{enumerate}
+		  \implementation
+		    \begin{enumerate}
+		      \item Let $a_6=a_0a_4+a_1a_3$.
+		      \item Let $b_6=\max(b_0,b_3)$.
+		      \item Let $a_7=a_0a_5+a_6a_2$.
+		      \item Let $b_7=a_2a_5+a_1a_5+a_4a_2+a_1a_4+a_0b_5+a_6b_2+2c_7(a_2b_5+b_2a_5+a_1b_5+a_4b_2)+4b_2b_5{c_7}^2$.
+		      \item Let $c_7=\min(c_2,c_5)$.
+		      \item Let $q_7(x,n,\delta)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Verify that $\{\delta\}^2\le 2\lVert\delta\rVert^2\le 4{c_7}^2$.
+		        \item Hence verify that $\{\delta\}\le 2c_7$.
+		        \item Execute procedure $q_2$ on $\langle x,n,\delta\rangle$.
+		        \item Hence verify that $\lVert\frac{p_n(x+\delta)-p_n(x)}{\delta}-p'_n(x)\rVert^2\le(\frac{a_2}{n}+b_2\{\delta\})^2$.
+		        \item Execute procedure $q_1$ on $\langle x,n\rangle$.
+		        \item Hence verify that $\lVert p'_n(x)\rVert^2\le {a_1}^2$.
+		        \item Execute procedure $q_5$ on $\langle x,n,\delta\rangle$.
+		        \item Hence verify that $\lVert\frac{t_n(x+\delta)-t_n(x)}{\delta}-t'_n(x)\rVert^2\le(\frac{a_5}{n}+b_5\{\delta\})^2$.
+		        \item Execute procedure $q_4$ on $\langle x,n\rangle$.
+		        \item Hence verify that $\lVert t'_n(x)\rVert^2\le {a_4}^2$.
+		        \item Execute procedure $q_0$ on $\langle x,n\rangle$.
+		        \item Hence verify that $\lVert p_n(x)\rVert^2\le {a_0}^2$.
+		        \item Execute procedure $q_3$ on $\langle x,n\rangle$.
+		        \item Hence verify that $\lVert t_n(x)\rVert^2\le {a_6}^2$.
+		        \item Hence verify that $\lVert\frac{p_n(x+\delta)t_n(x+\delta)-p_n(x)t_n(x)}{\delta}-p_n(x)t'_n(x)-p'_n(x)t_n(x)\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert p_n(x+\delta)\cdot\frac{t_n(x+\delta)-t_n(x)}{\delta}+t_n(x)\cdot\frac{p_n(x+\delta)-p_n(x)}{\delta}-p_n(x)t'_n(x)-p'_n(x)t_n(x)\rVert^2$
+		          \item $=\lVert\delta\cdot\frac{p_n(x+\delta)-p_n(x)}{\delta}\cdot\frac{t_n(x+\delta)-t_n(x)}{\delta}+p_n(x)\cdot\frac{t_n(x+\delta)-t_n(x)}{\delta}-p_n(x)t'_n(x)+t_n(x)(\frac{p_n(x+\delta)-p_n(x)}{\delta}-p'_n(x))\rVert^2$
+		          \item $=\lVert\delta(\frac{p_n(x+\delta)-p_n(x)}{\delta}-p'_n(x))(\frac{t_n(x+\delta)-t_n(x)}{\delta}-t'_n(x))+\delta p'_n(x)(\frac{t_n(x+\delta)-t_n(x)}{\delta}-t'_n(x))+\delta t'_n(x)(\frac{p_n(x+\delta)-p_n(x)}{\delta}-p'_n(x))-\delta p'_n(x)t'_n(x)+p_n(x)(\frac{t_n(x+\delta)-t_n(x)}{\delta}-t'_n(x))+ t_n(x)(\frac{p_n(x+\delta)-p_n(x)}{\delta}-p'_n(x))\rVert^2$
+		          \item $\le(\{\delta\}(\frac{a_2}{n}+b_2\{\delta\})(\frac{a_5}{n}+b_5\{\delta\})+\{\delta\}a_1(\frac{a_5}{n}+b_5\{\delta\})+\{\delta\}a_4(\frac{a_2}{n}+b_2\{\delta\})+\{\delta\}a_1a_4+a_0(\frac{a_5}{n}+b_5\{\delta\})+a_6(\frac{a_2}{n}+b_2\{\delta\}))^2$
+		          \item $\le(\frac{a_7}{n}+b_7\{\delta\})^2$.
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item Let $q_6(x,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $q_1$ on $\langle x,n\rangle$.
+		        \item Hence verify that $\lVert p'_n(x)\rVert^2\le{a_1}^2$.
+		        \item Execute procedure $q_4$ on $\langle x,n\rangle$.
+		        \item Hence verify that $\lVert t'_n(x)\rVert^2\le{a_4}^2$.
+		        \item Execute procedure $q_0$ on $\langle x,n\rangle$.
+		        \item Hence verify that $\lVert p_n(x)\rVert^2\le{a_0}^2$.
+		        \item Execute procedure $q_3$ on $\langle x,n\rangle$.
+		        \item Hence verify that $\lVert t_n(x)\rVert^2\le{a_3}^2$.
+		        \item \textbf{Hence verify that $\lVert p_n(x)t'_n(x)+p'_n(x)t_n(x)\rVert^2\le(a_0a_4+a_1a_3)^2={a_6}^2$.}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a_6,b_6,a_7,b_7,c_7,q_6,q_7\rangle$.}
 		    \end{enumerate}
 		\procedure{3.17}
 			\objective
