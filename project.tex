@@ -164,6 +164,7 @@
 \newglossaryentry{complexabs^2}{name=\ensuremath{\lVert a\rVert^2},description={absolute value squared}}
 \newglossaryentry{complex1/a}{name=\ensuremath{\frac{1}{a}},description={complex reciprocal}}
 \newglossaryentry{complexi}{name=\ensuremath{i},description={imaginary number}}
+\newglossaryentry{complexerr}{name=\ensuremath{a\equiv b\err{c_1}\err{c_2}\cdots\err{c_n}},description={approximate equality}}
 \newglossaryentry{complexexp}{name=\ensuremath{\exp_n(a)},description={complex exponential function}}
 \newglossaryentry{complexdiff}{name=\ensuremath{\diff_{x=y}^zf(x)},description={differentiation}}
 \newglossaryentry{complexcos}{name=\ensuremath{\cos_n(z)},description={cosine}}
@@ -3702,6 +3703,62 @@
 					\item \textbf{Hence verify that $i^{4a+2}=i^{4a+1}i=i^2=-1$.}
 					\item \textbf{Hence verify that $i^{4a+3}=i^{4a+2}i=(-1)i=-i$.}
 				\end{enumerate}
+		\declaration{mon1908191749}
+		  The notation \gls{complexerr} will be used as a shorthand for $\lVert b-a\rVert^2\le\lVert c_1\rVert^2\le\lVert c_2\rVert^2\le\cdots\le\lVert c_n\rVert^2$.
+		\procedure{mon1908191916}
+		  \objective
+		    Choose four complex numbers $a,b,c,d$ in such a way that $a\equiv b\err{c}$ and $\lVert c\rVert^2\le\lVert d\rVert^2$. The objective of the following instructions is to show that $a\equiv b\err{c}\err{d}$.
+		  \implementation
+		    \begin{enumerate}
+		      \item Verify that $\lVert b-a\rVert\le\lVert c\rVert^2\le\lVert d\rVert^2$.
+		      \item \textbf{Hence using \declarationhr{mon1908191749}, verify that $a\equiv b\err{c}\err{d}$.}
+		    \end{enumerate}
+		\procedure{mon1908191825}
+		  \objective
+		    Choose three complex numbers $a,b,c$ and two non-negative rational numbers $d,e$ in such a way that $a\equiv b\err{d}$ and $b\equiv c\err{e}$. The objective of the following instructions is to show that $a\equiv c\err{d+e}$.
+		  \implementation
+		    \begin{enumerate}
+		      \item Verify that $\lVert b-a\rVert^2\le\lVert d\rVert^2=d^2$.
+		      \item Verify that $\lVert c-b\rVert^2\le\lVert e\rVert^2=e^2$.
+		      \item Hence using \procedurehr{3.04aa}, verify that $\lVert c-a\rVert^2=\lVert(c-b)+(b-a)\rVert^2\le(e+d)^2$.
+		      \item \textbf{Hence using \declarationhr{mon1908191749}, verify that $a\equiv c\err{e+d}$.}
+		    \end{enumerate}
+		\procedure{mon1908191839}
+		  \objective
+		    Choose four complex numbers $a,b,c,d$ and two non-negative rational numbers $e,f$ in such a way that $a\equiv b\err{e}$ and $c\equiv d\err{f}$. The objective of the following instructions is to show that $a+c\equiv b+d\err{e+f}$.
+		  \implementation
+		    \begin{enumerate}
+		      \item Verify that $\lVert b-a\rVert^2\le\lVert e\rVert^2=e^2$.
+		      \item Verify that $\lVert d-c\rVert^2\le\lVert f\rVert^2=f^2$.
+		      \item Hence using \procedurehr{3.04aa}, verify that $\lVert(b+d)-(a+c)\rVert^2=\lVert(b-a)+(d-c)\rVert^2\le(e+f)^2$.
+		      \item \textbf{Hence using \declarationhr{mon1908191749}, verify that $a+c\equiv b+d\err{e+f}$.}
+		    \end{enumerate}
+		\procedure{mon1908191849}
+		  \objective
+		    Choose three complex numbers $a,b,c$ in such a way that $a\equiv b\err{c}$. The objective of the following instructions is to show that $-a\equiv -b\err{c}$.
+		  \implementation
+		    \begin{enumerate}
+		      \item Verify that $\lVert(-b)-(-a)\rVert^2=\lVert b-a\rVert\le\lVert c\rVert^2$.
+		      \item \textbf{Hence using \declarationhr{mon1908191749}, verify that $-a\equiv-b\err{c}$.}
+		    \end{enumerate}
+		\procedure{mon1908191857}
+		  \objective
+		    Choose four complex numbers $a,b,c,d$ in such a way that $a\equiv b\err{c}$. The objective of the following instructions is to show that $ad\equiv bd\err{cd}$.
+		  \implementation
+		    \begin{enumerate}
+		      \item Verify that $\lVert b-a\rVert^2\le\lVert c\rVert^2$.
+		      \item Hence verify that $\lVert bd-ad\rVert^2\le\lVert cd\rVert^2$.
+		      \item \textbf{Hence using \declarationhr{mon1908191749}, verify that $ad\equiv bd\err{cd}$.}
+		    \end{enumerate}
+		\procedure{mon1908191905}
+		  \objective
+		    Choose two complex numbers $a,b,c$ in such a way that $a\ne 0$, $b\ne 0$, and $a\equiv b\err{c}$. The objective of the following instructions is to show that $\frac{1}{a}\equiv\frac{1}{b}\err{\frac{c}{ab}}$.
+		  \implementation
+		    \begin{enumerate}
+		      \item Verify that $\lVert b-a\rVert\le\lVert c\rVert^2$.
+		      \item Hence verify that $\lVert\frac{1}{b}-\frac{1}{a}\rVert^2=\lVert\frac{a-b}{ba}\rVert^2\le\lVert\frac{c}{ba}\rVert^2$.
+		      \item \textbf{Hence using \declarationhr{mon1908191749}, verify that $\frac{1}{a}\equiv\frac{1}{b}\err{\frac{c}{ab}}$.}
+		    \end{enumerate}
 		\declaration{3.05}
 			The notation \gls{complexexp}, where $a$ is a complex number, will be used as a shorthand for $(1+\frac{a}{n})^n$.
 		\procedure{3.07}
