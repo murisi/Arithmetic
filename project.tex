@@ -5992,11 +5992,36 @@
 		      \item Let $d=0$.
 		      \item Let $p(x,n)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Verify that $\lVert 0\rVert^2\le a^2$.
+		        \item \textbf{Verify that $\lVert 0\rVert^2\le a^2$.}
 		      \end{enumerate}
 		      \item Let $q(x,n,\delta)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Verify that $\lVert\frac{B-B}{\delta}-0\rVert^2=0\le(\frac{b}{n}+c\{\delta\})^2$.
+		        \item \textbf{Verify that $\lVert\frac{B-B}{\delta}-0\rVert^2=0\le(\frac{b}{n}+c\{\delta\})^2$.}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a,b,c,d,p,q\rangle$.}
+		    \end{enumerate}
+		\procedure{tue2008191209}
+		  \objective
+		    Choose a positive integer $N$ and positive rational numbers $X,D$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $\lVert Nx^{N-1}\rVert^2\le a^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}y^N\equiv Nx^{N-1}\err{\frac{b}{n}+c\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Let $a=NX^{N-1}$.
+		      \item Let $b=0$.
+		      \item Let $c=\sum_r^{[0:N-1]}\binom{N}{r}X^rD^{N-r-2}$.
+		      \item Let $d=0$.
+		      \item Let $p(x,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item \textbf{Verify that $\lVert Nx^{N-1}\rVert^2\le(NX^{N-1})^2=a^2$.}
+		      \end{enumerate}
+		      \item Let $q(x,n,\delta)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Verify that $\lVert\frac{(x+\delta)^N-x^N}{\delta}-Nx^{N-1}\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert\frac{1}{\delta}(\sum_r^{[0:N+1]}\binom{N}{r}x^r\delta^{N-r}-x^N)-Nx^{N-1}\rVert^2$
+		          \item $=\lVert\sum_r^{[0:N]}\binom{N}{r}x^r\delta^{N-r-1}-Nx^{N-1}\rVert^2$
+		          \item $=\lVert\delta\rVert^2\lVert\sum_r^{[0:N-1]}\binom{N}{r}x^r\delta^{N-r-2}\rVert^2$
+		          \item $\le(\frac{b}{n}+c\{\delta\})^2$.
+		        \end{enumerate}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,b,c,d,p,q\rangle$.}
 		    \end{enumerate}
