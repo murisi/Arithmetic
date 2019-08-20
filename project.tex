@@ -5560,6 +5560,60 @@
 	          \item $=\lvert b\rvert\{a\}$.
 	        \end{enumerate}
 	      \end{enumerate}
+	  \procedure{tue2008190540}
+	    \objective
+	      Choose two complex numbers $a,b$. The objective of the following instructions is to show that $\{a+b\}\le\{a\}+\{b\}$.
+	    \implementation
+	      \begin{enumerate}
+	        \item Using \declarationhr{tue2008190516}, verify that $\{a+b\}$
+	        \begin{enumerate}
+	          \item $=\lvert\Re(a+b)\rvert+\lvert\Im(a+b)\rvert$
+	          \item $=\lvert\Re(a)+\Re(b)\rvert+\lvert\Im(a)+\Im(b)\rvert$
+	          \item $\le\lvert\Re(a)\rvert+\lvert\Re(b)\rvert+\lvert\Im(a)\rvert+\lvert\Im(b)\rvert$
+	          \item $=\{a\}+\{b\}$.
+	        \end{enumerate}
+	      \end{enumerate}
+	  \procedure{tue2008190546}
+	    \objective
+	      Choose two complex numbers $a,b$. The objective of the following instructions is to show that $\{ab\}\le\{a\}\{b\}$.
+	    \implementation
+	      \begin{enumerate}
+	        \item Using \procedurehr{tue2008190540}, verify that $\{ab\}$
+	        \begin{enumerate}
+	          \item $=\{(\Re(a)+\Im(b)i)b\}$
+	          \item $=\{\Re(a)b+\Im(a)bi\}$
+	          \item $\le\{\Re(a)b\}+\{\Im(a)b\}$
+	          \item $=(\lvert\Re(a)\rvert+\lvert\Im(a)\rvert)\{b\}$
+	          \item $=\{a\}\{b\}$.
+	        \end{enumerate}
+	      \end{enumerate}
+	  \procedure{tue2008190632}
+	    \objective
+	      Choose a complex number $a$. The objective of the following instructions is to show that $\lVert a\rVert^2\le\{a\}^2$.
+	    \implementation
+	      \begin{enumerate}
+	        \item Using \procedurehr{3.04aa}, verify that $\lVert a\rVert^2$
+	        \begin{enumerate}
+	          \item $=\lVert\Re(a)+\Im(a)i\rVert^2$
+	          \item $\le(\lvert\Re(a)\rvert+\lvert\Im(a)\rvert)^2$
+	          \item $=\{a\}^2$.
+	        \end{enumerate}
+	      \end{enumerate}
+	  \procedure{tue2008190639}
+	    \objective
+	      Choose a complex number $a$. The objective of the following instructions is to show that $\{a\}^2\le 2\lVert a\rVert^2$.
+	    \implementation
+	      \begin{enumerate}
+	        \item Verify that $2\lVert a\rVert^2-\{a\}^2$
+	        \begin{enumerate}
+	          \item $=2\Re(a)^2+2\Im(a)^2-(\lvert\Re(a)\rvert+\lvert\Im(a)\rvert)^2$
+	          \item $=2\Re(a)^2+2\Im(a)^2-\Re(a)^2-2\lvert\Re(a)\rvert\lvert\Im(a)\rvert-\Im(a)^2$
+	          \item $=\Re(a)^2-2\lvert\Re(a)\rvert\lvert\Im(a)\rvert+\Im(a)^2$
+	          \item $=(\lvert\Re(a)\rvert-\lvert\Im(a)\rvert)^2$
+	          \item $\ge 0$.
+	        \end{enumerate}
+	        \item \textbf{Hence verify that $\{a\}^2\le 2\lVert a\rVert^2$.}
+	      \end{enumerate}
 	  \declaration{3.29}
 			The notation \gls{differentialdiff}, where $x,z$ are complex numbers such that $z\ne 0$ and $f[x]$ is a function of $x$, will be used as a shorthand for $\frac{f(y+z)-f(y)}{z}$.
 		\procedure{3.83}
