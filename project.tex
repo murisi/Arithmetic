@@ -161,7 +161,7 @@
 \newglossaryentry{complex-a}{name=\ensuremath{-a},description={complex negation}}
 \newglossaryentry{complexab}{name=\ensuremath{ab},description={complex multiplication}}
 \newglossaryentry{complexconj}{name=\ensuremath{\conj{a}},description={complex conjugate}}
-\newglossaryentry{complexabs^2}{name=\ensuremath{\lVert a\rVert^2},description={absolute value squared}}
+\newglossaryentry{complexabs^2}{name=\ensuremath{\lVert a\rVert^2},description={Euclidean length squared}}
 \newglossaryentry{complex1/a}{name=\ensuremath{\frac{1}{a}},description={complex reciprocal}}
 \newglossaryentry{complexi}{name=\ensuremath{i},description={imaginary number}}
 \newglossaryentry{complexerr}{name=\ensuremath{a\equiv b\err{c_1}\err{c_2}\cdots\err{c_n}},description={approximate equality}}
@@ -174,8 +174,9 @@
 \newglossaryentry{complexnaturallogarithm}{name=\ensuremath{\ln_k(1+x)},description={natural logarithm}}
 \newglossaryentry{complextau}{name=\ensuremath{\tau_n},description={tau}}
 \newglossaryentry{complexpolynomial}{name={complex polynomial},description={}}
-\newglossaryentry{differentialdiff}{name=\ensuremath{\diff_{x=y}^zf(x)},description={differentiation}}
-\newglossaryentry{differentialintegral}{name=\ensuremath{\int_r^Rf(\#r,r,dr)},description={complex integral}}
+\newglossaryentry{differentialtaxicab}{name=\ensuremath{\{x\}},description={taxicab length}}
+\newglossaryentry{differentialdiff}{name=\ensuremath{\diff_{x=y}^zf(x)},description={difference quotient}}
+\newglossaryentry{differentialintegral}{name=\ensuremath{\int_r^Rf(\#r,r,dr)},description={Riemann sum}}
 \newglossaryentry{differentialDeltaX}{name=\ensuremath{\Delta X},description={first difference}}
 \newglossaryentry{matrix}{name={matrix},description={}}
 \newglossaryentry{matrixentry}{name=\ensuremath{A_{I,J}},description={submatrix}}
@@ -4851,7 +4852,7 @@
 	      \end{enumerate}
 	  \procedure{fri2607191801}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ such that $b>1$, and a procedure $p(x,n,k)$ to show that $\exp_n(\ln_k(1+x))\equiv(1+x)\err{\frac{an}{k}+\frac{c}{n}}$ when positive integers $n,k$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $k>d$, and $n>e$ are chosen.
+	      Choose a rational number $X>0$. The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ such that $b>1$, and a procedure $p(x,n,k)$ to show that $\exp_n(\ln_k(1+x))\equiv 1+x\err{\frac{an}{k}+\frac{c}{n}}$ when positive integers $n,k$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $k>d$, and $n>e$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Execute \procedurehr{fri2607191243} on $\langle X\rangle$ and let $\langle a_1,p_1\rangle$ receive.
@@ -5544,6 +5545,21 @@
 	\clearpage
 	\part{Differential Arithmetic}
 	\begin{multicols}{2}
+	  \declaration{tue2008190516}
+	    The notation \gls{differentialtaxicab}, where $x$ is a complex number, will be used as a shorthand for $\lvert\Re(x)\rvert+\lvert\Im(x)\rvert$.
+	  \procedure{tue2008190520}
+	    \objective
+	      Choose a complex number $a$ and a rational number $b$. The objective of the following instructions is to show that $\{ba\}=\lvert b\rvert\{a\}$.
+	    \implementation
+	      \begin{enumerate}
+	        \item Using \declarationhr{tue2008190516}, verify that $\{ba\}$
+	        \begin{enumerate}
+	          \item $=\lvert\Re(ba)\rvert+\lvert\Im(ba)\rvert$
+	          \item $=\lvert b\Re(a)\rvert+\lvert b\Im(a)\rvert$
+	          \item $=\lvert b\rvert(\lvert\Re(a)\rvert+\lvert\Im(a)\rvert)$
+	          \item $=\lvert b\rvert\{a\}$.
+	        \end{enumerate}
+	      \end{enumerate}
 	  \declaration{3.29}
 			The notation \gls{differentialdiff}, where $x,z$ are complex numbers such that $z\ne 0$ and $f[x]$ is a function of $x$, will be used as a shorthand for $\frac{f(y+z)-f(y)}{z}$.
 		\procedure{3.83}
