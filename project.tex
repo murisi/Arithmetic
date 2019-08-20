@@ -5623,6 +5623,46 @@
 	\clearpage
 	\part{Differential Arithmetic}
 	\begin{multicols}{2}
+	  \procedure{tue2008191129}
+	    \objective
+	      Choose the following:
+	      \begin{enumerate}
+	        \item A procedure $q_1(x,n)$ to show that $\lVert p_n(x)\rVert^2\le{a_1}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>c_1$ are chosen.
+	        \item A procedure $q_2(x,n)$ to show that $\lVert t_n(x)\rVert^2\le{a_2}^2$ when a complex number $x$ and a positive integer $n$ such that $R(x)$ and $n>c_2$ are chosen.
+	      \end{enumerate}
+	      The objective of the following instructions is to construct the following:
+	      \begin{enumerate}
+	        \item Rational numbers $a_3,b_3$.
+	        \item A procedure $q_3(x,n)$ to show that $\lVert p_n(x)+t_n(x)\rVert^2\le{a_3}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$, $R(x)$, and $n>b_3$ are chosen.
+	      \end{enumerate}
+	    \implementation
+	      \begin{enumerate}
+	        \item Let $a_3=a_1+a_2$.
+	        \item Let $b_3=\max(c_1,c_2)$.
+	        \item Let $q_3(x,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item Execute procedure $q_1$ on $\langle x,n\rangle$.
+	          \item Hence verify that $\lVert p_n(x)\rVert^2\le{a_1}^2$.
+	          \item Execute procedure $q_2$ on $\langle x,n\rangle$.
+	          \item Hence verify that $\lVert t_n(x)\rVert^2\le{a_2}^2$.
+	          \item Hence verify that $\lVert p_n(x)+t_n(x)\rVert^2\le(a_1+a_2)^2={a_3}^2$.
+	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle a_3,b_3,q_3\rangle$.}
+	      \end{enumerate}
+	  \procedure{tue2008191139}
+	    \objective
+	      Choose the following:
+	      \begin{enumerate}
+	        \item A procedure $q_1(x,n)$ to show that $\lVert p_n(x)\rVert^2\le{a_1}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>c_1$ are chosen.
+	        \item A procedure $q_2(x,n)$ to show that $\lVert t_n(x)\rVert^2\le{a_2}^2$ when a complex number $x$ and a positive integer $n$ such that $R(x)$ and $n>c_2$ are chosen.
+	      \end{enumerate}
+	      The objective of the following instructions is to construct the following:
+	      \begin{enumerate}
+	        \item Rational numbers $a_3,b_3$.
+	        \item A procedure $q_3(x,n)$ to show that $\lVert p_n(x)t_n(x)\rVert^2\le{a_3}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$, $R(x)$, and $n>b_3$ are chosen.
+	      \end{enumerate}
+	    \implementation
+	      Implementation is analogous to that of \procedurehr{tue2008191129}.
 	  \declaration{tue2008190516}
 	    The notation \gls{differentialtaxicab}, where $x$ is a complex number, will be used as a shorthand for $\lvert\Re(x)\rvert+\lvert\Im(x)\rvert$.
 	  \procedure{tue2008190655}
