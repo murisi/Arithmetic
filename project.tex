@@ -5981,6 +5981,25 @@
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a_6,b_6,a_7,b_7,c_7,q_6,q_7\rangle$.}
 		    \end{enumerate}
+		\procedure{tue2008191151}
+		  \objective
+		    Choose a complex number $B$ and a rational number $D>0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $\lVert 0\rVert^2\le a^2$ when a complex number $x$ and a positive integer $n$ such that $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}B\equiv 0\err{\frac{b}{n}+c\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Let $a=0$.
+		      \item Let $b=0$.
+		      \item Let $c=0$.
+		      \item Let $d=0$.
+		      \item Let $p(x,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Verify that $\lVert 0\rVert^2\le a^2$.
+		      \end{enumerate}
+		      \item Let $q(x,n,\delta)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Verify that $\lVert\frac{B-B}{\delta}-0\rVert^2=0\le(\frac{b}{n}+c\{\delta\})^2$.
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a,b,c,d,p,q\rangle$.}
+		    \end{enumerate}
 		\procedure{3.17}
 			\objective
 				Choose a complex number $x$. The objective of the following instructions is to show that $\lvert\Re(x)\rvert\le\max(1,\lVert x\rVert^2)$.
