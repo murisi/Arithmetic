@@ -68,7 +68,7 @@
 \newcounter{proceduretemp}
 \newcommand{\procedure}[1]{
 	\renewcommand\theproceduretemp{\thepart:\theprocedure}
-	\subsection*{Procedure \theproceduretemp}
+	\subsection*{Procedure \theproceduretemp (#1)}
 	\label{sec:procedure #1}
 	\refstepcounter{proceduretemp}
 	\label{procedure#1}
@@ -4547,6 +4547,46 @@
 	          \end{enumerate}
 	        \end{enumerate}
 	        \item \textbf{Yield $\langle D,p\rangle$.}
+	      \end{enumerate}
+	  \procedure{tue2008190712}
+	    \objective
+	      Choose two rational numbers $A>0$, $1>X>0$. The objective of the following instructions is to construct positive rational numbers $D,N$, and a procedure $p(x,a,n)$ to show that $\lVert(1+x)_n^a\rVert^2\ge D^2$ when complex numbers $x,a$ and an integer $n$ such that $\lVert x\rVert^2\le X^2$, $\lVert a\rVert\le A^2$, and $n>N$ are chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Execute \procedurehr{wed2407191521} on $\langle A,X\rangle$ and let $\langle a_1,b_1,p_1\rangle$ receive.
+	        \item Execute \procedurehr{wed2407191422} on $\langle b_1,1\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
+	        \item Execute \procedurehr{wed2407191611} on $\langle A,X\rangle$ and let $\langle a_3,p_3\rangle$ receive.
+	        \item Let $D=\frac{1}{2a_3}$.
+	        \item Let $N=2a_1a_2$.
+	        \item Let $p(x,a,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item Execute procedure $p_2$ on $\langle b_1,n\rangle$.
+	          \item Hence verify that $\lVert n{b_1}^n\rVert^2\le(a_2{b_2}^n)^2\le{a_2}^2$.
+	          \item Hence verify that $(a_1{b_1}^n)^2\le(\frac{a_1a_2}{n})^2$.
+	          \item Execute procedure $p_3$ on $\langle x,n,-a,1\rangle$.
+	          \item Hence verify that $\lVert((1+x)_n^{-a})^1\rVert^2\le{a_3}^2$.
+	          \item Execute procedure $p_1$ on $\langle x,-a,a,n\rangle$.
+	          \item Hence verify that $\lVert(1+x)_n^{-a}(1+x)_n^a-1\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert(1+x)_n^{-a}(1+x)_n^a-(1+x)_n^{-a+a}\rVert^2$
+	            \item $\le(a_1{b_1}^n)^2$.
+	          \end{enumerate}
+	          \item Hence using \procedurehr{3.05}, verify that $\frac{1}{2}-\lVert(1+x)_n^{-a}(1+x)_n^a\rVert^2$
+	          \begin{enumerate}
+	            \item $=\frac{1}{2}\lVert 1\rVert^2-\lVert(1+x)_n^{-a}(1+x)_n^a\rVert^2$
+	            \item $\le\lVert 1-(1+x)_n^{-a}(1+x)_n^a\rVert^2$
+	            \item $\le(a_1{b_1}^n)^2$
+	            \item $\le(\frac{a_1a_2}{n})^2$
+	            \item $\le\frac{1}{4}$.
+	          \end{enumerate}
+	          \item Hence verify that $(\frac{1}{2})^2$
+	          \begin{enumerate}
+	            \item $\le\lVert(1+x)_n^{-a}(1+x)_n^a\rVert^2$
+	            \item $\le{a_3}^2\lVert(1+x)_n^a\rVert^2$.
+	          \end{enumerate}
+	          \item Hence verify that $D^2\le\lVert(1+x)_n^a\rVert^2$.
+	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle D,N,p\rangle$.}
 	      \end{enumerate}
 	  \procedure{wed2407191627}
 	    \objective
