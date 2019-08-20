@@ -4588,6 +4588,46 @@
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle D,N,p\rangle$.}
 	      \end{enumerate}
+	  \procedure{tue2008190849}
+	    \objective
+	      Choose two rational numbers $A>0$ and $1>X>0$. The objective of the following instructions is to construct positive rational numbers $B,C,D$, and a procedure $p(x,a,b,n)$ to show that $\lVert(1+x)_n^{a-b}-\frac{(1+x)_n^a}{(1+x)_n^b}\rVert^2\le(BC^n)^2$ when complex numbers $x,a,b$ and an integer $n$ such that $\lVert x\rVert^2\le X^2$, $\lVert a\rVert^2\le A^2$, $\lVert b\rVert^2\le A^2$, and $n>D$ are chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Execute \procedurehr{wed2407191521} on $\langle A,X\rangle$ and let $\langle a_1,b_1,p_1\rangle$ receive.
+	        \item Execute \procedurehr{tue2008190712} on $\langle A,X\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
+	        \item Execute \procedurehr{wed2407191611} on $\langle A,X\rangle$ and let $\langle a_3,p_3\rangle$ receive.
+	        \item Let $B=(1+\frac{a_3}{a_2})a_1$.
+	        \item Let $C=b_1$.
+	        \item Let $D=b_2$.
+	        \item Let $p(x,a,b,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item Execute procedure $p_2$ on $\langle x,b,n\rangle$.
+	          \item Hence verify that $\lVert(1+x)_n^b\rVert^2\ge{a_2}^2$.
+	          \item Execute procedure $p_1$ on $\langle x,b,-b,n\rangle$.
+	          \item Hence verify that $\lVert(1+x)_n^b(1+x)_n^{-b}-1\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert(1+x)_n^b(1+x)_n^{-b}-(1+x)_n^{b-b}\rVert^2$
+	            \item $\le(a_1{b_1}^n)^2$.
+	          \end{enumerate}
+	          \item Hence verify that $\lVert(1+x)_n^{-b}-\frac{1}{(1+x)_n^b}\rVert^2$
+	          \begin{enumerate}
+	            \item $=\frac{\lVert(1+x)_n^b(1+x)_n^{-b}-1\rVert^2}{\lVert(1+x)_n^b\rVert^2}$
+	            \item $\le(\frac{a_1{b_1}^n}{a_2})^2$.
+	          \end{enumerate}
+	          \item Execute procedure $p_3$ on $\langle x,n,a,1\rangle$.
+	          \item Hence verify that $\lVert((1+x)_n^a)^1\rVert^2\le{a_3}^2$.
+	          \item Execute procedure $p_1$ on $\langle x,a,-b,n\rangle$.
+	          \item Hence verify that $\lVert(1+x)_n^a(1+x)_n^{-b}-(1+x)_n^{a-b}\rVert^2\le(a_1{b_1}^n)^2$.
+	          \item Hence verify that $\lVert(1+x)_n^{a-b}-\frac{(1+x)_n^a}{(1+x)_n^b}\rVert^2$
+	          \begin{enumerate}
+	            \item $=\lVert(1+x)_n^{a-b}-(1+x)_n^a(1+x)_n^{-b}+(1+x)_n^a((1+x)_n^{-b}-\frac{1}{(1+x)_n^b})\rVert^2$
+	            \item $\le(a_1{b_1}^n+a_3\cdot\frac{a_1{b_1}^n}{a_2})^2$
+	            \item $=((1+\frac{a_3}{a_2})a_1{b_1}^n)^2$
+	            \item $=(BC^n)^2$.
+	          \end{enumerate}
+	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle B,C,D,p\rangle$.}
+	      \end{enumerate}
 	  \procedure{wed2407191627}
 	    \objective
 	      Choose two rational numbers $A>0$, $1>X>0$. The objective of the following instructions is to construct rational numbers $G>0$, $0<C<1$, and a procedure $p(x,n,a,k)$ to show that $(1+x)_n^{ka}\equiv((1+x)_n^a)^k\err{GkC^n}$ when a non-negative integer $k$ and complex numbers $x,a$ such that $\lVert x\rVert^2\le X^2$ and $\lVert ka\rVert^2<A^2$ are chosen.
