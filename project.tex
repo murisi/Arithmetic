@@ -6027,12 +6027,13 @@
 		    \end{enumerate}
 		\procedure{tue2008191254}
 		  \objective
-		    Choose two rational numbers $X>D>0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $\lVert-\frac{1}{x^2}\rVert^2\le a^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\ge X^2$ and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\frac{1}{y}\equiv-\frac{1}{x^2}\err{\frac{b}{n}+c\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+		    Choose two rational numbers $X>D>0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $\lVert-\frac{1}{x^2}\rVert^2\le a^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\ge X^2$ and $n>b$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\frac{1}{y}\equiv-\frac{1}{x^2}\err{\frac{c}{n}+d\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
 		  \implementation
 		    \begin{enumerate}
 		      \item Let $a=\frac{1}{X^2}$.
 		      \item Let $b=0$.
-		      \item Let $c=\frac{1}{X^2(X-D)}$.
+		      \item Let $c=0$.
+		      \item Let $d=\frac{1}{X^2(X-D)}$.
 		      \item Let $p(x,n)$ be the following procedure:
 		      \begin{enumerate}
 		        \item \textbf{Verify that $\lVert\frac{1}{x^2}\rVert^2\le(\frac{1}{X})^4=a^2$.}
@@ -6045,10 +6046,43 @@
 		          \item $=\lVert\frac{1}{x^2}-\frac{1}{x(x+\delta)}\rVert^2$
 		          \item $=\lVert\frac{\delta}{x^2(x+\delta)}\rVert^2$
 		          \item $\le\frac{\{\delta\}^2}{X^4(X-D)^2}$
-		          \item $=(\frac{b}{n}+c\{\delta\})^2$.
+		          \item $=(\frac{c}{n}+d\{\delta\})^2$.
 		        \end{enumerate}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,b,c,d,p,q\rangle$.}
+		    \end{enumerate}
+		\procedure{tue2008191341}
+		  \objective
+		    Choose a positive integer $N$ and positive rational numbers $X<Y$. The objective of the following instructions is to construct positive rational numbers $a,b,c,d,e$, a procedure $p(x,n)$ to show that $\lVert-Nx^{-N-1}\rVert^2\le a^2$ when a complex number $x$ and a positive integer $n$ such that $X^2\le\lVert x\rVert^2\le Y^2$ and $n>b$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}y^{-N}\equiv-Nx^{-N-1}\err{\frac{c}{n}+d\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le e^2$ is chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute the following in post-order:
+		      \begin{enumerate}
+		        \item Execute \procedurehr{sat0308191134} on $\langle q_2,q_3,q_4,q_5,q_6\rangle$ and let $\langle a,b,c,d,e,q_0,q_1\rangle$ receive.
+		        \begin{enumerate}
+		          \item Execute \procedurehr{tue2008191254} on $\langle X^N,\frac{X^N}{2}\rangle$ and let $\langle\cdots,q_2,q_3\rangle$ receive.
+		          \item Execute \procedurehr{tue2008191209} on $\langle N,Y,Y\rangle$ and let $\langle\cdots,q_4,q_5\rangle$ receive.
+		          \item Let $q_6(x,n)$ be the following procedure:
+		          \begin{enumerate}
+		            \item Verify that $\lVert x^N\rVert^2=(\lVert x\rVert^2)^N\ge(X^2)^N=(X^N)^2$.
+		          \end{enumerate}
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item Let $p(x,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $q_0$ on $\langle x,n\rangle$.
+		        \item Hence verify that $\lVert-Nx^{-N-1}\rVert^2=\lVert-\frac{1}{(x^N)^2}\cdot Nx^{N-1}\rVert^2\le a^2$.
+		      \end{enumerate}
+		      \item Let $q(x,n,\delta)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $q_1$ on $\langle x,n,\delta\rangle$.
+		        \item Hence verify that $\lVert\frac{(x+\delta)^{-N}-x^{-N}}{\delta}+Nx^{-N-1}\rVert^2$
+		        \begin{enumerate}
+		          \item $\lVert\frac{1}{\delta}(((x+\delta)^N)^{-1}-(x^N)^{-1})-(-\frac{1}{(x^N)^2}\cdot Nx^{N-1})\rVert^2$
+		          \item $(\frac{c}{n}+d\{\delta\})^2$.
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a,b,c,d,e,p,q\rangle$.}
 		    \end{enumerate}
 		\procedure{3.17}
 			\objective
