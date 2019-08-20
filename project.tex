@@ -5840,6 +5840,44 @@
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a_5,b_5,a_6,b_6,c_6,q_5,q_6\rangle$.}
 		    \end{enumerate}
+		\procedure{tue2008191001}
+		  \objective
+		    Choose the following:
+		    \begin{enumerate}
+		      \item A complex number $B$
+		      \item A procedure $q_1(x,n)$ to show that $\lVert p'_n(x)\rVert^2\le {a_1}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>b_1$ are chosen.
+		      \item A procedure $q_2(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}p_n(y)\equiv p'(x)\err{\frac{a_2}{n}+b_2\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $P(x)$, $n>b_1$, and $\lVert\delta\rVert^2\le{c_2}^2$ are chosen.
+		    \end{enumerate}
+		    The objective of the following instructions is to construct the following:
+		    \begin{enumerate}
+		      \item Rational numbers $a_3,b_3,a_4,b_4,c_4$.
+		      \item A procedure $q_3(x,n)$ to show that $\lVert Bp'_n(x)\rVert^2\le{a_3}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>b_3$ are chosen.
+		      \item A procedure $q_4(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}(Bp_n(y))\equiv Bp'_n(x)\err{\frac{a_4}{n}+b_4\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $P(x)$, $n>b_3$, and $\lVert\delta\rVert^2\le{c_4}^2$ are chosen.
+		    \end{enumerate}
+		  \implementation
+		    \begin{enumerate}
+		      \item Let $a_3=\{B\}a_1$.
+		      \item Let $b_3=b_1$.
+		      \item Let $a_4=\{B\}a_2$.
+		      \item Let $b_4=\{B\}b_2$.
+		      \item Let $c_4=c_2$.
+		      \item Let $q_3(x,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $q_1$ on $\langle x,n\rangle$.
+		        \item Hence verify that $\lVert Bp'_n(x)\rVert^2\le\{B\}^2{a_1}^2={a_3}^2$.
+		      \end{enumerate}
+		      \item Let $q_4(x,n,\delta)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $q_4$ on $\langle x,n,\delta\rangle$.
+		        \item Hence verify that $\lVert\frac{Bp_n(x+\delta)-Bp_n(x)}{\delta}-Bp'_n(x)\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert B\rVert^2\lVert\frac{p_n(x+\delta)-p_n(x)}{\delta}-p'_n(x)\rVert^2$
+		          \item $\le\{B\}^2(\frac{a_2}{n}+b_2\{\delta\})^2$
+		          \item $=(\frac{a_4}{n}+b_4\{\delta\})^2$.
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a_3,b_3,a_4,b_4,c_4,q_3,q_4\rangle$.}
+		    \end{enumerate}
 		\procedure{mon1908191207}
 		  \objective
 		    Choose the following:
