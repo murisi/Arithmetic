@@ -6025,6 +6025,31 @@
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,b,c,d,p,q\rangle$.}
 		    \end{enumerate}
+		\procedure{tue2008191254}
+		  \objective
+		    Choose two rational numbers $X>D>0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $\lVert-\frac{1}{x^2}\rVert^2\le a^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\ge X^2$ and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\frac{1}{y}\equiv-\frac{1}{x^2}\err{\frac{b}{n}+c\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Let $a=\frac{1}{X^2}$.
+		      \item Let $b=0$.
+		      \item Let $c=\frac{1}{X^2(X-D)}$.
+		      \item Let $p(x,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item \textbf{Verify that $\lVert\frac{1}{x^2}\rVert^2\le(\frac{1}{X})^4=a^2$.}
+		      \end{enumerate}
+		      \item Let $q(x,n,\delta)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Verify that $\lVert\frac{1}{\delta}(\frac{1}{x+\delta}-\frac{1}{x})+\frac{1}{x^2}\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert\frac{1}{\delta}\cdot\frac{-\delta}{x(x+\delta)}+\frac{1}{x^2}\rVert^2$
+		          \item $=\lVert\frac{1}{x^2}-\frac{1}{x(x+\delta)}\rVert^2$
+		          \item $=\lVert\frac{\delta}{x^2(x+\delta)}\rVert^2$
+		          \item $\le\frac{\{\delta\}^2}{X^4(X-D)^2}$
+		          \item $=(\frac{b}{n}+c\{\delta\})^2$.
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a,b,c,d,p,q\rangle$.}
+		    \end{enumerate}
 		\procedure{3.17}
 			\objective
 				Choose a complex number $x$. The objective of the following instructions is to show that $\lvert\Re(x)\rvert\le\max(1,\lVert x\rVert^2)$.
