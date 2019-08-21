@@ -6307,6 +6307,32 @@
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle l,d,a,b,p,q\rangle$.}
 		    \end{enumerate}
+		\procedure{wed2108191324}
+		  \objective
+		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct a rational number $f$ such that $0<f<1$, and a procedure $p(x)$ to show that $\lVert\frac{x-1}{x+1}\rVert^2\le f^2$ when a complex number $x$ such that $\Re(x)\ge\epsilon$ and $\lVert x\rVert^2\le X^2$ is chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Let $f=1-\frac{2\epsilon}{X^2+1+2\epsilon}$.
+		      \item Verify that $0<f<1$.
+		      \item Let $p(x)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Verify that $f^2=1-\frac{4\epsilon}{X^2+1+2\epsilon}+(\frac{2\epsilon}{X^2+1+2\epsilon})^2\ge 1-\frac{4\epsilon}{X^2+1+2\epsilon}$.
+		        \item Verify that $\frac{4\epsilon}{X^2+1+2\epsilon}\ge 1-f^2$.
+		        \item Hence verify that $X^2+1+2\epsilon\le\frac{4\epsilon}{1-f^2}$.
+		        \item Hence verify that $\lVert x\rVert^2$
+		        \begin{enumerate}
+		          \item $\le X^2$
+		          \item $\le\frac{4\epsilon}{1-f^2}-(1+2\epsilon)$
+		          \item $=\frac{4\epsilon-1+f^2-2\epsilon+2\epsilon f^2}{1-f^2}$
+		          \item $=\frac{f^2-1+2\epsilon(1+f^2)}{1-f^2}$
+		          \item $\le\frac{f^2-1+2\Re(x)(1+f^2)}{1-f^2}$.
+		        \end{enumerate}
+		        \item Hence verify that $(1-f^2)(\Re(x)^2+\Im(x)^2)\le f^2-1+2\Re(x)(1+f^2)$.
+		        \item Hence verify that $(\Re(x)-1)^2+\Im(x)^2\le f^2((\Re(x)+1)^2+\Im(x)^2)$
+		        \item \textbf{Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le f^2$.}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle f,p\rangle$.}
+		    \end{enumerate}
 		\declaration{3.30}
 			The notation \gls{differentialintegral}, where $R$ is a non-empty list of complex numbers and $f[\#r,r,dr]$ is a function of $\#r,r,dr$, will be used as a shorthand for $\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_{t})$.
 		\procedure{3.86}
