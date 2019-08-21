@@ -6264,6 +6264,49 @@
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle l,d,a,b,p,q\rangle$.}
 		    \end{enumerate}
+		\procedure{wed2108191140}
+		  \objective
+		    Choose non-negative rational numbers $X,D$ such that $X+D<1$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $p(x,n)$ to show that $\lVert\frac{1}{1+x}\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\ln_n(1+y)\equiv\frac{1}{1+x}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute \procedurehr{wed2407191422} on $\langle X,1\rangle$ and let $\langle a_1,b_1,p_1\rangle$ receive.
+		      \item Execute \procedurehr{wed2108191034} on $\langle X,D\rangle$ and let $\langle a_2,b_2,c_2,b,p_2,q_2\rangle$ receive.
+		      \item Let $l=\frac{1}{1-X}$.
+		      \item Let $d=\max(1,b_2)$.
+		      \item Let $a=2a_1l+c_2$.
+		      \item Let $p(x,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Verify that $\Re(x)^2\le\lVert x\rVert^2\le X^2$.
+		        \item Hence verify that $\lvert\Re(x)\rvert\le X$.
+		        \item Hence verify that $\lVert\frac{1}{1+x}\rVert^2$
+		        \begin{enumerate}
+		          \item $=\frac{1}{\lVert 1+x\rVert^2}$
+		          \item $\le\frac{1}{\Re(1+x)^2}$
+		          \item $=\frac{1}{(1+\Re(x))^2}$
+		          \item $\le\frac{1}{(1-X)^2}$
+		          \item $=l^2$.
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item Let $q(x,n,\delta)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $p$ on $\langle x,n\rangle$.
+		        \item Hence verify that $\lVert\frac{1}{1+x}\rVert^2\le l^2$.
+		        \item Execute procedure $p_1$ on $\langle-x,n-1\rangle$.
+		        \item Hence verify that $\lVert(n-1)(-x)^{n-1}\rVert^2\le(a_1{b_1}^{n-1})^2\le{a_1}^2$.
+		        \item Hence verify that $\lVert(-x)^{n-1}\rVert^2\le(\frac{a_1}{n-1})^2\le(\frac{2a_1}{n})^2$.
+		        \item Execute procedure $q_2$ on $\langle x,n,\delta\rangle$.
+		        \item Hence verify that $\lVert\Delta_{y=x}^{+\delta}\ln_n(1+y)-(1+x)_{n-1}^{-1}\rVert^2\le(\frac{c_2}{n}+b\{\delta\})^2$.
+		        \item Hence verify that $\lVert\Delta_{y=x}^{+\delta}\ln_n(1+y)-\frac{1}{1+x}\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert\Delta_{y=x}^{+\delta}\ln_n(1+y)-(1+x)_{n-1}^{-1}+(1+x)_{n-1}^{-1}-\frac{1}{1+x}\rVert^2$
+		          \item $=\lVert\Delta_{y=x}^{+\delta}\ln_n(1+y)-(1+x)_{n-1}^{-1}+\frac{1-(-x)^{n-1}}{1-(-x)}-\frac{1}{1+x}\rVert^2$
+		          \item $=\lVert\Delta_{y=x}^{+\delta}\ln_n(1+y)-(1+x)_{n-1}^{-1}-\frac{(-x)^{n-1}}{1+x}\rVert^2$
+		          \item $\le(\frac{c_2}{n}+b\{\delta\}+\frac{2a_1l}{n})^2$
+		          \item $\le(\frac{a}{n}+b\{\delta\})^2$
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle l,d,a,b,p,q\rangle$.}
+		    \end{enumerate}
 		\declaration{3.30}
 			The notation \gls{differentialintegral}, where $R$ is a non-empty list of complex numbers and $f[\#r,r,dr]$ is a function of $\#r,r,dr$, will be used as a shorthand for $\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_{t})$.
 		\procedure{3.86}
