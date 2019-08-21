@@ -6227,6 +6227,43 @@
 				Choose non-negative rational numbers $X,D$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $q(x,n)$ to show that $\lVert-\sin_n(x)\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $p(x,n,\delta)$ to show that $\diff_{y=x}^{+\delta}\cos_n(y)\equiv-\sin_n(x)\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.27}.
+		\procedure{wed2108191034}
+		  \objective
+		    Choose non-negative rational numbers $X,D$ such that $X+D<1$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $p(x,n)$ to show that $\lVert(1+x)_{n-1}^{-1}\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\ln_n(1+y)\equiv(1+x)_{n-1}^{-1}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute \procedurehr{wed2407191611} on $\langle 1,X\rangle$ and let $\langle a_1,p_1\rangle$ receive.
+		      \item Let $l=a_1$.
+		      \item Let $d=1$.
+		      \item Let $a=0$.
+		      \item Let $b=\frac{1}{D^2((X+D)^{-1}-1)}$.
+		      \item Let $p(x,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $p_1$ on $\langle x,n-1,-1,1\rangle$.
+		        \item Hence verify that $\lVert(1+x)_{n-1}^{-1}\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert((1+x)_{n-1}^{-1})^1\rVert^2$
+		          \item $\le {a_1}^2$.
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item Let $q(x,n,\delta)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Using \procedurehr{2.05}, verify that $\lVert\Delta_{y=x}^{+\delta}\ln_n(1+y)-(1+x)_{n-1}^{-1}\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert\frac{1}{\delta}(\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}(x+\delta)^r-\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}x^r)-\sum_r^{[0:n-1]}\binom{-1}{r}x^r\rVert^2$
+		          \item $=\lVert\frac{1}{\delta}\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}(\sum_k^{[0:r+1]}\binom{r}{k}x^k\delta^{r-k}-x^r)-\sum_r^{[0:n-1]}(-1)^rx^r\rVert^2$
+		          \item $=\lVert\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}\sum_k^{[0:r]}\binom{r}{k}x^k\delta^{r-1-k}-\sum_r^{[0:n-1]}(-1)^rx^r\rVert^2$
+		          \item $=\lVert\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}(\sum_k^{[0:r]}\binom{r}{k}x^k\delta^{r-1-k}-rx^{r-1})\rVert^2$
+		          \item $=\lVert\delta\rVert^2\lVert\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}\sum_k^{[0:r-1]}\binom{r}{k}x^k\delta^{r-2-k}\rVert^2$
+		          \item $\le\lVert\delta\rVert^2(\sum_r^{[1:n]}\sum_k^{[0:r-1]}\binom{r}{k}X^kD^{r-2-k})^2$
+		          \item $=\lVert\delta\rVert^2(\frac{1}{D^2}\sum_r^{[1:n]}\sum_k^{[0:r-1]}\binom{r}{k}X^kD^{r-k})^2$
+		          \item $\le\lVert\delta\rVert^2(\frac{1}{D^2}\sum_r^{[1:n]}(X+D)^r)^2$
+		          \item $\le\lVert\delta\rVert^2(\frac{1}{D^2((X+D)^{-1}-1)})^2$
+		          \item $=(\frac{a}{n}+b\{\delta\})^2$.
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle l,d,a,b,p,q\rangle$.}
+		    \end{enumerate}
 		\declaration{3.30}
 			The notation \gls{differentialintegral}, where $R$ is a non-empty list of complex numbers and $f[\#r,r,dr]$ is a function of $\#r,r,dr$, will be used as a shorthand for $\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_{t})$.
 		\procedure{3.86}
