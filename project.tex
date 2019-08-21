@@ -6333,6 +6333,56 @@
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle f,p\rangle$.}
 		    \end{enumerate}
+		\declaration{wed2108191408}
+		  The notation $\ln_n(x)$, where $x$ is a complex number, will be used as a shorthand for $\ln_n(1+\frac{x-1}{x+1})-\ln_n(1-\frac{x-1}{x+1})$.
+		\procedure{wed2108191401}
+		  \objective
+		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ and a procedure $p(x,n,k)$ to show that $\exp_n(\ln_k(x))\equiv x\err{\frac{an}{k}+\frac{c}{n}}$ when a complex number $x$ and integers $k,n$ such that $\Re(x)\ge\epsilon$, $\lVert x\rVert^2\le X^2$, $n>e$, and $k>d$ are chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle f,p_0\rangle$ receive.
+		      \item Execute \procedurehr{fri2607191736} on $\langle f\rangle$ and let $\langle a_1,p_1\rangle$ receive.
+		      \item Execute \procedurehr{thu2507191359} on $\langle a_1\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
+		      \item Execute \procedurehr{3.14} on $\langle a_1\rangle$ and let $\langle a_3,b_3,p_3\rangle$ receive.
+		      \item Execute \procedurehr{fri2607191801} on $\langle f\rangle$ and let $\langle a_4,c_4,d,e_4,p_4\rangle$ receive.
+		      \item Let $a=\frac{a_4}{a_3}+\frac{a_4(1+f)}{a_3(1-f)}$.
+		      \item Let $c=a_2+\frac{c_4}{a_3}+\frac{c_4(1+f)}{a_3(1-f)}$.
+		      \item Let $e=\max(b_2,b_3,e_4)$.
+		      \item Let $p(x,n,k)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $p_0$ on $\langle x\rangle$.
+		        \item Hence verify that $\Re(\frac{x-1}{x+1})^2\le\lVert\frac{x-1}{x+1}\rVert^2\le f^2$.
+		        \item Hence verify that $\lvert\Re(\frac{x-1}{x+1})\rvert\le f$.
+		        \item Execute procedure $p_1$ on $\langle\frac{x-1}{x+1},k\rangle$.
+		        \item Hence verify that $\lVert\ln_k(1+\frac{x-1}{x+1})\rVert^2\le{a_1}^2$.
+		        \item Execute procedure $p_1$ on $\langle-\frac{x-1}{x+1},k\rangle$.
+		        \item Hence verify that $\lVert\ln_k(1-\frac{x-1}{x+1})\rVert^2\le{a_1}^2$.
+		        \item Execute procedure $p_2$ on $\langle\ln_k(1+\frac{x-1}{x+1}),\ln_k(1-\frac{x-1}{x+1}),n\rangle$.
+		        \item Hence verify that $\lVert\exp_n(\ln_k(1+\frac{x-1}{x+1})-\ln_k(1-\frac{x-1}{x+1}))-\frac{\exp_n(\ln_k(1+\frac{x-1}{x+1}))}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}\rVert^2\le(\frac{a_2}{n})^2$.
+		        \item Execute procedure $p_4$ on $\langle\frac{x-1}{x+1},n,k\rangle$.
+		        \item Hence verify that $\lVert\exp_n(\ln_k(1+\frac{x-1}{x+1}))-(1+\frac{x-1}{x+1})\rVert^2\le(\frac{a_4n}{k}+\frac{c_4}{n})^2$.
+		        \item Execute procedure $p_4$ on $\langle-\frac{x-1}{x+1},n,k\rangle$.
+		        \item Hence verify that $\lVert\exp_n(\ln_k(1-\frac{x-1}{x+1}))-(1-\frac{x-1}{x+1})\rVert^2\le(\frac{a_4n}{k}+\frac{c_4}{n})^2$.
+		        \item Execute procedure $p_3$ on $\langle\ln_k(1-\frac{x-1}{x+1}),n\rangle$.
+		        \item Hence verify that $\lVert\exp_n(\ln_k(1-\frac{x-1}{x+1}))\rVert^2\ge{a_3}^2$.
+		        \item Hence verify that $\lVert\frac{\exp_n(\ln_k(1+\frac{x-1}{x+1}))}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}-\frac{1+\frac{x-1}{x+1}}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}\rVert^2\le\frac{1}{{a_3}^2}(\frac{a_4n}{k}+\frac{c_4}{n})^2$.
+		        \item Also verify that $\lVert\frac{1+\frac{x-1}{x+1}}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}-\frac{1+\frac{x-1}{x+1}}{1-\frac{x-1}{x+1}}\rVert^2$
+		        \begin{enumerate}
+		          \item $\le(1+f)^2\lVert\exp_n(\ln_k(1-\frac{x-1}{x+1}))^{-1}-(1-\frac{x-1}{x+1})^{-1}\rVert^2$
+		          \item $\le(1+f)^2\lVert\frac{(1-\frac{x-1}{x+1})-\exp_n(\ln_k(1-\frac{x-1}{x+1}))}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))(1-\frac{x-1}{x+1})}\rVert^2$
+		          \item $\le(\frac{a_4n}{k}+\frac{c_4}{n})^2\frac{(1+f)^2}{{a_3}^2\Re(1-\frac{x-1}{x+1})^2}$
+		          \item $\le(\frac{a_4n}{k}+\frac{c_4}{n})^2\frac{(1+f)^2}{{a_3}^2(1-\Re(\frac{x-1}{x+1}))^2}$
+		          \item $\le(\frac{1+f}{a_3(1-f)})^2(\frac{a_4n}{k}+\frac{c_4}{n})^2$.
+		        \end{enumerate}
+		        \item Hence verify that $\lVert\exp_n(\ln_k(x))-x\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert\exp_n(\ln_k(1+\frac{x-1}{x+1})-\ln_k(1-\frac{x-1}{x+1}))-\frac{\exp_n(\ln_k(1+\frac{x-1}{x+1}))}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}+\frac{\exp_n(\ln_k(1+\frac{x-1}{x+1}))}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}-\frac{1+\frac{x-1}{x+1}}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}+\frac{1+\frac{x-1}{x+1}}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}-\frac{1+\frac{x-1}{x+1}}{1-\frac{x-1}{x+1}}\rVert^2$
+		          \item $\le(\frac{a_2}{n}+\frac{1}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n})+(\frac{1+f}{a_3(1-f)})(\frac{a_4n}{k}+\frac{c_4}{n}))^2$
+		          \item $=(\frac{an}{k}+\frac{c}{n})^2$.
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
+		    \end{enumerate}
 		\declaration{3.30}
 			The notation \gls{differentialintegral}, where $R$ is a non-empty list of complex numbers and $f[\#r,r,dr]$ is a function of $\#r,r,dr$, will be used as a shorthand for $\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_{t})$.
 		\procedure{3.86}
