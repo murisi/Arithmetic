@@ -4590,7 +4590,7 @@
 	      \end{enumerate}
 	  \procedure{tue2008190849}
 	    \objective
-	      Choose two rational numbers $A>0$ and $1>X>0$. The objective of the following instructions is to construct positive rational numbers $B,C,D$, and a procedure $p(x,a,b,n)$ to show that $\lVert(1+x)_n^{a-b}-\frac{(1+x)_n^a}{(1+x)_n^b}\rVert^2\le(BC^n)^2$ when complex numbers $x,a,b$ and an integer $n$ such that $\lVert x\rVert^2\le X^2$, $\lVert a\rVert^2\le A^2$, $\lVert b\rVert^2\le A^2$, and $n>D$ are chosen.
+	      Choose two rational numbers $A>0$ and $1>X>0$. The objective of the following instructions is to construct positive rational numbers $B,C,D$, and a procedure $p(x,a,b,n)$ to show that $(1+x)_n^{a-b}\equiv\frac{(1+x)_n^a}{(1+x)_n^b}\err{BC^n}$ when complex numbers $x,a,b$ and an integer $n$ such that $\lVert x\rVert^2\le X^2$, $\lVert a\rVert^2\le A^2$, $\lVert b\rVert^2\le A^2$, and $n>D$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Execute \procedurehr{wed2407191521} on $\langle A,X\rangle$ and let $\langle a_1,C,p_1\rangle$ receive.
@@ -6084,115 +6084,100 @@
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,b,c,d,e,p,q\rangle$.}
 		    \end{enumerate}
-		\procedure{3.17}
-			\objective
-				Choose a complex number $x$. The objective of the following instructions is to show that $\lvert\Re(x)\rvert\le\max(1,\lVert x\rVert^2)$.
-			\implementation
-				\begin{enumerate}
-					\item If $\lvert\Re(x)\rvert<1$, then do the following:
-					\begin{enumerate}
-						\item \textbf{Verify that $\lvert\Re(x)\rvert<1\le\max(1,\lVert x\rVert^2)$.}
-					\end{enumerate}
-					\item Otherwise do the following:
-					\begin{enumerate}
-						\item \textbf{Verify that $\lvert\Re(x)\rvert\le\Re(x)^2\le\lVert x\rVert^2\le\max(1,\lVert x\rVert^2)$.}
-					\end{enumerate}
-				\end{enumerate}
 		\procedure{3.18}
 			\objective
-				Choose a rational number $D\ge 0$. The objective of the following instructions is to construct two rational numbers $a,c$ and a procedure, $p(dx,n)$, to show that $\lVert\diff_{x=0}^{+dx}\exp_n(x)-1\rVert^2\le a\lVert dx\rVert^2$ when a complex number $dx$ and a positive integer $n>c$ such that $\lVert dx\rVert^2\le D$ is chosen.
+				Choose a rational number $D\ge 0$. The objective of the following instructions is to construct two rational numbers $a,c$ and a procedure, $p(n,\delta)$, to show that $\diff_{x=0}^{+\delta}\exp_n(x)\equiv 1\err{a\{\delta\}}$ when a complex number $\delta$ and a positive integer $n$ such that $\lVert \delta\rVert^2\le D^2$ and $n>c$ are chosen.
 			\implementation
 				\begin{enumerate}
-					\item Let $e=2\max(1,D)+D$.
+					\item Let $e=2D+D^2$.
 					\item Execute \procedurehr{3.10} on $\langle e\rangle$ and let $\langle d,c,q\rangle$ receive.
 					\item Let $a=\max(1,d)$.
-					\item Let $p(dx,n)$ be the following procedure:
+					\item Let $p(\delta,n)$ be the following procedure:
 					\begin{enumerate}
 						\item Verify that $n>c$.
-						\item Hence execute procedure $q$ on $\langle D,n\rangle$.
-						\item Hence verify that $\exp_n(D)\le d$.
-						\item Now using \procedurehr{2.04}, \procedurehr{3.04} and \procedurehr{3.17}, verify that $\lVert\exp_n(dx)-1-dx\rVert^2$
+						\item Hence execute procedure $q$ on $\langle e,n\rangle$.
+						\item Hence verify that $\exp_n(e)\le d^2$.
+						\item Verify that $\lvert\Re(\delta)\rvert^2\le\lVert\delta\rVert^2\le D^2$.
+						\item Hence verify that $\lvert\Re(\delta)\rvert\le D$.
+						\item Now using \procedurehr{2.04} and \procedurehr{3.04}, verify that $\lVert\exp_n(\delta)-1-\delta\rVert^2$
 						\begin{enumerate}
-							\item $=\lVert(1+\frac{dx}{n})^n-1-dx\rVert^2$
-							\item $=\lVert\frac{dx}{n}\sum_r^{[0:n]}(1+\frac{dx}{n})^r-n\frac{dx}{n}\rVert^2$
-							\item $=\lVert\frac{dx}{n}\sum_r^{[0:n]}((1+\frac{dx}{n})^r-1)\rVert^2$
-							\item $=\lVert\frac{dx}{n}\sum_r^{[0:n]}\frac{dx}{n}\sum_k^{[0:r]}(1+\frac{dx}{n})^k\rVert^2$
-							\item $=\frac{\lVert dx\rVert^4}{n^4}\lVert\sum_r^{[0:n]}\sum_k^{[0:r]}(1+\frac{dx}{n})^k\rVert^2$
-							\item $\le\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\lVert 1+\frac{dx}{n}\rVert^{2k}$
-							\item $\le\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,\lVert 1+\frac{dx}{n}\rVert^{2n})$
-							\item $=\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,(1+\frac{2\Re(dx)}{n}+\frac{\lVert dx\rVert^2}{n^2})^{n})$
-							\item $\le\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,(1+\frac{2\lvert\Re(dx)\rvert}{n}+\frac{\lVert dx\rVert^2}{n^2})^{n})$
-							\item $\le\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,(1+\frac{e}{n})^{n})$
-							\item $\le\frac{\lVert dx\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,d)$
-							\item $\le a\lVert dx\rVert^4$.
+							\item $=\lVert(1+\frac{\delta}{n})^n-1-\delta\rVert^2$
+							\item $=\lVert\frac{\delta}{n}\sum_r^{[0:n]}(1+\frac{\delta}{n})^r-n\frac{\delta}{n}\rVert^2$
+							\item $=\lVert\frac{\delta}{n}\sum_r^{[0:n]}((1+\frac{\delta}{n})^r-1)\rVert^2$
+							\item $=\lVert\frac{\delta}{n}\sum_r^{[0:n]}\frac{\delta}{n}\sum_k^{[0:r]}(1+\frac{\delta}{n})^k\rVert^2$
+							\item $=\frac{\lVert \delta\rVert^4}{n^4}\lVert\sum_r^{[0:n]}\sum_k^{[0:r]}(1+\frac{\delta}{n})^k\rVert^2$
+							\item $\le\frac{\lVert \delta\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\lVert 1+\frac{\delta}{n}\rVert^{2k}$
+							\item $\le\frac{\lVert \delta\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,\lVert 1+\frac{\delta}{n}\rVert^{2n})$
+							\item $=\frac{\lVert \delta\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,(1+\frac{2\Re(\delta)}{n}+\frac{\lVert \delta\rVert^2}{n^2})^{n})$
+							\item $\le\frac{\lVert \delta\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,(1+\frac{2\lvert\Re(\delta)\rvert}{n}+\frac{\lVert \delta\rVert^2}{n^2})^{n})$
+							\item $\le\frac{\lVert \delta\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,(1+\frac{e}{n})^{n})$
+							\item $\le\frac{\lVert \delta\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,d^2)$
+							\item $\le a^2\lVert \delta\rVert^4$.
 						\end{enumerate}
-						\item \textbf{Therefore verify that $\lVert\diff_{x=0}^{+dx}\exp_n(x)-1\rVert^2\le a\lVert dx\rVert^2$.}
+						\item \textbf{Therefore verify that $\lVert\diff_{x=0}^{+\delta}\exp_n(x)-1\rVert^2\le a^2\lVert\delta\rVert^2\le(a\{\delta\})^2$.}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,c,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.19}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct three rational numbers $a,b,d$, and a procedure, $p(x,dx,n)$, to show that $\lVert\diff_{y=x}^{+dx}\exp_n(y)-\exp_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$ when two complex numbers $x,dx$ and a positive integer $n>d$ such that $2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$ are chosen. 
+				Choose two rational numbers $X\ge 0$, $D\ge 0$. The objective of the following instructions is to construct rational numbers $l,a,b,d$, a procedure $t(x,n)$ to show that $\lVert\exp_n(x)\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure, $q(x,n,\delta)$, to show that $\diff_{y=x}^{+\delta}\exp_n(y)\equiv\exp_n(x)\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen. 
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle e,f,q\rangle$ receive.
+					\item Execute \procedurehr{3.15} on $\langle\max(X,D)\rangle$ and let $\langle e,f,u\rangle$ receive.
 					\item Execute \procedurehr{3.18} on $\langle X\rangle$ and let $\langle h,j,r\rangle$ receive.
 					\item Execute \procedurehr{3.13} on $\langle X\rangle$ and let $\langle l,m,t\rangle$ receive.
-					\item Let $a=2eX$.
-					\item Let $b=2lh$.
+					\item Let $a=eX$.
+					\item Let $b=lh$.
 					\item Let $d=\max(f,j,m)$.
-					\item Let $p(x,dx,n)$ be the following procedure:
+					\item Let $p(x,n,\delta)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $n>d\ge f$.
-						\item Hence execute procedure $q$ on $\langle x,dx,n\rangle$.
-						\item Therefore verify that $\lVert\exp_n(x)\exp_n(dx)-\exp_n(x+dx)\rVert^2\le\frac{e\lVert xdx\rVert^2}{n^2}$.
-						\item Verify that $n>d\ge j$.
-						\item Execute procedure $r$ on $\langle dx,n\rangle$.
-						\item Therefore verify that $\lVert\frac{\exp_n(dx)-1}{dx}-1\rVert^2\le h\lVert dx\rVert^2$.
-						\item Verify that $n>d\ge m$.
+						\item Hence execute procedure $u$ on $\langle x,n,\delta\rangle$.
+						\item Therefore verify that $\lVert\exp_n(x)\exp_n(\delta)-\exp_n(x+\delta)\rVert^2\le\frac{e^2\lVert x\delta\rVert^2}{n^2}$.
+						\item Therefore verify that $\lVert\frac{\exp_n(x)\exp_n(\delta)-\exp_n(x+\delta)}{\delta}\rVert^2\le\frac{e^2\lVert x\rVert^2}{n^2}\le(\frac{eX}{n})^2$.
+						\item Execute procedure $r$ on $\langle n,\delta\rangle$.
+						\item Therefore verify that $\lVert\frac{\exp_n(\delta)-1}{\delta}-1\rVert^2\le(h\{\delta\})^2$.
 						\item Execute procedure $t$ on $\langle x,n\rangle$.
-						\item Therefore verify that $\lVert\exp_n(x)\rVert^2\le l$.
-						\item Using \procedurehr{3.04}, verify that $\lVert\exp_n(x+dx)-\exp_n(x)-dx\exp_n(x)\rVert^2$
+						\item Therefore verify that $\lVert\exp_n(x)\rVert^2\le l^2$.
+						\item Using \procedurehr{3.04}, verify that $\lVert\frac{\exp_n(x+\delta)-\exp_n(x)}{\delta}-\exp_n(x)\rVert^2$
 						\begin{enumerate}
-							\item $=\lVert\exp_n(x+dx)-\exp_n(x)\exp_n(dx)+\exp_n(x)\exp_n(dx)-\exp_n(x)-dx\exp_n(x)\rVert^2$
-							\item $\le 2\lVert\exp_n(x+dx)-\exp_n(x)\exp_n(dx)\rVert^2+2\lVert\exp_n(x)\rVert^2\lVert\exp_n(dx)-1-dx\rVert^2$
-							\item $\le\frac{2e\lVert x\rVert^2\lVert dx\rVert^2}{n^2}+2lh\lVert dx\rVert^4$
-							\item $\le\frac{2eX\lVert dx\rVert^2}{n^2}+2lh\lVert dx\rVert^4$
+							\item $=\lVert\frac{1}{\delta}(\exp_n(x+\delta)-\exp_n(x)\exp_n(\delta))+\frac{1}{\delta}(\exp_n(x)\exp_n(\delta)-\exp_n(x)-\delta\exp_n(x))\rVert^2$
+							\item $=\lVert\frac{1}{\delta}(\exp_n(x+\delta)-\exp_n(x)\exp_n(\delta))+\exp_n(x)\frac{\exp_n(\delta)-1-\delta}{\delta}\rVert^2$
+							\item $\le(\frac{eX}{n}+lh\{\delta\})^2$.
 						\end{enumerate}
-						\item \textbf{Therefore verify that $\lVert\diff_{y=x}^{+dx}\exp_n(y)-\exp_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$.}
+						\item \textbf{Therefore verify that $\lVert\diff_{y=x}^{+\delta}\exp_n(y)-\exp_n(x)\rVert^2\le(\frac{a}{n}+b\{\delta\})^2$.}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,d,p\rangle$.}
 				\end{enumerate}
 		 \procedure{3.27}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct three rational numbers $a,b,d$ and a procedure, $p(x,dx,n)$, to show that $\lVert\diff_{y=x}^{+dx}\cos_n(y)+\sin_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$ when two complex numbers $x,dx$ and a positive integer $n>d$ such that $2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$ are chosen.
+				Choose non-negative rational numbers $X,D$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $q(x,n)$ to show that $\lVert-\sin_n(x)\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $p(x,n,\delta)$ to show that $\diff_{y=x}^{+\delta}\cos_n(y)\equiv-\sin_n(x)\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.19} on $\langle X\rangle$ and let $\langle a,b,d,q\rangle$.
-					\item Let $p(x,dx,n)$ be the following procedure:
+					\item Let $q(x,n,\delta)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $2(\lVert ix\rVert^2+\lVert idx\rVert^2)=2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$.
-						\item Verify that $\lVert idx\rVert^2=\lVert dx\rVert^2\le X$.
-						\item Hence execute procedure $q$ on $\langle ix,idx,n\rangle$.
-						\item Hence verify that $\lVert\frac{\exp_n(ix+idx)-\exp_n(ix)}{idx}-\exp_n(ix)\rVert^2\le\frac{a}{n^2}+b\lVert idx\rVert^2$.
-						\item Verify that $2(\lVert -ix\rVert^2+\lVert -idx\rVert^2)=2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$.
-						\item Verify that $\lVert -idx\rVert^2=\lVert dx\rVert^2\le X$.
-						\item Hence execute procedure $q$ on $\langle -ix,-idx,n\rangle$.
-						\item Hence verify that $\lVert\frac{\exp_n(-ix-idx)-\exp_n(-ix)}{-idx}-\exp_n(-ix)\rVert^2\le\frac{a}{n^2}+b\lVert -idx\rVert^2$.
-						\item Using \procedurehr{3.04}, verify that $\lVert\cos_n(x+dx)-\cos_n(x)+\sin_n(x)dx\rVert^2$
+						\item Verify that $2(\lVert ix\rVert^2+\lVert i\delta\rVert^2)=2(\lVert x\rVert^2+\lVert \delta\rVert^2)\le X$.
+						\item Verify that $\lVert i\delta\rVert^2=\lVert \delta\rVert^2\le X$.
+						\item Hence execute procedure $q$ on $\langle ix,i\delta,n\rangle$.
+						\item Hence verify that $\lVert\frac{\exp_n(ix+i\delta)-\exp_n(ix)}{i\delta}-\exp_n(ix)\rVert^2\le\frac{a}{n^2}+b\lVert i\delta\rVert^2$.
+						\item Verify that $2(\lVert -ix\rVert^2+\lVert -i\delta\rVert^2)=2(\lVert x\rVert^2+\lVert \delta\rVert^2)\le X$.
+						\item Verify that $\lVert -i\delta\rVert^2=\lVert \delta\rVert^2\le X$.
+						\item Hence execute procedure $q$ on $\langle -ix,-i\delta,n\rangle$.
+						\item Hence verify that $\lVert\frac{\exp_n(-ix-i\delta)-\exp_n(-ix)}{-i\delta}-\exp_n(-ix)\rVert^2\le\frac{a}{n^2}+b\lVert -i\delta\rVert^2$.
+						\item Using \procedurehr{3.04}, verify that $\lVert\cos_n(x+\delta)-\cos_n(x)+\sin_n(x)\delta\rVert^2$
 						\begin{enumerate}
-							\item $=\lVert\frac{\exp_n(i(x+dx))+\exp_n(-i(x+dx))}{2}-\frac{\exp_n(ix)+\exp_n(-ix)}{2}+\frac{dx\exp_n(ix)-dx\exp_n(-ix)}{2i}\rVert^2$
-							\item $\le\frac{\lVert\exp_n(ix+idx)-\exp_n(ix)-idx\exp_n(ix)\rVert^2}{2}+\frac{\lVert\exp_n(-ix-idx)-\exp_n(-ix)-(-idx)\exp_n(-ix)\rVert^2}{2}$
-							\item $\le\frac{\lVert idx\rVert^2(\frac{a}{n^2}+b\lVert idx\rVert^2)}{2}+\frac{\lVert -idx\rVert^2(\frac{a}{n^2}+b\lVert -idx\rVert^2)}{2}$
-							\item $=\lVert dx\rVert^2(\frac{a}{n^2}+b\lVert dx\rVert^2)$.
+							\item $=\lVert\frac{\exp_n(i(x+\delta))+\exp_n(-i(x+\delta))}{2}-\frac{\exp_n(ix)+\exp_n(-ix)}{2}+\frac{\delta\exp_n(ix)-\delta\exp_n(-ix)}{2i}\rVert^2$
+							\item $\le\frac{\lVert\exp_n(ix+i\delta)-\exp_n(ix)-i\delta\exp_n(ix)\rVert^2}{2}+\frac{\lVert\exp_n(-ix-i\delta)-\exp_n(-ix)-(-i\delta)\exp_n(-ix)\rVert^2}{2}$
+							\item $\le\frac{\lVert i\delta\rVert^2(\frac{a}{n^2}+b\lVert i\delta\rVert^2)}{2}+\frac{\lVert -i\delta\rVert^2(\frac{a}{n^2}+b\lVert -i\delta\rVert^2)}{2}$
+							\item $=\lVert \delta\rVert^2(\frac{a}{n^2}+b\lVert \delta\rVert^2)$.
 						\end{enumerate}
-						\item \textbf{Therefore verify that $\lVert\diff_{y=x}^{+dx}\cos_n(y)+\sin_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$.}
+						\item \textbf{Therefore verify that $\lVert\diff_{y=x}^{+\delta}\cos_n(y)+\sin_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert \delta\rVert^2$.}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,d,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.28}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct three rational numbers $a,b,d$ and a procedure, $p(x,dx,n)$, to show that $\lVert\diff_{y=x}^{+dx}\sin_n(y)-\cos_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert dx\rVert^2$ when two complex numbers $x,dx$ and a positive integer $n>d$ such that $2(\lVert x\rVert^2+\lVert dx\rVert^2)\le X$ are chosen.
+				Choose non-negative rational numbers $X,D$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $q(x,n)$ to show that $\lVert\cos_n(x)\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $p(x,n,\delta)$ to show that $\diff_{y=x}^{+\delta}\sin_n(y)\equiv\cos_n(x)\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.27}.
 		\declaration{3.30}
