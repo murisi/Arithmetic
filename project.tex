@@ -10,6 +10,17 @@
 \usepackage{glossaries}
 \usepackage{multicol}
 \usepackage{tikz}
+\usepackage{enumitem}
+\setlistdepth{8}
+\newlist{instructions}{enumerate}{8}
+\setlist[instructions,1]{label=\roman*)}
+\setlist[instructions,2]{label=\alph*),leftmargin=0.3cm}
+\setlist[instructions,3]{label=\arabic*),leftmargin=0.3cm}
+\setlist[instructions,4]{label=(\roman*),leftmargin=0.3cm}
+\setlist[instructions,5]{label=(\alph*),leftmargin=0.3cm}
+\setlist[instructions,6]{label=(\arabic*),leftmargin=0.3cm}
+\setlist[instructions,7]{label=(\roman*),leftmargin=0.3cm}
+\setlist[instructions,8]{label=(\alph*),leftmargin=0.3cm}
 \hypersetup{
 	colorlinks = true,
 	linktoc = all,
@@ -6150,34 +6161,70 @@
 				\end{enumerate}
 		 \procedure{3.27}
 			\objective
-				Choose non-negative rational numbers $X,D$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $q(x,n)$ to show that $\lVert-\sin_n(x)\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $p(x,n,\delta)$ to show that $\diff_{y=x}^{+\delta}\cos_n(y)\equiv-\sin_n(x)\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+				Choose non-negative rational numbers $X,D$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $q(x,n)$ to show that $\lVert\cos_n(x)\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $p(x,n,\delta)$ to show that $\diff_{y=x}^{+\delta}\sin_n(y)\equiv\cos_n(x)\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
 			\implementation
-				\begin{enumerate}
-					\item Execute \procedurehr{3.19} on $\langle X\rangle$ and let $\langle a,b,d,q\rangle$.
+				\begin{instructions}
+					\item Execute the following in post-order:
+					\begin{instructions}
+					  \item Execute \procedurehr{tue2008191001} on $\langle\frac{1}{2i},q_2,q_3\rangle$ and let $\langle l,d,a,b,D,q_0,q_1\rangle$ receive.
+					  \begin{instructions}
+					    \item Execute \procedurehr{mon1908191506} on $\langle q_4,q_5,q_6,q_7\rangle$ and let $\langle q_2,q_3\rangle$ receive.
+					    \begin{instructions}
+					      \item Execute \procedurehr{sat0308191134} on $\langle q_8,q_9,q_{10},q_{11},q_{12}\rangle$ and let $\langle q_4,q_5\rangle$ receive.
+					      \begin{instructions}
+					        \item Execute \procedurehr{3.19} on $\langle X,D\rangle$ and let $\langle q_8,q_9\rangle$ receive.
+					        \item Execute \procedurehr{tue2008191001} on $\langle i,q_{13},q_{14}\rangle$ and let $\langle q_{10},q_{11}\rangle$ receive.
+					        \begin{instructions}
+					          \item Execute \procedurehr{tue2008191209} on $\langle 1,X,D\rangle$ and let $\langle q_{13},q_{14}\rangle$ receive.
+					        \end{instructions}
+					        \item Let $q_{12}(x,n)$ be the following procedure:
+					        \begin{instructions}
+					          \item Verify that $\lVert ix\rVert^2=\lVert x\rVert^2\le X^2$.
+					        \end{instructions}
+					      \end{instructions}
+					      \item Execute \procedurehr{tue2008191001} on $\langle-1,q_{15},q_{16}\rangle$ and let $\langle q_6,q_7\rangle$.
+					      \begin{instructions}
+					        \item Execute \procedurehr{sat0308191134} on $\langle q_{17},q_{18},q_{19},q_{20},q_{21}\rangle$ and let $\langle q_{15},q_{16}\rangle$ receive.
+					        \begin{instructions}
+					          \item Execute \procedurehr{3.19} on $\langle X,D\rangle$ and let $\langle q_{17},q_{18}\rangle$ receive.
+					          \item Execute \procedurehr{tue2008191001} on $\langle-i,q_{22},q_{23}\rangle$ and let $\langle q_{19},q_{20}\rangle$ receive.
+					          \begin{instructions}
+					            \item Execute \procedurehr{tue2008191209} on $\langle 1,X,D\rangle$ and let $\langle q_{22},q_{23}\rangle$ receive.
+					          \end{instructions}
+					          \item Let $q_{21}(x,n)$ be the following procedure:
+					          \begin{instructions}
+					            \item Verify that $\lVert -ix\rVert^2=\lVert x\rVert^2\le X^2$.
+					          \end{instructions}
+					        \end{instructions}
+					      \end{instructions}
+					    \end{instructions}
+					  \end{instructions}
+					\end{instructions}
+					\item Let $p(x,n)$ be the following procedure:
+					\begin{enumerate}
+					  \item Execute procedure $q_0$ on $\langle x,n\rangle$.
+					  \item Hence verify that $\lVert\cos_n(x)\rVert^2$
+					  \begin{enumerate}
+					    \item $=\lVert\frac{1}{2}(\exp_n(ix)+\exp_n(-ix))\rVert^2$
+					    \item $=\lVert\frac{1}{2i}(\exp_n(ix^1)\cdot i\cdot 1x^0+(-1)\exp_n(-ix^1)\cdot(-i)\cdot 1\cdot x^0)\rVert^2$
+					    \item $\le l^2$.
+					  \end{enumerate}
+					\end{enumerate}
 					\item Let $q(x,n,\delta)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $2(\lVert ix\rVert^2+\lVert i\delta\rVert^2)=2(\lVert x\rVert^2+\lVert \delta\rVert^2)\le X$.
-						\item Verify that $\lVert i\delta\rVert^2=\lVert \delta\rVert^2\le X$.
-						\item Hence execute procedure $q$ on $\langle ix,i\delta,n\rangle$.
-						\item Hence verify that $\lVert\frac{\exp_n(ix+i\delta)-\exp_n(ix)}{i\delta}-\exp_n(ix)\rVert^2\le\frac{a}{n^2}+b\lVert i\delta\rVert^2$.
-						\item Verify that $2(\lVert -ix\rVert^2+\lVert -i\delta\rVert^2)=2(\lVert x\rVert^2+\lVert \delta\rVert^2)\le X$.
-						\item Verify that $\lVert -i\delta\rVert^2=\lVert \delta\rVert^2\le X$.
-						\item Hence execute procedure $q$ on $\langle -ix,-i\delta,n\rangle$.
-						\item Hence verify that $\lVert\frac{\exp_n(-ix-i\delta)-\exp_n(-ix)}{-i\delta}-\exp_n(-ix)\rVert^2\le\frac{a}{n^2}+b\lVert -i\delta\rVert^2$.
-						\item Using \procedurehr{3.04}, verify that $\lVert\cos_n(x+\delta)-\cos_n(x)+\sin_n(x)\delta\rVert^2$
-						\begin{enumerate}
-							\item $=\lVert\frac{\exp_n(i(x+\delta))+\exp_n(-i(x+\delta))}{2}-\frac{\exp_n(ix)+\exp_n(-ix)}{2}+\frac{\delta\exp_n(ix)-\delta\exp_n(-ix)}{2i}\rVert^2$
-							\item $\le\frac{\lVert\exp_n(ix+i\delta)-\exp_n(ix)-i\delta\exp_n(ix)\rVert^2}{2}+\frac{\lVert\exp_n(-ix-i\delta)-\exp_n(-ix)-(-i\delta)\exp_n(-ix)\rVert^2}{2}$
-							\item $\le\frac{\lVert i\delta\rVert^2(\frac{a}{n^2}+b\lVert i\delta\rVert^2)}{2}+\frac{\lVert -i\delta\rVert^2(\frac{a}{n^2}+b\lVert -i\delta\rVert^2)}{2}$
-							\item $=\lVert \delta\rVert^2(\frac{a}{n^2}+b\lVert \delta\rVert^2)$.
-						\end{enumerate}
-						\item \textbf{Therefore verify that $\lVert\diff_{y=x}^{+\delta}\cos_n(y)+\sin_n(x)\rVert^2\le\frac{a}{n^2}+b\lVert \delta\rVert^2$.}
+					  \item Execute procedure $q_1$ on $\langle x,n,\delta\rangle$.
+					  \item Hence verify that $\lVert\Delta_{y=x}^{+\delta}\sin_n(y)-\cos_n(x)\rVert^2$
+					  \begin{enumerate}
+					    \item $=\lVert\Delta_{y=x}^{+\delta}(\frac{\exp_n(ix)-\exp_n(-ix)}{2i})-\frac{\exp_n(ix)+\exp_n(-ix)}{2}\rVert^2$
+					    \item $=\lVert\Delta_{y=x}^{+\delta}(\frac{1}{2i}(\exp_n(ix^1)+(-1)\exp_n((-i)x^1)))-\frac{1}{2i}(\exp_n(ix^1)\cdot i\cdot 1x^0+(-1)\exp_n(-ix^1)\cdot(-i)\cdot 1\cdot x^0)\rVert^2$
+					    \item $\le(\frac{a}{n}+b\{\delta\})^2$.
+					  \end{enumerate}
 					\end{enumerate}
-					\item \textbf{Yield the tuple $\langle a,b,d,p\rangle$.}
-				\end{enumerate}
+					\item \textbf{Yield the tuple $\langle l,d,a,b,D,p,q\rangle$.}
+				\end{instructions}
 		\procedure{3.28}
 			\objective
-				Choose non-negative rational numbers $X,D$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $q(x,n)$ to show that $\lVert\cos_n(x)\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $p(x,n,\delta)$ to show that $\diff_{y=x}^{+\delta}\sin_n(y)\equiv\cos_n(x)\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+				Choose non-negative rational numbers $X,D$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $q(x,n)$ to show that $\lVert-\sin_n(x)\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $p(x,n,\delta)$ to show that $\diff_{y=x}^{+\delta}\cos_n(y)\equiv-\sin_n(x)\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.27}.
 		\declaration{3.30}
