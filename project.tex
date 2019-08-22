@@ -13,13 +13,13 @@
 \usepackage{enumitem}
 \setlistdepth{8}
 \newlist{instructions}{enumerate}{8}
-\setlist[instructions,1]{label=\roman*)}
+\setlist[instructions,1]{label=\arabic*)}
 \setlist[instructions,2]{label=\alph*),leftmargin=0.3cm}
-\setlist[instructions,3]{label=\arabic*),leftmargin=0.3cm}
-\setlist[instructions,4]{label=(\roman*),leftmargin=0.3cm}
+\setlist[instructions,3]{label=\roman*),leftmargin=0.3cm}
+\setlist[instructions,4]{label=(\arabic*),leftmargin=0.3cm}
 \setlist[instructions,5]{label=(\alph*),leftmargin=0.3cm}
-\setlist[instructions,6]{label=(\arabic*),leftmargin=0.3cm}
-\setlist[instructions,7]{label=(\roman*),leftmargin=0.3cm}
+\setlist[instructions,6]{label=(\roman*),leftmargin=0.3cm}
+\setlist[instructions,7]{label=(\arabic*),leftmargin=0.3cm}
 \setlist[instructions,8]{label=(\alph*),leftmargin=0.3cm}
 \hypersetup{
 	colorlinks = true,
@@ -187,6 +187,7 @@
 \newglossaryentry{complexpolynomial}{name={complex polynomial},description={}}
 \newglossaryentry{differentialtaxicab}{name=\ensuremath{\{x\}},description={taxicab length}}
 \newglossaryentry{differentialdiff}{name=\ensuremath{\diff_{x=y}^zf(x)},description={difference quotient}}
+\newglossaryentry{differentialln}{name=\ensuremath{\ln(x)},description={natural logarithm}}
 \newglossaryentry{differentialintegral}{name=\ensuremath{\int_r^Rf(\#r,r,dr)},description={Riemann sum}}
 \newglossaryentry{differentialDeltaX}{name=\ensuremath{\Delta X},description={first difference}}
 \newglossaryentry{matrix}{name={matrix},description={}}
@@ -6334,7 +6335,7 @@
 		      \item \textbf{Yield the tuple $\langle f,p\rangle$.}
 		    \end{enumerate}
 		\declaration{wed2108191408}
-		  The notation $\ln_n(x)$, where $x$ is a complex number, will be used as a shorthand for $\ln_n(1+\frac{x-1}{x+1})-\ln_n(1-\frac{x-1}{x+1})$.
+		  The notation \gls{differentialln}, where $x$ is a complex number, will be used as a shorthand for $\ln_n(1+\frac{x-1}{x+1})-\ln_n(1-\frac{x-1}{x+1})$.
 		\procedure{wed2108191401}
 		  \objective
 		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ and a procedure $p(x,n,k)$ to show that $\exp_n(\ln_k(x))\equiv x\err{\frac{an}{k}+\frac{c}{n}}$ when a complex number $x$ and integers $k,n$ such that $\Re(x)\ge\epsilon$, $\lVert x\rVert^2\le X^2$, $n>e$, and $k>d$ are chosen.
@@ -6383,6 +6384,79 @@
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
 		    \end{enumerate}
+		\procedure{wed2108191603}
+		  \objective
+		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $\lVert\frac{1}{x}\rVert^2\le c^2$ when a complex number $x$ and a positive integer $n$ such that $\Re(x)\ge\epsilon$, $\lVert x\rVert^2\le X^2$, and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\ln(y)\equiv\frac{1}{x}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le e^2$ is chosen.
+		  \implementation
+		    \begin{instructions}
+		      \item Let $c=\frac{1}{\epsilon}$.
+		      \item Execute the following in post-order:
+		      \begin{instructions}
+		        \item Execute \procedurehr{mon1908191506} on $\langle q_3,q_4,q_5,q_6\rangle$ and let $\langle q_1,q_2\rangle$ receive.
+		        \begin{instructions}
+		          \item Execute \procedurehr{sat0308191134} on $\langle q_7,q_8,q_9,q_{10},q_{11}\rangle$ and let $\langle q_3,q_4\rangle$ receive.
+		          \begin{instructions}
+		            \item Execute \procedurehr{wed2108191140} on $\langle e_1,\frac{1-e_1}{2}\rangle$ and let $\langle q_7,q_8\rangle$ receive.
+		            \begin{instructions}
+		              \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle e_1,q_{12}\rangle$ receive.
+		            \end{instructions}
+		            \item Execute \procedurehr{mon1908191506} on $\langle q_{13},q_{14},q_{15},q_{16}\rangle$ and let $\langle q_9,q_{10}\rangle$ receive.
+		            \begin{instructions}
+		              \item Execute \procedurehr{tue2008191151} on $\langle 1,1\rangle$ and let $\langle q_{13},q_{14}\rangle$ receive.
+		              \item Execute \procedurehr{tue2008191001} on $\langle-2,q_{17},q_{18}\rangle$ and let $\langle q_{15},q_{16}\rangle$ receive.
+		              \begin{instructions}
+		                \item Execute \procedurehr{sat0308191134} on $\langle q_{19},q_{20},q_{21},q_{22},q_{23}\rangle$ and let $\langle q_{17},q_{18}\rangle$ receive.
+		                \begin{instructions}
+		                  \item Execute \procedurehr{tue2008191341} on $\langle 1,1+\epsilon,X+1\rangle$ and let $\langle q_{19},q_{20}\rangle$ receive.
+		                  \item Execute \procedurehr{mon1908191506} on $\langle q_{24},q_{25},q_{26},q_{27}\rangle$ and let $\langle q_{21},q_{22}\rangle$ receive.
+		                  \begin{instructions}
+		                    \item Execute \procedurehr{tue2008191151} on $\langle 1,1\rangle$ and let $\langle q_{24},q_{25}\rangle$ receive.
+		                    \item Execute \procedurehr{tue2008191209} on $\langle 1,X,1\rangle$ and let $\langle q_{26},q_{27}\rangle$ receive.
+		                  \end{instructions}
+		                  \item Let $q_{24}(x,n)$ be the following procedure:
+		                  \begin{instructions}
+		                    \item Verify that $(1+\epsilon)^2\le(1+\Re(x))^2=\Re(x+1)^2\le\lVert x+1\rVert^2\le(X+1)^2$.
+		                  \end{instructions}
+		                \end{instructions}
+		              \end{instructions}
+		            \end{instructions}
+		            \item Let $q_{11}(x,n)$ be the following procedure:
+		            \begin{instructions}
+		              \item Execute procedure $q_{12}$ on $\langle x\rangle$.
+		              \item Hence verify that $\lVert 1-2(x+1)^{-1}\rVert^2=\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$.
+		            \end{instructions}
+		          \end{instructions}
+		          \item Execute \procedurehr{tue2008191001} on $\langle-1,q_{28},q_{29}\rangle$ and let $\langle q_5,q_6\rangle$ receive.
+		          \begin{instructions}
+		            \item Execute \procedurehr{sat0308191134} on $\langle q_{30},q_{31},q_{32},q_{33},q_{34}\rangle$ and let $\langle q_{28},q_{29}\rangle$ receive.
+		            \begin{instructions}
+		              \item Execute \procedurehr{wed2108191140} on $\langle e_1,\frac{1-e_1}{2}\rangle$ and let $\langle q_{30},q_{31}\rangle$ receive.
+		              \item Execute \procedurehr{tue2008191001} on $\langle-1,q_9,q_{10}\rangle$ and let $\langle q_{32},q_{33}\rangle$ receive.
+		              \item Let $q_{34}(x,n)$ be the following procedure:
+		              \begin{instructions}
+		                \item Execute procedure $q_{12}$ on $\langle x\rangle$.
+		                \item Hence verify that $\lVert-(1+(-2)(x+1)^{-1})\rVert^2=\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$.
+		              \end{instructions}
+		            \end{instructions}
+		          \end{instructions}
+		        \end{instructions}
+		      \end{instructions}
+		      \item Let $p(x,n)$ be the following procedure:
+		      \begin{instructions}
+		        \item Verify that $\lVert\frac{1}{x}\rVert^2=\frac{1}{\lVert x\rVert^2}\le\frac{1}{\Re(x)^2}\le\frac{1}{\epsilon^2}=c^2$.
+		      \end{instructions}
+		      \item Let $q(x,n,\delta)$ be the following procedure:
+		      \begin{instructions}
+		        \item Execute procedure $q_2$ on $\langle x,n,\delta\rangle$.
+		        \item Hence verify that $\lVert\Delta_{y=x}^{+\delta}\ln_n(y)-\frac{1}{x}\rVert^2$
+		        \begin{instructions}
+		          \item $=\lVert\Delta_{y=x}^{+\delta}(\ln_n(1+\frac{y-1}{y+1})-\ln_n(1-\frac{y-1}{y+1}))-\frac{1}{x}\rVert^2$
+		          \item $=\lVert\Delta_{y=x}^{+\delta}(\ln_n(1+(1+(-2)(y+1)^{-1}))+(-1)\ln_n(1+(-1)(1+(-2)(y+1)^{-1})))-((1+(1+(-2)(x+1)^{-1}))^{-1}(0+(-2)(-1)(x+1)^{-2}(1+0)+(-1)((1+(-1)(1+(-2)(x+1)^{-1}))^{-1}\cdot(0+(-1)(0+(-2)(-1)(x+1)^{-2}(1+0)))))^2$
+		          \item $\le(\frac{a}{n}+b\{\delta\})^2$.
+		        \end{instructions}
+		      \end{instructions}
+		      \item \textbf{Yield the tuple $\langle c,d,a,b,e,p,q\rangle$.}
+		    \end{instructions}
 		\declaration{3.30}
 			The notation \gls{differentialintegral}, where $R$ is a non-empty list of complex numbers and $f[\#r,r,dr]$ is a function of $\#r,r,dr$, will be used as a shorthand for $\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_{t})$.
 		\procedure{3.86}
