@@ -6384,6 +6384,31 @@
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
 		    \end{enumerate}
+		\procedure{thu2208191250}
+		  \objective
+		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct a positive rational number $a$, and a procedure $p(x,k)$ to show that $\lVert\ln_k(x)\rVert^2\le X^2$ when a positive integer $k$ and a complex number $x$ such that $\lVert x\rVert^2\le X^2$ and $\Re(x)\ge\epsilon$ are chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle a_1,p_1\rangle$ receive.
+		      \item Verify that $0<a_1<1$.
+		      \item Execute \procedurehr{fri2607191736} on $\langle a_1\rangle$ and let $\langle a_2,p_2\rangle$ receive.
+		      \item Let $a=2a_2$.
+		      \item Let $p(x,k)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $p_1$ on $\langle x\rangle$.
+		        \item Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le{a_1}^2$.
+		        \item Execute procedure $p_2$ on $\langle\frac{x-1}{x+1},k\rangle$.
+		        \item Hence verify that $\lVert\ln_k(1+\frac{x-1}{x+1})\rVert^2\le{a_2}^2$.
+		        \item Execute procedure $p_2$ on $\langle-\frac{x-1}{x+1},k\rangle$.
+		        \item Hence verify that $\lVert\ln_k(1-\frac{x-1}{x+1})\rVert^2\le{a_2}^2$.
+		        \item Hence verify that $\lVert\ln_k(x)\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert\ln_k(1+\frac{x-1}{x+1})-\ln_k(1-\frac{x-1}{x+1})\rVert^2$
+		          \item $\le a^2$.
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a,p\rangle$.}
+		    \end{enumerate}
 		\procedure{wed2108191603}
 		  \objective
 		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $\lVert\frac{1}{x}\rVert^2\le c^2$ when a complex number $x$ and a positive integer $n$ such that $\Re(x)\ge\epsilon$, $\lVert x\rVert^2\le X^2$, and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\ln(y)\equiv\frac{1}{x}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le e^2$ is chosen.
