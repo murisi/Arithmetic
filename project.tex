@@ -11,8 +11,8 @@
 \usepackage{multicol}
 \usepackage{tikz}
 \usepackage{enumitem}
-\setlistdepth{8}
-\newlist{instructions}{enumerate}{8}
+\setlistdepth{9}
+\newlist{instructions}{enumerate}{9}
 \setlist[instructions,1]{label=\arabic*)}
 \setlist[instructions,2]{label=\alph*),leftmargin=0.3cm}
 \setlist[instructions,3]{label=\roman*),leftmargin=0.3cm}
@@ -21,6 +21,7 @@
 \setlist[instructions,6]{label=(\roman*),leftmargin=0.3cm}
 \setlist[instructions,7]{label=(\arabic*),leftmargin=0.3cm}
 \setlist[instructions,8]{label=(\alph*),leftmargin=0.3cm}
+\setlist[instructions,9]{label=(\roman*),leftmargin=0.3cm}
 \hypersetup{
 	colorlinks = true,
 	linktoc = all,
@@ -188,6 +189,7 @@
 \newglossaryentry{differentialtaxicab}{name=\ensuremath{\{x\}},description={taxicab length}}
 \newglossaryentry{differentialdiff}{name=\ensuremath{\diff_{x=y}^zf(x)},description={difference quotient}}
 \newglossaryentry{differentialln}{name=\ensuremath{\ln(x)},description={natural logarithm}}
+\newglossaryentry{differentialpow}{name=\ensuremath{x_n^a},description={exponentiation}}
 \newglossaryentry{differentialintegral}{name=\ensuremath{\int_r^Rf(\#r,r,dr)},description={Riemann sum}}
 \newglossaryentry{differentialDeltaX}{name=\ensuremath{\Delta X},description={first difference}}
 \newglossaryentry{matrix}{name={matrix},description={}}
@@ -6564,6 +6566,89 @@
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle l,d,a,b,p,q\rangle$.}
 		    \end{enumerate}
+		\declaration{thu2208191619}
+		  The notation \gls{differentialpow}, where $x,a$ are complex numbers and $n$ is a positive integer, will be used as a shorthand for $(1+\frac{x-1}{x+1})_n^a(1-\frac{x-1}{x+1})_n^{-a}$.
+		\procedure{thu2208191610}
+		  \objective
+		    Choose a complex number $f$ and two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct rational numbers $c,d,a,b,e$, a procedure $p(x,n)$ to show that $\lVert fx_n^{f-1}\rVert^2\le c^2$ when a complex number $x$ and a positive integer $n$ such that $\Re(x)\ge\epsilon$, $\lVert x\rVert^2$, and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}x_n^f\equiv fx_n^{f-1}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le e^2$ is chosen.
+		  \implementation
+		    \begin{instructions}
+		      \item Execute the following in post-order:
+		      \begin{instructions}
+		        \item Execute \procedurehr{mon1908191207} on $\langle q_7,q_3,q_4,q_8,q_5,q_6\rangle$ and let $\langle q_1,q_2\rangle$ receive.
+		        \begin{instructions}
+		          \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle e_1,q_9\rangle$ receive.
+		          \item Execute \procedurehr{wed2407191611} on $\langle \{f\},e_1\rangle$ and let $\langle e_2,q_{10}\rangle$ receive.
+		          \item Let $q_7(x,n)$ be the following procedure:
+		          \begin{instructions}
+		            \item Execute procedure $q_9$ on $\langle x\rangle$.
+		            \item Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$.
+		            \item Execute procedure $q_{10}$ on $\langle\frac{x-1}{x+1},n,f,1\rangle$.
+		            \item Hence verify that $\lVert(1+(1+(-2)(x+1)^{-1}))_n^f\rVert^2$
+		            \begin{instructions}
+		              \item $=\lVert(1+\frac{x-1}{x+1})_n^f\rVert^2$
+		              \item $\le{e_2}^2$.
+		            \end{instructions}
+		          \end{instructions}
+		          \item Let $q_8(x,n)$ be the following procedure:
+		          \begin{instructions}
+		            \item Execute procedure $q_9$ on $\langle x\rangle$.
+		            \item Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$.
+		            \item Execute procedure $q_{10}$ on $\langle-\frac{x-1}{x+1},n,-f,1\rangle$.
+		            \item Hence verify that $\lVert(1-(1+(-2)(x+1)^{-1}))_n^{-f}\rVert^2$
+		            \begin{instructions}
+		              \item $=\lVert(1-\frac{x-1}{x+1})_n^{-f}\rVert^2$
+		              \item $\le{e_2}^2$.
+		            \end{instructions}
+		          \end{instructions}
+		          \item Execute \procedurehr{sat0308191134} on $\langle q_{11},q_{12},q_{13},q_{14},q_{15}\rangle$ and let $\langle q_3,q_4\rangle$ receive.
+		          \begin{instructions}
+		            \item Execute \procedurehr{thu2208191432} on $\langle f,e_1,\frac{1-e_1}{2}\rangle$ and let $\langle q_{11},q_{12}\rangle$ receive.
+		            \item Execute \procedurehr{mon1908191506} on $\langle q_{16},q_{17},q_{18},q_{19}\rangle$ and let $\langle q_{13},q_{14}\rangle$ receive.
+		            \begin{instructions}
+		              \item Execute \procedurehr{tue2008191151} on $\langle 1,1\rangle$ and let $\langle q_{16},q_{17}\rangle$ receive.
+		              \item Execute \procedurehr{tue2008191001} on $\langle-2,q_{20},q_{21}\rangle$ and let $\langle q_{18},q_{19}\rangle$ receive.
+		              \begin{instructions}
+		                \item Execute \procedurehr{sat0308191134} on $\langle q_{22},q_{23},q_{24},q_{25},q_{26}\rangle$ and let $\langle q_{20},q_{21}\rangle$ receive.
+		                \begin{instructions}
+		                  \item Execute \procedurehr{tue2008191341} on $\langle 1,1+\epsilon,1+X\rangle$ and let $\langle q_{22},q_{23}\rangle$ receive.
+		                  \item Execute \procedurehr{mon1908191506} on $\langle q_{27},q_{28},q_{29},q_{30}\rangle$ and let $\langle q_{24},q_{25}\rangle$ receive.
+		                  \begin{instructions}
+		                    \item Execute \procedurehr{tue2008191151} on $\langle 1,1\rangle$ and let $\langle q_{27},q_{28}\rangle$ receive.
+		                    \item Execute \procedurehr{tue2008191209} on $\langle 1,X,1\rangle$ and let $\langle q_{29},q_{30}\rangle$ receive.
+		                  \end{instructions}
+		                  \item Let $q_{26}(x,n)$ be the following procedure:
+		                  \begin{instructions}
+		                    \item Verify that $(1+\epsilon)^2$
+		                    \begin{instructions}
+		                      \item $\le(1+\Re(x))^2$
+		                      \item $\le\Re(x+1)^2$
+		                      \item $\le\lVert x+1\rVert^2$
+		                      \item $\le (X+1)^2$.
+		                    \end{instructions}
+		                  \end{instructions}
+		                \end{instructions}
+		              \end{instructions}
+		            \end{instructions}
+		            \item Let $q_{15}(x,n)$ be the following procedure:
+		            \begin{instructions}
+		              \item Execute procedure $q_9$ on $\langle x\rangle$.
+		              \item \textbf{Hence verify that $\lVert 1+(-2)(x+1)^{-1}\rVert^2=\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$.}
+		            \end{instructions}
+		          \end{instructions}
+		          \item Execute \procedurehr{sat0308191134} on $\langle q_{31},q_{32},q_{33},q_{34},q_{35}\rangle$ and let $\langle q_5,q_6\rangle$ receive.
+		          \begin{instructions}
+		            \item Execute \procedurehr{thu2208191432} on $\langle-f,e_1,\frac{1-e_1}{2}\rangle$ and let $\langle q_{31},q_{32}\rangle$ receive.
+		            \item Execute \procedurehr{tue2008191001} on $\langle-1,q_{13},q_{14}\rangle$ and let $\langle q_{33},q_{34}\rangle$.
+		            \item Let $q_{35}(x,n)$ be the following procedure:
+		            \begin{instructions}
+		              \item Execute procedure $q_9$ on $\langle x\rangle$.
+		              \item \textbf{Hence verify that $\lVert-(1+(-2)(x+1)^{-1})\rVert^2=\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$.}
+		            \end{instructions}
+		          \end{instructions}
+		        \end{instructions}
+		      \end{instructions}
+		    \end{instructions}
 		\declaration{3.30}
 			The notation \gls{differentialintegral}, where $R$ is a non-empty list of complex numbers and $f[\#r,r,dr]$ is a function of $\#r,r,dr$, will be used as a shorthand for $\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_{t})$.
 		\procedure{3.86}
