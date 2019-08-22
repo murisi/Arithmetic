@@ -6490,9 +6490,9 @@
 		      \item Execute \procedurehr{sun2107191247} on $\langle\{A+1\},X+D\rangle$ and let $\langle a_1,b_1,p_1\rangle$ receive.
 		      \item Execute \procedurehr{wed2407191611} on $\langle\{A-1\},X\rangle$ and let $\langle a_2,p_2\rangle$ receive.
 		      \item Let $l=\{A\}a_2$.
+		      \item Let $d=1$.
 		      \item Let $a=0$.
 		      \item Let $b=\frac{a_1b_1}{D^2(1-b_1)}$.
-		      \item Let $d=1$.
 		      \item Let $p(x,n)$ be the following procedure:
 		      \begin{enumerate}
 		        \item Execute procedure $p_2$ on $\langle x,n-1,A-1,1\rangle$.
@@ -6523,6 +6523,43 @@
 		          \item $\le\lVert\delta\rVert^2\lVert\sum_r^{[1:n]}\frac{a_1{b_1}^r}{D^2}\rVert^2$
 		          \item $\le\lVert\delta\rVert^2(\frac{a_1b_1}{D^2(1-b_1)})^2$
 		          \item $\le(\frac{a}{n}+b\{\delta\})^2$.
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle l,d,a,b,p,q\rangle$.}
+		    \end{enumerate}
+		\procedure{thu2208191432}
+		  \objective
+		    Choose a complex number $A$ and non-negative rational numbers $X,D$ such that $X+D<1$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $p(x,n)$ to show that $\lVert A(1+x)_{n}^{A-1}\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}(1+y)_n^A\equiv A(1+x)_{n}^{A-1}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute \procedurehr{sun2107191247} on $\langle\{A\},X\rangle$ and let $\langle a_1,b_1,p_1\rangle$ receive.
+		      \item Execute \procedurehr{wed2407191611} on $\langle\{A-1\},X\rangle$ and let $\langle a_2,p_2\rangle$ receive.
+		      \item Execute \procedurehr{wed2407191422} on $\langle b_1,1\rangle$ and let $\langle a_3,b_3,p_3\rangle$ receive.
+		      \item Execute \procedurehr{thu2208191330} on $\langle X,D\rangle$ and let $\langle a_4,b_4,c_4,d_4,p_4,q_4\rangle$ receive.
+		      \item Let $l=\{a\}a_2$.
+		      \item Let $d=\max(1,b_4)$.
+		      \item Let $a=c_4+2\{A\}a_1a_3$.
+		      \item Let $b=d_4$.
+		      \item Let $p(x,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $p_2$ on $\langle x,n,A-1,1\rangle$.
+		        \item Hence verify that $\lVert A(1+x)_n^{A-1}\rVert^2\le(\{A\}a_2)^2=l^2$.
+		      \end{enumerate}
+		      \item Let $q(x,n,\delta)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $q_4$ on $\langle x,n,\delta\rangle$.
+		        \item Hence verify that $\lVert\Delta_{y=x}^{+\delta}(1+y)_n^A-A(1+x)_{n-1}^{A-1}\rVert^2\le(\frac{c_4}{n}+d_4\{\delta\})^2$.
+		        \item Execute procedure $p_1$ on $\langle A-1,x,n-1\rangle$.
+		        \item Hence verify that $\lVert\binom{A-1}{n-1}x^{n-1}\rVert^2\le(a_1{b_1}^{n-1})^2$.
+		        \item Execute procedure $p_3$ on $\langle b_1,n-1\rangle$.
+		        \item Hence verify that $\lVert(n-1){b_1}^{n-1}\rVert^2\le(a_3{b_3}^{n-1})^2\le{a_3}^2$.
+		        \item Hence verify that $\lVert{b_1}^{n-1}\rVert^2\le(\frac{a_3}{n-1})^2\le(\frac{2a_3}{n})^2$.
+		        \item Hence verify that $\lVert\frac{1}{\delta}((1+x+\delta)_n^A-(1+x)_n^A)-A(1+x)_n^{A-1}\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert\frac{1}{\delta}((1+x+\delta)_n^A-(1+x)_n^A)-A(1+x)_{n-1}^{A-1}-A\binom{A-1}{n-1}x^{n-1}\rVert^2$
+		          \item $\le(\frac{c_4}{n}+d_4\{\delta\}+\{A\}a_1{b_1}^{n-1})^2$
+		          \item $\le(\frac{c_4}{n}+d_4\{\delta\}+\frac{2\{A\}a_1a_3}{n})^2$
+		          \item $=(\frac{a}{n}+b\{\delta\})^2$.
 		        \end{enumerate}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle l,d,a,b,p,q\rangle$.}
