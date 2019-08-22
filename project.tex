@@ -4702,7 +4702,7 @@
 	      \end{enumerate}
 	  \procedure{thu2507190646}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct rational numbers $B>0$, $N>0$, and a procedure $p(x,a,b,n)$ to show that $(1+x)_n^{a+b}\equiv(1+x)_n^a(1+x)_n^b\err{\frac{B}{n}}$ when a complex number $x$, two rational numbers $a,b$, and a positive integer $n$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $0<a<1$, $0<b<1$, and $n>N$ are chosen.
+	      Choose a rational number $1>X\ge 0$. The objective of the following instructions is to construct rational numbers $B>0$, $N>0$, and a procedure $p(x,a,b,n)$ to show that $(1+x)_n^{a+b}\equiv(1+x)_n^a(1+x)_n^b\err{\frac{B}{n}}$ when a complex number $x$, two rational numbers $a,b$, and a positive integer $n$ such that $\lVert x\rVert^2\le 1$, $\Re(x)\ge-X$, $0<a<1$, $0<b<1$, and $n>N$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Execute \procedurehr{wed2407191824} on $\langle 1\rangle$ and let $\langle M,N,q\rangle$ receive.
@@ -4729,21 +4729,21 @@
 	            \item $=\lVert x^n\rVert^2\lVert\sum_r^{[1:n]}\binom{b}{r}\sum_k^{[0:r]}(\binom{a}{k+1+n-r}(-1)^{k+1}\cdot\frac{(-x)^{k+1}}{-x-1}-\binom{a}{k+n-r}(-1)^k\cdot\frac{(-x)^k}{-x-1}-\frac{(-x)^{k+1}}{-x-1}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k))\rVert^2$
 	            \item $=\frac{\lVert x^n\rVert^2}{\lVert x+1\rVert^2}\lVert\sum_r^{[1:n]}\binom{b}{r}(\binom{a}{n}x^r-\binom{a}{n-r}-\sum_k^{[0:r]}(-x)^{k+1}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k))\rVert^2$
 	            \item $\le\frac{1}{\Re(x+1)^2+\Im(x)^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\sum_k^{[0:r]}\lvert\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k\rvert))^2$
-	            \item $\le\frac{1}{X^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\lvert\sum_k^{[0:r]}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k)\rvert))^2$
-	            \item $=\frac{1}{X^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\lvert\binom{a}{n}(-1)^r-\binom{a}{n-r}\rvert))^2$
-	            \item $=\frac{1}{X^2}(2\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert\lvert\binom{a}{n-r}\rvert)^2$
-	            \item $=(\frac{2}{X})^2(\lvert\binom{a+b}{n}\rvert+\lvert\binom{a}{n}\rvert+\lvert\binom{b}{n}\rvert)^2$
+	            \item $\le\frac{1}{(1-X)^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\lvert\sum_k^{[0:r]}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k)\rvert))^2$
+	            \item $=\frac{1}{(1-X)^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\lvert\binom{a}{n}(-1)^r-\binom{a}{n-r}\rvert))^2$
+	            \item $=\frac{1}{(1-X)^2}(2\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert\lvert\binom{a}{n-r}\rvert)^2$
+	            \item $=(\frac{2}{1-X})^2(\lvert\binom{a+b}{n}\rvert+\lvert\binom{a}{n}\rvert+\lvert\binom{b}{n}\rvert)^2$
 	            \item $\le(\frac{B}{n})^2$.
 	          \end{enumerate}
 	        \end{enumerate}
 	      \end{enumerate}
 	  \procedure{thu2507191017}
 	    \objective
-	      Choose a rational number $0<X<2$. The objective of the following instructions is to construct a positive rational number $D$ such that $D>1$, and a procedure $p(x,n,a,k)$ to show that $\lVert((1+x)_n^a)^k\rVert^2<D^2$ when a complex number $x$, a rational number $a$, and positive integers $n,k$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, and $(ka)^2<1$ are chosen.
+	      Choose a rational number $0\le X<1$. The objective of the following instructions is to construct a positive rational number $D$ such that $D>1$, and a procedure $p(x,n,a,k)$ to show that $\lVert((1+x)_n^a)^k\rVert^2<D^2$ when a complex number $x$, a rational number $a$, and positive integers $n,k$ such that $\lVert x\rVert^2\le 1$, $\Re(x)\ge-X$, and $(ka)^2<1$ are chosen.
 	    \implementation
 	      \begin{enumerate}
-	        \item Execute \procedurehr{3.13} on $\langle\frac{2}{X}\rangle$ and let $\langle E,N,q\rangle$ receive.
-	        \item Let $D=\max(E,(1+\frac{2}{X})^{\lfloor N\rfloor})$.
+	        \item Execute \procedurehr{3.13} on $\langle\frac{2}{1-X}\rangle$ and let $\langle E,N,q\rangle$ receive.
+	        \item Let $D=\max(E,(1+\frac{2}{1-X})^{\lfloor N\rfloor})$.
 	        \item Let $p(x,n,a,k)$ be the following procedure:
 	        \begin{enumerate}
 	          \item For $t\in[1:n]$, verify that $\binom{a}{t+1}(-1)^{t+1}-\binom{a}{t}(-1)^t$
@@ -4757,11 +4757,11 @@
 	            \item $=\lVert k\sum_t^{[1:n]}(\binom{a}{t+1}(-1)^{t+1}\cdot\frac{(-x)^{t+1}}{-x-1}-\binom{a}{t}(-1)^t\cdot\frac{(-x)^t}{-x-1}-\frac{(-x)^{t+1}}{-x-1}(\binom{a}{t+1}(-1)^{t+1}-\binom{a}{t}(-1)^t))\rVert^2$
 	            \item $=\frac{k^2}{\lVert x+1\rVert^2}\lVert\binom{a}{n}x^n-\binom{a}{1}x^1-\sum_t^{[1:n]}(-x)^{t+1}(\binom{a}{t+1}(-1)^{t+1}-\binom{a}{t}(-1)^t)\rVert^2$
 	            \item $\le\frac{k^2}{(\Re(x)+1)^2+\Im(x)^2}(\lvert\binom{a}{n}\rvert+a+\sum_t^{[1:n]}\lvert\binom{a}{t+1}(-1)^{t+1}-\binom{a}{t}(-1)^t\rvert)^2$
-	            \item $\le\frac{k^2}{X^2}(\lvert\binom{a}{n}\rvert+a+\sum_t^{[1:n]}(\binom{a}{t+1}(-1)^{t+1}-\binom{a}{t}(-1)^t))^2$
-	            \item $=\frac{k^2}{X^2}(\lvert\binom{a}{n}\rvert+a+\binom{a}{n}(-1)^n-\binom{a}{1}(-1)^1)^2$
-	            \item $=\frac{k^2}{X^2}(\lvert\binom{a}{n}\rvert+a-\lvert\binom{a}{n}\rvert+a)^2$
-	            \item $=(\frac{2ak}{X})^2$
-	            \item $\le(\frac{2}{X})^2$.
+	            \item $\le\frac{k^2}{(1-X)^2}(\lvert\binom{a}{n}\rvert+a+\sum_t^{[1:n]}(\binom{a}{t+1}(-1)^{t+1}-\binom{a}{t}(-1)^t))^2$
+	            \item $=\frac{k^2}{(1-X)^2}(\lvert\binom{a}{n}\rvert+a+\binom{a}{n}(-1)^n-\binom{a}{1}(-1)^1)^2$
+	            \item $=\frac{k^2}{(1-X)^2}(\lvert\binom{a}{n}\rvert+a-\lvert\binom{a}{n}\rvert+a)^2$
+	            \item $=(\frac{2ak}{1-X})^2$
+	            \item $\le(\frac{2}{1-X})^2$.
 	          \end{enumerate}
 	          \item If $k>N$, then do the following:
 	          \begin{enumerate}
@@ -4780,13 +4780,13 @@
 	            \item Verify that $\lVert\sum_t^{[1:n]}\binom{a}{t}x^t\rVert^2$
 	            \begin{enumerate}
 	              \item $\le\lVert k\sum_t^{[1:n]}\binom{a}{t}x^t\rVert^2$
-	              \item $\le(\frac{2}{X})^2$.
+	              \item $\le(\frac{2}{1-X})^2$.
 	            \end{enumerate}
 	            \item Verify that $\lVert((1+x)_n^a)^k\rVert^2$
 	            \begin{enumerate}
 	              \item $=(\lVert(1+x)_n^a\rVert^2)^k$
 	              \item $=(\lVert 1+\sum_t^{[1:n]}\binom{a}{t}x^t\rVert^2)^k$
-	              \item $\le(1+\frac{2}{X})^{2k}$
+	              \item $\le(1+\frac{2}{1-X})^{2k}$
 	              \item $\le D^2$.
 	            \end{enumerate}
 	          \end{enumerate}
@@ -4795,7 +4795,7 @@
 	      \end{enumerate}
 	  \procedure{thu2507190752}
 	    \objective
-	      Choose a rational number $0<X<2$. The objective of the following instructions is to construct positive rational numbers $G,N$ and a procedure $p(x,n,a,k)$ to show that $(1+x)_n^{ka}\equiv((1+x)_n^a)^k\err{\frac{Gk}{n}}$ when positive integers $n,k$, a rational number $a$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x+1)\ge X$, $k>1$, $0<ka\le 1$, and $n>N$ are chosen.
+	      Choose a rational number $0\le X<1$. The objective of the following instructions is to construct positive rational numbers $G,N$ and a procedure $p(x,n,a,k)$ to show that $(1+x)_n^{ka}\equiv((1+x)_n^a)^k\err{\frac{Gk}{n}}$ when positive integers $n,k$, a rational number $a$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x)\ge-X$, $k>1$, $0<ka\le 1$, and $n>N$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Execute \procedurehr{thu2507191017} on $\langle X\rangle$ and let $\langle D,t\rangle$ receive.
@@ -4828,7 +4828,7 @@
 	      \end{enumerate}
 	  \procedure{fri2607191210}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct positive rational numbers $a,c$ such that $b>1$, and a procedure $p(x,n,k)$ to show that $\exp_n(n((1+x)_k^{\frac{1}{n}}-1))\equiv 1+x\err{\frac{an}{k}}$ when a complex number $x$, and positive integers $n,k$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $n>1$, and $k>c$ are chosen.
+	      Choose a rational number $1>X\ge 0$. The objective of the following instructions is to construct positive rational numbers $a,c$ such that $b>1$, and a procedure $p(x,n,k)$ to show that $\exp_n(n((1+x)_k^{\frac{1}{n}}-1))\equiv 1+x\err{\frac{an}{k}}$ when a complex number $x$, and positive integers $n,k$ such that $\lVert x\rVert^2\le 1$, $\Re(x)\ge-X$, $n>1$, and $k>c$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Execute \procedurehr{thu2507190752} on $\langle X\rangle$ and let $\langle a,c,p_1\rangle$ receive.
@@ -4848,10 +4848,10 @@
 	      \end{enumerate}
 	   \procedure{fri2607191243}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct a rational number $a>0$ and a procedure $p(x,n,k)$ to show that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le a^2$ when positive integers $n,k$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$ and $\Re(x)+1\ge X$ are chosen.
+	      Choose a rational number $1>X\ge 0$. The objective of the following instructions is to construct a rational number $a>0$ and a procedure $p(x,n,k)$ to show that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le a^2$ when positive integers $n,k$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$ and $\Re(x)\ge-X$ are chosen.
 	    \implementation
 	      \begin{enumerate}
-	        \item Let $a=\frac{2}{X}$.
+	        \item Let $a=\frac{2}{1-X}$.
 	        \item Let $p(x,n,k)$ be the following procedure:
 	        \begin{enumerate}
 	          \item Verify that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2$
@@ -4862,7 +4862,7 @@
 	            \item $=\frac{n^2}{\lVert x+1\rVert^2}\lVert\binom{\frac{1}{n}}{k}x^k-\binom{\frac{1}{n}}{1}x^1-\sum_r^{[1:k]}(\binom{\frac{1}{n}}{r+1}(-1)^{r+1}-\binom{\frac{1}{n}}{r}(-1)^r)(-x)^{r+1}\rVert^2$
 	            \item $\le\frac{n^2}{\lVert x+1\rVert^2}\lVert\binom{\frac{1}{n}}{k}(-1)^{k-1}+\frac{1}{n}+\sum_r^{[1:k]}(\binom{\frac{1}{n}}{r+1}(-1)^{r+1}-\binom{\frac{1}{n}}{r}(-1)^r)\rVert^2$
 	            \item $=\frac{n^2}{(\Re(x)+1)^2+\Im(x)^2}(\binom{\frac{1}{n}}{k}(-1)^{k-1}+\frac{1}{n}+\binom{\frac{1}{n}}{k}(-1)^k-\binom{\frac{1}{n}}{1}(-1)^1)^2$
-	            \item $\le\frac{n^2}{X^2}(\frac{2}{n})^2$
+	            \item $\le\frac{n^2}{(1-X)^2}(\frac{2}{n})^2$
 	            \item $=a^2$.
 	          \end{enumerate}
 	        \end{enumerate}
@@ -4893,10 +4893,10 @@
 	    The notation \gls{complexnaturallogarithm} will be used as a shorthand for $\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}x^r$.
 	  \procedure{fri2607191450}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct a positive rational number $a$ and a procedure $p(x,n,k)$ to show that $\ln_k(1+x)\equiv n((1+x)_k^{\frac{1}{n}}-1)\err{\frac{a}{n}}$ when positive integers $n,k$ and a complex number $x$ such that $\lVert x\rVert^2\le 1$ and $\Re(x)+1\ge X$ are chosen.
+	      Choose a rational number $1>X\ge 0$. The objective of the following instructions is to construct a positive rational number $a$ and a procedure $p(x,n,k)$ to show that $\ln_k(1+x)\equiv n((1+x)_k^{\frac{1}{n}}-1)\err{\frac{a}{n}}$ when positive integers $n,k$ and a complex number $x$ such that $\lVert x\rVert^2\le 1$ and $\Re(x)\ge-X$ are chosen.
 	    \implementation
 	      \begin{enumerate}
-	        \item Let $a=\frac{1}{X}$.
+	        \item Let $a=\frac{1}{1-X}$.
 	        \item Let $p(x,n,k)$ be the following procedure:
 	        \begin{enumerate}
 	          \item For $r\in[2:k]$, use \procedurehr{thu0108191318} to verify that $\frac{\omega(r+1)}{\omega(r)}\le 1$.
@@ -4920,10 +4920,10 @@
 	      \end{enumerate}
 	  \procedure{fri2607191736}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct a rational number $a>0$ and a procedure $p(x,k)$ to show that $\lVert\ln_k(1+x)\rVert^2\le a^2$ when a positive integer $k$ and a complex number $x$ such that $\lVert x\rVert^2\le 1$ and $\Re(x)+1\ge X$ are chosen.
+	      Choose a rational number $1>X\ge 0$. The objective of the following instructions is to construct a rational number $a>0$ and a procedure $p(x,k)$ to show that $\lVert\ln_k(1+x)\rVert^2\le a^2$ when a positive integer $k$ and a complex number $x$ such that $\lVert x\rVert^2\le 1$ and $\Re(x)\ge-X$ are chosen.
 	    \implementation
 	      \begin{enumerate}
-	        \item Let $a=\frac{2}{X}$.
+	        \item Let $a=\frac{2}{1-X}$.
 	        \item Let $p(x,k)$ be the following procedure:
 	        \begin{enumerate}
 	          \item Verify that $\lVert\ln_k(1+x)\rVert^2$
@@ -4942,7 +4942,7 @@
 	      \end{enumerate}
 	  \procedure{fri2607191801}
 	    \objective
-	      Choose a rational number $X>0$. The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ such that $b>1$, and a procedure $p(x,n,k)$ to show that $\exp_n(\ln_k(1+x))\equiv 1+x\err{\frac{an}{k}+\frac{c}{n}}$ when positive integers $n,k$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x)+1\ge X$, $k>d$, and $n>e$ are chosen.
+	      Choose a rational number $1>X\ge 0$. The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ such that $b>1$, and a procedure $p(x,n,k)$ to show that $\exp_n(\ln_k(1+x))\equiv 1+x\err{\frac{an}{k}+\frac{c}{n}}$ when positive integers $n,k$, and a complex number $x$ such that $\lVert x\rVert^2\le 1$, $\Re(x)\ge-X$, $k>d$, and $n>e$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Execute \procedurehr{fri2607191243} on $\langle X\rangle$ and let $\langle a_1,p_1\rangle$ receive.
@@ -5071,10 +5071,10 @@
 				The objective of the following instructions is to construct positive rational numbers $a,c,d,e$, and a procedure $p(n,k)$ to show that $\exp_n(\frac{1}{4}\tau_ki)\equiv i\err{\frac{an}{k}+\frac{c}{n}}$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
 			\implementation
 				\begin{enumerate}
-					\item Execute \procedurehr{fri2607191736} on $\langle 1\rangle$ and let $\langle a_1,p_1\rangle$ receive.
+					\item Execute \procedurehr{fri2607191736} on $\langle 0\rangle$ and let $\langle a_1,p_1\rangle$ receive.
 					\item Execute \procedurehr{thu2507191359} on $\langle a_1\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
 					\item Execute \procedurehr{3.14} on $\langle a_1\rangle$ and let $\langle a_3,b_3,p_3\rangle$ receive.
-					\item Execute \procedurehr{fri2607191801} on $\langle 1\rangle$ and let $\langle a_4,c_4,d,e_4,p_4\rangle$ receive.
+					\item Execute \procedurehr{fri2607191801} on $\langle 0\rangle$ and let $\langle a_4,c_4,d,e_4,p_4\rangle$ receive.
 					\item Let $a=\frac{2a_4}{a_3}$.
 					\item Let $c=\frac{2c_4}{a_3}+a_2$.
 					\item Let $e=\max(b_2,b_3,e_4)$.
