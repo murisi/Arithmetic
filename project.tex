@@ -5995,6 +5995,55 @@
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a_6,b_6,a_7,b_7,c_7,q_6,q_7\rangle$.}
 		    \end{enumerate}
+		\procedure{fri2308191803}
+		  \objective
+		    Choose the following:
+		    \begin{enumerate}
+		      \item A procedure $q_0(x,n)$ to show that $p'_n(x)\equiv q'_n(x)\err{\frac{a_0}{n}}$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>b_0$ are chosen.
+		      \item A procedure $q_1(x,n)$ to show that $\lVert p'_n(x)\rVert^2\le{a_1}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>b_1$ are chosen.
+		      \item A procedure $q_2(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}p_n(y)\equiv p'_n(x)\err{\frac{a_2}{n}+b_2\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $P(x)$, $n>b_1$, and $\lVert\delta\rVert^2\le{c_2}^2$ are chosen.
+		    \end{enumerate}
+		    The objective of the following instructions is to construct the following:
+		    \begin{enumerate}
+		      \item Rational numbers $a_3,b_3,a_4,b_4,c_4$.
+		      \item A procedure $q_3(x,n)$ to show that $\lVert q'_n(x)\rVert^2\le{a_3}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>b_3$ are chosen.
+		      \item A procedure $q_4(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}p_n(y)\equiv q'_n(x)\err{\frac{a_4}{n}+b_4\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $P(x)$, $n>b_3$, and $\lVert\delta\rVert^2\le{c_4}^2$ are chosen.
+		    \end{enumerate}
+		  \implementation
+		    \begin{enumerate}
+		      \item Let $a_3=a_0+a_1$.
+		      \item Let $b_3=\max(b_0,b_1)$.
+		      \item Let $a_4=a_0+a_2$.
+		      \item Let $b_4=b_2$.
+		      \item Let $c_4=c_2$.
+		      \item Let $q_3(x,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $q_0$ on $\langle x,n\rangle$.
+		        \item Execute procedure $q_1$ on $\langle x,n,\delta\rangle$.
+		        \item Verify that $\lVert q'_n(x)\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert p'_n(x)+(q'_n(x)-p'_n(x))\rVert^2$
+		          \item $\le(a_1+\frac{a_0}{n})^2$
+		          \item $\le{a_3}^2$.
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item Let $q_4(x,n,\delta)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $q_0$ on $\langle x,n\rangle$.
+		        \item Execute procedure $q_2$ on $\langle x,n,\delta\rangle$.
+		        \item Verify that $\Delta_{y=x}^{+\delta}p_n(y)$
+		        \begin{enumerate}
+		          \item $\equiv p'_n(x)\err{\frac{a_2}{n}+b_2\{\delta\}}$
+		          \item $\equiv q'_n(x)\err{\frac{a_0}{n}}$.
+		        \end{enumerate}
+		        \item Hence verify that $\Delta_{y=x}^{+\delta}p_n(y)\equiv q'_n(x)$
+		        \begin{enumerate}
+		          \item $\err{\frac{a_2}{n}+b_2\{\delta\}+\frac{a_0}{n}}$
+		          \item $\err{\frac{a_4}{n}+b_4\{\delta\}}$.
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a_3,b_3,a_4,b_4,c_4,q_3,q_4\rangle$.}
+		    \end{enumerate}
 		\procedure{tue2008191151}
 		  \objective
 		    Choose a complex number $B$ and a rational number $D>0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $\lVert 0\rVert^2\le a^2$ when a complex number $x$ and a positive integer $n$ such that $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}B\equiv 0\err{\frac{b}{n}+c\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
@@ -6478,7 +6527,7 @@
 		        \item Hence verify that $\lVert\Delta_{y=x}^{+\delta}\ln_n(y)-\frac{1}{x}\rVert^2$
 		        \begin{instructions}
 		          \item $=\lVert\Delta_{y=x}^{+\delta}(\ln_n(1+\frac{y-1}{y+1})-\ln_n(1-\frac{y-1}{y+1}))-\frac{1}{x}\rVert^2$
-		          \item $=\lVert\Delta_{y=x}^{+\delta}(\ln_n(1+(1+(-2)(y+1)^{-1}))+(-1)\ln_n(1+(-1)(1+(-2)(y+1)^{-1})))-((1+(1+(-2)(x+1)^{-1}))^{-1}(0+(-2)(-1)(x+1)^{-2}(1+0)+(-1)((1+(-1)(1+(-2)(x+1)^{-1}))^{-1}\cdot(0+(-1)(0+(-2)(-1)(x+1)^{-2}(1+0)))))^2$
+		          \item $=\lVert\Delta_{y=x}^{+\delta}(\ln_n(1+(1+(-2)(y+1)^{-1}))+(-1)\ln_n(1+(-1)(1+(-2)(y+1)^{-1})))-((1+(1+(-2)(x+1)^{-1}))^{-1}(0+(-2)(-1)(x+1)^{-2}(1+0)+(-1)((1+(-1)(1+(-2)(x+1)^{-1}))^{-1}\cdot(0+(-1)(0+(-2)(-1)(x+1)^{-2}(1+0))))))\rVert^2$
 		          \item $\le(\frac{a}{n}+b\{\delta\})^2$.
 		        \end{instructions}
 		      \end{instructions}
@@ -6575,7 +6624,7 @@
 		    \begin{instructions}
 		      \item Execute the following in post-order:
 		      \begin{instructions}
-		        \item Execute \procedurehr{mon1908191207} on $\langle q_7,q_3,q_4,q_8,q_5,q_6\rangle$ and let $\langle q_1,q_2\rangle$ receive.
+		        \item Execute \procedurehr{mon1908191207} on $\langle q_7,q_3,q_4,q_8,q_5,q_6\rangle$ and let $\langle e_3,e_4,e_5,e_6,e_7,q_1,q_2\rangle$ receive.
 		        \begin{instructions}
 		          \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle e_1,q_9\rangle$ receive.
 		          \item Execute \procedurehr{wed2407191611} on $\langle \{f\},e_1\rangle$ and let $\langle e_2,q_{10}\rangle$ receive.
@@ -6646,6 +6695,21 @@
 		              \item \textbf{Hence verify that $\lVert-(1+(-2)(x+1)^{-1})\rVert^2=\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$.}
 		            \end{instructions}
 		          \end{instructions}
+		        \end{instructions}
+		      \end{instructions}
+		      \item Let $q(x,n,\delta)$ be the following procedure:
+		      \begin{instructions}
+		        \item Execute procedure $q_1$ on $\langle x,n,\delta\rangle$.
+		        \item Hence verify that $0$
+		        \begin{instructions}
+		          \item $\equiv[(1+(1+(-2)(x+1)^{-1}))_n^f\cdot(-f)(1-(1+(-2)(x+1)^{-1}))_n^{-f-1}\cdot(-1)(0+(-2)(-1)(x+1)^{-2}(1+0))]+[f(1+(1+(-2)(x+1)^{-1}))_n^{f-1}\cdot(0+(-2)(-1)(x+1)^{-2}(1+0))\cdot(1-(1+(-2)(x+1)^{-1}))_n^{-f}]\err{e_3}$
+		          \item $=[2f(1+\frac{x-1}{x+1})_n^f\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(x+1)^{-2}]+[2f(1+\frac{x-1}{x+1})_n^{f-1}\cdot(1-\frac{x-1}{x+1})_n^{-f}(x+1)^{-2}]$
+		          \item $\equiv[2f(1+\frac{x-1}{x+1})_n^{f-1}(1+\frac{x-1}{x+1})_n^1\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(x+1)^{-2}]+[2f(1+\frac{x-1}{x+1})_n^{f-1}\cdot(1-\frac{x-1}{x+1})_n^{-f}(x+1)^{-2}]$
+		          \item $\equiv[2f(1+\frac{x-1}{x+1})_n^{f-1}(1+\frac{x-1}{x+1})_n^1\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(x+1)^{-2}]+[2f(1+\frac{x-1}{x+1})_n^{f-1}\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(1-\frac{x-1}{x+1})_n^{1}(x+1)^{-2}]$
+		          \item $=2f(1+\frac{x-1}{x+1})_n^{f-1}(1-\frac{x-1}{x+1})_n^{-f-1}[(1+\frac{x-1}{x+1})^1\cdot(x+1)^{-2}+(1-\frac{x-1}{x+1})^{1}(x+1)^{-2}]$
+		          \item $=4f(1+\frac{x-1}{x+1})_n^{f-1}(1-\frac{x-1}{x+1})_n^{-f-1}[(x+1)^{-2}]$
+		          \item $=f(1+\frac{x-1}{x+1})_n^{f-1}(1-\frac{x-1}{x+1})_n^{-f-1}(1-\frac{x-1}{x+1})_n^{2}$
+		          \item $\equiv fx_n^{f-1}$
 		        \end{instructions}
 		      \end{instructions}
 		    \end{instructions}
