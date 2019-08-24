@@ -6619,7 +6619,7 @@
 		  The notation \gls{differentialpow}, where $x,a$ are complex numbers and $n$ is a positive integer, will be used as a shorthand for $(1+\frac{x-1}{x+1})_n^a(1-\frac{x-1}{x+1})_n^{-a}$.
 		\procedure{sat2408190819}
 		  \objective
-		    Choose three non-negative rational numbers $A,X,\epsilon$ such that $0<\epsilon<1$. The objective of the following instructions is to construct  positive rational numbers $B,C,D$, and a procedure $p(x,a,n)$ to show that $\lVert x_n^a-x^a\rVert^2\le(BC^n)^2$ when a complex number $x$, and integers $a,n$ such that $\lVert x\rVert^2\le X^2$, $\lVert a\rVert^2\le A^2$, $\Re(x)\ge\epsilon$, and $n>D$ are chosen.
+		    Choose three non-negative rational numbers $A,X,\epsilon$ such that $0<\epsilon<1$. The objective of the following instructions is to construct  positive rational numbers $B,C,D$, and a procedure $p(x,a,n)$ to show that $x_n^a\equiv x^a\err{BC^n}$ when a complex number $x$, and integers $a,n$ such that $\lVert x\rVert^2\le X^2$, $\lVert a\rVert^2\le A^2$, $\Re(x)\ge\epsilon$, and $n>D$ are chosen.
 		  \implementation
 		    \begin{enumerate}
 		      \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle a_1,p_1\rangle$ receive.
