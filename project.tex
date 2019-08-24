@@ -6617,6 +6617,61 @@
 		    \end{enumerate}
 		\declaration{thu2208191619}
 		  The notation \gls{differentialpow}, where $x,a$ are complex numbers and $n$ is a positive integer, will be used as a shorthand for $(1+\frac{x-1}{x+1})_n^a(1-\frac{x-1}{x+1})_n^{-a}$.
+		\procedure{sat2408190819}
+		  \objective
+		    Choose three non-negative rational numbers $A,X,\epsilon$ such that $0<\epsilon<1$. The objective of the following instructions is to construct  positive rational numbers $B,C,D$, and a procedure $p(x,a,n)$ to show that $\lVert x_n^a-x^a\rVert^2\le(BC^n)^2$ when a complex number $x$, and integers $a,n$ such that $\lVert x\rVert^2\le X^2$, $\lVert a\rVert^2\le A^2$, $\Re(x)\ge\epsilon$, and $n>D$ are chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle a_1,p_1\rangle$ receive.
+		      \item Verify that $0<a_1<1$.
+		      \item Execute \procedurehr{tue2008190849} on $\langle A,a_1\rangle$ and let $\langle a_2,b_2,c_2,p_2\rangle$ receive.
+		      \item Execute \procedurehr{wed2407191611} on $\langle A,a_1\rangle$ and let $\langle a_3,p_3\rangle$ receive.
+		      \item Let $B=a_3a_2$.
+		      \item Let $C=b_2$.
+		      \item Let $D=\max(c_2,A)$.
+		      \item Let $p(x,a,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $p_1$ on $\langle x\rangle$.
+		        \item Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le{a_1}^2$.
+		        \item If $a\ge 0$, then do the following:
+		        \begin{enumerate}
+		          \item Execute procedure $p_3$ on $\langle\frac{x-1}{x+1},n,a,1\rangle$.
+		          \item Hence verify that $\lVert((1+\frac{x-1}{x+1})_n^a)^1\rVert^2\le{a_3}^2$.
+		          \item Execute procedure $p_2$ on $\langle-\frac{x-1}{x+1},0,a,n\rangle$.
+		          \item Hence using \procedurehr{sun2107190619}, verify that $\lVert(1-\frac{x-1}{x+1})_n^{-a}-(1-\frac{x-1}{x+1})^{-a}\rVert^2$
+		          \begin{enumerate}
+		            \item $=\lVert(1-\frac{x-1}{x+1})_n^{0-a}-(1-\frac{x-1}{x+1})_n^0((1-\frac{x-1}{x+1})_n^a)^{-1}\rVert^2$
+		            \item $\le(a_2{b_2}^n)^2$.
+		          \end{enumerate}
+		          \item Hence verify that $\lVert x_n^a-x^a\rVert^2$
+		          \begin{enumerate}
+		            \item $=\lVert(1+\frac{x-1}{x+1})_n^a(1-\frac{x-1}{x+1})_n^{-a}-(1+\frac{x-1}{x+1})^a(1-\frac{x-1}{x+1})^{-a}\rVert^2$
+		            \item $=\lVert(1+\frac{x-1}{x+1})_n^a\rVert^2\lVert(1-\frac{x-1}{x+1})_n^{-a}-(1-\frac{x-1}{x+1})^{-a}\rVert^2$
+		            \item $\le(a_3a_2{b_2}^n)^2$
+		            \item $\le(BC^n)^2$.
+		          \end{enumerate}
+		        \end{enumerate}
+		        \item Otherwise do the following:
+		        \begin{enumerate}
+		          \item Execute procedure $p_3$ on $\langle-\frac{x-1}{x+1},n,-a,1\rangle$.
+		          \item Hence verify that $\lVert((1-\frac{x-1}{x+1})_n^{-a})^1\rVert^2\le{a_3}^2$.
+		          \item Execute procedure $p_2$ on $\langle\frac{x-1}{x+1},0,-a,n\rangle$.
+		          \item Hence using \procedurehr{sun2107190619}, verify that $\lVert(1+\frac{x-1}{x+1})_n^a-(1+\frac{x-1}{x+1})^a\rVert^2$
+		          \begin{enumerate}
+		            \item $=\lVert(1+\frac{x-1}{x+1})_n^{0-(-a)}-(1+\frac{x-1}{x+1})_n^0((1+\frac{x-1}{x+1})_n^{-a})^{-1}\rVert^2$
+		            \item $\le(a_2{b_2}^n)^2$.
+		          \end{enumerate}
+		          \item Hence verify that $\lVert x_n^a-x^a\rVert^2$
+		          \begin{enumerate}
+		            \item $=\lVert(1+\frac{x-1}{x+1})_n^a(1-\frac{x-1}{x+1})_n^{-a}-(1+\frac{x-1}{x+1})^a(1-\frac{x-1}{x+1})^{-a}\rVert^2$
+		            \item $=\lVert(1-\frac{x-1}{x+1})_n^{-a}\rVert^2\lVert(1+\frac{x-1}{x+1})_n^a-(1+\frac{x-1}{x+1})^a\rVert^2$
+		            \item $\le(a_3a_2{b_2}^n)^2$
+		            \item $\le(BC^n)^2$.
+		          \end{enumerate}
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle B,C,D,p\rangle$.}
+		    \end{enumerate}
 		\procedure{thu2208191610}
 		  \objective
 		    Choose a complex number $f$ and two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. Let $g(f,x,n)$ be a shorthand for $[2f(1+\frac{x-1}{x+1})_n^f\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(x+1)^{-2}]+[2f(1+\frac{x-1}{x+1})_n^{f-1}\cdot(1-\frac{x-1}{x+1})_n^{-f}(x+1)^{-2}]$. The objective of the following instructions is to construct rational numbers $c,d,a,b,e$, a procedure $p(x,n)$ to show that $\lVert g(f,x,n)\rVert^2\le c^2$ when a complex number $x$ and a positive integer $n$ such that $\Re(x)\ge\epsilon$, $\lVert x\rVert^2$, and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}x_n^f\equiv g(f,x,n)\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le e^2$ is chosen.
@@ -6703,20 +6758,45 @@
 		    Choose a complex number $f$ and two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct rational numbers $c,d,a,b,e$, a procedure $p(x,n)$ to show that $\lVert fx_n^{f-1}\rVert^2\le c^2$ when a complex number $x$ and a positive integer $n$ such that $\Re(x)\ge\epsilon$, $\lVert x\rVert^2$, and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}x_n^f\equiv fx_n^{f-1}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le e^2$ is chosen.
 		  \implementation
 		    \begin{instructions}
+		      \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle a_1,p_1\rangle$ receive.
+		      \item Execute \procedurehr{wed2407191521} on $\langle\{f\}+1,a_1\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
+		      \item Execute \procedurehr{wed2407191611} on $\langle\{f\}+1,a_1\rangle$ and let $\langle a_3,p_3\rangle$ receive.
+		      \item Execute \procedurehr{wed2407191422} on $\langle b_2,1\rangle$ and let $\langle a_4,b_4,p_4\rangle$ receive.
+		      \item Let $h=\{f\}a_2a_3a_4((\frac{2}{1+\epsilon})^2+1)$.
 		      \item Let $t(x,n)$ be the following procedure:
 		      \begin{instructions}
-		        \item Execute procedure $q_1$ on $\langle x,n,\delta\rangle$.
-		        \item Hence verify that $[(1+(1+(-2)(x+1)^{-1}))_n^f\cdot(-f)(1-(1+(-2)(x+1)^{-1}))_n^{-f-1}\cdot(-1)(0+(-2)(-1)(x+1)^{-2}(1+0))]+[f(1+(1+(-2)(x+1)^{-1}))_n^{f-1}\cdot(0+(-2)(-1)(x+1)^{-2}(1+0))\cdot(1-(1+(-2)(x+1)^{-1}))_n^{-f}]$
+		        \item Verify that $\lVert\frac{1}{(x+1)^2}\rVert^2$
+		        \begin{enumerate}
+		          \item $=\frac{1}{\lVert 1+x\rVert^4}$
+		          \item $=\frac{1}{(\Re(1+x)^2+\Im(x)^2)^2}$
+		          \item $\le(\frac{1}{1+\epsilon})^4$.
+		        \end{enumerate}
+		        \item Using procedures $p_1$,$p_2$,$p_3$, and $p_4$ verify that $[2f(1+\frac{x-1}{x+1})_n^f\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(x+1)^{-2}]+[2f(1+\frac{x-1}{x+1})_n^{f-1}\cdot(1-\frac{x-1}{x+1})_n^{-f}(x+1)^{-2}]$
 		        \begin{instructions}
-		          \item $=[2f(1+\frac{x-1}{x+1})_n^f\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(x+1)^{-2}]+[2f(1+\frac{x-1}{x+1})_n^{f-1}\cdot(1-\frac{x-1}{x+1})_n^{-f}(x+1)^{-2}]$
 		          \item $\equiv[2f(1+\frac{x-1}{x+1})_n^{f-1}(1+\frac{x-1}{x+1})_n^1\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(x+1)^{-2}]+[2f(1+\frac{x-1}{x+1})_n^{f-1}\cdot(1-\frac{x-1}{x+1})_n^{-f}(x+1)^{-2}]$
+		          \begin{enumerate}
+		            \item $\err{2\{f\}a_2{b_2}^na_3(\frac{1}{1+\epsilon})^2}$
+		            \item $\err{\frac{2\{f\}a_2a_3a_4}{n}(\frac{1}{1+\epsilon})^2}$
+		          \end{enumerate}
 		          \item $\equiv[2f(1+\frac{x-1}{x+1})_n^{f-1}(1+\frac{x-1}{x+1})_n^1\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(x+1)^{-2}]+[2f(1+\frac{x-1}{x+1})_n^{f-1}\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(1-\frac{x-1}{x+1})_n^{1}(x+1)^{-2}]$
+		          \begin{enumerate}
+		            \item $\err{2\{f\}a_3a_2{b_2}^n(\frac{1}{1+\epsilon})^2}$
+		            \item $\err{\frac{2\{f\}a_3a_2a_4}{n}(\frac{1}{1+\epsilon})^2}$
+		          \end{enumerate}
 		          \item $=2f(1+\frac{x-1}{x+1})_n^{f-1}(1-\frac{x-1}{x+1})_n^{-f-1}[(1+\frac{x-1}{x+1})^1\cdot(x+1)^{-2}+(1-\frac{x-1}{x+1})^{1}(x+1)^{-2}]$
 		          \item $=4f(1+\frac{x-1}{x+1})_n^{f-1}(1-\frac{x-1}{x+1})_n^{-f-1}[(x+1)^{-2}]$
 		          \item $=f(1+\frac{x-1}{x+1})_n^{f-1}(1-\frac{x-1}{x+1})_n^{-f-1}(1-\frac{x-1}{x+1})_n^{2}$
-		          \item $\equiv fx_n^{f-1}$
+		          \item $\equiv f(1+\frac{x-1}{x+1})_n^{f-1}(1-\frac{x-1}{x+1})_n^{-(f-1)}$
+		          \begin{enumerate}
+		            \item $\err{\{f\}a_3a_2{b_2}^n}$
+		            \item $\err{\frac{\{f\}a_3a_2a_4}{n}}$
+		          \end{enumerate}
+		          \item $=fx_n^{f-1}$
 		        \end{instructions}
+		        \item \textbf{Hence verify that $[2f(1+\frac{x-1}{x+1})_n^f\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(x+1)^{-2}]+[2f(1+\frac{x-1}{x+1})_n^{f-1}\cdot(1-\frac{x-1}{x+1})_n^{-f}(x+1)^{-2}]\equiv fx_n^{f-1}\err{\frac{h}{n}}$.}
 		      \end{instructions}
+		      \item Execute \procedurehr{thu2208191610} on $\langle f,X,\epsilon\rangle$ and let $\langle p_5,p_6\rangle$ receive.
+		      \item \textbf{Execute \procedurehr{fri2308191803} on $\langle t,p_5,p_6\rangle$ and let $\langle c,d,a,b,e,p,q\rangle$ receive.}
 		    \end{instructions}
 		\declaration{3.30}
 			The notation \gls{differentialintegral}, where $R$ is a non-empty list of complex numbers and $f[\#r,r,dr]$ is a function of $\#r,r,dr$, will be used as a shorthand for $\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_{t})$.
