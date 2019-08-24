@@ -5667,13 +5667,13 @@
 	    \objective
 	      Choose the following:
 	      \begin{enumerate}
-	        \item A procedure $q_1(x,n)$ to show that $\lVert p_n(x)\rVert^2\le{a_1}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>c_1$ are chosen.
-	        \item A procedure $q_2(x,n)$ to show that $\lVert t_n(x)\rVert^2\le{a_2}^2$ when a complex number $x$ and a positive integer $n$ such that $R(x)$ and $n>c_2$ are chosen.
+	        \item A procedure $q_1(x,n)$ to show that $p_n(x)\equiv 0\err{a_1}$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>c_1$ are chosen.
+	        \item A procedure $q_2(x,n)$ to show that $t_n(x)\equiv 0\err{a_2}$ when a complex number $x$ and a positive integer $n$ such that $R(x)$ and $n>c_2$ are chosen.
 	      \end{enumerate}
 	      The objective of the following instructions is to construct the following:
 	      \begin{enumerate}
 	        \item Rational numbers $a_3,b_3$.
-	        \item A procedure $q_3(x,n)$ to show that $\lVert p_n(x)t_n(x)\rVert^2\le{a_3}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$, $R(x)$, and $n>b_3$ are chosen.
+	        \item A procedure $q_3(x,n)$ to show that $p_n(x)t_n(x)\equiv 0\err{a_3}$ when a complex number $x$ and a positive integer $n$ such that $P(x)$, $R(x)$, and $n>b_3$ are chosen.
 	      \end{enumerate}
 	    \implementation
 	      Implementation is analogous to that of \procedurehr{tue2008191129}.
@@ -5790,15 +5790,15 @@
 		  \objective
 		    Choose the following:
 		    \begin{enumerate}
-		      \item A procedure $q_0(x,n)$ to show that $\lVert p'_n(x)\rVert^2\le{a_0}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>b_0$ are chosen.
+		      \item A procedure $q_0(x,n)$ to show that $p'_n(x)\equiv 0\err{a_0}$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>b_0$ are chosen.
 		      \item A procedure $q_1(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}p_n(y)\equiv p'_n(x)\err{\frac{a_1}{n}+b_1\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $P(x)$, $n>b_0$, and $\lVert\delta\rVert^2<{c_1}^2$ are chosen.
-		      \item A procedure $q_2(x,n)$ to show that $\lVert t'_n(x)\rVert^2\le{a_2}^2$ when a complex number $x$ and a positive integer $n$ such that $R(x)$ and $n>b_2$ are chosen.
+		      \item A procedure $q_2(x,n)$ to show that $t'_n(x)\equiv 0\err{a_2}$ when a complex number $x$ and a positive integer $n$ such that $R(x)$ and $n>b_2$ are chosen.
 		      \item A procedure $q_3(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}t_n(y)\equiv t'_n(x)\err{\frac{a_3}{n}+b_3\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $R(x)$, $n>b_2$, and $\lVert\delta\rVert^2<{c_3}^2$ are chosen.
 		    \end{enumerate}
 		    The objective of the following instructions is to construct the following:
 		    \begin{enumerate}
 		      \item Rational numbers $a_4,b_4,a_5,b_5,c_5$.
-		      \item A procedure $q_4(x,n)$ to show that $\lVert p'_n(x)+t'_n(x)\rVert^2\le{a_4}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$, $R(x)$, and $n>b_4$ are chosen.
+		      \item A procedure $q_4(x,n)$ to show that $p'_n(x)+t'_n(x)\equiv 0\err{a_4}$ when a complex number $x$ and a positive integer $n$ such that $P(x)$, $R(x)$, and $n>b_4$ are chosen.
 		      \item A procedure $q_5(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}(p_n(y)+t_n(y))\equiv p'_n(x)+t'_n(x)\err{\frac{a_5}{n}+b_5\{\delta\}}$ when two complex numbers $x,\delta$ such that $P(x)$, $R(x)$, $n>b_4$, and $\lVert\delta\rVert^2<c_5$.
 		    \end{enumerate}
 		  \implementation
@@ -5808,23 +5808,24 @@
 		      \item Let $q_5(x,n,\delta)$ be the following procedure:
 		      \begin{enumerate}
 		        \item Execute procedure $q_1$ on $\langle x,n,\delta\rangle$.
-		        \item Hence verify that $\lVert\frac{p_n(x+\delta)-p_n(x)}{\delta}-p'_n(x)\rVert^2\le(\frac{a_1}{n}+b_1\{\delta\})^2$.
+		        \item Hence verify that $\Delta_{y=x}^{+\delta}p_n(y)\equiv p'_n(x)\err{\frac{a_1}{n}+b_1\{\delta\}}$.
 		        \item Execute procedure $q_3$ on $\langle x,n,\delta\rangle$.
-		        \item Hence verify that $\lVert\frac{t_n(x+\delta)-t_n(x)}{\delta}-t'_n(x)\rVert^2\le(\frac{a_3}{n}+b_3\{\delta\})^2$.
-		        \item Hence verify that $\lVert\frac{(p_n(x+\delta)+t_n(x+\delta))-(p_n(x)+t_n(x))}{\delta}-(p'_n(x)+t'_n(x))\rVert^2$
+		        \item Hence verify that $\Delta_{y=x}^{+\delta}t_n(y)\equiv t'_n(x)\err{\frac{a_3}{n}+b_3\{\delta\}}$.
+		        \item Hence using \procedurehr{3.83}, verify that $\Delta_{y=x}^{+\delta}(p_n(y)+t_n(y))$
 		        \begin{enumerate}
-		          \item $=\lVert(\frac{p_n(x+\delta)-p_n(x)}{\delta}-p'_n(x))+(\frac{t_n(x+\delta)-t_n(x)}{\delta}-t'_n(x))\rVert^2$
-		          \item $\le((\frac{a_1}{n}+b_1\{\delta\})+(\frac{a_3}{n}+b_3\{\delta\}))^2$
-		          \item $=(\frac{a_5}{n}+b_5\{\delta\})^2$.
+		          \item $=\Delta_{y=x}^{+\delta}p_n(y)+\Delta_{y=x}^{+\delta}t_n(y)$
+		          \item $\equiv p'_n(x)+\Delta_{y=x}^{+\delta}t_n(y)\err{\frac{a_1}{n}+b_1\{\delta\}}$
+		          \item $\equiv p'_n(x)+t'_n(x)\err{\frac{a_3}{n}+b_3\{\delta\}}$
 		        \end{enumerate}
+		        \item \textbf{Hence verify that $\Delta_{y=x}^{+\delta}(p_n(y)+t_n(y))\equiv p'_n(x)+t'_n(x)\err{\frac{a_5}{n}+b_5\{\delta\}}$.}
 		      \end{enumerate}
 		      \item Let $q_4(x,n)$ be the following procedure:
 		      \begin{enumerate}
 		        \item Execute procedure $q_0$ on $\langle x,n\rangle$.
-		        \item Hence verify that $\lVert p'_n(x)\rVert^2\le {a_0}^2$.
+		        \item Hence verify that $p'_n(x)\equiv 0\err{a_0}$.
 		        \item Execute procedure $q_2$ on $\langle x,n\rangle$.
-		        \item Hence verify that $\lVert t'_n(x)\rVert^2\le {a_2}^2$.
-		        \item Hence verify that $\lVert p'_n(x)+t'_n(x)\rVert^2\le(a_0+a_2)^2$.
+		        \item Hence verify that $t'_n(x)\equiv 0\err{a_2}$.
+		        \item Hence verify that $p'_n(x)+t'_n(x)\equiv 0\err{a_0+a_2}$.
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a_4,b_4,a_5,b_5,c_5,q_4,q_5\rangle$.}
 		    \end{enumerate}
