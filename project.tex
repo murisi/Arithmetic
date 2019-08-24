@@ -190,7 +190,7 @@
 \newglossaryentry{differentialdiff}{name=\ensuremath{\diff_{x=y}^zf(x)},description={difference quotient}}
 \newglossaryentry{differentialln}{name=\ensuremath{\ln(x)},description={natural logarithm}}
 \newglossaryentry{differentialpow}{name=\ensuremath{x_n^a},description={exponentiation}}
-\newglossaryentry{differentialintegral}{name=\ensuremath{\int_r^Rf(\#r,r,dr)},description={Riemann sum}}
+\newglossaryentry{differentialintegral}{name=\ensuremath{\int_r^Rf(r,dr)},description={Riemann sum}}
 \newglossaryentry{differentialDeltaX}{name=\ensuremath{\Delta X},description={first difference}}
 \newglossaryentry{matrix}{name={matrix},description={}}
 \newglossaryentry{matrixentry}{name=\ensuremath{A_{I,J}},description={submatrix}}
@@ -6879,29 +6879,29 @@
 		      \item \textbf{Execute \procedurehr{fri2308191803} on $\langle t,p_5,p_6\rangle$ and let $\langle c,d,a,b,e,p,q\rangle$ receive.}
 		    \end{instructions}
 		\declaration{3.30}
-			The notation \gls{differentialintegral}, where $R$ is a non-empty list of complex numbers and $f[\#r,r,dr]$ is a function of $\#r,r,dr$, will be used as a shorthand for $\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_{t})$.
+			The notation \gls{differentialintegral}, where $R$ is a non-empty list of complex numbers and $f[r,dr]$ is a function of $r,dr$, will be used as a shorthand for $\sum_t^{[0:\lvert R\rvert-1]}f(R_t,R_{t+1}-R_{t})$.
 		\procedure{3.86}
 			\objective
-				Choose two functions $f[\#r,r,dr],g[\#r,r,dr]$, and a non-empty list of complex numbers $R$. The objective of the following instructions is to show that $\int_r^R(f(\#r,r,dr)+g(\#r,r,dr))=\int_r^Rf(\#r,r,dr)+\int_r^Rg(\#r,r,dr)$.
+				Choose two functions $f[r,dr],g[r,dr]$, and a non-empty list of complex numbers $R$. The objective of the following instructions is to show that $\int_r^R(f(r,dr)+g(r,dr))=\int_r^Rf(r,dr)+\int_r^Rg(r,dr)$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $\int_r^R(f(\#r,r,dr)+g(\#r,r,dr))$
+					\item Verify that $\int_r^R(f(r,dr)+g(r,dr))$
 					\begin{enumerate}
-						\item $=\sum_t^{[0:\lvert R\rvert-1]}(f(t,R_t,R_{t+1}-R_t)+g(t,R_t,R_{t+1}-R_t))$
-						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_t)+\sum_t^{[0:\lvert R\rvert-1]}g(t,R_t,R_{t+1}-R_t)$
-						\item $=\int_r^Rf(\#r,r,dr)+\int_r^Rg(\#r,r,dr)$
+						\item $=\sum_t^{[0:\lvert R\rvert-1]}(f(R_t,R_{t+1}-R_t)+g(R_t,R_{t+1}-R_t))$
+						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(R_t,R_{t+1}-R_t)+\sum_t^{[0:\lvert R\rvert-1]}g(R_t,R_{t+1}-R_t)$
+						\item $=\int_r^Rf(r,dr)+\int_r^Rg(r,dr)$
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{3.87}
 			\objective
-				Choose a complex number $a$, a function $f[\#r,r,dr]$, and a non-empty list of complex numbers $R$. The objective of the following instructions is to show that $\int_r^Raf(\#r,r,dr)=a\int_r^Rf(\#r,r,dr)$.
+				Choose a complex number $a$, a function $f[r,dr]$, and a non-empty list of complex numbers $R$. The objective of the following instructions is to show that $\int_r^Raf(r,dr)=a\int_r^Rf(r,dr)$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $\int_r^Raf(\#r,r,dr)$
+					\item Verify that $\int_r^Raf(r,dr)$
 					\begin{enumerate}
-						\item $=\sum_t^{[0:\lvert R\rvert-1]}af(t,R_t,R_{t+1}-R_t)$
-						\item $=a\sum_t^{[0:\lvert R\rvert-1]}f(t,R_t,R_{t+1}-R_t)$
-						\item $=a\int_r^Rf(\#r,r,dr)$
+						\item $=\sum_t^{[0:\lvert R\rvert-1]}af(R_t,R_{t+1}-R_t)$
+						\item $=a\sum_t^{[0:\lvert R\rvert-1]}f(R_t,R_{t+1}-R_t)$
+						\item $=a\int_r^Rf(r,dr)$
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{3.88}
