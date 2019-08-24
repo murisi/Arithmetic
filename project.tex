@@ -6015,13 +6015,13 @@
 		    Choose the following:
 		    \begin{enumerate}
 		      \item A procedure $q_0(x,n)$ to show that $p'_n(x)\equiv q'_n(x)\err{\frac{a_0}{n}}$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>b_0$ are chosen.
-		      \item A procedure $q_1(x,n)$ to show that $\lVert p'_n(x)\rVert^2\le{a_1}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>b_1$ are chosen.
+		      \item A procedure $q_1(x,n)$ to show that $p'_n(x)\equiv 0\err{a_1}$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>b_1$ are chosen.
 		      \item A procedure $q_2(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}p_n(y)\equiv p'_n(x)\err{\frac{a_2}{n}+b_2\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $P(x)$, $n>b_1$, and $\lVert\delta\rVert^2\le{c_2}^2$ are chosen.
 		    \end{enumerate}
 		    The objective of the following instructions is to construct the following:
 		    \begin{enumerate}
 		      \item Rational numbers $a_3,b_3,a_4,b_4,c_4$.
-		      \item A procedure $q_3(x,n)$ to show that $\lVert q'_n(x)\rVert^2\le{a_3}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>b_3$ are chosen.
+		      \item A procedure $q_3(x,n)$ to show that $q'_n(x)\equiv 0\err{a_3}$ when a complex number $x$ and a positive integer $n$ such that $P(x)$ and $n>b_3$ are chosen.
 		      \item A procedure $q_4(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}p_n(y)\equiv q'_n(x)\err{\frac{a_4}{n}+b_4\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $P(x)$, $n>b_3$, and $\lVert\delta\rVert^2\le{c_4}^2$ are chosen.
 		    \end{enumerate}
 		  \implementation
@@ -6034,13 +6034,10 @@
 		      \item Let $q_3(x,n)$ be the following procedure:
 		      \begin{enumerate}
 		        \item Execute procedure $q_0$ on $\langle x,n\rangle$.
+		        \item Verify that $p'_n(x)\equiv q'_n(x)\err{\frac{a_0}{n}}$.
 		        \item Execute procedure $q_1$ on $\langle x,n,\delta\rangle$.
-		        \item Verify that $\lVert q'_n(x)\rVert^2$
-		        \begin{enumerate}
-		          \item $=\lVert p'_n(x)+(q'_n(x)-p'_n(x))\rVert^2$
-		          \item $\le(a_1+\frac{a_0}{n})^2$
-		          \item $\le{a_3}^2$.
-		        \end{enumerate}
+		        \item Verify that $p'_n(x)\equiv 0\err{a_1}$.
+		        \item \textbf{Hence verify that $q'_n(x)\equiv 0\err{a_3}$.}
 		      \end{enumerate}
 		      \item Let $q_4(x,n,\delta)$ be the following procedure:
 		      \begin{enumerate}
@@ -6712,7 +6709,7 @@
 		    \end{enumerate}
 		\procedure{sat2408191137}
 		  \objective
-		    Choose three non-negative rational numbers $A,X,\epsilon$ such that $0<\epsilon<1$. The objective of the following instructions is to construct a positive rational number $D$, and a procedure $p(x,n,a,k)$ to show that $(x_n^a)^k\equiv 0\err{D}$ when complex numbers $x,a,k$, and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$, $\lVert a\rVert^2\le A^2$, and $\Re(x)\ge\epsilon$ are chosen.
+		    Choose three non-negative rational numbers $A,X,\epsilon$ such that $0<\epsilon<1$. The objective of the following instructions is to construct a positive rational number $D$, and a procedure $p(x,n,a,k)$ to show that $(x_n^a)^k\equiv 0\err{D}$ when complex numbers $x,a,k$, and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$, $\lVert ka\rVert^2\le A^2$, and $\Re(x)\ge\epsilon$ are chosen.
 		  \implementation
 		    \begin{enumerate}
 		      \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle a_1,p_1\rangle$ receive.
@@ -6720,7 +6717,7 @@
 		      \item Let $D={a_2}^2$.
 		      \item Let $p(x,n,a,k)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Using procedure $p_1,p_2$, verify that $(x_n^a)^k$
+		        \item Using procedures $p_1,p_2$, verify that $(x_n^a)^k$
 		        \begin{enumerate}
 		          \item $=((1+\frac{x-1}{x+1})_n^a(1-\frac{x-1}{x+1})_n^{-a})^k$
 		          \item $=((1+\frac{x-1}{x+1})_n^a)^k((1-\frac{x-1}{x+1})_n^{-a})^k$
@@ -6730,6 +6727,30 @@
 		        \item \textbf{Hence verify that $(x_n^a)^k\equiv 0\err{D}$.}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle D,p\rangle$.}
+		    \end{enumerate}
+		\procedure{sat2408191538}
+		  \objective
+		    Choose three non-negative rational numbers $A,X,\epsilon$ such that $0<\epsilon<1$. The objective of the following instructions is to construct a positive rational number $B,C$, and a procedure $p(x,n,a,k)$ to show that $(x_n^a)^k\equiv x_n^{ak}\err{BC^n}$ when complex numbers $x,a,k$, and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$, $\lVert ka\rVert^2\le A^2$, and $\Re(x)\ge\epsilon$ are chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle a_1,p_1\rangle$ receive.
+		      \item Execute \procedurehr{wed2407191627} on $\langle A,a_1\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
+		      \item Execute \procedurehr{wed2407191611} on $\langle A,a_1\rangle$ and let $\langle a_3,p_3\rangle$ receive.
+		      \item Let $B=2a_2a_3$.
+		      \item Let $C=b_2$.
+		      \item Let $p(x,n,a,k)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Using procedures $p_1,p_2,p_3$, verify that $(x_n^a)^k$
+		        \begin{enumerate}
+		          \item $=((1+\frac{x-1}{x+1})_n^a(1-\frac{x-1}{x+1})_n^{-a})^k$
+		          \item $=((1+\frac{x-1}{x+1})_n^a)^k((1-\frac{x-1}{x+1})_n^{-a})^k$
+		          \item $\equiv(1+\frac{x-1}{x+1})_n^{ak}((1-\frac{x-1}{x+1})_n^{-a})^k\err{a_2{b_2}^na_3}$
+		          \item $\equiv((1+\frac{x-1}{x+1})_n^{ak})^1(1-\frac{x-1}{x+1})_n^{-ak}\err{a_3a_2{b_2}^n}$
+		          \item $=x_n^{ak}$.
+		        \end{enumerate}
+		        \item \textbf{Hence verify that $(x_n^a)^k\equiv x_n^{ak}\err{BC^n}$.}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle B,C,p\rangle$.}
 		    \end{enumerate}
 		\procedure{thu2208191610}
 		  \objective
