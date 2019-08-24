@@ -5833,16 +5833,16 @@
 		  \objective
 		    Choose the following:
 		    \begin{enumerate}
-		      \item A procedure $q_0(x,n)$ to show that $\lVert p'_n(x)\rVert^2\le{a_0}^2$ when a complex number $x$ and a positive integer $n$ such that $P(x)$, and $n>b_0$ are chosen
+		      \item A procedure $q_0(x,n)$ to show that $p'_n(x)\equiv 0\err{a_0}$ when a complex number $x$ and a positive integer $n$ such that $P(x)$, and $n>b_0$ are chosen
 		      \item A procedure $q_1(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}p_n(y)\equiv p'_n(x)\err{\frac{a_1}{n}+b_1\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $P(x)$, $n>b_0$, and $\lVert\delta\rVert^2<{c_1}^2$ are chosen
-		      \item A procedure $q_2(x,n)$ to show that $\lVert t'_n(x)\rVert^2\le{a_2}^2$ when a complex number $x$ and a positive integer $n$ such that $R(x)$, and $n>b_2$ are chosen
+		      \item A procedure $q_2(x,n)$ to show that $t'_n(x)\equiv 0\err{a_2}$ when a complex number $x$ and a positive integer $n$ such that $R(x)$, and $n>b_2$ are chosen
 		      \item A procedure $q_3(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}t_n(y)\equiv t'_n(x)\err{\frac{a_3}{n}+b_3\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $R(x)$, $n>b_2$, and $\lVert\delta\rVert^2<{c_3}^2$ are chosen
 		      \item A procedure $q_4(x,n)$ to show that $P(t_n(x))$ when a complex number $x$ and a positive integer $n$ such that $R(x)$ and $n>b_2$ are chosen
 		    \end{enumerate}
 		    The objective of the following instructions is to construct the following:
 		    \begin{enumerate}
 		      \item Rational numbers $a_5,b_5,a_6,b_6,c_6$.
-		      \item A procedure $q_5(x,n)$ to show that $\lVert p'_n(t_n(x))t'_n(x)\rVert^2\le{a_5}^2$ when a complex number $x$ such that $R(x)$, and $n>b_5$ are chosen.
+		      \item A procedure $q_5(x,n)$ to show that $p'_n(t_n(x))t'_n(x)\equiv 0\err{a_5}$ when a complex number $x$ such that $R(x)$, and $n>b_5$ are chosen.
 		      \item A procedure $q_6(x,n,\delta)$ to show that $\Delta_{y=x}^{x+\delta}p_n(t_n(y))\equiv p'_n(t_n(x))t'_n(x)\err{\frac{a_6}{n}+b_6\{\delta\}}$ when two complex numbers $x,dx$ such that $R(x)$, $n>b_5$, and $\lVert\delta\rVert^2<{c_6}^2$ are chosen.
 		    \end{enumerate}
 		  \implementation
@@ -5855,43 +5855,50 @@
 		      \item Let $q_5(x,n,\delta)$ be the following procedure:
 		      \begin{enumerate}
 		        \item Execute procedure $q_3$ on $\langle x,n,\delta\rangle$.
-		        \item Hence verify that $\lVert\frac{t_n(x+\delta)-t_n(x)}{\delta}-t'_n(x)\rVert^2\le(\frac{a_3}{n}+b_3\{\delta\})^2$.
 		        \item Execute procedure $q_4$ on $\langle x,n\rangle$.
-		        \item Hence verify that $\lVert t'_n(x)\rVert^2\le {a_2}^2$.
+		        \item Hence verify that $\Delta_{y=x}^{+\delta}t_n(y)$
+		        \begin{enumerate}
+		          \item $\equiv t'_n(x)\err{\frac{a_3}{n}+b_3\{\delta\}}$
+		          \item $\equiv 0\err{a_2}$.
+		        \end{enumerate}
 		        \item Verify that $\{\delta\}^2\le 2\lVert\delta\rVert^2\le 4{c_6}^2$.
 		        \item Hence verify that $\{\delta\}\le 2c_6\le 2c_3$.
-		        \item Verify that $\lVert t_n(x+\delta)-t_n(x)\rVert^2$
+		        \item Verify that $t_n(x+\delta)-t_n(x)$
 		        \begin{enumerate}
-		          \item $=\lVert\frac{t_n(x+\delta)-t_n(x)}{\delta}\rVert^2\lVert\delta\rVert^2$
-		          \item $=\lVert\frac{t_n(x+\delta)-t_n(x)}{\delta}-t'_n(x)+t'_n(x)\rVert^2\lVert\delta\rVert^2$
-		          \item $\le(\frac{a_3}{n}+b_3\{\delta\}+a_2)^2\lVert\delta\rVert^2$
-		          \item $\le(a_3+2b_3c_3+a_2)^2{c_6}^2$
-		          \item $\le{c_1}^2$.
+		          \item $=\Delta_{y=x}^{+\delta}t_n(y)\delta$
+		          \item $\equiv 0\delta$
+		          \begin{enumerate}
+		            \item $\err{(\frac{a_3}{n}+b_3\{\delta\}+a_2)c_6}$
+		            \item $\err{(a_3+2b_3c_3+a_2)c_6}$.
+		          \end{enumerate}
 		        \end{enumerate}
+		        \item Hence verify that $t_n(x+\delta)-t_n(x)\equiv 0\err{(a_3+2b_3c_3+a_2)c_6}\err{c_1}$.
 		        \item Execute procedure $q_4$ on $\langle x,n\rangle$.
 		        \item Hence verify that $P(t_n(x))$.
 		        \item Execute procedure $q_1$ on $\langle t_n(x),n,t_n(x+\delta)-t_n(x)\rangle$.
-		        \item Hence verify that $\lVert\frac{p_n(t_n(x)+(t_n(x+\delta)-t_n(x)))-p_n(t_n(x))}{t_n(x+\delta)-t_n(x)}-p'_n(t_n(x))\rVert^2\le(\frac{a_1}{n}+b_1\{\delta\})^2$.
 		        \item Execute procedure $q_0$ on $\langle t_n(x),n\rangle$.
-		        \item Hence verify that $\lVert p'_n(t_n(x))\rVert^2\le{a_0}^2$.
-		        \item Verify that $\lVert\frac{p(t(x+\delta))-p(t(x))}{\delta}-p'(t(x))t'(x)\rVert^2$
+		        \item Hence verify that $\Delta_{z=t_n(x)}^{t_n(x+\delta)-t_n(x)}p_n(z)$
 		        \begin{enumerate}
-		          \item $=\lVert\frac{p(t(x)+(t(x+\delta)-t(x)))-p(t(x))}{t(x+\delta)-t(x)}\cdot\frac{t(x+\delta)-t(x)}{\delta}-p'(t(x))t'(x)\rVert^2$
-		          \item $=\lVert(\frac{p(t(x)+(t(x+\delta)-t(x)))-p(t(x))}{t(x+\delta)-t(x)}-p'(t(x)))\cdot\frac{t(x+\delta)-t(x)}{\delta}+p'(t(x))(\frac{t(x+\delta)-t(x)}{\delta}-t'(x))\rVert^2$
-		          \item $=\lVert(\frac{p(t(x)+(t(x+\delta)-t(x)))-p(t(x))}{t(x+\delta)-t(x)}-p'(t(x)))\cdot(\frac{t(x+\delta)-t(x)}{\delta}-t'(x))+(\frac{p(t(x)+(t(x+\delta)-t(x)))-p(t(x))}{t(x+\delta)-t(x)}-p'(t(x)))\cdot t'(x)+p'(t(x))(\frac{t(x+\delta)-t(x)}{\delta}-t'(x))\rVert^2$
-		          \item $\le((\frac{a_1}{n}+b_1\{\delta\})(\frac{a_3}{n}+b_3\{\delta\})+(\frac{a_1}{n}+b_1\{\delta\})a_2+a_0(\frac{a_3}{n}+b_3\{\delta\}))^2$
-		          \item $\le(\frac{a_6}{n}+b_6\{\delta\})^2$.
+		          \item $\equiv p'_n(t_n(x))\err{\frac{a_1}{n}+b_1\{\delta\}}$
+		          \item $\equiv 0\err{a_0}$.
 		        \end{enumerate}
+		        \item Verify that $\Delta_{y=x}^{+\delta}p_n(t_n(y))$
+		        \begin{enumerate}
+		          \item $=\Delta_{z=t_n(x)}^{t_n(x+\delta)-t_n(x)}p_n(z)\cdot\Delta_{y=x}^{+\delta}t_n(y)$
+		          \item $\equiv p'_n(t_n(x))\Delta_{y=x}^{+\delta}t_n(y)\err{(\frac{a_1}{n}+b_1\{\delta\})(\frac{a_3}{n}+b_3\{\delta\}+a_2)}$
+		          \item $\equiv p'_n(t_n(x))t'_n(x)\err{a_0(\frac{a_3}{n}+b_3\{\delta\})}$.
+		        \end{enumerate}
+		        \item \textbf{Hence verify that $\Delta_{y=x}^{+\delta}p_n(t_n(y))\equiv p'_n(t_n(x))t'_n(x)\err{\frac{a_6}{n}+b_6\{\delta\}}$.}
 		      \end{enumerate}
 		      \item Let $q_6(x,n)$ be the following procedure:
 		      \begin{enumerate}
 		        \item Execute procedure $q_4$ on $\langle x,n\rangle$.
 		        \item Hence verify that $P(t_n(x))$.
 		        \item Execute procedure $q_0$ on $\langle t_n(x),n\rangle$.
-		        \item Hence verify that $\lVert p'_n(t_n(x))\rVert^2\le {a_0}^2$.
+		        \item Hence verify that $p'_n(t_n(x))\equiv 0\err{a_0}$.
 		        \item Execute procedure $q_2$ on $\langle x,n\rangle$.
-		        \item Hence verify that $\lVert t'_n(x)\rVert^2\le {a_2}^2$.
-		        \item Hence verify that $\lVert p'_n(t_n(x))t'_n(x)\rVert^2\le(a_0a_2)^2={a_5}^2$.
+		        \item Hence verify that $t'_n(x)\equiv 0\err{a_2}$.
+		        \item Hence verify that $p'_n(t_n(x))t'_n(x)\equiv 0\err{a_0a_2}\err{a_5}$.
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a_5,b_5,a_6,b_6,c_6,q_5,q_6\rangle$.}
 		    \end{enumerate}
