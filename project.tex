@@ -4060,7 +4060,7 @@
 				\end{enumerate}
 		\procedure{thu2507191307}
 		  \objective
-		    Choose a rational number $X\ge 0$. The objective of the following instructions is to construct positive rational numbers $a,b$, and a procedure $p(x,y,n)$ to show that $\lVert\exp_n(y)-\exp_n(x)\rVert^2\le\lVert x-y\rVert^2a^2$ when two complex numbers $x,y$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X$ and $\lVert y\rVert^2\le X$ are chosen.
+		    Choose a rational number $X\ge 0$. The objective of the following instructions is to construct positive rational numbers $a,b$, and a procedure $p(x,y,n)$ to show that $\exp_n(y)\equiv\exp_n(x)\err{a(x-y)}$ when two complex numbers $x,y$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X$ and $\lVert y\rVert^2\le X$ are chosen.
 		  \implementation
 		    \begin{enumerate}
 		      \item Execute \procedurehr{3.13} on $\langle X\rangle$ and let $\langle c,b,q\rangle$ receive.
@@ -4855,20 +4855,22 @@
 	        \item Let $p(x,n,k)$ be the following procedure:
 	        \begin{enumerate}
 	          \item For $r\in[2:k]$, use \procedurehr{thu0108191318} to verify that $\frac{\omega(r+1)}{\omega(r)}\le 1$.
-	          \item Hence verify that $\lVert\ln_k(1+x)-n((1+x)_k^{\frac{1}{n}}-1)\rVert^2$
+	          \item Also verify that $\lVert x+1\rVert^2\ge\Re(x+1)^2+\Im(x)^2\ge(1-X)^2$.
+	          \item Hence verify that $\ln_k(1+x)\equiv n((1+x)_k^{\frac{1}{n}}-1)$
 	          \begin{enumerate}
-	            \item $=\lVert\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}x^r-n(\sum_r^{[0:k]}\binom{\frac{1}{n}}{r}x^r-1)\rVert^2$
-	            \item $=\lVert\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}x^r-n\sum_r^{[1:k]}\binom{\frac{1}{n}}{r}x^r\rVert^2$
-	            \item $=\lVert\sum_r^{[1:k]}\frac{(-1)^{\ul{r-1}}}{r!}x^r-\sum_r^{[1:k]}\frac{(\frac{1}{n}-1)^{\ul{r-1}}}{r!}x^r\rVert^2$
-	            \item $=\lVert\sum_r^{[1:k]}\frac{1}{r!}((-1)^{\ul{r-1}}-(\frac{1}{n}-1)^{\ul{r-1}})x^r\rVert^2$
-	            \item $=\lVert\sum_r^{[1:k]}\frac{(-1)^{\ul{r-1}}}{r!}(1-\frac{(\frac{1}{n}-1)^{\ul{r-1}}}{(-1)^{\ul{r-1}}})x^r\rVert^2$
-	            \item $=\lVert\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}(1-\prod_t^{[1:r]}\frac{\frac{1}{n}-t}{-t})x^r\rVert^2$
-	            \item $=\lVert\sum_r^{[1:k]}\omega(r)(-x)^r\rVert^2$
-	            \item $=\lVert\sum_r^{[1:k]}(\omega(r+1)\cdot\frac{(-x)^{r+1}}{-x-1}-\omega(r)\cdot\frac{(-x)^r}{-x-1}-(\omega(r+1)-\omega(r))\cdot\frac{(-x)^{r+1}}{-x-1})\rVert^2$
-	            \item $=\frac{1}{\lVert x+1\rVert^2}\lVert \omega(k)(-x)^k-\omega(1)(-x)^1-\sum_r^{[1:k]}(\omega(r+1)-\omega(r))(-x)^{r+1}\rVert^2$
-	            \item $\le\frac{1}{\lVert x+1\rVert^2}(\omega(k)+\omega(1)+\sum_r^{[2:k]}(\omega(r)-\omega(r+1))+\omega(2)-\omega(1))^2$
-	            \item $=\frac{1}{((\Re(x)+1)^2+\Im(x)^2)}(\omega(k)-\omega(k)+\omega(2)+\omega(2)+\omega(1)-\omega(1))^2$
-	            \item $\le(\frac{a}{n})^2$.
+	            \item $\err{\ln_k(1+x)-n((1+x)_k^{\frac{1}{n}}-1)}$
+	            \item $\err{\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}x^r-n(\sum_r^{[0:k]}\binom{\frac{1}{n}}{r}x^r-1)}$
+	            \item $\err{\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}x^r-n\sum_r^{[1:k]}\binom{\frac{1}{n}}{r}x^r}$
+	            \item $\err{\sum_r^{[1:k]}\frac{(-1)^{\ul{r-1}}}{r!}x^r-\sum_r^{[1:k]}\frac{(\frac{1}{n}-1)^{\ul{r-1}}}{r!}x^r}$
+	            \item $\err{\sum_r^{[1:k]}\frac{1}{r!}((-1)^{\ul{r-1}}-(\frac{1}{n}-1)^{\ul{r-1}})x^r}$
+	            \item $\err{\sum_r^{[1:k]}\frac{(-1)^{\ul{r-1}}}{r!}(1-\frac{(\frac{1}{n}-1)^{\ul{r-1}}}{(-1)^{\ul{r-1}}})x^r}$
+	            \item $\err{\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}(1-\prod_t^{[1:r]}\frac{\frac{1}{n}-t}{-t})x^r}$
+	            \item $\err{\sum_r^{[1:k]}\omega(r)(-x)^r}$
+	            \item $\err{\sum_r^{[1:k]}(\omega(r+1)\cdot\frac{(-x)^{r+1}}{-x-1}-\omega(r)\cdot\frac{(-x)^r}{-x-1}-(\omega(r+1)-\omega(r))\cdot\frac{(-x)^{r+1}}{-x-1})}$
+	            \item $\err{\frac{1}{x+1}(\omega(k)(-x)^k-\omega(1)(-x)^1-\sum_r^{[1:k]}(\omega(r+1)-\omega(r))(-x)^{r+1})}$
+	            \item $\err{\frac{1}{x+1}(\omega(k)+\omega(1)+\sum_r^{[2:k]}(\omega(r)-\omega(r+1))+\omega(2)-\omega(1))}$
+	            \item $\err{\frac{1}{1-X}(\omega(k)-\omega(k)+\omega(2)+\omega(2)+\omega(1)-\omega(1))}$
+	            \item $\err{\frac{a}{n}}$.
 	          \end{enumerate}
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle a,p\rangle$.}
@@ -4908,21 +4910,19 @@
 	        \item Let $c=a_4a_3$.
 	        \item Let $p(x,n,k)$ be the following procedure:
 	        \begin{enumerate}
-	          \item Execute procedure $p_1$ on $\langle x,n,k\rangle$.
-	          \item Hence verify that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le {a_1}^2$.
-	          \item Execute procedure $p_2$ on $\langle x,k\rangle$.
-	          \item Hence verify that $\lVert\ln_k(1+x)\rVert^2\le {a_2}^2$.
-	          \item Execute procedure $p_4$ on $\langle x,n,k\rangle$.
-	          \item Hence verify that $\lVert\ln_k(1+x)-n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le(\frac{a_4}{n})^2$.
-	          \item Execute procedure $p_3$ on $\langle\ln_k(1+x),n((1+x)_k^{\frac{1}{n}}-1),n\rangle$.
-	          \item Hence verify that $\lVert\exp_n(\ln_k(1+x))-\exp_n(n((1+x)_k^{\frac{1}{n}}-1))\rVert^2\le(\frac{a_4}{n})^2{a_3}^2=(\frac{c}{n})^2$.
-	          \item Execute procedure $p_5$ on $\langle x,n,k\rangle$.
-	          \item Hence verify that $\lVert\exp_n(n((1+x)_k^{\frac{1}{n}}-1))-(1+x)\rVert^2\le(\frac{an}{k})^2$.
-	          \item Hence verify that $\lVert\exp_n(\ln_k(1+x))-(1+x)\rVert^2$
+	          \item Using procedure $p_1$, verify that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le {a_1}^2$.
+	          \item Using procedure $p_2$, verify that $\lVert\ln_k(1+x)\rVert^2\le {a_2}^2$.
+	          \item Using procedure $p_4$, verify that $\lVert\ln_k(1+x)-n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le(\frac{a_4}{n})^2$.
+	          \item Now using procedures $p_3,p_5$, verify that $\exp_n(\ln_k(1+x))$
 	          \begin{enumerate}
-	            \item $=\lVert\exp_n(\ln_k(1+x))-\exp_n(n((1+x)_k^{\frac{1}{n}}-1))+\exp_n(n((1+x)_k^{\frac{1}{n}}-1))-(1+x)\rVert^2$
-	            \item $\le(\frac{c}{n}+\frac{an}{k})^2$.
+	            \item $\equiv\exp_n(n((1+x)_k^{\frac{1}{n}}-1))$
+	            \begin{enumerate}
+	              \item $\err{a_3(\ln_k(1+x)-n((1+x)_k^{\frac{1}{n}}-1))}$
+	              \item $\err{a_3\cdot\frac{a_4}{n}}$
+	            \end{enumerate}
+	            \item $\equiv 1+x\err{\frac{an}{k}}$
 	          \end{enumerate}
+	          \item \textbf{Hence verify that $\exp_n(\ln_k(1+x))\equiv 1+x\err{\frac{a_3a_4}{n}+\frac{an}{k}}\err{\frac{c}{n}+\frac{an}{k}}$.}
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
 	      \end{enumerate}
