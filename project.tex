@@ -4768,26 +4768,16 @@
 	        \item Let $G=DB$.
 	        \item Let $p(x,n,a,k)$ be the following procedure:
 	        \begin{enumerate}
-	          \item If $k>0$, then for $r\in[1:k]$ do the following:
+	          \item Using procedures $t,q$, verify that $(1+x)_n^{ka}$
 	          \begin{enumerate}
-	            \item Verify that $\lVert ar\rVert^2\le\lVert ak\rVert^2\le 1$.
-	            \item Execute procedure $t$ on $\langle x,n,a,r\rangle$.
-	            \item Hence verify that $\lVert((1+x)_n^a)^r\rVert^2\le D^2$.
+	            \item $=((1+x)_n^a)^0(1+x)_n^{ka}$
+	            \item $\equiv((1+x)_n^a)^1(1+x)_n^{(k-1)a}\err{D\frac{B}{n}}$
+	            \item $\equiv((1+x)_n^a)^2(1+x)_n^{(k-2)a}\err{D\frac{B}{n}}$
+	            \item $\vdots$
+	            \item $\equiv((1+x)_n^a)^k(1+x)_n^{(k-k)a}\err{D\frac{B}{n}}$
+	            \item $=((1+x)_n^a)^k$.
 	          \end{enumerate}
-	          \item For $r\in[0:k]$, do the following:
-	          \begin{enumerate}
-	            \item Verify that $a^2\le(ka)^2\le 1$.
-	            \item Verify that $((k-r-1)a)^2\le(ka)^2\le 1$.
-	            \item Execute procedure $q$ on $\langle x,a,(k-r-1)a,n\rangle$.
-	            \item Hence verify that $\lVert(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}\rVert^2\le(\frac{B}{n})^2$.
-	          \end{enumerate}
-	          \item Hence verify that $\lVert(1+x)_n^{ka}-((1+x)_n^a)^k\rVert^2$
-	          \begin{enumerate}
-	            \item $=\lVert\sum_r^{[0:k]}(((1+x)_n^a)^r(1+x)_n^{(k-r)a}-((1+x)_n^a)^{r+1}(1+x)_n^{(k-r-1)a})\rVert^2$
-	            \item $=\lVert\sum_r^{[0:k]}((1+x)_n^a)^r((1+x)_n^{(k-r)a}-(1+x)_n^a(1+x)_n^{(k-r-1)a})\rVert^2$
-	            \item $\le(\sum_r^{[0:k]}\frac{DB}{n})^2$
-	            \item $=(\frac{Gk}{n})^2$.
-	          \end{enumerate}
+	          \item \textbf{Hence verify that $(1+x)_n^{ka}\equiv((1+x)_n^a)^k\err{\frac{DBk}{n}}\err{\frac{Gk}{n}}$.}
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle G,D,N,p\rangle$.}
 	      \end{enumerate}
@@ -4799,15 +4789,15 @@
 	        \item Execute \procedurehr{thu2507190752} on $\langle X\rangle$ and let $\langle a,c,p_1\rangle$ receive.
 	        \item Let $p(x,n,k)$ be the following procedure:
 	        \begin{enumerate}
-	          \item Using \procedurehr{sun2107190619}, verify that $(1+x)_k^1=(1+x)^1=1+x$.
-	          \item Execute procedure $p_1$ on $\langle x,k,\frac{1}{n},n\rangle$.
-	          \item Hence verify that $\lVert(1+x)_k^1-((1+x)_k^{\frac{1}{n}})^n\rVert^2\le(\frac{an}{k})^2$.
-	          \item Hence verify that $\lVert\exp_n(n((1+x)_k^{\frac{1}{n}}-1))-(1+x)\rVert^2$
-	          \begin{enumerate}
-	            \item $=\lVert(1+\frac{1}{n}(n((1+x)_k^{\frac{1}{n}}-1)))^n-(1+x)\rVert^2$
-	            \item $=\lVert((1+x)_k^{\frac{1}{n}})^n-(1+x)_k^1\rVert^2$
-	            \item $\le(\frac{an}{k})^2$.
-	           \end{enumerate}
+            \item Using procedure $p_1$ and \procedurehr{sun2107190619}, verify that $\exp_n(n((1+x)_k^{\frac{1}{n}}-1))$
+            \begin{enumerate}
+              \item $=(1+\frac{1}{n}(n((1+x)_k^{\frac{1}{n}}-1)))^n$
+              \item $=((1+x)_k^{\frac{1}{n}})^n$
+              \item $\equiv(1+x)_k^1\err{\frac{an}{k}}$
+              \item $=(1+x)^1$
+              \item $=1+x$.
+            \end{enumerate}
+            \item \textbf{Hence verify that $\exp_n(n((1+x)_k^{\frac{1}{n}}-1))\equiv 1+x\err{\frac{an}{k}}$.}
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle a,c,p\rangle$.}
 	      \end{enumerate}
