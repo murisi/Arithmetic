@@ -4622,27 +4622,16 @@
 	        \item Let $G=DB$.
 	        \item Let $p(x,n,a,k)$ be the following procedure:
 	        \begin{enumerate}
-	          \item If $k>0$, then for $r\in[1:k]$ do the following:
+	          \item Hence using procedures $t,q$, verify that $(1+x)_n^{ka}$
 	          \begin{enumerate}
-	            \item Verify that $\lVert ar\rVert^2\le\lVert ak\rVert^2<A^2$.
-	            \item Execute procedure $t$ on $\langle x,n,a,r\rangle$.
-	            \item Hence verify that $\lVert((1+x)_n^a)^r\rVert^2<D^2$.
+	            \item $=((1+x)_n^a)^0(1+x)_n^{ka}$
+	            \item $\equiv((1+x)_n^a)^1(1+x)_n^{(k-1)a}\err{DBC^n}$
+	            \item $\equiv((1+x)_n^a)^2(1+x)_n^{(k-2)a}\err{DBC^n}$
+	            \item $\vdots$
+	            \item $\equiv((1+x)_n^a)^k(1+x)_n^{(k-k)a}\err{DBC^n}$
+	            \item $=((1+x)_n^a)^k$.
 	          \end{enumerate}
-	          \item For $r$ in $[0:k]$, do the following:
-	          \begin{enumerate}
-	            \item Verify that $\lVert a\rVert^2\le\lVert ka\rVert^2<A^2$.
-	            \item Verify that $\lVert(k-r-1)a\rVert^2\le\lVert ka\rVert^2<A^2$.
-	            \item Execute procedure $q$ on $\langle x,a,(k-r-1)a,n\rangle$.
-	            \item Hence verify that $\lVert(1+x)_n^a(1+x)_n^{(k-r-1)a}-(1+x)_n^{(k-r)a}\rVert^2\le(BC^n)^2$.
-	          \end{enumerate}
-	          \item Hence verify that $\lVert(1+x)_n^{ka}-((1+x)_n^a)^k\rVert^2$
-	          \begin{enumerate}
-	            \item $=\lVert\sum_r^{[0:k]}(((1+x)_n^a)^r(1+x)_n^{(k-r)a}-((1+x)_n^a)^{r+1}(1+x)_n^{(k-r-1)a})\rVert^2$
-	            \item $=\lVert\sum_r^{[0:k]}((1+x)_n^a)^r((1+x)_n^{(k-r)a}-(1+x)_n^a(1+x)_n^{(k-r-1)a})\rVert^2$
-	            \item $\le(\sum_r^{[0:k]}DBC^n)^2$
-	            \item $=(kDBC^n)^2$
-	            \item $=(GkC^n)^2$.
-	          \end{enumerate}
+	          \item \textbf{Hence verify that $(1+x)_n^{ka}\equiv((1+x)_n^a)^k\err{kDBC^n}\err{GkC^n}$.}
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle G,C,D,p\rangle$.}
 	      \end{enumerate}
@@ -4696,18 +4685,20 @@
 	            \item $\lVert\binom{a}{n}\rVert^2\le(\frac{M}{n})^{2(\lfloor a\rfloor+1)}\le(\frac{M^1}{n})^2\le(\frac{M^2}{n})^2$
 	            \item $\lVert\binom{b}{n}\rVert^2\le(\frac{M}{n})^{2(\lfloor b\rfloor+1)}\le(\frac{M^1}{n})^2\le(\frac{M^2}{n})^2$
 	          \end{enumerate}
-	          \item Hence using \procedurehr{sun2107191133}, verify that $\lVert(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}\rVert^2$
+	          \item Verify that $\lVert x+1\rVert^2=\Re(x+1)^2+\Im(x)^2\ge(1-X)^2$.
+	          \item Hence using \procedurehr{sun2107191133}, verify that $(1+x)_n^{a+b}\equiv(1+x)_n^a(1+x)_n^b$
 	          \begin{enumerate}
-	            \item $=\lVert\sum_k^{[1:n]}\sum_r^{[k:n]}\binom{a}{k+n-1-r}\binom{b}{r}x^{k+n-1}\rVert^2$
-	            \item $=\lVert x^n\rVert^2\lVert\sum_r^{[1:n]}\binom{b}{r}\sum_k^{[0:r]}\binom{a}{k+n-r}x^k\rVert^2$
-	            \item $=\lVert x^n\rVert^2\lVert\sum_r^{[1:n]}\binom{b}{r}\sum_k^{[0:r]}(\binom{a}{k+1+n-r}(-1)^{k+1}\cdot\frac{(-x)^{k+1}}{-x-1}-\binom{a}{k+n-r}(-1)^k\cdot\frac{(-x)^k}{-x-1}-\frac{(-x)^{k+1}}{-x-1}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k))\rVert^2$
-	            \item $=\frac{\lVert x^n\rVert^2}{\lVert x+1\rVert^2}\lVert\sum_r^{[1:n]}\binom{b}{r}(\binom{a}{n}x^r-\binom{a}{n-r}-\sum_k^{[0:r]}(-x)^{k+1}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k))\rVert^2$
-	            \item $\le\frac{1}{\Re(x+1)^2+\Im(x)^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\sum_k^{[0:r]}\lvert\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k\rvert))^2$
-	            \item $\le\frac{1}{(1-X)^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\lvert\sum_k^{[0:r]}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k)\rvert))^2$
-	            \item $=\frac{1}{(1-X)^2}(\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\lvert\binom{a}{n}(-1)^r-\binom{a}{n-r}\rvert))^2$
-	            \item $=\frac{1}{(1-X)^2}(2\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert\lvert\binom{a}{n-r}\rvert)^2$
-	            \item $=(\frac{2}{1-X})^2(\lvert\binom{a+b}{n}\rvert+\lvert\binom{a}{n}\rvert+\lvert\binom{b}{n}\rvert)^2$
-	            \item $\le(\frac{B}{n})^2$.
+	            \item $\err{(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}}$
+	            \item $\err{\sum_k^{[1:n]}\sum_r^{[k:n]}\binom{a}{k+n-1-r}\binom{b}{r}x^{k+n-1}}$
+	            \item $\err{x^n\sum_r^{[1:n]}\binom{b}{r}\sum_k^{[0:r]}\binom{a}{k+n-r}x^k}$
+	            \item $\err{x^n\sum_r^{[1:n]}\binom{b}{r}\sum_k^{[0:r]}(\binom{a}{k+1+n-r}(-1)^{k+1}\cdot\frac{(-x)^{k+1}}{-x-1}-\binom{a}{k+n-r}(-1)^k\cdot\frac{(-x)^k}{-x-1}-\frac{(-x)^{k+1}}{-x-1}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k))}$
+	            \item $\err{\frac{x^n}{x+1}\sum_r^{[1:n]}\binom{b}{r}(\binom{a}{n}x^r-\binom{a}{n-r}-\sum_k^{[0:r]}(-x)^{k+1}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k))}$
+	            \item $\err{\frac{1}{1-X}\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\sum_k^{[0:r]}\lvert\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k\rvert)}$
+	            \item $\err{\frac{1}{1-X}\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\lvert\sum_k^{[0:r]}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k)\rvert)}$
+	            \item $\err{\frac{1}{1-X}\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\lvert\binom{a}{n}(-1)^r-\binom{a}{n-r}\rvert)}$
+	            \item $\err{\frac{2}{1-X}\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert\lvert\binom{a}{n-r}\rvert}$
+	            \item $\err{\frac{2}{1-X}(\lvert\binom{a+b}{n}\rvert+\lvert\binom{a}{n}\rvert+\lvert\binom{b}{n}\rvert)}$
+	            \item $\err{\frac{B}{n}}$.
 	          \end{enumerate}
 	        \end{enumerate}
 	      \end{enumerate}
