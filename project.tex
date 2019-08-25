@@ -5035,24 +5035,22 @@
 					\item Let $e=\max(b_2,b_3,e_4)$.
 					\item Let $p(n,k)$ be the following procedure:
 					\begin{enumerate}
-					  \item Execute procedure $p_1$ on $\langle i,k\rangle$.
-					  \item Hence verify that $\lVert\ln_k(1+i)\rVert^2\le {a_1}^2$.
-					  \item Execute procedure $p_2$ on $\langle\ln_k(1+i),\conj{\ln_k(1+i)},n\rangle$.
-					  \item Hence  verify that $\lVert\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})-\frac{\exp_n(\ln_k(1+i))}{\exp_n(\conj{\ln_k(1+i)})}\rVert^2\le\frac{{a_2}^2}{n^2}$.
-					  \item Execute procedure $p_4$ on $\langle i,n,k\rangle$.
-					  \item Hence verify that $\lVert\exp_n(\ln_k(1+i))-(1+i)\rVert^2\le(\frac{a_4n}{k}+\frac{c_4}{n})^2$.
-					  \item Execute procedure $p_3$ on $\langle\ln_k(1+i),n\rangle$.
-					  \item Hence verify that $\lVert\exp_n(\ln_k(1+i))\rVert^2\ge a_3$.
-					  \item Hence verify that $\lVert\frac{\exp_n(\ln_k(1+i))}{\exp_n(\ln_k(1+i))}-\frac{1+i}{\exp_n(\ln_k(1+i))}\rVert^2\le\frac{1}{{a_3}^2}(\frac{a_4n}{k}+\frac{c_4}{n})^2$.
-					  \item Also verify that $\lVert\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}-\frac{1+i}{\conj{1+i}}\rVert^2=\lVert\frac{(1+i)(\conj{(1+i)-\exp_n(\ln_k(1+i))})}{\conj{\exp_n(\ln_k(1+i))(1+i)}}\rVert^2\le\frac{1}{{a_3}^2}(\frac{a_4n}{k}+\frac{c_4}{n})^2$.
-					  \item Hence verify that $\lVert\exp_n(\frac{1}{4}\tau_ki)-i\rVert^2$
+					  \item Using procedure $p_1$, verify that $\lVert\ln_k(1+i)\rVert^2\le {a_1}^2$.
+					  \item Hence using procedures $p_2,p_3,p_4$, verify that $\exp_n(\frac{1}{4}\tau_ki)$
 					  \begin{enumerate}
-					    \item $=\lVert\exp_n(2\Im(\ln_k(1+i))i)-i\rVert^2$
-					    \item $=\lVert\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})-i\rVert^2$
-					    \item $=\lVert\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})-\frac{\exp_n(\ln_k(1+i))}{\exp_n(\conj{\ln_k(1+i)})}+\frac{\exp_n(\ln_k(1+i))}{\exp_n(\conj{\ln_k(1+i)})}-\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}+\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}-\frac{1+i}{\conj{1+i}}\rVert^2$
-					    \item $\le(\frac{a_2}{n}+\frac{2}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n}))^2$
-					    \item $=(\frac{an}{k}+\frac{c}{n})^2$.
+					    \item $=\exp_n(2\Im(\ln_k(1+i))i)$
+					    \item $=\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})$
+					    \item $\equiv\frac{\exp_n(\ln_k(1+i))}{\exp_n(\conj{\ln_k(1+i)})}\err{\frac{a_2}{n}}$
+					    \item $\equiv\frac{1+i}{\exp_n(\conj{\ln_k(1+i)})}\err{\frac{1}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n})}$
+					    \item $=\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}$
+					    \item $\equiv\frac{1+i}{\conj{1+i}}$
+					    \begin{enumerate}
+					      \item $\err{\frac{(1+i)(\frac{a_4n}{k}+\frac{c_4}{n})}{\conj{\exp_n(\ln_k(1+i))}\cdot\conj{1+i}}}$
+					      \item $\err{\frac{1}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n})}$
+					    \end{enumerate}
+					    \item $=i$.
 					  \end{enumerate}
+					  \item \textbf{Hence verify that $\exp_n(\frac{1}{4}\tau_ki)\equiv i\err{\frac{a_2}{n}+\frac{2}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n})}\err{\frac{an}{k}+\frac{c}{n}}$.}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
 				\end{enumerate}
