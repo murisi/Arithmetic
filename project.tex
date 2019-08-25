@@ -4296,21 +4296,16 @@
 					\item Execute \procedurehr{3.21} on $\langle X\rangle$ and let $\langle a,N,q\rangle$ receive.
 					\item Let $p(x,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $\lVert ix\rVert^2=\lVert x\rVert^2\le X$.
-						\item Execute procedure $q$ on $\langle ix,n\rangle$.
-						\item Hence verify that $\lVert\sum_r^{[0:{n+1}]}\frac{(ix)^r}{r!}-\exp_n(ix)\rVert^2\le(\frac{a}{n})^2$.
-						\item Verify that $\lVert -ix\rVert^2=\lVert x\rVert^2\le X$.
-						\item Execute procedure $q$ on $\langle -ix,n\rangle$.
-						\item Hence verify that $\lVert\sum_r^{[0:{n+1}]}\frac{(-ix)^r}{r!}-\exp_n(-ix)\rVert^2\le(\frac{a}{n})^2$.
-						\item Hence using \procedurehr{3.04}, verify that $\lVert\sum_r^{[0:{\lceil\frac{n}{2}\rceil}]}\frac{(-1)^rx^{2r}}{(2r)!}-\cos_n(x)\rVert^2$
+						\item Using procedure $q$, verify that $\cos_n(x)$
 						\begin{enumerate}
-							\item $=\lVert\sum_r^{[0:{n+1}]}\frac{[r\bmod 2=0](-1)^{\frac{r}{2}}x^{r}}{r!}-\cos_n(x)\rVert^2$
-							\item $=\lVert\sum_r^{[0:{n+1}]}\frac{(i^r+(-i)^r)x^{r}}{2(r!)}-\frac{\exp_n(ix)+\exp_n(-ix)}{2}\rVert^2$
-							\item $=\frac{1}{4}\lVert\sum_r^{[0:{n+1}]}\frac{(ix)^{r}}{r!}-\exp_n(ix)+\sum_r^{[0:{n+1}]}\frac{(-ix)^{r}}{r!}-\exp_n(-ix)\rVert^2$
-							\item $\le\frac{1}{2}(\lVert\sum_r^{[0:{n+1}]}\frac{(ix)^{r}}{r!}-\exp_n(ix)\rVert^2+\lVert\sum_r^{[0:{n+1}]}\frac{(-ix)^{r}}{r!}-\exp_n(-ix)\rVert^2)$
-							\item $\le\frac{1}{2}((\frac{a}{n})^2+(\frac{a}{n})^2)$
-							\item $\le(\frac{a}{n})^2$.
+						  \item $=\frac{\exp_n(ix)}{2}+\frac{\exp_n(-ix)}{2}$
+						  \item $\equiv\frac{1}{2}\sum_r^{[0:{n+1}]}\frac{(ix)^{r}}{r!}+\frac{\exp_n(-ix)}{2}\err{\frac{a}{2n}}$
+						  \item $\equiv\frac{1}{2}\sum_r^{[0:{n+1}]}\frac{(ix)^{r}}{r!}+\frac{1}{2}\sum_r^{[0:{n+1}]}\frac{(-ix)^{r}}{r!}\err{\frac{a}{2n}}$
+						  \item $=\sum_r^{[0:{n+1}]}\frac{(i^r+(-i)^r)x^{r}}{2(r!)}$
+						  \item $=\sum_r^{[0:{n+1}]}\frac{[r\bmod 2=0](-1)^{\frac{r}{2}}x^{r}}{r!}$
+						  \item $=\sum_r^{[0:{\lceil\frac{n}{2}\rceil}]}\frac{(-1)^rx^{2r}}{(2r)!}$.
 						\end{enumerate}
+						\item \textbf{Hence verify that $\cos_n(x)\equiv\sum_r^{[0:{\lceil\frac{n}{2}\rceil}]}\frac{(-1)^rx^{2r}}{(2r)!}\err{\frac{a}{n}}$.}
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{3.30}
