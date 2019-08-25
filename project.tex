@@ -4481,17 +4481,18 @@
 	          \end{enumerate}
 	          \item Execute procedure $t$ on $\langle C,n\rangle$.
 	          \item Hence verify that $\lVert nC^n\rVert^2\le(FG^n)^2$.
-	          \item Hence verify that $\lVert(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}\rVert^2$
+	          \item Hence verify that $(1+x)_n^{a+b}\equiv(1+x)_n^a(1+x)_n^b$
 	          \begin{enumerate}
-	            \item $=\lVert\sum_k^{[1:n]}\sum_r^{[k:n]}\binom{a}{k+n-1-r}\binom{b}{r}x^{k+n-1}\rVert^2$
-	            \item $=\lVert\sum_k^{[1:n]}\sum_r^{[k:n]}\binom{a}{k+n-1-r}x^{k+n-1-r}\binom{b}{r}x^r\rVert^2$
-	            \item $\le(\sum_k^{[1:n]}\sum_r^{[k:n]}BC^{k+n-1-r}BC^r)^2$
-	            \item $=(B^2C^n\sum_k^{[1:n]}\sum_r^{[k:n]}C^{k-1})^2$
-	            \item $=(B^2C^n\sum_r^{[1:n]}\sum_k^{[1:r+1]}C^{k-1})^2$
-	            \item $\le(B^2C^n\sum_r^{[1:n]}\frac{1}{1-C})^2$
-	            \item $<(\frac{B^2}{1-C}\cdot nC^n)^2$
-	            \item $\le(\frac{B^2F}{1-C}G^n)^2$
-	            \item $=(DG^n)^2$.
+	            \item $\err{(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}}$
+	            \item $\err{\sum_k^{[1:n]}\sum_r^{[k:n]}\binom{a}{k+n-1-r}\binom{b}{r}x^{k+n-1}}$
+	            \item $\err{\sum_k^{[1:n]}\sum_r^{[k:n]}\binom{a}{k+n-1-r}x^{k+n-1-r}\binom{b}{r}x^r}$
+	            \item $\err{\sum_k^{[1:n]}\sum_r^{[k:n]}BC^{k+n-1-r}BC^r}$
+	            \item $\err{B^2C^n\sum_k^{[1:n]}\sum_r^{[k:n]}C^{k-1}}$
+	            \item $\err{B^2C^n\sum_r^{[1:n]}\sum_k^{[1:r+1]}C^{k-1}}$
+	            \item $\err{B^2C^n\sum_r^{[1:n]}\frac{1}{1-C}}$
+	            \item $\err{\frac{B^2}{1-C}\cdot nC^n}$
+	            \item $\err{\frac{B^2F}{1-C}G^n}$
+	            \item $\err{DG^n}$.
 	          \end{enumerate}
 	        \end{enumerate}
 	      \end{enumerate}
@@ -4600,30 +4601,14 @@
 	        \item Let $B=(1+\frac{a_3}{a_2})a_1$.
 	        \item Let $p(x,a,b,n)$ be the following procedure:
 	        \begin{enumerate}
-	          \item Execute procedure $p_2$ on $\langle x,b,n\rangle$.
-	          \item Hence verify that $\lVert(1+x)_n^b\rVert^2\ge{a_2}^2$.
-	          \item Execute procedure $p_1$ on $\langle x,b,-b,n\rangle$.
-	          \item Hence verify that $\lVert(1+x)_n^b(1+x)_n^{-b}-1\rVert^2$
+	          \item Using procedure $p_1$, verify that $(1+x)_n^b(1+x)_n^{-b}\equiv(1+x)_n^{b-b}\err{a_1{C}^n}=1$.
+	          \item Hence using procedure $p_2$, verify that $(1+x)_n^{-b}\equiv\frac{1}{(1+x)_n^b}\err{\frac{a_1{C}^n}{a_2}}$.
+	          \item Hence using procedures $p_1,p_3$, verify that $(1+x)_n^{a-b}$
 	          \begin{enumerate}
-	            \item $=\lVert(1+x)_n^b(1+x)_n^{-b}-(1+x)_n^{b-b}\rVert^2$
-	            \item $\le(a_1{C}^n)^2$.
+	            \item $\equiv(1+x)_n^a(1+x)_n^{-b}\err{a_1{C}^n}$
+	            \item $\equiv((1+x)_n^a)^1\frac{1}{(1+x)_n^b}\err{a_3\frac{a_1{C}^n}{a_2}}$
 	          \end{enumerate}
-	          \item Hence verify that $\lVert(1+x)_n^{-b}-\frac{1}{(1+x)_n^b}\rVert^2$
-	          \begin{enumerate}
-	            \item $=\frac{\lVert(1+x)_n^b(1+x)_n^{-b}-1\rVert^2}{\lVert(1+x)_n^b\rVert^2}$
-	            \item $\le(\frac{a_1{C}^n}{a_2})^2$.
-	          \end{enumerate}
-	          \item Execute procedure $p_3$ on $\langle x,n,a,1\rangle$.
-	          \item Hence verify that $\lVert((1+x)_n^a)^1\rVert^2\le{a_3}^2$.
-	          \item Execute procedure $p_1$ on $\langle x,a,-b,n\rangle$.
-	          \item Hence verify that $\lVert(1+x)_n^a(1+x)_n^{-b}-(1+x)_n^{a-b}\rVert^2\le(a_1{C}^n)^2$.
-	          \item Hence verify that $\lVert(1+x)_n^{a-b}-\frac{(1+x)_n^a}{(1+x)_n^b}\rVert^2$
-	          \begin{enumerate}
-	            \item $=\lVert(1+x)_n^{a-b}-(1+x)_n^a(1+x)_n^{-b}+(1+x)_n^a((1+x)_n^{-b}-\frac{1}{(1+x)_n^b})\rVert^2$
-	            \item $\le(a_1{C}^n+a_3\cdot\frac{a_1{C}^n}{a_2})^2$
-	            \item $=((1+\frac{a_3}{a_2})a_1{C}^n)^2$
-	            \item $=(BC^n)^2$.
-	          \end{enumerate}
+	          \item \textbf{Hence verify that $(1+x)_n^{a-b}\equiv\frac{(1+x)_n^a}{(1+x)_n^b}\err{(1+\frac{a_3}{a_2})a_1{C}^n}\err{BC^n}$.}
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle B,C,D,p\rangle$.}
 	      \end{enumerate}
