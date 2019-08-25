@@ -4232,21 +4232,17 @@
 					\item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle a,b,q\rangle$ receive.
 					\item Let $p(x,y,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $\lVert ix\rVert^2\le X^2$.
-						\item Verify that $\lVert iy\rVert^2\le X^2$.
-						\item Execute procedure $q$ on $\langle ix,iy,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(ix)\exp_n(iy)-\exp_n(ix+iy)\rVert^2\le\frac{a^2\lVert i^2xy\rVert^2}{n^2}=\frac{a^2\lVert xy\rVert^2}{n^2}$.
-						\item Verify that $\lVert -ix\rVert^2\le X$.
-						\item Verify that $\lVert -iy\rVert^2\le X$.
-						\item Execute procedure $q$ on $\langle -ix,-iy,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(-ix)\exp_n(-iy)-\exp_n(-ix-iy)\rVert^2\le\frac{a^2\lVert (-i)^2xy\rVert^2}{n^2}=\frac{a^2\lVert xy\rVert^2}{n^2}$.
-						\item Using \procedurehr{3.04}, verify that $\lVert\cos_n(x)\cos_n(y)-\sin_n(x)\sin_n(y)-\cos_n(x+y)\rVert^2$
-						\begin{enumerate}
-							\item $=\lVert\frac{(\exp_n(ix)+\exp_n(-ix))(\exp_n(iy)+\exp_n(-iy))}{4}-\frac{\exp_n(ix)-\exp_n(-ix))(\exp_n(iy)-\exp_n(-iy))}{4i^2}-\cos_n(x+y)\rVert^2$
-							\item $=\lVert\frac{\exp_n(ix)\exp_n(iy)}{2}+\frac{\exp_n(-ix)\exp_n(-iy)}{2}-\frac{\exp_n(i(x+y))+\exp_n(-i(x+y))}{2}\rVert^2$
-							\item $\le\frac{\lVert\exp_n(ix)\exp_n(iy)-\exp_n(i(x+y))\rVert^2}{2}+\frac{\lVert\exp_n(-ix)\exp_n(-iy)-\exp_n(-i(x+y))\rVert^2}{2}$
-							\item $\le\frac{a^2\lVert xy\rVert^2}{n^2}$.
-						\end{enumerate}
+					  \item Using procedure $q$, verify that $\cos_n(x+y)$
+					  \begin{enumerate}
+					    \item $=\frac{1}{2}(\exp_n(i(x+y))+\exp_n(-i(x+y)))$
+					    \item $\equiv\frac{1}{2}(\exp_n(ix)\exp_n(iy)+\exp_n(-i(x+y)))\err{\frac{a(ix)(iy)}{2n}}$
+					    \item $\equiv\frac{1}{2}(\exp_n(ix)\exp_n(iy)+\exp_n(-ix)\exp_n(-iy))\allowbreak\err{\frac{a(-ix)(-iy)}{2n}}$
+					    \item $=\frac{1}{4}(\exp_n(ix)\exp_n(iy)+\exp_n(-ix)\exp_n(-iy))+\frac{1}{4}(\exp_n(ix)\exp_n(iy)+\exp_n(-ix)\exp_n(-iy))$
+					    \item $=\frac{1}{4}(\exp_n(ix)(\exp_n(iy)+\exp_n(-iy))+(\exp_n(-ix)-\exp_n(ix))\exp_n(-iy))+\frac{1}{4}((\exp_n(ix)-\exp_n(-ix))\exp_n(iy)+\exp_n(-ix)(\exp_n(iy)+\exp_n(-iy)))$
+					    \item $=\frac{1}{2}\exp_n(ix)\cos_n(y)+\frac{1}{2i}\sin_n(x)\exp_n(-iy)-\frac{1}{2i}\sin_n(x)\exp_n(iy)+\frac{1}{2}\exp_n(-ix)\cos_n(y)$
+					    \item $=\cos_n(x)\cos_n(y)-\sin_n(x)\sin_n(y)$
+					  \end{enumerate}
+					  \item \textbf{Hence verify that $\cos_n(x+y)\equiv\cos_n(x)\cos_n(y)-\sin_n(x)\sin_n(y)\err{\frac{axy}{n}}\err{\frac{aX^2}{n}}$.}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
@@ -4263,17 +4259,14 @@
 					\item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle a,b,q\rangle$ receive.
 					\item Let $p(x,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $\lVert ix\rVert^2\le X^2$.
-						\item Verify that $\lVert -ix\rVert^2\le X^2$.
-						\item Execute procedure $q$ on $\langle ix,-ix,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(ix)\exp_n(-ix)-\exp_n(ix-ix)\rVert^2\le\frac{a^2\lVert-i^2x^2\rVert^2}{n^2}=\frac{a^2\lVert x\rVert^4}{n^2}$.
-						\item Hence verify that $\lVert\cos_n(x)^2+\sin_n(x)^2-1\rVert^2$
-						\begin{enumerate}
-							\item $=\lVert\frac{(\exp_n(ix)+\exp_n(-ix))^2}{4}+\frac{(\exp_n(ix)-\exp_n(-ix))^2}{4i^2}-1\rVert^2$
-							\item $=\lVert\exp_n(ix)\exp_n(-ix)-1\rVert^2$
-							\item $=\lVert\exp_n(ix)\exp_n(-ix)-\exp_n(ix-ix)\rVert^2$
-							\item $\le\frac{a^2\lVert x\rVert^4}{n^2}$.
-						\end{enumerate}
+					  \item Using procedure $q$, verify that $\cos_n(x)^2+\sin_n(y)^2$
+					  \begin{enumerate}
+					    \item $=\frac{1}{4}(\exp_n(ix)+\exp_n(-ix))^2+\frac{1}{4i^2}(\exp_n(ix)-\exp_n(-ix))^2$
+					    \item $=\frac{1}{4}(\exp_n(ix)^2+2\exp_n(ix)\exp_n(-ix)+\exp_n(-ix)^2-\exp_n(ix)^2+2\exp_n(ix)\exp_n(-ix)-\exp_n(-ix)^2)$
+					    \item $=\exp_n(ix)\exp_n(-ix)$
+					    \item $\equiv 1\err{\frac{a(-ix)(ix)}{n}}$.
+					  \end{enumerate}
+					  \item \textbf{Hence verify that $\cos_n(x)^2+\sin_n(y)^2\equiv 1\err{\frac{a\lVert x\rVert^2}{n}}\err{\frac{aX^2}{n}}$.}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
@@ -4285,15 +4278,14 @@
 		      \item Execute \procedurehr{3.26} on $\langle X\rangle$ and let $\langle a,b,q\rangle$ receive.
 		      \item Let $p(x,y,n)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Execute procedure $q$ on $\langle y,n\rangle$.
-		        \item Hence verify that $\lVert\cos_n(y)^2+\sin_n(y)^2-1\rVert^2\le\frac{a^2\lVert y\rVert^4}{n^2}$.
-		        \item Hence using \procedurehr{3.22} and \procedurehr{3.23}, verify that $\lVert\lVert x\exp_n(iy)\rVert^2-\lVert x\rVert^2\rVert^2$
+		        \item Using procedure $q$, \procedurehr{3.22}, and \procedurehr{3.23}, verify that $\lVert x\exp_n(iy)\rVert^2$
 		        \begin{enumerate}
-		          \item $=\lVert\lVert x\rVert^2\lVert\exp_n(iy)\rVert^2-\lVert x\rVert^2\rVert^2$
-		          \item $=\lVert x\rVert^4\lVert\Re(\exp_n(iy))^2+\Im(\exp_n(iy))^2-1\rVert^2$
-		          \item $=\lVert x\rVert^4\lVert\cos_n(y)^2+\sin_n(y)^2-1\rVert^2$
-		          \item $\le\frac{a^2\lVert y\rVert^4\lVert x\rVert^4}{n^2}$.
+		          \item $=\lVert x\rVert^2\lVert\exp_n(iy)\rVert^2$
+		          \item $=\lVert x\rVert^2\lVert\cos_n(y)+i\sin_n(y)\rVert^2$
+		          \item $=\lVert x\rVert^2(\cos_n(y)^2+\sin_n(y)^2)$
+		          \item $\equiv\lVert x\rVert^2\cdot 1\err{\lVert x\rVert^2\cdot\frac{a\lVert y\rVert^2}{n}}$.
 		        \end{enumerate}
+		        \item \textbf{Hence verify that $\lVert x\exp_n(iy)\rVert^2\equiv\lVert x\rVert^2\err{\frac{a\lVert xy\rVert^2}{n}}\err{\frac{a\lVert x\rVert^2X^2}{n}}$.}
 		      \end{enumerate}
 		    \end{enumerate}
 		\procedure{3.29}
