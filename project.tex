@@ -5059,6 +5059,25 @@
 				The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ such that $b>1$, and a procedure, $p(n,k)$, to show that $\exp_n(-\frac{1}{4}\tau_ki)\equiv -i\err{\frac{an}{k}+\frac{c}{n}}$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.53}.
+		\procedure{mon2608190753}
+		  \objective
+		    Choose a rational number $X\ge 0$ and an integer $K\ge 0$. The objective of the following instructions is to construct a rational number $a$, and a procedure $p(x,y,k)$ to show that $x^k\equiv y^k\err{a(x-y)}$ when two complex numbers $x,y$ and a non-negative integer $k$ such that $\lVert x\rVert^2\le X^2$, $\lVert y\rVert^2\le X^2$, and $k\le K$ are chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Let $a=K\max(1,X)^{K-1}$.
+		      \item Let $p(x,y,k)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Verify that $x^k\equiv y^k$
+		        \begin{enumerate}
+		          \item $\err{y^k-x^k}$
+		          \item $\err{(y-x)\sum_r^{[0:k]}x^ry^{k-1-r}}$
+		          \item $\err{(y-x)\sum_r^{[0:k]}X^{k-1}}$
+		          \item $\err{(y-x)KX^{k-1}}$
+		          \item $\err{a(y-x)}$
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a,p\rangle$.}
+		    \end{enumerate}
 		\procedure{3.55}
 			\objective
 				Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\exp_n(\frac{k}{4}\tau_m i)\equiv i^k\err{\frac{an}{m}+\frac{b}{n}}$ when a non-negative integer $k$ and two positive integers $n,m$ such that $k\le K$, $n>c$, and $m>d$ are chosen.
@@ -5068,28 +5087,30 @@
 					\item Execute \procedurehr{3.16} on $\langle(\frac{a_1}{4})^2\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
 					\item Execute \procedurehr{3.53} and let $\langle a_3,b_3,c_3,p_3\rangle$ receive.
 					\item Execute \procedurehr{3.13} on $\langle(\frac{a_1}{4})^2\rangle$ and let $\langle a_4,b_4,p_4\rangle$ receive.
-					\item Let $a=a_3\cdot\frac{{a_4}^K-1}{a_4-1}$.
-					\item Let $b=a_2K+b_3\cdot\frac{{a_4}^k-1}{a_4-1}$.
+					\item Execute \procedurehr{mon2608190753} on $\langle\max(1,\frac{a_1}{4}),K\rangle$ and let $\langle a_5,p_5\rangle$ receive.
+					\item Let $a=a_3a_5$.
+					\item Let $b=a_2K+b_3a_5$.
 					\item Let $c=\max(b_2,b_4,c_3)$.
 					\item Let $p(n,k,m)$ be the following procedure:
 					\begin{enumerate}
-						\item Execute procedure $p_1$ on $\langle m\rangle$.
-						\item Hence verify that $\tau_m\le a_1$.
+						\item Using procedure $p_1$, verify that $\tau_m\le a_1$.
 						\item Hence verify that $\lVert\frac{1}{4}\tau_m i\rVert^2=\lVert\frac{1}{4}\tau_m\rVert^2\le(\frac{a_1}{4})^2$.
-						\item Execute procedure $p_2$ on $\langle\frac{1}{4}\tau_m i,k,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{k}{4}\tau_m i)-\exp_n(\frac{1}{4}\tau_m i)^k\rVert^2\le(\frac{a_2k}{n})^2\le(\frac{a_2K}{n})^2$.
-						\item Execute procedure $p_3$ on $\langle n,m\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{1}{4}\tau_m i)-i\rVert^2\le(\frac{a_3n}{m}+\frac{b_3}{n})^2$.
-						\item Execute procedure $p_4$ on $\langle\frac{1}{4}\tau_m i,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{1}{4}\tau_m i)\rVert^2\le a_4$.
-						\item Verify that $\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2$
+						\item Hence using procedure $p_3$, verify that $\lVert\exp_n(\frac{1}{4}\tau_m i)-i\rVert^2\le(\frac{a_3n}{m}+\frac{b_3}{n})^2$.
+						\item Hence using procedure $p_4$, verify that $\lVert\exp_n(\frac{1}{4}\tau_m i)\rVert^2\le a_4$.
+						\item Hence verify that $\exp_n(\frac{k}{4}\tau_m i)$
 						\begin{enumerate}
-							\item $=\lVert\exp_n(\frac{k}{4}\tau_m i)-\exp_n(\frac{1}{4}\tau_m i)^k+\exp_n(\frac{1}{4}\tau_m i)^k-i^k\rVert^2$
-							\item $=\lVert\exp_n(\frac{k}{4}\tau_m i)-\exp_n(\frac{1}{4}\tau_m i)^k+(\exp_n(\frac{1}{4}\tau_m i)-i)\sum_t^{[0:k]}\exp_n(\frac{1}{4}\tau_m i)^ti^{k-1-t}\rVert^2$
-							\item $\le(\frac{a_2K}{n}+(\frac{a_3n}{m}+\frac{b_3}{n})\sum_t^{[0:k]}{a_4}^t)^2$
-							\item $=((a_2K+b_3\frac{{a_4}^k-1}{a_4-1})\frac{1}{n}+(a_3\frac{{a_4}^k-1}{a_4-1})\frac{n}{m})^2$
-							\item $\le(\frac{an}{m}+\frac{b}{n})^2$.
+						  \item $\equiv\exp_n(\frac{1}{4}\tau_m i)^k$
+						  \begin{enumerate}
+						    \item $\err{\frac{a_2k}{n}}$
+						    \item $\err{\frac{a_2K}{n}}$
+						  \end{enumerate}
+						  \item $\equiv i^k$
+						  \begin{enumerate}
+						    \item $\err{a_5(\exp_n(\frac{1}{4}\tau_m i)-i)}$
+						    \item $\err{a_5(\frac{a_3n}{m}+\frac{b_3}{n})}$
+						  \end{enumerate}
 						\end{enumerate}
+						\item \textbf{Hence verify that $\exp_n(\frac{k}{4}\tau_m i)\equiv i^k\err{\frac{a_2K}{n}+a_5(\frac{a_3n}{m}+\frac{b_3}{n})}\err{\frac{an}{m}+\frac{b}{n}}$.}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
         \end{enumerate}
@@ -5106,17 +5127,15 @@
 					\item Execute \procedurehr{3.56} on $\langle K\rangle$ and let $\langle a,b,c,d,q\rangle$ receive.
 					\item Let $p(n,m,k)$ be the following procedure:
 					\begin{enumerate}
-						\item Execute procedure $q$ on $\langle n,m,k\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$.
-						\item Execute procedure $q$ on $\langle n,m,-k\rangle$.
-						\item Hence verify that $\lVert\exp_n(-\frac{k}{4}\tau_m i)-i^{-k}\rVert^2\le(\frac{an}{m}+\frac{b}{n})^2$.
-						\item Hence verify that $\lVert\cos_n(\frac{k}{4}\tau_m)-\frac{i^k+(-i)^k}{2}\rVert^2$
+						\item Using procedure $q$, verify that $\cos_n(\frac{k}{4}\tau_m)$
 						\begin{enumerate}
-							\item $=\lVert\frac{\exp_n(\frac{k}{4}\tau_m i)+\exp_n(-\frac{k}{4}\tau_m i)}{2}-\frac{i^k+(-i)^k}{2}\rVert^2$
-							\item $=\lVert\frac{\exp_n(\frac{k}{4}\tau_m i)-i^k}{2}+\frac{\exp_n(-\frac{k}{4}\tau_m i)-(-i)^k}{2}\rVert^2$
-							\item $\le\frac{1}{2}\lVert\exp_n(\frac{k}{4}\tau_m i)-i^k\rVert^2+\frac{1}{2}\lVert\exp_n(-\frac{k}{4}\tau_m i)-(-i)^k\rVert^2$
-							\item $\le(\frac{an}{m}+\frac{b}{n})^2$.
+						  \item $=\frac{\exp_n(\frac{k}{4}\tau_m i)+\exp_n(-\frac{k}{4}\tau_m i)}{2}$
+						  \item $=\frac{\exp_n(\frac{k}{4}\tau_m i)}{2}+\frac{\exp_n(-\frac{k}{4}\tau_m i)}{2}$
+						  \item $\equiv\frac{i^k}{2}+\frac{\exp_n(-\frac{k}{4}\tau_m i)}{2}\err{\frac{1}{2}(\frac{an}{m}+\frac{b}{n})}$
+						  \item $\equiv\frac{i^k}{2}+\frac{i^{-k}}{2}\err{\frac{1}{2}(\frac{an}{m}+\frac{b}{n})}$
+						  \item $=\frac{i^k+i^{-k}}{2}$.
 						\end{enumerate}
+						\item \textbf{Hence verify that $\cos_n(\frac{k}{4}\tau_m)\equiv\frac{i^k+i^{-k}}{2}\err{\frac{an}{m}+\frac{b}{n}}$.}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				\end{enumerate}
@@ -5131,32 +5150,25 @@
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.50} and let $\langle a_1,b_1,p_1\rangle$ receive.
-					\item Execute \procedurehr{3.15} on $\langle\max(X,\frac{K^2{a_1}^2}{16})\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
+					\item Let $H=\max(X,\frac{K{a_1}}{4})$.
+					\item Execute \procedurehr{3.15} on $\langle H\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
 					\item Execute \procedurehr{3.13} on $\langle X\rangle$ and let $\langle a_3,b_3,p_3\rangle$ receive.
 					\item Execute \procedurehr{3.56} on $\langle K\rangle$ and let $\langle a_4,b_4,c_4,d_4,p_4\rangle$ receive.
 					\item Let $a=a_3a_4$.
-					\item Let $b=\frac{a_2XKa_1}{4}+a_3b_4$.
+					\item Let $b=a_2H^2+a_3b_4$.
 					\item Let $c=\max(b_2,b_3,c_4)$.
 					\item Let $d=\max(b_1,d_4)$.
 					\item Let $p(x,n,k,m)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $\lVert x\rVert^2\le X$.
 						\item Execute procedure $p_1$ on $\langle m\rangle$.
 						\item Hence verify that $\tau_m\le a_1$.
-						\item Hence verify that $\lVert\frac{k}{4}\tau_m i\rVert^2=\frac{k^2{\tau_m}^2}{16}\le\frac{K^2{a_1}^2}{16}$.
-						\item Now execute procedure $p_2$ on $\langle x,\frac{k}{4}\tau_m i,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(x)\exp_n(\frac{k}{4}\tau_m i)-\exp_n(x+\frac{k}{4}\tau_m i)\rVert^2\le\frac{{a_2}^2\lVert x\rVert^2\lVert\frac{k}{4}\tau_m i\rVert^2}{n^2}\le\frac{{a_2}^2X^2K^2{a_1}^2}{16n^2}$.
-						\item Execute procedure $p_3$ on $\langle x,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(x)\rVert^2\le {a_3}^2$.
-						\item Execute procedure $p_4$ on $\langle n,m,k\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{k}{4}\tau_mi)-i^k\rVert^2\le(\frac{a_4n}{m}+\frac{b_4}{n})^2$.
-						\item Verify that $\lVert\exp_n(x+\frac{k}{4}\tau_m i)-i^k\exp_n(x)\rVert^2$
+						\item Hence verify that $\lVert\frac{k}{4}\tau_m i\rVert^2=(\frac{k{\tau_m}}{4})^2$.
+						\item Hence using procedures $p_2,p_3,p_4$, verify that $\exp_n(x+\frac{k}{4}\tau_m i)$
 						\begin{enumerate}
-							\item $=\lVert\exp_n(x+\frac{k}{4}\tau_m i)-\exp_n(x)\exp_n(\frac{k}{4}\tau_m i)+\exp_n(x)\exp_n(\frac{k}{4}\tau_m i)-i^k\exp_n(x)\rVert^2$
-							\item $=\lVert\exp_n(x+\frac{k}{4}\tau_m i)-\exp_n(x)\exp_n(\frac{k}{4}\tau_m i)+\exp_n(x)(\exp_n(\frac{k}{4}\tau_m i)-i^k)\rVert^2$
-							\item $\le(\frac{a_2XKa_1}{4n}+a_3(\frac{a_4n}{m}+\frac{b_4}{n}))^2$
-							\item $=(\frac{an}{m}+\frac{b}{n})^2$.
+						  \item $\equiv\exp_n(\frac{k}{4}\tau_m i)\exp_n(x)\err{\frac{a_2H^2}{n}}$
+						  \item $\equiv i^k\exp_n(x)\err{a_3(\frac{a_4n}{m}+\frac{b_4}{n})}$
 						\end{enumerate}
+						\item \textbf{Hence verify that $\exp_n(x+\frac{k}{4}\tau_m i)\equiv i^k\exp_n(x)\err{\frac{a_2H^2}{n}+a_3(\frac{a_4n}{m}+\frac{b_4}{n})}\err{\frac{an}{m}+\frac{b}{n}}$.}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				\end{enumerate}
