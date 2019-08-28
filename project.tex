@@ -4023,24 +4023,19 @@
 					  \item If $k>0$, then for $r\in[1:k]$ do the following:
 					  \begin{enumerate}
 					    \item Verify that $\lVert xr\rVert^2\le\lVert kx\rVert^2\le X^2$.
-						  \item Execute procedure $q$ on $\langle xr,nr\rangle$.
-						  \item Hence verify that $\lVert\exp_{nr}(xr)\rVert^2\le c^2$.
+						  \item Hence using procedure $q$, verify that $\lVert\exp_{nr}(xr)\rVert^2\le c^2$.
 							\item Hence verify that $\lVert\exp_n(x)^r\rVert^2=\lVert(1+\frac{x}{n})^{nr}\rVert^2=\lVert(1+\frac{xr}{nr})^{nr}\rVert^2=\lVert\exp_{nr}(xr)\rVert^2\le c^2$
 						\end{enumerate}
-						\item For $r$ in $[0:k]$, do the following:
+						\item Hence using procedure $t$, verify that $\exp_n(kx)$
 						\begin{enumerate}
-						  \item Verify that $\lVert x\rVert^2\le X^2$.
-						  \item Verify that $\lVert(k-r-1)x\rVert^2\le\lVert kx\rVert^2\le X^2$.
-							\item Now execute procedure $t$ on $\langle x, (k-r-1)x,n\rangle$.
-							\item Hence verify that $\lVert\exp_n(x)\exp_n((k-r-1)x)-\exp_n((k-r)x)\rVert^2\le\frac{e^2\lVert x\rVert^2\lVert(k-r-1)x\rVert^2}{n^2}\le\frac{e^2X^4}{n^2}$.
+						  \item $=\exp_n(x)^0\exp_n(kx)$
+						  \item $\equiv\exp_n(x)^1\exp_n((k-1)x)\err{\frac{ceX^2}{n}}$
+						  \item $\equiv\exp_n(x)^2\exp_n((k-2)x)\err{\frac{ceX^2}{n}}$
+						  \item $\vdots$
+						  \item $\equiv\exp_n(x)^k\exp_n((k-k)x)\err{\frac{ceX^2}{n}}$
+						  \item $=\exp_n(x)^k$.
 						\end{enumerate}
-						\item Hence using (ciii), verify that $\lVert\exp_n(kx)-\exp_n(x)^k\rVert^2$
-						\begin{enumerate}
-							\item $=\lVert\sum_r^{[0:k]}(\exp_n(x)^r\exp_n((k-r)x)-\exp_n(x)^{r+1}\exp_n((k-r-1)x))\rVert^2$
-							\item $=\lVert\sum_r^{[0:k]}\exp_n(x)^r(\exp_n((k-r)x)-\exp_n(x)\exp_n((k-r-1)x))\rVert^2$
-							\item $\le(\sum_r^{[0:k]}c\frac{eX^2}{n})^2$
-							\item \textbf{$=(\frac{ak}{n})^2$.}
-						\end{enumerate}
+						\item \textbf{Hence verify that $\exp_n(kx)\equiv\exp_n(x)^k\err{\frac{kceX^2}{n}}\err{\frac{ak}{n}}$.}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
