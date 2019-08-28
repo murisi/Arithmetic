@@ -4045,33 +4045,16 @@
 		  \implementation
 		    \begin{enumerate}
 		      \item Execute \procedurehr{3.13} on $\langle X\rangle$ and let $\langle c,b,q\rangle$ receive.
-		      \item Let $a=\max(1,c)^2$.
+		      \item Let $a=c^2$.
 		      \item Let $p(x,y,n)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Verify that $\lVert x\rVert^2\le X$.
-		        \item Execute procedure $q$ on $\langle x,n\rangle$.
-		        \item Hence verify that $\lVert\exp_n(x)\rVert^2\le c^2$.
-		        \item Verify that $\lVert y\rVert^2\le X$.
-		        \item Execute procedure $q$ on $\langle y,n\rangle$.
-		        \item Hence verify that $\lVert\exp_n(y)\rVert^2\le c^2$.
-		        \item For each $r\in[0:n]$, do the following:
+		        \item Using procedure $q$, verify that $\exp_n(x)\equiv\exp_n(y)$
 		        \begin{enumerate}
-		          \item Verify that $\lVert(1+\frac{x}{n})^r\rVert^2$
-		          \begin{enumerate}
-		            \item $=(\lVert 1+\frac{x}{n}\rVert^2)^r$
-		            \item $\le\max((\lVert 1+\frac{x}{n}\rVert^2)^n,1)$
-		            \item $=\max(\lVert\exp_n(x)\rVert^2,1)$
-		            \item $\le\max(c^2,1)$
-		            \item $=\max(c,1)^2$.
-		          \end{enumerate}
-		          \item Using analogous steps, also verify that $\lVert(1+\frac{y}{n})^r\rVert^2\le\max(c,1)^2$.
-		        \end{enumerate}
-		        \item Hence verify that $\lVert\exp_n(y)-\exp_n(x)\rVert^2$
-		        \begin{enumerate}
-		          \item $=\lVert(1+\frac{y}{n})^n-(1+\frac{x}{n})^n\rVert^2$
-		          \item $=\lVert(\frac{y}{n}-\frac{x}{n})\sum_r^{[0:n]}(1+\frac{y}{n})^r(1+\frac{x}{n})^{n-1-r}\rVert^2$
-		          \item $\le\lVert y-x\rVert^2(\frac{1}{n}\sum_r^{[0:n]}\max(c,1)^2)^2$
-		          \item $=\lVert y-x\rVert^2a^2$.
+		          \item $\err{\exp_n(y)-\exp_n(x)}$
+		          \item $\err{(1+\frac{y}{n})^n-(1+\frac{x}{n})^n}$
+		          \item $\err{(\frac{y}{n}-\frac{x}{n})\sum_r^{[0:n]}(1+\frac{y}{n})^r(1+\frac{x}{n})^{n-1-r}}$
+		          \item $\err{(y-x)(\frac{1}{n}\sum_r^{[0:n]}c^2)}$
+		          \item $\err{a(y-x)}$.
 		        \end{enumerate}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
