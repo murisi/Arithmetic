@@ -3969,29 +3969,19 @@
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.13} on $\langle 2X\rangle$ and let $\langle c,b,q\rangle$ receive.
-					\item Let $a=\max(1,c)^3$.
+					\item Let $a=c^3$.
 					\item Let $p(x,y,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $\lVert x\rVert^2\le X^2$.
-						\item Hence execute $q$ on $\langle x,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(x)\rVert^2\le c^2$.
-						\item Verify that $\lVert y\rVert^2\le X^2$.
-						\item Hence execute $q$ on $\langle y,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(y)\rVert^2\le c^2$.
-						\item Verify that $\lVert x+y\rVert^2\le(2X)^2$.
-						\item Hence execute $q$ on $\langle x+y,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(x+y)\rVert^2\le c^2$.
-						\item Hence using \procedurehr{3.04}, verify that $\lVert\exp_n(x)\exp_n(y)-\exp_n(x+y)\rVert^2$
+						\item Using procedure $q$, verify that $\exp_n(x+y)\equiv\exp_n(x)\exp_n(y)$
 						\begin{enumerate}
-							\item $=\lVert(1+\frac{x}{n})^n(1+\frac{y}{n})^n-(1+\frac{x+y}{n})^n\rVert^2$
-							\item $=\lVert(1+\frac{x+y}{n}+\frac{xy}{n^2})^n-(1+\frac{x+y}{n})^n\rVert^2$
-							\item $=\lVert\frac{xy}{n^2}\sum_r^{[0:n]}(1+\frac{x+y}{n}+\frac{xy}{n^2})^r(1+\frac{x+y}{n})^{n-1-r}\rVert^2$
-							\item $=\frac{\lVert xy\rVert^2}{n^4}\lVert\sum_r^{[0:n]}(1+\frac{x}{n})^r(1+\frac{y}{n})^r(1+\frac{x+y}{n})^{n-1-r}\rVert^2$
-							\item $=\frac{\lVert xy\rVert^2}{n^3}\sum_r^{[0:n]}\lVert 1+\frac{x}{n}\rVert^{2r}\lVert 1+\frac{y}{n}\rVert^{2r}\lVert 1+\frac{x+y}{n}\rVert^{2(n-1-r)}$
-							\item $\le\frac{\lVert xy\rVert^2}{n^3}\sum_r^{[0:n]}\max(1,\lVert\exp_n(x)\rVert^{2})\allowbreak\max(1,\lVert\exp_n(y)\rVert^{2})\allowbreak\max(1,\lVert\exp_n(x+y)\rVert^{2})$
-							\item $\le\frac{\lVert xy\rVert^2}{n^3}\sum_r^{[0:n]}\max(1,c^2)^3$
-							\item $=\frac{\lVert xy\rVert^2\max(1,c)^6}{n^2}$
-							\item $=\frac{a^2\lVert xy\rVert^2}{n^2}$.
+						  \item $\err{\exp_n(x)\exp_n(y)-\exp_n(x+y)}$
+							\item $\err{(1+\frac{x}{n})^n(1+\frac{y}{n})^n-(1+\frac{x+y}{n})^n}$
+							\item $\err{(1+\frac{x+y}{n}+\frac{xy}{n^2})^n-(1+\frac{x+y}{n})^n}$
+							\item $\err{\frac{xy}{n^2}\sum_r^{[0:n]}(1+\frac{x+y}{n}+\frac{xy}{n^2})^r(1+\frac{x+y}{n})^{n-1-r}}$
+							\item $\err{\frac{xy}{n^2}\sum_r^{[0:n]}(1+\frac{x}{n})^r(1+\frac{y}{n})^r(1+\frac{x+y}{n})^{n-1-r}}$
+							\item $\err{\frac{xy}{n^2}\sum_r^{[0:n]}c^3}$
+							\item $\err{\frac{axy}{n}}$
+							\item $\err{\frac{aX^2}{n}}$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
