@@ -6502,16 +6502,19 @@
 		      \item Let $b=\frac{a_1b_1}{D^2(1-b_1)}$.
 		      \item Let $p(x,n)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Execute procedure $p_2$ on $\langle x,n-1,A-1,1\rangle$.
-		        \item Hence verify that $\lVert A(1+x)_{n-1}^{A-1}\rVert^2\le(\{A\}a_2)^2=l^2$.
+		        \item Using procedure $p_2$, verify that $A(1+x)_{n-1}^{A-1}\equiv 0$
+		        \begin{enumerate}
+		          \item $\err{A(1+x)_{n-1}^{A-1}}$
+		          \item $\err{\{A\}a_2}$
+		          \item $\err{l}$.
+		        \end{enumerate}
 		      \end{enumerate}
 		      \item Let $q(x,n,\delta)$ be the following procedure:
 		      \begin{enumerate}
 		        \item For $r\in[1:n]$, do the following:
 		        \begin{enumerate}
 		          \item Verify that $\lVert A+1\rVert^2\le\{A+1\}^2$.
-		          \item Execute procedure $p_1$ on $\langle A,X+D,r\rangle$.
-		          \item Hence verify that $\lVert\binom{A}{r}(X+D)^r\rVert^2\le(a_1b_1)^r$.
+		          \item Hence using procedure $p_1$, verify that $\lVert\binom{A}{r}(X+D)^r\rVert^2\le(a_1{b_1}^r)^2$.
 		          \item Hence verify that $\lVert\binom{A}{r}\sum_k^{[0:r-1]}\binom{r}{k}x^k\delta^{r-2-k}\rVert^2$
 		          \begin{enumerate}
 		            \item $\le\lVert\binom{A}{r}\rVert^2(\sum_k^{[0:r-1]}\binom{r}{k}X^kD^{r-2-k})^2$
@@ -6520,16 +6523,17 @@
 		            \item $\le(\frac{a_1{b_1}^r}{D^2})^2$.
 		          \end{enumerate}
 		        \end{enumerate}
-		        \item Now verify that $\lVert\frac{1}{\delta}((1+x+\delta)_n^A-(1+x)_n^A)-A(1+x)_{n-1}^{A-1}\rVert^2$
+		        \item Now verify that $\Delta_{y=x}^{+\delta}(1+y)_{n}^A\equiv A(1+x)_{n-1}^{A-1}$
 		        \begin{enumerate}
-		          \item $=\lVert\frac{1}{\delta}(\sum_r^{[0:n]}\binom{A}{r}(x+\delta)^r-\sum_r^{[0:n]}\binom{A}{r}x^r)-A\sum_r^{[0:n-1]}\binom{A-1}{r}x^r\rVert^2$
-		          \item $=\lVert\frac{1}{\delta}(\sum_r^{[0:n]}\binom{A}{r}(\sum_k^{[0:r+1]}\binom{r}{k}x^k\delta^{r-k}-x^r))-A\sum_r^{[0:n-1]}\binom{A-1}{r}x^r\rVert^2$
-		          \item $=\lVert\sum_r^{[0:n]}\binom{A}{r}\sum_k^{[0:r]}\binom{r}{k}x^k\delta^{r-1-k}-\sum_r^{[0:n-1]}(r+1)\binom{A}{r+1}x^r\rVert^2$
-		          \item $=\lVert\sum_r^{[1:n]}\binom{A}{r}\sum_k^{[0:r]}\binom{r}{k}x^k\delta^{r-1-k}-\sum_r^{[1:n]}r\binom{A}{r}x^{r-1}\rVert^2$
-		          \item $=\lVert\delta\rVert^2\lVert\sum_r^{[1:n]}\binom{A}{r}\sum_k^{[0:r-1]}\binom{r}{k}x^k\delta^{r-2-k}\rVert^2$
-		          \item $\le\lVert\delta\rVert^2\lVert\sum_r^{[1:n]}\frac{a_1{b_1}^r}{D^2}\rVert^2$
-		          \item $\le\lVert\delta\rVert^2(\frac{a_1b_1}{D^2(1-b_1)})^2$
-		          \item $\le(\frac{a}{n}+b\{\delta\})^2$.
+		          \item $\err{\frac{1}{\delta}((1+x+\delta)_n^A-(1+x)_n^A)-A(1+x)_{n-1}^{A-1}}$
+		          \item $\err{\frac{1}{\delta}(\sum_r^{[0:n]}\binom{A}{r}(x+\delta)^r-\sum_r^{[0:n]}\binom{A}{r}x^r)-A\sum_r^{[0:n-1]}\binom{A-1}{r}x^r}$
+		          \item $\err{\frac{1}{\delta}(\sum_r^{[0:n]}\binom{A}{r}(\sum_k^{[0:r+1]}\binom{r}{k}x^k\delta^{r-k}-x^r))-A\sum_r^{[0:n-1]}\binom{A-1}{r}x^r}$
+		          \item $\err{\sum_r^{[0:n]}\binom{A}{r}\sum_k^{[0:r]}\binom{r}{k}x^k\delta^{r-1-k}-\sum_r^{[0:n-1]}(r+1)\binom{A}{r+1}x^r}$
+		          \item $\err{\sum_r^{[1:n]}\binom{A}{r}\sum_k^{[0:r]}\binom{r}{k}x^k\delta^{r-1-k}-\sum_r^{[1:n]}r\binom{A}{r}x^{r-1}}$
+		          \item $\err{\delta(\sum_r^{[1:n]}\binom{A}{r}\sum_k^{[0:r-1]}\binom{r}{k}x^k\delta^{r-2-k})}$
+		          \item $\err{\delta(\sum_r^{[1:n]}\frac{a_1{b_1}^r}{D^2})}$
+		          \item $\err{\delta(\frac{a_1b_1}{D^2(1-b_1)})}$
+		          \item $\err{\frac{a}{n}+b\{\delta\}}$.
 		        \end{enumerate}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle l,d,a,b,p,q\rangle$.}
@@ -6549,24 +6553,32 @@
 		      \item Let $b=d_4$.
 		      \item Let $p(x,n)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Execute procedure $p_2$ on $\langle x,n,A-1,1\rangle$.
-		        \item Hence verify that $\lVert A(1+x)_n^{A-1}\rVert^2\le(\{A\}a_2)^2=l^2$.
+		        \item Using procedure $p_2$, verify that $A(1+x)_n^{A-1}\equiv 0$
+		        \begin{enumerate}
+		          \item $\err{A(1+x)_n^{A-1}}$
+		          \item $\err{\{A\}a_2}$
+		          \item $\err{l}$.
+		        \end{enumerate}
 		      \end{enumerate}
 		      \item Let $q(x,n,\delta)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Execute procedure $q_4$ on $\langle x,n,\delta\rangle$.
-		        \item Hence verify that $\lVert\Delta_{y=x}^{+\delta}(1+y)_n^A-A(1+x)_{n-1}^{A-1}\rVert^2\le(\frac{c_4}{n}+d_4\{\delta\})^2$.
-		        \item Execute procedure $p_1$ on $\langle A-1,x,n-1\rangle$.
-		        \item Hence verify that $\lVert\binom{A-1}{n-1}x^{n-1}\rVert^2\le(a_1{b_1}^{n-1})^2$.
-		        \item Execute procedure $p_3$ on $\langle b_1,n-1\rangle$.
-		        \item Hence verify that $\lVert(n-1){b_1}^{n-1}\rVert^2\le(a_3{b_3}^{n-1})^2\le{a_3}^2$.
+		        \item Using procedure $p_1$, verify that $\lVert\binom{A-1}{n-1}x^{n-1}\rVert^2\le(a_1{b_1}^{n-1})^2$.
+		        \item Using procedure $p_3$, verify that $\lVert(n-1){b_1}^{n-1}\rVert^2\le(a_3{b_3}^{n-1})^2\le{a_3}^2$.
 		        \item Hence verify that $\lVert{b_1}^{n-1}\rVert^2\le(\frac{a_3}{n-1})^2\le(\frac{2a_3}{n})^2$.
-		        \item Hence verify that $\lVert\frac{1}{\delta}((1+x+\delta)_n^A-(1+x)_n^A)-A(1+x)_n^{A-1}\rVert^2$
+		        \item Now using procedure $q_4$, verify that $\Delta_{y=x}^{+\delta}(1+y)_n^A$
 		        \begin{enumerate}
-		          \item $=\lVert\frac{1}{\delta}((1+x+\delta)_n^A-(1+x)_n^A)-A(1+x)_{n-1}^{A-1}-A\binom{A-1}{n-1}x^{n-1}\rVert^2$
-		          \item $\le(\frac{c_4}{n}+d_4\{\delta\}+\{A\}a_1{b_1}^{n-1})^2$
-		          \item $\le(\frac{c_4}{n}+d_4\{\delta\}+\frac{2\{A\}a_1a_3}{n})^2$
-		          \item $=(\frac{a}{n}+b\{\delta\})^2$.
+		          \item $\equiv A(1+x)_{n-1}^{A-1}\err{\frac{c_4}{n}+d_4\{\delta\}}$
+		          \item $\equiv A(1+x)_{n}^{A-1}$
+		          \begin{enumerate}
+		            \item $\err{A\binom{A-1}{n-1}x^{n-1}}$
+		            \item $\err{\{A\}a_1{b_1}^{n-1}}$
+		            \item $\err{\frac{2\{A\}a_1a_3}{n}}$.
+		          \end{enumerate}
+		        \end{enumerate}
+		        \item Hence verify that $\Delta_{y=x}^{+\delta}(1+y)_n^A\equiv A(1+x)_{n}^{A-1}$
+		        \begin{enumerate}
+		          \item $\err{\frac{c_4}{n}+d_4\{\delta\}+\frac{2\{A\}a_1a_3}{n}}$
+		          \item $\err{\frac{a}{n}+b\{\delta\}}$.
 		        \end{enumerate}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle l,d,a,b,p,q\rangle$.}
