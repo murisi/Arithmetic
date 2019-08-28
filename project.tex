@@ -3142,7 +3142,7 @@
 								\item Verify that $i+2=\lvert s\rvert$.
 								\item Go to (c).
 							\end{enumerate}
-							\item Execute \hyperref[sec:procedure 2.5 auxilliary procedure]{procedure 2.5 auxilliary procedure} on $i$.
+							\item Execute \subprocedurehr{wed2808191626} on $i$.
 							\item If $\sgn(\Lambda(s_{i+2},c))\ne\sgn(\Lambda(s_{i+2},d))$, do the following:
 							\begin{enumerate}
 								\item Execute procedure $t_{i+2}$ on $\langle c,d\rangle$.
@@ -3176,7 +3176,7 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle l,u\rangle$.}
 				\end{enumerate}
-			\subsubsection*{Auxilliary Procedure}\label{sec:procedure 2.5 auxilliary procedure}
+			\subprocedure{wed2808191626}
 				\paragraph{Objective}
 					Choose a non-negative integer $i<m$ and natural numbers $c,d$ such that $\sgn(\Lambda(s_{i+1},c))\ne\sgn(\Lambda(s_{i+1},d))$ and $i+2\le m$. The objective of the following instructions is to show that $\lvert\Lambda(s_{i+1},c)\rvert<\frac{1}{CD}$, $\lvert\Lambda(s_{i+1},d)\rvert<\frac{1}{CD}$, $\frac{1}{C}(1-\frac{1}{D})<\lvert\Lambda(s_{i},c)\rvert$, $\frac{1}{C}(1-\frac{1}{D})<\lvert\Lambda(s_{i},d)\rvert$, $\frac{1}{C}(1-\frac{1}{D})<\lvert\Lambda(s_{i+2},c)\rvert$, and $\frac{1}{C}(1-\frac{1}{D})<\lvert\Lambda(s_{i+2},d)\rvert$.
 				\paragraph{Implementation}
@@ -5471,7 +5471,7 @@
 							\item \textbf{Hence verify that $1=(q_{k+1})_{\deg(q_{k+1})}=((\lambda-z_k)q_k+r_k)_{\deg(q_{k+1})}=(q_k)_{\deg(q_k)}$.}
 							\item Also verify that $\Lambda(q_{k+1},z_k)=\Lambda(\lambda-z_k,z_k)\Lambda(q_k,z_k)+\Lambda(r_k,z_k)=(z_k-z_k)\Lambda(q_k,z_k)+r_k=r_k$.
 							\item \textbf{Hence verify that $q_{k+1}=(\lambda-z_k)q_k+\Lambda(q_{k+1},z_k)$.}
-							\item Execute the \hyperref[sec:procedure 73 auxilliary procedure]{auxilliary procedure} on $\langle k,q_{k+1},z\rangle$.
+							\item Execute the \subprocedurehr{wed2808191630} on $\langle k,q_{k+1},z\rangle$.
 							\item Now using (cvii), verify that $(\lambda-1)\sum_r^{[0:K]}\lambda^r$
 							\begin{enumerate}
 								\item $=q_K$
@@ -5485,7 +5485,7 @@
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				\end{enumerate}
-			\subsubsection*{Auxilliary procedure}\label{sec:procedure 77 auxilliary procedure}
+			\subprocedure{wed2808191630}
 			  \paragraph{Objective}
 			    Choose a non-negative integer $k$, a complex polynomial $q_{k+1}$, and a list of complex numbers $z$ such that $z_j=\exp_n(\frac{j}{K}\tau_mi)$ and $\Lambda(q_{k+1},z_j)\equiv 0\err{(\frac{2}{a_2})^{K-(k+1)}(\frac{a_1n}{m}+\frac{b_1}{n})}$ for $j\in[k+1:0]$. Let $q_k=q_{k+1}\div(\lambda-z_k)$. The objective of the following instructions is to show that $\Lambda(q_{k},z_j)\equiv 0\err{(\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n})}\err{\frac{an}{m}+\frac{b}{n}}$ for $j\in[k:0]$.
 			  \paragraph{Implementation}
@@ -8535,17 +8535,17 @@
 						\begin{enumerate}
 							\item Verify that $\deg(s_{i-1})<i$.
 							\item Verify that $\Lambda(s_{i-1}\sel_A,A)\ne 0_{m\times m}$.
-							\item Execute the \hyperref[sec:procedure 73 auxilliary procedure]{auxilliary procedure} on the tuple $(i-1, s_{i-1})$.
+							\item Execute the \subprocedurehr{wed2808191621} on the tuple $(i-1, s_{i-1})$.
 							\item Hence using \procedurehr{4.71}, verify that $\frac{(s_{i-1})_{i-1}}{(s_i)_i}=\tr(\Lambda({s_{i-1}}^2{\sel_A}^2,A))=\tr((\Lambda(s_{i-1}\sel_A,A))^2)=\tr((\Lambda(s_{i-1}\sel_A,A))^T(\Lambda(s_{i-1}\sel_A,A)))>0$.
 							\item \textbf{Therefore verify that $\sgn((s_{i-1})_{i-1})=\sgn((s_i)_i)$.}
 						\end{enumerate}
 					\end{enumerate}
 					\item Yield the tuple $\langle s_{[0:t+1]}, q_{[0:t]}\rangle$.
 				\end{enumerate}
-			\subsubsection*{Auxilliary procedure}\label{sec:procedure 73 auxilliary procedure}
-				\paragraph{Objective}
+			\subprocedure{wed2808191621}
+				\subobjective
 					Choose an integer $0\le k\le t$ such that polynomial $s_k$ is defined. Choose a polynomial $g$ such that $\deg(g)\le\min(k,t-1)$. The objective of the following instructions is to show that $\tr(\Lambda(gs_k{\sel_A}^2,A))=\frac{g_k}{(s_{k+1})_{k+1}}$.
-				\paragraph{Implementation}
+				\subimplementation
 					\begin{enumerate}
 						\item If $k=t$, then verify that $\tr(\Lambda(gs_k{\sel_A}^2,A))$
 						\begin{enumerate}
@@ -8566,10 +8566,10 @@
 						\item Otherwise if $k<t-1$, then do the following:
 						\begin{enumerate}
 							\item Verify that $\deg(gq_{k+1})=k+1\le t-1$.
-							\item Execute the \hyperref[sec:procedure 73 auxilliary procedure]{auxilliary procedure} on the tuple $\langle k+1, gq_{k+1}\rangle$.
+							\item Execute the \subprocedurehr{wed2808191621} on the tuple $\langle k+1, gq_{k+1}\rangle$.
 							\item Now verify that $\tr(\Lambda((gq_{k+1})s_{k+1}{\sel_A}^2,A))=\frac{\frac{(s_{k+2})_{k+2}}{(s_{k+1})_{k+1}}g_k}{(s_{k+2})_{k+2}}=\frac{g_k}{(s_{k+1})_{k+1}}$.
 							\item Verify that $\deg(g)\le k\le t-2$.
-							\item Execute the \hyperref[sec:procedure 73 auxilliary procedure]{auxilliary procedure} on the tuple $\langle k+2,g\rangle$.
+							\item Execute the \subprocedurehr{wed2808191621} on the tuple $\langle k+2,g\rangle$.
 							\item Now verify that $\tr(\Lambda(gs_{k+2}{\sel_A}^2,A))=\frac{g_{k+2}}{(s_{k+3})_{k+3}}=\frac{0}{(s_{k+3})_{k+3}}=0$.
 							\item Therefore verify that $\tr(\Lambda(gs_k{\sel_A}^2,A))$
 							\begin{enumerate}
