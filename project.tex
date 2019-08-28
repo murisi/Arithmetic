@@ -6605,44 +6605,29 @@
 		      \item Let $D=\max(c_2,A)$.
 		      \item Let $p(x,a,n)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Execute procedure $p_1$ on $\langle x\rangle$.
-		        \item Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le{a_1}^2$.
+		        \item Using procedure $p_1$, verify that $\lVert\frac{x-1}{x+1}\rVert^2\le{a_1}^2$.
 		        \item If $a\ge 0$, then do the following:
 		        \begin{enumerate}
-		          \item Execute procedure $p_3$ on $\langle\frac{x-1}{x+1},n,a,1\rangle$.
-		          \item Hence verify that $\lVert((1+\frac{x-1}{x+1})_n^a)^1\rVert^2\le{a_3}^2$.
-		          \item Execute procedure $p_2$ on $\langle-\frac{x-1}{x+1},0,a,n\rangle$.
-		          \item Hence using \procedurehr{sun2107190619}, verify that $\lVert(1-\frac{x-1}{x+1})_n^{-a}-(1-\frac{x-1}{x+1})^{-a}\rVert^2$
+		          \item Using \procedurehr{sun2107190619} and procedures $p_2,p_3$, verify that $x_n^a$
 		          \begin{enumerate}
-		            \item $=\lVert(1-\frac{x-1}{x+1})_n^{0-a}-(1-\frac{x-1}{x+1})_n^0((1-\frac{x-1}{x+1})_n^a)^{-1}\rVert^2$
-		            \item $\le(a_2{b_2}^n)^2$.
-		          \end{enumerate}
-		          \item Hence verify that $\lVert x_n^a-x^a\rVert^2$
-		          \begin{enumerate}
-		            \item $=\lVert(1+\frac{x-1}{x+1})_n^a(1-\frac{x-1}{x+1})_n^{-a}-(1+\frac{x-1}{x+1})^a(1-\frac{x-1}{x+1})^{-a}\rVert^2$
-		            \item $=\lVert(1+\frac{x-1}{x+1})_n^a\rVert^2\lVert(1-\frac{x-1}{x+1})_n^{-a}-(1-\frac{x-1}{x+1})^{-a}\rVert^2$
-		            \item $\le(a_3a_2{b_2}^n)^2$
-		            \item $\le(BC^n)^2$.
+		            \item $=(1+\frac{x-1}{x+1})_n^a(1-\frac{x-1}{x+1})_n^{0-a}$
+		            \item $\equiv(1+\frac{x-1}{x+1})_n^a\frac{(1-\frac{x-1}{x+1})_n^{0}}{(1-\frac{x-1}{x+1})_n^{a}}\err{a_3a_2{b_2}^n}$
+		            \item $=\frac{(1+\frac{x-1}{x+1})^a}{(1-\frac{x-1}{x+1})^{a}}$
+		            \item $=x^a$
 		          \end{enumerate}
 		        \end{enumerate}
 		        \item Otherwise do the following:
 		        \begin{enumerate}
-		          \item Execute procedure $p_3$ on $\langle-\frac{x-1}{x+1},n,-a,1\rangle$.
-		          \item Hence verify that $\lVert((1-\frac{x-1}{x+1})_n^{-a})^1\rVert^2\le{a_3}^2$.
-		          \item Execute procedure $p_2$ on $\langle\frac{x-1}{x+1},0,-a,n\rangle$.
-		          \item Hence using \procedurehr{sun2107190619}, verify that $\lVert(1+\frac{x-1}{x+1})_n^a-(1+\frac{x-1}{x+1})^a\rVert^2$
+		          \item Using \procedurehr{sun2107190619} and procedures $p_2,p_3$, verify that $x_n^a$
 		          \begin{enumerate}
-		            \item $=\lVert(1+\frac{x-1}{x+1})_n^{0-(-a)}-(1+\frac{x-1}{x+1})_n^0((1+\frac{x-1}{x+1})_n^{-a})^{-1}\rVert^2$
-		            \item $\le(a_2{b_2}^n)^2$.
-		          \end{enumerate}
-		          \item Hence verify that $\lVert x_n^a-x^a\rVert^2$
-		          \begin{enumerate}
-		            \item $=\lVert(1+\frac{x-1}{x+1})_n^a(1-\frac{x-1}{x+1})_n^{-a}-(1+\frac{x-1}{x+1})^a(1-\frac{x-1}{x+1})^{-a}\rVert^2$
-		            \item $=\lVert(1-\frac{x-1}{x+1})_n^{-a}\rVert^2\lVert(1+\frac{x-1}{x+1})_n^a-(1+\frac{x-1}{x+1})^a\rVert^2$
-		            \item $\le(a_3a_2{b_2}^n)^2$
-		            \item $\le(BC^n)^2$.
+		            \item $=(1+\frac{x-1}{x+1})_n^{0-(-a)}(1-\frac{x-1}{x+1})_n^{-a}$
+		            \item $\equiv\frac{(1+\frac{x-1}{x+1})_n^{0}}{(1+\frac{x-1}{x+1})_n^{-a}}(1-\frac{x-1}{x+1})_n^{-a}\err{a_3a_2{b_2}^n}$
+		            \item $=\frac{(1-\frac{x-1}{x+1})_n^{-a}}{(1+\frac{x-1}{x+1})_n^{-a}}$
+		            \item $=(\frac{1}{x})^{-a}$
+		            \item $=x^a$.
 		          \end{enumerate}
 		        \end{enumerate}
+		        \item \textbf{Hence verify that $x_n^a\equiv x^a\allowbreak\err{a_3a_2{b_2}^n}\allowbreak\err{BC^n}$.}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle B,C,D,p\rangle$.}
 		    \end{enumerate}
