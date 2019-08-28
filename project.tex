@@ -3790,18 +3790,6 @@
 		    \end{enumerate}
 		\declaration{3.05}
 			The notation \gls{complexexp}, where $a$ is a complex number, will be used as a shorthand for $(1+\frac{a}{n})^n$.
-		\procedure{3.07}
-			\objective
-				Choose a rational number $a$ and a positive integer $n$ such that $-n<a$. The objective of the following instructions is to show that $\exp_n(a)\ge 1+a$.
-			\implementation
-				\begin{enumerate}
-					\item Using \procedurehr{2.07}, verify that $\exp_n(a)$
-					\begin{enumerate}
-						\item $=(1+\frac{a}{n})^n$
-						\item $\ge 1+n\frac{a}{n}$
-						\item $=1+a$.
-					\end{enumerate}
-				\end{enumerate}
 		\procedure{3.08}
 			\objective
 				Choose a rational number $a$ and a positive integer $n$ such that $-n<a<1$. The objective of the following instructions is to show that $\exp_n(a)\le\frac{1}{1-a}$.
@@ -3836,19 +3824,20 @@
 				\end{enumerate}
 		\procedure{3.10}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct positive rational numbers $a,b$ such that $a>1$, and a procedure, $p$, to show that $\exp_n(x)\le a^2$ when given a rational number $x$ and a positive integer $n\ge b$ such that $x^2\le X^2$.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct positive rational numbers $a,b$ such that $a>1$, and a procedure, $p(x,r,n)$, to show that $(1+\frac{x}{n})^r\le a^2$ when given a rational number $x$ and a non-negative integers $r,n$ such that $r\le n$, $n\ge b$ and $x^2\le X^2$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Let $a=2^{\lceil X\rceil}$.
 					\item Let $b=X$.
-					\item Let $p(x,n)$ be the following procedure:
+					\item Let $p(x,r,n)$ be the following procedure:
 					\begin{enumerate}
 						\item Verify that $x^2\le X^2$.
 						\item Therefore verify that $-X\le x\le X$
 						\item Therefore verify that $-1\le\frac{x}{n}\le 1$.
 						\item Therefore verify that $0\le 1+\frac{x}{n}\le 2$.
-						\item Hence using \procedurehr{3.08} and \procedurehr{3.09}, verify that $\exp_n(x)$
+						\item Hence using \procedurehr{3.08} and \procedurehr{3.09}, verify that $(1+\frac{x}{n})^r$
 						\begin{enumerate}
+						  \item $\le(1+\frac{X}{n})^r$
 							\item $\le\exp_n(X)$
 							\item $\le(1+\frac{X}{2\lceil X\rceil n})^{2\lceil X\rceil n}$
 							\item $=((1+\frac{\frac{X}{2\lceil X\rceil}}{n})^n)^{2\lceil X\rceil}$
@@ -3862,30 +3851,30 @@
 				\end{enumerate}
 		\procedure{3.11}
 			\objective
-				Choose a rational number $X\le 0$. The objective of the following instructions is to construct two rational numbers $a>0,b$, and a procedure $p(x,n)$ to show that $\exp_n(x)\ge a^2$ when given a rational number $x$ and a positive integer $n>b$ such that $X\le x\le 0$.
+				Choose a rational number $X\le 0$. The objective of the following instructions is to construct two rational numbers $a>0,b$, and a procedure $p(x,r,n)$ to show that $(1+\frac{x}{n})^r\ge a^2$ when a rational number $x$ and non-negative integers $r,n$ such that $X\le x\le 0$, $r\le n$, and $n>b$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.10} on $\langle -2X\rangle$ and let $\langle c,d,q\rangle$ receive.
 					\item Let $a=c^{-1}$.
 					\item Let $b=\max(-2X,d)$.
-					\item Let $p(x,n)$ be the following procedure:
+					\item Let $p(x,r,n)$ be the following procedure:
 					\begin{enumerate}
 						\item Verify that $X\le x\le 0$.
 						\item Therefore verify that $2X\le 2x\le 0$.
 						\item Therefore verify that $0\le -2x\le -2X$.
-						\item Hence execute procedure $q$ on $\langle -2x,n\rangle$.
-						\item Therefore verify that $\exp_n(-2x)\le c^2$.
+						\item Hence execute procedure $q$ on $\langle -2x,r,n\rangle$.
+						\item Therefore verify that $(1+\frac{-2x}{n})^r\le c^2$.
 						\item Also verify that $n>b\ge -2X\ge -2x\ge 0$.
 						\item Therefore verify that $-\frac{n}{2}\le x\le 0$.
 						\item Therefore verify that $\frac{n}{2}\le n+x<n$.
-						\item Hence verify that $\exp_n(x)$
+						\item Hence verify that $(1+\frac{x}{n})^r$
 						\begin{enumerate}
-							\item $=(\frac{n+x}{n})^n$
-							\item $=(\frac{n}{n+x})^{-n}$
-							\item $=(1-\frac{x}{n+x})^{-n}$
-							\item $\ge (1-\frac{x}{\frac{1}{2}n})^{-n}$
-							\item $=(1-\frac{2x}{n})^{-n}$
-							\item $=(\exp_n(-2x))^{-1}$
+							\item $=(\frac{n+x}{n})^r$
+							\item $=(\frac{n}{n+x})^{-r}$
+							\item $=(1-\frac{x}{n+x})^{-r}$
+							\item $\ge(1-\frac{x}{\frac{1}{2}n})^{-r}$
+							\item $=(1-\frac{2x}{n})^{-r}$
+							\item $=((1+\frac{-2x}{n})^{r})^{-1}$
 							\item $\ge (c^2)^{-1}$
 							\item $=a^2$.
 						\end{enumerate}
@@ -3894,52 +3883,52 @@
 				\end{enumerate}
 		\procedure{3.12}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a>0,b$, and a procedure $p(x,n)$ to show that $\exp_n(x)\ge a^2$ when given a rational number $x$ and a positive integer $n>b$ such that $x^2\le X^2$.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a>0,b$, and a procedure $p(x,r,n)$ to show that $(1+\frac{x}{n})^r\ge a^2$ when a rational number $x$ and non-negative integers $r,n$ such that $x^2\le X^2$, $r\le n$, and $n>b$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.11} on $\langle -X\rangle$ and let $\langle c,b,q\rangle$ receive.
 					\item Let $a=\min(1,c)$.
-					\item Let $p(x,n)$ be the following procedure:
+					\item Let $p(x,r,n)$ be the following procedure:
 					\begin{enumerate}
 						\item If $x<0$, then do the following:
 						\begin{enumerate}
 							\item Verify that $x^2\le X^2$.
 							\item Therefore verify that $-X\le x\le 0$.
-							\item Hence execute procedure $q$ on $x$.
-							\item \textbf{Hence verify that $\exp_n(x)\ge c^2\ge a^2$.}
+							\item Hence execute procedure $q$ on $\langle x,r,n\rangle$.
+							\item \textbf{Hence verify that $(1+\frac{x}{n})^r\ge c^2\ge a^2$.}
 						\end{enumerate}
 						\item Otherwise do the following:
 						\begin{enumerate}
 							\item Verify that $x\ge 0$.
-							\item \textbf{Using \procedurehr{3.07}, verify that $\exp_n(x)\ge 1+x\ge 1\ge a^2$.}
+							\item \textbf{Using \procedurehr{2.07}, verify that $(1+\frac{x}{n})^r\ge 1+\frac{rx}{n}\ge 1\ge a^2$.}
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				\end{enumerate}
 		\procedure{3.13}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct positive rational numbers $a,b$ such that $a>1$, and a procedure, $p(x,n)$, to show that $\lVert\exp_n(x)\rVert^2\le a^2$ when a complex number $x$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X^2$ are chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct positive rational numbers $a,b$ such that $a>1$, and a procedure, $p(x,r,n)$, to show that $\lVert(1+\frac{x}{n})^r\rVert^2\le a^2$ when a complex number $x$ and non-negative integers $r,n$ such that $\lVert x\rVert^2\le X^2$, $r\le n$, and $n>b$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Let $c=2X+X^2$.
 					\item Execute \procedurehr{3.10} on $\langle c\rangle$ and let $\langle a,b,q\rangle$.
-					\item Let $p(x,n)$ be the following procedure:
+					\item Let $p(x,r,n)$ be the following procedure:
 					\begin{enumerate}
 						\item Verify that $n>b$.
 						\item Let $y=2\lvert\Re(x)\rvert+\lVert x\rVert^2$.
 						\item Verify that $\lvert\Re(x)\rvert^2\le\lVert x\rVert^2\le X^2$.
 						\item Therefore verify that $\lvert\Re(x)\rvert\le X$.
 						\item Therefore verify that $\lvert y\rvert=y\le 2X+X^2=c$.
-						\item Hence execute procedure $q$ on $\langle y,n\rangle$.
-						\item Hence verify that $\exp_n(y)\le a^2$.
-						\item Now using \procedurehr{3.02} verify that $\lVert\exp_n(x)\rVert^2$
+						\item Hence execute procedure $q$ on $\langle y,r,n\rangle$.
+						\item Hence verify that $(1+\frac{y}{n})^r\le a^2$.
+						\item Now using \procedurehr{3.02} verify that $\lVert(1+\frac{x}{n})^r\rVert^2$
 						\begin{enumerate}
-							\item $=\exp_n(x)\conj{\exp_n(x)}$
-							\item $=(1+\frac{x}{n})^n(1+\frac{\conj{x}}{n})^n$
-							\item $=(1+\frac{2\Re(x)}{n}+\frac{\lVert x\rVert^2}{n^2})^n$
-							\item $\le(1+\frac{2\lvert\Re(x)\rvert}{n}+\frac{\lVert x\rVert^2}{n^2})^n$
-							\item $\le(1+\frac{2\lvert\Re(x)\rvert+\lVert x\rVert^2}{n})^n$
-							\item $=\exp_n(y)$
+							\item $=(1+\frac{x}{n})^r\conj{(1+\frac{x}{n})^r}$
+							\item $=(1+\frac{x}{n})^r(1+\frac{\conj{x}}{n})^r$
+							\item $=(1+\frac{2\Re(x)}{n}+\frac{\lVert x\rVert^2}{n^2})^r$
+							\item $\le(1+\frac{2\lvert\Re(x)\rvert}{n}+\frac{\lVert x\rVert^2}{n^2})^r$
+							\item $\le(1+\frac{2\lvert\Re(x)\rvert+\lVert x\rVert^2}{n})^r$
+							\item $=(1+\frac{y}{n})^r$
 							\item $\le a^2$.
 						\end{enumerate}
 					\end{enumerate}
@@ -3947,28 +3936,28 @@
 				\end{enumerate}
 		\procedure{3.14}
 			\objective
-				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$ and a procedure, $p(x,n)$, to show that $\lVert\exp_n(x)\rVert^2\ge a^2$ when a rational number $x$ and a positive integer $n>b$ such that $\lVert x\rVert^2\le X^2$ are chosen.
+				Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$ and a procedure, $p(x,r,n)$, to show that $\lVert(1+\frac{x}{n})^r\rVert^2\ge a^2$ when a rational number $x$ and non-negative integers $r,n$ such that $\lVert x\rVert^2\le X^2$, $r\le n$ and $n>b$ are chosen.
 			\implementation
 				\begin{enumerate}
 					\item Let $c=2X+X^2$.
 					\item Execute \procedurehr{3.12} on $\langle c\rangle$ and let $\langle a,d,q\rangle$ receive.
 					\item Let $b=\max(c,d)$.
-					\item Let $p(x,n)$ be the following procedure:
+					\item Let $p(x,r,n)$ be the following procedure:
 					\begin{enumerate}
 						\item Verify that $n>b\ge d$.
 						\item Let $y=2\lvert\Re(x)\rvert+\lVert x\rVert^2$.
 						\item Verify that $\lvert -y\rvert=y\le 2X+X^2=c$.
-						\item Hence execute procedure $q$ on $\langle -y,n\rangle$.
-						\item Hence verify that $\exp_n(-y)\ge a^2$.
+						\item Hence execute procedure $q$ on $\langle -y,r,n\rangle$.
+						\item Hence verify that $(1+\frac{-y}{n})^r\ge a^2$.
 						\item Also, verify that $n>b\ge c\ge y$.
-						\item Hence verify that $\lVert\exp_n(x)\rVert^2$
+						\item Hence verify that $\lVert(1+\frac{x}{n})^r\rVert^2$
 						\begin{enumerate}
-							\item $=\exp_n(x)\conj{\exp_n(x)}$
-							\item $=(1+\frac{x}{n})^n(1+\frac{\conj{x}}{n})^n$
-							\item $=(1+\frac{2\Re(x)}{n}+\frac{\lVert x\rVert^2}{n^2})^n$
-							\item $\ge(1-\frac{2\lvert\Re(x)\rvert}{n}-\frac{\lVert x\rVert^2}{n^2})^n$
-							\item $\ge(1-\frac{2\lvert\Re(x)\rvert+\lVert x\rVert^2}{n})^n$
-							\item $=\exp_n(-y)$
+							\item $=(1+\frac{x}{n})^r\conj{(1+\frac{x}{n})^r}$
+							\item $=(1+\frac{x}{n})^r(1+\frac{\conj{x}}{n})^r$
+							\item $=(1+\frac{2\Re(x)}{n}+\frac{\lVert x\rVert^2}{n^2})^r$
+							\item $\ge(1-\frac{2\lvert\Re(x)\rvert}{n}-\frac{\lVert x\rVert^2}{n^2})^r$
+							\item $\ge(1-\frac{2\lvert\Re(x)\rvert+\lVert x\rVert^2}{n})^r$
+							\item $=(1+\frac{-y}{n})^r$
 							\item $\ge a^2$.
 						\end{enumerate}
 					\end{enumerate}
