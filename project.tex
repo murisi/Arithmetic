@@ -6157,7 +6157,7 @@
 				\end{enumerate}
 		\procedure{3.19}
 			\objective
-				Choose two rational numbers $X\ge 0$, $D\ge 0$. The objective of the following instructions is to construct rational numbers $l,a,b,d$, a procedure $t(x,n)$ to show that $\lVert\exp_n(x)\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure, $q(x,n,\delta)$, to show that $\diff_{y=x}^{+\delta}\exp_n(y)\equiv\exp_n(x)\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen. 
+				Choose two rational numbers $X\ge 0$, $D\ge 0$. The objective of the following instructions is to construct rational numbers $l,a,b,d$, a procedure $t(x,n)$ to show that $\exp_n(x)\equiv 0\err{l}$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure, $q(x,n,\delta)$, to show that $\diff_{y=x}^{+\delta}\exp_n(y)\equiv\exp_n(x)\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen. 
 			\implementation
 				\begin{enumerate}
 					\item Execute \procedurehr{3.15} on $\langle\max(X,D)\rangle$ and let $\langle e,f,u\rangle$ receive.
@@ -6168,26 +6168,24 @@
 					\item Let $d=\max(f,j,m)$.
 					\item Let $p(x,n,\delta)$ be the following procedure:
 					\begin{enumerate}
-						\item Hence execute procedure $u$ on $\langle x,n,\delta\rangle$.
-						\item Therefore verify that $\lVert\exp_n(x)\exp_n(\delta)-\exp_n(x+\delta)\rVert^2\le\frac{e^2\lVert x\delta\rVert^2}{n^2}$.
-						\item Therefore verify that $\lVert\frac{\exp_n(x)\exp_n(\delta)-\exp_n(x+\delta)}{\delta}\rVert^2\le\frac{e^2\lVert x\rVert^2}{n^2}\le(\frac{eX}{n})^2$.
-						\item Execute procedure $r$ on $\langle n,\delta\rangle$.
-						\item Therefore verify that $\lVert\frac{\exp_n(\delta)-1}{\delta}-1\rVert^2\le(h\{\delta\})^2$.
-						\item Execute procedure $t$ on $\langle x,n\rangle$.
-						\item Therefore verify that $\lVert\exp_n(x)\rVert^2\le l^2$.
-						\item Using \procedurehr{3.04}, verify that $\lVert\frac{\exp_n(x+\delta)-\exp_n(x)}{\delta}-\exp_n(x)\rVert^2$
+						\item Using procedures $u,r,t$, verify that $\Delta_{y=x}^{+\delta}\exp_n(y)$
 						\begin{enumerate}
-							\item $=\lVert\frac{1}{\delta}(\exp_n(x+\delta)-\exp_n(x)\exp_n(\delta))+\frac{1}{\delta}(\exp_n(x)\exp_n(\delta)-\exp_n(x)-\delta\exp_n(x))\rVert^2$
-							\item $=\lVert\frac{1}{\delta}(\exp_n(x+\delta)-\exp_n(x)\exp_n(\delta))+\exp_n(x)\frac{\exp_n(\delta)-1-\delta}{\delta}\rVert^2$
-							\item $\le(\frac{eX}{n}+lh\{\delta\})^2$.
+						  \item $=\frac{\exp_n(x+\delta)-\exp_n(x)}{\delta}$
+						  \item $=\frac{\exp_n(x)\exp_n(\delta)-\exp_n(x)}{\delta}$
+						  \begin{enumerate}
+						    \item $\err{\frac{ex\delta}{n\delta}}$
+						    \item $\err{\frac{eX}{n}}$
+						  \end{enumerate}
+						  \item $=\exp_n(x)\Delta_{y=0}^{\delta}\exp_n(y)$
+						  \item $\equiv\exp_n(x)\cdot 1\err{lh\{\delta\}}$.
 						\end{enumerate}
-						\item \textbf{Therefore verify that $\lVert\diff_{y=x}^{+\delta}\exp_n(y)-\exp_n(x)\rVert^2\le(\frac{a}{n}+b\{\delta\})^2$.}
+						\item \textbf{Hence verify that $\diff_{y=x}^{+\delta}\exp_n(y)\equiv\exp_n(x)\err{\frac{ex}{n}+lh\{\delta\}}\err{\frac{a}{n}+b\{\delta\}}$.}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,d,p\rangle$.}
 				\end{enumerate}
 		 \procedure{3.27}
 			\objective
-				Choose non-negative rational numbers $X,D$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $q(x,n)$ to show that $\lVert\cos_n(x)\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $p(x,n,\delta)$ to show that $\diff_{y=x}^{+\delta}\sin_n(y)\equiv\cos_n(x)\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+				Choose non-negative rational numbers $X,D$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $q(x,n)$ to show that $\cos_n(x)\equiv 0\err{l}$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $p(x,n,\delta)$ to show that $\diff_{y=x}^{+\delta}\sin_n(y)\equiv\cos_n(x)\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
 			\implementation
 				\begin{instructions}
 					\item Execute the following in post-order:
@@ -6228,34 +6226,35 @@
 					\end{instructions}
 					\item Let $p(x,n)$ be the following procedure:
 					\begin{enumerate}
-					  \item Execute procedure $q_0$ on $\langle x,n\rangle$.
-					  \item Hence verify that $\lVert\cos_n(x)\rVert^2$
+					  \item Using procedure $q_0$, verify that $\cos_n(x)$
 					  \begin{enumerate}
-					    \item $=\lVert\frac{1}{2}(\exp_n(ix)+\exp_n(-ix))\rVert^2$
-					    \item $=\lVert\frac{1}{2i}(\exp_n(ix^1)\cdot i\cdot 1x^0+(-1)\exp_n(-ix^1)\cdot(-i)\cdot 1\cdot x^0)\rVert^2$
-					    \item $\le l^2$.
+					    \item $=\frac{1}{2}(\exp_n(ix)+\exp_n(-ix))$
+					    \item $=\frac{1}{2i}(\exp_n(ix^1)\cdot i\cdot 1x^0+(-1)\exp_n(-ix^1)\cdot(-i)\cdot 1\cdot x^0)$
+					    \item $\equiv 0\err{l}$.
 					  \end{enumerate}
 					\end{enumerate}
 					\item Let $q(x,n,\delta)$ be the following procedure:
 					\begin{enumerate}
-					  \item Execute procedure $q_1$ on $\langle x,n,\delta\rangle$.
-					  \item Hence verify that $\lVert\Delta_{y=x}^{+\delta}\sin_n(y)-\cos_n(x)\rVert^2$
+					  \item Using procedure $q_1$, verify that $\Delta_{y=x}^{+\delta}\sin_n(y)$
 					  \begin{enumerate}
-					    \item $=\lVert\Delta_{y=x}^{+\delta}(\frac{\exp_n(ix)-\exp_n(-ix)}{2i})-\frac{\exp_n(ix)+\exp_n(-ix)}{2}\rVert^2$
-					    \item $=\lVert\Delta_{y=x}^{+\delta}(\frac{1}{2i}(\exp_n(ix^1)+(-1)\exp_n((-i)x^1)))-\frac{1}{2i}(\exp_n(ix^1)\cdot i\cdot 1x^0+(-1)\exp_n(-ix^1)\cdot(-i)\cdot 1\cdot x^0)\rVert^2$
-					    \item $\le(\frac{a}{n}+b\{\delta\})^2$.
+					    \item $=\Delta_{y=x}^{+\delta}(\frac{\exp_n(ix)-\exp_n(-ix)}{2i})$
+					    \item $=\Delta_{y=x}^{+\delta}(\frac{1}{2i}(\exp_n(ix^1)+(-1)\exp_n((-i)x^1)))$
+					    \item $\equiv\frac{1}{2i}(\exp_n(ix^1)\cdot i\cdot 1x^0+(-1)\exp_n(-ix^1)\cdot(-i)\cdot 1\cdot x^0)\err{\frac{a}{n}+b\{\delta\}}$
+					    \item $=\frac{\exp_n(ix)+\exp_n(-ix)}{2}$
+					    \item $=\cos_n(x)$.
 					  \end{enumerate}
+					  \item \textbf{Hence verify that $\Delta_{y=x}^{+\delta}\sin_n(y)\equiv\cos_n(x)\err{\frac{a}{n}+b\{\delta\}}$.}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle l,d,a,b,D,p,q\rangle$.}
 				\end{instructions}
 		\procedure{3.28}
 			\objective
-				Choose non-negative rational numbers $X,D$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $q(x,n)$ to show that $\lVert-\sin_n(x)\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $p(x,n,\delta)$ to show that $\diff_{y=x}^{+\delta}\cos_n(y)\equiv-\sin_n(x)\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+				Choose non-negative rational numbers $X,D$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $q(x,n)$ to show that $-\sin_n(x)\equiv 0\err{l}$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $p(x,n,\delta)$ to show that $\diff_{y=x}^{+\delta}\cos_n(y)\equiv-\sin_n(x)\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
 			\implementation
 				Implementation is analogous to that of \procedurehr{3.27}.
 		\procedure{wed2108191034}
 		  \objective
-		    Choose non-negative rational numbers $X,D$ such that $X+D<1$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $p(x,n)$ to show that $\lVert(1+x)_{n-1}^{-1}\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\ln_n(1+y)\equiv(1+x)_{n-1}^{-1}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+		    Choose non-negative rational numbers $X,D$ such that $X+D<1$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $p(x,n)$ to show that $(1+x)_{n-1}^{-1}\equiv 0\err{l}$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\ln_n(1+y)\equiv(1+x)_{n-1}^{-1}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
 		  \implementation
 		    \begin{enumerate}
 		      \item Execute \procedurehr{wed2407191611} on $\langle 1,X\rangle$ and let $\langle a_1,p_1\rangle$ receive.
@@ -6265,34 +6264,34 @@
 		      \item Let $b=\frac{1}{D^2((X+D)^{-1}-1)}$.
 		      \item Let $p(x,n)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Execute procedure $p_1$ on $\langle x,n-1,-1,1\rangle$.
-		        \item Hence verify that $\lVert(1+x)_{n-1}^{-1}\rVert^2$
+		        \item Using procedure $p_1$, verify that $(1+x)_{n-1}^{-1}$
 		        \begin{enumerate}
-		          \item $=\lVert((1+x)_{n-1}^{-1})^1\rVert^2$
-		          \item $\le {a_1}^2$.
+		          \item $=((1+x)_{n-1}^{-1})^1$
+		          \item $\equiv 0\err{a_1}$.
 		        \end{enumerate}
 		      \end{enumerate}
 		      \item Let $q(x,n,\delta)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Using \procedurehr{2.05}, verify that $\lVert\Delta_{y=x}^{+\delta}\ln_n(1+y)-(1+x)_{n-1}^{-1}\rVert^2$
+		        \item Using \procedurehr{2.05}, verify that $\Delta_{y=x}^{+\delta}\ln_n(1+y)\equiv(1+x)_{n-1}^{-1}$
 		        \begin{enumerate}
-		          \item $=\lVert\frac{1}{\delta}(\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}(x+\delta)^r-\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}x^r)-\sum_r^{[0:n-1]}\binom{-1}{r}x^r\rVert^2$
-		          \item $=\lVert\frac{1}{\delta}\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}(\sum_k^{[0:r+1]}\binom{r}{k}x^k\delta^{r-k}-x^r)-\sum_r^{[0:n-1]}(-1)^rx^r\rVert^2$
-		          \item $=\lVert\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}\sum_k^{[0:r]}\binom{r}{k}x^k\delta^{r-1-k}-\sum_r^{[0:n-1]}(-1)^rx^r\rVert^2$
-		          \item $=\lVert\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}(\sum_k^{[0:r]}\binom{r}{k}x^k\delta^{r-1-k}-rx^{r-1})\rVert^2$
-		          \item $=\lVert\delta\rVert^2\lVert\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}\sum_k^{[0:r-1]}\binom{r}{k}x^k\delta^{r-2-k}\rVert^2$
-		          \item $\le\lVert\delta\rVert^2(\sum_r^{[1:n]}\sum_k^{[0:r-1]}\binom{r}{k}X^kD^{r-2-k})^2$
-		          \item $=\lVert\delta\rVert^2(\frac{1}{D^2}\sum_r^{[1:n]}\sum_k^{[0:r-1]}\binom{r}{k}X^kD^{r-k})^2$
-		          \item $\le\lVert\delta\rVert^2(\frac{1}{D^2}\sum_r^{[1:n]}(X+D)^r)^2$
-		          \item $\le\lVert\delta\rVert^2(\frac{1}{D^2((X+D)^{-1}-1)})^2$
-		          \item $=(\frac{a}{n}+b\{\delta\})^2$.
+		          \item $\err{\Delta_{y=x}^{+\delta}\ln_n(1+y)-(1+x)_{n-1}^{-1}}$
+		          \item $\err{\frac{1}{\delta}(\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}(x+\delta)^r-\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}x^r)-\sum_r^{[0:n-1]}\binom{-1}{r}x^r}$
+		          \item $\err{\frac{1}{\delta}\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}(\sum_k^{[0:r+1]}\binom{r}{k}x^k\delta^{r-k}-x^r)-\sum_r^{[0:n-1]}(-1)^rx^r}$
+		          \item $\err{\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}\sum_k^{[0:r]}\binom{r}{k}x^k\delta^{r-1-k}-\sum_r^{[0:n-1]}(-1)^rx^r}$
+		          \item $\err{\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}(\sum_k^{[0:r]}\binom{r}{k}x^k\delta^{r-1-k}-rx^{r-1})}$
+		          \item $\err{\delta(\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}\sum_k^{[0:r-1]}\binom{r}{k}x^k\delta^{r-2-k})}$
+		          \item $\err{\delta(\sum_r^{[1:n]}\sum_k^{[0:r-1]}\binom{r}{k}X^kD^{r-2-k})}$
+		          \item $\err{\delta(\frac{1}{D^2}\sum_r^{[1:n]}\sum_k^{[0:r-1]}\binom{r}{k}X^kD^{r-k})}$
+		          \item $\err{\delta(\frac{1}{D^2}\sum_r^{[1:n]}(X+D)^r)}$
+		          \item $\err{\delta(\frac{1}{D^2((X+D)^{-1}-1)})}$
+		          \item $\err{\frac{a}{n}+b\{\delta\}}$.
 		        \end{enumerate}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle l,d,a,b,p,q\rangle$.}
 		    \end{enumerate}
 		\procedure{wed2108191140}
 		  \objective
-		    Choose non-negative rational numbers $X,D$ such that $X+D<1$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $p(x,n)$ to show that $\lVert\frac{1}{1+x}\rVert^2\le l^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\ln_n(1+y)\equiv\frac{1}{1+x}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+		    Choose non-negative rational numbers $X,D$ such that $X+D<1$. The objective of the following instructions is to construct rational numbers $l,d,a,b$, a procedure $p(x,n)$ to show that $\frac{1}{1+x}\equiv 0\err{l}$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\ln_n(1+y)\equiv\frac{1}{1+x}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
 		  \implementation
 		    \begin{enumerate}
 		      \item Execute \procedurehr{wed2407191422} on $\langle X,1\rangle$ and let $\langle a_1,b_1,p_1\rangle$ receive.
@@ -6304,32 +6303,26 @@
 		      \begin{enumerate}
 		        \item Verify that $\Re(x)^2\le\lVert x\rVert^2\le X^2$.
 		        \item Hence verify that $\lvert\Re(x)\rvert\le X$.
-		        \item Hence verify that $\lVert\frac{1}{1+x}\rVert^2$
+		        \item Hence verify that $\lVert 1+x\rVert^2$
 		        \begin{enumerate}
-		          \item $=\frac{1}{\lVert 1+x\rVert^2}$
-		          \item $\le\frac{1}{\Re(1+x)^2}$
-		          \item $=\frac{1}{(1+\Re(x))^2}$
-		          \item $\le\frac{1}{(1-X)^2}$
-		          \item $=l^2$.
+		          \item $\ge\Re(1+x)^2$
+		          \item $=(1+\Re(x))^2$
+		          \item $\le(1-X)^2$.
 		        \end{enumerate}
+		        \item Hence verify that $\frac{1}{1+x}\equiv 0\allowbreak\err{\frac{1}{1+x}}\allowbreak\err{\frac{1}{1-X}}\allowbreak\err{l}$.
 		      \end{enumerate}
 		      \item Let $q(x,n,\delta)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Execute procedure $p$ on $\langle x,n\rangle$.
-		        \item Hence verify that $\lVert\frac{1}{1+x}\rVert^2\le l^2$.
-		        \item Execute procedure $p_1$ on $\langle-x,n-1\rangle$.
-		        \item Hence verify that $\lVert(n-1)(-x)^{n-1}\rVert^2\le(a_1{b_1}^{n-1})^2\le{a_1}^2$.
+		        \item Using procedure $p$, verify that $\lVert\frac{1}{1+x}\rVert^2\le l^2$.
+		        \item Using procedure $p_1$, verify that $\lVert(n-1)(-x)^{n-1}\rVert^2\le(a_1{b_1}^{n-1})^2\le{a_1}^2$.
 		        \item Hence verify that $\lVert(-x)^{n-1}\rVert^2\le(\frac{a_1}{n-1})^2\le(\frac{2a_1}{n})^2$.
-		        \item Execute procedure $q_2$ on $\langle x,n,\delta\rangle$.
-		        \item Hence verify that $\lVert\Delta_{y=x}^{+\delta}\ln_n(1+y)-(1+x)_{n-1}^{-1}\rVert^2\le(\frac{c_2}{n}+b\{\delta\})^2$.
-		        \item Hence verify that $\lVert\Delta_{y=x}^{+\delta}\ln_n(1+y)-\frac{1}{1+x}\rVert^2$
+		        \item Now using procedure $q_2$, verify that $\Delta_{y=x}^{+\delta}\ln_n(1+y)$
 		        \begin{enumerate}
-		          \item $=\lVert\Delta_{y=x}^{+\delta}\ln_n(1+y)-(1+x)_{n-1}^{-1}+(1+x)_{n-1}^{-1}-\frac{1}{1+x}\rVert^2$
-		          \item $=\lVert\Delta_{y=x}^{+\delta}\ln_n(1+y)-(1+x)_{n-1}^{-1}+\frac{1-(-x)^{n-1}}{1-(-x)}-\frac{1}{1+x}\rVert^2$
-		          \item $=\lVert\Delta_{y=x}^{+\delta}\ln_n(1+y)-(1+x)_{n-1}^{-1}-\frac{(-x)^{n-1}}{1+x}\rVert^2$
-		          \item $\le(\frac{c_2}{n}+b\{\delta\}+\frac{2a_1l}{n})^2$
-		          \item $\le(\frac{a}{n}+b\{\delta\})^2$
+		          \item $\equiv(1+x)_{n-1}^{-1}\err{\frac{c_2}{n}+b\{\delta\}}$
+		          \item $=\frac{1-(-x)^{n-1}}{1-(-x)}$
+		          \item $\equiv\frac{1}{1+x}\err{\frac{(-x)^{n-1}}{1+x}}\err{\frac{2a_1l}{n}}$.
 		        \end{enumerate}
+		        \item \textbf{Hence verify that $\Delta_{y=x}^{+\delta}\ln_n(1+y)\equiv\frac{1}{1+x}\err{\frac{c_2}{n}+b\{\delta\}+\frac{2a_1l}{n}}\err{\frac{a}{n}+b\{\delta\}}$.}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle l,d,a,b,p,q\rangle$.}
 		    \end{enumerate}
