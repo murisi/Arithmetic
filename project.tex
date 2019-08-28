@@ -4068,23 +4068,24 @@
 					\item Let $a=X^2(\sum_r^{[0:N]}\frac{X^r}{r!}+\frac{X^N}{N!}\cdot\frac{1}{1-\frac{X}{N}})$.
 					\item Let $p(x,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Using \procedurehr{2.06}, \procedurehr{3.04}, \procedurehr{2.05}, and \procedurehr{2.07}, verify that $\lVert\sum_r^{[0:{n+1}]}\frac{x^r}{r!}-\exp_n(x)\rVert^2$
+						\item Using \procedurehr{2.06}, \procedurehr{3.04}, \procedurehr{2.05}, and \procedurehr{2.07}, verify that $\exp_n(x)\equiv\sum_r^{[0:{n+1}]}\frac{x^r}{r!}$
 						\begin{enumerate}
-							\item $=\lVert\sum_r^{[0:{n+1}]}\frac{x^r}{r!}-\sum_r^{[0:{n+1}]}\frac{n^{\ul{r}}}{r!}\cdot\frac{x^r}{n^r}\rVert^2$
-							\item $=\lVert\sum_r^{[1:{n+1}]}(1-\frac{n^{\ul{r}}}{n^r})\frac{x^r}{r!}\rVert^2$
-							\item $\le(\sum_r^{[1:{n+1}]}(1-\frac{n^{\ul{r}}}{n^r})\frac{X^r}{r!})^2$
-							\item $\le(\sum_r^{[2:{n+1}]}(1-\frac{(n-r+1)^{r}}{n^r})\frac{X^r}{r!})^2$
-							\item $=(\sum_r^{[2:{n+1}]}(1-(1-\frac{r-1}{n})^{r})\frac{X^r}{r!})^2$
-							\item $\le(\sum_r^{[2:{n+1}]}(1-(1-\frac{(r-1)r}{n}))\frac{X^r}{r!})^2$
-							\item $=(\sum_r^{[2:{n+1}]}\frac{(r-1)r}{n}\frac{X^r}{r!})^2$
-							\item $=(\frac{1}{n}\sum_r^{[2:{n+1}]}\frac{X^r}{(r-2)!})^2$
-							\item $=(\frac{X^2}{n}\sum_r^{[0:{n-1}]}\frac{X^r}{r!})^2$
-							\item $=(\frac{X^2}{n}(\sum_r^{[0:N]}\frac{X^r}{r!}+\sum_r^{[N:{n-1}]}\frac{X^r}{r!}))^2$
-							\item $\le(\frac{X^2}{n}(\sum_r^{[0:N]}\frac{X^r}{r!}+\sum_r^{[N:{n-1}]}\frac{X^r}{N!N^{r-N}}))^2$
-							\item $=(\frac{X^2}{n}(\sum_r^{[0:N]}\frac{X^r}{r!}+\frac{X^N}{N!}\sum_r^{[N:{n-1}]}\frac{X^{r-N}}{N^{r-N}}))^2$
-							\item $=(\frac{X^2}{n}(\sum_r^{[0:N]}\frac{X^r}{r!}+\frac{X^N}{N!}\sum_r^{[0:{n-N-1}]}\frac{X^{r}}{N^{r}}))^2$
-							\item $=(\frac{X^2}{n}(\sum_r^{[0:N]}\frac{X^r}{r!}+\frac{X^N}{N!}\cdot\frac{1}{1-\frac{X}{N}}))^2$
-							\item $=(\frac{a}{n})^2$.
+						  \item $\err{\sum_r^{[0:{n+1}]}\frac{x^r}{r!}-\exp_n(x)}$
+							\item $\err{\sum_r^{[0:{n+1}]}\frac{x^r}{r!}-\sum_r^{[0:{n+1}]}\frac{n^{\ul{r}}}{r!}\cdot\frac{x^r}{n^r}}$
+							\item $\err{\sum_r^{[1:{n+1}]}(1-\frac{n^{\ul{r}}}{n^r})\frac{x^r}{r!}}$
+							\item $\err{\sum_r^{[1:{n+1}]}(1-\frac{n^{\ul{r}}}{n^r})\frac{X^r}{r!}}$
+							\item $\err{\sum_r^{[2:{n+1}]}(1-\frac{(n-r+1)^{r}}{n^r})\frac{X^r}{r!}}$
+							\item $\err{\sum_r^{[2:{n+1}]}(1-(1-\frac{r-1}{n})^{r})\frac{X^r}{r!}}$
+							\item $\err{\sum_r^{[2:{n+1}]}(1-(1-\frac{(r-1)r}{n}))\frac{X^r}{r!}}$
+							\item $\err{\sum_r^{[2:{n+1}]}\frac{(r-1)r}{n}\frac{X^r}{r!}}$
+							\item $\err{\frac{1}{n}\sum_r^{[2:{n+1}]}\frac{X^r}{(r-2)!}}$
+							\item $\err{\frac{X^2}{n}\sum_r^{[0:{n-1}]}\frac{X^r}{r!}}$
+							\item $\err{\frac{X^2}{n}(\sum_r^{[0:N]}\frac{X^r}{r!}+\sum_r^{[N:{n-1}]}\frac{X^r}{r!})}$
+							\item $\err{\frac{X^2}{n}(\sum_r^{[0:N]}\frac{X^r}{r!}+\sum_r^{[N:{n-1}]}\frac{X^r}{N!N^{r-N}})}$
+							\item $\err{\frac{X^2}{n}(\sum_r^{[0:N]}\frac{X^r}{r!}+\frac{X^N}{N!}\sum_r^{[N:{n-1}]}\frac{X^{r-N}}{N^{r-N}})}$
+							\item $\err{\frac{X^2}{n}(\sum_r^{[0:N]}\frac{X^r}{r!}+\frac{X^N}{N!}\sum_r^{[0:{n-N-1}]}\frac{X^{r}}{N^{r}})}$
+							\item $\err{\frac{X^2}{n}(\sum_r^{[0:N]}\frac{X^r}{r!}+\frac{X^N}{N!}\cdot\frac{1}{1-\frac{X}{N}})}$
+							\item $\err{\frac{a}{n}}$.
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,N,p\rangle$.}
