@@ -5097,7 +5097,7 @@
 						\item Hence verify that $\lVert\frac{1}{4}\tau_m i\rVert^2=\lVert\frac{1}{4}\tau_m\rVert^2\le(\frac{a_1}{4})^2$.
 						\item Hence using procedure $p_3$, verify that $\lVert\exp_n(\frac{1}{4}\tau_m i)-i\rVert^2\le(\frac{a_3n}{m}+\frac{b_3}{n})^2$.
 						\item Hence using procedure $p_4$, verify that $\lVert\exp_n(\frac{1}{4}\tau_m i)\rVert^2\le a_4$.
-						\item Hence verify that $\exp_n(\frac{k}{4}\tau_m i)$
+						\item Hence using procedures $p_2,p_5$, verify that $\exp_n(\frac{k}{4}\tau_m i)$
 						\begin{enumerate}
 						  \item $\equiv\exp_n(\frac{1}{4}\tau_m i)^k$
 						  \begin{enumerate}
@@ -5189,16 +5189,13 @@
 						\item Execute procedure $p_1$ on $\langle m\rangle$.
 						\item Hence verify that $\tau_m\le a_1$.
 						\item Hence verify that $\lVert K\frac{k}{K}\tau_mi\rVert=\lVert k\tau_m\rVert^2\le(Ka_1)^2$.
-						\item Execute procedure $p_2$ on $\langle\frac{k}{K}\tau_mi,K,n\rangle$.
-						\item Hence verify that $\lVert\exp_n(K\frac{k}{K}\tau_mi)-\exp_n(\frac{k}{K}\tau_mi)^K\rVert^2\le(\frac{a_2K}{n})^2$.
-						\item Execute procedure $p_3$ on $\langle n,m,4k\rangle$.
-						\item Hence verify that $\lVert\exp_n(\frac{4k}{4}\tau_mi)-i^{4k}\rVert^2\le(\frac{a_3n}{m}+\frac{b_3}{n})^2$.
-						\item Verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)^K-1\rVert^2$
+						\item Now using procedures $p_2,p_3$, verify that $\exp_n(\frac{k}{K}\tau_mi)^K$
 						\begin{enumerate}
-							\item $=\lVert\exp_n(\frac{k}{K}\tau_mi)^K-\exp_n(k\tau_mi)+\exp_n(k\tau_mi)-1\rVert^2$
-							\item $\le(\frac{a_2K}{n}+\frac{a_3n}{m}+\frac{b_3}{n})^2$
-							\item $=(\frac{an}{m}+\frac{b}{n})^2$.
+						  \item $\equiv\exp_n(K\frac{k}{K}\tau_mi)\err{\frac{a_2K}{n}}$
+						  \item $=\exp_n(\frac{4k}{4}\tau_mi)$
+						  \item $\equiv i^{4k}\err{\frac{a_3n}{m}+\frac{b_3}{n}}$
 						\end{enumerate}
+						\item \textbf{Hence verify that $\exp_n(\frac{k}{K}\tau_mi)^K\equiv i^{4k}\err{\frac{a_2K}{n}+\frac{a_3n}{m}+\frac{b_3}{n}}\err{\frac{an}{m}+\frac{b}{n}}$.}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				\end{enumerate}
@@ -6021,7 +6018,7 @@
 		    \end{enumerate}
 		\procedure{tue2008191151}
 		  \objective
-		    Choose a complex number $B$ and a rational number $D>0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $\lVert 0\rVert^2\le a^2$ when a complex number $x$ and a positive integer $n$ such that $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}B\equiv 0\err{\frac{b}{n}+c\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+		    Choose a complex number $B$ and a rational number $D>0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $0\equiv 0\err{a}$ when a complex number $x$ and a positive integer $n$ such that $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}B\equiv 0\err{\frac{b}{n}+c\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
 		  \implementation
 		    \begin{enumerate}
 		      \item Let $a=0$.
@@ -6030,17 +6027,17 @@
 		      \item Let $d=0$.
 		      \item Let $p(x,n)$ be the following procedure:
 		      \begin{enumerate}
-		        \item \textbf{Verify that $\lVert 0\rVert^2\le a^2$.}
+		        \item \textbf{Verify that $0\equiv 0\err{a}$.}
 		      \end{enumerate}
 		      \item Let $q(x,n,\delta)$ be the following procedure:
 		      \begin{enumerate}
-		        \item \textbf{Verify that $\lVert\frac{B-B}{\delta}-0\rVert^2=0\le(\frac{b}{n}+c\{\delta\})^2$.}
+		        \item \textbf{Verify that $\Delta_{y=x}^{+\delta}B\equiv 0\err{\frac{b}{n}+c\{\delta\}}$.}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,b,c,d,p,q\rangle$.}
 		    \end{enumerate}
 		\procedure{tue2008191209}
 		  \objective
-		    Choose a positive integer $N$ and positive rational numbers $X,D$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $\lVert Nx^{N-1}\rVert^2\le a^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}y^N\equiv Nx^{N-1}\err{\frac{b}{n}+c\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+		    Choose a positive integer $N$ and positive rational numbers $X,D$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $Nx^{N-1}\equiv 0\err{a}$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$ and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}y^N\equiv Nx^{N-1}\err{\frac{b}{n}+c\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
 		  \implementation
 		    \begin{enumerate}
 		      \item Let $a=NX^{N-1}$.
@@ -6049,23 +6046,24 @@
 		      \item Let $d=0$.
 		      \item Let $p(x,n)$ be the following procedure:
 		      \begin{enumerate}
-		        \item \textbf{Verify that $\lVert Nx^{N-1}\rVert^2\le(NX^{N-1})^2=a^2$.}
+		        \item \textbf{Verify that $Nx^{N-1}\equiv 0\allowbreak\err{Nx^{N-1}}\allowbreak\err{NX^{N-1}}\allowbreak\err{a}$.}
 		      \end{enumerate}
 		      \item Let $q(x,n,\delta)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Verify that $\lVert\frac{(x+\delta)^N-x^N}{\delta}-Nx^{N-1}\rVert^2$
+		        \item Verify that $\Delta_{y=x}^{+\delta}y^N\equiv Nx^{N-1}$
 		        \begin{enumerate}
-		          \item $=\lVert\frac{1}{\delta}(\sum_r^{[0:N+1]}\binom{N}{r}x^r\delta^{N-r}-x^N)-Nx^{N-1}\rVert^2$
-		          \item $=\lVert\sum_r^{[0:N]}\binom{N}{r}x^r\delta^{N-r-1}-Nx^{N-1}\rVert^2$
-		          \item $=\lVert\delta\rVert^2\lVert\sum_r^{[0:N-1]}\binom{N}{r}x^r\delta^{N-r-2}\rVert^2$
-		          \item $\le(\frac{b}{n}+c\{\delta\})^2$.
+		          \item $\err{\frac{(x+\delta)^N-x^N}{\delta}-Nx^{N-1}}$
+		          \item $\err{\frac{1}{\delta}(\sum_r^{[0:N+1]}\binom{N}{r}x^r\delta^{N-r}-x^N)-Nx^{N-1}}$
+		          \item $\err{\sum_r^{[0:N]}\binom{N}{r}x^r\delta^{N-r-1}-Nx^{N-1}}$
+		          \item $\err{\delta(\sum_r^{[0:N-1]}\binom{N}{r}x^r\delta^{N-r-2})}$
+		          \item $\err{\frac{b}{n}+c\{\delta\}}$.
 		        \end{enumerate}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,b,c,d,p,q\rangle$.}
 		    \end{enumerate}
 		\procedure{tue2008191254}
 		  \objective
-		    Choose two rational numbers $X>D>0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $\lVert-\frac{1}{x^2}\rVert^2\le a^2$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\ge X^2$ and $n>b$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\frac{1}{y}\equiv-\frac{1}{x^2}\err{\frac{c}{n}+d\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
+		    Choose two rational numbers $X>D>0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $-\frac{1}{x^2}\equiv 0\err{a}$ when a complex number $x$ and a positive integer $n$ such that $\lVert x\rVert^2\ge X^2$ and $n>b$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\frac{1}{y}\equiv-\frac{1}{x^2}\err{\frac{c}{n}+d\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le D^2$ is chosen.
 		  \implementation
 		    \begin{enumerate}
 		      \item Let $a=\frac{1}{X^2}$.
@@ -6074,17 +6072,18 @@
 		      \item Let $d=\frac{1}{X^2(X-D)}$.
 		      \item Let $p(x,n)$ be the following procedure:
 		      \begin{enumerate}
-		        \item \textbf{Verify that $\lVert\frac{1}{x^2}\rVert^2\le(\frac{1}{X})^4=a^2$.}
+		        \item \textbf{Verify that $\frac{1}{x^2}\equiv 0\allowbreak\err{\frac{1}{x^2}}\allowbreak\err{\frac{1}{X^2}}\allowbreak\err{a}$.}
 		      \end{enumerate}
 		      \item Let $q(x,n,\delta)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Verify that $\lVert\frac{1}{\delta}(\frac{1}{x+\delta}-\frac{1}{x})+\frac{1}{x^2}\rVert^2$
+		        \item Verify that $\Delta_{y=x}^{+\delta}\frac{1}{y}\equiv-\frac{1}{x^2}$
 		        \begin{enumerate}
-		          \item $=\lVert\frac{1}{\delta}\cdot\frac{-\delta}{x(x+\delta)}+\frac{1}{x^2}\rVert^2$
-		          \item $=\lVert\frac{1}{x^2}-\frac{1}{x(x+\delta)}\rVert^2$
-		          \item $=\lVert\frac{\delta}{x^2(x+\delta)}\rVert^2$
-		          \item $\le\frac{\{\delta\}^2}{X^4(X-D)^2}$
-		          \item $=(\frac{c}{n}+d\{\delta\})^2$.
+		          \item $\err{\frac{1}{\delta}(\frac{1}{x+\delta}-\frac{1}{x})+\frac{1}{x^2}}$
+		          \item $\err{\frac{1}{\delta}\cdot\frac{-\delta}{x(x+\delta)}+\frac{1}{x^2}}$
+		          \item $\err{\frac{1}{x^2}-\frac{1}{x(x+\delta)}}$
+		          \item $\err{\frac{\delta}{x^2(x+\delta)}}$
+		          \item $\err{\frac{\{\delta\}}{X^2(X-D)}}$
+		          \item $\err{\frac{c}{n}+d\{\delta\}}$.
 		        \end{enumerate}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,b,c,d,p,q\rangle$.}
