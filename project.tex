@@ -3998,21 +3998,14 @@
 		      \item Let $a=c(1+\frac{g}{e})X^2$.
 		      \item Let $p(x,y,n)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Execute procedure $r$ on $\langle y,n\rangle$.
-		        \item Hence verify that $\lVert\exp_n(y)\rVert^2\ge e^2$.
-		        \item Execute procedure $q$ on $\langle y,-y,n\rangle$.
-		        \item Hence verify that $\lVert\exp_n(y)\exp_n(-y)-1\rVert^2=\lVert\exp_n(y)\exp_n(-y)-\exp_n(y-y)\rVert^2\le\frac{c^2\lVert y\rVert^2}{n^2}$.
-		        \item Hence verify that $\lVert\exp_n(-y)-\frac{1}{\exp_n(y)}\rVert^2=\frac{\lVert\exp_n(y)\exp_n(-y)-1\rVert^2}{\lVert\exp_n(y)\rVert^2}\le\frac{c^2\lVert y\rVert^4}{e^2n^2}$.
-		        \item Execute procedure $t$ on $\langle x,n\rangle$.
-		        \item Hence verify that $\lVert\exp_n(x)\rVert^2\le g^2$.
-		        \item Execute procedure $q$ on $\langle x,-y,n\rangle$.
-		        \item Hence verify that $\lVert\exp_n(x)\exp_n(-y)-\exp_n(x-y)\rVert^2\le\frac{c^2\lVert x\rVert^2\lVert y\rVert^2}{n^2}$.
-		        \item Hence verify that $\lVert\exp_n(x-y)-\frac{\exp_n(x)}{\exp_n(y)}\rVert^2$
+		        \item Using procedures $q,r,t$, verify that $\exp_n(x-y)$
 		        \begin{enumerate}
-		          \item $=\lVert\exp_n(x-y)-\exp_n(x)\exp_n(-y)+\exp_n(x)(\exp_n(-y)-\frac{1}{\exp_n(y)})\rVert^2$
-		          \item $\le(\frac{cX^2}{n}+\frac{gcX^2}{en})^2$
-		          \item $=(\frac{a}{n})^2$.
+		          \item $\equiv\exp_n(x)\exp_n(-y)\err{\frac{cX^2}{n}}$
+		          \item $=\exp_n(x)\frac{\exp_n(y)\exp_n(-y)}{\exp_n(y)}$
+		          \item $\equiv\exp_n(x)\frac{\exp_n(0)}{\exp_n(y)}\err{\frac{g}{e}\cdot\frac{cX^2}{n}}$
+		          \item $=\frac{\exp_n(x)}{\exp_n(y)}$.
 		        \end{enumerate}
+		        \item \textbf{Hence verify that $\exp_n(x-y)\equiv\frac{\exp_n(x)}{\exp_n(y)}\err{\frac{cX^2}{n}+\frac{gcX^2}{en}}\err{\frac{a}{n}}$.}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 		    \end{enumerate}
@@ -4594,12 +4587,12 @@
 	        \item Let $B=(1+\frac{a_3}{a_2})a_1$.
 	        \item Let $p(x,a,b,n)$ be the following procedure:
 	        \begin{enumerate}
-	          \item Using procedure $p_1$, verify that $(1+x)_n^b(1+x)_n^{-b}\equiv(1+x)_n^{b-b}\err{a_1{C}^n}=1$.
-	          \item Hence using procedure $p_2$, verify that $(1+x)_n^{-b}\equiv\frac{1}{(1+x)_n^b}\err{\frac{a_1{C}^n}{a_2}}$.
-	          \item Hence using procedures $p_1,p_3$, verify that $(1+x)_n^{a-b}$
+	          \item Using procedures $p_1,p_2,p_3$, verify that $(1+x)_n^{a-b}$
 	          \begin{enumerate}
 	            \item $\equiv(1+x)_n^a(1+x)_n^{-b}\err{a_1{C}^n}$
-	            \item $\equiv((1+x)_n^a)^1\frac{1}{(1+x)_n^b}\err{a_3\frac{a_1{C}^n}{a_2}}$
+	            \item $=(1+x)_n^a\frac{(1+x)_n^{b}(1+x)_n^{-b}}{(1+x)_n^{b}}$
+	            \item $\equiv((1+x)_n^a)^1\frac{(1+x)_n^{b-b}}{(1+x)_n^{b}}\err{a_3\frac{a_1{C}^n}{a_2}}$
+	            \item $=\frac{(1+x)_n^a}{(1+x)_n^b}$
 	          \end{enumerate}
 	          \item \textbf{Hence verify that $(1+x)_n^{a-b}\equiv\frac{(1+x)_n^a}{(1+x)_n^b}\err{(1+\frac{a_3}{a_2})a_1{C}^n}\err{BC^n}$.}
 	        \end{enumerate}
