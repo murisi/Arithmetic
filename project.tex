@@ -6090,7 +6090,7 @@
 		    \end{enumerate}
 		\procedure{tue2008191341}
 		  \objective
-		    Choose a positive integer $N$ and positive rational numbers $X<Y$. The objective of the following instructions is to construct positive rational numbers $a,b,c,d,e$, a procedure $p(x,n)$ to show that $\lVert-Nx^{-N-1}\rVert^2\le a^2$ when a complex number $x$ and a positive integer $n$ such that $X^2\le\lVert x\rVert^2\le Y^2$ and $n>b$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}y^{-N}\equiv-Nx^{-N-1}\err{\frac{c}{n}+d\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le e^2$ is chosen.
+		    Choose a positive integer $N$ and positive rational numbers $X<Y$. The objective of the following instructions is to construct positive rational numbers $a,b,c,d,e$, a procedure $p(x,n)$ to show that $-Nx^{-N-1}\equiv 0\err{a}$ when a complex number $x$ and a positive integer $n$ such that $X^2\le\lVert x\rVert^2\le Y^2$ and $n>b$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}y^{-N}\equiv-Nx^{-N-1}\err{\frac{c}{n}+d\{\delta\}}$ when in addition a complex number $\delta$ such that $\lVert\delta\rVert^2\le e^2$ is chosen.
 		  \implementation
 		    \begin{enumerate}
 		      \item Execute the following in post-order:
@@ -6107,17 +6107,17 @@
 		      \end{enumerate}
 		      \item Let $p(x,n)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Execute procedure $q_0$ on $\langle x,n\rangle$.
-		        \item Hence verify that $\lVert-Nx^{-N-1}\rVert^2=\lVert-\frac{1}{(x^N)^2}\cdot Nx^{N-1}\rVert^2\le a^2$.
+		        \item \textbf{Using procedure $q_0$, verify that $-Nx^{-N-1}=-\frac{1}{(x^N)^2}\cdot Nx^{N-1}\equiv 0\err{a}$.}
 		      \end{enumerate}
 		      \item Let $q(x,n,\delta)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Execute procedure $q_1$ on $\langle x,n,\delta\rangle$.
-		        \item Hence verify that $\lVert\frac{(x+\delta)^{-N}-x^{-N}}{\delta}+Nx^{-N-1}\rVert^2$
+		        \item Using procedure $q_1$, verify that $\Delta_{y=x}^{+\delta}y^{-N}$
 		        \begin{enumerate}
-		          \item $\lVert\frac{1}{\delta}(((x+\delta)^N)^{-1}-(x^N)^{-1})-(-\frac{1}{(x^N)^2}\cdot Nx^{N-1})\rVert^2$
-		          \item $(\frac{c}{n}+d\{\delta\})^2$.
+		          \item $=\frac{1}{\delta}(((x+\delta)^N)^{-1}-(x^N)^{-1})$
+		          \item $\equiv-\frac{1}{(x^N)^2}\cdot Nx^{N-1}\err{\frac{c}{n}+d\{\delta\}}$
+		          \item $=-Nx^{-N-1}$
 		        \end{enumerate}
+		        \item \textbf{Hence verify that $\Delta_{y=x}^{+\delta}y^{-N}\equiv-Nx^{-N-1}\err{\frac{c}{n}+d\{\delta\}}$.}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,b,c,d,e,p,q\rangle$.}
 		    \end{enumerate}
