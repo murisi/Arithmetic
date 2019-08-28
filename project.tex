@@ -6372,39 +6372,27 @@
 		        \item Execute procedure $p_0$ on $\langle x\rangle$.
 		        \item Hence verify that $\Re(\frac{x-1}{x+1})^2\le\lVert\frac{x-1}{x+1}\rVert^2\le f^2$.
 		        \item Hence verify that $\lvert\Re(\frac{x-1}{x+1})\rvert\le f$.
-		        \item Execute procedure $p_1$ on $\langle\frac{x-1}{x+1},k\rangle$.
-		        \item Hence verify that $\lVert\ln_k(1+\frac{x-1}{x+1})\rVert^2\le{a_1}^2$.
-		        \item Execute procedure $p_1$ on $\langle-\frac{x-1}{x+1},k\rangle$.
-		        \item Hence verify that $\lVert\ln_k(1-\frac{x-1}{x+1})\rVert^2\le{a_1}^2$.
-		        \item Execute procedure $p_2$ on $\langle\ln_k(1+\frac{x-1}{x+1}),\ln_k(1-\frac{x-1}{x+1}),n\rangle$.
-		        \item Hence verify that $\lVert\exp_n(\ln_k(1+\frac{x-1}{x+1})-\ln_k(1-\frac{x-1}{x+1}))-\frac{\exp_n(\ln_k(1+\frac{x-1}{x+1}))}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}\rVert^2\le(\frac{a_2}{n})^2$.
-		        \item Execute procedure $p_4$ on $\langle\frac{x-1}{x+1},n,k\rangle$.
-		        \item Hence verify that $\lVert\exp_n(\ln_k(1+\frac{x-1}{x+1}))-(1+\frac{x-1}{x+1})\rVert^2\le(\frac{a_4n}{k}+\frac{c_4}{n})^2$.
-		        \item Execute procedure $p_4$ on $\langle-\frac{x-1}{x+1},n,k\rangle$.
-		        \item Hence verify that $\lVert\exp_n(\ln_k(1-\frac{x-1}{x+1}))-(1-\frac{x-1}{x+1})\rVert^2\le(\frac{a_4n}{k}+\frac{c_4}{n})^2$.
-		        \item Execute procedure $p_3$ on $\langle\ln_k(1-\frac{x-1}{x+1}),n\rangle$.
-		        \item Hence verify that $\lVert\exp_n(\ln_k(1-\frac{x-1}{x+1}))\rVert^2\ge{a_3}^2$.
-		        \item Hence verify that $\lVert\frac{\exp_n(\ln_k(1+\frac{x-1}{x+1}))}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}-\frac{1+\frac{x-1}{x+1}}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}\rVert^2\le\frac{1}{{a_3}^2}(\frac{a_4n}{k}+\frac{c_4}{n})^2$.
-		        \item Also verify that $\lVert\frac{1+\frac{x-1}{x+1}}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}-\frac{1+\frac{x-1}{x+1}}{1-\frac{x-1}{x+1}}\rVert^2$
+		        \item Using procedure $p_1$, verify that $\lVert\ln_k(1+\frac{x-1}{x+1})\rVert^2\le{a_1}^2$.
+		        \item Using procedure $p_1$, verify that $\lVert\ln_k(1-\frac{x-1}{x+1})\rVert^2\le{a_1}^2$.
+		        \item Using procedures $p_0,p_2,p_3,p_4$, verify that $\exp_n(\ln_k(x))$
 		        \begin{enumerate}
-		          \item $\le(1+f)^2\lVert\exp_n(\ln_k(1-\frac{x-1}{x+1}))^{-1}-(1-\frac{x-1}{x+1})^{-1}\rVert^2$
-		          \item $\le(1+f)^2\lVert\frac{(1-\frac{x-1}{x+1})-\exp_n(\ln_k(1-\frac{x-1}{x+1}))}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))(1-\frac{x-1}{x+1})}\rVert^2$
-		          \item $\le(\frac{a_4n}{k}+\frac{c_4}{n})^2\frac{(1+f)^2}{{a_3}^2\Re(1-\frac{x-1}{x+1})^2}$
-		          \item $\le(\frac{a_4n}{k}+\frac{c_4}{n})^2\frac{(1+f)^2}{{a_3}^2(1-\Re(\frac{x-1}{x+1}))^2}$
-		          \item $\le(\frac{1+f}{a_3(1-f)})^2(\frac{a_4n}{k}+\frac{c_4}{n})^2$.
+		          \item $=\exp_n(\ln_k(1+\frac{x-1}{x+1})-\ln_k(1-\frac{x-1}{x+1}))$
+		          \item $\equiv\frac{\exp_n(\ln_k(1+\frac{x-1}{x+1}))}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}\err{\frac{a_2}{n}}$
+		          \item $\equiv\frac{1+\frac{x-1}{x+1}}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}\err{\frac{1}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n})}$
+		          \item $\equiv\frac{1+\frac{x-1}{x+1}}{1-\frac{x-1}{x+1}}\err{(\frac{1+f}{a_3(1-f)})(\frac{a_4n}{k}+\frac{c_4}{n})}$
+		          \item $=x$.
 		        \end{enumerate}
-		        \item Hence verify that $\lVert\exp_n(\ln_k(x))-x\rVert^2$
+		        \item Hence verify that $\exp_n(\ln_k(x))\equiv x$
 		        \begin{enumerate}
-		          \item $=\lVert\exp_n(\ln_k(1+\frac{x-1}{x+1})-\ln_k(1-\frac{x-1}{x+1}))-\frac{\exp_n(\ln_k(1+\frac{x-1}{x+1}))}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}+\frac{\exp_n(\ln_k(1+\frac{x-1}{x+1}))}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}-\frac{1+\frac{x-1}{x+1}}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}+\frac{1+\frac{x-1}{x+1}}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}-\frac{1+\frac{x-1}{x+1}}{1-\frac{x-1}{x+1}}\rVert^2$
-		          \item $\le(\frac{a_2}{n}+\frac{1}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n})+(\frac{1+f}{a_3(1-f)})(\frac{a_4n}{k}+\frac{c_4}{n}))^2$
-		          \item $=(\frac{an}{k}+\frac{c}{n})^2$.
+		          \item $\err{\frac{a_2}{n}+\frac{1}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n})+(\frac{1+f}{a_3(1-f)})(\frac{a_4n}{k}+\frac{c_4}{n})}$
+		          \item $\err{\frac{an}{k}+\frac{c}{n}}$.
 		        \end{enumerate}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
 		    \end{enumerate}
 		\procedure{thu2208191250}
 		  \objective
-		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct a positive rational number $a$, and a procedure $p(x,k)$ to show that $\lVert\ln_k(x)\rVert^2\le X^2$ when a positive integer $k$ and a complex number $x$ such that $\lVert x\rVert^2\le X^2$ and $\Re(x)\ge\epsilon$ are chosen.
+		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct a positive rational number $a$, and a procedure $p(x,k)$ to show that $\lVert\ln_k(x)\rVert^2\le a^2$ when a positive integer $k$ and a complex number $x$ such that $\lVert x\rVert^2\le X^2$ and $\Re(x)\ge\epsilon$ are chosen.
 		  \implementation
 		    \begin{enumerate}
 		      \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle a_1,p_1\rangle$ receive.
@@ -6486,17 +6474,18 @@
 		      \end{instructions}
 		      \item Let $p(x,n)$ be the following procedure:
 		      \begin{instructions}
-		        \item Verify that $\lVert\frac{1}{x}\rVert^2=\frac{1}{\lVert x\rVert^2}\le\frac{1}{\Re(x)^2}\le\frac{1}{\epsilon^2}=c^2$.
+		        \item \textbf{Verify that $\frac{1}{x}\equiv 0\allowbreak\err{\frac{1}{x}}\allowbreak\err{\frac{1}{\Re(x)}}\allowbreak\err{\frac{1}{\epsilon}}\allowbreak\err{c}$.}
 		      \end{instructions}
 		      \item Let $q(x,n,\delta)$ be the following procedure:
 		      \begin{instructions}
-		        \item Execute procedure $q_2$ on $\langle x,n,\delta\rangle$.
-		        \item Hence verify that $\lVert\Delta_{y=x}^{+\delta}\ln_n(y)-\frac{1}{x}\rVert^2$
-		        \begin{instructions}
-		          \item $=\lVert\Delta_{y=x}^{+\delta}(\ln_n(1+\frac{y-1}{y+1})-\ln_n(1-\frac{y-1}{y+1}))-\frac{1}{x}\rVert^2$
-		          \item $=\lVert\Delta_{y=x}^{+\delta}(\ln_n(1+(1+(-2)(y+1)^{-1}))+(-1)\ln_n(1+(-1)(1+(-2)(y+1)^{-1})))-((1+(1+(-2)(x+1)^{-1}))^{-1}(0+(-2)(-1)(x+1)^{-2}(1+0)+(-1)((1+(-1)(1+(-2)(x+1)^{-1}))^{-1}\cdot(0+(-1)(0+(-2)(-1)(x+1)^{-2}(1+0))))))\rVert^2$
-		          \item $\le(\frac{a}{n}+b\{\delta\})^2$.
-		        \end{instructions}
+		        \item Using procedure $q_2$, verify that $\Delta_{y=x}^{+\delta}\ln_n(y)$
+		        \begin{enumerate}
+		          \item $=\Delta_{y=x}^{+\delta}(\ln_n(1+\frac{y-1}{y+1})-\ln_n(1-\frac{y-1}{y+1}))$
+		          \item $=\Delta_{y=x}^{+\delta}(\ln_n(1+(1+(-2)(y+1)^{-1}))+(-1)\ln_n(1+(-1)(1+(-2)(y+1)^{-1})))$
+		          \item $\equiv((1+(1+(-2)(x+1)^{-1}))^{-1}(0+(-2)(-1)(x+1)^{-2}(1+0)+(-1)((1+(-1)(1+(-2)(x+1)^{-1}))^{-1}\cdot(0+(-1)(0+(-2)(-1)(x+1)^{-2}(1+0))))))\err{\frac{a}{n}+b\{\delta\}}$
+		          \item $=\frac{1}{x}$
+		        \end{enumerate}
+		        \item \textbf{Hence verify that $\Delta_{y=x}^{+\delta}\ln_n(y)\equiv\frac{1}{x}\err{\frac{a}{n}+b\{\delta\}}$.}
 		      \end{instructions}
 		      \item \textbf{Yield the tuple $\langle c,d,a,b,e,p,q\rangle$.}
 		    \end{instructions}
