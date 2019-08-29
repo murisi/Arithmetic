@@ -86,17 +86,19 @@ def binom_coeff(a, b):
       return Complex(Fraction(1,1),Fraction(0,1))
     else:
       return a*binom_coeff(a-1,b-1)/b
-def binom_series(x, a, n):
+def binomp1_series(x, a, n):
     ans = Complex(Fraction(0,1),Fraction(0,1))
     for k in range(0, n):
       ans += binom_coeff(a, k)*(x**k)
     return ans
-def ln_series(x, n):
+def lnp1_series(x, n):
     ans = Complex(Fraction(0,1),Fraction(0,1))
     for k in range(1, n):
       ans += Fraction((-1)**(k-1), k)*(x**k)
     return ans
+def binom_series(x, a, n):
+  return binomp1_series((x-1)/(x+1), a, n)*binomp1_series(-(x-1)/(x+1), -a, n)
 # tau is pi*2
 def tau(m):
-    return 8*ln_series(j,m).im
+    return 8*lnp1_series(j,m).im
 
