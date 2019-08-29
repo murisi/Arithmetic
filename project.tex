@@ -6586,7 +6586,7 @@
 		    \begin{enumerate}
 		      \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle a_1,p_1\rangle$ receive.
 		      \item Execute \procedurehr{wed2407191521} on $\langle A,a_1\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
-		      \item Execute \procedurehr{wed2407191611} on $\langle A,a_1\rangle$ and let $\langle a_3,p_3\rangle$ receive.
+		      \item Execute \procedurehr{wed2407191611} on $\langle 2A,a_1\rangle$ and let $\langle a_3,p_3\rangle$ receive.
 		      \item Let $B=a_2a_3(1+a_3)$.
 		      \item Let $C=b_2$.
 		      \item Let $p(x,a,b,n)$ be the following procedure:
@@ -6644,6 +6644,31 @@
 		        \end{enumerate}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle D,p\rangle$.}
+		    \end{enumerate}
+		\procedure{thu2908190802}
+		  \objective
+		    Choose three non-negative rational numbers $A,X,\epsilon$ such that $0<\epsilon<1$. The objective of the following instructions is to construct positive rational numbers $B,C,D$, and a procedure $p(x,a,b,n)$ to show that $x_n^{a-b}\equiv\frac{x_n^a}{x_n^b}\err{BC^n}$ when complex numbers $x,a,b$, and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$, $\lVert a\rVert^2\le A^2$, $\lVert b\rVert^2\le A^2$, $\Re(x)\ge\epsilon$, and $n>D$ are chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle a_1,p_1\rangle$ receive.
+		      \item Execute \procedurehr{tue2008190849} on $\langle A,a_1\rangle$ and let $\langle a_2,b_2,c_2,p_2\rangle$ receive.
+		      \item Execute \procedurehr{tue2008190712} on $\langle A,a_1\rangle$ and let $\langle a_3,b_3,p_3\rangle$ receive.
+		      \item Execute \procedurehr{wed2407191611} on $\langle 2A,a_1\rangle$ and let $\langle a_4,p_4\rangle$ receive.
+		      \item Let $B=a_2a_4(1+\frac{1}{a_3})$.
+		      \item Let $C=b_2$.
+		      \item Let $D=\max(c_2,b_3)$.
+		      \item Let $p(x,a,b,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Using procedures $p_1,p_2,p_3,p_4$, verify that $x_n^{a-b}$
+		        \begin{enumerate}
+		          \item $=(1+\frac{x-1}{x+1})_n^{a-b}(1-\frac{x-1}{x+1})_n^{(-a)-(-b)}$
+		          \item $\equiv(1+\frac{x-1}{x+1})_n^{a-b}\frac{(1-\frac{x-1}{x+1})_n^{-a}}{(1-\frac{x-1}{x+1})_n^{-b}}\err{a_4a_2{b_2}^n}$
+		          \item $\equiv\frac{(1+\frac{x-1}{x+1})_n^{a}}{(1+\frac{x-1}{x+1})_n^{b}}\frac{(1-\frac{x-1}{x+1})_n^{-a}}{(1-\frac{x-1}{x+1})_n^{-b}}\err{a_2{b_2}^n\frac{a_4}{a_3}}$
+		          \item $=\frac{x_n^a}{x_n^b}$.
+		        \end{enumerate}
+		        \item \textbf{Hence verify that $x_n^{a-b}\equiv\frac{x_n^a}{x_n^b}\err{a_4a_2{b_2}^n+a_2{b_2}^n\frac{a_4}{a_3}}\err{BC^n}$.}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle B,C,D,p\rangle$.}
 		    \end{enumerate}
 		\procedure{sat2408191538}
 		  \objective
