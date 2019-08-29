@@ -4527,13 +4527,10 @@
 	        \item Let $N=2a_1a_2$.
 	        \item Let $p(x,a,n)$ be the following procedure:
 	        \begin{enumerate}
-	          \item Execute procedure $p_2$ on $\langle b_1,n\rangle$.
-	          \item Hence verify that $\lVert n{b_1}^n\rVert^2\le(a_2{b_2}^n)^2\le{a_2}^2$.
+	          \item Using procedure $p_2$, verify that $\lVert n{b_1}^n\rVert^2\le(a_2{b_2}^n)^2\le{a_2}^2$.
 	          \item Hence verify that $(a_1{b_1}^n)^2\le(\frac{a_1a_2}{n})^2$.
-	          \item Execute procedure $p_3$ on $\langle x,n,-a,1\rangle$.
-	          \item Hence verify that $\lVert((1+x)_n^{-a})^1\rVert^2\le{a_3}^2$.
-	          \item Execute procedure $p_1$ on $\langle x,-a,a,n\rangle$.
-	          \item Hence verify that $\lVert(1+x)_n^{-a}(1+x)_n^a-1\rVert^2$
+	          \item Using procedure $p_3$, verify that $\lVert((1+x)_n^{-a})^1\rVert^2\le{a_3}^2$.
+	          \item Using procedure $p_1$, verify that $\lVert(1+x)_n^{-a}(1+x)_n^a-1\rVert^2$
 	          \begin{enumerate}
 	            \item $=\lVert(1+x)_n^{-a}(1+x)_n^a-(1+x)_n^{-a+a}\rVert^2$
 	            \item $\le(a_1{b_1}^n)^2$.
@@ -4551,7 +4548,7 @@
 	            \item $\le\lVert(1+x)_n^{-a}(1+x)_n^a\rVert^2$
 	            \item $\le{a_3}^2\lVert(1+x)_n^a\rVert^2$.
 	          \end{enumerate}
-	          \item Hence verify that $D^2\le\lVert(1+x)_n^a\rVert^2$.
+	          \item \textbf{Hence verify that $D^2\le\lVert(1+x)_n^a\rVert^2$.}
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle D,N,p\rangle$.}
 	      \end{enumerate}
