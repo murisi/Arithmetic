@@ -4439,13 +4439,10 @@
 	        \begin{enumerate}
 	          \item For each $r\in[1:n]$, do the following:
 	          \begin{enumerate}
-	            \item Execute procedure $q$ on $\langle a,x,r\rangle$.
-	            \item Hence verify that $\lVert\binom{a}{r}x^r\rVert^2\le(BC^r)^2$.
-	            \item Execute procedure $q$ on $\langle b,x,r\rangle$.
-	            \item Hence verify that $\lVert\binom{b}{r}x^r\rVert^2\le(BC^r)^2$.
+	            \item Using procedure $q$, verify that $\lVert\binom{a}{r}x^r\rVert^2\le(BC^r)^2$.
+	            \item Using procedure $q$, verify that $\lVert\binom{b}{r}x^r\rVert^2\le(BC^r)^2$.
 	          \end{enumerate}
-	          \item Execute procedure $t$ on $\langle C,n\rangle$.
-	          \item Hence verify that $\lVert nC^n\rVert^2\le(FG^n)^2$.
+	          \item Using procedure $t$, verify that $\lVert nC^n\rVert^2\le(FG^n)^2$.
 	          \item Hence verify that $(1+x)_n^{a+b}\equiv(1+x)_n^a(1+x)_n^b$
 	          \begin{enumerate}
 	            \item $\err{(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}}$
@@ -6623,6 +6620,28 @@
 		          \item $=0$.
 		        \end{enumerate}
 		        \item \textbf{Hence verify that $(x_n^a)^k\equiv 0\err{D}$.}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle D,p\rangle$.}
+		    \end{enumerate}
+		\procedure{thu2908190744}
+		  \objective
+		    Choose three non-negative rational numbers $A,X,\epsilon$ such that $0<\epsilon<1$. The objective of the following instructions is to construct a positive rational number $D$, and a procedure $p(x,n,a)$ to show that $\lVert x_n^a\rVert^2\ge D^2$ when complex numbers $x,a$, and a positive integer $n$ such that $\lVert x\rVert^2\le X^2$, $\lVert a\rVert^2\le A^2$, and $\Re(x)\ge\epsilon$ are chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle a_1,p_1\rangle$ receive.
+		      \item Execute \procedurehr{tue2008190712} on $\langle A,a_1\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
+		      \item Let $D={a_2}^2$.
+		      \item Let $p(x,n,a)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Using procedure $p_1$, verify that $\lVert\frac{x-1}{x+1}\rVert^2\le{a_1}^2$.
+		        \item Hence using procedure $p_2$, verify that $\lVert(1+\frac{x-1}{x+1})_n^a\rVert^2\ge{a_2}^2$.
+		        \item Also using procedure $p_2$, verify that $\lVert(1-\frac{x-1}{x+1})_n^{-a}\rVert^2\ge{a_2}^2$.
+		        \item Hence using \declarationhr{thu2208191619}, verify that $\lVert x_n^a\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert(1+\frac{x-1}{x+1})_n^a\rVert^2\lVert(1-\frac{x-1}{x+1})_n^{-a}\rVert^2$
+		          \item $\ge{a_2}^2{a_2}^2$
+		          \item $=D^2$.
+		        \end{enumerate}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle D,p\rangle$.}
 		    \end{enumerate}
