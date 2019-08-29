@@ -98,6 +98,8 @@ def lnp1_series(x, n):
     return ans
 def binom_series(x, a, n):
   return binomp1_series((x-1)/(x+1), a, n)*binomp1_series(-(x-1)/(x+1), -a, n)
+def ln_series(x, n):
+  return lnp1_series((x-1)/(x+1), n)-lnp1_series(-(x-1)/(x+1), n)
 # tau is pi*2
 def tau(m):
     return 8*lnp1_series(j,m).im
