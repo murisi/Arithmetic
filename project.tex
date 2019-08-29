@@ -204,7 +204,7 @@
 \newglossaryentry{differentialdiff}{name=\ensuremath{\diff_{x=y}^zf(x)},description={difference quotient}}
 \newglossaryentry{differentialln}{name=\ensuremath{\ln(x)},description={natural logarithm}}
 \newglossaryentry{differentialpow}{name=\ensuremath{x_n^a},description={exponentiation}}
-\newglossaryentry{differentialintegral}{name=\ensuremath{\int_r^Rf(r,dr)},description={Riemann sum}}
+\newglossaryentry{differentialintegral}{name=\ensuremath{\int_r^Rf(r,\delta_r)},description={Riemann sum}}
 \newglossaryentry{differentialDeltaX}{name=\ensuremath{\Delta X},description={first difference}}
 \newglossaryentry{matrix}{name={matrix},description={}}
 \newglossaryentry{matrixentry}{name=\ensuremath{A_{I,J}},description={submatrix}}
@@ -7096,71 +7096,85 @@
 		\end{minipage}
 	\begin{multicols}{2}
 	  \declaration{3.30}
-			The notation \gls{differentialintegral}, where $R$ is a non-empty list of complex numbers and $f[r,dr]$ is a function of $r,dr$, will be used as a shorthand for $\sum_t^{[0:\lvert R\rvert-1]}f(R_t,R_{t+1}-R_{t})$.
+			The notation \gls{differentialintegral}, where:
+			\begin{enumerate}
+			  \item $f(r,\delta_r)$ is a procedure to construct a complex number when complex numbers $r,\delta_r$ such that $P(r,\delta_r)$ are chosen
+			  \item $R$ is a non-empty list of complex numbers such that $P(R_t,R_{t+1}-R_t)$ for $t\in[0:\lvert R\rvert-1]$
+			\end{enumerate}
+			will be used as a shorthand for $\sum_t^{[0:\lvert R\rvert-1]}f(R_t,R_{t+1}-R_{t})$.
 		\procedure{3.86}
 			\objective
-				Choose two functions $f[r,dr],g[r,dr]$, and a non-empty list of complex numbers $R$. The objective of the following instructions is to show that $\int_r^R(f(r,dr)+g(r,dr))=\int_r^Rf(r,dr)+\int_r^Rg(r,dr)$.
+				Choose the following:
+				\begin{enumerate}
+				  \item A procedure $f(r,\delta)$ to construct a complex number when complex numbers $r,\delta_r$ such that $P(r,\delta_r)$ are chosen.
+				  \item A procedure $g(r,\delta)$ to construct a complex number when complex numbers $r,\delta_r$ such that $Q(r,\delta_r)$ are chosen.
+				  \item A non-empty list of complex numbers $R$ such that $P(R_t,R_{t+1}-R_t)$ and $Q(R_t,R_{t+1}-R_t)$ for $t\in[0:\lvert R\rvert-1]$.
+				\end{enumerate}
+				The objective of the following instructions is to show that $\int_r^R(f(r,\delta_r)+g(r,\delta_r))=\int_r^Rf(r,\delta_r)+\int_r^Rg(r,\delta_r)$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $\int_r^R(f(r,dr)+g(r,dr))$
+					\item Verify that $\int_r^R(f(r,\delta_r)+g(r,\delta_r))$
 					\begin{enumerate}
 						\item $=\sum_t^{[0:\lvert R\rvert-1]}(f(R_t,R_{t+1}-R_t)+g(R_t,R_{t+1}-R_t))$
 						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(R_t,R_{t+1}-R_t)+\sum_t^{[0:\lvert R\rvert-1]}g(R_t,R_{t+1}-R_t)$
-						\item $=\int_r^Rf(r,dr)+\int_r^Rg(r,dr)$
+						\item $=\int_r^Rf(r,\delta_r)+\int_r^Rg(r,\delta_r)$
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{3.87}
 			\objective
-				Choose a complex number $a$, a function $f[r,dr]$, and a non-empty list of complex numbers $R$. The objective of the following instructions is to show that $\int_r^Raf(r,dr)=a\int_r^Rf(r,dr)$.
+				Choose the following:
+				\begin{enumerate}
+				  \item A complex number $a$.
+				  \item A procedure $f(r,\delta)$ to construct a complex number when complex numbers $r,\delta_r$ such that $P(r,\delta_r)$ are chosen.
+				  \item A non-empty list of complex numbers $R$ such that $P(R_t, R_{t+1}-R_t)$ for $t\in[0:\lvert R\rvert-1]$.
+				\end{enumerate}
+				 The objective of the following instructions is to show that $\int_r^Raf(r,\delta_r)=a\int_r^Rf(r,\delta_r)$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $\int_r^Raf(r,dr)$
+					\item Verify that $\int_r^Raf(r,\delta_r)$
 					\begin{enumerate}
 						\item $=\sum_t^{[0:\lvert R\rvert-1]}af(R_t,R_{t+1}-R_t)$
 						\item $=a\sum_t^{[0:\lvert R\rvert-1]}f(R_t,R_{t+1}-R_t)$
-						\item $=a\int_r^Rf(r,dr)$
+						\item $=a\int_r^Rf(r,\delta_r)$
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{3.88}
 			\objective
-				Choose a function $f[r]$ and two non-empty lists of complex numbers $R,S$ such that $R_{\lvert R\rvert-1}=S_0$. The objective of the following instructions is to show that $\int_r^{R^\frown S}f(r)dr=\int_r^Rf(r)dr+\int_r^Sf(r)dr$.
+				Choose the following:
+				\begin{enumerate}
+				  \item A procedure $f(r)$ to construct a complex number when a complex number $r$ such that $P(r)$ is chosen.
+				  \item A non-empty list of complex numbers $R$ such that $P(R_t)$ for $t\in[0:\lvert R\rvert-1]$.
+				  \item A non-empty list of complex numbers $S$ such that $P(S_t)$ for $t\in[0:\lvert R\rvert-1]$ and $R_{\lvert R\rvert-1}=S_0$.
+				\end{enumerate}
+				The objective of the following instructions is to show that $\int_r^{R^\frown S}f(r)\delta_r=\int_r^Rf(r)\delta_r+\int_r^Sf(r)\delta_r$.
 			\implementation
 				\begin{enumerate}
 					\item Let $T=R^\frown S$.
-					\item Verify that $\int_r^{T}f(r)dr$
+					\item Verify that $\int_r^{T}f(r)\delta_r$
 					\begin{enumerate}
 						\item $=\sum_t^{[0:\lvert T\rvert-1]}f(T_t)(T_{t+1}-T_t)$
 						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(T_t)(T_{t+1}-T_t)+\sum_t^{[\lvert R\rvert-1:\lvert R\rvert]}f(T_t)(T_{t+1}-T_t)+\sum_t^{[\lvert R\rvert:\lvert T\rvert-1]}f(T_t)(T_{t+1}-T_t)$
 						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(R_t)(R_{t+1}-R_t)+f(T_{\lvert R\rvert-1})(T_{\lvert R\rvert}-T_{\lvert R\rvert-1})+\sum_t^{[\lvert R\rvert:\lvert T\rvert-1]}f(S_{t-\lvert R\rvert})(S_{t+1-\lvert R\rvert}-S_{t-\lvert R\rvert})$
 						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(R_t)(R_{t+1}-R_t)+f(T_{\lvert R\rvert-1})(S_0-R_{\lvert R\rvert-1})+\sum_t^{[0:\lvert S\rvert-1]}f(S_{t})(S_{t+1}-S_{t})$
-						\item $=\int_r^Rf(r)dr+\int_r^Sf(r)dr$.
-					\end{enumerate}
-				\end{enumerate}
-		\procedure{3.33}
-			\objective
-				Choose a function $f[r]$ and a list of complex numbers $R$. The objective of the following instructions is to show that $\lVert\int_r^Rf(r)dr\rVert^2\le(\lvert R\rvert-1)^2\max(\lVert\Delta R\rVert^2)\max(\lVert f(R_{[0:\lvert R\rvert-1]})\rVert^2)$
-			\implementation
-				\begin{enumerate}
-					\item Verify that $\lVert\int_r^Rf(r)dr\rVert^2$
-					\begin{enumerate}
-						\item $\le(\lvert R\rvert-1)\int_r^R\lVert f(r)\rVert^2\lVert dr\rVert^2$
-						\item $\le(\lvert R\rvert-1)\int_r^R\max(\lVert f(R_{[0:\lvert R\rvert-1]})\rVert^2)\max(\lVert\Delta R\rVert^2)$
-						\item $\le(\lvert R\rvert-1)^2\max(\lVert f(R_{[0:\lvert R\rvert-1]})\rVert^2)\max(\lVert\Delta R\rVert^2)$.
+						\item $=\int_r^Rf(r)\delta_r+\int_r^Sf(r)\delta_r$.
 					\end{enumerate}
 				\end{enumerate}
 		\procedure{3.34}
 			\objective
-				Choose a list of functions $F$ and a list of complex numbers $R$ such that $F_0(R_1)=F_1(R_1),F_1(R_2)=F_2(R_2),\cdots,F_{\lvert R\rvert-3}(R_{\lvert R\rvert-2})=F_{\lvert R\rvert-2}(R_{\lvert R\rvert-2})$. The objective of the following instructions is to show that $\int_r^Rdr\diff_{z=r}^{dr}F_{\#r}(z)=F_{\lvert R\rvert-2}(R_{\lvert R\rvert-1})-F_0(R_0)$.
+				Choose the following:
+				\begin{enumerate}
+				  \item A procedure $f(r)$ to construct a complex number when a complex number $r$ such that $P(r)$ is chosen.
+				  \item A non-empty list of complex numbers $R$ such that $P(R_t)$ for $t\in[0:\lvert R\rvert-1]$.
+				\end{enumerate}
+				The objective of the following instructions is to show that $\int_r^R\delta_r\diff_{z=r}^{+\delta_r}f(z)=f(R_{\lvert R\rvert-1})-f(R_0)$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $\int_r^Rdr\diff_{z=r}^{dr}F_{\#r}(z)$
+					\item Verify that $\int_r^R\delta_r\diff_{z=r}^{\delta_r}f(z)$
 					\begin{enumerate}
-						\item $=\int_r^Rdr(\frac{F_{\#r}(r+dr)-F_{\#r}(r)}{dr})$
-						\item $=\int_r^R(F_{\#r}(r+dr)-F_{\#r}(r))$
-						\item $=\sum_k^{[0:\lvert R\rvert-1]}(F_{k}(R_{k+1})-F_{k}(R_k))$
-						\item $=-F_0(R_0)+\sum_k^{[0:\lvert R\rvert-2]}(F_{k}(R_{k+1})-F_{k+1}(R_{k+1}))+F_{\lvert R\rvert-2}(R_{\lvert R\rvert-1})$
-						\item $=-F_0(R_0)+\sum_k^{[0:\lvert R\rvert-2]}0+F_{\lvert R\rvert-2}(R_{\lvert R\rvert-1})$
-						\item $=F_{\lvert R\rvert-2}(R_{\lvert R\rvert-1})-F_0(R_0)$.
+						\item $=\int_r^R\delta_r(\frac{f(r+\delta_r)-f(r)}{\delta_r})$
+						\item $=\int_r^R(f(r+\delta_r)-f(r))$
+						\item $=\sum_k^{[0:\lvert R\rvert-1]}(f(R_{k+1})-f(R_k))$
+						\item $=f(R_{\lvert R\rvert-1})-f(R_0)$.
 					\end{enumerate}
 				\end{enumerate}
 		\declaration{3.31}
