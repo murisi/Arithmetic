@@ -6091,35 +6091,24 @@
 		    \end{enumerate}
 		\procedure{3.18}
 			\objective
-				Choose a rational number $D\ge 0$. The objective of the following instructions is to construct two rational numbers $a,c$ and a procedure, $p(n,\delta)$, to show that $\diff_{x=0}^{+\delta}\exp_n(x)\equiv 1\err{a\{\delta\}}$ when a complex number $\delta$ and a positive integer $n$ such that $\lVert \delta\rVert^2\le D^2$ and $n>c$ are chosen.
+				Choose a rational number $D\ge 0$. The objective of the following instructions is to construct two rational numbers $a,c$ and a procedure, $p(n,\delta)$, to show that $\diff_{x=0}^{+\delta}\exp_n(x)\equiv 1\err{a\delta}\err{a\{\delta\}}$ when a complex number $\delta$ and a positive integer $n$ such that $\lVert \delta\rVert^2\le D^2$ and $n>c$ are chosen.
 			\implementation
 				\begin{enumerate}
-					\item Let $e=2D+D^2$.
-					\item Execute \procedurehr{3.10} on $\langle e\rangle$ and let $\langle d,c,q\rangle$ receive.
-					\item Let $a=\max(1,d)$.
+					\item Execute \procedurehr{3.13} on $\langle D\rangle$ and let $\langle a,c,q\rangle$ receive.
 					\item Let $p(\delta,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $n>c$.
-						\item Hence execute procedure $q$ on $\langle e,n\rangle$.
-						\item Hence verify that $\exp_n(e)\le d^2$.
-						\item Verify that $\lvert\Re(\delta)\rvert^2\le\lVert\delta\rVert^2\le D^2$.
-						\item Hence verify that $\lvert\Re(\delta)\rvert\le D$.
-						\item Now using \procedurehr{2.04} and \procedurehr{3.04}, verify that $\lVert\exp_n(\delta)-1-\delta\rVert^2$
+						\item Now using \procedurehr{2.04}, and procedure $q$, verify that $\exp_n(\delta)-1\equiv\delta$
 						\begin{enumerate}
-							\item $=\lVert(1+\frac{\delta}{n})^n-1-\delta\rVert^2$
-							\item $=\lVert\frac{\delta}{n}\sum_r^{[0:n]}(1+\frac{\delta}{n})^r-n\frac{\delta}{n}\rVert^2$
-							\item $=\lVert\frac{\delta}{n}\sum_r^{[0:n]}((1+\frac{\delta}{n})^r-1)\rVert^2$
-							\item $=\lVert\frac{\delta}{n}\sum_r^{[0:n]}\frac{\delta}{n}\sum_k^{[0:r]}(1+\frac{\delta}{n})^k\rVert^2$
-							\item $=\frac{\lVert \delta\rVert^4}{n^4}\lVert\sum_r^{[0:n]}\sum_k^{[0:r]}(1+\frac{\delta}{n})^k\rVert^2$
-							\item $\le\frac{\lVert \delta\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\lVert 1+\frac{\delta}{n}\rVert^{2k}$
-							\item $\le\frac{\lVert \delta\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,\lVert 1+\frac{\delta}{n}\rVert^{2n})$
-							\item $=\frac{\lVert \delta\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,(1+\frac{2\Re(\delta)}{n}+\frac{\lVert \delta\rVert^2}{n^2})^{n})$
-							\item $\le\frac{\lVert \delta\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,(1+\frac{2\lvert\Re(\delta)\rvert}{n}+\frac{\lVert \delta\rVert^2}{n^2})^{n})$
-							\item $\le\frac{\lVert \delta\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,(1+\frac{e}{n})^{n})$
-							\item $\le\frac{\lVert \delta\rVert^4}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}\max(1,d^2)$
-							\item $\le a^2\lVert \delta\rVert^4$.
+						  \item $\err{\exp_n(\delta)-1-\delta}$
+							\item $\err{(1+\frac{\delta}{n})^n-1-\delta}$
+							\item $\err{\frac{\delta}{n}\sum_r^{[0:n]}(1+\frac{\delta}{n})^r-n\frac{\delta}{n}}$
+							\item $\err{\frac{\delta}{n}\sum_r^{[0:n]}((1+\frac{\delta}{n})^r-1)}$
+							\item $\err{\frac{\delta}{n}\sum_r^{[0:n]}\frac{\delta}{n}\sum_k^{[0:r]}(1+\frac{\delta}{n})^k}$
+							\item $\err{\frac{\delta^2}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}(1+\frac{\delta}{n})^k}$
+							\item $\err{\frac{\delta^2}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}a}$
+							\item $\err{\delta^2a}$.
 						\end{enumerate}
-						\item \textbf{Therefore verify that $\lVert\diff_{x=0}^{+\delta}\exp_n(x)-1\rVert^2\le a^2\lVert\delta\rVert^2\le(a\{\delta\})^2$.}
+						\item \textbf{Therefore verify that $\diff_{x=0}^{+\delta}\exp_n(x)\equiv 1\err{a\delta}\err{a\{\delta\}}$.}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,c,p\rangle$.}
 				\end{enumerate}
