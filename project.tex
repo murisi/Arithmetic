@@ -202,7 +202,7 @@
 \newglossaryentry{complexpolynomial}{name={complex polynomial},description={}}
 \newglossaryentry{differentialtaxicab}{name=\ensuremath{\{x\}},description={taxicab length}}
 \newglossaryentry{differentialdiff}{name=\ensuremath{\diff_{x=y}^zf(x)},description={difference quotient}}
-\newglossaryentry{differentialln}{name=\ensuremath{\ln(x)},description={natural logarithm}}
+\newglossaryentry{differentialln}{name=\ensuremath{\ln_n(x)},description={natural logarithm}}
 \newglossaryentry{differentialpow}{name=\ensuremath{x_n^a},description={exponentiation}}
 \newglossaryentry{differentialintegral}{name=\ensuremath{\int_r^Rf(r,\delta_r)},description={Riemann sum}}
 \newglossaryentry{differentialDeltaX}{name=\ensuremath{\Delta X},description={first difference}}
@@ -6371,7 +6371,7 @@
 		    \end{enumerate}
 		\procedure{wed2108191603}
 		  \objective
-		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $\lVert\frac{1}{x}\rVert^2\le c^2$ when a complex number $x$ and a positive integer $n$ such that $\Re(x)\ge\epsilon$, $\lVert x\rVert^2\le X^2$, and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\ln(y)\equiv\frac{1}{x}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $0<\lVert\delta\rVert^2\le e^2$ is chosen.
+		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $\lVert\frac{1}{x}\rVert^2\le c^2$ when a complex number $x$ and a positive integer $n$ such that $\Re(x)\ge\epsilon$, $\lVert x\rVert^2\le X^2$, and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\ln_n(y)\equiv\frac{1}{x}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $0<\lVert\delta\rVert^2\le e^2$ is chosen.
 		  \implementation
 		    \begin{instructions}
 		      \item Let $c=\frac{1}{\epsilon}$.
