@@ -7188,13 +7188,14 @@
 				\end{enumerate}
 				The objective of the following instructions is to construct the following:
 				\begin{enumerate}
-				  \item Non-negative rational numbers $a,b$.
-				  \item A procedure $p(R,n)$ to show that $\int_r^Rf'_n(r)\delta_r\equiv f_n(R_{\lvert R\rvert-1})-f_n(R_0)\err{\frac{a}{n}+b\max(\{\Delta R\})}$ when an integer $n$ and a non-empty list of complex numbers $R$ such that $P(R_t)$ and $0<\lVert R_{t+1}-R_t\rVert^2<{d_1}^2$ for $t\in[0:\lvert R\rvert-1]$, $\int_r^R\{\delta_r\}\le A$, and $n>c_1$ are chosen.
+				  \item Non-negative rational numbers $a,b,c$.
+				  \item A procedure $p(R,n)$ to show that $\int_r^Rf'_n(r)\delta_r\equiv f_n(R_{\lvert R\rvert-1})-f_n(R_0)\err{\frac{a}{n}+b\max(\{\Delta R\})}$ when an integer $n$ and a non-empty list of complex numbers $R$ such that $P(R_t)$ and $0<\lVert R_{t+1}-R_t\rVert^2<{d_1}^2$ for $t\in[0:\lvert R\rvert-1]$, $\int_r^R\{\delta_r\}\le A$, and $n>c$ are chosen.
 				\end{enumerate}
 		  \implementation
 		    \begin{enumerate}
 		      \item Let $a=a_1A$.
 		      \item Let $b=b_1A$.
+		      \item Let $c=c_1$.
 		      \item Let $p(R,n)$ be the following procedure:
 		      \begin{enumerate}
 		        \item Using procedure $q_1$, verify that $\int_r^Rf'_n(r)\delta_r$
@@ -7214,7 +7215,7 @@
 		        \end{enumerate}
 		        \item \textbf{Therefore verify that $\int_r^Rf'_n(r)\delta_r\equiv f_n(R_{\lvert R\rvert-1})-f_n(R_0)\err{\frac{a}{n}+b\max(\{\Delta R\})}$.}
 		      \end{enumerate}
-		      \item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
+		      \item \textbf{Yield the tuple $\langle a,b,c,p\rangle$.}
 		    \end{enumerate}
 		\procedure{fri3008190457}
 		  \objective
@@ -7227,20 +7228,21 @@
 				\end{enumerate}
 				The objective of the following instructions is to construct the following:
 				\begin{enumerate}
-				  \item Non-negative rational numbers $a,b$.
-				  \item A procedure $p(R,n)$ to show that $\int_r^{g(R)}f_n(r)\delta_r\equiv\int_r^Rf_n(g_n(r))g'_n(r)\delta_r\err{\frac{a}{n}+b\max(\{\Delta R\})}$ when an integer $n$ and a non-empty list of complex numbers $R$ such that $P(R_t)$ and $0<\lVert R_{t+1}-R_t\rVert^2<{d_1}^2$ for $t\in[0:\lvert R\rvert-1]$, $\int_r^R\{\delta_r\}\le A$, and $n>c_1$ are chosen.
+				  \item Non-negative rational numbers $a,b,c$.
+				  \item A procedure $p(R,n)$ to show that $\int_r^{g(R)}f_n(r)\delta_r\equiv\int_r^Rf_n(g_n(r))g'_n(r)\delta_r\err{\frac{a}{n}+b\max(\{\Delta R\})}$ when an integer $n$ and a non-empty list of complex numbers $R$ such that $P(R_t)$ and $0<\lVert R_{t+1}-R_t\rVert^2<{d_1}^2$ for $t\in[0:\lvert R\rvert-1]$, $\int_r^R\{\delta_r\}\le A$, and $n>c$ are chosen.
 				\end{enumerate}
 			\implementation
 			  \begin{enumerate}
 			    \item Let $a=a_1a_2A$.
 			    \item Let $b=b_1a_2A$.
+			    \item Let $c=\max(c_1,b_2)$.
 			    \item Let $p(R,n)$ be the following procedure:
 			    \begin{enumerate}
-			      \item Using procedures $q_1,q_2,q_3$, verify that $\int_r^{g(R)}f(r)\delta_r$
+			      \item Using procedures $q_1,q_2,q_3$, verify that $\int_r^{g_n(R)}f_n(r)\delta_r$
 			      \begin{enumerate}
-			        \item $=\sum_k^{[0:\lvert R\rvert-1]}f(g(R_k))(g(R_{k+1})-g(R_k))$
-			        \item $=\sum_k^{[0:\lvert R\rvert-1]}f(g(R_k))\Delta_{y=R_k}^{R_{k+1}-R_k}g(y)(R_{k+1}-R_k)$
-			        \item $\equiv\sum_k^{[0:\lvert R\rvert-1]}f(g(R_k))g'(R_k)(R_{k+1}-R_k)$
+			        \item $=\sum_k^{[0:\lvert R\rvert-1]}f_n(g_n(R_k))(g_n(R_{k+1})-g_n(R_k))$
+			        \item $=\sum_k^{[0:\lvert R\rvert-1]}f_n(g_n(R_k))\Delta_{y=R_k}^{R_{k+1}-R_k}g_n(y)(R_{k+1}-R_k)$
+			        \item $\equiv\sum_k^{[0:\lvert R\rvert-1]}f_n(g_n(R_k))g'_n(R_k)(R_{k+1}-R_k)$
 			        \begin{enumerate}
 			          \item $\err{\sum_k^{[0:\lvert R\rvert-1]}a_2(\frac{a_1}{n}+b_1\{R_{k+1}-R_k\})\{R_{k+1}-R_k\}}$
 			          \item $\err{a_2(\frac{a_1}{n}+b_1\max(\{\Delta R\}))\sum_k^{[0:\lvert R\rvert-1]}\{R_{k+1}-R_k\}}$
@@ -7248,11 +7250,11 @@
 			          \item $\err{a_2(\frac{a_1}{n}+b_1\max(\{\Delta R\}))A}$
 			          \item $\err{\frac{a}{n}+b\max(\{\Delta R\})}$
 			        \end{enumerate}
-			        \item $=\int_r^Rf(g(r))g'(r)\delta_r$.
+			        \item $=\int_r^Rf_n(g_n(r))g'_n(r)\delta_r$.
 			      \end{enumerate}
-			      \item \textbf{Hence verify that $\int_r^{g(R)}f(r)\delta_r\equiv\int_r^Rf(g(r))g'(r)\delta_r\err{\frac{a}{n}+b\max(\{\Delta R\})}$.}
+			      \item \textbf{Hence verify that $\int_r^{g_n(R)}f_n(r)\delta_r\equiv\int_r^Rf_n(g_n(r))g'_n(r)\delta_r\err{\frac{a}{n}+b\max(\{\Delta R\})}$.}
 			    \end{enumerate}
-			    \item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
+			    \item \textbf{Yield the tuple $\langle a,b,c,p\rangle$.}
 			  \end{enumerate}
 	\end{multicols}
 	\clearpage
