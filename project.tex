@@ -7154,7 +7154,7 @@
 					\begin{enumerate}
 						\item $=\sum_t^{[0:\lvert T\rvert-1]}f(T_t)(T_{t+1}-T_t)$
 						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(T_t)(T_{t+1}-T_t)+\sum_t^{[\lvert R\rvert-1:\lvert R\rvert]}f(T_t)(T_{t+1}-T_t)+\sum_t^{[\lvert R\rvert:\lvert T\rvert-1]}f(T_t)(T_{t+1}-T_t)$
-						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(R_t)(R_{t+1}-R_t)+f(T_{\lvert R\rvert-1})(T_{\lvert R\rvert}-T_{\lvert R\rvert-1})+\sum_t^{[\lvert R\rvert:\lvert T\rvert-1]}f(S_{t-\lvert R\rvert})(S_{t+1-\lvert R\rvert}-S_{t-\lvert R\rvert})$
+						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(R_t)(R_{t+1}-R_t)+f(T_{\lvert R\rvert-1})(T_{\lvert R\rvert}-T_{\lvert R\rvert-1})+\sum_t^{[\lvert R\rvert:\lvert T\rvert-1]}f(S_{t-\lvert R\rvert})\cdot(S_{t+1-\lvert R\rvert}-S_{t-\lvert R\rvert})$
 						\item $=\sum_t^{[0:\lvert R\rvert-1]}f(R_t)(R_{t+1}-R_t)+f(T_{\lvert R\rvert-1})(S_0-R_{\lvert R\rvert-1})+\sum_t^{[0:\lvert S\rvert-1]}f(S_{t})(S_{t+1}-S_{t})$
 						\item $=\int_r^Rf(r)\delta_r+\int_r^Sf(r)\delta_r$.
 					\end{enumerate}
@@ -7179,6 +7179,43 @@
 				\end{enumerate}
 		\declaration{3.31}
 			The notation \gls{differentialDeltaX}, where $X$ is a list, will be used as a shorthand for $\langle X_1-X_0,X_2-X_1,\cdots,X_{\lvert X\rvert-1}-X_{\lvert X\rvert-2}\rangle$.
+		\procedure{fri3008190328}
+		  \objective
+		    Choose the following:
+		    \begin{enumerate}
+		      \item A non-negative rational number $A$.
+				  \item A procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}f_n(y)\equiv f'_n(x)\err{\frac{a_1}{n}+b_1\{\delta\}}$ when two complex numbers $x,\delta$ and a positive integer $n$ such that $P(x)$, $n>c_1$, and $0<\lVert\delta\rVert^2<{d_3}^2$ are chosen.
+				\end{enumerate}
+				The objective of the following instructions is to construct the following:
+				\begin{enumerate}
+				  \item Non-negative rational numbers $a,b$.
+				  \item A procedure $p(R,n)$ to show that $\int_r^Rf'_n(r)\delta_r\equiv f_n(R_{\lvert R\rvert-1})-f_n(R_0)\err{\frac{a}{n}+b\max(\{\Delta R\})}$ when an integer $n$ and a non-empty list of complex numbers $R$ such that $P(R_t)$ and $\lVert R_{t+1}-R_t\rVert^2<{d_3}^2$ for $t\in[0:\lvert R\rvert-1]$, $\int_r^R\{\delta_r\}\le A$, and $n>c_1$ are chosen.
+				\end{enumerate}
+		  \implementation
+		    \begin{enumerate}
+		      \item Let $a=a_1A$.
+		      \item Let $b=b_1A$.
+		      \item Let $p(R,n)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Using procedure $q$, verify that $\int_r^Rf'_n(r)\delta_r$
+		        \begin{enumerate}
+		          \item $=\sum_k^{[0:\lvert R\rvert-1]}f'_n(R_k)(R_{k+1}-R_k)$
+		          \item $\equiv\sum_k^{0:\lvert R\rvert-1}\Delta_{y=R_k}^{R_{k+1}-R_k}f_n(y)(R_{k+1}-R_k)$
+		          \begin{enumerate}
+		            \item $\err{\sum_k^{0:\lvert R\rvert-1}(\frac{a_1}{n}+b_1\{R_{k+1}-R_k\})\{R_{k+1}-R_k\}}$
+		            \item $\err{(\frac{a_1}{n}+b_1\max(\{\Delta R\}))\sum_k^{0:\lvert R\rvert-1}\{R_{k+1}-R_k\}}$
+		            \item $\err{(\frac{a_1}{n}+b_1\max(\{\Delta R\}))\int_r^R\{\delta_r\}}$
+		            \item $\err{(\frac{a_1}{n}+b_1\max(\{\Delta R\}))A}$
+		            \item $\err{\frac{a}{n}+b\max(\{\Delta R\})}$
+		          \end{enumerate}
+		          \item $=\sum_k^{0:\lvert R\rvert-1}\frac{f_n(R_k+(R_{k+1}-R_k))-f_n(R_k)}{R_{k+1}-R_k}\cdot(R_{k+1}-R_k)$
+		          \item $=\sum_k^{0:\lvert R\rvert-1}(f_n(R_{k+1})-f_n(R_k))$
+		          \item $=f_n(R_{\lvert R\rvert-1})-f_n(R_0)$.
+		        \end{enumerate}
+		        \item \textbf{Therefore verify that $\int_r^Rf'_n(r)\delta_r\equiv f_n(R_{\lvert R\rvert-1})-f_n(R_0)\err{\frac{a}{n}+b\max(\{\Delta R\})}$.}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
+		    \end{enumerate}
 	\end{multicols}
 	\clearpage
 	\part{Matrix Arithmetic}
