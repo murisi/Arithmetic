@@ -4692,6 +4692,7 @@
 	            \item $=\frac{B}{n}$.
 	          \end{enumerate}
 	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle B,N,p\rangle$.}
 	      \end{enumerate}
 	  \procedure{thu2507190646}
 	    \objective
@@ -4726,6 +4727,7 @@
 	            \item $\err{\frac{B}{n}}$.
 	          \end{enumerate}
 	        \end{enumerate}
+	        \item \textbf{Yield the tuple $\langle B,N,p\rangle$.}
 	      \end{enumerate}
 	  \procedure{thu2507191017}
 	    \objective
@@ -6346,40 +6348,99 @@
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle l,d,a,b,p,q\rangle$.}
 		    \end{enumerate}
-		\procedure{wed2108191324}
+		\procedure{sun0812191401}
 		  \objective
-		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct a rational number $f$ such that $0<f<1$, and a procedure $p(x)$ to show that $\lVert\frac{x-1}{x+1}\rVert^2\le f^2$ when a complex number $x$ such that $\Re(x)\ge\epsilon$ and $\lVert x\rVert^2\le X^2$ is chosen.
+		    Choose a rational number $X$ such that $0<X\le 1$. The objective of the following instructions is to construct a rational number $f$ such that $0\le f<1$, and a procedure $p(x)$ to show that $\Re(\frac{x-1}{x+1})\ge -f$ and $\lVert\frac{x-1}{x+1}\rVert^2\le 1$ when a complex number $x$ such that $\Re(x)\ge 0$ and $\lVert x\rVert^2\ge X^2$ is chosen.
 		  \implementation
 		    \begin{enumerate}
-		      \item Let $f=1-\frac{2\epsilon}{X^2+1+2\epsilon}$.
-		      \item Verify that $0<f<1$.
+		      \item Let $f=\frac{1-X^2}{1+X^2}$.
+		      \item Verify that $0\le f<1$.
 		      \item Let $p(x)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Verify that $f^2=1-\frac{4\epsilon}{X^2+1+2\epsilon}+(\frac{2\epsilon}{X^2+1+2\epsilon})^2\ge 1-\frac{4\epsilon}{X^2+1+2\epsilon}$.
-		        \item Verify that $\frac{4\epsilon}{X^2+1+2\epsilon}\ge 1-f^2$.
-		        \item Hence verify that $X^2+1+2\epsilon\le\frac{4\epsilon}{1-f^2}$.
-		        \item Hence verify that $\lVert x\rVert^2$
+		        \item Verify that $0\le\Re(x)$.
+		        \item Hence verify that $(\Re(x)-1)^2\le(\Re(x)+1)^2$.
+		        \item Hence verify that $\lVert x-1\rVert^2\le\lVert x+1\rVert^2$.
+		        \item Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le 1$.
+		        \item Also verify that $\Re(\frac{x-1}{x+1})$
 		        \begin{enumerate}
-		          \item $\le X^2$
-		          \item $\le\frac{4\epsilon}{1-f^2}-(1+2\epsilon)$
-		          \item $=\frac{4\epsilon-1+f^2-2\epsilon+2\epsilon f^2}{1-f^2}$
-		          \item $=\frac{f^2-1+2\epsilon(1+f^2)}{1-f^2}$
-		          \item $\le\frac{f^2-1+2\Re(x)(1+f^2)}{1-f^2}$.
+		          \item $=\Re(\frac{(x-1)(\conj{x+1})}{(x+1)(\conj{x+1})})$
+		          \item $=\Re(\frac{\lVert x\rVert^2+x-\conj{x}-1}{\lVert x\rVert^2+x+\conj{x}+1})$
+		          \item $=\frac{\lVert x\rVert^2-1}{\lVert x\rVert^2+2\Re(x)+1}$
+		          \item $\ge\frac{X^2-1}{\lVert x\rVert^2+2\Re(x)+1}$
+		          \item $\ge\frac{X^2-1}{X^2+1}=-f$.
 		        \end{enumerate}
-		        \item Hence verify that $(1-f^2)(\Re(x)^2+\Im(x)^2)\le f^2-1+2\Re(x)(1+f^2)$.
-		        \item Hence verify that $(\Re(x)-1)^2+\Im(x)^2\le f^2((\Re(x)+1)^2+\Im(x)^2)$
-		        \item \textbf{Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le f^2$.}
 		      \end{enumerate}
-		      \item \textbf{Yield the tuple $\langle f,p\rangle$.}
 		    \end{enumerate}
 		\declaration{wed2108191408}
-		  The notation \gls{differentialln}, where $x$ is a complex number, will be used as a shorthand for $\ln_n(1+\frac{x-1}{x+1})-\ln_n(1-\frac{x-1}{x+1})$.
-		\procedure{wed2108191401}
+		  The notation \gls{differentialln}, where $x$ is a complex number, will be used as a shorthand for $\ln_n(1+\frac{x-1}{x+1})-\ln_n(1-\frac{x-1}{x+1})$ when $\Re(x)\ge 0$, $\ln_n(\frac{x}{i})+\frac{\tau_n}{4}i$ when $\Im(x)\ge 0$, and $\ln_n(xi)-\frac{\tau_n}{4}i$ if otherwise.
+		\procedure{thu2208191250}
 		  \objective
-		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ and a procedure $p(x,n,k)$ to show that $\exp_n(\ln_k(x))\equiv x\err{\frac{an}{k}+\frac{c}{n}}$ when a complex number $x$ and integers $k,n$ such that $\Re(x)\ge\epsilon$, $\lVert x\rVert^2\le X^2$, $n>e$, and $k>d$ are chosen.
+		    Choose a rational number $X$ such that $1\ge X> 0$. The objective of the following instructions is to construct a positive rational number $a$, and a procedure $p(x,k)$ to show that $\lVert\ln_k(x)\rVert^2\le a^2$ when a positive integer $k$ and a complex number $x$ such that $\lVert x\rVert^2\ge X^2$ and $\Re(x)\ge 0$ are chosen.
 		  \implementation
 		    \begin{enumerate}
-		      \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle f,p_0\rangle$ receive.
+		      \item Execute \procedurehr{sun0812191401} on $\langle X\rangle$ and let $\langle a_1,p_1\rangle$ receive.
+		      \item Verify that $0<a_1<1$.
+		      \item Execute \procedurehr{fri2607191736} on $\langle a_1\rangle$ and let $\langle a_2,p_2\rangle$ receive.
+		      \item Let $a=2a_2$.
+		      \item Let $p(x,k)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $p_1$ on $\langle x\rangle$.
+		        \item Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le{a_1}^2$.
+		        \item Execute procedure $p_2$ on $\langle\frac{x-1}{x+1},k\rangle$.
+		        \item Hence verify that $\lVert\ln_k(1+\frac{x-1}{x+1})\rVert^2\le{a_2}^2$.
+		        \item Execute procedure $p_2$ on $\langle-\frac{x-1}{x+1},k\rangle$.
+		        \item Hence verify that $\lVert\ln_k(1-\frac{x-1}{x+1})\rVert^2\le{a_2}^2$.
+		        \item Hence verify that $\lVert\ln_k(x)\rVert^2$
+		        \begin{enumerate}
+		          \item $=\lVert\ln_k(1+\frac{x-1}{x+1})-\ln_k(1-\frac{x-1}{x+1})\rVert^2$
+		          \item $\le a^2$.
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a,p\rangle$.}
+		    \end{enumerate}
+		\procedure{sun0812191440}
+		  \objective
+		    Choose a rational number $X$ such that $0<X\le 1$. The objective of the following instructions is to construct positive rational numbers $a,b$, and a procedure $p(x,k)$ to show that $\lVert\ln_k(x)\rVert^2\le a^2$ when a positive integer $k$ and a complex number $x$ such that $\lVert x\rVert^2\ge X^2$ and $k>b$ are chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute \procedurehr{thu2208191250} on $\langle X\rangle$ and let $\langle a_1,p_1\rangle$ receive.
+		      \item Execute \procedurehr{3.50} and let $\langle a_2,b_2,p_2\rangle$ receive.
+		      \item Verify that $a_2>0$.
+		      \item Let $a=a_1+\frac{a_2}{4}$.
+		      \item Let $p(x,k)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Execute procedure $p_2$ on $\langle k\rangle$.
+		        \item Hence verify that $\frac{1}{4}\tau_k\le\frac{a_2}{4}$.
+		        \item If $\Re(x)\ge 0$, then do the following:
+		        \begin{enumerate}
+		          \item Execute procedure $p_1$ on $\langle x,k\rangle$.
+		          \item \textbf{Hence verify that $\lVert\ln_k(x)\rVert^2\le{a_1}^2\le a^2$.}
+		        \end{enumerate}
+		        \item Otherwise if $\Im(x)\ge 0$, then do the following:
+		        \begin{enumerate}
+		          \item Verify that $\lVert\frac{x}{i}\rVert^2=\lVert x\rVert^2\ge X^2$.
+		          \item Verify that $\Re(\frac{x}{i})=\Re(\Im(x)-\Re(x)i)=\Im(x)\ge 0$.
+		          \item Execute procedure $p_1$ on $\langle\frac{x}{i},k\rangle$.
+		          \item Hence verify that $\lVert\ln_k(\frac{x}{i})\rVert^2\le{a_1}^2$.
+		          \item \textbf{Hence verify that $\lVert\ln_k(x)\rVert^2=\lVert\ln_k(\frac{x}{i}+\frac{\tau_k}{4}i\rVert^2\le(a_1+\frac{a_2}{4})^2=a^2$.}
+		        \end{enumerate}
+		        \item Otherwise do the following:
+		        \begin{enumerate}
+		          \item Verify that $\lVert xi\rVert^2=\lVert x\rVert^2\ge X^2$.
+		          \item Verify that $\Re(xi)=\Re(-\Im(x)+\Re(x)i)=-\Im(x)>0$.
+		          \item Execute procedure $p_1$ on $\langle xi,k\rangle$.
+		          \item Hence verify that $\lVert\ln_k(xi)\rVert^2\le{a_1}^2$.
+		          \item \textbf{Hence verify that $\lVert\ln_k(x)\rVert^2=\lVert\ln_k(xi)-\frac{\tau_k}{4}i\rVert^2\le(a_1+\frac{a_2}{4})^2=a^2$.}
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
+		    \end{enumerate}
+		\procedure{wed2108191401}
+		  \objective
+		    Choose a rational number $X$ such that $1\ge X> 0$. The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ and a procedure $p(x,n,k)$ to show that $\exp_n(\ln_k(x))\equiv x\err{\frac{an}{k}+\frac{c}{n}}$ when a complex number $x$ and integers $k,n$ such that $\Re(x)\ge 0$, $\lVert x\rVert^2\ge X^2$, $n>e$, and $k>d$ are chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute \procedurehr{sun0812191401} on $\langle X\rangle$ and let $\langle f,p_0\rangle$ receive.
 		      \item Execute \procedurehr{fri2607191736} on $\langle f\rangle$ and let $\langle a_1,p_1\rangle$ receive.
 		      \item Execute \procedurehr{thu2507191359} on $\langle a_1\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
 		      \item Execute \procedurehr{3.14} on $\langle a_1\rangle$ and let $\langle a_3,b_3,p_3\rangle$ receive.
@@ -6409,31 +6470,6 @@
 		        \end{enumerate}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
-		    \end{enumerate}
-		\procedure{thu2208191250}
-		  \objective
-		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct a positive rational number $a$, and a procedure $p(x,k)$ to show that $\lVert\ln_k(x)\rVert^2\le a^2$ when a positive integer $k$ and a complex number $x$ such that $\lVert x\rVert^2\le X^2$ and $\Re(x)\ge\epsilon$ are chosen.
-		  \implementation
-		    \begin{enumerate}
-		      \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle a_1,p_1\rangle$ receive.
-		      \item Verify that $0<a_1<1$.
-		      \item Execute \procedurehr{fri2607191736} on $\langle a_1\rangle$ and let $\langle a_2,p_2\rangle$ receive.
-		      \item Let $a=2a_2$.
-		      \item Let $p(x,k)$ be the following procedure:
-		      \begin{enumerate}
-		        \item Execute procedure $p_1$ on $\langle x\rangle$.
-		        \item Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le{a_1}^2$.
-		        \item Execute procedure $p_2$ on $\langle\frac{x-1}{x+1},k\rangle$.
-		        \item Hence verify that $\lVert\ln_k(1+\frac{x-1}{x+1})\rVert^2\le{a_2}^2$.
-		        \item Execute procedure $p_2$ on $\langle-\frac{x-1}{x+1},k\rangle$.
-		        \item Hence verify that $\lVert\ln_k(1-\frac{x-1}{x+1})\rVert^2\le{a_2}^2$.
-		        \item Hence verify that $\lVert\ln_k(x)\rVert^2$
-		        \begin{enumerate}
-		          \item $=\lVert\ln_k(1+\frac{x-1}{x+1})-\ln_k(1-\frac{x-1}{x+1})\rVert^2$
-		          \item $\le a^2$.
-		        \end{enumerate}
-		      \end{enumerate}
-		      \item \textbf{Yield the tuple $\langle a,p\rangle$.}
 		    \end{enumerate}
 		\procedure{wed2108191603}
 		  \objective
@@ -6602,6 +6638,32 @@
 		        \end{enumerate}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle l,d,a,b,p,q\rangle$.}
+		    \end{enumerate}
+		\procedure{wed2108191324}
+		  \objective
+		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct a rational number $f$ such that $0<f<1$, and a procedure $p(x)$ to show that $\lVert\frac{x-1}{x+1}\rVert^2\le f^2$ when a complex number $x$ such that $\Re(x)\ge\epsilon$ and $\lVert x\rVert^2\le X^2$ is chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Let $f=1-\frac{2\epsilon}{X^2+1+2\epsilon}$.
+		      \item Verify that $0<f<1$.
+		      \item Let $p(x)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Verify that $f^2=1-\frac{4\epsilon}{X^2+1+2\epsilon}+(\frac{2\epsilon}{X^2+1+2\epsilon})^2\ge 1-\frac{4\epsilon}{X^2+1+2\epsilon}$.
+		        \item Verify that $\frac{4\epsilon}{X^2+1+2\epsilon}\ge 1-f^2$.
+		        \item Hence verify that $X^2+1+2\epsilon\le\frac{4\epsilon}{1-f^2}$.
+		        \item Hence verify that $\lVert x\rVert^2$
+		        \begin{enumerate}
+		          \item $\le X^2$
+		          \item $\le\frac{4\epsilon}{1-f^2}-(1+2\epsilon)$
+		          \item $=\frac{4\epsilon-1+f^2-2\epsilon+2\epsilon f^2}{1-f^2}$
+		          \item $=\frac{f^2-1+2\epsilon(1+f^2)}{1-f^2}$
+		          \item $\le\frac{f^2-1+2\Re(x)(1+f^2)}{1-f^2}$.
+		        \end{enumerate}
+		        \item Hence verify that $(1-f^2)(\Re(x)^2+\Im(x)^2)\le f^2-1+2\Re(x)(1+f^2)$.
+		        \item Hence verify that $(\Re(x)-1)^2+\Im(x)^2\le f^2((\Re(x)+1)^2+\Im(x)^2)$
+		        \item \textbf{Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le f^2$.}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle f,p\rangle$.}
 		    \end{enumerate}
 		\declaration{thu2208191619}
 		  The notation \gls{differentialpow}, where $x,a$ are complex numbers and $n$ is a positive integer, will be used as a shorthand for $(1+\frac{x-1}{x+1})_n^a(1-\frac{x-1}{x+1})_n^{-a}$.
