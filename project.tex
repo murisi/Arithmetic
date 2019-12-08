@@ -4594,9 +4594,43 @@
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle G,C,D,p\rangle$.}
 	      \end{enumerate}
+	  \procedure{sun0812190858}
+	    \objective
+	      Choose two non-negative rational numbers $a,b$ and two non-negative integers $r,n$ such that $b<r<n-a-1$. The objective of the following instructions is to show that $\sgn(\binom{b}{r}\binom{a}{n-r})=\sgn(\binom{b}{r+1}\binom{a}{n-r-1})$.
+	    \implementation
+	      \begin{enumerate}
+	        \item Verify that $r>b$ and $n-r>a+1$.
+	        \item Hence verify that $\frac{b-r}{(a+1)-(n-r)}>0$.
+	        \item Hence verify that $\frac{b-r}{r+1}\cdot\frac{n-r}{a-n+r+1}>0$.
+	        \item Hence verify that $\sgn(\frac{b-r}{r+1}\cdot\frac{n-r}{a-n+r+1})=1$.
+	        \item Hence verify that $\sgn(\binom{b}{r+1}\binom{a}{n-r-1})$
+	        \begin{enumerate}
+	          \item $=\sgn(\frac{b-r}{r+1}\binom{b}{r}\cdot\frac{n-r}{a-n+r+1}\binom{a}{n-r})$
+	          \item $=\sgn(\frac{b-r}{r+1}\cdot\frac{n-r}{a-n+r+1})\sgn(\binom{b}{r}\binom{a}{n-r})$
+	          \item $=\sgn(\binom{b}{r}\binom{a}{n-r})$.
+	        \end{enumerate}
+	      \end{enumerate}
+	  \procedure{sun0812190920}
+	    \objective
+	      Choose two non-negative rational numbers $a,b$ and an integer $n\ge\lceil a\rceil+\lceil b\rceil$. The objective of the following instructions is to show that $\sum_r^{[0:n+1]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert=\sum_r^{[0:\lceil b\rceil]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert+\lVert\sum_r^{[\lceil b\rceil:\lceil n-a\rceil]}\binom{b}{r}\binom{a}{n-r}\rVert+\sum_r^{[\lceil n-a\rceil:n+1]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert$.
+	    \implementation
+	      \begin{enumerate}
+	        \item Verify that $\lceil b\rceil\le\lfloor n-a\rfloor$.
+	        \item For $r$ in $[\lceil b\rceil:\lfloor n-a\rceil]$, do the following:
+	        \begin{enumerate}
+	          \item Execute \procedurehr{sun0812190858} on $\langle a,b,r,n\rangle$.
+	          \item Hence verify that $\sgn(\binom{b}{r}\binom{a}{n-r})=\sgn(\binom{b}{r+1}\binom{a}{n-r-1})$.
+	        \end{enumerate}
+	        \item Hence verify that $\sum_r^{[\lceil b\rceil:\lceil n-a\rceil]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert=\lVert\sum_r^{[\lceil b\rceil:\lceil n-a\rceil]}\binom{b}{r}\binom{a}{n-r}\rVert$.
+	        \item Hence verify that $\sum_r^{[0:n+1]}\Vert\binom{b}{r}\binom{a}{n-r}\rVert$
+	        \begin{enumerate}
+	          \item $=\sum_r^{[0:\lceil b\rceil]}\Vert\binom{b}{r}\binom{a}{n-r}\rVert+\sum_r^{[\lceil b\rceil:\lceil n-a\rceil]}\Vert\binom{b}{r}\binom{a}{n-r}\rVert+\sum_r^{[\lceil n-a\rceil:n+1]}\Vert\binom{b}{r}\binom{a}{n-r}\rVert$
+	          \item $=\sum_r^{[0:\lceil b\rceil]}\Vert\binom{b}{r}\binom{a}{n-r}\rVert+\lVert\sum_r^{[\lceil b\rceil:\lceil n-a\rceil]}\binom{b}{r}\binom{a}{n-r}\rVert+\sum_r^{[\lceil n-a\rceil:n+1]}\Vert\binom{b}{r}\binom{a}{n-r}\rVert$.
+	        \end{enumerate}
+	      \end{enumerate}
 	  \procedure{wed2407191824}
 	    \objective
-	      Choose a rational number $A>0$. The objective of the following instructions is to construct rational numbers $M>1$, $N>0$, and a procedure $p(a,n)$ to show that $\lVert\binom{a}{n}\rVert^2\le(\frac{M}{n})^{2(\lfloor a\rfloor+1)}$ and $\frac{M}{n}<1$ when a rational number $-1<a<A$ and an integer $n>N$ are chosen.
+	      Choose a rational number $A>0$. The objective of the following instructions is to construct rational numbers $M>1$, $N>0$, and a procedure $p(a,n)$ to show that $\lVert\binom{a}{n}\rVert^2\le(\frac{M}{n})^{2(\lceil a\rceil)}$ and $\frac{M}{n}<1$ when a rational number $-1<a<A$ and an integer $n>N$ are chosen.
 	    \implementation
 	      \begin{enumerate}
 	        \item Let $M=2A$.
@@ -4613,14 +4647,51 @@
 	            \item $=\lVert\frac{a^{\ul{n}}}{n!}\rVert^2$
 	            \item $=\lVert\prod_k^{[0:n]}\frac{a-k}{k+1}\rVert^2$
 	            \item $=\prod_k^{[0:n]}\frac{(a-k)^2}{(k+1)^2}$
-	            \item $=\prod_k^{[0:\lfloor a\rfloor+1]}(k-a)^2\cdot\prod_k^{[0:n]}\frac{(k+\lfloor a\rfloor+1-a)^2}{(k+1)^2}\cdot\prod_k^{[n-\lfloor a\rfloor-1:n]}\frac{1}{(k+1)^2}$
-	            \item $\le(a^{\lfloor a\rfloor+1}\cdot 1^n\cdot(\frac{1}{n-\lfloor a\rfloor})^{\lfloor a\rfloor+1})^2$
-	            \item $=(\frac{a}{n-\lfloor a\rfloor})^{2(\lfloor a\rfloor+1)}$
-	            \item $\le(\frac{2a}{n})^{2(\lfloor a\rfloor+1)}$
-	            \item $\le(\frac{M}{n})^{2(\lfloor a\rfloor+1)}$.
+	            \item $=\prod_k^{[0:\lceil a\rceil]}(k-a)^2\cdot\prod_k^{[0:n]}\frac{(k+\lfloor a\rfloor+1-a)^2}{(k+1)^2}\cdot\prod_k^{[n-\lceil a\rceil:n]}\frac{1}{(k+1)^2}$
+	            \item $\le(a^{\lceil a\rceil}\cdot 1^n\cdot(\frac{1}{n-\lfloor a\rfloor})^{\lceil a\rceil})^2$
+	            \item $=(\frac{a}{n-\lfloor a\rfloor})^{2(\lceil a\rceil)}$
+	            \item $\le(\frac{2a}{n})^{2(\lceil a\rceil)}$
+	            \item $\le(\frac{M}{n})^{2(\lceil a\rceil)}$.
 	          \end{enumerate}
 	        \end{enumerate}
 	        \item \textbf{Yield the tuple $\langle M,N,p\rangle$.}
+	      \end{enumerate}
+	  \procedure{sun0812191002}
+	    \objective
+	      Choose a positive integer $A$. The objective of the following instructions is to construct a rational number $B$, an integer $N$, and a procedure $p(a,b,n)$ to show that $\sum_r^{[0:n+1]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert\le\frac{B}{n}$ when non-negative rational numbers $a,b$, and an integer $n$ such that $a<A$,$b<A$, and $n>N$ are chosen.
+	    \implementation
+	      \begin{enumerate}
+	        \item Execute \procedurehr{wed2407191824} on $\langle A\rangle$ and let $\langle M,Q,q\rangle$ receive.
+	        \item Let $N=\max(2A,Q+A)$.
+	        \item Let $B=M^A(M^{A}+8A!A)$.
+	        \item Let $p(a,b,n)$ be the following procedure:
+	        \begin{enumerate}
+	          \item Verify that $n>N\ge Q$.
+	          \item Execute procedure $q$ on $\langle a+b,n\rangle$.
+	          \item Hence verify that $\lVert\binom{a+b}{n}\rVert\le(\frac{M}{n})^{\lceil a+b\rceil}\le\frac{M^{\lceil A+b\rceil}}{n}\le\frac{M^{A+\lceil b\rceil}}{n}\le\frac{M^{2A}}{n}$.
+	          \item For $r$ in $[0:\lceil b\rceil]$, do the following:
+	          \begin{enumerate}
+	            \item Verify that $n-r\ge N-\lceil b\rceil\ge Q+A-A=Q$.
+	            \item Execute procedure $q$ on $\langle a,n-r\rangle$.
+	            \item Hence verify that $\lVert\binom{a}{n-r}\rVert^2\le(\frac{M}{n-r})^{2\lceil a\rceil}\le(\frac{M^A}{r})^2\le(\frac{M^A}{n-\lfloor a\rfloor})^2\le(\frac{M^A}{n-A})^2\le(\frac{M^A}{n-\frac{1}{2}N})^2\le(\frac{M^A}{\frac{1}{2}n})^2=(\frac{2M^A}{n})^2$.
+	          \end{enumerate}
+	          \item For $r$ in $[\lceil n-a\rceil:n+1]$, do the following:
+	          \begin{enumerate}
+	            \item Verify that $r\ge\lceil n-a\rceil=n-\lfloor a\rfloor\ge N-\lfloor a\rfloor\ge Q+A-A=Q$.
+	            \item Execute procedure $q$ on $\langle b,r\rangle$.
+	            \item Hence verify that $\lVert\binom{b}{r}\rVert^2\le(\frac{M}{r})^{2\lceil b\rceil}\le(\frac{M^A}{r})^2\le(\frac{2M^A}{n})^2$.
+	          \end{enumerate}
+	          \item Hence using \procedurehr{sun0812190920}, verify that $\sum_r^{[0:n+1]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert$
+	          \begin{enumerate}
+	            \item $=\sum_r^{[0:\lceil b\rceil]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert+\lVert\sum_r^{[\lceil b\rceil:\lceil n-a\rceil]}\binom{b}{r}\binom{a}{n-r}\rVert+\sum_r^{[\lceil n-a\rceil:n+1]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert$
+	            \item $=\sum_r^{[0:\lceil b\rceil]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert+\lVert\sum_r^{[0:n+1]}\binom{b}{r}\binom{a}{n-r}-\sum_r^{[0:\lceil b\rceil]}\binom{b}{r}\binom{a}{n-r}-\sum_r^{[\lceil n-a\rceil:n+1]}\binom{b}{r}\binom{a}{n-r}\rVert+\sum_r^{[\lceil n-a\rceil:n+1]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert$
+	            \item $=2\sum_r^{[0:\lceil b\rceil]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert+\lVert\sum_r^{[0:n+1]}\binom{b}{r}\binom{a}{n-r}\rVert+2\sum_r^{[\lceil n-a\rceil:n+1]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert$
+	            \item $=\lVert\binom{a+b}{n}\rVert+2(\sum_r^{[0:\lceil b\rceil]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert+\sum_r^{[\lceil n-a\rceil:n+1]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert)$
+	            \item $\le\frac{M^{2A}}{n}+2(\sum_r^{[0:\lceil b\rceil]}A!\frac{2M^A}{n}+\sum_r^{[\lceil n-a\rceil:n+1]}\frac{2M^A}{n}A!)$
+	            \item $\le\frac{M^A}{n}(M^A+8\frac{A!A}{n})$
+	            \item $=\frac{B}{n}$.
+	          \end{enumerate}
+	        \end{enumerate}
 	      \end{enumerate}
 	  \procedure{thu2507190646}
 	    \objective
