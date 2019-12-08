@@ -4695,26 +4695,22 @@
 	      \end{enumerate}
 	  \procedure{thu2507190646}
 	    \objective
-	      Choose a rational number $1>X\ge 0$. The objective of the following instructions is to construct rational numbers $B>0$, $N>0$, and a procedure $p(x,a,b,n)$ to show that $(1+x)_n^{a+b}\equiv(1+x)_n^a(1+x)_n^b\err{\frac{B}{n}}$ when a complex number $x$, two rational numbers $a,b$, and a positive integer $n$ such that $\lVert x\rVert^2\le 1$, $\Re(x)\ge-X$, $0<a<1$, $0<b<1$, and $n>N$ are chosen.
+	      Choose a rational number $1>X\ge 0$. The objective of the following instructions is to construct rational numbers $B>0$, $N>0$, and a procedure $p(x,a,b,n)$ to show that $(1+x)_n^{a+b}\equiv(1+x)_n^a(1+x)_n^b\err{\frac{B}{n}}$ when a complex number $x$, two positive rational numbers $a,b$, and a positive integer $n$ such that $\lVert x\rVert^2\le 1$, $\Re(x)\ge-X$, $a<1$, $b<1$, and $n>N$ are chosen.
 	    \implementation
 	      \begin{enumerate}
-	        \item Execute \procedurehr{wed2407191824} on $\langle 1\rangle$ and let $\langle M,N,q\rangle$ receive.
-	        \item Let $B=\frac{6M^2}{X}$.
+	        \item Execute \procedurehr{sun0812191002} on $\langle 1\rangle$ and let $\langle M,N,q\rangle$ receive.
+	        \item Let $B=\frac{2M}{1-X}$.
 	        \item Let $p(x,a,b,n)$ be the following procedure:
 	        \begin{enumerate}
 	          \item For $r\in[1:n]$, for $k\in[0:r]$, verify that $\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k$
 	          \begin{enumerate}
 	            \item $=(-1)^{k+1}(\binom{a}{k+1+n-r}+\binom{a}{k+n-r})$
 	            \item $=(-1)^{k+1}\binom{a+1}{k+1+n-r}$
-	            \item $=(-1)^{-(k+1)}\lvert\binom{a+1}{k+1+n-r}\rvert(-1)^{k+1+n-r}$
-	            \item $=\lvert\binom{a+1}{k+1+n-r}\rvert(-1)^{n-r}$.
+	            \item $=(-1)^{-(k+1)}\lVert\binom{a+1}{k+1+n-r}\rVert(-1)^{k+1+n-r}$
+	            \item $=\lVert\binom{a+1}{k+1+n-r}\rVert(-1)^{n-r}$.
 	          \end{enumerate}
-	          \item Now use procedure $q$ to verify the following:
-	          \begin{enumerate}
-	            \item $\lVert\binom{a+b}{n}\rVert^2\le(\frac{M}{n})^{2(\lfloor a+b\rfloor+1)}\le(\frac{M^2}{n})^2$
-	            \item $\lVert\binom{a}{n}\rVert^2\le(\frac{M}{n})^{2(\lfloor a\rfloor+1)}\le(\frac{M^1}{n})^2\le(\frac{M^2}{n})^2$
-	            \item $\lVert\binom{b}{n}\rVert^2\le(\frac{M}{n})^{2(\lfloor b\rfloor+1)}\le(\frac{M^1}{n})^2\le(\frac{M^2}{n})^2$
-	          \end{enumerate}
+	          \item Execute procedure $q$ on $\langle a,b,n\rangle$.
+	          \item Hence verify that $\sum_r^{[0:n+1]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert\le\frac{M}{n}$.
 	          \item Verify that $\lVert x+1\rVert^2=\Re(x+1)^2+\Im(x)^2\ge(1-X)^2$.
 	          \item Hence using \procedurehr{sun2107191133}, verify that $(1+x)_n^{a+b}\equiv(1+x)_n^a(1+x)_n^b$
 	          \begin{enumerate}
@@ -4723,11 +4719,10 @@
 	            \item $\err{x^n\sum_r^{[1:n]}\binom{b}{r}\sum_k^{[0:r]}\binom{a}{k+n-r}x^k}$
 	            \item $\err{x^n\sum_r^{[1:n]}\binom{b}{r}\sum_k^{[0:r]}(\binom{a}{k+1+n-r}(-1)^{k+1}\cdot\frac{(-x)^{k+1}}{-x-1}-\binom{a}{k+n-r}(-1)^k\cdot\frac{(-x)^k}{-x-1}-\frac{(-x)^{k+1}}{-x-1}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k))}$
 	            \item $\err{\frac{x^n}{x+1}\sum_r^{[1:n]}\binom{b}{r}(\binom{a}{n}x^r-\binom{a}{n-r}-\sum_k^{[0:r]}(-x)^{k+1}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k))}$
-	            \item $\err{\frac{1}{1-X}\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\sum_k^{[0:r]}\lvert\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k\rvert)}$
-	            \item $\err{\frac{1}{1-X}\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\lvert\sum_k^{[0:r]}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k)\rvert)}$
-	            \item $\err{\frac{1}{1-X}\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert(\lvert\binom{a}{n}\rvert+\lvert\binom{a}{n-r}\rvert+\lvert\binom{a}{n}(-1)^r-\binom{a}{n-r}\rvert)}$
-	            \item $\err{\frac{2}{1-X}\sum_r^{[1:n]}\lvert\binom{b}{r}\rvert\lvert\binom{a}{n-r}\rvert}$
-	            \item $\err{\frac{2}{1-X}(\lvert\binom{a+b}{n}\rvert+\lvert\binom{a}{n}\rvert+\lvert\binom{b}{n}\rvert)}$
+	            \item $\err{\frac{1}{1-X}\sum_r^{[1:n]}\lVert\binom{b}{r}\rVert(\lVert\binom{a}{n}\rVert+\lVert\binom{a}{n-r}\rVert+\sum_k^{[0:r]}\lVert\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k\rVert)}$
+	            \item $\err{\frac{1}{1-X}\sum_r^{[1:n]}\lVert\binom{b}{r}\rVert(\lVert\binom{a}{n}\rVert+\lVert\binom{a}{n-r}\rVert+\lVert\sum_k^{[0:r]}(\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k)\rVert)}$
+	            \item $\err{\frac{1}{1-X}\sum_r^{[1:n]}\lVert\binom{b}{r}\rVert(\lVert\binom{a}{n}\rVert+\lVert\binom{a}{n-r}\rVert+\lVert\binom{a}{n}(-1)^r-\binom{a}{n-r}\rVert)}$
+	            \item $\err{\frac{2}{1-X}\sum_r^{[1:n]}\lVert\binom{b}{r}\rVert\lVert\binom{a}{n-r}\rVert}$
 	            \item $\err{\frac{B}{n}}$.
 	          \end{enumerate}
 	        \end{enumerate}
