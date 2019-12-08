@@ -6471,6 +6471,64 @@
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
 		    \end{enumerate}
+		\procedure{sun0812191512}
+		  \objective
+		    Choose a rational number $X$ such that $0<X\le 1$. The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ and a procedure $p(x,n,k)$ to show that $\exp_n(\ln_k(x))\equiv x\err{\frac{an}{k}+\frac{c}{n}}$ when a complex number $x$ and integers $k,n$ such that $\lVert x\rVert^2\ge X^2$, $n>e$, and $k>d$ are chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Execute \procedurehr{wed2108191401} on $\langle X\rangle$ and let $\langle a_1,b_1,c_1,d_1,p_1\rangle$ receive.
+		      \item Execute \procedurehr{sun0812191440} on $\langle X\rangle$ and let $\langle a_2,b_2,p_2\rangle$ receive.
+		      \item Execute \procedurehr{3.59} on $\langle a_2,1\rangle$ and let $\langle a_3,b_3,c_3,d_3,p_3\rangle$ receive.
+		      \item Let $a=a_2+a_3$.
+		      \item Let $c=b_1+b_3$.
+		      \item Let $d=\max(c_1,b_2,d_3)$.
+		      \item Let $e=\max(c_3,d_1)$.
+		      \item Let $p(x,n,k)$ be the following procedure:
+		      \begin{enumerate}
+		        \item If $\Re(x)\ge 0$, then do the following:
+		        \begin{enumerate}
+		          \item Execute procedure $p_1$ on $\langle x,n,k\rangle$.
+		          \item \textbf{Hence verify that $\exp_n(\ln_k(x))\equiv x\err{\frac{a_2n}{k}+\frac{b_1}{n}}\err{\frac{an}{k}+\frac{c}{n}}$.}
+		        \end{enumerate}
+		        \item Otherwise if $\Im(x)\ge 0$, then do the following:
+		        \begin{enumerate}
+		          \item Verify that $\lVert\frac{x}{i}\rVert^2=\lVert x\rVert^2\ge X^2$.
+		          \item Verify that $\Re(\frac{x}{i})=\Re(\Im(x)-\Re(x)i)=\Im(x)\ge 0$.
+		          \item Execute procedure $p_1$ on $\langle\frac{x}{i},n,k\rangle$.
+		          \item Hence verify that $\exp_n(\ln_k(\frac{x}{i}))\equiv\frac{x}{i}\err{\frac{a_2n}{k}+\frac{b_1}{n}}$.
+		          \item Execute procedure $p_2$ on $\langle\frac{x}{i},k\rangle$.
+		          \item Hence verify that $\lVert\ln_k(\frac{x}{i})\rVert^2\le{a_2}^2$.
+		          \item Execute procedure $p_3$ on $\langle\ln_k(\frac{x}{i}),n,k,1\rangle$.
+		          \item Hence verify that $\exp_n(\ln_k(x))$
+		          \begin{enumerate}
+		            \item $=\exp_n(\ln_k(\frac{x}{i})+\frac{\tau_k}{4}i)$
+		            \item $\equiv i^1\exp_n(\ln_k(\frac{x}{i}))\err{\frac{a_3n}{k}+\frac{b_3}{n}}$
+		            \item $\equiv i\cdot\frac{x}{i}\err{\frac{a_2n}{k}+\frac{b_1}{n}}$
+		            \item $=x$.
+		          \end{enumerate}
+		          \item \textbf{Hence verify that $\exp_n(\ln_k(x))\equiv x\err{\frac{an}{k}+\frac{c}{n}}$.}
+		        \end{enumerate}
+		        \item Otherwise do the following:
+		        \begin{enumerate}
+		          \item Verify that $\lVert xi\rVert^2=\lVert x\rVert^2\ge X^2$.
+		          \item Verify that $\Re(xi)=\Re(-\Im(x)+\Re(x)i)=-\Im(x)>0$.
+		          \item Execute procedure $p_1$ on $\langle xi,n,k\rangle$.
+		          \item Hence verify that $\exp_n(\ln_k(xi))\equiv xi\err{\frac{a_2n}{k}+\frac{b_1}{n}}$.
+		          \item Execute procedure $p_2$ on $\langle xi,k\rangle$.
+		          \item Hence verify that $\lVert\ln_k(xi)\rVert^2\le{a_2}^2$.
+		          \item Execute procedure $p_3$ on $\langle\ln_k(xi),n,k,-1\rangle$.
+		          \item Hence verify that $\exp_n(\ln_k(x))$
+		          \begin{enumerate}
+		            \item $=\exp_n(\ln_k(xi)-\frac{\tau_k}{4}i)$
+		            \item $\equiv i^{-1}\exp_n(\ln_k(xi))\err{\frac{a_3n}{k}+\frac{b_3}{n}}$
+		            \item $\equiv i^{-1}xi\err{\frac{a_2n}{k}+\frac{b_1}{n}}$
+		            \item $=x$.
+		          \end{enumerate}
+		          \item \textbf{Hence verify that $\exp_n(\ln_k(x))\equiv x\err{\frac{an}{k}+\frac{c}{n}}$.}
+		        \end{enumerate}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
+		    \end{enumerate}
 		\procedure{wed2108191603}
 		  \objective
 		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $\lVert\frac{1}{x}\rVert^2\le c^2$ when a complex number $x$ and a positive integer $n$ such that $\Re(x)\ge\epsilon$, $\lVert x\rVert^2\le X^2$, and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\ln_n(y)\equiv\frac{1}{x}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $0<\lVert\delta\rVert^2\le e^2$ is chosen.
