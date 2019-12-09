@@ -6529,15 +6529,40 @@
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
 		    \end{enumerate}
+		\procedure{wed2108191324}
+		  \objective
+		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct a rational number $f$ such that $0<f<1$, and a procedure $p(x)$ to show that $\lVert\frac{x-1}{x+1}\rVert^2\le f^2$ when a complex number $x$ such that $\Re(x)\ge\epsilon$ and $\lVert x\rVert^2\le X^2$ is chosen.
+		  \implementation
+		    \begin{enumerate}
+		      \item Let $f=1-\frac{2\epsilon}{X^2+1+2\epsilon}$.
+		      \item Verify that $0<f<1$.
+		      \item Let $p(x)$ be the following procedure:
+		      \begin{enumerate}
+		        \item Verify that $f^2=1-\frac{4\epsilon}{X^2+1+2\epsilon}+(\frac{2\epsilon}{X^2+1+2\epsilon})^2\ge 1-\frac{4\epsilon}{X^2+1+2\epsilon}$.
+		        \item Verify that $\frac{4\epsilon}{X^2+1+2\epsilon}\ge 1-f^2$.
+		        \item Hence verify that $X^2+1+2\epsilon\le\frac{4\epsilon}{1-f^2}$.
+		        \item Hence verify that $\lVert x\rVert^2$
+		        \begin{enumerate}
+		          \item $\le X^2$
+		          \item $\le\frac{4\epsilon}{1-f^2}-(1+2\epsilon)$
+		          \item $=\frac{4\epsilon-1+f^2-2\epsilon+2\epsilon f^2}{1-f^2}$
+		          \item $=\frac{f^2-1+2\epsilon(1+f^2)}{1-f^2}$
+		          \item $\le\frac{f^2-1+2\Re(x)(1+f^2)}{1-f^2}$.
+		        \end{enumerate}
+		        \item Hence verify that $(1-f^2)(\Re(x)^2+\Im(x)^2)\le f^2-1+2\Re(x)(1+f^2)$.
+		        \item Hence verify that $(\Re(x)-1)^2+\Im(x)^2\le f^2((\Re(x)+1)^2+\Im(x)^2)$
+		        \item \textbf{Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le f^2$.}
+		      \end{enumerate}
+		      \item \textbf{Yield the tuple $\langle f,p\rangle$.}
+		    \end{enumerate}
 		\procedure{wed2108191603}
 		  \objective
-		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $\lVert\frac{1}{x}\rVert^2\le c^2$ when a complex number $x$ and a positive integer $n$ such that $\Re(x)\ge\epsilon$, $\lVert x\rVert^2\le X^2$, and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\ln_n(y)\equiv\frac{1}{x}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $0<\lVert\delta\rVert^2\le e^2$ is chosen.
+		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct rational numbers $c,d,a,b,e$, a procedure $p(x,n)$ to show that $\lVert\frac{1}{x}\rVert^2\le c^2$ when a complex number $x$ and a positive integer $n$ such that $\Re(x)\ge\epsilon$, $\lVert x\rVert^2\le X^2$, and $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}\ln_n(y)\equiv\frac{1}{x}\err{\frac{a}{n}+b\{\delta\}}$ when in addition a complex number $\delta$ such that $0<\lVert\delta\rVert^2\le e^2$ is chosen.
 		  \implementation
 		    \begin{instructions}
-		      \item Let $c=\frac{1}{\epsilon}$.
 		      \item Execute the following in post-order:
 		      \begin{instructions}
-		        \item Execute \procedurehr{mon1908191506} on $\langle q_3,q_4,q_5,q_6\rangle$ and let $\langle q_1,q_2\rangle$ receive.
+		        \item Execute \procedurehr{mon1908191506} on $\langle q_3,q_4,q_5,q_6\rangle$ and let $\langle c,d,a,b,e,q_1,q_2\rangle$ receive.
 		        \begin{instructions}
 		          \item Execute \procedurehr{sat0308191134} on $\langle q_7,q_8,q_9,q_{10},q_{11}\rangle$ and let $\langle q_3,q_4\rangle$ receive.
 		          \begin{instructions}
@@ -6696,32 +6721,6 @@
 		        \end{enumerate}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle l,d,a,b,p,q\rangle$.}
-		    \end{enumerate}
-		\procedure{wed2108191324}
-		  \objective
-		    Choose two rational numbers $X,\epsilon$ such that $0<\epsilon<1$ and $X\ge 0$. The objective of the following instructions is to construct a rational number $f$ such that $0<f<1$, and a procedure $p(x)$ to show that $\lVert\frac{x-1}{x+1}\rVert^2\le f^2$ when a complex number $x$ such that $\Re(x)\ge\epsilon$ and $\lVert x\rVert^2\le X^2$ is chosen.
-		  \implementation
-		    \begin{enumerate}
-		      \item Let $f=1-\frac{2\epsilon}{X^2+1+2\epsilon}$.
-		      \item Verify that $0<f<1$.
-		      \item Let $p(x)$ be the following procedure:
-		      \begin{enumerate}
-		        \item Verify that $f^2=1-\frac{4\epsilon}{X^2+1+2\epsilon}+(\frac{2\epsilon}{X^2+1+2\epsilon})^2\ge 1-\frac{4\epsilon}{X^2+1+2\epsilon}$.
-		        \item Verify that $\frac{4\epsilon}{X^2+1+2\epsilon}\ge 1-f^2$.
-		        \item Hence verify that $X^2+1+2\epsilon\le\frac{4\epsilon}{1-f^2}$.
-		        \item Hence verify that $\lVert x\rVert^2$
-		        \begin{enumerate}
-		          \item $\le X^2$
-		          \item $\le\frac{4\epsilon}{1-f^2}-(1+2\epsilon)$
-		          \item $=\frac{4\epsilon-1+f^2-2\epsilon+2\epsilon f^2}{1-f^2}$
-		          \item $=\frac{f^2-1+2\epsilon(1+f^2)}{1-f^2}$
-		          \item $\le\frac{f^2-1+2\Re(x)(1+f^2)}{1-f^2}$.
-		        \end{enumerate}
-		        \item Hence verify that $(1-f^2)(\Re(x)^2+\Im(x)^2)\le f^2-1+2\Re(x)(1+f^2)$.
-		        \item Hence verify that $(\Re(x)-1)^2+\Im(x)^2\le f^2((\Re(x)+1)^2+\Im(x)^2)$
-		        \item \textbf{Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le f^2$.}
-		      \end{enumerate}
-		      \item \textbf{Yield the tuple $\langle f,p\rangle$.}
 		    \end{enumerate}
 		\declaration{thu2208191619}
 		  The notation \gls{differentialpow}, where $x,a$ are complex numbers and $n$ is a positive integer, will be used as a shorthand for $(1+\frac{x-1}{x+1})_n^a(1-\frac{x-1}{x+1})_n^{-a}$.
