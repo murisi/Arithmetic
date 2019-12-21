@@ -3676,13 +3676,8 @@
 		    \begin{enumerate}
 		      \item Show that $\Re(\frac{a}{d})^2$
 		      \begin{enumerate}
-		        \item $=\Re(\frac{a\conj{d}}{\lVert d\rVert^2})^2$
-		        \item $=\frac{\Re(a\conj{d})^2}{\lVert d\rVert^4}$
-		        \item $\le\frac{\lVert a\conj{d}\rVert^2}{\lVert d\rVert^4}$
-		        \item $=\frac{\lVert a\rVert^2\lVert d\rVert^2}{\lVert d\rVert^4}$
-		        \item $=\frac{\lVert a\rVert^2}{\lVert d\rVert^2}$
-		        \item $\le\frac{b^2}{c^2}$
-		        \item $=(\frac{b}{c})^2$.
+		        \item $=\Re(\frac{a\conj{d}}{\lVert d\rVert^2})^2=\frac{\Re(a\conj{d})^2}{\lVert d\rVert^4}\le\frac{\lVert a\conj{d}\rVert^2}{\lVert d\rVert^4}$
+		        \item $=\frac{\lVert a\rVert^2\lVert d\rVert^2}{\lVert d\rVert^4}=\frac{\lVert a\rVert^2}{\lVert d\rVert^2}\le\frac{b^2}{c^2}=(\frac{b}{c})^2$.
 		      \end{enumerate}
 		      \item Hence show that $\Re(\frac{a}{d})\le\frac{b}{c}<1$.
 		      \item Hence show that $\lVert d-a\rVert^2$
@@ -3735,10 +3730,13 @@
 				\begin{enumerate}
 					\item Show that $i^2=-1$.
 					\item Hence show that $i^4=(-1)^2=1$.
-					\item \textbf{Hence show that $i^{4a}=(i^4)^a=1^a=1$.}
-					\item \textbf{Hence show that $i^{4a+1}=i^{4a}i=1i=i$.}
-					\item \textbf{Hence show that $i^{4a+2}=i^{4a+1}i=i^2=-1$.}
-					\item \textbf{Hence show that $i^{4a+3}=i^{4a+2}i=(-1)i=-i$.}
+					\item \textbf{Hence show that}
+					\begin{enumerate}
+					  \item $i^{4a}=(i^4)^a=1^a=1$
+					  \item $i^{4a+1}=i^{4a}i=1i=i$
+					  \item $i^{4a+2}=i^{4a+1}i=i^2=-1$
+					  \item $i^{4a+3}=i^{4a+2}i=(-1)i=-i$.
+					\end{enumerate}
 				\end{enumerate}
 		\declaration{mon1908191749}
 		  The notation \gls{complexerr} will be used as a shorthand for $\lVert b-a\rVert^2\le\lVert c_1\rVert^2\le\lVert c_2\rVert^2\le\cdots\le\lVert c_n\rVert^2$.
@@ -3931,9 +3929,8 @@
 						  \item if $\lvert\Re(x)\rvert\le X$
 						  \item if $\lvert\Re(x)\rvert^2\le\lVert x\rVert^2\le X^2$.
 						\end{enumerate}
-						\item Hence execute procedure $q$ on $\langle y,r,n\rangle$.
-						\item Hence verify that $(1+\frac{y}{n})^r\le a^2$.
-						\item Now using \procedurehr{3.02} verify that $\lVert(1+\frac{x}{n})^r\rVert^2$
+						\item Hence show that $(1+\frac{y}{n})^r\le a^2$ using procedure $q$.
+						\item Now using \procedurehr{3.02} show that $\lVert(1+\frac{x}{n})^r\rVert^2$
 						\begin{enumerate}
 							\item $=(1+\frac{x}{n})^r\conj{(1+\frac{x}{n})^r}$
 							\item $=(1+\frac{x}{n})^r(1+\frac{\conj{x}}{n})^r$
@@ -3956,13 +3953,11 @@
 					\item Let $b=\max(c,d)$.
 					\item Let $p(x,r,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $n>b\ge d$.
 						\item Let $y=2\lvert\Re(x)\rvert+\lVert x\rVert^2$.
 						\item Verify that $\lvert -y\rvert=y\le 2X+X^2=c$.
-						\item Hence execute procedure $q$ on $\langle -y,r,n\rangle$.
-						\item Hence verify that $(1+\frac{-y}{n})^r\ge a^2$.
-						\item Also, verify that $n>b\ge c\ge y$.
-						\item Hence verify that $\lVert(1+\frac{x}{n})^r\rVert^2$
+						\item Hence show that $(1+\frac{-y}{n})^r\ge a^2$ using procedure $q$.
+						\item Also, show that $n>b\ge c\ge y$.
+						\item Hence show that $\lVert(1+\frac{x}{n})^r\rVert^2$
 						\begin{enumerate}
 							\item $=(1+\frac{x}{n})^r\conj{(1+\frac{x}{n})^r}$
 							\item $=(1+\frac{x}{n})^r(1+\frac{\conj{x}}{n})^r$
@@ -3984,7 +3979,7 @@
 					\item Let $a=c^3$.
 					\item Let $p(x,y,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Using procedure $q$, verify that $\exp_n(x+y)\equiv\exp_n(x)\exp_n(y)$
+						\item Using procedure $q$, show that $\exp_n(x+y)\equiv\exp_n(x)\exp_n(y)$
 						\begin{enumerate}
 						  \item $\err{\exp_n(x)\exp_n(y)-\exp_n(x+y)}$
 							\item $\err{(1+\frac{x}{n})^n(1+\frac{y}{n})^n-(1+\frac{x+y}{n})^n}$
@@ -4010,14 +4005,14 @@
 		      \item Let $a=c(1+\frac{g}{e})X^2$.
 		      \item Let $p(x,y,n)$ be the following procedure:
 		      \begin{enumerate}
-		        \item Using procedures $q,r,t$, verify that $\exp_n(x-y)$
+		        \item Using procedures $q,r,t$, show that $\exp_n(x-y)$
 		        \begin{enumerate}
 		          \item $\equiv\exp_n(x)\exp_n(-y)\err{\frac{cX^2}{n}}$
 		          \item $=\exp_n(x)\frac{\exp_n(y)\exp_n(-y)}{\exp_n(y)}$
 		          \item $\equiv\exp_n(x)\frac{\exp_n(0)}{\exp_n(y)}\err{\frac{g}{e}\cdot\frac{cX^2}{n}}$
 		          \item $=\frac{\exp_n(x)}{\exp_n(y)}$.
 		        \end{enumerate}
-		        \item \textbf{Hence verify that $\exp_n(x-y)\equiv\frac{\exp_n(x)}{\exp_n(y)}\err{\frac{cX^2}{n}+\frac{gcX^2}{en}}\err{\frac{a}{n}}$.}
+		        \item \textbf{Hence show that $\exp_n(x-y)\equiv\frac{\exp_n(x)}{\exp_n(y)}\err{\frac{cX^2}{n}+\frac{gcX^2}{en}}\err{\frac{a}{n}}$.}
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 		    \end{enumerate}
