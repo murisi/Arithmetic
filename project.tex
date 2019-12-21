@@ -3925,11 +3925,12 @@
 					\item Execute \procedurehr{3.10} on $\langle c\rangle$ and let $\langle a,b,q\rangle$.
 					\item Let $p(x,r,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $n>b$.
 						\item Let $y=2\lvert\Re(x)\rvert+\lVert x\rVert^2$.
-						\item Verify that $\lvert\Re(x)\rvert^2\le\lVert x\rVert^2\le X^2$.
-						\item Therefore verify that $\lvert\Re(x)\rvert\le X$.
-						\item Therefore verify that $\lvert y\rvert=y\le 2X+X^2=c$.
+						\item Show that $\lvert y\rvert=y\le 2X+X^2=c$
+						\begin{enumerate}
+						  \item if $\lvert\Re(x)\rvert\le X$
+						  \item if $\lvert\Re(x)\rvert^2\le\lVert x\rVert^2\le X^2$.
+						\end{enumerate}
 						\item Hence execute procedure $q$ on $\langle y,r,n\rangle$.
 						\item Hence verify that $(1+\frac{y}{n})^r\le a^2$.
 						\item Now using \procedurehr{3.02} verify that $\lVert(1+\frac{x}{n})^r\rVert^2$
