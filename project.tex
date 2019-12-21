@@ -80,7 +80,7 @@
 \newcounter{proceduretemp}
 \newcommand{\procedure}[1]{
 	\renewcommand\theproceduretemp{\thepart:\theprocedure}
-	\subsection*{Procedure \theproceduretemp}
+	\subsection*{Procedure \theproceduretemp (#1)}
 	\label{sec:procedure #1}
 	\refstepcounter{proceduretemp}
 	\label{procedure#1}
@@ -3395,32 +3395,34 @@
 				Choose a complex number $a$. The objective of the following instructions is to show that $a=a$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $\Re(a)=\Re(a)$.
-					\item Verify that $\Im(a)=\Im(a)$.
-					\item \textbf{Hence verify that $a=a$.}
+					\item Show that $\Re(a)=\Re(a)$.
+					\item Show that $\Im(a)=\Im(a)$.
+					\item \textbf{Hence show that $a=a$.}
 				\end{enumerate}
 		\procedure{3.69}
 			\objective
 				Choose two complex numbers $a,b$ such that $a=b$. The objective of the following instructions is to show that $b=a$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $\Re(a)=\Re(b)$.
-					\item Hence verify that $\Re(b)=\Re(a)$.
-					\item Verify that $\Im(a)=\Im(b)$.
-					\item Hence verify that $\Im(b)=\Im(a)$.
-					\item \textbf{Hence verify that $b=a$.}
+					\item Show that $\Re(b)=\Re(a)$ if $\Re(a)=\Re(b)$.
+					\item Show that $\Im(b)=\Im(a)$ if $\Im(a)=\Im(b)$.
+					\item \textbf{Hence show that $b=a$.}
 				\end{enumerate}
 		\procedure{3.70}
 			\objective
 				Choose three complex numbers $a,b,c$ such that $a=b$ and $b=c$. The objective of the following instructions is to show that $a=c$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $\Re(a)=\Re(b)$.
-					\item Verify that $\Re(b)=\Re(c)$.
-					\item Hence verify that $\Re(a)=\Re(c)$.
-					\item Verify that $\Im(a)=\Im(b)$.
-					\item Verify that $\Im(b)=\Im(c)$.
-					\item Hence verify that $\Im(a)=\Im(c)$.
+					\item Show that $\Re(a)=\Re(c)$
+					\begin{enumerate}
+					  \item if $\Re(a)=\Re(b)$
+					  \item and $\Re(b)=\Re(c)$.
+					\end{enumerate}
+					\item Show that $\Im(a)=\Im(c)$
+					\begin{enumerate}
+					  \item if $\Im(a)=\Im(b)$
+					  \item and $\Im(b)=\Im(c)$.
+					\end{enumerate}
 					\item \textbf{Hence verify that $a=c$.}
 				\end{enumerate}
 		\declaration{3.23}
@@ -3430,11 +3432,14 @@
 				Choose two complex numbers $a,b,c,d$ such that $a=c$ and $b=d$. The objective of the following instructions is to show that $a+b=c+d$.
 			\implementation
 				\begin{enumerate}
-					\item Using \declarationhr{3.22}, verify that $\Re(a)=\Re(c)$.
-					\item Using \declarationhr{3.22}, verify that $\Im(a)=\Im(c)$.
-					\item Using \declarationhr{3.22}, verify that $\Re(b)=\Re(d)$.
-					\item Using \declarationhr{3.22}, verify that $\Im(b)=\Im(d)$.
-					\item Hence verify that $a+b$
+					\item Using \declarationhr{3.22}, show that
+					\begin{enumerate}
+					  \item $\Re(a)=\Re(c)$
+					  \item $\Im(a)=\Im(c)$
+					  \item $\Re(b)=\Re(d)$
+					  \item $\Im(b)=\Im(d)$.
+					\end{enumerate}
+					\item Hence show that $a+b$
 					\begin{enumerate}
 						\item $=\langle\Re(a),\Im(a)\rangle+\langle\Re(b),\Im(b)\rangle$
 						\item $=\langle\Re(a)+\Re(b),\Im(a)+\Im(b)\rangle$
@@ -3448,7 +3453,7 @@
 				Choose three complex numbers $a,b,c$. The objective of the following instructions is to show that $(a+b)+c=a+(b+c)$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $(a+b)+c$
+					\item Show that $(a+b)+c$
 					\begin{enumerate}
 						\item $=\langle\Re(a)+\Re(b),\Im(a)+\Im(b)\rangle+\langle\Re(c),\Im(c)\rangle$
 						\item $=\langle(\Re(a)+\Re(b))+\Re(c),(\Im(a)+\Im(b))+\Im(c)\rangle$
@@ -3462,7 +3467,7 @@
 				Choose two complex numbers $a,b$. The objective of the following instructions is to show that $a+b=b+a$.
 			\implementation
 				\begin{enumerate}
-					\item $a+b$
+					\item Show that $a+b$
 					\begin{enumerate}
 						\item $=\langle\Re(a)+\Re(b),\Im(a)+\Im(b)\rangle$
 						\item $=\langle\Re(b)+\Re(a),\Im(b)+\Im(a)\rangle$
@@ -3476,7 +3481,7 @@
 				Choose a complex number $a$. The objective of the following instructions is to show that $0+a=a$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $0+a$
+					\item Show that $0+a$
 					\begin{enumerate}
 						\item $=\langle 0,0\rangle+\langle\Re(a),\Im(a)\rangle$
 						\item $=\langle 0+\Re(a),0+\Im(a)\rangle$
@@ -3491,7 +3496,7 @@
 				Choose a complex number $a$. The objective of the following instructions is to show that $-a+a=0$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $-a+a$
+					\item Show that $-a+a$
 					\begin{enumerate}
 						\item $=(-a)+a$
 						\item $=\langle-\Re(a),-\Im(a)\rangle+\langle\Re(a),\Im(a)\rangle$
@@ -3507,11 +3512,14 @@
 				Choose four complex numbers $a,b,c,d$ such that $a=c$ and $b=d$. The objective of the following instructions is to show that $ab=cd$.
 			\implementation
 				\begin{enumerate}
-					\item Using \declarationhr{3.22}, verify that $\Re(a)=\Re(c)$.
-					\item Using \declarationhr{3.22}, verify that $\Im(a)=\Im(c)$.
-					\item Using \declarationhr{3.22}, verify that $\Re(b)=\Re(d)$.
-					\item Using \declarationhr{3.22}, verify that $\Im(b)=\Im(d)$.
-					\item Hence verify that $ab$
+					\item Using \declarationhr{3.22}, show that
+					\begin{enumerate}
+					  \item $\Re(a)=\Re(c)$
+					  \item $\Im(a)=\Im(c)$
+					  \item $\Re(b)=\Re(d)$
+					  \item $\Im(b)=\Im(d)$.
+					\end{enumerate}
+					\item Hence show that $ab$
 					\begin{enumerate}
 						\item $=\langle\Re(a),\Im(a)\rangle\langle\Re(b),\Im(b)\rangle$
 						\item $=\langle\Re(a)\Re(b)-\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle$
@@ -3525,7 +3533,7 @@
 				Choose three complex numbers $a,b,c$. The objective of the following instructions is to show that $(ab)c=a(bc)$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $(ab)c$
+					\item Show that $(ab)c$
 					\begin{enumerate}
 						\item $=\langle\Re(a)\Re(b)-\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle\langle\Re(c),\Im(c)\rangle$
 						\item $=\langle(\Re(a)\Re(b)-\Im(a)\Im(b))\Re(c)-(\Re(a)\Im(b)+\Im(a)\Re(b))\Im(c),(\Re(a)\Re(b)-\Im(a)\Im(b))\Im(c)+(\Re(a)\Im(b)+\Im(a)\Re(b))\Re(c)\rangle$
@@ -3539,7 +3547,7 @@
 				Choose two complex numbers $a,b$. The objective of the following instructions is to show that $ab=ba$.
 			\implementation
 				\begin{enumerate}
-					\item $ab$
+					\item Show that $ab$
 					\begin{enumerate}
 						\item $=\langle\Re(a)\Re(b)-\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle$
 						\item $=\langle\Re(b)\Re(a)-\Im(b)\Im(a),\Re(b)\Im(a)+\Im(b)\Re(a)\rangle$
@@ -3551,7 +3559,7 @@
 				Choose a complex number $a$. The objective of the following instructions is to show that $1a=a$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $1a$
+					\item Show that $1a$
 					\begin{enumerate}
 						\item $=\langle 1,0\rangle\langle\Re(a),\Im(a)\rangle$
 						\item $=\langle 1\Re(a)-0\Im(a),1\Im(a)+0\Re(a)\rangle$
@@ -3571,7 +3579,7 @@
 				Choose two complex numbers $a,b$. The objective of the following instructions is to show that $\conj{a+b}=\conj{a}+\conj{b}$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $\conj{a+b}$
+					\item Show that $\conj{a+b}$
 					\begin{enumerate}
 						\item $=\langle\Re(a+b),-\Im(a+b)\rangle$
 						\item $=\langle\Re(a)+\Re(b),-\Im(a)-\Im(b)\rangle$
@@ -3583,7 +3591,7 @@
 				Choose two complex numbers $a,b$. The objective of the following instructions is to show that $\conj{ab}=\conj{a}\conj{b}$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $\conj{ab}$
+					\item Show that $\conj{ab}$
 					\begin{enumerate}
 						\item $=\langle\Re(ab),-\Im(ab)\rangle$
 						\item $=\langle\Re(a)\Re(b)-\Im(a)\Im(b)),-\Re(a)\Im(b)-\Im(a)\Re(b)\rangle$
@@ -3598,14 +3606,14 @@
 				Choose a complex number $a$. The objective of the following instructions is to show that $a\conj{a}=\lVert a\rVert^2$.
 			\implementation
 				\begin{enumerate}
-					\item \textbf{Verify that $a\conj{a}=\lVert a\rVert^2$.}
+					\item \textbf{Show that $a\conj{a}=\lVert a\rVert^2$.}
 				\end{enumerate}
 		\procedure{3.04}
 			\objective
 				Choose a list of complex numbers $a$. The objective of the following instructions is to show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2\le\lvert a\rvert\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2$
+					\item Show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2$
 					\begin{enumerate}
 						\item $=\sum_r^{[0:{\lvert a\rvert}]}\sum_k^{[0:{\lvert a\rvert}]}a_r\conj{a_k}$
 						\item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+2\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(\Re(a_r)\Re(a_k)+\Im(a_r)\Im(a_k))$
@@ -3623,12 +3631,12 @@
 				Choose a list of complex numbers $a$. The objective of the following instructions is to show that $\frac{\lVert a_0\rVert^2}{\lvert a\rvert}-\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2\le\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$.
 			\implementation
 				\begin{enumerate}
-					\item Using \procedurehr{3.04}, verify that $\lVert a_0\rVert^2$
+					\item Using \procedurehr{3.04}, show that $\lVert a_0\rVert^2$
 					\begin{enumerate}
 						\item $=\lVert\sum_r^{[1:{\lvert a\rvert}]}a_r+(a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r)\rVert^2$
 						\item $\le \lvert a\rvert\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2+\lvert a\rvert\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$
 					\end{enumerate}
-					\item \textbf{Therefore verify that $\frac{\lVert a_0\rVert^2}{\lvert a\rvert}-\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2\le\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$.}
+					\item \textbf{Therefore show that $\frac{\lVert a_0\rVert^2}{\lvert a\rvert}-\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2\le\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$.}
 				\end{enumerate}
 		\procedure{3.04aa}
 			\objective
@@ -3637,19 +3645,19 @@
 				\begin{enumerate}
 					\item If $\lvert a\rvert=0$, then do the following:
 					\begin{enumerate}
-						\item \textbf{Verify that $\lVert\sum_i^{[0:\lvert a\rvert]} a_i\rVert^2=\lVert 0\rVert^2=(\sum_i^{[0:\lvert b\rvert]}b_i)^2$.}
+						\item \textbf{Show that $\lVert\sum_i^{[0:\lvert a\rvert]} a_i\rVert^2=\lVert 0\rVert^2=(\sum_i^{[0:\lvert b\rvert]}b_i)^2$.}
 					\end{enumerate}
 					\item Otherwise do the following:
 					\begin{enumerate}
-					  \item Verify that $\lvert a\rvert>0$.
-					  \item Using \procedurehr{3.04aa} on $a_{[1:\lvert a\rvert]}$ and $b_{[1:\lvert b\rvert]}$, verify that $\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2\le(\sum_i^{[1:\lvert b\rvert]} b_i)^2$.
-					  \item Verify that $\Re(\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i)^2$
+					  \item Show that $\lvert a\rvert>0$.
+					  \item Show that $\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2\le(\sum_i^{[1:\lvert b\rvert]} b_i)^2$ using \procedurehr{3.04aa} on $a_{[1:\lvert a\rvert]}$ and $b_{[1:\lvert b\rvert]}$.
+					  \item Show that $\Re(\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i)^2$
 					  \begin{enumerate}
 					    \item $\le\lVert\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
 					    \item $=\lVert\conj{a_0}\rVert^2\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
 					    \item $\le{b_0}^2(\sum_i^{[1:\lvert a\rvert]}b_i)^2$.
 					  \end{enumerate}
-					  \item Hence verify that $\lVert\sum_i^{[0:\lvert a\rvert]}a_i\rVert^2$
+					  \item Hence show that $\lVert\sum_i^{[0:\lvert a\rvert]}a_i\rVert^2$
 					  \begin{enumerate}
 					    \item $=(a_0+\sum_i^{[1:\lvert a\rvert]}a_i)(\conj{a_0+\sum_i^{[1:\lvert a\rvert]}a_i})$
 					    \item $=\lVert a_0\rVert^2+a_0\conj{\sum_i^{[1:\lvert a\rvert]}a_i}+\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i+\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
@@ -3666,7 +3674,7 @@
 		    Choose two complex numbers $a,d$ and two rational numbers $b,c$ such that $\lVert a\rVert^2\le b^2<c^2\le\lVert d\rVert^2$. The objective of the following instructions is to show that $\lVert d-a\rVert^2\ge(c-b)^2$.
 		  \implementation
 		    \begin{enumerate}
-		      \item Verify that $\Re(\frac{a}{d})^2$
+		      \item Show that $\Re(\frac{a}{d})^2$
 		      \begin{enumerate}
 		        \item $=\Re(\frac{a\conj{d}}{\lVert d\rVert^2})^2$
 		        \item $=\frac{\Re(a\conj{d})^2}{\lVert d\rVert^4}$
@@ -3676,8 +3684,8 @@
 		        \item $\le\frac{b^2}{c^2}$
 		        \item $=(\frac{b}{c})^2$.
 		      \end{enumerate}
-		      \item Now verify that $\Re(\frac{a}{d})\le\frac{b}{c}<1$.
-		      \item Hence verify that $\lVert d-a\rVert^2$
+		      \item Hence show that $\Re(\frac{a}{d})\le\frac{b}{c}<1$.
+		      \item Hence show that $\lVert d-a\rVert^2$
 		      \begin{enumerate}
 		        \item $=\lVert\frac{d-a}{d}\rVert^2\lVert d\rVert^2$
 		        \item $=(\Re(1-\frac{a}{d})^2+\Im(1-\frac{a}{d})^2)\lVert d\rVert^2$
@@ -3694,9 +3702,9 @@
 				Choose a complex number $a$ such that $a\ne 0$. The objective of the following instructions is to show that $\frac{1}{a}a=1$.
 			\implementation
 				\begin{enumerate}
-					\item Using \declarationhr{3.22}, verify that $\Re(a)\ne\Re(0)=0$ or $\Im(a)\ne\Im(0)=0$.
-					\item Hence verify that $\lVert a\rVert^2=\Re(a)^2+\Im(a)^2>0$.
-					\item Hence verify that $\frac{1}{a}a$
+					\item Show that $\Re(a)\ne\Re(0)=0$ or $\Im(a)\ne\Im(0)=0$ using \declarationhr{3.22}.
+					\item Hence show that $\lVert a\rVert^2=\Re(a)^2+\Im(a)^2>0$.
+					\item Hence show that $\frac{1}{a}a$
 					\begin{enumerate}
 						\item $=(\frac{1}{\Vert a\rVert^2}\conj{a})a$
 						\item $=\frac{1}{\Vert a\rVert^2}(\conj{a}a)$
@@ -3725,12 +3733,12 @@
 				Choose an integer $a$. The objective of the following instructions is to show that $i^{4a}=1$, $i^{4a+1}=i$, $i^{4a+2}=-1$, and $i^{4a+3}=-i$.
 			\implementation
 				\begin{enumerate}
-					\item Verify that $i^2=-1$.
-					\item Hence verify that $i^4=(-1)^2=1$.
-					\item \textbf{Hence verify that $i^{4a}=(i^4)^a=1^a=1$.}
-					\item \textbf{Hence verify that $i^{4a+1}=i^{4a}i=1i=i$.}
-					\item \textbf{Hence verify that $i^{4a+2}=i^{4a+1}i=i^2=-1$.}
-					\item \textbf{Hence verify that $i^{4a+3}=i^{4a+2}i=(-1)i=-i$.}
+					\item Show that $i^2=-1$.
+					\item Hence show that $i^4=(-1)^2=1$.
+					\item \textbf{Hence show that $i^{4a}=(i^4)^a=1^a=1$.}
+					\item \textbf{Hence show that $i^{4a+1}=i^{4a}i=1i=i$.}
+					\item \textbf{Hence show that $i^{4a+2}=i^{4a+1}i=i^2=-1$.}
+					\item \textbf{Hence show that $i^{4a+3}=i^{4a+2}i=(-1)i=-i$.}
 				\end{enumerate}
 		\declaration{mon1908191749}
 		  The notation \gls{complexerr} will be used as a shorthand for $\lVert b-a\rVert^2\le\lVert c_1\rVert^2\le\lVert c_2\rVert^2\le\cdots\le\lVert c_n\rVert^2$.
@@ -3739,54 +3747,54 @@
 		    Choose four complex numbers $a,b,c,d$ in such a way that $a\equiv b\err{c}$ and $\lVert c\rVert^2\le\lVert d\rVert^2$. The objective of the following instructions is to show that $a\equiv b\err{c}\err{d}$.
 		  \implementation
 		    \begin{enumerate}
-		      \item Verify that $\lVert b-a\rVert\le\lVert c\rVert^2\le\lVert d\rVert^2$.
-		      \item \textbf{Hence using \declarationhr{mon1908191749}, verify that $a\equiv b\err{c}\err{d}$.}
+		      \item Show that $\lVert b-a\rVert\le\lVert c\rVert^2\le\lVert d\rVert^2$.
+		      \item \textbf{Hence show that $a\equiv b\err{c}\err{d}$ using \declarationhr{mon1908191749}.}
 		    \end{enumerate}
 		\procedure{mon1908191825}
 		  \objective
 		    Choose three complex numbers $a,b,c$ and two non-negative rational numbers $d,e$ in such a way that $a\equiv b\err{d}$ and $b\equiv c\err{e}$. The objective of the following instructions is to show that $a\equiv c\err{d+e}$.
 		  \implementation
 		    \begin{enumerate}
-		      \item Verify that $\lVert b-a\rVert^2\le\lVert d\rVert^2=d^2$.
-		      \item Verify that $\lVert c-b\rVert^2\le\lVert e\rVert^2=e^2$.
-		      \item Hence using \procedurehr{3.04aa}, verify that $\lVert c-a\rVert^2=\lVert(c-b)+(b-a)\rVert^2\le(e+d)^2$.
-		      \item \textbf{Hence using \declarationhr{mon1908191749}, verify that $a\equiv c\err{e+d}$.}
+		      \item Show that $\lVert b-a\rVert^2\le\lVert d\rVert^2=d^2$.
+		      \item Show that $\lVert c-b\rVert^2\le\lVert e\rVert^2=e^2$.
+		      \item Hence show that $\lVert c-a\rVert^2=\lVert(c-b)+(b-a)\rVert^2\le(e+d)^2$ using \procedurehr{3.04aa}.
+		      \item \textbf{Hence show that $a\equiv c\err{e+d}$ using \declarationhr{mon1908191749}.}
 		    \end{enumerate}
 		\procedure{mon1908191839}
 		  \objective
 		    Choose four complex numbers $a,b,c,d$ and two non-negative rational numbers $e,f$ in such a way that $a\equiv b\err{e}$ and $c\equiv d\err{f}$. The objective of the following instructions is to show that $a+c\equiv b+d\err{e+f}$.
 		  \implementation
 		    \begin{enumerate}
-		      \item Verify that $\lVert b-a\rVert^2\le\lVert e\rVert^2=e^2$.
-		      \item Verify that $\lVert d-c\rVert^2\le\lVert f\rVert^2=f^2$.
-		      \item Hence using \procedurehr{3.04aa}, verify that $\lVert(b+d)-(a+c)\rVert^2=\lVert(b-a)+(d-c)\rVert^2\le(e+f)^2$.
-		      \item \textbf{Hence using \declarationhr{mon1908191749}, verify that $a+c\equiv b+d\err{e+f}$.}
+		      \item Show that $\lVert b-a\rVert^2\le\lVert e\rVert^2=e^2$.
+		      \item Show that $\lVert d-c\rVert^2\le\lVert f\rVert^2=f^2$.
+		      \item Hence show that $\lVert(b+d)-(a+c)\rVert^2=\lVert(b-a)+(d-c)\rVert^2\le(e+f)^2$ using \procedurehr{3.04aa}.
+		      \item \textbf{Hence show that $a+c\equiv b+d\err{e+f}$ using \declarationhr{mon1908191749}.}
 		    \end{enumerate}
 		\procedure{mon1908191849}
 		  \objective
 		    Choose three complex numbers $a,b,c$ in such a way that $a\equiv b\err{c}$. The objective of the following instructions is to show that $-a\equiv -b\err{c}$.
 		  \implementation
 		    \begin{enumerate}
-		      \item Verify that $\lVert(-b)-(-a)\rVert^2=\lVert b-a\rVert\le\lVert c\rVert^2$.
-		      \item \textbf{Hence using \declarationhr{mon1908191749}, verify that $-a\equiv-b\err{c}$.}
+		      \item Show that $\lVert(-b)-(-a)\rVert^2=\lVert b-a\rVert\le\lVert c\rVert^2$.
+		      \item \textbf{Hence show that $-a\equiv-b\err{c}$ using \declarationhr{mon1908191749}.}
 		    \end{enumerate}
 		\procedure{mon1908191857}
 		  \objective
 		    Choose four complex numbers $a,b,c,d$ in such a way that $a\equiv b\err{c}$. The objective of the following instructions is to show that $ad\equiv bd\err{cd}$.
 		  \implementation
 		    \begin{enumerate}
-		      \item Verify that $\lVert b-a\rVert^2\le\lVert c\rVert^2$.
-		      \item Hence verify that $\lVert bd-ad\rVert^2\le\lVert cd\rVert^2$.
-		      \item \textbf{Hence using \declarationhr{mon1908191749}, verify that $ad\equiv bd\err{cd}$.}
+		      \item Show that $\lVert b-a\rVert^2\le\lVert c\rVert^2$.
+		      \item Hence show that $\lVert bd-ad\rVert^2\le\lVert cd\rVert^2$.
+		      \item \textbf{Hence show that $ad\equiv bd\err{cd}$ using \declarationhr{mon1908191749}.}
 		    \end{enumerate}
 		\procedure{mon1908191905}
 		  \objective
 		    Choose two complex numbers $a,b,c$ in such a way that $a\ne 0$, $b\ne 0$, and $a\equiv b\err{c}$. The objective of the following instructions is to show that $\frac{1}{a}\equiv\frac{1}{b}\err{\frac{c}{ab}}$.
 		  \implementation
 		    \begin{enumerate}
-		      \item Verify that $\lVert b-a\rVert\le\lVert c\rVert^2$.
-		      \item Hence verify that $\lVert\frac{1}{b}-\frac{1}{a}\rVert^2=\lVert\frac{a-b}{ba}\rVert^2\le\lVert\frac{c}{ba}\rVert^2$.
-		      \item \textbf{Hence using \declarationhr{mon1908191749}, verify that $\frac{1}{a}\equiv\frac{1}{b}\err{\frac{c}{ab}}$.}
+		      \item Show that $\lVert b-a\rVert\le\lVert c\rVert^2$.
+		      \item Hence show that $\lVert\frac{1}{b}-\frac{1}{a}\rVert^2=\lVert\frac{a-b}{ba}\rVert^2\le\lVert\frac{c}{ba}\rVert^2$.
+		      \item \textbf{Hence show that $\frac{1}{a}\equiv\frac{1}{b}\err{\frac{c}{ab}}$ using \declarationhr{mon1908191749}.}
 		    \end{enumerate}
 		\declaration{3.05}
 			The notation \gls{complexexp}, where $a$ is a complex number, will be used as a shorthand for $(1+\frac{a}{n})^n$.
@@ -3795,7 +3803,7 @@
 				Choose a rational number $a$ and a positive integer $n$ such that $-n<a<1$. The objective of the following instructions is to show that $\exp_n(a)\le\frac{1}{1-a}$.
 			\implementation
 				\begin{enumerate}
-					\item Using \procedurehr{2.07}, verify that $\exp_n(a)$
+					\item Using \procedurehr{2.07}, show that $\exp_n(a)$
 					\begin{enumerate}
 						\item $=(\frac{n+a}{n})^n$
 						\item $=(\frac{n}{n+a})^{-n}$
@@ -3809,7 +3817,7 @@
 				Choose a rational number $a$ and a positive integer $n$ such that $a>-n$. The objective of the following instructions is to show that $\frac{\exp_{n+1}(a)}{\exp_n(a)}\ge 1$.
 			\implementation
 				\begin{enumerate}
-					\item Using \procedurehr{2.07}, verify that $\frac{\exp_{n+1}(a)}{\exp_n(a)}$
+					\item Using \procedurehr{2.07}, show that $\frac{\exp_{n+1}(a)}{\exp_n(a)}$
 					\begin{enumerate}
 						\item $=\frac{(\frac{n+1+a}{n+1})^{n}}{(\frac{n+a}{n})^{n}}(1+\frac{a}{n+1})$
 						\item $=(\frac{(n+1+a)n}{(n+1)(n+a)})^n(1+\frac{a}{n+1})$
@@ -3831,11 +3839,13 @@
 					\item Let $b=X$.
 					\item Let $p(x,r,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $x^2\le X^2$.
-						\item Therefore verify that $-X\le x\le X$
-						\item Therefore verify that $-1\le\frac{x}{n}\le 1$.
-						\item Therefore verify that $0\le 1+\frac{x}{n}\le 2$.
-						\item Hence using \procedurehr{3.08} and \procedurehr{3.09}, verify that $(1+\frac{x}{n})^r$
+						\item Show that $0\le 1+\frac{x}{n}\le 2$
+						\begin{enumerate}
+						  \item if $-1\le\frac{x}{n}\le 1$
+						  \item if $-X\le x\le X$
+						  \item if $x^2\le X^2$.
+						\end{enumerate}
+						\item Hence using \procedurehr{3.08} and \procedurehr{3.09}, show that $(1+\frac{x}{n})^r$
 						\begin{enumerate}
 						  \item $\le(1+\frac{X}{n})^r$
 							\item $\le\exp_n(X)$
@@ -3859,15 +3869,18 @@
 					\item Let $b=\max(-2X,d)$.
 					\item Let $p(x,r,n)$ be the following procedure:
 					\begin{enumerate}
-						\item Verify that $X\le x\le 0$.
-						\item Therefore verify that $2X\le 2x\le 0$.
-						\item Therefore verify that $0\le -2x\le -2X$.
-						\item Hence execute procedure $q$ on $\langle -2x,r,n\rangle$.
-						\item Therefore verify that $(1+\frac{-2x}{n})^r\le c^2$.
-						\item Also verify that $n>b\ge -2X\ge -2x\ge 0$.
-						\item Therefore verify that $-\frac{n}{2}\le x\le 0$.
-						\item Therefore verify that $\frac{n}{2}\le n+x<n$.
-						\item Hence verify that $(1+\frac{x}{n})^r$
+						\item Show that $0\le -2x\le -2X$
+						\begin{enumerate}
+						  \item if $2X\le 2x\le 0$
+						  \item if $X\le x\le 0$.
+						\end{enumerate}
+						\item Show that $(1+\frac{-2x}{n})^r\le c^2$ using procedure $q$.
+						\item Show that $\frac{n}{2}\le n+x<n$
+						\begin{enumerate}
+						  \item if $-\frac{n}{2}\le x\le 0$
+						  \item if $n>b\ge -2X\ge -2x\ge 0$.
+						\end{enumerate}
+						\item Hence show that $(1+\frac{x}{n})^r$
 						\begin{enumerate}
 							\item $=(\frac{n+x}{n})^r$
 							\item $=(\frac{n}{n+x})^{-r}$
@@ -3892,15 +3905,13 @@
 					\begin{enumerate}
 						\item If $x<0$, then do the following:
 						\begin{enumerate}
-							\item Verify that $x^2\le X^2$.
-							\item Therefore verify that $-X\le x\le 0$.
-							\item Hence execute procedure $q$ on $\langle x,r,n\rangle$.
-							\item \textbf{Hence verify that $(1+\frac{x}{n})^r\ge c^2\ge a^2$.}
+							\item Show that $-X\le x\le 0$ if $x^2\le X^2$.
+							\item \textbf{Hence show that $(1+\frac{x}{n})^r\ge c^2\ge a^2$ using procedure $q$.}
 						\end{enumerate}
 						\item Otherwise do the following:
 						\begin{enumerate}
 							\item Verify that $x\ge 0$.
-							\item \textbf{Using \procedurehr{2.07}, verify that $(1+\frac{x}{n})^r\ge 1+\frac{rx}{n}\ge 1\ge a^2$.}
+							\item \textbf{Show that $(1+\frac{x}{n})^r\ge 1+\frac{rx}{n}\ge 1\ge a^2$ using \procedurehr{2.07}.}
 						\end{enumerate}
 					\end{enumerate}
 					\item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
