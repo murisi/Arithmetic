@@ -5656,6 +5656,7 @@
 	\end{multicols*}
 	\clearpage
 	\part{Differential Arithmetic}
+	\chapter{Differential Arithmetic}
 	\begin{multicols}{2}
 	  \procedure{tue2008191129}
 	    \objective
@@ -6082,6 +6083,9 @@
 		      \end{enumerate}
 		      \item \textbf{Yield the tuple $\langle a_3,b_3,a_4,b_4,c_4,q_3,q_4\rangle$.}
 		    \end{enumerate}
+  \end{multicols}
+  \chapter{Common Derivatives}
+  \begin{multicols}{2}
 		\procedure{tue2008191151}
 		  \objective
 		    Choose a complex number $B$ and a rational number $D>0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $0\equiv 0\err{a}$ when a complex number $x$ and a positive integer $n$ such that $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}B\equiv 0\err{\frac{b}{n}+c\{\delta\}}$ when in addition a complex number $\delta$ such that $0<\lVert\delta\rVert^2\le D^2$ is chosen.
@@ -7312,6 +7316,7 @@
 		\begin{minipage}[c]{0.35\textwidth}
 			A plot of the lists of complex numbers $(\frac{[0:40]}{10})_{15}^{\frac{1}{2}}$ and $\frac{1}{2}(\frac{[0:40]}{10})_{15}^{\frac{1}{2}-1}$. Note that the steepness of $(\frac{[0:40]}{10})_{15}^{\frac{1}{2}}$ is approximately given by the y-coordinates of $\frac{1}{2}(\frac{[0:40]}{10})_{15}^{\frac{1}{2}-1}$. That is, where the graph of $(\frac{[0:40]}{10})_{15}^{\frac{1}{2}}$ is rapidly increasing, the graph of $\frac{1}{2}(\frac{[0:40]}{10})_{15}^{\frac{1}{2}-1}$ has a relatively large positive value, and where the graph of $(\frac{[0:40]}{10})_{15}^{\frac{1}{2}}$ flattens out, the graph of $\frac{1}{2}(\frac{[0:40]}{10})_{15}^{\frac{1}{2}-1}$ has a relatively small positive value.
 		\end{minipage}
+	\chapter{Integral Arithmetic}
 	\begin{multicols*}{2}
 	  \declaration{3.30}
 			The notation \gls{differentialintegral}, where:
@@ -7502,6 +7507,7 @@
 	\end{multicols*}
 	\clearpage
 	\part{Matrix Arithmetic}
+	\chapter{Matrix Arithmetic}
 	\begin{multicols*}{2}
 		\declaration{4.28}
 			The phrase "\gls{matrix}" will be used as a shorthand for a list of equally lengthed lists of polynomials. In particular, the phrase "$m\times n$ matrix" will be used as a shorthand for a length-$m$ list of length-$n$ lists of polynomials.
@@ -7992,6 +7998,9 @@
 						\item \textbf{Yield the tuple $\langle u\rangle$.}
 					\end{enumerate}
 				\end{enumerate}
+	\end{multicols}
+	\chapter{Compound Matrices}
+	\begin{multicols}{2}
 		\declaration{4.09}
 			The notation \gls{matrixdet}, where $A$ is a $m\times m$ matrix, will be used to refer to the result yielded by executing the following instructions:
 			\begin{enumerate}
@@ -8397,6 +8406,9 @@
 					\end{enumerate}
 					\item \textbf{Therefore verify that $(C_k(A))^T=(C_k(A^T))$.}
 				\end{enumerate}
+	\end{multicols}
+	\chapter{Polynomials and Normal Forms}
+	\begin{multicols}{2}
 		\procedure{4.31}
 			\objective
 				Choose a $m\times n$ rational matrix, $A$, and a $m\times p$ rational matrix, $B$. Execute \procedurehr{4.25} on $A$ and let $\langle M,D,,N\rangle$ receive the result. If the indices of the rows of $D$ that are entirely zero are also the indices of the rows of $M_*B$ that are entirely zero, then the objective of the following instructions is to construct a $n\times p$ rational matrix $E$ such that $AE=B$.
