@@ -1,4 +1,4 @@
-\documentclass{book}
+\documentclass{report}
 \usepackage{fullpage}
 \usepackage{parskip}
 \usepackage{amsmath}
@@ -242,16 +242,14 @@
 	\author{Murisi Tarusenga}
 	\date{\today{} \currenttime}
 	\maketitle
-	\begin{multicols*}{2}
-		\section*{Introduction}
-			What follows is a reformulation of the elementary parts of number theory, hard analysis, calculus, and linear algebra in terms of a system of self-evidently correct procedures for achieving particular objectives, objectives like showing that modular exponentiation of a specific integer with specific properties yields a stated result. So, while formal mathematics usually takes the format of definition-theorem-proof, this project has the format of declaration-procedure objective-procedure implementation. So where there usually would have been a statement and proof of Euler's totient theorem, \procedurehr{1.50} is provided, and where there would have been a definition of Euler's totient function, \declarationhr{1.16} is provided.
-			
-			At this point the natural question is whether it is always possible to write a procedure in such a way that its correctbess is self-evident. While I have not been able to come up with an theoretical argument that that should be the case, actually writing out numerous procedures to achieve a range of objectives has convinced me that this indeed is the case. And as I refine and extend the following procedures, it is becoming clearer to me that a mathematical proof does not necessarily have to be some sort of argument. Rather, what is turning out to be important is the granularity of the writing's subdivisions (i.e. sub-procedures in programming and lemmas in mathematics) and the communication of intent (i.e. comments in programming and theorem statements in mathematics).
+	\section*{ReadMe}
+		What follows is a reformulation of the elementary parts of number theory, hard analysis, calculus, and linear algebra in terms of a system of self-evidently correct procedures for achieving particular objectives, objectives like showing that modular exponentiation of a specific integer with specific properties yields a stated result. So, while formal mathematics usually takes the format of definition-theorem-proof, this project has the format of declaration-procedure objective-procedure implementation. So where there usually would have been a statement and proof of Euler's totient theorem, \procedurehr{1.50} is provided, and where there would have been a definition of Euler's totient function, \declarationhr{1.16} is provided.
 		
-			For the purposes of storage and transmission of knowledge pertaining to the elementary parts of number theory, hard analysis, calculus, and linear algebra, the following procedures are interchangeable with their analogous proofs in the sense that, assuming equal competence in programming and proving, if you have the procedure objective and implementation, you can trivially generate the analogous theorem and proof, and if you are in possession of the theorem and proof, then you can trivially generate the analogous procedure objective and implementation.
-		\tableofcontents
-		\printnoidxglossary[title={Declarations},sort=def]
-	\end{multicols*}
+		At this point the natural question is whether it is always possible to write a procedure in such a way that its correctbess is self-evident. While I have not been able to come up with an theoretical argument that that should be the case, actually writing out numerous procedures to achieve a range of objectives has convinced me that this indeed is the case. And as I refine and extend the following procedures, it is becoming clearer to me that a mathematical proof does not necessarily have to be some sort of argument. Rather, what is turning out to be important is the granularity of the writing's subdivisions (i.e. sub-procedures in programming and lemmas in mathematics) and the communication of intent (i.e. comments in programming and theorem statements in mathematics).
+	
+		For the purposes of storage and transmission of knowledge pertaining to the elementary parts of number theory, hard analysis, calculus, and linear algebra, the following procedures are interchangeable with their analogous proofs in the sense that, assuming equal competence in programming and proving, if you have the procedure objective and implementation, you can trivially generate the analogous theorem and proof, and if you are in possession of the theorem and proof, then you can trivially generate the analogous procedure objective and implementation.
+	\tableofcontents
+	\twocolumn\printnoidxglossary[title={Declarations},sort=def]\onecolumn
 	\clearpage
 	\part{Integer Arithmetic}
 	  \chapter{Integer Arithmetic}
