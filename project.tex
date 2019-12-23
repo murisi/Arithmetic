@@ -4696,22 +4696,19 @@
 	            \item Let $B=M^A(M^{A}+8A!A)$.
 	            \item Let $p(a,b,n)$ be the following procedure:
 	            \begin{enumerate}
-	              \item Verify that $n>N\ge Q$.
-	              \item Execute procedure $q$ on $\langle a+b,n\rangle$.
-	              \item Hence verify that $\lVert\binom{a+b}{n}\rVert\le(\frac{M}{n})^{\lceil a+b\rceil}\le\frac{M^{\lceil A+b\rceil}}{n}\le\frac{M^{A+\lceil b\rceil}}{n}\le\frac{M^{2A}}{n}$.
+	              \item Show that $n>N\ge Q$.
+	              \item Now show that $\lVert\binom{a+b}{n}\rVert\le(\frac{M}{n})^{\lceil a+b\rceil}\le\frac{M^{\lceil A+b\rceil}}{n}\le\frac{M^{A+\lceil b\rceil}}{n}\le\frac{M^{2A}}{n}$ using procedure $q$.
 	              \item For $r$ in $[0:\lceil b\rceil]$, do the following:
 	              \begin{enumerate}
-	                \item Verify that $n-r\ge N-\lceil b\rceil\ge Q+A-A=Q$.
-	                \item Execute procedure $q$ on $\langle a,n-r\rangle$.
-	                \item Hence verify that $\lVert\binom{a}{n-r}\rVert^2\le(\frac{M}{n-r})^{2\lceil a\rceil}\le(\frac{M^A}{r})^2\le(\frac{M^A}{n-\lfloor a\rfloor})^2\le(\frac{M^A}{n-A})^2\le(\frac{M^A}{n-\frac{1}{2}N})^2\le(\frac{M^A}{\frac{1}{2}n})^2=(\frac{2M^A}{n})^2$.
+	                \item Show that $n-r\ge N-\lceil b\rceil\ge Q+A-A=Q$.
+	                \item Now show that $\lVert\binom{a}{n-r}\rVert^2\le(\frac{M}{n-r})^{2\lceil a\rceil}\le(\frac{M^A}{r})^2\le(\frac{M^A}{n-\lfloor a\rfloor})^2\le(\frac{M^A}{n-A})^2\le(\frac{M^A}{n-\frac{1}{2}N})^2\le(\frac{M^A}{\frac{1}{2}n})^2=(\frac{2M^A}{n})^2$ using procedure $q$.
 	              \end{enumerate}
 	              \item For $r$ in $[\lceil n-a\rceil:n+1]$, do the following:
 	              \begin{enumerate}
-	                \item Verify that $r\ge\lceil n-a\rceil=n-\lfloor a\rfloor\ge N-\lfloor a\rfloor\ge Q+A-A=Q$.
-	                \item Execute procedure $q$ on $\langle b,r\rangle$.
-	                \item Hence verify that $\lVert\binom{b}{r}\rVert^2\le(\frac{M}{r})^{2\lceil b\rceil}\le(\frac{M^A}{r})^2\le(\frac{2M^A}{n})^2$.
+	                \item Show that $r\ge\lceil n-a\rceil=n-\lfloor a\rfloor\ge N-\lfloor a\rfloor\ge Q+A-A=Q$.
+	                \item Now show that $\lVert\binom{b}{r}\rVert^2\le(\frac{M}{r})^{2\lceil b\rceil}\le(\frac{M^A}{r})^2\le(\frac{2M^A}{n})^2$ using procedure $q$.
 	              \end{enumerate}
-	              \item Hence using \procedurehr{sun0812190920}, verify that $\sum_r^{[0:n+1]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert$
+	              \item Hence using \procedurehr{sun0812190920}, show that $\sum_r^{[0:n+1]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert$
 	              \begin{enumerate}
 	                \item $=\sum_r^{[0:\lceil b\rceil]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert+\lVert\sum_r^{[\lceil b\rceil:\lceil n-a\rceil]}\binom{b}{r}\binom{a}{n-r}\rVert+\sum_r^{[\lceil n-a\rceil:n+1]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert$
 	                \item $=\sum_r^{[0:\lceil b\rceil]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert+\lVert\sum_r^{[0:n+1]}\binom{b}{r}\binom{a}{n-r}-\sum_r^{[0:\lceil b\rceil]}\binom{b}{r}\binom{a}{n-r}-\sum_r^{[\lceil n-a\rceil:n+1]}\binom{b}{r}\binom{a}{n-r}\rVert+\sum_r^{[\lceil n-a\rceil:n+1]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert$
@@ -4733,17 +4730,16 @@
 	            \item Let $B=\frac{2M}{1-X}$.
 	            \item Let $p(x,a,b,n)$ be the following procedure:
 	            \begin{enumerate}
-	              \item For $r\in[1:n]$, for $k\in[0:r]$, verify that $\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k$
+	              \item For $r\in[1:n]$, for $k\in[0:r]$, show that $\binom{a}{k+1+n-r}(-1)^{k+1}-\binom{a}{k+n-r}(-1)^k$
 	              \begin{enumerate}
 	                \item $=(-1)^{k+1}(\binom{a}{k+1+n-r}+\binom{a}{k+n-r})$
 	                \item $=(-1)^{k+1}\binom{a+1}{k+1+n-r}$
 	                \item $=(-1)^{-(k+1)}\lVert\binom{a+1}{k+1+n-r}\rVert(-1)^{k+1+n-r}$
 	                \item $=\lVert\binom{a+1}{k+1+n-r}\rVert(-1)^{n-r}$.
 	              \end{enumerate}
-	              \item Execute procedure $q$ on $\langle a,b,n\rangle$.
-	              \item Hence verify that $\sum_r^{[0:n+1]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert\le\frac{M}{n}$.
-	              \item Verify that $\lVert x+1\rVert^2=\Re(x+1)^2+\Im(x)^2\ge(1-X)^2$.
-	              \item Hence using \procedurehr{sun2107191133}, verify that $(1+x)_n^{a+b}\equiv(1+x)_n^a(1+x)_n^b$
+	              \item Now show that $\sum_r^{[0:n+1]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert\le\frac{M}{n}$ using procedure $q$.
+	              \item Show that $\lVert x+1\rVert^2=\Re(x+1)^2+\Im(x)^2\ge(1-X)^2$.
+	              \item Hence using \procedurehr{sun2107191133}, show that $(1+x)_n^{a+b}\equiv(1+x)_n^a(1+x)_n^b$
 	              \begin{enumerate}
 	                \item $\err{(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}}$
 	                \item $\err{\sum_k^{[1:n]}\sum_r^{[k:n]}\binom{a}{k+n-1-r}\binom{b}{r}x^{k+n-1}}$
@@ -4768,13 +4764,13 @@
 	            \item Let $D=\max(E,(1+\frac{2}{1-X})^{\lfloor N\rfloor})$.
 	            \item Let $p(x,n,a,k)$ be the following procedure:
 	            \begin{enumerate}
-	              \item For $t\in[1:n]$, verify that $\binom{a}{t+1}(-1)^{t+1}-\binom{a}{t}(-1)^t$
+	              \item For $t\in[1:n]$, show that $\binom{a}{t+1}(-1)^{t+1}-\binom{a}{t}(-1)^t$
 	              \begin{enumerate}
 	                \item $=(-1)^{t+1}(\binom{a}{t+1}+\binom{a}{t})$
 	                \item $=(-1)^{t+1}\cdot\frac{(a+1)^{\ul{t+1}}}{(t+1)!}$
 	                \item $>0$.
 	              \end{enumerate}
-	              \item Hence verify that $\lVert k\sum_t^{[1:n]}\binom{a}{t}x^t\rVert^2$
+	              \item Hence show that $\lVert k\sum_t^{[1:n]}\binom{a}{t}x^t\rVert^2$
 	              \begin{enumerate}
 	                \item $=\lVert k\sum_t^{[1:n]}(\binom{a}{t+1}(-1)^{t+1}\cdot\frac{(-x)^{t+1}}{-x-1}-\binom{a}{t}(-1)^t\cdot\frac{(-x)^t}{-x-1}-\frac{(-x)^{t+1}}{-x-1}(\binom{a}{t+1}(-1)^{t+1}-\binom{a}{t}(-1)^t))\rVert^2$
 	                \item $=\frac{k^2}{\lVert x+1\rVert^2}\lVert\binom{a}{n}x^n-\binom{a}{1}x^1-\sum_t^{[1:n]}(-x)^{t+1}(\binom{a}{t+1}(-1)^{t+1}-\binom{a}{t}(-1)^t)\rVert^2$
@@ -4787,8 +4783,7 @@
 	              \end{enumerate}
 	              \item If $k>N$, then do the following:
 	              \begin{enumerate}
-	                \item Execute procedure $q$ on $\langle k\sum_t^{[1:n]}\binom{a}{t}x^t,k\rangle$.
-	                \item Hence verify that $\lVert((1+x)_n^a)^k\rVert^2$
+	                \item Using procedure $q$, show that $\lVert((1+x)_n^a)^k\rVert^2$
 	                \begin{enumerate}
 	                  \item $=\lVert(\sum_t^{[0:n]}\binom{a}{t}x^t)^k\rVert^2$
 	                  \item $=\lVert(1+\sum_t^{[1:n]}\binom{a}{t}x^t)^k\rVert^2$
@@ -4799,12 +4794,12 @@
 	              \end{enumerate}
 	              \item Otherwise do the following:
 	              \begin{enumerate}
-	                \item Verify that $\lVert\sum_t^{[1:n]}\binom{a}{t}x^t\rVert^2$
+	                \item Show that $\lVert\sum_t^{[1:n]}\binom{a}{t}x^t\rVert^2$
 	                \begin{enumerate}
 	                  \item $\le\lVert k\sum_t^{[1:n]}\binom{a}{t}x^t\rVert^2$
 	                  \item $\le(\frac{2}{1-X})^2$.
 	                \end{enumerate}
-	                \item Verify that $\lVert((1+x)_n^a)^k\rVert^2$
+	                \item Hence show that $\lVert((1+x)_n^a)^k\rVert^2$
 	                \begin{enumerate}
 	                  \item $=(\lVert(1+x)_n^a\rVert^2)^k$
 	                  \item $=(\lVert 1+\sum_t^{[1:n]}\binom{a}{t}x^t\rVert^2)^k$
@@ -4825,7 +4820,7 @@
 	            \item Let $G=DB$.
 	            \item Let $p(x,n,a,k)$ be the following procedure:
 	            \begin{enumerate}
-	              \item Using procedures $t,q$, verify that $(1+x)_n^{ka}$
+	              \item Using procedures $t,q$, show that $(1+x)_n^{ka}$
 	              \begin{enumerate}
 	                \item $=((1+x)_n^a)^0(1+x)_n^{ka}$
 	                \item $\equiv((1+x)_n^a)^1(1+x)_n^{(k-1)a}\err{D\frac{B}{n}}$
@@ -4834,7 +4829,7 @@
 	                \item $\equiv((1+x)_n^a)^k(1+x)_n^{(k-k)a}\err{D\frac{B}{n}}$
 	                \item $=((1+x)_n^a)^k$.
 	              \end{enumerate}
-	              \item \textbf{Hence verify that $(1+x)_n^{ka}\equiv((1+x)_n^a)^k\err{\frac{DBk}{n}}\err{\frac{Gk}{n}}$.}
+	              \item \textbf{Hence show that $(1+x)_n^{ka}\equiv((1+x)_n^a)^k\err{\frac{DBk}{n}}\err{\frac{Gk}{n}}$.}
 	            \end{enumerate}
 	            \item \textbf{Yield the tuple $\langle G,D,N,p\rangle$.}
 	          \end{enumerate}
@@ -4846,7 +4841,7 @@
 	            \item Execute \procedurehr{thu2507190752} on $\langle X\rangle$ and let $\langle a,c,p_1\rangle$ receive.
 	            \item Let $p(x,n,k)$ be the following procedure:
 	            \begin{enumerate}
-                \item Using procedure $p_1$ and \procedurehr{sun2107190619}, verify that $\exp_n(n((1+x)_k^{\frac{1}{n}}-1))$
+                \item Using procedure $p_1$ and \procedurehr{sun2107190619}, show that $\exp_n(n((1+x)_k^{\frac{1}{n}}-1))$
                 \begin{enumerate}
                   \item $=(1+\frac{1}{n}(n((1+x)_k^{\frac{1}{n}}-1)))^n$
                   \item $=((1+x)_k^{\frac{1}{n}})^n$
@@ -4854,7 +4849,7 @@
                   \item $=(1+x)^1$
                   \item $=1+x$.
                 \end{enumerate}
-                \item \textbf{Hence verify that $\exp_n(n((1+x)_k^{\frac{1}{n}}-1))\equiv 1+x\err{\frac{an}{k}}$.}
+                \item \textbf{Hence show that $\exp_n(n((1+x)_k^{\frac{1}{n}}-1))\equiv 1+x\err{\frac{an}{k}}$.}
 	            \end{enumerate}
 	            \item \textbf{Yield the tuple $\langle a,c,p\rangle$.}
 	          \end{enumerate}
@@ -4866,7 +4861,7 @@
 	            \item Let $a=\frac{2}{1-X}$.
 	            \item Let $p(x,n,k)$ be the following procedure:
 	            \begin{enumerate}
-	              \item Verify that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2$
+	              \item Show that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2$
 	              \begin{enumerate}
 	                \item $=\lVert n(\sum_r^{[0:k]}\binom{\frac{1}{n}}{r}x^r-1)\rVert^2$
 	                \item $=\lVert n\sum_r^{[1:k]}\binom{\frac{1}{n}}{r}(-1)^r(-x)^r\rVert^2$
@@ -4887,7 +4882,7 @@
 	          Choose two positive integers $r,n$ such that $r>1$. The objective of the following instructions is to show that $\frac{\omega(r+1)}{\omega(r)}\le 1$.
 	        \implementation
 	          \begin{enumerate}
-	            \item Using \procedurehr{2.07}, verify that $\frac{\omega(r+1)}{\omega(r)}$
+	            \item Using \procedurehr{2.07}, show that $\frac{\omega(r+1)}{\omega(r)}$
               \begin{enumerate}
                 \item $=\frac{\frac{1}{r+1}(1-\prod_t^{[1:r+1]}(1-\frac{1}{nt}))}{\frac{1}{r}(1-\prod_t^{[1:r]}(1-\frac{1}{nt}))}$
                 \item $=\frac{r}{r+1}\cdot\frac{1-(1-\frac{1}{nr})\prod_t^{[1:r]}(1-\frac{1}{nt})}{1-\prod_t^{[1:r]}(1-\frac{1}{nt})}$
@@ -4911,9 +4906,9 @@
 	            \item Let $a=\frac{1}{1-X}$.
 	            \item Let $p(x,n,k)$ be the following procedure:
 	            \begin{enumerate}
-	              \item For $r\in[2:k]$, use \procedurehr{thu0108191318} to verify that $\frac{\omega(r+1)}{\omega(r)}\le 1$.
-	              \item Also verify that $\lVert x+1\rVert^2\ge\Re(x+1)^2+\Im(x)^2\ge(1-X)^2$.
-	              \item Hence verify that $\ln_k(1+x)\equiv n((1+x)_k^{\frac{1}{n}}-1)$
+	              \item For $r\in[2:k]$, show that $\frac{\omega(r+1)}{\omega(r)}\le 1$ using \procedurehr{thu0108191318}.
+	              \item Also show that $\lVert x+1\rVert^2\ge\Re(x+1)^2+\Im(x)^2\ge(1-X)^2$.
+	              \item Hence show that $\ln_k(1+x)\equiv n((1+x)_k^{\frac{1}{n}}-1)$
 	              \begin{enumerate}
 	                \item $\err{\ln_k(1+x)-n((1+x)_k^{\frac{1}{n}}-1)}$
 	                \item $\err{\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}x^r-n(\sum_r^{[0:k]}\binom{\frac{1}{n}}{r}x^r-1)}$
@@ -4940,7 +4935,7 @@
 	            \item Let $a=\frac{2}{1-X}$.
 	            \item Let $p(x,k)$ be the following procedure:
 	            \begin{enumerate}
-	              \item Verify that $\lVert\ln_k(1+x)\rVert^2$
+	              \item Show that $\lVert\ln_k(1+x)\rVert^2$
 	              \begin{enumerate}
 	                \item $=\lVert\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}x^r\rVert^2$
 	                \item $=\lVert\sum_r^{[1:k]}\frac{1}{r}(-x)^r\rVert^2$
@@ -4967,10 +4962,10 @@
 	            \item Let $c=a_4a_3$.
 	            \item Let $p(x,n,k)$ be the following procedure:
 	            \begin{enumerate}
-	              \item Using procedure $p_1$, verify that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le {a_1}^2$.
-	              \item Using procedure $p_2$, verify that $\lVert\ln_k(1+x)\rVert^2\le {a_2}^2$.
-	              \item Using procedure $p_4$, verify that $\lVert\ln_k(1+x)-n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le(\frac{a_4}{n})^2$.
-	              \item Now using procedures $p_3,p_5$, verify that $\exp_n(\ln_k(1+x))$
+	              \item Show that $\lVert n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le {a_1}^2$ using procedure $p_1$.
+	              \item Show that $\lVert\ln_k(1+x)\rVert^2\le {a_2}^2$ using procedure $p_2$.
+	              \item Show that $\lVert\ln_k(1+x)-n((1+x)_k^{\frac{1}{n}}-1)\rVert^2\le(\frac{a_4}{n})^2$ using procedure $p_4$.
+	              \item Now using procedures $p_3,p_5$, show that $\exp_n(\ln_k(1+x))$
 	              \begin{enumerate}
 	                \item $\equiv\exp_n(n((1+x)_k^{\frac{1}{n}}-1))$
 	                \begin{enumerate}
@@ -4979,7 +4974,7 @@
 	                \end{enumerate}
 	                \item $\equiv 1+x\err{\frac{an}{k}}$
 	              \end{enumerate}
-	              \item \textbf{Hence verify that $\exp_n(\ln_k(1+x))\equiv 1+x\err{\frac{a_3a_4}{n}+\frac{an}{k}}\err{\frac{c}{n}+\frac{an}{k}}$.}
+	              \item \textbf{Hence show that $\exp_n(\ln_k(1+x))\equiv 1+x\err{\frac{a_3a_4}{n}+\frac{an}{k}}\err{\frac{c}{n}+\frac{an}{k}}$.}
 	            \end{enumerate}
 	            \item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
 	          \end{enumerate}
