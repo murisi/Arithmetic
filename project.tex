@@ -3419,8 +3419,8 @@
 				    Choose two complex numbers $a,b$ such that $a=b$. The objective of the following instructions is to show that $b=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $\Re(b)=\Re(a)$ if $\Re(a)=\Re(b)$.
-					    \item Show that $\Im(b)=\Im(a)$ if $\Im(a)=\Im(b)$.
+					    \item Show that $\Re(b)=\Re(a)$ given that $\Re(a)=\Re(b)$.
+					    \item Show that $\Im(b)=\Im(a)$ given that $\Im(a)=\Im(b)$.
 					    \item \textbf{Hence show that $b=a$.}
 				    \end{enumerate}
 		    \procedure{3.70}
@@ -3430,12 +3430,12 @@
 				    \begin{enumerate}
 					    \item Show that $\Re(a)=\Re(c)$
 					    \begin{enumerate}
-					      \item if $\Re(a)=\Re(b)$
+					      \item given that $\Re(a)=\Re(b)$
 					      \item and $\Re(b)=\Re(c)$.
 					    \end{enumerate}
 					    \item Show that $\Im(a)=\Im(c)$
 					    \begin{enumerate}
-					      \item if $\Im(a)=\Im(b)$
+					      \item given that $\Im(a)=\Im(b)$
 					      \item and $\Im(b)=\Im(c)$.
 					    \end{enumerate}
 					    \item \textbf{Hence verify that $a=c$.}
@@ -3857,9 +3857,9 @@
 					    \begin{enumerate}
 						    \item Show that $0\le 1+\frac{x}{n}\le 2$
 						    \begin{enumerate}
-						      \item if $-1\le\frac{x}{n}\le 1$
-						      \item if $-X\le x\le X$
-						      \item if $x^2\le X^2$.
+						      \item given that $-1\le\frac{x}{n}\le 1$
+						      \item given that $-X\le x\le X$
+						      \item given that $x^2\le X^2$.
 						    \end{enumerate}
 						    \item Hence using \procedurehr{3.08} and \procedurehr{3.09}, show that $(1+\frac{x}{n})^r$
 						    \begin{enumerate}
@@ -3887,14 +3887,14 @@
 					    \begin{enumerate}
 						    \item Show that $0\le -2x\le -2X$
 						    \begin{enumerate}
-						      \item if $2X\le 2x\le 0$
-						      \item if $X\le x\le 0$.
+						      \item given that $2X\le 2x\le 0$
+						      \item given that $X\le x\le 0$.
 						    \end{enumerate}
 						    \item Show that $(1+\frac{-2x}{n})^r\le c^2$ using procedure $q$.
 						    \item Show that $\frac{n}{2}\le n+x<n$
 						    \begin{enumerate}
-						      \item if $-\frac{n}{2}\le x\le 0$
-						      \item if $n>b\ge -2X\ge -2x\ge 0$.
+						      \item given that $-\frac{n}{2}\le x\le 0$
+						      \item given that $n>b\ge -2X\ge -2x\ge 0$.
 						    \end{enumerate}
 						    \item Hence show that $(1+\frac{x}{n})^r$
 						    \begin{enumerate}
@@ -3921,7 +3921,7 @@
 					    \begin{enumerate}
 						    \item If $x<0$, then do the following:
 						    \begin{enumerate}
-							    \item Show that $-X\le x\le 0$ if $x^2\le X^2$.
+							    \item Show that $-X\le x\le 0$ given that $x^2\le X^2$.
 							    \item \textbf{Hence show that $(1+\frac{x}{n})^r\ge c^2\ge a^2$ using procedure $q$.}
 						    \end{enumerate}
 						    \item Otherwise do the following:
@@ -3944,8 +3944,8 @@
 						    \item Let $y=2\lvert\Re(x)\rvert+\lVert x\rVert^2$.
 						    \item Show that $\lvert y\rvert=y\le 2X+X^2=c$
 						    \begin{enumerate}
-						      \item if $\lvert\Re(x)\rvert\le X$
-						      \item if $\lvert\Re(x)\rvert^2\le\lVert x\rVert^2\le X^2$.
+						      \item given that $\lvert\Re(x)\rvert\le X$
+						      \item given that $\lvert\Re(x)\rvert^2\le\lVert x\rVert^2\le X^2$.
 						    \end{enumerate}
 						    \item Hence show that $(1+\frac{y}{n})^r\le a^2$ using procedure $q$.
 						    \item Now using \procedurehr{3.02} show that $\lVert(1+\frac{x}{n})^r\rVert^2$
@@ -4047,11 +4047,11 @@
 					    \begin{enumerate}
 					      \item If $k>0$, then for $r\in[1:k]$ do the following:
 					      \begin{enumerate}
-					        \item Verify that $\lVert xr\rVert^2\le\lVert kx\rVert^2\le X^2$.
-						      \item Hence using procedure $q$, verify that $\lVert\exp_{nr}(xr)\rVert^2\le c^2$.
-							    \item Hence verify that $\lVert\exp_n(x)^r\rVert^2=\lVert(1+\frac{x}{n})^{nr}\rVert^2=\lVert(1+\frac{xr}{nr})^{nr}\rVert^2=\lVert\exp_{nr}(xr)\rVert^2\le c^2$
+					        \item Show that $\lVert xr\rVert^2\le\lVert kx\rVert^2\le X^2$.
+						      \item Hence show that $\lVert\exp_{nr}(xr)\rVert^2\le c^2$ using procedure $q$.
+							    \item Hence show that $\lVert\exp_n(x)^r\rVert^2=\lVert(1+\frac{x}{n})^{nr}\rVert^2=\lVert(1+\frac{xr}{nr})^{nr}\rVert^2=\lVert\exp_{nr}(xr)\rVert^2\le c^2$
 						    \end{enumerate}
-						    \item Hence using procedure $t$, verify that $\exp_n(kx)$
+						    \item Hence using procedure $t$, show that $\exp_n(kx)$
 						    \begin{enumerate}
 						      \item $=\exp_n(x)^0\exp_n(kx)$
 						      \item $\equiv\exp_n(x)^1\exp_n((k-1)x)\err{\frac{ceX^2}{n}}$
@@ -4060,7 +4060,7 @@
 						      \item $\equiv\exp_n(x)^k\exp_n((k-k)x)\err{\frac{ceX^2}{n}}$
 						      \item $=\exp_n(x)^k$.
 						    \end{enumerate}
-						    \item \textbf{Hence verify that $\exp_n(kx)\equiv\exp_n(x)^k\err{\frac{kceX^2}{n}}\err{\frac{ak}{n}}$.}
+						    \item \textbf{Hence show that $\exp_n(kx)\equiv\exp_n(x)^k\err{\frac{kceX^2}{n}}\err{\frac{ak}{n}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				    \end{enumerate}
@@ -4073,7 +4073,7 @@
 		          \item Let $a=c^2$.
 		          \item Let $p(x,y,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedure $q$, verify that $\exp_n(x)\equiv\exp_n(y)$
+		            \item Using procedure $q$, show that $\exp_n(x)\equiv\exp_n(y)$
 		            \begin{enumerate}
 		              \item $\err{\exp_n(y)-\exp_n(x)}$
 		              \item $\err{(1+\frac{y}{n})^n-(1+\frac{x}{n})^n}$
@@ -4093,7 +4093,7 @@
 					    \item Let $a=X^2(\sum_r^{[0:N]}\frac{X^r}{r!}+\frac{X^N}{N!}\cdot\frac{1}{1-\frac{X}{N}})$.
 					    \item Let $p(x,n)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Using \procedurehr{2.06}, \procedurehr{3.04}, \procedurehr{2.05}, and \procedurehr{2.07}, verify that $\exp_n(x)\equiv\sum_r^{[0:{n+1}]}\frac{x^r}{r!}$
+						    \item Using \procedurehr{2.06}, \procedurehr{3.04}, \procedurehr{2.05}, and \procedurehr{2.07}, show that $\exp_n(x)\equiv\sum_r^{[0:{n+1}]}\frac{x^r}{r!}$
 						    \begin{enumerate}
 						      \item $\err{\sum_r^{[0:{n+1}]}\frac{x^r}{r!}-\exp_n(x)}$
 							    \item $\err{\sum_r^{[0:{n+1}]}\frac{x^r}{r!}-\sum_r^{[0:{n+1}]}\frac{n^{\ul{r}}}{r!}\cdot\frac{x^r}{n^r}}$
@@ -4191,7 +4191,7 @@
 				    Choose a rational number $x$ and a positive integer $n$. The objective of the following instructions is to show that $\Re(\exp_n(ix))=\cos_n(x)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\Re(\exp_n(ix))$
+					    \item Show that $\Re(\exp_n(ix))$
 					    \begin{enumerate}
 						    \item $=\frac{\exp_n(ix)+\conj{\exp_n(ix)}}{2}$
 						    \item $=\frac{\exp_n(ix)+\exp_n(\conj{ix})}{2}$
@@ -4206,7 +4206,7 @@
 				    Choose a rational number $x$ and a positive integer $n$. The objective of the following instructions is to show that $\Im(\exp_n(ix))=\sin_n(x)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\Im(\exp_n(ix))$
+					    \item Show that $\Im(\exp_n(ix))$
 					    \begin{enumerate}
 						    \item $=\frac{\exp_n(ix)-\conj{\exp_n(ix)}}{2i}$
 						    \item $=\frac{\exp_n(ix)-\exp_n(\conj{ix})}{2i}$
@@ -4222,7 +4222,7 @@
 					    \item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle a,b,q\rangle$ receive.
 					    \item Let $p(x,y,n)$ be the following procedure:
 					    \begin{enumerate}
-					      \item Using procedure $q$, verify that $\cos_n(x+y)$
+					      \item Using procedure $q$, show that $\cos_n(x+y)$
 					      \begin{enumerate}
 					        \item $=\frac{1}{2}(\exp_n(i(x+y))+\exp_n(-i(x+y)))$
 					        \item $\equiv\frac{1}{2}(\exp_n(ix)\exp_n(iy)+\exp_n(-i(x+y)))\err{\frac{a(ix)(iy)}{2n}}$
@@ -4232,7 +4232,7 @@
 					        \item $=\frac{1}{2}\exp_n(ix)\cos_n(y)+\frac{1}{2i}\sin_n(x)\exp_n(-iy)-\frac{1}{2i}\sin_n(x)\exp_n(iy)+\frac{1}{2}\exp_n(-ix)\cos_n(y)$
 					        \item $=\cos_n(x)\cos_n(y)-\sin_n(x)\sin_n(y)$
 					      \end{enumerate}
-					      \item \textbf{Hence verify that $\cos_n(x+y)\equiv\cos_n(x)\cos_n(y)-\sin_n(x)\sin_n(y)\err{\frac{axy}{n}}\err{\frac{aX^2}{n}}$.}
+					      \item \textbf{Hence show that $\cos_n(x+y)\equiv\cos_n(x)\cos_n(y)-\sin_n(x)\sin_n(y)\err{\frac{axy}{n}}\err{\frac{aX^2}{n}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				    \end{enumerate}
@@ -4249,14 +4249,14 @@
 					    \item Execute \procedurehr{3.15} on $\langle X\rangle$ and let $\langle a,b,q\rangle$ receive.
 					    \item Let $p(x,n)$ be the following procedure:
 					    \begin{enumerate}
-					      \item Using procedure $q$, verify that $\cos_n(x)^2+\sin_n(y)^2$
+					      \item Using procedure $q$, show that $\cos_n(x)^2+\sin_n(y)^2$
 					      \begin{enumerate}
 					        \item $=\frac{1}{4}(\exp_n(ix)+\exp_n(-ix))^2+\frac{1}{4i^2}(\exp_n(ix)-\exp_n(-ix))^2$
 					        \item $=\frac{1}{4}(\exp_n(ix)^2+2\exp_n(ix)\exp_n(-ix)+\exp_n(-ix)^2-\exp_n(ix)^2+2\exp_n(ix)\exp_n(-ix)-\exp_n(-ix)^2)$
 					        \item $=\exp_n(ix)\exp_n(-ix)$
 					        \item $\equiv 1\err{\frac{a(-ix)(ix)}{n}}$.
 					      \end{enumerate}
-					      \item \textbf{Hence verify that $\cos_n(x)^2+\sin_n(y)^2\equiv 1\err{\frac{a\lVert x\rVert^2}{n}}\err{\frac{aX^2}{n}}$.}
+					      \item \textbf{Hence show that $\cos_n(x)^2+\sin_n(y)^2\equiv 1\err{\frac{a\lVert x\rVert^2}{n}}\err{\frac{aX^2}{n}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
 				    \end{enumerate}
@@ -4268,14 +4268,14 @@
 		          \item Execute \procedurehr{3.26} on $\langle X\rangle$ and let $\langle a,b,q\rangle$ receive.
 		          \item Let $p(x,y,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedure $q$, \procedurehr{3.22}, and \procedurehr{3.23}, verify that $\lVert x\exp_n(iy)\rVert^2$
+		            \item Using procedure $q$, \procedurehr{3.22}, and \procedurehr{3.23}, show that $\lVert x\exp_n(iy)\rVert^2$
 		            \begin{enumerate}
 		              \item $=\lVert x\rVert^2\lVert\exp_n(iy)\rVert^2$
 		              \item $=\lVert x\rVert^2\lVert\cos_n(y)+i\sin_n(y)\rVert^2$
 		              \item $=\lVert x\rVert^2(\cos_n(y)^2+\sin_n(y)^2)$
 		              \item $\equiv\lVert x\rVert^2\cdot 1\err{\lVert x\rVert^2\cdot\frac{a\lVert y\rVert^2}{n}}$.
 		            \end{enumerate}
-		            \item \textbf{Hence verify that $\lVert x\exp_n(iy)\rVert^2\equiv\lVert x\rVert^2\err{\frac{a\lVert xy\rVert^2}{n}}\err{\frac{a\lVert x\rVert^2X^2}{n}}$.}
+		            \item \textbf{Hence show that $\lVert x\exp_n(iy)\rVert^2\equiv\lVert x\rVert^2\err{\frac{a\lVert xy\rVert^2}{n}}\err{\frac{a\lVert x\rVert^2X^2}{n}}$.}
 		          \end{enumerate}
 		        \end{enumerate}
 		    \procedure{3.29}
@@ -4286,7 +4286,7 @@
 					    \item Execute \procedurehr{3.21} on $\langle X\rangle$ and let $\langle a,N,q\rangle$ receive.
 					    \item Let $p(x,n)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Using procedure $q$, verify that $\cos_n(x)$
+						    \item Using procedure $q$, show that $\cos_n(x)$
 						    \begin{enumerate}
 						      \item $=\frac{\exp_n(ix)}{2}+\frac{\exp_n(-ix)}{2}$
 						      \item $\equiv\frac{1}{2}\sum_r^{[0:{n+1}]}\frac{(ix)^{r}}{r!}+\frac{\exp_n(-ix)}{2}\err{\frac{a}{2n}}$
@@ -4295,7 +4295,7 @@
 						      \item $=\sum_r^{[0:{n+1}]}\frac{[r\bmod 2=0](-1)^{\frac{r}{2}}x^{r}}{r!}$
 						      \item $=\sum_r^{[0:{\lceil\frac{n}{2}\rceil}]}\frac{(-1)^rx^{2r}}{(2r)!}$.
 						    \end{enumerate}
-						    \item \textbf{Hence verify that $\cos_n(x)\equiv\sum_r^{[0:{\lceil\frac{n}{2}\rceil}]}\frac{(-1)^rx^{2r}}{(2r)!}\err{\frac{a}{n}}$.}
+						    \item \textbf{Hence show that $\cos_n(x)\equiv\sum_r^{[0:{\lceil\frac{n}{2}\rceil}]}\frac{(-1)^rx^{2r}}{(2r)!}\err{\frac{a}{n}}$.}
 					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{3.30}
@@ -4313,7 +4313,7 @@
 	          Choose a complex number $x$ and two non-negative integers $a,n$ such that $n>a$. The objective of the following instructions is to show that $(1+x)_n^a=(1+x)^a$.
 	        \implementation
 	          \begin{enumerate}
-	            \item Using \procedurehr{sun2107190636}, verify that $(1+x)^a_n=$
+	            \item Using \procedurehr{sun2107190636}, show that $(1+x)^a_n=$
 	            \begin{enumerate}
 	              \item $=\sum_r^{[0:n]}\binom{a}{r}x^r$
 	              \item $=\sum_r^{[0:n]}\frac{a^{\ul{r}}}{r!}x^r$
@@ -4330,16 +4330,14 @@
 	          \begin{enumerate}
 	            \item If $N=0$, then do the following:
 	            \begin{enumerate}
-	              \item Verify that $\binom{x+y}{N}=1=\sum_k^{[0:N+1]}\binom{x}{k}\binom{y}{N-k}$.
+	              \item Show that $\binom{x+y}{N}=1=\sum_k^{[0:N+1]}\binom{x}{k}\binom{y}{N-k}$.
 	            \end{enumerate}
 	            \item Otherwise do the following:
 	            \begin{enumerate}
-	              \item Verify that $N>0$.
-	              \item Execute \procedurehr{sun2107190640} on $\langle x-1,y,N-1\rangle$.
-	              \item Hence verify that $\binom{x+y-1}{N-1}=\sum_k^{[0:N]}\binom{x-1}{k}\binom{y}{N-1-k}$.
-	              \item Execute \procedurehr{sun2107190640} on $\langle x,y-1,N-1\rangle$.
-	              \item Hence verify that $\binom{x+y-1}{N-1}=\sum_k^{[0:N]}\binom{x}{k}\binom{y-1}{N-1-k}$.
-	              \item Hence verify that $\binom{x+y}{N}$
+	              \item Show that $N>0$.
+	              \item Show that $\binom{x+y-1}{N-1}=\sum_k^{[0:N]}\binom{x-1}{k}\binom{y}{N-1-k}$ using \procedurehr{sun2107190640}.
+	              \item Show that $\binom{x+y-1}{N-1}=\sum_k^{[0:N]}\binom{x}{k}\binom{y-1}{N-1-k}$ using \procedurehr{sun2107190640}.
+	              \item Hence show that $\binom{x+y}{N}$
 	              \begin{enumerate}
 	                \item $=\frac{x+y}{N}\binom{x+y-1}{N-1}$
 	                \item $=\frac{x}{N}\binom{x+y-1}{N-1}+\frac{y}{N}\binom{x+y-1}{N-1}$
@@ -4355,7 +4353,7 @@
 	          Choose complex numbers $a,b,x$ and a natural number $n$. The objective of the following instructions is to show that $(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}=\sum_k^{[1:n]}\sum_r^{[k:n]}\binom{a}{k+n-1-r}\binom{b}{r}x^{k+n-1}$.
 	        \implementation
 	          \begin{enumerate}
-	            \item Verify that $(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}$
+	            \item Show that $(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}$
 	            \begin{enumerate}
 	              \item $=(\sum_k^{[0:n]}\binom{a}{k}x^k)(\sum_r^{[0:n]}\binom{b}{r}x^r)-\sum_k^{[0:n]}\binom{a+b}{k}x^k$
 	              \item $=\sum_k^{[0:n]}\sum_r^{[0:n]}\binom{a}{k}\binom{b}{r}x^{k+r}-\sum_k^{[0:n]}\binom{a+b}{k}x^k$
@@ -4371,15 +4369,14 @@
 	          \begin{enumerate}
 	            \item Let $e=\frac{AX}{1-X}-1$.
 	            \item Let $d=\lfloor\frac{AX}{1-X}\rfloor$.
-	            \item Verify that $d>e>-1$.
+	            \item Show that $d>e>-1$.
 	            \item Let $Z=(1+\frac{A}{d+1})X$.
-	            \item Verify that $0<Z<(1+\frac{A}{e+1})X=1$.
+	            \item Show that $0<Z<(1+\frac{A}{e+1})X=1$.
 	            \item Let $Y=Z^{-d}\prod_k^{[0:d]}\frac{(A+k+1)X}{k+1}=Z^{-d}\prod_k^{[0:d]}X(1+\frac{A}{k+1})$.
 	            \item Let $p(a,x,n)$ be the following procedure:
 	            \begin{enumerate}
-	              \item Verify that $\Re(a+1)^2\le\lVert a+1\rVert^2\le A^2$.
-	              \item Hence verify that $\lvert\Re(a+1)\rvert\le A$.
-	              \item Hence verify that $\lVert\binom{a}{n}x^n\rVert^2$
+	              \item Show that $\lvert\Re(a+1)\rvert\le A$ given that $\Re(a+1)^2\le\lVert a+1\rVert^2\le A^2$.
+	              \item Hence show that $\lVert\binom{a}{n}x^n\rVert^2$
 	              \begin{enumerate}
 	                \item $=\lVert\frac{a^{\ul{n}}}{n!}x^n\rVert^2$
 	                \item $=\lVert\prod_k^{[0:n]}(\frac{a+1-(k+1)}{k+1}\cdot x)\rVert^2$
@@ -4391,7 +4388,7 @@
 	              \end{enumerate}
 	              \item If $n\le d$, then do the following:
 	              \begin{enumerate}
-	                \item Verify that $\lVert\binom{a}{n}x^n\rVert^2$
+	                \item Show that $\lVert\binom{a}{n}x^n\rVert^2$
 	                \begin{enumerate}
 	                  \item $\le(\prod_k^{[0:n]}X(1+\frac{A}{k+1}))^2$
 	                  \item $=(\prod_k^{[0:d]}X(1+\frac{A}{k+1}))^2(\prod_k^{[n:d]}X(1+\frac{A}{k+1}))^{-2}$
@@ -4401,7 +4398,7 @@
 	              \end{enumerate}
 	              \item Otherwise do the following:
 	              \begin{enumerate}
-	                \item Verify that $\lVert\binom{a}{n}x^n\rVert^2$
+	                \item Show that $\lVert\binom{a}{n}x^n\rVert^2$
 	                \begin{enumerate}
 	                  \item $\le(\prod_k^{[0:n]}X(1+\frac{A}{k+1}))^2$
 	                  \item $=(\prod_k^{[0:d]}X(1+\frac{A}{k+1}))^2(\prod_k^{[d:n]}X(1+\frac{A}{k+1}))^2$
@@ -4419,14 +4416,14 @@
 	          \begin{enumerate}
 	            \item Let $e=\frac{k}{1-X}-1$.
 	            \item Let $d=\lfloor\frac{k}{1-X}\rfloor$.
-	            \item Verify that $d>e>k-1$.
+	            \item Show that $d>e>k-1$.
 	            \item Let $Z=(1+\frac{1}{d})^kX$.
-	            \item Verify that $Z<(1+\frac{1}{e})^kX$.
-	            \item Now using \procedurehr{wed2407191348}, verify that $0<Z<(1+\frac{1}{e})^kX\le\frac{1+\frac{1}{e}}{1-(k-1)\frac{1}{e}}\cdot X=1$.
+	            \item Show that $Z<(1+\frac{1}{e})^kX$.
+	            \item Now show that $0<Z<(1+\frac{1}{e})^kX\le\frac{1+\frac{1}{e}}{1-(k-1)\frac{1}{e}}\cdot X=1$ using \procedurehr{wed2407191348}.
 	            \item Let $Y=Z^{-d}X\prod_r^{[1:d]}X(1+\frac{1}{r})^k$.
 	            \item Let $p(x,n)$ be the following procedure:
 	            \begin{enumerate}
-	              \item Verify that $\lVert n^kx^n\rVert^2$
+	              \item Show that $\lVert n^kx^n\rVert^2$
 	              \begin{enumerate}
 	                \item $\le\lVert x\prod_r^{[1:n]}x\cdot\frac{(r+1)^k}{r^k}\rVert^2$
 	                \item $=\lVert x\rVert^2\prod_r^{[1:n]}\lVert x\rVert^2(\frac{(r+1)^k}{r^k})^2$
@@ -4434,7 +4431,7 @@
 	              \end{enumerate}
 	              \item If $n\le d$, then do the following:
 	              \begin{enumerate}
-	                \item Verify that $\lVert n^kx^n\rVert^2$
+	                \item Show that $\lVert n^kx^n\rVert^2$
 	                \begin{enumerate}
 	                  \item $\le X^2(\prod_r^{[1:n]}X(1+\frac{1}{r})^k)^2$
 	                  \item $=X^2(\prod_r^{[1:d]}X(1+\frac{1}{r})^k)^2\cdot(\prod_r^{[n:d]}X(1+\frac{1}{r})^k)^{-2}$
@@ -4444,7 +4441,7 @@
 	              \end{enumerate}
 	              \item Otherwise do the following:
 	              \begin{enumerate}
-	                \item Verify that $\lVert n^kx^n\rVert^2$
+	                \item Show that $\lVert n^kx^n\rVert^2$
 	                \begin{enumerate}
 	                  \item $\le X^2(\prod_r^{[1:n]}X(1+\frac{1}{r})^k)^2$
 	                  \item $=X^2(\prod_r^{[1:d]}X(1+\frac{1}{r})^k)^2(\prod_r^{[d:n]}X(1+\frac{1}{r})^k)^2$
@@ -4467,11 +4464,11 @@
 	            \begin{enumerate}
 	              \item For each $r\in[1:n]$, do the following:
 	              \begin{enumerate}
-	                \item Using procedure $q$, verify that $\lVert\binom{a}{r}x^r\rVert^2\le(BC^r)^2$.
-	                \item Using procedure $q$, verify that $\lVert\binom{b}{r}x^r\rVert^2\le(BC^r)^2$.
+	                \item Show that $\lVert\binom{a}{r}x^r\rVert^2\le(BC^r)^2$ using procedure $q$.
+	                \item Show that $\lVert\binom{b}{r}x^r\rVert^2\le(BC^r)^2$ using procedure $q$, .
 	              \end{enumerate}
-	              \item Using procedure $t$, verify that $\lVert nC^n\rVert^2\le(FG^n)^2$.
-	              \item Hence verify that $(1+x)_n^{a+b}\equiv(1+x)_n^a(1+x)_n^b$
+	              \item Show that $\lVert nC^n\rVert^2\le(FG^n)^2$ using procedure $t$.
+	              \item Hence show that $(1+x)_n^{a+b}\equiv(1+x)_n^a(1+x)_n^b$
 	              \begin{enumerate}
 	                \item $\err{(1+x)_n^a(1+x)_n^b-(1+x)_n^{a+b}}$
 	                \item $\err{\sum_k^{[1:n]}\sum_r^{[k:n]}\binom{a}{k+n-1-r}\binom{b}{r}x^{k+n-1}}$
@@ -4485,6 +4482,7 @@
 	                \item $\err{DG^n}$.
 	              \end{enumerate}
 	            \end{enumerate}
+	            \item \textbf{Yield the tuple $\langle D,G,p\rangle$.}
 	          \end{enumerate}
 	      \procedure{wed2407191611}
 	        \objective
@@ -4498,12 +4496,11 @@
 	            \begin{enumerate}
 	              \item For each $r\in[1:n]$, do the following:
 	              \begin{enumerate}
-	                \item Verify that $\lVert a\rVert^2\le\lVert ka\rVert^2\le A^2$.
-	                \item Verify that $\lVert a-1\rVert^2\le(A+1)^2$.
-	                \item Execute procedure $q$ on $\langle a-1,x,r-1\rangle$.
-	                \item Hence verify that $\lVert\binom{a-1}{r-1}x^{r-1}\rVert^2\le(BC^r)^2$.
+	                \item Show that $\lVert a\rVert^2\le\lVert ka\rVert^2\le A^2$.
+	                \item Show that $\lVert a-1\rVert^2\le(A+1)^2$.
+	                \item Hence show that $\lVert\binom{a-1}{r-1}x^{r-1}\rVert^2\le(BC^r)^2$ using procedure $q$.
 	              \end{enumerate}
-	              \item Hence verify that $\lVert k\sum_r^{[1:n]}\binom{a}{r}x^r\rVert^2$
+	              \item Hence show that $\lVert k\sum_r^{[1:n]}\binom{a}{r}x^r\rVert^2$
 	              \begin{enumerate}
 	                \item $=\lVert k\sum_r^{[1:n]}\frac{a}{r}\binom{a-1}{r-1}x^r\rVert^2$
 	                \item $=\lVert kax\sum_r^{[1:n]}\frac{1}{r}\binom{a-1}{r-1}x^{r-1}\rVert^2$
@@ -4512,8 +4509,7 @@
 	              \end{enumerate}
 	              \item If $k>N$, then do the following:
 	              \begin{enumerate}
-	                \item Execute procedure $t$ on $\langle k\sum_r^{[1:n]}\binom{a}{r}x^r\rangle$.
-	                \item Hence verify that $\lVert((1+x)_n^a)^k\rVert^2$
+	                \item Hence using procedure $t$, show that $\lVert((1+x)_n^a)^k\rVert^2$
 	                \begin{enumerate}
 	                  \item $=\lVert(\sum_r^{[0:n]}\binom{a}{r}x^r)^k\rVert^2$
 	                  \item $=\lVert(1+\sum_r^{[1:n]}\binom{a}{r}x^r)^k\rVert^2$
@@ -4524,12 +4520,12 @@
 	              \end{enumerate}
 	              \item Otherwise do the following:
 	              \begin{enumerate}
-	                \item Verify that $\lVert\sum_r^{[1:n]}\binom{a}{r}x^r)^k\rVert^2$
+	                \item Show that $\lVert\sum_r^{[1:n]}\binom{a}{r}x^r)^k\rVert^2$
 	                \begin{enumerate}
 	                  \item $\le\lVert k\sum_r^{[1:n]}\binom{a}{r}x^r\rVert^2$
 	                  \item $\le(\frac{ABX}{1-C})^2$.
 	                \end{enumerate}
-	                \item Hence verify that $\lVert((1+x)_n^a)^k\rVert^2$
+	                \item Hence show that $\lVert((1+x)_n^a)^k\rVert^2$
 	                \begin{enumerate}
 	                  \item $=(\lVert(1+x)_n^a\rVert^2)^k$
 	                  \item $=(\lVert 1+\sum_r^{[1:n]}\binom{a}{r}x^r\rVert^2)^k$
@@ -4552,15 +4548,15 @@
 	            \item Let $N=2a_1a_2$.
 	            \item Let $p(x,a,n)$ be the following procedure:
 	            \begin{enumerate}
-	              \item Using procedure $p_2$, verify that $\lVert n{b_1}^n\rVert^2\le(a_2{b_2}^n)^2\le{a_2}^2$.
-	              \item Hence verify that $(a_1{b_1}^n)^2\le(\frac{a_1a_2}{n})^2$.
-	              \item Using procedure $p_3$, verify that $\lVert((1+x)_n^{-a})^1\rVert^2\le{a_3}^2$.
-	              \item Using procedure $p_1$, verify that $\lVert(1+x)_n^{-a}(1+x)_n^a-1\rVert^2$
+	              \item Show that $\lVert n{b_1}^n\rVert^2\le(a_2{b_2}^n)^2\le{a_2}^2$ using procedure $p_2$.
+	              \item Hence show that $(a_1{b_1}^n)^2\le(\frac{a_1a_2}{n})^2$.
+	              \item Show that $\lVert((1+x)_n^{-a})^1\rVert^2\le{a_3}^2$ using procedure $p_3$.
+	              \item Using procedure $p_1$, show that $\lVert(1+x)_n^{-a}(1+x)_n^a-1\rVert^2$
 	              \begin{enumerate}
 	                \item $=\lVert(1+x)_n^{-a}(1+x)_n^a-(1+x)_n^{-a+a}\rVert^2$
 	                \item $\le(a_1{b_1}^n)^2$.
 	              \end{enumerate}
-	              \item Hence using \procedurehr{3.05}, verify that $\frac{1}{2}-\lVert(1+x)_n^{-a}(1+x)_n^a\rVert^2$
+	              \item Hence using \procedurehr{3.05}, show that $\frac{1}{2}-\lVert(1+x)_n^{-a}(1+x)_n^a\rVert^2$
 	              \begin{enumerate}
 	                \item $=\frac{1}{2}\lVert 1\rVert^2-\lVert(1+x)_n^{-a}(1+x)_n^a\rVert^2$
 	                \item $\le\lVert 1-(1+x)_n^{-a}(1+x)_n^a\rVert^2$
@@ -4568,12 +4564,12 @@
 	                \item $\le(\frac{a_1a_2}{n})^2$
 	                \item $\le\frac{1}{4}$.
 	              \end{enumerate}
-	              \item Hence verify that $(\frac{1}{2})^2$
+	              \item Hence show that $(\frac{1}{2})^2$
 	              \begin{enumerate}
 	                \item $\le\lVert(1+x)_n^{-a}(1+x)_n^a\rVert^2$
 	                \item $\le{a_3}^2\lVert(1+x)_n^a\rVert^2$.
 	              \end{enumerate}
-	              \item \textbf{Hence verify that $D^2\le\lVert(1+x)_n^a\rVert^2$.}
+	              \item \textbf{Hence show that $D^2\le\lVert(1+x)_n^a\rVert^2$.}
 	            \end{enumerate}
 	            \item \textbf{Yield the tuple $\langle D,N,p\rangle$.}
 	          \end{enumerate}
@@ -4588,14 +4584,14 @@
 	            \item Let $B=(1+\frac{a_3}{a_2})a_1$.
 	            \item Let $p(x,a,b,n)$ be the following procedure:
 	            \begin{enumerate}
-	              \item Using procedures $p_1,p_2,p_3$, verify that $(1+x)_n^{a-b}$
+	              \item Using procedures $p_1,p_2,p_3$, show that $(1+x)_n^{a-b}$
 	              \begin{enumerate}
 	                \item $\equiv(1+x)_n^a(1+x)_n^{-b}\err{a_1{C}^n}$
 	                \item $=(1+x)_n^a\frac{(1+x)_n^{b}(1+x)_n^{-b}}{(1+x)_n^{b}}$
 	                \item $\equiv((1+x)_n^a)^1\frac{(1+x)_n^{b-b}}{(1+x)_n^{b}}\err{a_3\frac{a_1{C}^n}{a_2}}$
 	                \item $=\frac{(1+x)_n^a}{(1+x)_n^b}$
 	              \end{enumerate}
-	              \item \textbf{Hence verify that $(1+x)_n^{a-b}\equiv\frac{(1+x)_n^a}{(1+x)_n^b}\err{(1+\frac{a_3}{a_2})a_1{C}^n}\err{BC^n}$.}
+	              \item \textbf{Hence show that $(1+x)_n^{a-b}\equiv\frac{(1+x)_n^a}{(1+x)_n^b}\err{(1+\frac{a_3}{a_2})a_1{C}^n}\err{BC^n}$.}
 	            \end{enumerate}
 	            \item \textbf{Yield the tuple $\langle B,C,D,p\rangle$.}
 	          \end{enumerate}
@@ -4609,7 +4605,7 @@
 	            \item Let $G=DB$.
 	            \item Let $p(x,n,a,k)$ be the following procedure:
 	            \begin{enumerate}
-	              \item Hence using procedures $t,q$, verify that $(1+x)_n^{ka}$
+	              \item Hence using procedures $t,q$, show that $(1+x)_n^{ka}$
 	              \begin{enumerate}
 	                \item $=((1+x)_n^a)^0(1+x)_n^{ka}$
 	                \item $\equiv((1+x)_n^a)^1(1+x)_n^{(k-1)a}\err{DBC^n}$
@@ -4618,7 +4614,7 @@
 	                \item $\equiv((1+x)_n^a)^k(1+x)_n^{(k-k)a}\err{DBC^n}$
 	                \item $=((1+x)_n^a)^k$.
 	              \end{enumerate}
-	              \item \textbf{Hence verify that $(1+x)_n^{ka}\equiv((1+x)_n^a)^k\err{kDBC^n}\err{GkC^n}$.}
+	              \item \textbf{Hence show that $(1+x)_n^{ka}\equiv((1+x)_n^a)^k\err{kDBC^n}\err{GkC^n}$.}
 	            \end{enumerate}
 	            \item \textbf{Yield the tuple $\langle G,C,D,p\rangle$.}
 	          \end{enumerate}
@@ -4627,11 +4623,13 @@
 	          Choose two non-negative rational numbers $a,b$ and two non-negative integers $r,n$ such that $b<r<n-a-1$. The objective of the following instructions is to show that $\sgn(\binom{b}{r}\binom{a}{n-r})=\sgn(\binom{b}{r+1}\binom{a}{n-r-1})$.
 	        \implementation
 	          \begin{enumerate}
-	            \item Verify that $r>b$ and $n-r>a+1$.
-	            \item Hence verify that $\frac{b-r}{(a+1)-(n-r)}>0$.
-	            \item Hence verify that $\frac{b-r}{r+1}\cdot\frac{n-r}{a-n+r+1}>0$.
-	            \item Hence verify that $\sgn(\frac{b-r}{r+1}\cdot\frac{n-r}{a-n+r+1})=1$.
-	            \item Hence verify that $\sgn(\binom{b}{r+1}\binom{a}{n-r-1})$
+	            \item Show that $\sgn(\frac{b-r}{r+1}\cdot\frac{n-r}{a-n+r+1})=1$
+	            \begin{enumerate}
+	              \item given that $\frac{b-r}{r+1}\cdot\frac{n-r}{a-n+r+1}>0$
+	              \item given that $\frac{b-r}{(a+1)-(n-r)}>0$
+	              \item given that $r>b$ and $n-r>a+1$.
+	            \end{enumerate}
+	            \item Hence show that $\sgn(\binom{b}{r+1}\binom{a}{n-r-1})$
 	            \begin{enumerate}
 	              \item $=\sgn(\frac{b-r}{r+1}\binom{b}{r}\cdot\frac{n-r}{a-n+r+1}\binom{a}{n-r})$
 	              \item $=\sgn(\frac{b-r}{r+1}\cdot\frac{n-r}{a-n+r+1})\sgn(\binom{b}{r}\binom{a}{n-r})$
@@ -4646,11 +4644,10 @@
 	            \item Verify that $\lceil b\rceil\le\lfloor n-a\rfloor$.
 	            \item For $r$ in $[\lceil b\rceil:\lfloor n-a\rceil]$, do the following:
 	            \begin{enumerate}
-	              \item Execute \procedurehr{sun0812190858} on $\langle a,b,r,n\rangle$.
-	              \item Hence verify that $\sgn(\binom{b}{r}\binom{a}{n-r})=\sgn(\binom{b}{r+1}\binom{a}{n-r-1})$.
+	              \item Show that $\sgn(\binom{b}{r}\binom{a}{n-r})=\sgn(\binom{b}{r+1}\binom{a}{n-r-1})$ using \procedurehr{sun0812190858}.
 	            \end{enumerate}
-	            \item Hence verify that $\sum_r^{[\lceil b\rceil:\lceil n-a\rceil]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert=\lVert\sum_r^{[\lceil b\rceil:\lceil n-a\rceil]}\binom{b}{r}\binom{a}{n-r}\rVert$.
-	            \item Hence verify that $\sum_r^{[0:n+1]}\Vert\binom{b}{r}\binom{a}{n-r}\rVert$
+	            \item Hence show that $\sum_r^{[\lceil b\rceil:\lceil n-a\rceil]}\lVert\binom{b}{r}\binom{a}{n-r}\rVert=\lVert\sum_r^{[\lceil b\rceil:\lceil n-a\rceil]}\binom{b}{r}\binom{a}{n-r}\rVert$.
+	            \item Hence show that $\sum_r^{[0:n+1]}\Vert\binom{b}{r}\binom{a}{n-r}\rVert$
 	            \begin{enumerate}
 	              \item $=\sum_r^{[0:\lceil b\rceil]}\Vert\binom{b}{r}\binom{a}{n-r}\rVert+\sum_r^{[\lceil b\rceil:\lceil n-a\rceil]}\Vert\binom{b}{r}\binom{a}{n-r}\rVert+\sum_r^{[\lceil n-a\rceil:n+1]}\Vert\binom{b}{r}\binom{a}{n-r}\rVert$
 	              \item $=\sum_r^{[0:\lceil b\rceil]}\Vert\binom{b}{r}\binom{a}{n-r}\rVert+\lVert\sum_r^{[\lceil b\rceil:\lceil n-a\rceil]}\binom{b}{r}\binom{a}{n-r}\rVert+\sum_r^{[\lceil n-a\rceil:n+1]}\Vert\binom{b}{r}\binom{a}{n-r}\rVert$.
@@ -4665,12 +4662,17 @@
 	            \item Let $N=2A$.
 	            \item Let $p(a,n)$ be the following procedure:
 	            \begin{enumerate}
-	              \item Verify that $-1<a<A$.
-	              \item Verify that $n>N=2A>2a$.
-	              \item Hence verify that $\frac{2a}{n}<\frac{2A}{2A}=1$.
-	              \item Verify that $\frac{n}{2}>a$.
-	              \item Therefore verify that $n-\lfloor a\rfloor>n-a>n-\frac{n}{2}=\frac{n}{2}$.
-	              \item Hence verify that $\lVert\binom{a}{n}\rVert^2$
+	              \item Show that $\frac{2a}{n}<\frac{2A}{2A}=1$
+	              \begin{enumerate}
+	                \item given that $n>N=2A>2a$
+	                \item and $-1<a<A$.
+	              \end{enumerate}
+	              \item Show that $n-\lfloor a\rfloor>n-a>n-\frac{n}{2}=\frac{n}{2}$
+	              \begin{enumerate}
+	                \item given that $\frac{n}{2}>a$
+	                \item given that $n>N=2A>2a$.
+	              \end{enumerate}
+	              \item Hence show that $\lVert\binom{a}{n}\rVert^2$
 	              \begin{enumerate}
 	                \item $=\lVert\frac{a^{\ul{n}}}{n!}\rVert^2$
 	                \item $=\lVert\prod_k^{[0:n]}\frac{a-k}{k+1}\rVert^2$
