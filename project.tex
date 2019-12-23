@@ -4988,7 +4988,7 @@
 				    Choose a positive integer $k$. The objective of the following instructions is to show that $\tau_k=8\sum_r^{[0:\lfloor\frac{k}{2}\rfloor]}\frac{(-1)^r}{2r+1}$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{3.33}, verify that $\tau_k$
+					    \item Using \declarationhr{3.33}, show that $\tau_k$
 					    \begin{enumerate}
 						    \item $=8\Im(\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}i^r)$
 						    \item $=8\Im(\sum_r^{[0:\lfloor\frac{k}{2}\rfloor]}\frac{(-1)^{2r}}{2r+1}i^{2r+1})$
@@ -5002,16 +5002,16 @@
 			    \implementation
 				    \begin{enumerate}
 				      \item Let $a=\frac{16}{3}$.
-					    \item \textbf{Verify that $a\ge 4$.}
+					    \item \textbf{Show that $a\ge 4$.}
 					    \item Let $b=4$.
 					    \item Let $p(n)$ be the following procedure:
 					    \begin{enumerate}
 						    \item Let $d=n\div 4$.
 						    \item Let $g=n\bmod 4$.
-						    \item Hence verify that $n=4d+g$.
+						    \item Hence show that $n=4d+g$.
 						    \item If $g=0$ or $g=1$, then do the following:
 						    \begin{enumerate}
-						      \item Using \procedurehr{3.47}, verify that $\tau_n$
+						      \item Using \procedurehr{3.47}, show that $\tau_n$
 						      \begin{enumerate}
 						        \item $=8\sum_r^{[0:\lfloor\frac{4d+g}{2}\rfloor]}\frac{(-1)^r}{2r+1}$
 						        \item $=8\sum_r^{[0:2d]}\frac{(-1)^r}{2r+1}$
@@ -5022,8 +5022,8 @@
 						    \end{enumerate}
 						    \item Otherwise do the following:
 						    \begin{enumerate}
-						      \item Verify that $g=2$ or $g=3$.
-						      \item Hence verify that $\tau_n$
+						      \item Show that $g=2$ or $g=3$.
+						      \item Hence show that $\tau_n$
 						      \begin{enumerate}
 						        \item $=8\sum_r^{[0:\lfloor\frac{4d+g}{2}\rfloor]}\frac{(-1)^r}{2r+1}$
 						        \item $=8\sum_r^{[0:2d+1]}\frac{(-1)^r}{2r+1}$
@@ -5041,8 +5041,8 @@
 			    \implementation
 				    \begin{enumerate}
 					    \item Let $a=\frac{2104}{315}$.
-					    \item \textbf{Verify that $a\ge 4$.}
-					    \item \textbf{Verify that $a^2=\frac{4426816}{99225}<48$.}
+					    \item \textbf{Show that $a\ge 4$.}
+					    \item \textbf{Show that $a^2=\frac{4426816}{99225}<48$.}
 					    \item Let $b=10$.
 					    \item Let $p(n)$ be the following procedure:
 					    \begin{enumerate}
@@ -5051,7 +5051,7 @@
 						    \item Hence verify that $n=4d+g$.
 						    \item If $g=0$ or $g=1$, then do the following:
 						    \begin{enumerate}
-						      \item Verify that $\tau_n$
+						      \item Show that $\tau_n$
 						      \begin{enumerate}
 						        \item $=8\sum_r^{[0:\lfloor\frac{n}{2}\rfloor]}\frac{(-1)^r}{2r+1}$
 						        \item $=8\sum_r^{[0:5]}\frac{(-1)^r}{2r+1}+8\sum_r^{[5:\lfloor\frac{4d+g}{2}\rfloor]}\frac{(-1)^r}{2r+1}$
@@ -5063,8 +5063,8 @@
 						    \end{enumerate}
 						    \item Otherwise do the following:
 						    \begin{enumerate}
-						      \item Verify that $g=2$ or $g=3$.
-						      \item Hence verify that $\tau_n$
+						      \item Show that $g=2$ or $g=3$.
+						      \item Hence show that $\tau_n$
 						      \begin{enumerate}
 						        \item $=8\sum_r^{[0:\lfloor\frac{n}{2}\rfloor]}\frac{(-1)^r}{2r+1}$
 						        \item $=8\sum_r^{[0:5]}\frac{(-1)^r}{2r+1}+8\sum_r^{[5:\lfloor\frac{4d+g}{2}\rfloor]}\frac{(-1)^r}{2r+1}$
@@ -5090,8 +5090,8 @@
 					    \item Let $e=\max(b_2,b_3,e_4)$.
 					    \item Let $p(n,k)$ be the following procedure:
 					    \begin{enumerate}
-					      \item Using procedure $p_1$, verify that $\lVert\ln_k(1+i)\rVert^2\le {a_1}^2$.
-					      \item Hence using procedures $p_2,p_3,p_4$, verify that $\exp_n(\frac{1}{4}\tau_ki)$
+					      \item Show that $\lVert\ln_k(1+i)\rVert^2\le {a_1}^2$ using procedure $p_1$.
+					      \item Hence using procedures $p_2,p_3,p_4$, show that $\exp_n(\frac{1}{4}\tau_ki)$
 					      \begin{enumerate}
 					        \item $=\exp_n(2\Im(\ln_k(1+i))i)$
 					        \item $=\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})$
@@ -5105,7 +5105,7 @@
 					        \end{enumerate}
 					        \item $=i$.
 					      \end{enumerate}
-					      \item \textbf{Hence verify that $\exp_n(\frac{1}{4}\tau_ki)\equiv i\err{\frac{a_2}{n}+\frac{2}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n})}\err{\frac{an}{k}+\frac{c}{n}}$.}
+					      \item \textbf{Hence show that $\exp_n(\frac{1}{4}\tau_ki)\equiv i\err{\frac{a_2}{n}+\frac{2}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n})}\err{\frac{an}{k}+\frac{c}{n}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
 				    \end{enumerate}
@@ -5122,7 +5122,7 @@
 		          \item Let $a=K\max(1,X)^{K-1}$.
 		          \item Let $p(x,y,k)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Verify that $x^k\equiv y^k$
+		            \item Show that $x^k\equiv y^k$
 		            \begin{enumerate}
 		              \item $\err{y^k-x^k}$
 		              \item $\err{(y-x)\sum_r^{[0:k]}x^ry^{k-1-r}}$
@@ -5148,11 +5148,11 @@
 					    \item Let $c=\max(b_2,b_4,c_3)$.
 					    \item Let $p(n,k,m)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Using procedure $p_1$, verify that $\tau_m\le a_1$.
-						    \item Hence verify that $\lVert\frac{1}{4}\tau_m i\rVert^2=\lVert\frac{1}{4}\tau_m\rVert^2\le(\frac{a_1}{4})^2$.
-						    \item Hence using procedure $p_3$, verify that $\lVert\exp_n(\frac{1}{4}\tau_m i)-i\rVert^2\le(\frac{a_3n}{m}+\frac{b_3}{n})^2$.
-						    \item Hence using procedure $p_4$, verify that $\lVert\exp_n(\frac{1}{4}\tau_m i)\rVert^2\le a_4$.
-						    \item Hence using procedures $p_2,p_5$, verify that $\exp_n(\frac{k}{4}\tau_m i)$
+						    \item Show that $\tau_m\le a_1$ using procedure $p_1$.
+						    \item Hence show that $\lVert\frac{1}{4}\tau_m i\rVert^2=\lVert\frac{1}{4}\tau_m\rVert^2\le(\frac{a_1}{4})^2$.
+						    \item Hence show that $\lVert\exp_n(\frac{1}{4}\tau_m i)-i\rVert^2\le(\frac{a_3n}{m}+\frac{b_3}{n})^2$ using procedure $p_3$.
+						    \item Hence show that $\lVert\exp_n(\frac{1}{4}\tau_m i)\rVert^2\le a_4$ using procedure $p_4$.
+						    \item Hence using procedures $p_2,p_5$, show that $\exp_n(\frac{k}{4}\tau_m i)$
 						    \begin{enumerate}
 						      \item $\equiv\exp_n(\frac{1}{4}\tau_m i)^k$
 						      \begin{enumerate}
@@ -5165,7 +5165,7 @@
 						        \item $\err{a_5(\frac{a_3n}{m}+\frac{b_3}{n})}$
 						      \end{enumerate}
 						    \end{enumerate}
-						    \item \textbf{Hence verify that $\exp_n(\frac{k}{4}\tau_m i)\equiv i^k\err{\frac{a_2K}{n}+a_5(\frac{a_3n}{m}+\frac{b_3}{n})}\err{\frac{an}{m}+\frac{b}{n}}$.}
+						    \item \textbf{Hence show that $\exp_n(\frac{k}{4}\tau_m i)\equiv i^k\err{\frac{a_2K}{n}+a_5(\frac{a_3n}{m}+\frac{b_3}{n})}\err{\frac{an}{m}+\frac{b}{n}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
             \end{enumerate}
@@ -5182,7 +5182,7 @@
 					    \item Execute \procedurehr{3.56} on $\langle K\rangle$ and let $\langle a,b,c,d,q\rangle$ receive.
 					    \item Let $p(n,m,k)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Using procedure $q$, verify that $\cos_n(\frac{k}{4}\tau_m)$
+						    \item Using procedure $q$, show that $\cos_n(\frac{k}{4}\tau_m)$
 						    \begin{enumerate}
 						      \item $=\frac{\exp_n(\frac{k}{4}\tau_m i)+\exp_n(-\frac{k}{4}\tau_m i)}{2}$
 						      \item $=\frac{\exp_n(\frac{k}{4}\tau_m i)}{2}+\frac{\exp_n(-\frac{k}{4}\tau_m i)}{2}$
@@ -5190,7 +5190,7 @@
 						      \item $\equiv\frac{i^k}{2}+\frac{i^{-k}}{2}\err{\frac{1}{2}(\frac{an}{m}+\frac{b}{n})}$
 						      \item $=\frac{i^k+i^{-k}}{2}$.
 						    \end{enumerate}
-						    \item \textbf{Hence verify that $\cos_n(\frac{k}{4}\tau_m)\equiv\frac{i^k+i^{-k}}{2}\err{\frac{an}{m}+\frac{b}{n}}$.}
+						    \item \textbf{Hence show that $\cos_n(\frac{k}{4}\tau_m)\equiv\frac{i^k+i^{-k}}{2}\err{\frac{an}{m}+\frac{b}{n}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				    \end{enumerate}
@@ -5215,15 +5215,14 @@
 					    \item Let $d=\max(b_1,d_4)$.
 					    \item Let $p(x,n,k,m)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Execute procedure $p_1$ on $\langle m\rangle$.
-						    \item Hence verify that $\tau_m\le a_1$.
-						    \item Hence verify that $\lVert\frac{k}{4}\tau_m i\rVert^2=(\frac{k{\tau_m}}{4})^2$.
-						    \item Hence using procedures $p_2,p_3,p_4$, verify that $\exp_n(x+\frac{k}{4}\tau_m i)$
+						    \item Show that $\tau_m\le a_1$ using procedure $p_1$.
+						    \item Hence show that $\lVert\frac{k}{4}\tau_m i\rVert^2=(\frac{k{\tau_m}}{4})^2$.
+						    \item Hence using procedures $p_2,p_3,p_4$, show that $\exp_n(x+\frac{k}{4}\tau_m i)$
 						    \begin{enumerate}
 						      \item $\equiv\exp_n(\frac{k}{4}\tau_m i)\exp_n(x)\err{\frac{a_2H^2}{n}}$
 						      \item $\equiv i^k\exp_n(x)\err{a_3(\frac{a_4n}{m}+\frac{b_4}{n})}$
 						    \end{enumerate}
-						    \item \textbf{Hence verify that $\exp_n(x+\frac{k}{4}\tau_m i)\equiv i^k\exp_n(x)\err{\frac{a_2H^2}{n}+a_3(\frac{a_4n}{m}+\frac{b_4}{n})}\err{\frac{an}{m}+\frac{b}{n}}$.}
+						    \item \textbf{Hence show that $\exp_n(x+\frac{k}{4}\tau_m i)\equiv i^k\exp_n(x)\err{\frac{a_2H^2}{n}+a_3(\frac{a_4n}{m}+\frac{b_4}{n})}\err{\frac{an}{m}+\frac{b}{n}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				    \end{enumerate}
@@ -5241,16 +5240,15 @@
 					    \item Let $d=\max(b_1,d_3)$.
 					    \item Let $p(n,m,k)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Execute procedure $p_1$ on $\langle m\rangle$.
-						    \item Hence verify that $\tau_m\le a_1$.
-						    \item Hence verify that $\lVert K\frac{k}{K}\tau_mi\rVert=\lVert k\tau_m\rVert^2\le(Ka_1)^2$.
-						    \item Now using procedures $p_2,p_3$, verify that $\exp_n(\frac{k}{K}\tau_mi)^K$
+						    \item Show that $\tau_m\le a_1$ using procedure $p_1$.
+						    \item Hence show that $\lVert K\frac{k}{K}\tau_mi\rVert=\lVert k\tau_m\rVert^2\le(Ka_1)^2$.
+						    \item Now using procedures $p_2,p_3$, show that $\exp_n(\frac{k}{K}\tau_mi)^K$
 						    \begin{enumerate}
 						      \item $\equiv\exp_n(K\frac{k}{K}\tau_mi)\err{\frac{a_2K}{n}}$
 						      \item $=\exp_n(\frac{4k}{4}\tau_mi)$
 						      \item $\equiv i^{4k}\err{\frac{a_3n}{m}+\frac{b_3}{n}}$
 						    \end{enumerate}
-						    \item \textbf{Hence verify that $\exp_n(\frac{k}{K}\tau_mi)^K\equiv i^{4k}\err{\frac{a_2K}{n}+\frac{a_3n}{m}+\frac{b_3}{n}}\err{\frac{an}{m}+\frac{b}{n}}$.}
+						    \item \textbf{Hence show that $\exp_n(\frac{k}{K}\tau_mi)^K\equiv i^{4k}\err{\frac{a_2K}{n}+\frac{a_3n}{m}+\frac{b_3}{n}}\err{\frac{an}{m}+\frac{b}{n}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				    \end{enumerate}
@@ -5319,11 +5317,11 @@
 			    \implementation
 				    \begin{enumerate}
 					    \item Let $a=\frac{M^2}{4}(1-\frac{N^2}{12})$.
-					    \item \textbf{Verify that $a>0$.}
+					    \item \textbf{Show that $a>0$.}
 					    \item Let $b=4$.
 					    \item Let $p(x,n)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Using \procedurehr{3.22}, verify that $(\cos_n(x)-1)^2$
+						    \item Using \procedurehr{3.22}, show that $(\cos_n(x)-1)^2$
 						    \begin{enumerate}
 							    \item $=(\frac{1}{2}((1+\frac{xi}{n})^n+(1-\frac{xi}{n})^n)-1)^2$
 							    \item $=(\frac{1}{2}(\sum_r^{[0:{n+1}]}\frac{n^{\ul{r}}}{r!}(\frac{x}{n})^ri^r+\sum_r^{[0:{n+1}]}\frac{n^{\ul{r}}}{r!}(\frac{x}{n})^r(-i)^r)-1)^2$
@@ -5348,21 +5346,17 @@
 			    \implementation
 				    \begin{enumerate}
 					    \item Execute \procedurehr{3.50} and let $\langle a_1,c,p_1\rangle$ receive.
-					    \item Verify that $(\frac{a_1}{2})^2<12$.
+					    \item Show that $(\frac{a_1}{2})^2<12$.
 					    \item Execute \procedurehr{3.49} and let $\langle a_2,p_2\rangle$ receive.
-					    \item Verify that $a_2>0$.
+					    \item Show that $a_2>0$.
 					    \item Execute \procedurehr{3.90} on $\langle\frac{a_2}{K},\frac{a_1}{2}\rangle$ and let $\langle a,b,p_3\rangle$ receive.
-					    \item \textbf{Verify that $a>0$.}
+					    \item \textbf{Show that $a>0$.}
 					    \item Let $p(n,m,k)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Verify that $1\le\lvert k\rvert\le\frac{K}{2}$.
-						    \item Hence verify that $\frac{1}{K}\le\frac{\lvert k\rvert}{K}\le\frac{1}{2}$.
-						    \item Execute procedure $p_1$ on $\langle m\rangle$.
-						    \item Execute procedure $p_2$ on $\langle m\rangle$.
-						    \item Hence verify that $0<\frac{a_2}{K}\le\frac{1}{K}\tau_m\le\frac{\lvert k\rvert}{K}\tau_m\le\frac{1}{2}\tau_m\le\frac{a_1}{2}$.
-						    \item Hence execute procedure $p_3$ on $\langle\frac{k}{K}\tau_m,n\rangle$.
-						    \item Hence verify that $(\cos_n(\frac{k}{K}\tau_m)-1)^2\ge a^2$.
-						    \item Using \procedurehr{3.22}, verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)-1\rVert^2$
+						    \item Show that $\frac{1}{K}\le\frac{\lvert k\rvert}{K}\le\frac{1}{2}$ given that $1\le\lvert k\rvert\le\frac{K}{2}$.
+						    \item Hence show that $0<\frac{a_2}{K}\le\frac{1}{K}\tau_m\le\frac{\lvert k\rvert}{K}\tau_m\le\frac{1}{2}\tau_m\le\frac{a_1}{2}$ using procedures $p_1$ and $p_2$.
+						    \item Hence show that $(\cos_n(\frac{k}{K}\tau_m)-1)^2\ge a^2$ using procedure $p_3$.
+						    \item Using \procedurehr{3.22}, show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-1\rVert^2$
 						    \begin{enumerate}
 							    \item $\ge\Re(\exp_n(\frac{k}{K}\tau_mi)-1)^2$
 							    \item $=(\cos_n(\frac{k}{K}\tau_m)-1)^2$
@@ -5385,21 +5379,18 @@
 					    \item Let $c=\max(b_1,c_3)$.
 					    \item Let $p(n,m,j,k)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Verify that $-K<j<K$.
-						    \item Hence verify that $-1<\frac{j}{K}<1$.
-						    \item Hence verify that $\lVert\frac{j}{K}\rVert^2<1$.
-						    \item Execute procedure $p_1$ on $\langle m\rangle$.
-						    \item Hence verify that $\lVert\frac{j}{K}\tau_mi\rVert^2=\lVert\frac{j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_1}^2$.
-						    \item Execute procedure $p_2$ on $\langle\frac{j}{K}\tau_mi,n\rangle$.
-						    \item Hence verify that $\lVert\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge{a_2}^2>0$.
-						    \item Execute procedure $p_3$ on $\langle n,m,k-j\rangle$.
-						    \item Hence verify that $\lVert\exp_n(\frac{k-j}{K}\tau_mi)-1\rVert^2\ge{a_3}^2>0$.
-						    \item Verify that $0<\frac{k-j}{K}\le\frac{1}{2}$.
-						    \item Hence verify that $\lVert\frac{k-j}{K}\tau_mi\rVert^2\le\lVert\frac{k-j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_1}^2$.
-						    \item Verify that $n\ge b\ge\frac{2a_4{a_1}^2}{a_2a_3}$.
-						    \item Execute procedure $p_4$ on $\langle\frac{k-j}{K}\tau_mi,\frac{j}{K}\tau_mi,n\rangle$.
-						    \item Hence verify that $\lVert\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)\rVert^2\le\frac{{a_4}^2\lVert\frac{k-j}{K}\tau_mi\rVert^2\lVert\frac{j}{K}\tau_mi\rVert^2}{n^2}\le\frac{{a_4}^2{a_1}^4}{n^2}\le(\frac{a_2a_3}{2})^2$.
-						    \item Hence using \procedurehr{sat1708191238}, verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
+						    \item Show that $\lVert\frac{j}{K}\rVert^2<1$
+						    \begin{enumerate}
+						      \item given that $-1<\frac{j}{K}<1$
+						      \item given that $-K<j<K$.
+						    \end{enumerate}
+						    \item Hence show that $\lVert\frac{j}{K}\tau_mi\rVert^2=\lVert\frac{j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_1}^2$ using procedure $p_1$.
+						    \item Hence show that $\lVert\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge{a_2}^2>0$ using procedure $p_2$.
+						    \item Hence show that $\lVert\exp_n(\frac{k-j}{K}\tau_mi)-1\rVert^2\ge{a_3}^2>0$ using procedure $p_3$.
+						    \item Show that $\lVert\frac{k-j}{K}\tau_mi\rVert^2\le\lVert\frac{k-j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_1}^2$ given that $0<\frac{k-j}{K}\le\frac{1}{2}$.
+						    \item Show that $n\ge b\ge\frac{2a_4{a_1}^2}{a_2a_3}$.
+						    \item Hence show that $\lVert\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)\rVert^2\le\frac{{a_4}^2\lVert\frac{k-j}{K}\tau_mi\rVert^2\lVert\frac{j}{K}\tau_mi\rVert^2}{n^2}\le\frac{{a_4}^2{a_1}^4}{n^2}\le(\frac{a_2a_3}{2})^2$ using procedure $p_4$.
+						    \item Hence using \procedurehr{sat1708191238}, show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
 						    \begin{enumerate}
 							    \item $=\lVert\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)+\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
 							    \item $=\lVert\exp_n(\frac{j}{K}\tau_mi)(\exp_n(\frac{k-j}{K}\tau_mi)-1)-(\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi))\rVert^2$
@@ -5422,19 +5413,16 @@
 					    \item Let $c=\max(\frac{4a_3}{a_1},\frac{c_1}{b},\frac{b_2}{b},\frac{d_3}{b})$.
 					    \item Let $p(n,m,j,k)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Verify that $-\frac{K}{2}\le k-K<j<\frac{K}{2}$.
-						    \item Also verify that $0<j-(k-K)\le\frac{K}{2}$.
-						    \item Verify that $m\ge cn\ge\frac{c_1}{b}b=c_1$.
-						    \item Hence execute procedure $p_1$ on $\langle n,m,k-K,j\rangle$.
-						    \item Hence verify that $\lVert\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{k-K}{K}\tau_mi)\rVert^2\ge{a_1}^2$.
-						    \item Verify that $m\ge cn\ge\frac{b_2}{b}b=b_2$.
-						    \item Execute procedure $p_2$ on $\langle m\rangle$.
-						    \item Hence verify that $\tau_m\le a_2$.
-						    \item Hence verify that $\lVert\frac{k}{K}\tau_mi\rVert^2=\lVert\frac{k}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_2}^2$.
-						    \item Also verify that $m\ge cn\ge\frac{d_3}{b}b=d_3$.
-						    \item Now execute procedure $p_3$ on $\langle\frac{k}{K}\tau_mi,n,m,-4\rangle$.
-						    \item Hence verify that $\lVert i^{-4}\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{k}{K}\tau_mi-\frac{4}{4}\tau_mi)\rVert^2\le(\frac{a_3n}{m}+\frac{b_3}{n})^2\le(\frac{a_1}{2})^2$.
-						    \item Now verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
+						    \item Show that $-\frac{K}{2}\le k-K<j<\frac{K}{2}$.
+						    \item Also show that $0<j-(k-K)\le\frac{K}{2}$.
+						    \item Show that $m\ge cn\ge\frac{c_1}{b}b=c_1$.
+						    \item Hence show that $\lVert\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{k-K}{K}\tau_mi)\rVert^2\ge{a_1}^2$ using procedure $p_1$.
+						    \item Show that $m\ge cn\ge\frac{b_2}{b}b=b_2$.
+						    \item Hence show that $\tau_m\le a_2$ using procedure $p_2$.
+						    \item Hence show that $\lVert\frac{k}{K}\tau_mi\rVert^2=\lVert\frac{k}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_2}^2$.
+						    \item Also show that $m\ge cn\ge\frac{d_3}{b}b=d_3$.
+						    \item Hence show that $\lVert i^{-4}\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{k}{K}\tau_mi-\frac{4}{4}\tau_mi)\rVert^2\le(\frac{a_3n}{m}+\frac{b_3}{n})^2\le(\frac{a_1}{2})^2$ using procedure $p_3$.
+						    \item Now show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
 						    \begin{enumerate}
 							    \item $=\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{k}{K}\tau_mi-\tau_mi)+\exp_n(\frac{k-K}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
 							    \item $\ge\frac{1}{2}\lVert\exp_n(\frac{k-K}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2-\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{k}{K}\tau_mi-\tau_mi)\rVert^2$
@@ -5452,21 +5440,19 @@
 					    \item Execute \procedurehr{3.61} on $\langle K\rangle$ and let $\langle a_1,b_1,c_1,p_1\rangle$ receive.
 					    \item Execute \procedurehr{3.62} on $\langle K\rangle$ and let $\langle a_2,b_2,c_2,p_2\rangle$ receive.
 					    \item Let $a=\min(a_1,a_2)$.
-					    \item \textbf{Verify that $a>0$.}
+					    \item \textbf{Show that $a>0$.}
 					    \item Let $b=\max(b_1,b_2)$.
 					    \item Let $c=\max(\frac{c_1}{b},c_2)$.
 					    \item Let $p(n,m,j,k)$ be the following procedure:
 					    \begin{enumerate}
 						    \item If $k-j\le\frac{K}{2}$, then do the following:
 						    \begin{enumerate}
-						      \item Verify that $m\ge cn\ge\frac{c_1}{b}b=c_1$.
-							    \item Execute procedure $p_1$ on $\langle n,m,j,k\rangle$.
-							    \item \textbf{Hence verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a_1\ge a$.}
+						      \item Show that $m\ge cn\ge\frac{c_1}{b}b=c_1$.
+							    \item \textbf{Hence show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a_1\ge a$ using procedure $p_1$.}
 						    \end{enumerate}
 						    \item Otherwise if $k-j>\frac{K}{2}$, then do the following:
 						    \begin{enumerate}
-							    \item Execute procedure $p_2$ on $\langle n,m,j,k\rangle$.
-							    \item \textbf{Hence verify that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a_2\ge a$.}
+							    \item \textbf{Show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a_2\ge a$ using procedure $p_2$.}
 						    \end{enumerate}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,b,c,p\rangle$.}
@@ -5477,7 +5463,7 @@
 			    \objective
 				    Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m)$, to construct a list of complex numbers $z$ and a list of complex polynomials $q$ such that,
 				    \begin{enumerate}
-					    \item $z_k=\exp_n(\frac{k}{K}\tau_mi)$ for $k\in[0:K]$
+					    \item $z_k=\exp_n(\frac{K-k-1}{K}\tau_mi)$ for $k\in[0:K]$
 					    \item $q_K=\lambda^K-1$
 					    \item $q_{K-1}=\sum_r^{[0:K]}\lambda^r$
 					    \item $q_{k+1}=(\lambda-z_k)q_k+\Lambda(q_{k+1},z_k)$ for $k\in[0:K]$
@@ -5498,30 +5484,26 @@
 						    \item \textbf{Let $q_K=\lambda^K-1$.}
 						    \item For $k\in[K:0]$, do the following:
 						    \begin{enumerate}
-							    \item \textbf{Let $z_k=\exp_n(\frac{k}{K}\tau_mi)$.}
-							    \item Execute procedure $p_1$ on $\langle n,m,k\rangle$.
-							    \item \textbf{Hence verify that $\lVert\Lambda(q_K,z_k)\rVert^2\le(\frac{a_1n}{m}+\frac{b_1}{n})^2$.}
+							    \item \textbf{Let $z_k=\exp_n(\frac{K-k-1}{K}\tau_mi)$.}
+							    \item \textbf{Now show that $\lVert\Lambda(q_K,z_k)\rVert^2\le(\frac{a_1n}{m}+\frac{b_1}{n})^2$ using procedure $p_1$.}
 						    \end{enumerate}
 						    \item For $k\in[K:0]$, do the following:
 						    \begin{enumerate}
 							    \item Let $q_k=q_{k+1}\div(\lambda-z_k)$.
 							    \item Let $r_k=q_{k+1}\bmod(\lambda-z_k)$.
-							    \item Verify that $\deg(r_k)<\deg(\lambda-z_k)=1$.
-							    \item Hence verify that $\deg(r_k)=0$.
-							    \item Verify that $q_{k+1}=(\lambda-z_k)q_k+r_k$.
-							    \item \textbf{Hence verify that $1=(q_{k+1})_{\deg(q_{k+1})}=((\lambda-z_k)q_k+r_k)_{\deg(q_{k+1})}=(q_k)_{\deg(q_k)}$.}
-							    \item Also verify that $\Lambda(q_{k+1},z_k)=\Lambda(\lambda-z_k,z_k)\Lambda(q_k,z_k)+\Lambda(r_k,z_k)=(z_k-z_k)\Lambda(q_k,z_k)+r_k=r_k$.
-							    \item \textbf{Hence verify that $q_{k+1}=(\lambda-z_k)q_k+\Lambda(q_{k+1},z_k)$.}
-							    \item Execute the \subprocedurehr{wed2808191630} on $\langle k,q_{k+1},z\rangle$.
-							    \item Now using (cvii), verify that $(\lambda-1)\sum_r^{[0:K]}\lambda^r$
-							    \begin{enumerate}
-								    \item $=q_K$
-								    \item $=(\lambda-z_{K-1})q_{K-1}+\Lambda(q_K,z_{K-1})$
-								    \item $=(\lambda-1)q_{K-1}+\Lambda(\lambda^K-1,1)$
-								    \item $=(\lambda-1)q_{K-1}$.
-							    \end{enumerate}
-							    \item \textbf{Hence verify that $\sum_r^{[0:K]}\lambda^r=q_{K-1}$.}
+							    \item Show that $\deg(r_k)=0$ given that $\deg(r_k)<\deg(\lambda-z_k)=1$.
+							    \item \textbf{Show that $1=(q_{k+1})_{\deg(q_{k+1})}=((\lambda-z_k)q_k+r_k)_{\deg(q_{k+1})}=(q_k)_{\deg(q_k)}$ given that $q_{k+1}=(\lambda-z_k)q_k+r_k$.}
+							    \item \textbf{Show that $q_{k+1}=(\lambda-z_k)q_k+\Lambda(q_{k+1},z_k)$ given that $\Lambda(q_{k+1},z_k)=\Lambda(\lambda-z_k,z_k)\Lambda(q_k,z_k)+\Lambda(r_k,z_k)=(z_k-z_k)\Lambda(q_k,z_k)+r_k=r_k$.}
+							    \item \textbf{Execute the \subprocedurehr{wed2808191630} on $\langle k,q_{k+1},z\rangle$.}
 						    \end{enumerate}
+						    \item Now using (cv), verify that $(\lambda-1)\sum_r^{[0:K]}\lambda^r$
+						    \begin{enumerate}
+							    \item $=q_K$
+							    \item $=(\lambda-z_{K-1})q_{K-1}+\Lambda(q_K,z_{K-1})$
+							    \item $=(\lambda-1)q_{K-1}+\Lambda(\lambda^K-1,1)$
+							    \item $=(\lambda-1)q_{K-1}$.
+						    \end{enumerate}
+						    \item \textbf{Hence verify that $\sum_r^{[0:K]}\lambda^r=q_{K-1}$.}
 						    \item \textbf{Yield the tuple $\langle z,q\rangle$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
@@ -5533,11 +5515,9 @@
 			        \begin{enumerate}
 			          \item For $j\in[k:0]$, do the following:
 						    \begin{enumerate}
-							    \item Verify that $\Lambda(q_{k+1},z_j)=\Lambda(\lambda-z_k,z_j)\Lambda(q_k,z_j)+\Lambda(q_{k+1},z_k)$.
-							    \item Hence verify that $\Lambda(q_{k+1},z_j)-\Lambda(q_{k+1},z_k)=(z_j-z_k)\Lambda(q_k,z_j)$.
-							    \item Execute procedure $p_2$ on $\langle n,m,\min(j,k),\max(j,k)\rangle$.
-							    \item Hence verify that $\lVert z_j-z_k\rVert^2\ge {a_2}^2$.
-							    \item Hence verify that ${a_2}^2\lVert\Lambda(q_k,z_j)\rVert^2$
+							    \item Show that $\Lambda(q_{k+1},z_j)-\Lambda(q_{k+1},z_k)=(z_j-z_k)\Lambda(q_k,z_j)$ given that $\Lambda(q_{k+1},z_j)=\Lambda(\lambda-z_k,z_j)\Lambda(q_k,z_j)+\Lambda(q_{k+1},z_k)$.
+							    \item Show that $\lVert z_j-z_k\rVert^2\ge {a_2}^2$ using procedure $p_2(n,m,\min(j,k),\max(j,k))$.
+							    \item Hence show that ${a_2}^2\lVert\Lambda(q_k,z_j)\rVert^2$
 							    \begin{enumerate}
 							      \item $\le\lVert z_j-z_k\rVert^2\lVert\Lambda(q_k,z_j)\rVert^2$
 							      \item $=\lVert(z_j-z_k)\Lambda(q_k,z_j)\rVert^2$
@@ -5546,7 +5526,7 @@
 							      \item $=(2(\frac{2}{a_2})^{K-k-1}(\frac{a_1n}{m}+\frac{b_1}{n}))^2$
 							      \item $={a_2}^2((\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n}))^2$.
 							    \end{enumerate}
-							    \item \textbf{Hence verify that $\lVert\Lambda(q_k,z_j)\rVert^2\le((\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n}))^2\le(\frac{an}{m}+\frac{b}{n})^2$.}
+							    \item \textbf{Hence show that $\lVert\Lambda(q_k,z_j)\rVert^2\le((\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n}))^2\le(\frac{an}{m}+\frac{b}{n})^2$.}
 						    \end{enumerate}
 					    \end{enumerate}
 		    \procedure{3.65}
