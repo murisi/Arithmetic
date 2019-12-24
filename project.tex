@@ -5645,11 +5645,9 @@
 	            \item Let $b_3=\max(c_1,c_2)$.
 	            \item Let $q_3(x,n)$ be the following procedure:
 	            \begin{enumerate}
-	              \item Execute procedure $q_1$ on $\langle x,n\rangle$.
-	              \item Hence verify that $p_n(x)\equiv 0\err{a_1}$.
-	              \item Execute procedure $q_2$ on $\langle x,n\rangle$.
-	              \item Hence verify that $t_n(x)\equiv 0\err{a_2}$.
-	              \item Hence verify that $p_n(x)+t_n(x)\equiv 0\err{a_1+a_2}\err{a_3}$.
+	              \item Show that $p_n(x)\equiv 0\err{a_1}$ using procedure $q_1$.
+	              \item Show that $t_n(x)\equiv 0\err{a_2}$ using procedure $q_2$.
+	              \item Hence show that $p_n(x)+t_n(x)\equiv 0\err{a_1+a_2}\err{a_3}$.
 	            \end{enumerate}
 	            \item \textbf{Yield the tuple $\langle a_3,b_3,q_3\rangle$.}
 	          \end{enumerate}
@@ -5674,21 +5672,27 @@
 	          Choose a complex number $a$ such that $\{a\}=0$. The objective of the following instructions is to show that $a=0$.
 	        \implementation
 	          \begin{enumerate}
-	            \item Using \declarationhr{tue2008190516}, verify that $\lvert\Re(a)\rvert+\lvert\Im(a)\rvert=0$.
-	            \item Verify that $\lvert\Re(a)\rvert\ge 0$.
-	            \item Verify that $\lvert\Im(a)\rvert\ge 0$.
-	            \item Hence verify that $\lvert\Re(a)\rvert=0$.
-	            \item Hence verify that $\Re(a)=0$.
-	            \item Also verify that $\lvert\Im(a)\rvert=0$.
-	            \item Hence verify that $\Im(a)=0$.
-	            \item \textbf{Hence verify that $a=0$.}
+	            \item Using \declarationhr{tue2008190516}, show that $\lvert\Re(a)\rvert+\lvert\Im(a)\rvert=0$.
+	            \item Hence show that $\Re(a)=0$
+	            \begin{enumerate}
+	              \item given that $\lvert\Re(a)\rvert=0$
+	              \item given that $0\ge\lvert\Re(a)\rvert\ge 0$
+	              \item given that $\lvert\Im(a)\rvert\ge 0$.
+	            \end{enumerate}
+	            \item Also show that $\Im(a)=0$
+	            \begin{enumerate}
+	              \item given that $\lvert\Im(a)\rvert=0$
+	              \item given that $0\ge\lvert\Im(a)\rvert\ge 0$
+	              \item given that $\lvert\Re(a)\rvert\ge 0$.
+	            \end{enumerate}
+	            \item \textbf{Hence show that $a=0$.}
 	          \end{enumerate}
 	      \procedure{tue2008190520}
 	        \objective
 	          Choose a complex number $a$ and a rational number $b$. The objective of the following instructions is to show that $\{ba\}=\lvert b\rvert\{a\}$.
 	        \implementation
 	          \begin{enumerate}
-	            \item Using \declarationhr{tue2008190516}, verify that $\{ba\}$
+	            \item Using \declarationhr{tue2008190516}, show that $\{ba\}$
 	            \begin{enumerate}
 	              \item $=\lvert\Re(ba)\rvert+\lvert\Im(ba)\rvert$
 	              \item $=\lvert b\Re(a)\rvert+\lvert b\Im(a)\rvert$
@@ -5701,7 +5705,7 @@
 	          Choose two complex numbers $a,b$. The objective of the following instructions is to show that $\{a+b\}\le\{a\}+\{b\}$.
 	        \implementation
 	          \begin{enumerate}
-	            \item Using \declarationhr{tue2008190516}, verify that $\{a+b\}$
+	            \item Using \declarationhr{tue2008190516}, show that $\{a+b\}$
 	            \begin{enumerate}
 	              \item $=\lvert\Re(a+b)\rvert+\lvert\Im(a+b)\rvert$
 	              \item $=\lvert\Re(a)+\Re(b)\rvert+\lvert\Im(a)+\Im(b)\rvert$
@@ -5714,7 +5718,7 @@
 	          Choose two complex numbers $a,b$. The objective of the following instructions is to show that $\{ab\}\le\{a\}\{b\}$.
 	        \implementation
 	          \begin{enumerate}
-	            \item Using \procedurehr{tue2008190540}, verify that $\{ab\}$
+	            \item Using \procedurehr{tue2008190540}, show that $\{ab\}$
 	            \begin{enumerate}
 	              \item $=\{(\Re(a)+\Im(b)i)b\}$
 	              \item $=\{\Re(a)b+\Im(a)bi\}$
@@ -5728,7 +5732,7 @@
 	          Choose a complex number $a$. The objective of the following instructions is to show that $\lVert a\rVert^2\le\{a\}^2$.
 	        \implementation
 	          \begin{enumerate}
-	            \item Using \procedurehr{3.04aa}, verify that $\lVert a\rVert^2$
+	            \item Using \procedurehr{3.04aa}, show that $\lVert a\rVert^2$
 	            \begin{enumerate}
 	              \item $=\lVert\Re(a)+\Im(a)i\rVert^2$
 	              \item $\le(\lvert\Re(a)\rvert+\lvert\Im(a)\rvert)^2$
@@ -5740,7 +5744,7 @@
 	          Choose a complex number $a$. The objective of the following instructions is to show that $\{a\}^2\le 2\lVert a\rVert^2$.
 	        \implementation
 	          \begin{enumerate}
-	            \item Verify that $2\lVert a\rVert^2-\{a\}^2$
+	            \item Show that $2\lVert a\rVert^2-\{a\}^2$
 	            \begin{enumerate}
 	              \item $=2\Re(a)^2+2\Im(a)^2-(\lvert\Re(a)\rvert+\lvert\Im(a)\rvert)^2$
 	              \item $=2\Re(a)^2+2\Im(a)^2-\Re(a)^2-2\lvert\Re(a)\rvert\lvert\Im(a)\rvert-\Im(a)^2$
@@ -5748,7 +5752,7 @@
 	              \item $=(\lvert\Re(a)\rvert-\lvert\Im(a)\rvert)^2$
 	              \item $\ge 0$.
 	            \end{enumerate}
-	            \item \textbf{Hence verify that $\{a\}^2\le 2\lVert a\rVert^2$.}
+	            \item \textbf{Hence show that $\{a\}^2\le 2\lVert a\rVert^2$.}
 	          \end{enumerate}
 	      \declaration{3.29}
 			    The notation \gls{differentialdiff}, where $x,z$ are complex numbers such that $z\ne 0$ and $f[x]$ is a function of $x$, will be used as a shorthand for $\frac{f(y+z)-f(y)}{z}$.
@@ -5757,7 +5761,7 @@
 				    Choose two functions $f[x],g[x]$ and two complex numbers $y,z$ such that $z\ne 0$. The objective of the following instructions is to show that $\diff_{x=y}^z(f(x)+g(x))=\diff_{x=y}^zf(x)+\diff_{x=y}^zg(x)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\diff_{x=y}^z(f(x)+g(x))$
+					    \item Show that $\diff_{x=y}^z(f(x)+g(x))$
 					    \begin{enumerate}
 						    \item $=\frac{(f(y+z)+g(y+z))-(f(y)+g(y))}{z}$
 						    \item $=\frac{f(y+z)-f(y)}{z}+\frac{g(y+z)-g(y)}{z}$
@@ -5769,7 +5773,7 @@
 				    Choose a functions $f[x]$ and complex numbers $a,y,z$ such that $z\ne 0$. The objective of the following instructions is to show that $\diff_{x=y}^z(af(x))=a\diff_{x=y}^zf(x)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\diff_{x=y}^z(af(x))$
+					    \item Show that $\diff_{x=y}^z(af(x))$
 					    \begin{enumerate}
 						    \item $=\frac{af(y+z)-af(y)}{z}$
 						    \item $=a\frac{f(y+z)-f(y)}{z}$
@@ -5797,25 +5801,21 @@
 		          \item Let $b_5=b_1+b_3$.
 		          \item Let $q_5(x,n,\delta)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Execute procedure $q_1$ on $\langle x,n,\delta\rangle$.
-		            \item Hence verify that $\Delta_{y=x}^{+\delta}p_n(y)\equiv p'_n(x)\err{\frac{a_1}{n}+b_1\{\delta\}}$.
-		            \item Execute procedure $q_3$ on $\langle x,n,\delta\rangle$.
-		            \item Hence verify that $\Delta_{y=x}^{+\delta}t_n(y)\equiv t'_n(x)\err{\frac{a_3}{n}+b_3\{\delta\}}$.
-		            \item Hence using \procedurehr{3.83}, verify that $\Delta_{y=x}^{+\delta}(p_n(y)+t_n(y))$
+		            \item Show that $\Delta_{y=x}^{+\delta}p_n(y)\equiv p'_n(x)\err{\frac{a_1}{n}+b_1\{\delta\}}$ using procedure $q_1$.
+		            \item Show that $\Delta_{y=x}^{+\delta}t_n(y)\equiv t'_n(x)\err{\frac{a_3}{n}+b_3\{\delta\}}$ using procedure $q_3$.
+		            \item Hence using \procedurehr{3.83}, show that $\Delta_{y=x}^{+\delta}(p_n(y)+t_n(y))$
 		            \begin{enumerate}
 		              \item $=\Delta_{y=x}^{+\delta}p_n(y)+\Delta_{y=x}^{+\delta}t_n(y)$
 		              \item $\equiv p'_n(x)+\Delta_{y=x}^{+\delta}t_n(y)\err{\frac{a_1}{n}+b_1\{\delta\}}$
 		              \item $\equiv p'_n(x)+t'_n(x)\err{\frac{a_3}{n}+b_3\{\delta\}}$
 		            \end{enumerate}
-		            \item \textbf{Hence verify that $\Delta_{y=x}^{+\delta}(p_n(y)+t_n(y))\equiv p'_n(x)+t'_n(x)\err{\frac{a_5}{n}+b_5\{\delta\}}$.}
+		            \item \textbf{Hence show that $\Delta_{y=x}^{+\delta}(p_n(y)+t_n(y))\equiv p'_n(x)+t'_n(x)\err{\frac{a_5}{n}+b_5\{\delta\}}$.}
 		          \end{enumerate}
 		          \item Let $q_4(x,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Execute procedure $q_0$ on $\langle x,n\rangle$.
-		            \item Hence verify that $p'_n(x)\equiv 0\err{a_0}$.
-		            \item Execute procedure $q_2$ on $\langle x,n\rangle$.
-		            \item Hence verify that $t'_n(x)\equiv 0\err{a_2}$.
-		            \item Hence verify that $p'_n(x)+t'_n(x)\equiv 0\err{a_0+a_2}$.
+		            \item Show that $p'_n(x)\equiv 0\err{a_0}$ using procedure $q_0$.
+		            \item Show that $t'_n(x)\equiv 0\err{a_2}$ using procedure $q_2$.
+		            \item Hence show that $p'_n(x)+t'_n(x)\equiv 0\err{a_0+a_2}$.
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle a_4,b_4,a_5,b_5,c_5,q_4,q_5\rangle$.}
 		        \end{enumerate}
@@ -5844,12 +5844,11 @@
 		          \item Let $c_6=\min(c_3,\frac{c_1}{a_3+2b_3c_3+a_2})$.
 		          \item Let $q_5(x,n,\delta)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedure $q_4$, verify that $P(t_n(x))$.
+		            \item Show that $P(t_n(x))$ using procedure $q_4$.
 		            \item If $\Delta_{y=x}^{+\delta}t_n(y)=0$, then do the following:
 		            \begin{enumerate}
-		              \item Verify that $t_n(x+\delta)-t_n(x)=0\delta=0$.
-		              \item Hence verify that $t_n(x+\delta)=t_n(x)$.
-		              \item Hence using procedures $q_0,q_3$, verify that $\Delta_{y=x}^{+\delta}p_n(t_n(y))$
+		              \item Show that $t_n(x+\delta)=t_n(x)$ given that $t_n(x+\delta)-t_n(x)=0\delta=0$.
+		              \item Hence using procedures $q_0,q_3$, show that $\Delta_{y=x}^{+\delta}p_n(t_n(y))$
 		              \begin{enumerate}
 		                \item $=\frac{p_n(t_n(x+\delta))-p_n(t_n(x))}{\delta}$
 		                \item $=\frac{p_n(t_n(x))-p_n(t_n(x))}{\delta}$
@@ -5860,41 +5859,37 @@
 		            \end{enumerate}
 		            \item Otherwise do the following:
 		            \begin{enumerate}
-		              \item Using procedures $q_3,q_4$, verify that $\Delta_{y=x}^{+\delta}t_n(y)$
+		              \item Using procedures $q_3,q_4$, show that $\Delta_{y=x}^{+\delta}t_n(y)$
 		              \begin{enumerate}
 		                \item $\equiv t'_n(x)\err{\frac{a_3}{n}+b_3\{\delta\}}$
 		                \item $\equiv 0\err{a_2}$.
 		              \end{enumerate}
-		              \item Verify that $\{\delta\}^2\le 2\lVert\delta\rVert^2\le 4{c_6}^2$.
-		              \item Hence verify that $\{\delta\}\le 2c_6\le 2c_3$.
-		              \item Verify that $t_n(x+\delta)-t_n(x)$
+		              \item Show that $\{\delta\}\le 2c_6\le 2c_3$ given that $\{\delta\}^2\le 2\lVert\delta\rVert^2\le 4{c_6}^2$.
+		              \item Show that $t_n(x+\delta)-t_n(x)$
 		              \begin{enumerate}
 		                \item $=\Delta_{y=x}^{+\delta}t_n(y)\delta$
 		                \item $\equiv 0\delta\err{(\frac{a_3}{n}+b_3\{\delta\}+a_2)c_6}\err{(a_3+2b_3c_3+a_2)c_6}\err{c_1}$.
 		              \end{enumerate}
-		              \item Hence using procedures $q_0,q_1$, verify that $\Delta_{z=t_n(x)}^{t_n(x+\delta)-t_n(x)}p_n(z)$
+		              \item Hence using procedures $q_0,q_1$, show that $\Delta_{z=t_n(x)}^{t_n(x+\delta)-t_n(x)}p_n(z)$
 		              \begin{enumerate}
 		                \item $\equiv p'_n(t_n(x))\err{\frac{a_1}{n}+b_1\{\delta\}}$
 		                \item $\equiv 0\err{a_0}$.
 		              \end{enumerate}
-		              \item Hence verify that $\Delta_{y=x}^{+\delta}p_n(t_n(y))$
+		              \item Hence show that $\Delta_{y=x}^{+\delta}p_n(t_n(y))$
 		              \begin{enumerate}
 		                \item $=\Delta_{z=t_n(x)}^{t_n(x+\delta)-t_n(x)}p_n(z)\cdot\Delta_{y=x}^{+\delta}t_n(y)$
 		                \item $\equiv p'_n(t_n(x))\Delta_{y=x}^{+\delta}t_n(y)\err{(\frac{a_1}{n}+b_1\{\delta\})(\frac{a_3}{n}+b_3\{\delta\}+a_2)}$
 		                \item $\equiv p'_n(t_n(x))t'_n(x)\err{a_0(\frac{a_3}{n}+b_3\{\delta\})}$.
 		              \end{enumerate}
 		            \end{enumerate}
-		            \item \textbf{Hence verify that $\Delta_{y=x}^{+\delta}p_n(t_n(y))\equiv p'_n(t_n(x))t'_n(x)\err{\frac{a_6}{n}+b_6\{\delta\}}$.}
+		            \item \textbf{Hence show that $\Delta_{y=x}^{+\delta}p_n(t_n(y))\equiv p'_n(t_n(x))t'_n(x)\err{\frac{a_6}{n}+b_6\{\delta\}}$.}
 		          \end{enumerate}
 		          \item Let $q_6(x,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Execute procedure $q_4$ on $\langle x,n\rangle$.
-		            \item Hence verify that $P(t_n(x))$.
-		            \item Execute procedure $q_0$ on $\langle t_n(x),n\rangle$.
-		            \item Hence verify that $p'_n(t_n(x))\equiv 0\err{a_0}$.
-		            \item Execute procedure $q_2$ on $\langle x,n\rangle$.
-		            \item Hence verify that $t'_n(x)\equiv 0\err{a_2}$.
-		            \item Hence verify that $p'_n(t_n(x))t'_n(x)\equiv 0\err{a_0a_2}\err{a_5}$.
+		            \item Show that $P(t_n(x))$ using procedure $q_4$.
+		            \item Show that $p'_n(t_n(x))\equiv 0\err{a_0}$ using procedure $q_0$.
+		            \item Show that $t'_n(x)\equiv 0\err{a_2}$ using procedure $q_2$.
+		            \item Hence show that $p'_n(t_n(x))t'_n(x)\equiv 0\err{a_0a_2}\err{a_5}$.
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle a_5,b_5,a_6,b_6,c_6,q_5,q_6\rangle$.}
 		        \end{enumerate}
@@ -5921,15 +5916,13 @@
 		          \item Let $c_4=c_2$.
 		          \item Let $q_3(x,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Execute procedure $q_1$ on $\langle x,n\rangle$.
-		            \item Hence verify that $p'_n(x)\equiv 0\err{a_1}$.
-		            \item Hence verify that $Bp'_n(x)\equiv 0B\err{\{B\}{a_1}}\err{a_3}$.
+		            \item Show that $p'_n(x)\equiv 0\err{a_1}$ using procedure $q_1$.
+		            \item Hence show that $Bp'_n(x)\equiv 0B\err{\{B\}{a_1}}\err{a_3}$.
 		          \end{enumerate}
 		          \item Let $q_4(x,n,\delta)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Execute procedure $q_4$ on $\langle x,n,\delta\rangle$.
-		            \item Hence verify that $\Delta_{y=x}^{+\delta}p_n(y)\equiv p'(x)\err{\frac{a_2}{n}+b_2\{\delta\}}$.
-		            \item Hence verify that $B\Delta_{y=x}^{+\delta}p_n(y)\equiv Bp'(x)$
+		            \item Show that $\Delta_{y=x}^{+\delta}p_n(y)\equiv p'(x)\err{\frac{a_2}{n}+b_2\{\delta\}}$ using procedure $q_4$.
+		            \item Hence show that $B\Delta_{y=x}^{+\delta}p_n(y)\equiv Bp'(x)$
 		            \begin{enumerate}
 		              \item $\err{\{B\}(\frac{a_2}{n}+b_2\{\delta\})}$
 		              \item $\err{\frac{a_4}{n}+b_4\{\delta\}}$.
@@ -5963,46 +5956,35 @@
 		          \item Let $c_7=\min(c_2,c_5)$.
 		          \item Let $q_7(x,n,\delta)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Verify that $\{\delta\}^2\le 2\lVert\delta\rVert^2\le 4{c_7}^2$.
-		            \item Hence verify that $\{\delta\}\le 2c_7$.
-		            \item Execute procedure $q_2$ on $\langle x,n,\delta\rangle$.
-		            \item Execute procedure $q_1$ on $\langle x,n\rangle$.
-		            \item Hence verify that $\Delta_{y=x}^{+\delta}p_n(y)$
+		            \item Show that $\{\delta\}\le 2c_7$ given that $\{\delta\}^2\le 2\lVert\delta\rVert^2\le 4{c_7}^2$.
+		            \item Hence using procedures $q_2,q_1$, show that $\Delta_{y=x}^{+\delta}p_n(y)$
 		            \begin{enumerate}
 		              \item $\equiv p'_n(x)\err{\frac{a_2}{n}+b_2\{\delta\}}$
 		              \item $\equiv 0\err{a_1}$.
 		            \end{enumerate}
-		            \item Execute procedure $q_5$ on $\langle x,n,\delta\rangle$.
-		            \item Execute procedure $q_4$ on $\langle x,n\rangle$.
-		            \item Hence verify that $\Delta_{y=x}^{+\delta}t_n(y)$
+		            \item Hence using procedures $q_5,q_4$, show that $\Delta_{y=x}^{+\delta}t_n(y)$
 		            \begin{enumerate}
 		              \item $\equiv t'_n(x)\err{\frac{a_5}{n}+b_5\{\delta\}}$
 		              \item $\equiv 0\err{a_4}$.
 		            \end{enumerate}
-		            \item Execute procedure $q_0$ on $\langle x,n\rangle$.
-		            \item Hence verify that $p_n(x)\equiv 0\err{a_0}$.
-		            \item Execute procedure $q_3$ on $\langle x,n\rangle$.
-		            \item Hence verify that $t_n(x)\equiv 0\err{a_6}$.
-		            \item Hence verify that $\Delta_{y=x}^{+\delta}(p_n(y)t_n(y))$
+		            \item Show that $p_n(x)\equiv 0\err{a_0}$ using procedure $q_0$.
+		            \item Show that $t_n(x)\equiv 0\err{a_6}$ using procedure $q_3$.
+		            \item Hence show that $\Delta_{y=x}^{+\delta}(p_n(y)t_n(y))$
 		            \begin{enumerate}
 		              \item $=p_n(x+\delta)\Delta_{y=x}^{+\delta}t_n(y)+t_n(x)\Delta_{y=x}^{+\delta}p_n(y)$
 		              \item $=(p_n(x)+\delta\Delta_{y=x}^{+\delta}p_n(y))\Delta_{y=x}^{+\delta}t_n(y)+t_n(x)\Delta_{y=x}^{+\delta}p_n(y)$
 		              \item $=p_n(x)\Delta_{y=x}^{+\delta}t_n(y)+\delta\Delta_{y=x}^{+\delta}p_n(y)\Delta_{y=x}^{+\delta}t_n(y)+t_n(x)\Delta_{y=x}^{+\delta}p_n(y)$
 		              \item $\equiv p_n(x)\Delta_{y=x}^{+\delta}t_n(y)+0\delta\Delta_{y=x}^{+\delta}p_n(y)+t_n(x)\Delta_{y=x}^{+\delta}p_n(y)\err{(\frac{a_5}{n}+b_5\{\delta\}+a_4)\{\delta\}(\frac{a_2}{n}+b_2\{\delta\}+a_1)}$
 		            \end{enumerate}
-		            \item \textbf{Hence verify that $\Delta_{y=x}^{+\delta}(p_n(y)t_n(y))\equiv p_n(x)\Delta_{y=x}^{+\delta}t_n(y)+t_n(x)\Delta_{y=x}^{+\delta}p_n(y)\err{\frac{a_7}{n}+b_7\{\delta\}}$.}
+		            \item \textbf{Hence show that $\Delta_{y=x}^{+\delta}(p_n(y)t_n(y))\equiv p_n(x)\Delta_{y=x}^{+\delta}t_n(y)+t_n(x)\Delta_{y=x}^{+\delta}p_n(y)\err{\frac{a_7}{n}+b_7\{\delta\}}$.}
 		          \end{enumerate}
 		          \item Let $q_6(x,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Execute procedure $q_1$ on $\langle x,n\rangle$.
-		            \item Hence verify that $p'_n(x)\equiv 0\err{a_1}$.
-		            \item Execute procedure $q_4$ on $\langle x,n\rangle$.
-		            \item Hence verify that $t'_n(x)\equiv 0\err{a_4}$.
-		            \item Execute procedure $q_0$ on $\langle x,n\rangle$.
-		            \item Hence verify that $p_n(x)\equiv 0\err{a_0}$.
-		            \item Execute procedure $q_3$ on $\langle x,n\rangle$.
-		            \item Hence verify that $t_n(x)\equiv 0\err{a_3}$.
-		            \item \textbf{Hence verify that $p_n(x)t'_n(x)+p'_n(x)t_n(x)\equiv 0\err{a_0a_4+a_1a_3}\err{a_6}$.}
+		            \item Show that $p'_n(x)\equiv 0\err{a_1}$ using procedure $q_1$.
+		            \item Show that $t'_n(x)\equiv 0\err{a_4}$ using procedure $q_4$.
+		            \item Show that $p_n(x)\equiv 0\err{a_0}$ using procedure $q_0$.
+		            \item Show that $t_n(x)\equiv 0\err{a_3}$ using procedure $q_3$.
+		            \item \textbf{Hence show that $p_n(x)t'_n(x)+p'_n(x)t_n(x)\equiv 0\err{a_0a_4+a_1a_3}\err{a_6}$.}
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle a_6,b_6,a_7,b_7,c_7,q_6,q_7\rangle$.}
 		        \end{enumerate}
@@ -6029,22 +6011,18 @@
 		          \item Let $c_4=c_2$.
 		          \item Let $q_3(x,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Execute procedure $q_0$ on $\langle x,n\rangle$.
-		            \item Verify that $p'_n(x)\equiv q'_n(x)\err{\frac{a_0}{n}}$.
-		            \item Execute procedure $q_1$ on $\langle x,n,\delta\rangle$.
-		            \item Verify that $p'_n(x)\equiv 0\err{a_1}$.
-		            \item \textbf{Hence verify that $q'_n(x)\equiv 0\err{a_3}$.}
+		            \item Show that $p'_n(x)\equiv q'_n(x)\err{\frac{a_0}{n}}$ using procedure $q_0$.
+		            \item Show that $p'_n(x)\equiv 0\err{a_1}$ using procedure $q_1$.
+		            \item \textbf{Hence show that $q'_n(x)\equiv 0\err{a_3}$.}
 		          \end{enumerate}
 		          \item Let $q_4(x,n,\delta)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Execute procedure $q_0$ on $\langle x,n\rangle$.
-		            \item Execute procedure $q_2$ on $\langle x,n,\delta\rangle$.
-		            \item Verify that $\Delta_{y=x}^{+\delta}p_n(y)$
+		            \item Using procedures $q_0,q_2$, show that $\Delta_{y=x}^{+\delta}p_n(y)$
 		            \begin{enumerate}
 		              \item $\equiv p'_n(x)\err{\frac{a_2}{n}+b_2\{\delta\}}$
 		              \item $\equiv q'_n(x)\err{\frac{a_0}{n}}$.
 		            \end{enumerate}
-		            \item Hence verify that $\Delta_{y=x}^{+\delta}p_n(y)\equiv q'_n(x)$
+		            \item Hence show that $\Delta_{y=x}^{+\delta}p_n(y)\equiv q'_n(x)$
 		            \begin{enumerate}
 		              \item $\err{\frac{a_2}{n}+b_2\{\delta\}+\frac{a_0}{n}}$
 		              \item $\err{\frac{a_4}{n}+b_4\{\delta\}}$.
