@@ -5544,16 +5544,14 @@
 					    \item Let $d=\max(d_1,b_2)$.
 					    \item Let $p(x,n,m)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Execute procedure $p_2$ on $\langle m\rangle$.
-						    \item Hence verify that $\tau_m\le a_2$.
+						    \item Show that $\tau_m\le a_2$ using procedure $p_2$.
 						    \item Execute procedure $p_1$ on $\langle n,m\rangle$ and let $\langle z,t\rangle$ receive.
 						    \item For $j\in[1:K]$, do the following:
 						    \begin{enumerate}
-							    \item Verify that $\lVert\frac{j}{K}\tau_mi\rVert^2=\lVert\frac{j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le a_2$.
-							    \item Execute procedure $p_3$ on $\langle\frac{j}{K}\tau_mi,n\rangle$.
-							    \item Hence verify that $\lVert z_j\rVert^2=\lVert\exp_n(\frac{j}{K}\tau_mi)\rVert^2\le a_3$.
+							    \item Show that $\lVert\frac{j}{K}\tau_mi\rVert^2=\lVert\frac{j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le a_2$.
+							    \item Hence show that $\lVert z_j\rVert^2=\lVert\exp_n(\frac{j}{K}\tau_mi)\rVert^2\le a_3$ using procedure $p_3$.
 						    \end{enumerate}
-						    \item Hence verify that $\lVert\sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-z_r)\rVert^2$
+						    \item Hence show that $\lVert\sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-z_r)\rVert^2$
 						    \begin{enumerate}
 							    \item $=\lVert\Lambda(\sum_r^{[0:K]}\lambda^r,x)-\prod_r^{[1:K]}(x-z_r)\rVert^2$
 							    \item $=\lVert\Lambda(t_{K-1},x)-\prod_r^{[1:K]}(x-z_r)\rVert^2$
@@ -5577,9 +5575,8 @@
 					    \item Let $b=(X+1)b_1$.
 					    \item Let $p(x,n,m)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Execute procedure $p_1$ on $\langle x,n,m\rangle$.
-						    \item Hence verify that $\lVert\sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{a_1n}{m}+\frac{b_1}{n})^2$.
-						    \item Hence verify that $\lVert x^K-1-\prod_r^{[0:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2$
+						    \item Show that $\lVert\sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{a_1n}{m}+\frac{b_1}{n})^2$ using procedure $p_1$.
+						    \item Hence show that $\lVert x^K-1-\prod_r^{[0:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2$
 						    \begin{enumerate}
 							    \item $=\lVert(x-1)\sum_r^{[0:K]}x^r-(x-1)\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2$
 							    \item $=\lVert x-1\rVert^2\lVert\sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2$
@@ -5604,18 +5601,15 @@
 					    \item Let $d=\max(d_1,d_2,c_3)$.
 					    \item Let $p(x,n,m)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Verify that $\lVert 1+\frac{x}{K}\rVert^2\le (1+\frac{X}{K})^2$.
-						    \item Hence execute procedure $p_1$ on $\langle 1+\frac{x}{K},n,m\rangle$.
-						    \item Hence verify that $\lVert(1+\frac{x}{K})^K-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{a_1n}{m}+\frac{b_1}{n})^2$.
-						    \item Execute procedure $p_2$ on $\langle 1,n,m\rangle$.
-						    \item Hence verify that $\lVert K-\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))\rVert^2=\sum_r^{[0:K]}1^r-\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{a_2n}{m}+\frac{b_2}{n})^2$.
+						    \item Show that $\lVert 1+\frac{x}{K}\rVert^2\le (1+\frac{X}{K})^2$.
+						    \item Hence show that $\lVert(1+\frac{x}{K})^K-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{a_1n}{m}+\frac{b_1}{n})^2$ using procedure $p_1$.
+						    \item Hence show that $\lVert K-\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))\rVert^2=\sum_r^{[0:K]}1^r-\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{a_2n}{m}+\frac{b_2}{n})^2$ using procedure $p_2$.
 						    \item For $j\in[1:K]$, do the following:
 						    \begin{enumerate}
-							    \item Execute procedure $p_3$ on $\langle n,m,0,j\rangle$.
-							    \item Hence verify that $\lVert\exp_n(\frac{j}{K}\tau_mi)-1\rVert^2\ge{a_3}^2$.
+							    \item Show that $\lVert\exp_n(\frac{j}{K}\tau_mi)-1\rVert^2\ge{a_3}^2$ using procedure $p_3$.
 							    \item Let $z_j=K(\exp_n(\frac{j}{K}\tau_mi)-1)$.
 						    \end{enumerate}
-						    \item Hence verify that $\lVert\exp_K(x)-1-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
+						    \item Hence show that $\lVert\exp_K(x)-1-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
 						    \begin{enumerate}
 							    \item $=\lVert\exp_K(x)-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))+\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
 							    \item $=\lVert\exp_K(x)-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))+\frac{x}{K}\prod_r^{[1:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
