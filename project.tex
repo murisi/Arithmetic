@@ -6038,17 +6038,14 @@
 		        Choose a complex number $B$ and a rational number $D>0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, a procedure $p(x,n)$ to show that $0\equiv 0\err{a}$ when a complex number $x$ and a positive integer $n$ such that $n>d$ are chosen, and a procedure $q(x,n,\delta)$ to show that $\Delta_{y=x}^{+\delta}B\equiv 0\err{\frac{b}{n}+c\{\delta\}}$ when in addition a complex number $\delta$ such that $0<\lVert\delta\rVert^2\le D^2$ is chosen.
 		      \implementation
 		        \begin{enumerate}
-		          \item Let $a=0$.
-		          \item Let $b=0$.
-		          \item Let $c=0$.
-		          \item Let $d=0$.
+		          \item Let $a=b=c=d=0$.
 		          \item Let $p(x,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item \textbf{Verify that $0\equiv 0\err{a}$.}
+		            \item \textbf{Show that $0\equiv 0\err{a}$.}
 		          \end{enumerate}
 		          \item Let $q(x,n,\delta)$ be the following procedure:
 		          \begin{enumerate}
-		            \item \textbf{Verify that $\Delta_{y=x}^{+\delta}B\equiv 0\err{\frac{b}{n}+c\{\delta\}}$.}
+		            \item \textbf{Show that $\Delta_{y=x}^{+\delta}B\equiv 0\err{\frac{b}{n}+c\{\delta\}}$.}
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle a,b,c,d,p,q\rangle$.}
 		        \end{enumerate}
@@ -6058,16 +6055,15 @@
 		      \implementation
 		        \begin{enumerate}
 		          \item Let $a=NX^{N-1}$.
-		          \item Let $b=0$.
+		          \item Let $b=d=0$.
 		          \item Let $c=\sum_r^{[0:N-1]}\binom{N}{r}X^rD^{N-r-2}$.
-		          \item Let $d=0$.
 		          \item Let $p(x,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item \textbf{Verify that $Nx^{N-1}\equiv 0\allowbreak\err{Nx^{N-1}}\allowbreak\err{NX^{N-1}}\allowbreak\err{a}$.}
+		            \item \textbf{Show that $Nx^{N-1}\equiv 0\allowbreak\err{Nx^{N-1}}\allowbreak\err{NX^{N-1}}\allowbreak\err{a}$.}
 		          \end{enumerate}
 		          \item Let $q(x,n,\delta)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Verify that $\Delta_{y=x}^{+\delta}y^N\equiv Nx^{N-1}$
+		            \item Show that $\Delta_{y=x}^{+\delta}y^N\equiv Nx^{N-1}$
 		            \begin{enumerate}
 		              \item $\err{\frac{(x+\delta)^N-x^N}{\delta}-Nx^{N-1}}$
 		              \item $\err{\frac{1}{\delta}(\sum_r^{[0:N+1]}\binom{N}{r}x^r\delta^{N-r}-x^N)-Nx^{N-1}}$
@@ -6084,16 +6080,15 @@
 		      \implementation
 		        \begin{enumerate}
 		          \item Let $a=\frac{1}{X^2}$.
-		          \item Let $b=0$.
-		          \item Let $c=0$.
+		          \item Let $b=c=0$.
 		          \item Let $d=\frac{1}{X^2(X-D)}$.
 		          \item Let $p(x,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item \textbf{Verify that $\frac{1}{x^2}\equiv 0\allowbreak\err{\frac{1}{x^2}}\allowbreak\err{\frac{1}{X^2}}\allowbreak\err{a}$.}
+		            \item \textbf{Show that $\frac{1}{x^2}\equiv 0\allowbreak\err{\frac{1}{x^2}}\allowbreak\err{\frac{1}{X^2}}\allowbreak\err{a}$.}
 		          \end{enumerate}
 		          \item Let $q(x,n,\delta)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Verify that $\Delta_{y=x}^{+\delta}\frac{1}{y}\equiv-\frac{1}{x^2}$
+		            \item Show that $\Delta_{y=x}^{+\delta}\frac{1}{y}\equiv-\frac{1}{x^2}$
 		            \begin{enumerate}
 		              \item $\err{\frac{1}{\delta}(\frac{1}{x+\delta}-\frac{1}{x})+\frac{1}{x^2}}$
 		              \item $\err{\frac{1}{\delta}\cdot\frac{-\delta}{x(x+\delta)}+\frac{1}{x^2}}$
@@ -6118,23 +6113,23 @@
 		              \item Execute \procedurehr{tue2008191209} on $\langle N,Y,Y\rangle$ and let $\langle\cdots,q_4,q_5\rangle$ receive.
 		              \item Let $q_6(x,n)$ be the following procedure:
 		              \begin{enumerate}
-		                \item Verify that $\lVert x^N\rVert^2=(\lVert x\rVert^2)^N\ge(X^2)^N=(X^N)^2$.
+		                \item Show that $\lVert x^N\rVert^2=(\lVert x\rVert^2)^N\ge(X^2)^N=(X^N)^2$.
 		              \end{enumerate}
 		            \end{enumerate}
 		          \end{enumerate}
 		          \item Let $p(x,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item \textbf{Using procedure $q_0$, verify that $-Nx^{-N-1}=-\frac{1}{(x^N)^2}\cdot Nx^{N-1}\equiv 0\err{a}$.}
+		            \item \textbf{Show that $-Nx^{-N-1}=-\frac{1}{(x^N)^2}\cdot Nx^{N-1}\equiv 0\err{a}$ using procedure $q_0$.}
 		          \end{enumerate}
 		          \item Let $q(x,n,\delta)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedure $q_1$, verify that $\Delta_{y=x}^{+\delta}y^{-N}$
+		            \item Using procedure $q_1$, show that $\Delta_{y=x}^{+\delta}y^{-N}$
 		            \begin{enumerate}
 		              \item $=\frac{1}{\delta}(((x+\delta)^N)^{-1}-(x^N)^{-1})$
 		              \item $\equiv-\frac{1}{(x^N)^2}\cdot Nx^{N-1}\err{\frac{c}{n}+d\{\delta\}}$
 		              \item $=-Nx^{-N-1}$
 		            \end{enumerate}
-		            \item \textbf{Hence verify that $\Delta_{y=x}^{+\delta}y^{-N}\equiv-Nx^{-N-1}\err{\frac{c}{n}+d\{\delta\}}$.}
+		            \item \textbf{Hence show that $\Delta_{y=x}^{+\delta}y^{-N}\equiv-Nx^{-N-1}\err{\frac{c}{n}+d\{\delta\}}$.}
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle a,b,c,d,e,p,q\rangle$.}
 		        \end{enumerate}
@@ -6146,7 +6141,7 @@
 					    \item Execute \procedurehr{3.13} on $\langle D\rangle$ and let $\langle a,c,q\rangle$ receive.
 					    \item Let $p(\delta,n)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Now using \procedurehr{2.04}, and procedure $q$, verify that $\exp_n(\delta)-1\equiv\delta$
+						    \item Now using \procedurehr{2.04}, and procedure $q$, show that $\exp_n(\delta)-1\equiv\delta$
 						    \begin{enumerate}
 						      \item $\err{\exp_n(\delta)-1-\delta}$
 							    \item $\err{(1+\frac{\delta}{n})^n-1-\delta}$
@@ -6157,7 +6152,7 @@
 							    \item $\err{\frac{\delta^2}{n^2}\sum_r^{[0:n]}\sum_k^{[0:r]}a}$
 							    \item $\err{\delta^2a}$.
 						    \end{enumerate}
-						    \item \textbf{Therefore verify that $\diff_{x=0}^{+\delta}\exp_n(x)\equiv 1\err{a\delta}\err{a\{\delta\}}$.}
+						    \item \textbf{Therefore show that $\diff_{x=0}^{+\delta}\exp_n(x)\equiv 1\err{a\delta}\err{a\{\delta\}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,c,p\rangle$.}
 				    \end{enumerate}
@@ -6174,7 +6169,7 @@
 					    \item Let $d=\max(f,j,m)$.
 					    \item Let $p(x,n,\delta)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Using procedures $u,r,t$, verify that $\Delta_{y=x}^{+\delta}\exp_n(y)$
+						    \item Using procedures $u,r,t$, show that $\Delta_{y=x}^{+\delta}\exp_n(y)$
 						    \begin{enumerate}
 						      \item $=\frac{\exp_n(x+\delta)-\exp_n(x)}{\delta}$
 						      \item $=\frac{\exp_n(x)\exp_n(\delta)-\exp_n(x)}{\delta}$
@@ -6185,7 +6180,7 @@
 						      \item $=\exp_n(x)\Delta_{y=0}^{\delta}\exp_n(y)$
 						      \item $\equiv\exp_n(x)\cdot 1\err{lh\{\delta\}}$.
 						    \end{enumerate}
-						    \item \textbf{Hence verify that $\diff_{y=x}^{+\delta}\exp_n(y)\equiv\exp_n(x)\err{\frac{ex}{n}+lh\{\delta\}}\err{\frac{a}{n}+b\{\delta\}}$.}
+						    \item \textbf{Hence show that $\diff_{y=x}^{+\delta}\exp_n(y)\equiv\exp_n(x)\err{\frac{ex}{n}+lh\{\delta\}}\err{\frac{a}{n}+b\{\delta\}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,b,d,p\rangle$.}
 				    \end{enumerate}
@@ -6209,7 +6204,7 @@
 					            \end{instructions}
 					            \item Let $q_{12}(x,n)$ be the following procedure:
 					            \begin{instructions}
-					              \item Verify that $\lVert ix\rVert^2=\lVert x\rVert^2\le X^2$.
+					              \item Show that $\lVert ix\rVert^2=\lVert x\rVert^2\le X^2$.
 					            \end{instructions}
 					          \end{instructions}
 					          \item Execute \procedurehr{tue2008191001} on $\langle-1,q_{15},q_{16}\rangle$ and let $\langle q_6,q_7\rangle$.
@@ -6223,7 +6218,7 @@
 					              \end{instructions}
 					              \item Let $q_{21}(x,n)$ be the following procedure:
 					              \begin{instructions}
-					                \item Verify that $\lVert -ix\rVert^2=\lVert x\rVert^2\le X^2$.
+					                \item Show that $\lVert -ix\rVert^2=\lVert x\rVert^2\le X^2$.
 					              \end{instructions}
 					            \end{instructions}
 					          \end{instructions}
@@ -6232,7 +6227,7 @@
 					    \end{instructions}
 					    \item Let $p(x,n)$ be the following procedure:
 					    \begin{enumerate}
-					      \item Using procedure $q_0$, verify that $\cos_n(x)$
+					      \item Using procedure $q_0$, show that $\cos_n(x)$
 					      \begin{enumerate}
 					        \item $=\frac{1}{2}(\exp_n(ix)+\exp_n(-ix))$
 					        \item $=\frac{1}{2i}(\exp_n(ix^1)\cdot i\cdot 1x^0+(-1)\exp_n(-ix^1)\cdot(-i)\cdot 1\cdot x^0)$
@@ -6241,7 +6236,7 @@
 					    \end{enumerate}
 					    \item Let $q(x,n,\delta)$ be the following procedure:
 					    \begin{enumerate}
-					      \item Using procedure $q_1$, verify that $\Delta_{y=x}^{+\delta}\sin_n(y)$
+					      \item Using procedure $q_1$, show that $\Delta_{y=x}^{+\delta}\sin_n(y)$
 					      \begin{enumerate}
 					        \item $=\Delta_{y=x}^{+\delta}(\frac{\exp_n(ix)-\exp_n(-ix)}{2i})$
 					        \item $=\Delta_{y=x}^{+\delta}(\frac{1}{2i}(\exp_n(ix^1)+(-1)\exp_n((-i)x^1)))$
@@ -6249,7 +6244,7 @@
 					        \item $=\frac{\exp_n(ix)+\exp_n(-ix)}{2}$
 					        \item $=\cos_n(x)$.
 					      \end{enumerate}
-					      \item \textbf{Hence verify that $\Delta_{y=x}^{+\delta}\sin_n(y)\equiv\cos_n(x)\err{\frac{a}{n}+b\{\delta\}}$.}
+					      \item \textbf{Hence show that $\Delta_{y=x}^{+\delta}\sin_n(y)\equiv\cos_n(x)\err{\frac{a}{n}+b\{\delta\}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle l,d,a,b,D,p,q\rangle$.}
 				    \end{instructions}
@@ -6270,7 +6265,7 @@
 		          \item Let $b=\frac{1}{D^2((X+D)^{-1}-1)}$.
 		          \item Let $p(x,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedure $p_1$, verify that $(1+x)_{n-1}^{-1}$
+		            \item Using procedure $p_1$, show that $(1+x)_{n-1}^{-1}$
 		            \begin{enumerate}
 		              \item $=((1+x)_{n-1}^{-1})^1$
 		              \item $\equiv 0\err{a_1}$.
@@ -6278,7 +6273,7 @@
 		          \end{enumerate}
 		          \item Let $q(x,n,\delta)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using \procedurehr{2.05}, verify that $\Delta_{y=x}^{+\delta}\ln_n(1+y)\equiv(1+x)_{n-1}^{-1}$
+		            \item Using \procedurehr{2.05}, show that $\Delta_{y=x}^{+\delta}\ln_n(1+y)\equiv(1+x)_{n-1}^{-1}$
 		            \begin{enumerate}
 		              \item $\err{\Delta_{y=x}^{+\delta}\ln_n(1+y)-(1+x)_{n-1}^{-1}}$
 		              \item $\err{\frac{1}{\delta}(\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}(x+\delta)^r-\sum_r^{[1:n]}\frac{(-1)^{r-1}}{r}x^r)-\sum_r^{[0:n-1]}\binom{-1}{r}x^r}$
@@ -6307,28 +6302,27 @@
 		          \item Let $a=2a_1l+c_2$.
 		          \item Let $p(x,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Verify that $\Re(x)^2\le\lVert x\rVert^2\le X^2$.
-		            \item Hence verify that $\lvert\Re(x)\rvert\le X$.
-		            \item Hence verify that $\lVert 1+x\rVert^2$
+		            \item Show that $\lvert\Re(x)\rvert\le X$ given that $\Re(x)^2\le\lVert x\rVert^2\le X^2$.
+		            \item Hence show that $\lVert 1+x\rVert^2$
 		            \begin{enumerate}
 		              \item $\ge\Re(1+x)^2$
 		              \item $=(1+\Re(x))^2$
 		              \item $\le(1-X)^2$.
 		            \end{enumerate}
-		            \item Hence verify that $\frac{1}{1+x}\equiv 0\allowbreak\err{\frac{1}{1+x}}\allowbreak\err{\frac{1}{1-X}}\allowbreak\err{l}$.
+		            \item Hence show that $\frac{1}{1+x}\equiv 0\allowbreak\err{\frac{1}{1+x}}\allowbreak\err{\frac{1}{1-X}}\allowbreak\err{l}$.
 		          \end{enumerate}
 		          \item Let $q(x,n,\delta)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedure $p$, verify that $\lVert\frac{1}{1+x}\rVert^2\le l^2$.
-		            \item Using procedure $p_1$, verify that $\lVert(n-1)(-x)^{n-1}\rVert^2\le(a_1{b_1}^{n-1})^2\le{a_1}^2$.
-		            \item Hence verify that $\lVert(-x)^{n-1}\rVert^2\le(\frac{a_1}{n-1})^2\le(\frac{2a_1}{n})^2$.
-		            \item Now using procedure $q_2$, verify that $\Delta_{y=x}^{+\delta}\ln_n(1+y)$
+		            \item Show that $\lVert\frac{1}{1+x}\rVert^2\le l^2$ using procedure $p$.
+		            \item Show that $\lVert(n-1)(-x)^{n-1}\rVert^2\le(a_1{b_1}^{n-1})^2\le{a_1}^2$ using procedure $p_1$.
+		            \item Hence show that $\lVert(-x)^{n-1}\rVert^2\le(\frac{a_1}{n-1})^2\le(\frac{2a_1}{n})^2$.
+		            \item Now using procedure $q_2$, show that $\Delta_{y=x}^{+\delta}\ln_n(1+y)$
 		            \begin{enumerate}
 		              \item $\equiv(1+x)_{n-1}^{-1}\err{\frac{c_2}{n}+b\{\delta\}}$
 		              \item $=\frac{1-(-x)^{n-1}}{1-(-x)}$
 		              \item $\equiv\frac{1}{1+x}\err{\frac{(-x)^{n-1}}{1+x}}\err{\frac{2a_1l}{n}}$.
 		            \end{enumerate}
-		            \item \textbf{Hence verify that $\Delta_{y=x}^{+\delta}\ln_n(1+y)\equiv\frac{1}{1+x}\err{\frac{c_2}{n}+b\{\delta\}+\frac{2a_1l}{n}}\err{\frac{a}{n}+b\{\delta\}}$.}
+		            \item \textbf{Hence show that $\Delta_{y=x}^{+\delta}\ln_n(1+y)\equiv\frac{1}{1+x}\err{\frac{c_2}{n}+b\{\delta\}+\frac{2a_1l}{n}}\err{\frac{a}{n}+b\{\delta\}}$.}
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle l,d,a,b,p,q\rangle$.}
 		        \end{enumerate}
@@ -6341,11 +6335,13 @@
 		          \item Verify that $0\le f<1$.
 		          \item Let $p(x)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Verify that $0\le\Re(x)$.
-		            \item Hence verify that $(\Re(x)-1)^2\le(\Re(x)+1)^2$.
-		            \item Hence verify that $\lVert x-1\rVert^2\le\lVert x+1\rVert^2$.
-		            \item Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le 1$.
-		            \item Also verify that $\Re(\frac{x-1}{x+1})$
+		            \item Show that $\lVert\frac{x-1}{x+1}\rVert^2\le 1$
+		            \begin{enumerate}
+		              \item given that $\lVert x-1\rVert^2\le\lVert x+1\rVert^2$
+		              \item given that $(\Re(x)-1)^2\le(\Re(x)+1)^2$
+		              \item given that $0\le\Re(x)$.
+		            \end{enumerate}
+		            \item Show that $\Re(\frac{x-1}{x+1})$
 		            \begin{enumerate}
 		              \item $=\Re(\frac{(x-1)(\conj{x+1})}{(x+1)(\conj{x+1})})$
 		              \item $=\Re(\frac{\lVert x\rVert^2+x-\conj{x}-1}{\lVert x\rVert^2+x+\conj{x}+1})$
@@ -6368,13 +6364,10 @@
 		          \item Let $a=2a_2$.
 		          \item Let $p(x,k)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Execute procedure $p_1$ on $\langle x\rangle$.
-		            \item Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le{a_1}^2$.
-		            \item Execute procedure $p_2$ on $\langle\frac{x-1}{x+1},k\rangle$.
-		            \item Hence verify that $\lVert\ln_k(1+\frac{x-1}{x+1})\rVert^2\le{a_2}^2$.
-		            \item Execute procedure $p_2$ on $\langle-\frac{x-1}{x+1},k\rangle$.
-		            \item Hence verify that $\lVert\ln_k(1-\frac{x-1}{x+1})\rVert^2\le{a_2}^2$.
-		            \item Hence verify that $\lVert\ln_k(x)\rVert^2$
+		            \item Show that $\lVert\frac{x-1}{x+1}\rVert^2\le{a_1}^2$ using procedure $p_1$.
+		            \item Show that $\lVert\ln_k(1+\frac{x-1}{x+1})\rVert^2\le{a_2}^2$ using procedure $p_2$.
+		            \item Show that $\lVert\ln_k(1-\frac{x-1}{x+1})\rVert^2\le{a_2}^2$ using procedure $p_2$.
+		            \item Hence show that $\lVert\ln_k(x)\rVert^2$
 		            \begin{enumerate}
 		              \item $=\lVert\ln_k(1+\frac{x-1}{x+1})-\ln_k(1-\frac{x-1}{x+1})\rVert^2$
 		              \item $\le a^2$.
@@ -6393,28 +6386,24 @@
 		          \item Let $a=a_1+\frac{a_2}{4}$.
 		          \item Let $p(x,k)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Execute procedure $p_2$ on $\langle k\rangle$.
-		            \item Hence verify that $\frac{1}{4}\tau_k\le\frac{a_2}{4}$.
+		            \item Show that $\frac{1}{4}\tau_k\le\frac{a_2}{4}$ using procedure $p_2$.
 		            \item If $\Re(x)\ge 0$, then do the following:
 		            \begin{enumerate}
-		              \item Execute procedure $p_1$ on $\langle x,k\rangle$.
-		              \item \textbf{Hence verify that $\lVert\ln_k(x)\rVert^2\le{a_1}^2\le a^2$.}
+		              \item \textbf{Show that $\lVert\ln_k(x)\rVert^2\le{a_1}^2\le a^2$ using procedure $p_1$.}
 		            \end{enumerate}
 		            \item Otherwise if $\Im(x)\ge 0$, then do the following:
 		            \begin{enumerate}
-		              \item Verify that $\lVert\frac{x}{i}\rVert^2=\lVert x\rVert^2\ge X^2$.
-		              \item Verify that $\Re(\frac{x}{i})=\Re(\Im(x)-\Re(x)i)=\Im(x)\ge 0$.
-		              \item Execute procedure $p_1$ on $\langle\frac{x}{i},k\rangle$.
-		              \item Hence verify that $\lVert\ln_k(\frac{x}{i})\rVert^2\le{a_1}^2$.
-		              \item \textbf{Hence verify that $\lVert\ln_k(x)\rVert^2=\lVert\ln_k(\frac{x}{i}+\frac{\tau_k}{4}i\rVert^2\le(a_1+\frac{a_2}{4})^2=a^2$.}
+		              \item Show that $\lVert\frac{x}{i}\rVert^2=\lVert x\rVert^2\ge X^2$.
+		              \item Show that $\Re(\frac{x}{i})=\Re(\Im(x)-\Re(x)i)=\Im(x)\ge 0$.
+		              \item Hence show that $\lVert\ln_k(\frac{x}{i})\rVert^2\le{a_1}^2$ using procedure $p_1$.
+		              \item \textbf{Hence show that $\lVert\ln_k(x)\rVert^2=\lVert\ln_k(\frac{x}{i})+\frac{\tau_k}{4}i\rVert^2\le(a_1+\frac{a_2}{4})^2=a^2$.}
 		            \end{enumerate}
 		            \item Otherwise do the following:
 		            \begin{enumerate}
-		              \item Verify that $\lVert xi\rVert^2=\lVert x\rVert^2\ge X^2$.
-		              \item Verify that $\Re(xi)=\Re(-\Im(x)+\Re(x)i)=-\Im(x)>0$.
-		              \item Execute procedure $p_1$ on $\langle xi,k\rangle$.
-		              \item Hence verify that $\lVert\ln_k(xi)\rVert^2\le{a_1}^2$.
-		              \item \textbf{Hence verify that $\lVert\ln_k(x)\rVert^2=\lVert\ln_k(xi)-\frac{\tau_k}{4}i\rVert^2\le(a_1+\frac{a_2}{4})^2=a^2$.}
+		              \item Show that $\lVert xi\rVert^2=\lVert x\rVert^2\ge X^2$.
+		              \item Show that $\Re(xi)=\Re(-\Im(x)+\Re(x)i)=-\Im(x)>0$.
+		              \item Hence show that $\lVert\ln_k(xi)\rVert^2\le{a_1}^2$ using procedure $p_1$.
+		              \item \textbf{Hence show that $\lVert\ln_k(x)\rVert^2=\lVert\ln_k(xi)-\frac{\tau_k}{4}i\rVert^2\le(a_1+\frac{a_2}{4})^2=a^2$.}
 		            \end{enumerate}
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
@@ -6434,12 +6423,11 @@
 		          \item Let $e=\max(b_2,b_3,e_4)$.
 		          \item Let $p(x,n,k)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Execute procedure $p_0$ on $\langle x\rangle$.
-		            \item Hence verify that $\Re(\frac{x-1}{x+1})^2\le\lVert\frac{x-1}{x+1}\rVert^2\le f^2$.
-		            \item Hence verify that $\lvert\Re(\frac{x-1}{x+1})\rvert\le f$.
-		            \item Using procedure $p_1$, verify that $\lVert\ln_k(1+\frac{x-1}{x+1})\rVert^2\le{a_1}^2$.
-		            \item Using procedure $p_1$, verify that $\lVert\ln_k(1-\frac{x-1}{x+1})\rVert^2\le{a_1}^2$.
-		            \item Using procedures $p_0,p_2,p_3,p_4$, verify that $\exp_n(\ln_k(x))$
+		            \item Show that $\Re(\frac{x-1}{x+1})^2\le\lVert\frac{x-1}{x+1}\rVert^2\le f^2$ using procedure $p_0$.
+		            \item Hence show that $\lvert\Re(\frac{x-1}{x+1})\rvert\le f$.
+		            \item Show that $\lVert\ln_k(1+\frac{x-1}{x+1})\rVert^2\le{a_1}^2$ using procedure $p_1$.
+		            \item Show that $\lVert\ln_k(1-\frac{x-1}{x+1})\rVert^2\le{a_1}^2$ using procedure $p_1$.
+		            \item Hence using procedures $p_0,p_2,p_3,p_4$, show that $\exp_n(\ln_k(x))$
 		            \begin{enumerate}
 		              \item $=\exp_n(\ln_k(1+\frac{x-1}{x+1})-\ln_k(1-\frac{x-1}{x+1}))$
 		              \item $\equiv\frac{\exp_n(\ln_k(1+\frac{x-1}{x+1}))}{\exp_n(\ln_k(1-\frac{x-1}{x+1}))}\err{\frac{a_2}{n}}$
@@ -6447,7 +6435,7 @@
 		              \item $\equiv\frac{1+\frac{x-1}{x+1}}{1-\frac{x-1}{x+1}}\err{(\frac{1+f}{a_3(1-f)})(\frac{a_4n}{k}+\frac{c_4}{n})}$
 		              \item $=x$.
 		            \end{enumerate}
-		            \item Hence verify that $\exp_n(\ln_k(x))\equiv x$
+		            \item Hence show that $\exp_n(\ln_k(x))\equiv x$
 		            \begin{enumerate}
 		              \item $\err{\frac{a_2}{n}+\frac{1}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n})+(\frac{1+f}{a_3(1-f)})(\frac{a_4n}{k}+\frac{c_4}{n})}$
 		              \item $\err{\frac{an}{k}+\frac{c}{n}}$.
@@ -6471,44 +6459,37 @@
 		          \begin{enumerate}
 		            \item If $\Re(x)\ge 0$, then do the following:
 		            \begin{enumerate}
-		              \item Execute procedure $p_1$ on $\langle x,n,k\rangle$.
-		              \item \textbf{Hence verify that $\exp_n(\ln_k(x))\equiv x\err{\frac{a_2n}{k}+\frac{b_1}{n}}\err{\frac{an}{k}+\frac{c}{n}}$.}
+		              \item \textbf{Show that $\exp_n(\ln_k(x))\equiv x\err{\frac{a_2n}{k}+\frac{b_1}{n}}\err{\frac{an}{k}+\frac{c}{n}}$ using procedure $p_1$.}
 		            \end{enumerate}
 		            \item Otherwise if $\Im(x)\ge 0$, then do the following:
 		            \begin{enumerate}
-		              \item Verify that $\lVert\frac{x}{i}\rVert^2=\lVert x\rVert^2\ge X^2$.
-		              \item Verify that $\Re(\frac{x}{i})=\Re(\Im(x)-\Re(x)i)=\Im(x)\ge 0$.
-		              \item Execute procedure $p_1$ on $\langle\frac{x}{i},n,k\rangle$.
-		              \item Hence verify that $\exp_n(\ln_k(\frac{x}{i}))\equiv\frac{x}{i}\err{\frac{a_2n}{k}+\frac{b_1}{n}}$.
-		              \item Execute procedure $p_2$ on $\langle\frac{x}{i},k\rangle$.
-		              \item Hence verify that $\lVert\ln_k(\frac{x}{i})\rVert^2\le{a_2}^2$.
-		              \item Execute procedure $p_3$ on $\langle\ln_k(\frac{x}{i}),n,k,1\rangle$.
-		              \item Hence verify that $\exp_n(\ln_k(x))$
+		              \item Show that $\lVert\frac{x}{i}\rVert^2=\lVert x\rVert^2\ge X^2$.
+		              \item Show that $\Re(\frac{x}{i})=\Re(\Im(x)-\Re(x)i)=\Im(x)\ge 0$.
+		              \item Hence show that $\exp_n(\ln_k(\frac{x}{i}))\equiv\frac{x}{i}\err{\frac{a_2n}{k}+\frac{b_1}{n}}$ using procedure $p_1$.
+		              \item Hence show that $\lVert\ln_k(\frac{x}{i})\rVert^2\le{a_2}^2$ using procedure $p_2$.
+		              \item Hence using procedure $p_3$, show that $\exp_n(\ln_k(x))$
 		              \begin{enumerate}
 		                \item $=\exp_n(\ln_k(\frac{x}{i})+\frac{\tau_k}{4}i)$
 		                \item $\equiv i^1\exp_n(\ln_k(\frac{x}{i}))\err{\frac{a_3n}{k}+\frac{b_3}{n}}$
 		                \item $\equiv i\cdot\frac{x}{i}\err{\frac{a_2n}{k}+\frac{b_1}{n}}$
 		                \item $=x$.
 		              \end{enumerate}
-		              \item \textbf{Hence verify that $\exp_n(\ln_k(x))\equiv x\err{\frac{an}{k}+\frac{c}{n}}$.}
+		              \item \textbf{Hence show that $\exp_n(\ln_k(x))\equiv x\err{\frac{an}{k}+\frac{c}{n}}$.}
 		            \end{enumerate}
 		            \item Otherwise do the following:
 		            \begin{enumerate}
-		              \item Verify that $\lVert xi\rVert^2=\lVert x\rVert^2\ge X^2$.
-		              \item Verify that $\Re(xi)=\Re(-\Im(x)+\Re(x)i)=-\Im(x)>0$.
-		              \item Execute procedure $p_1$ on $\langle xi,n,k\rangle$.
-		              \item Hence verify that $\exp_n(\ln_k(xi))\equiv xi\err{\frac{a_2n}{k}+\frac{b_1}{n}}$.
-		              \item Execute procedure $p_2$ on $\langle xi,k\rangle$.
-		              \item Hence verify that $\lVert\ln_k(xi)\rVert^2\le{a_2}^2$.
-		              \item Execute procedure $p_3$ on $\langle\ln_k(xi),n,k,-1\rangle$.
-		              \item Hence verify that $\exp_n(\ln_k(x))$
+		              \item Show that $\lVert xi\rVert^2=\lVert x\rVert^2\ge X^2$.
+		              \item Show that $\Re(xi)=\Re(-\Im(x)+\Re(x)i)=-\Im(x)>0$.
+		              \item Hence show that $\exp_n(\ln_k(xi))\equiv xi\err{\frac{a_2n}{k}+\frac{b_1}{n}}$ using procedure $p_1$.
+		              \item Hence show that $\lVert\ln_k(xi)\rVert^2\le{a_2}^2$ using procedure $p_2$.
+		              \item Hence using procedure $p_3$, show that $\exp_n(\ln_k(x))$
 		              \begin{enumerate}
 		                \item $=\exp_n(\ln_k(xi)-\frac{\tau_k}{4}i)$
 		                \item $\equiv i^{-1}\exp_n(\ln_k(xi))\err{\frac{a_3n}{k}+\frac{b_3}{n}}$
 		                \item $\equiv i^{-1}xi\err{\frac{a_2n}{k}+\frac{b_1}{n}}$
 		                \item $=x$.
 		              \end{enumerate}
-		              \item \textbf{Hence verify that $\exp_n(\ln_k(x))\equiv x\err{\frac{an}{k}+\frac{c}{n}}$.}
+		              \item \textbf{Hence show that $\exp_n(\ln_k(x))\equiv x\err{\frac{an}{k}+\frac{c}{n}}$.}
 		            \end{enumerate}
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
@@ -6519,13 +6500,15 @@
 		      \implementation
 		        \begin{enumerate}
 		          \item Let $f=1-\frac{2\epsilon}{X^2+1+2\epsilon}$.
-		          \item Verify that $0<f<1$.
+		          \item Show that $0<f<1$.
 		          \item Let $p(x)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Verify that $f^2=1-\frac{4\epsilon}{X^2+1+2\epsilon}+(\frac{2\epsilon}{X^2+1+2\epsilon})^2\ge 1-\frac{4\epsilon}{X^2+1+2\epsilon}$.
-		            \item Verify that $\frac{4\epsilon}{X^2+1+2\epsilon}\ge 1-f^2$.
-		            \item Hence verify that $X^2+1+2\epsilon\le\frac{4\epsilon}{1-f^2}$.
-		            \item Hence verify that $\lVert x\rVert^2$
+		            \item Show that $X^2+1+2\epsilon\le\frac{4\epsilon}{1-f^2}$
+		            \begin{enumerate}
+		              \item given that $\frac{4\epsilon}{X^2+1+2\epsilon}\ge 1-f^2$
+		              \item given that $f^2=1-\frac{4\epsilon}{X^2+1+2\epsilon}+(\frac{2\epsilon}{X^2+1+2\epsilon})^2\ge 1-\frac{4\epsilon}{X^2+1+2\epsilon}$.
+		            \end{enumerate}
+		            \item Hence show that $\lVert x\rVert^2$
 		            \begin{enumerate}
 		              \item $\le X^2$
 		              \item $\le\frac{4\epsilon}{1-f^2}-(1+2\epsilon)$
@@ -6533,9 +6516,11 @@
 		              \item $=\frac{f^2-1+2\epsilon(1+f^2)}{1-f^2}$
 		              \item $\le\frac{f^2-1+2\Re(x)(1+f^2)}{1-f^2}$.
 		            \end{enumerate}
-		            \item Hence verify that $(1-f^2)(\Re(x)^2+\Im(x)^2)\le f^2-1+2\Re(x)(1+f^2)$.
-		            \item Hence verify that $(\Re(x)-1)^2+\Im(x)^2\le f^2((\Re(x)+1)^2+\Im(x)^2)$
-		            \item \textbf{Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le f^2$.}
+		            \item \textbf{Hence show that $\lVert\frac{x-1}{x+1}\rVert^2\le f^2$}
+		            \begin{enumerate}
+		              \item given that $(\Re(x)-1)^2+\Im(x)^2\le f^2((\Re(x)+1)^2+\Im(x)^2)$
+		              \item given that $(1-f^2)(\Re(x)^2+\Im(x)^2)\le f^2-1+2\Re(x)(1+f^2)$.
+		            \end{enumerate}
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle f,p\rangle$.}
 		        \end{enumerate}
@@ -6569,15 +6554,14 @@
 		                      \end{instructions}
 		                      \item Let $q_{24}(x,n)$ be the following procedure:
 		                      \begin{instructions}
-		                        \item Verify that $(1+\epsilon)^2\le(1+\Re(x))^2=\Re(x+1)^2\le\lVert x+1\rVert^2\le(X+1)^2$.
+		                        \item Show that $(1+\epsilon)^2\le(1+\Re(x))^2=\Re(x+1)^2\le\lVert x+1\rVert^2\le(X+1)^2$.
 		                      \end{instructions}
 		                    \end{instructions}
 		                  \end{instructions}
 		                \end{instructions}
 		                \item Let $q_{11}(x,n)$ be the following procedure:
 		                \begin{instructions}
-		                  \item Execute procedure $q_{12}$ on $\langle x\rangle$.
-		                  \item Hence verify that $\lVert 1-2(x+1)^{-1}\rVert^2=\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$.
+		                  \item Show that $\lVert 1-2(x+1)^{-1}\rVert^2=\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$ using procedure $q_{12}$.
 		                \end{instructions}
 		              \end{instructions}
 		              \item Execute \procedurehr{tue2008191001} on $\langle-1,q_{28},q_{29}\rangle$ and let $\langle q_5,q_6\rangle$ receive.
@@ -6588,8 +6572,7 @@
 		                  \item Execute \procedurehr{tue2008191001} on $\langle-1,q_9,q_{10}\rangle$ and let $\langle q_{32},q_{33}\rangle$ receive.
 		                  \item Let $q_{34}(x,n)$ be the following procedure:
 		                  \begin{instructions}
-		                    \item Execute procedure $q_{12}$ on $\langle x\rangle$.
-		                    \item Hence verify that $\lVert-(1+(-2)(x+1)^{-1})\rVert^2=\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$.
+		                    \item Show that $\lVert-(1+(-2)(x+1)^{-1})\rVert^2=\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$ using procedure $q_{12}$.
 		                  \end{instructions}
 		                \end{instructions}
 		              \end{instructions}
@@ -6597,18 +6580,18 @@
 		          \end{instructions}
 		          \item Let $p(x,n)$ be the following procedure:
 		          \begin{instructions}
-		            \item \textbf{Verify that $\frac{1}{x}\equiv 0\allowbreak\err{\frac{1}{x}}\allowbreak\err{\frac{1}{\Re(x)}}\allowbreak\err{\frac{1}{\epsilon}}\allowbreak\err{c}$.}
+		            \item \textbf{Show that $\frac{1}{x}\equiv 0\allowbreak\err{\frac{1}{x}}\allowbreak\err{\frac{1}{\Re(x)}}\allowbreak\err{\frac{1}{\epsilon}}\allowbreak\err{c}$.}
 		          \end{instructions}
 		          \item Let $q(x,n,\delta)$ be the following procedure:
 		          \begin{instructions}
-		            \item Using procedure $q_2$, verify that $\Delta_{y=x}^{+\delta}\ln_n(y)$
+		            \item Using procedure $q_2$, show that $\Delta_{y=x}^{+\delta}\ln_n(y)$
 		            \begin{enumerate}
 		              \item $=\Delta_{y=x}^{+\delta}(\ln_n(1+\frac{y-1}{y+1})-\ln_n(1-\frac{y-1}{y+1}))$
 		              \item $=\Delta_{y=x}^{+\delta}(\ln_n(1+(1+(-2)(y+1)^{-1}))+(-1)\ln_n(1+(-1)(1+(-2)(y+1)^{-1})))$
 		              \item $\equiv((1+(1+(-2)(x+1)^{-1}))^{-1}(0+(-2)(-1)(x+1)^{-2}(1+0)+(-1)((1+(-1)(1+(-2)(x+1)^{-1}))^{-1}\cdot(0+(-1)(0+(-2)(-1)(x+1)^{-2}(1+0))))))\err{\frac{a}{n}+b\{\delta\}}$
 		              \item $=\frac{1}{x}$
 		            \end{enumerate}
-		            \item \textbf{Hence verify that $\Delta_{y=x}^{+\delta}\ln_n(y)\equiv\frac{1}{x}\err{\frac{a}{n}+b\{\delta\}}$.}
+		            \item \textbf{Hence show that $\Delta_{y=x}^{+\delta}\ln_n(y)\equiv\frac{1}{x}\err{\frac{a}{n}+b\{\delta\}}$.}
 		          \end{instructions}
 		          \item \textbf{Yield the tuple $\langle c,d,a,b,e,p,q\rangle$.}
 		        \end{instructions}
@@ -6625,7 +6608,7 @@
 		          \item Let $b=\frac{a_1b_1}{D^2(1-b_1)}$.
 		          \item Let $p(x,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedure $p_2$, verify that $A(1+x)_{n-1}^{A-1}\equiv 0$
+		            \item Using procedure $p_2$, show that $A(1+x)_{n-1}^{A-1}\equiv 0$
 		            \begin{enumerate}
 		              \item $\err{A(1+x)_{n-1}^{A-1}}$
 		              \item $\err{\{A\}a_2}$
@@ -6636,9 +6619,9 @@
 		          \begin{enumerate}
 		            \item For $r\in[1:n]$, do the following:
 		            \begin{enumerate}
-		              \item Verify that $\lVert A+1\rVert^2\le\{A+1\}^2$.
-		              \item Hence using procedure $p_1$, verify that $\lVert\binom{A}{r}(X+D)^r\rVert^2\le(a_1{b_1}^r)^2$.
-		              \item Hence verify that $\lVert\binom{A}{r}\sum_k^{[0:r-1]}\binom{r}{k}x^k\delta^{r-2-k}\rVert^2$
+		              \item Show that $\lVert A+1\rVert^2\le\{A+1\}^2$.
+		              \item Hence show that $\lVert\binom{A}{r}(X+D)^r\rVert^2\le(a_1{b_1}^r)^2$ using procedure $p_1$.
+		              \item Hence show that $\lVert\binom{A}{r}\sum_k^{[0:r-1]}\binom{r}{k}x^k\delta^{r-2-k}\rVert^2$
 		              \begin{enumerate}
 		                \item $\le\lVert\binom{A}{r}\rVert^2(\sum_k^{[0:r-1]}\binom{r}{k}X^kD^{r-2-k})^2$
 		                \item $=\lVert\binom{A}{r}\rVert^2(\frac{1}{D^2}\sum_k^{[0:r-1]}\binom{r}{k}X^kD^{r-k})^2$
@@ -6646,7 +6629,7 @@
 		                \item $\le(\frac{a_1{b_1}^r}{D^2})^2$.
 		              \end{enumerate}
 		            \end{enumerate}
-		            \item Now verify that $\Delta_{y=x}^{+\delta}(1+y)_{n}^A\equiv A(1+x)_{n-1}^{A-1}$
+		            \item Now show that $\Delta_{y=x}^{+\delta}(1+y)_{n}^A\equiv A(1+x)_{n-1}^{A-1}$
 		            \begin{enumerate}
 		              \item $\err{\frac{1}{\delta}((1+x+\delta)_n^A-(1+x)_n^A)-A(1+x)_{n-1}^{A-1}}$
 		              \item $\err{\frac{1}{\delta}(\sum_r^{[0:n]}\binom{A}{r}(x+\delta)^r-\sum_r^{[0:n]}\binom{A}{r}x^r)-A\sum_r^{[0:n-1]}\binom{A-1}{r}x^r}$
@@ -6676,7 +6659,7 @@
 		          \item Let $b=d_4$.
 		          \item Let $p(x,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedure $p_2$, verify that $A(1+x)_n^{A-1}\equiv 0$
+		            \item Using procedure $p_2$, show that $A(1+x)_n^{A-1}\equiv 0$
 		            \begin{enumerate}
 		              \item $\err{A(1+x)_n^{A-1}}$
 		              \item $\err{\{A\}a_2}$
@@ -6685,10 +6668,10 @@
 		          \end{enumerate}
 		          \item Let $q(x,n,\delta)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedure $p_1$, verify that $\lVert\binom{A-1}{n-1}x^{n-1}\rVert^2\le(a_1{b_1}^{n-1})^2$.
-		            \item Using procedure $p_3$, verify that $\lVert(n-1){b_1}^{n-1}\rVert^2\le(a_3{b_3}^{n-1})^2\le{a_3}^2$.
-		            \item Hence verify that $\lVert{b_1}^{n-1}\rVert^2\le(\frac{a_3}{n-1})^2\le(\frac{2a_3}{n})^2$.
-		            \item Now using procedure $q_4$, verify that $\Delta_{y=x}^{+\delta}(1+y)_n^A$
+		            \item Show that $\lVert\binom{A-1}{n-1}x^{n-1}\rVert^2\le(a_1{b_1}^{n-1})^2$ using procedure $p_1$.
+		            \item Show that $\lVert(n-1){b_1}^{n-1}\rVert^2\le(a_3{b_3}^{n-1})^2\le{a_3}^2$ using procedure $p_3$.
+		            \item Hence show that $\lVert{b_1}^{n-1}\rVert^2\le(\frac{a_3}{n-1})^2\le(\frac{2a_3}{n})^2$.
+		            \item Now using procedure $q_4$, show that $\Delta_{y=x}^{+\delta}(1+y)_n^A$
 		            \begin{enumerate}
 		              \item $\equiv A(1+x)_{n-1}^{A-1}\err{\frac{c_4}{n}+d_4\{\delta\}}$
 		              \item $\equiv A(1+x)_{n}^{A-1}$
@@ -6698,7 +6681,7 @@
 		                \item $\err{\frac{2\{A\}a_1a_3}{n}}$.
 		              \end{enumerate}
 		            \end{enumerate}
-		            \item Hence verify that $\Delta_{y=x}^{+\delta}(1+y)_n^A\equiv A(1+x)_{n}^{A-1}$
+		            \item Hence show that $\Delta_{y=x}^{+\delta}(1+y)_n^A\equiv A(1+x)_{n}^{A-1}$
 		            \begin{enumerate}
 		              \item $\err{\frac{c_4}{n}+d_4\{\delta\}+\frac{2\{A\}a_1a_3}{n}}$
 		              \item $\err{\frac{a}{n}+b\{\delta\}}$.
@@ -6714,7 +6697,7 @@
 		      \implementation
 		        \begin{enumerate}
 		          \item Execute \procedurehr{wed2108191324} on $\langle X,\epsilon\rangle$ and let $\langle a_1,p_1\rangle$ receive.
-		          \item Verify that $0<a_1<1$.
+		          \item Show that $0<a_1<1$.
 		          \item Execute \procedurehr{tue2008190849} on $\langle A,a_1\rangle$ and let $\langle a_2,b_2,c_2,p_2\rangle$ receive.
 		          \item Execute \procedurehr{wed2407191611} on $\langle A,a_1\rangle$ and let $\langle a_3,p_3\rangle$ receive.
 		          \item Let $B=a_3a_2$.
@@ -6722,10 +6705,10 @@
 		          \item Let $D=\max(c_2,A)$.
 		          \item Let $p(x,a,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedure $p_1$, verify that $\lVert\frac{x-1}{x+1}\rVert^2\le{a_1}^2$.
+		            \item Show that $\lVert\frac{x-1}{x+1}\rVert^2\le{a_1}^2$ using procedure $p_1$.
 		            \item If $a\ge 0$, then do the following:
 		            \begin{enumerate}
-		              \item Using \procedurehr{sun2107190619} and procedures $p_2,p_3$, verify that $x_n^a$
+		              \item Using \procedurehr{sun2107190619} and procedures $p_2,p_3$, show that $x_n^a$
 		              \begin{enumerate}
 		                \item $=(1+\frac{x-1}{x+1})_n^a(1-\frac{x-1}{x+1})_n^{0-a}$
 		                \item $\equiv(1+\frac{x-1}{x+1})_n^a\frac{(1-\frac{x-1}{x+1})_n^{0}}{(1-\frac{x-1}{x+1})_n^{a}}\err{a_3a_2{b_2}^n}$
@@ -6735,7 +6718,7 @@
 		            \end{enumerate}
 		            \item Otherwise do the following:
 		            \begin{enumerate}
-		              \item Using \procedurehr{sun2107190619} and procedures $p_2,p_3$, verify that $x_n^a$
+		              \item Using \procedurehr{sun2107190619} and procedures $p_2,p_3$, show that $x_n^a$
 		              \begin{enumerate}
 		                \item $=(1+\frac{x-1}{x+1})_n^{0-(-a)}(1-\frac{x-1}{x+1})_n^{-a}$
 		                \item $\equiv\frac{(1+\frac{x-1}{x+1})_n^{0}}{(1+\frac{x-1}{x+1})_n^{-a}}(1-\frac{x-1}{x+1})_n^{-a}\err{a_3a_2{b_2}^n}$
@@ -6744,7 +6727,7 @@
 		                \item $=x^a$.
 		              \end{enumerate}
 		            \end{enumerate}
-		            \item \textbf{Hence verify that $x_n^a\equiv x^a\allowbreak\err{a_3a_2{b_2}^n}\allowbreak\err{BC^n}$.}
+		            \item \textbf{Hence show that $x_n^a\equiv x^a\allowbreak\err{a_3a_2{b_2}^n}\allowbreak\err{BC^n}$.}
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle B,C,D,p\rangle$.}
 		        \end{enumerate}
@@ -6760,14 +6743,14 @@
 		          \item Let $C=b_2$.
 		          \item Let $p(x,a,b,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedures $p_1,p_2,p_3$, verify that $x_n^{a+b}$
+		            \item Using procedures $p_1,p_2,p_3$, show that $x_n^{a+b}$
 		            \begin{enumerate}
 		              \item $=(1+\frac{x-1}{x+1})_n^{a+b}(1-\frac{x-1}{x+1})_n^{-(a+b)}$
 		              \item $\equiv(1+\frac{x-1}{x+1})_n^{a}(1+\frac{x-1}{x+1})_n^{b}(1-\frac{x-1}{x+1})_n^{(-a)+(-b)}\err{a_2{b_2}^na_3}$
 		              \item $\equiv(1+\frac{x-1}{x+1})_n^{a}(1+\frac{x-1}{x+1})_n^{b}(1-\frac{x-1}{x+1})_n^{-a}(1-\frac{x-1}{x+1})_n^{-b}\err{{a_3}^2a_2{b_2}^n}$
 		              \item $=x_n^ax_n^b$.
 		            \end{enumerate}
-		            \item \textbf{Hence verify that $x_n^{a+b}\equiv x_n^ax_n^b\err{BC^n}$.}
+		            \item \textbf{Hence show that $x_n^{a+b}\equiv x_n^ax_n^b\err{BC^n}$.}
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle B,C,p\rangle$.}
 		        \end{enumerate}
@@ -6781,14 +6764,14 @@
 		          \item Let $D={a_2}^2$.
 		          \item Let $p(x,n,a,k)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedures $p_1,p_2$, verify that $(x_n^a)^k$
+		            \item Using procedures $p_1,p_2$, show that $(x_n^a)^k$
 		            \begin{enumerate}
 		              \item $=((1+\frac{x-1}{x+1})_n^a(1-\frac{x-1}{x+1})_n^{-a})^k$
 		              \item $=((1+\frac{x-1}{x+1})_n^a)^k((1-\frac{x-1}{x+1})_n^{-a})^k$
 		              \item $\equiv 0((1-\frac{x-1}{x+1})_n^{-a})^k\err{{a_2}^2}$
 		              \item $=0$.
 		            \end{enumerate}
-		            \item \textbf{Hence verify that $(x_n^a)^k\equiv 0\err{D}$.}
+		            \item \textbf{Hence show that $(x_n^a)^k\equiv 0\err{D}$.}
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle D,p\rangle$.}
 		        \end{enumerate}
@@ -6802,10 +6785,10 @@
 		          \item Let $D={a_2}^2$.
 		          \item Let $p(x,n,a)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedure $p_1$, verify that $\lVert\frac{x-1}{x+1}\rVert^2\le{a_1}^2$.
-		            \item Hence using procedure $p_2$, verify that $\lVert(1+\frac{x-1}{x+1})_n^a\rVert^2\ge{a_2}^2$.
-		            \item Also using procedure $p_2$, verify that $\lVert(1-\frac{x-1}{x+1})_n^{-a}\rVert^2\ge{a_2}^2$.
-		            \item Hence using \declarationhr{thu2208191619}, verify that $\lVert x_n^a\rVert^2$
+		            \item Show that $\lVert\frac{x-1}{x+1}\rVert^2\le{a_1}^2$ using procedure $p_1$.
+		            \item Show that $\lVert(1+\frac{x-1}{x+1})_n^a\rVert^2\ge{a_2}^2$ using procedure $p_2$.
+		            \item Show that $\lVert(1-\frac{x-1}{x+1})_n^{-a}\rVert^2\ge{a_2}^2$ using procedure $p_2$.
+		            \item Hence using \declarationhr{thu2208191619}, show that $\lVert x_n^a\rVert^2$
 		            \begin{enumerate}
 		              \item $=\lVert(1+\frac{x-1}{x+1})_n^a\rVert^2\lVert(1-\frac{x-1}{x+1})_n^{-a}\rVert^2$
 		              \item $\ge{a_2}^2{a_2}^2$
@@ -6828,14 +6811,14 @@
 		          \item Let $D=\max(c_2,b_3)$.
 		          \item Let $p(x,a,b,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedures $p_1,p_2,p_3,p_4$, verify that $x_n^{a-b}$
+		            \item Using procedures $p_1,p_2,p_3,p_4$, show that $x_n^{a-b}$
 		            \begin{enumerate}
 		              \item $=(1+\frac{x-1}{x+1})_n^{a-b}(1-\frac{x-1}{x+1})_n^{(-a)-(-b)}$
 		              \item $\equiv(1+\frac{x-1}{x+1})_n^{a-b}\frac{(1-\frac{x-1}{x+1})_n^{-a}}{(1-\frac{x-1}{x+1})_n^{-b}}\err{a_4a_2{b_2}^n}$
 		              \item $\equiv\frac{(1+\frac{x-1}{x+1})_n^{a}}{(1+\frac{x-1}{x+1})_n^{b}}\frac{(1-\frac{x-1}{x+1})_n^{-a}}{(1-\frac{x-1}{x+1})_n^{-b}}\err{a_2{b_2}^n\frac{a_4}{a_3}}$
 		              \item $=\frac{x_n^a}{x_n^b}$.
 		            \end{enumerate}
-		            \item \textbf{Hence verify that $x_n^{a-b}\equiv\frac{x_n^a}{x_n^b}\err{a_4a_2{b_2}^n+a_2{b_2}^n\frac{a_4}{a_3}}\err{BC^n}$.}
+		            \item \textbf{Hence show that $x_n^{a-b}\equiv\frac{x_n^a}{x_n^b}\err{a_4a_2{b_2}^n+a_2{b_2}^n\frac{a_4}{a_3}}\err{BC^n}$.}
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle B,C,D,p\rangle$.}
 		        \end{enumerate}
@@ -6851,7 +6834,7 @@
 		          \item Let $C=b_2$.
 		          \item Let $p(x,n,a,k)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedures $p_1,p_2,p_3$, verify that $(x_n^a)^k$
+		            \item Using procedures $p_1,p_2,p_3$, show that $(x_n^a)^k$
 		            \begin{enumerate}
 		              \item $=((1+\frac{x-1}{x+1})_n^a(1-\frac{x-1}{x+1})_n^{-a})^k$
 		              \item $=((1+\frac{x-1}{x+1})_n^a)^k((1-\frac{x-1}{x+1})_n^{-a})^k$
@@ -6859,7 +6842,7 @@
 		              \item $\equiv((1+\frac{x-1}{x+1})_n^{ak})^1(1-\frac{x-1}{x+1})_n^{-ak}\err{a_3a_2{b_2}^n}$
 		              \item $=x_n^{ak}$.
 		            \end{enumerate}
-		            \item \textbf{Hence verify that $(x_n^a)^k\equiv x_n^{ak}\err{BC^n}$.}
+		            \item \textbf{Hence show that $(x_n^a)^k\equiv x_n^{ak}\err{BC^n}$.}
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle B,C,p\rangle$.}
 		        \end{enumerate}
@@ -6876,10 +6859,8 @@
 		              \item Execute \procedurehr{wed2407191611} on $\langle \{f\},e_1\rangle$ and let $\langle e_2,q_{10}\rangle$ receive.
 		              \item Let $q_7(x,n)$ be the following procedure:
 		              \begin{instructions}
-		                \item Execute procedure $q_9$ on $\langle x\rangle$.
-		                \item Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$.
-		                \item Execute procedure $q_{10}$ on $\langle\frac{x-1}{x+1},n,f,1\rangle$.
-		                \item Hence verify that $\lVert(1+(1+(-2)(x+1)^{-1}))_n^f\rVert^2$
+		                \item Show that $\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$ using procedure $q_9$.
+		                \item Using procedure $q_{10}$, show that $\lVert(1+(1+(-2)(x+1)^{-1}))_n^f\rVert^2$
 		                \begin{instructions}
 		                  \item $=\lVert(1+\frac{x-1}{x+1})_n^f\rVert^2$
 		                  \item $\le{e_2}^2$.
@@ -6887,10 +6868,8 @@
 		              \end{instructions}
 		              \item Let $q_8(x,n)$ be the following procedure:
 		              \begin{instructions}
-		                \item Execute procedure $q_9$ on $\langle x\rangle$.
-		                \item Hence verify that $\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$.
-		                \item Execute procedure $q_{10}$ on $\langle-\frac{x-1}{x+1},n,-f,1\rangle$.
-		                \item Hence verify that $\lVert(1-(1+(-2)(x+1)^{-1}))_n^{-f}\rVert^2$
+		                \item Show that $\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$ using procedure $q_9$.
+		                \item Using procedure $q_{10}$, show that $\lVert(1-(1+(-2)(x+1)^{-1}))_n^{-f}\rVert^2$
 		                \begin{instructions}
 		                  \item $=\lVert(1-\frac{x-1}{x+1})_n^{-f}\rVert^2$
 		                  \item $\le{e_2}^2$.
@@ -6914,7 +6893,7 @@
 		                      \end{instructions}
 		                      \item Let $q_{26}(x,n)$ be the following procedure:
 		                      \begin{instructions}
-		                        \item Verify that $(1+\epsilon)^2$
+		                        \item Show that $(1+\epsilon)^2$
 		                        \begin{instructions}
 		                          \item $\le(1+\Re(x))^2$
 		                          \item $\le\Re(x+1)^2$
@@ -6927,8 +6906,7 @@
 		                \end{instructions}
 		                \item Let $q_{15}(x,n)$ be the following procedure:
 		                \begin{instructions}
-		                  \item Execute procedure $q_9$ on $\langle x\rangle$.
-		                  \item \textbf{Hence verify that $\lVert 1+(-2)(x+1)^{-1}\rVert^2=\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$.}
+		                  \item \textbf{Hence show that $\lVert 1+(-2)(x+1)^{-1}\rVert^2=\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$ using procedure $q_9$.}
 		                \end{instructions}
 		              \end{instructions}
 		              \item Execute \procedurehr{sat0308191134} on $\langle q_{31},q_{32},q_{33},q_{34},q_{35}\rangle$ and let $\langle q_5,q_6\rangle$ receive.
@@ -6937,8 +6915,7 @@
 		                \item Execute \procedurehr{tue2008191001} on $\langle-1,q_{13},q_{14}\rangle$ and let $\langle q_{33},q_{34}\rangle$ receive.
 		                \item Let $q_{35}(x,n)$ be the following procedure:
 		                \begin{instructions}
-		                  \item Execute procedure $q_9$ on $\langle x\rangle$.
-		                  \item \textbf{Hence verify that $\lVert-(1+(-2)(x+1)^{-1})\rVert^2=\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$.}
+		                  \item \textbf{Hence show that $\lVert-(1+(-2)(x+1)^{-1})\rVert^2=\lVert\frac{x-1}{x+1}\rVert^2\le{e_1}^2$ using procedure $q_9$.}
 		                \end{instructions}
 		              \end{instructions}
 		            \end{instructions}
@@ -6965,13 +6942,13 @@
 		            \item Let $h=\{f\}a_2a_3a_4((\frac{2}{1+\epsilon})^2+1)$.
 		            \item Let $t(x,n)$ be the following procedure:
 		            \begin{enumerate}
-		              \item Verify that $\lVert\frac{1}{(x+1)^2}\rVert^2$
+		              \item Show that $\lVert\frac{1}{(x+1)^2}\rVert^2$
 		              \begin{enumerate}
 		                \item $=\frac{1}{\lVert 1+x\rVert^4}$
 		                \item $=\frac{1}{(\Re(1+x)^2+\Im(x)^2)^2}$
 		                \item $\le(\frac{1}{1+\epsilon})^4$.
 		              \end{enumerate}
-		              \item Using procedures $p_1$,$p_2$,$p_3$, and $p_4$ verify that $[2f(1+\frac{x-1}{x+1})_n^f\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(x+1)^{-2}]+[2f(1+\frac{x-1}{x+1})_n^{f-1}\cdot(1-\frac{x-1}{x+1})_n^{-f}(x+1)^{-2}]$
+		              \item Using procedures $p_1$,$p_2$,$p_3$,$p_4$, show that $[2f(1+\frac{x-1}{x+1})_n^f\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(x+1)^{-2}]+[2f(1+\frac{x-1}{x+1})_n^{f-1}\cdot(1-\frac{x-1}{x+1})_n^{-f}(x+1)^{-2}]$
 		              \begin{enumerate}
 		                \item $\equiv[2f(1+\frac{x-1}{x+1})_n^{f-1}(1+\frac{x-1}{x+1})_n^1\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(x+1)^{-2}]+[2f(1+\frac{x-1}{x+1})_n^{f-1}\cdot(1-\frac{x-1}{x+1})_n^{-f}(x+1)^{-2}]$
 		                \begin{enumerate}
@@ -6993,7 +6970,7 @@
 		                \end{enumerate}
 		                \item $=fx_n^{f-1}$
 		              \end{enumerate}
-		              \item \textbf{Hence verify that $[2f(1+\frac{x-1}{x+1})_n^f\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(x+1)^{-2}]+[2f(1+\frac{x-1}{x+1})_n^{f-1}\cdot(1-\frac{x-1}{x+1})_n^{-f}(x+1)^{-2}]\equiv fx_n^{f-1}\err{\frac{h}{n}}$.}
+		              \item \textbf{Hence show that $[2f(1+\frac{x-1}{x+1})_n^f\cdot(1-\frac{x-1}{x+1})_n^{-f-1}(x+1)^{-2}]+[2f(1+\frac{x-1}{x+1})_n^{f-1}\cdot(1-\frac{x-1}{x+1})_n^{-f}(x+1)^{-2}]\equiv fx_n^{f-1}\err{\frac{h}{n}}$.}
 		            \end{enumerate}
 		            \item \textbf{Yield the tuple $\langle h,t\rangle$.}
 		          \end{enumerate}
@@ -7283,7 +7260,7 @@
 				    The objective of the following instructions is to show that $\int_r^R(f(r,\delta_r)+g(r,\delta_r))=\int_r^Rf(r,\delta_r)+\int_r^Rg(r,\delta_r)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\int_r^R(f(r,\delta_r)+g(r,\delta_r))$
+					    \item Show that $\int_r^R(f(r,\delta_r)+g(r,\delta_r))$
 					    \begin{enumerate}
 						    \item $=\sum_t^{[0:\lvert R\rvert-1]}(f(R_t,R_{t+1}-R_t)+g(R_t,R_{t+1}-R_t))$
 						    \item $=\sum_t^{[0:\lvert R\rvert-1]}f(R_t,R_{t+1}-R_t)+\sum_t^{[0:\lvert R\rvert-1]}g(R_t,R_{t+1}-R_t)$
@@ -7301,7 +7278,7 @@
 				     The objective of the following instructions is to show that $\int_r^Raf(r,\delta_r)=a\int_r^Rf(r,\delta_r)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\int_r^Raf(r,\delta_r)$
+					    \item Show that $\int_r^Raf(r,\delta_r)$
 					    \begin{enumerate}
 						    \item $=\sum_t^{[0:\lvert R\rvert-1]}af(R_t,R_{t+1}-R_t)$
 						    \item $=a\sum_t^{[0:\lvert R\rvert-1]}f(R_t,R_{t+1}-R_t)$
@@ -7320,7 +7297,7 @@
 			    \implementation
 				    \begin{enumerate}
 					    \item Let $T=R^\frown S$.
-					    \item Verify that $\int_r^{T}f(r)\delta_r$
+					    \item Show that $\int_r^{T}f(r)\delta_r$
 					    \begin{enumerate}
 						    \item $=\sum_t^{[0:\lvert T\rvert-1]}f(T_t)(T_{t+1}-T_t)$
 						    \item $=\sum_t^{[0:\lvert R\rvert-1]}f(T_t)(T_{t+1}-T_t)+\sum_t^{[\lvert R\rvert-1:\lvert R\rvert]}f(T_t)(T_{t+1}-T_t)+\sum_t^{[\lvert R\rvert:\lvert T\rvert-1]}f(T_t)(T_{t+1}-T_t)$
@@ -7339,7 +7316,7 @@
 				    The objective of the following instructions is to show that $\int_r^R\delta_r\diff_{z=r}^{+\delta_r}f(z)=f(R_{\lvert R\rvert-1})-f(R_0)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\int_r^R\delta_r\diff_{z=r}^{\delta_r}f(z)$
+					    \item Show that $\int_r^R\delta_r\diff_{z=r}^{\delta_r}f(z)$
 					    \begin{enumerate}
 						    \item $=\int_r^R\delta_r(\frac{f(r+\delta_r)-f(r)}{\delta_r})$
 						    \item $=\int_r^R(f(r+\delta_r)-f(r))$
@@ -7369,7 +7346,7 @@
 		          \item Let $d=d_1$.
 		          \item Let $p(R,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedure $q_1$, verify that $\int_r^Rf'_n(r)\delta_r$
+		            \item Using procedure $q_1$, show that $\int_r^Rf'_n(r)\delta_r$
 		            \begin{enumerate}
 		              \item $=\sum_k^{[0:\lvert R\rvert-1]}f'_n(R_k)(R_{k+1}-R_k)$
 		              \item $\equiv\sum_k^{0:\lvert R\rvert-1}\Delta_{y=R_k}^{R_{k+1}-R_k}f_n(y)(R_{k+1}-R_k)$
@@ -7384,7 +7361,7 @@
 		              \item $=\sum_k^{0:\lvert R\rvert-1}(f_n(R_{k+1})-f_n(R_k))$
 		              \item $=f_n(R_{\lvert R\rvert-1})-f_n(R_0)$.
 		            \end{enumerate}
-		            \item \textbf{Therefore verify that $\int_r^Rf'_n(r)\delta_r\equiv f_n(R_{\lvert R\rvert-1})-f_n(R_0)\err{\frac{a}{n}+b\max(\{\Delta R\})}$.}
+		            \item \textbf{Therefore show that $\int_r^Rf'_n(r)\delta_r\equiv f_n(R_{\lvert R\rvert-1})-f_n(R_0)\err{\frac{a}{n}+b\max(\{\Delta R\})}$.}
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 		        \end{enumerate}
@@ -7410,7 +7387,7 @@
 			        \item Let $d=d_1$.
 			        \item Let $p(R,n)$ be the following procedure:
 			        \begin{enumerate}
-			          \item Using procedures $q_1,q_2,q_3$, verify that $\int_r^{g_n(R)}f_n(r)\delta_r$
+			          \item Using procedures $q_1,q_2,q_3$, show that $\int_r^{g_n(R)}f_n(r)\delta_r$
 			          \begin{enumerate}
 			            \item $=\sum_k^{[0:\lvert R\rvert-1]}f_n(g_n(R_k))(g_n(R_{k+1})-g_n(R_k))$
 			            \item $=\sum_k^{[0:\lvert R\rvert-1]}f_n(g_n(R_k))\Delta_{y=R_k}^{R_{k+1}-R_k}g_n(y)(R_{k+1}-R_k)$
@@ -7424,7 +7401,7 @@
 			            \end{enumerate}
 			            \item $=\int_r^Rf_n(g_n(r))g'_n(r)\delta_r$.
 			          \end{enumerate}
-			          \item \textbf{Hence verify that $\int_r^{g_n(R)}f_n(r)\delta_r\equiv\int_r^Rf_n(g_n(r))g'_n(r)\delta_r\err{\frac{a}{n}+b\max(\{\Delta R\})}$.}
+			          \item \textbf{Hence show that $\int_r^{g_n(R)}f_n(r)\delta_r\equiv\int_r^Rf_n(g_n(r))g'_n(r)\delta_r\err{\frac{a}{n}+b\max(\{\Delta R\})}$.}
 			        \end{enumerate}
 			        \item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 			      \end{enumerate}
@@ -7441,13 +7418,13 @@
 		          \item Hence execute \procedurehr{fri3008190328} on $\langle A,q\rangle$ and let $\langle a,b,c,d,t\rangle$ receive.
 		          \item Let $p(R,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedure $t$, verify that $\int_r^R\frac{\delta_r}{r}$
+		            \item Using procedure $t$, show that $\int_r^R\frac{\delta_r}{r}$
 		            \begin{enumerate}
 		              \item $\equiv\ln_n(R_{\lvert R\rvert-1})-\ln_n(R_0)\err{\frac{a}{n}+b\max(\{\Delta R\})}$
 		              \item $=\ln_n(R_{\lvert R\rvert-1})-\ln_n(1)$
 		              \item $=\ln_n(R_{\lvert R\rvert-1})$.
 		            \end{enumerate}
-		            \item \textbf{Hence verify that $\int_r^R\frac{\delta_r}{r}\equiv\ln_n(R_{\lvert R\rvert-1})\err{\frac{a}{n}+b\max(\{\Delta R\})}$.}
+		            \item \textbf{Hence show that $\int_r^R\frac{\delta_r}{r}\equiv\ln_n(R_{\lvert R\rvert-1})\err{\frac{a}{n}+b\max(\{\Delta R\})}$.}
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 		        \end{enumerate}
