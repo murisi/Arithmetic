@@ -267,28 +267,31 @@
 				    Choose an integer $a$. The objective of the following instructions is to show that $a=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\Po(a)+\Ne(a)=\Ne(a)+\Po(a)$.
-					    \item \textbf{Hence verify that $a=a$.}
+					    \item \textbf{Show that $a=a$ given that $\Po(a)+\Ne(a)=\Ne(a)+\Po(a)$.}
 				    \end{enumerate}
 		    \procedure{1.66}
 			    \objective
 				    Choose two integers $a,b$ such that $a=b$. The objective of the following instructions is to show that $b=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\Po(a)+\Ne(b)=\Ne(a)+\Po(b)$.
-					    \item Hence verify that $\Po(b)+\Ne(a)=\Ne(b)+\Po(a)$.
-					    \item \textbf{Hence verify that $b=a$.}
+					    \item \textbf{Show that $b=a$.}
+					    \begin{enumerate}
+					      \item given that $\Po(b)+\Ne(a)=\Ne(b)+\Po(a)$
+					      \item given that $\Po(a)+\Ne(b)=\Ne(a)+\Po(b)$.
+					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{1.67}
 			    \objective
 				    Choose three integers $a,b,c$ such that $a=b$ and $b=c$. The objective of the following instructions is to show that $a=c$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{1.25}, verify that $\Po(a)+\Ne(b)=\Ne(a)+\Po(b)$.
-					    \item Using \declarationhr{1.25}, verify that $\Po(b)+\Ne(c)=\Ne(b)+\Po(c)$.
-					    \item Hence verify that $\Po(a)+\Ne(b)+\Po(b)+\Ne(c)=\Ne(a)+\Po(b)+\Ne(b)+\Po(c)$.
-					    \item Hence verify that $\Po(a)+\Ne(c)=\Ne(a)+\Po(c)$.
-					    \item \textbf{Hence verify that $a=c$.}
+					    \item Show that $\Po(a)+\Ne(b)=\Ne(a)+\Po(b)$ using \declarationhr{1.25}.
+					    \item Show that $\Po(b)+\Ne(c)=\Ne(b)+\Po(c)$ using \declarationhr{1.25}.
+					    \item \textbf{Hence show that $a=c$}
+					    \begin{enumerate}
+					      \item given that $\Po(a)+\Ne(c)=\Ne(a)+\Po(c)$
+					      \item given that $\Po(a)+\Ne(b)+\Po(b)+\Ne(c)=\Ne(a)+\Po(b)+\Ne(b)+\Po(c)$.
+					    \end{enumerate}
 				    \end{enumerate}
 		    \declaration{1.26}
 			    The notation \gls{inta+b}, where $a,b$ are integers, will be used as a shorthand for the pair $\langle\Po(a)+\Po(b),\Ne(a)+\Ne(b)\rangle$.
@@ -317,7 +320,7 @@
 				    Choose three integers $a,b,c$. The objective of the following instructions is to show that $(a+b)+c=a+(b+c)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $(a+b)+c$
+					    \item Show that $(a+b)+c$
 					    \begin{enumerate}
 						    \item $=\langle\Po(a)+\Po(b),\Ne(a)+\Ne(b)\rangle+\langle\Po(c),\Ne(c)\rangle$
 						    \item $=\langle(\Po(a)+\Po(b))+\Po(c),(\Ne(a)+\Ne(b))+\Ne(c)\rangle$
@@ -331,7 +334,7 @@
 				    Choose two integers $a,b$. The objective of the following instructions is to show that $a+b=b+a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item $a+b$
+					    \item Show that $a+b$
 					    \begin{enumerate}
 						    \item $=\langle\Po(a)+\Po(b),\Ne(a)+\Ne(b)\rangle$
 						    \item $=\langle\Po(b)+\Po(a),\Ne(b)+\Ne(a)\rangle$
@@ -345,7 +348,7 @@
 				    Choose an integer $a$. The objective of the following instructions is to show that $0+a=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $0+a$
+					    \item Show that $0+a$
 					    \begin{enumerate}
 						    \item $=\langle 0,0\rangle+\langle\Po(a),\Ne(a)\rangle$
 						    \item $=\langle 0+\Po(a),0+\Ne(a)\rangle$
@@ -360,8 +363,8 @@
 				    Choose two integers $a,b$ such that $a=b$. The objective of the following instructions is to show that $-a=-b$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{1.25}, verify that $\Po(a)+\Ne(b)=\Ne(a)+\Po(b)$.
-					    \item Hence verify that $-a$
+					    \item Show that $\Po(a)+\Ne(b)=\Ne(a)+\Po(b)$ using \declarationhr{1.25}.
+					    \item Hence show that $-a$
 					    \begin{enumerate}
 						    \item $=\langle\Ne(a),\Po(a)\rangle$
 						    \item $=\langle\Ne(a)+\Po(b),\Po(a)+\Po(b)\rangle$
@@ -375,7 +378,7 @@
 				    Choose an integer $a$. The objective of the following instructions is to show that $-a+a=0$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $-a+a$
+					    \item Show that $-a+a$
 					    \begin{enumerate}
 						    \item $=(-a)+a$
 						    \item $=\langle\Ne(a),\Po(a)\rangle+\langle\Po(a),\Ne(a)\rangle$
@@ -391,9 +394,9 @@
 				    Choose four integers $a,b,c,d$ such that $a=c$ and $b=d$. The objective of the following instructions is to show that $ab=cd$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{1.25}, verify that $\Po(a)+\Ne(c)=\Ne(a)+\Po(c)$.
-					    \item Using \declarationhr{1.25}, verify that $\Po(b)+\Ne(d)=\Ne(b)+\Po(d)$.
-					    \item Hence verify that $ab$
+					    \item Show that $\Po(a)+\Ne(c)=\Ne(a)+\Po(c)$ using \declarationhr{1.25}.
+					    \item Show that $\Po(b)+\Ne(d)=\Ne(b)+\Po(d)$ using \declarationhr{1.25}.
+					    \item Hence show that $ab$
 					    \begin{enumerate}
 						    \item $=\langle\Po(a)\Po(b)+\Ne(a)\Ne(b),\Po(a)\Ne(b)+\Ne(a)\Po(b)\rangle$
 						    \item $=\langle\Po(a)\Po(b)+\Ne(a)\Ne(b)+\Po(a)\Ne(d)+\Ne(c)\Po(d)+\Po(c)\Ne(d),\Po(a)\Ne(b)+\Ne(a)\Po(b)+\Po(a)\Ne(d)+\Ne(c)\Po(d)+\Po(c)\Ne(d)\rangle$
@@ -414,7 +417,7 @@
 				    Choose three integers $a,b,c$. The objective of the following instructions is to show that $(ab)c=a(bc)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $(ab)c$
+					    \item Show that $(ab)c$
 					    \begin{enumerate}
 						    \item $=\langle\Po(a)\Po(b)+\Ne(a)\Ne(b),\Po(a)\Ne(b)+\Ne(a)\Po(b)\rangle\langle\Po(c),\Ne(c)\rangle$
 						    \item $=\langle(\Po(a)\Po(b)+\Ne(a)\Ne(b))\Po(c)+(\Po(a)\Ne(b)+\Ne(a)\Po(b))\Ne(c),(\Po(a)\Po(b)+\Ne(a)\Ne(b))\Ne(c)+(\Po(a)\Ne(b)+\Ne(a)\Po(b))\Po(c)\rangle$
@@ -428,7 +431,7 @@
 				    Choose two integers $a,b$. The objective of the following instructions is to show that $ab=ba$.
 			    \implementation
 				    \begin{enumerate}
-					    \item $ab$
+					    \item Show that $ab$
 					    \begin{enumerate}
 						    \item $=\langle\Po(a)\Po(b)+\Ne(a)\Ne(b),\Po(a)\Ne(b)+\Ne(a)\Po(b)\rangle$
 						    \item $=\langle\Po(b)\Po(a)+\Ne(b)\Ne(a),\Po(b)\Ne(a)+\Ne(b)\Po(a)\rangle$
@@ -440,7 +443,7 @@
 				    Choose an integer $a$. The objective of the following instructions is to show that $1a=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $1a$
+					    \item Show that $1a$
 					    \begin{enumerate}
 						    \item $=\langle 1,0\rangle\langle\Po(a),\Ne(a)\rangle$
 						    \item $=\langle 1\Po(a)+0\Ne(a),1\Ne(a)+0\Po(a)\rangle$
@@ -453,7 +456,7 @@
 				    Choose three integers $a,b,c$. The objective of the following instructions is to show that $a(b+c)=ab+ac$.
 			    \implementation
 				    \begin{enumerate}
-					    \item $a(b+c)$
+					    \item Show that $a(b+c)$
 					    \begin{enumerate}
 						    \item $=\langle\Po(a),\Ne(a)\rangle\langle\Po(b)+\Po(c),\Ne(b)+\Ne(c)\rangle$
 						    \item $=\langle\Po(a)(\Po(b)+\Po(c))+\Ne(a)(\Ne(b)+\Ne(c)),\Po(a)(\Ne(b)+\Ne(c))+\Ne(a)(\Po(b)+\Po(c))\rangle$
@@ -467,9 +470,11 @@
 				    Choose an integer $a$. The objective of the following instructions is to show that $(-1)^{2a}=1$ and $(-1)^{2a+1}=-1$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $(-1)^2=(-1)(-1)+1+(-1)=(-1)((-1)+1)+1=(-1)0+1=1$.
-					    \item \textbf{Hence verify that $(-1)^{2a}=((-1)^2)^a=1^a=1$.}
-					    \item \textbf{Hence verify that $(-1)^{2a+1}=(-1)^{2a}(-1)=1(-1)=-1$.}
+					    \item \textbf{Show that $(-1)^{2a+1}=(-1)^{2a}(-1)=1(-1)=-1$}
+					    \begin{enumerate}
+					      \item given that $(-1)^{2a}=((-1)^2)^a=1^a=1$
+					      \item given that $(-1)^2=(-1)(-1)+1+(-1)=(-1)((-1)+1)+1=(-1)0+1=1$.
+					    \end{enumerate}
 				    \end{enumerate}
 		    \declaration{1.30}
 			    The phrase "\gls{inta<b}", where $a,b$ are rational numbers, will be used as a shorthand for "$\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$".
@@ -478,10 +483,10 @@
 				    Choose four integers $a,b,c,d$ such that $a<b$, $a=c$ and $b=d$. The objective of the following instructions is to show that $c<d$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{1.25}, verify that $\Po(a)+\Ne(c)=\Ne(a)+\Po(c)$.
-					    \item Using \declarationhr{1.25}, verify that $\Po(b)+\Ne(d)=\Ne(b)+\Po(d)$.
-					    \item Using \declarationhr{1.30}, verify that $\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$.
-					    \item Hence verify that $\Po(c)+\Ne(d)$
+					    \item Show that $\Po(a)+\Ne(c)=\Ne(a)+\Po(c)$ using \declarationhr{1.25}.
+					    \item Show that $\Po(b)+\Ne(d)=\Ne(b)+\Po(d)$ using \declarationhr{1.25}.
+					    \item Show that $\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$ using \declarationhr{1.30}.
+					    \item Hence show that $\Po(c)+\Ne(d)$
 					    \begin{enumerate}
 						    \item $=(\Ne(a)+\Po(c))+(\Po(b)+\Ne(d))-\Ne(a)-\Po(b)$
 						    \item $=(\Po(a)+\Ne(c))+(\Ne(b)+\Po(d))-\Ne(a)-\Po(b)$
@@ -489,15 +494,15 @@
 						    \item $<(\Ne(a)+\Po(b))+\Ne(c)+\Po(d)-\Ne(a)-\Po(b)$
 						    \item $=\Ne(c)+\Po(d)$.
 					    \end{enumerate}
-					    \item \textbf{Hence verify that $c<d$.}
+					    \item \textbf{Hence show that $c<d$.}
 				    \end{enumerate}
 		    \procedure{1.80}
 			    \objective
 				    Choose three integers $a,b,c$ such that $a<b$. The objective of the following instructions is to show that $a+c<b+c$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{1.30}, verify that $\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$.
-					    \item Hence verify that $\Po(a+c)+\Ne(b+c)$
+					    \item Show that $\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$ using \declarationhr{1.30}.
+					    \item Hence show that $\Po(a+c)+\Ne(b+c)$
 					    \begin{enumerate}
 						    \item $=\Po(a)+\Po(c)+\Ne(b)+\Ne(c)$
 						    \item $=(\Po(a)+\Ne(b))+\Po(c)+\Ne(c)$
@@ -505,18 +510,16 @@
 						    \item $=\Ne(a)+\Ne(c)+\Po(b)+\Po(c)$
 						    \item $=\Ne(a+c)+\Po(b+c)$.
 					    \end{enumerate}
-					    \item \textbf{Hence verify that $a+c<b+c$.}
+					    \item \textbf{Hence show that $a+c<b+c$.}
 				    \end{enumerate}
 		    \procedure{1.81}
 			    \objective
 				    Choose two integers $a,b$ such that $a<b$. The objective of the following instructions is to show that $a\ne b$ and $b\not<a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$.
-					    \item Hence verify that $\Po(a)+\Ne(b)\ne\Ne(a)+\Po(b)$.
-					    \item \textbf{Hence verify that $a\ne b$.}
-					    \item Also verify that $\Ne(a)+\Po(b)\not<\Po(a)+\Ne(b)$.
-					    \item \textbf{Hence verify that $b\not<a$.}
+					    \item Show that $\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$.
+					    \item \textbf{Hence show that $a\ne b$ given that $\Po(a)+\Ne(b)\ne\Ne(a)+\Po(b)$.}
+					    \item \textbf{Also show that $b\not<a$ given that $\Ne(a)+\Po(b)\not<\Po(a)+\Ne(b)$.}
 				    \end{enumerate}
 		    \procedure{1.82}
 			    \objective
@@ -528,15 +531,14 @@
 				    Choose two integers $a,b$ such that $a\ne b$. The objective of the following instructions is to show that $a<b$ or $b<a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\Po(a)+\Ne(b)\ne\Ne(a)+\Po(b)$.
+					    \item Show that $\Po(a)+\Ne(b)\ne\Ne(a)+\Po(b)$.
 					    \item If $\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$, then do the following:
 					    \begin{enumerate}
-						    \item \textbf{Verify that $a<b$.}
+						    \item \textbf{Show that $a<b$.}
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item Verify that $\Ne(a)+\Po(b)<\Po(a)+\Ne(b)$.
-						    \item \textbf{Hence verify that $b<a$.}
+						    \item \textbf{Show that $b<a$ given that $\Ne(a)+\Po(b)<\Po(a)+\Ne(b)$.}
 					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{1.84}
@@ -549,24 +551,25 @@
 				    Choose two integers $a,b$ such that $0<a$ and $0<b$. The objective of the following instructions is to show that $0<a+b$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{1.30}, verify that $\Ne(a)=\Po(0)+\Ne(a)<\Ne(0)+\Po(a)=\Po(a)$.
-					    \item Using \declarationhr{1.30}, verify that $\Ne(b)=\Po(0)+\Ne(b)<\Ne(0)+\Po(b)=\Po(b)$.
-					    \item Hence verify that $\Po(0)+\Ne(a+b)=\Ne(a+b)=\Ne(a)+\Ne(b)<\Po(a)+\Po(b)=\Po(a+b)=\Ne(0)+\Po(a+b)$.
-					    \item \textbf{Hence verify that $0<a+b$.}
+					    \item Show that $\Ne(a)=\Po(0)+\Ne(a)<\Ne(0)+\Po(a)=\Po(a)$ using \declarationhr{1.30}.
+					    \item Show that $\Ne(b)=\Po(0)+\Ne(b)<\Ne(0)+\Po(b)=\Po(b)$ using \declarationhr{1.30}.
+					    \item \textbf{Hence show that $0<a+b$ given that $\Po(0)+\Ne(a+b)=\Ne(a+b)=\Ne(a)+\Ne(b)<\Po(a)+\Po(b)=\Po(a+b)=\Ne(0)+\Po(a+b)$.}
 				    \end{enumerate}
 		    \procedure{1.86}
 			    \objective
 				    Choose two integers $a,b$ such that $0<a$ and $0<b$. The objective of the following instructions is to show that $0<ab$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{1.30}, verify that $\Ne(a)=\Po(0)+\Ne(a)<\Ne(0)+\Po(a)=\Po(a)$.
-					    \item Hence verify that $0<\Po(a)-\Ne(a)$.
-					    \item Using \declarationhr{1.30}, verify that $\Ne(b)=\Po(0)+\Ne(b)<\Ne(0)+\Po(b)=\Po(b)$.
-					    \item Hence verify that $0<\Po(b)-\Ne(b)$.
-					    \item Hence verify that $0<(\Po(a)-\Ne(a))(\Po(b)-\Ne(b))$.
-					    \item Hence verify that $\Ne(a)(\Po(b)-\Ne(b))<\Po(a)(\Po(b)-\Ne(b))$.
-					    \item Hence verify that $\Po(0)+\Ne(ab)=\Ne(a)\Po(b)+\Po(a)\Ne(b)<\Po(a)\Po(b)+\Ne(a)\Ne(b)=\Ne(0)+\Po(ab)$.
-					    \item \textbf{Hence verify that $0<ab$.}
+					    \item Show that $\Ne(a)=\Po(0)+\Ne(a)<\Ne(0)+\Po(a)=\Po(a)$ using \declarationhr{1.30}.
+					    \item Hence show that $0<\Po(a)-\Ne(a)$.
+					    \item Show that $\Ne(b)=\Po(0)+\Ne(b)<\Ne(0)+\Po(b)=\Po(b)$ using \declarationhr{1.30}.
+					    \item Hence show that $0<\Po(b)-\Ne(b)$.
+					    \item \textbf{Hence show that $0<ab$}
+					    \begin{enumerate}
+					      \item given that $\Po(0)+\Ne(ab)=\Ne(a)\Po(b)+\Po(a)\Ne(b)<\Po(a)\Po(b)+\Ne(a)\Ne(b)=\Ne(0)+\Po(ab)$
+					      \item given that $\Ne(a)(\Po(b)-\Ne(b))<\Po(a)(\Po(b)-\Ne(b))$
+					      \item given that $0<(\Po(a)-\Ne(a))(\Po(b)-\Ne(b))$.
+					    \end{enumerate}
 				    \end{enumerate}
 		    \declaration{1.34}
 			    The notation \gls{int||a||} will be used as a shorthand for the following expression:
@@ -581,24 +584,23 @@
 				    \begin{enumerate}
 					    \item If $a\ge 0$ and $b\ge 0$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $ab\ge 0$.
-						    \item \textbf{Hence verify that $\lVert ab\rVert=ab=\lVert a\rVert\lVert b\rVert$.}
+						    \item \textbf{Show that $\lVert ab\rVert=ab=\lVert a\rVert\lVert b\rVert$ given that $ab\ge 0$.}
 					    \end{enumerate}
 					    \item Otherwise if $a<0$ and $b\ge 0$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $ab<0$.
-						    \item \textbf{Hence verify that $\lVert ab\rVert=-(ab)=(-a)b=\lVert a\rVert\lVert b\rVert$.}
+						    \item \textbf{Show that $\lVert ab\rVert=-(ab)=(-a)b=\lVert a\rVert\lVert b\rVert$ given that $ab<0$.}
 					    \end{enumerate}
 					    \item Otherwise if $a\ge 0$ and $b<0$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $ab<0$.
-						    \item \textbf{Hence verify that $\lVert ab\rVert=-(ab)=a(-b)=\lVert a\rVert\lVert b\rVert$.}
+						    \item \textbf{Show that $\lVert ab\rVert=-(ab)=a(-b)=\lVert a\rVert\lVert b\rVert$ given that $ab<0$.}
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item Verify that $a<0$ and $b<0$.
-						    \item Hence verify that $ab>0$.
-						    \item \textbf{Hence verify that $\lVert ab\rVert=ab=(-a)(-b)=\lVert a\rVert\lVert b\rVert$.}
+						    \item \textbf{Show that $\lVert ab\rVert=ab=(-a)(-b)=\lVert a\rVert\lVert b\rVert$.}
+						    \begin{enumerate}
+						      \item given that $ab>0$
+						      \item given that $a<0$ and $b<0$.
+						    \end{enumerate}
 					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{1.88}
@@ -608,16 +610,20 @@
 				    \begin{enumerate}
 					    \item If $a+b\ge 0$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $a\le\lVert a\rVert$.
-						    \item Verify that $b\le\lVert b\rVert$.
-						    \item \textbf{Hence verify that $\lVert a+b\rVert=a+b\le\lVert a\rVert+\lVert b\rVert$.}
+						    \item \textbf{Show that $\lVert a+b\rVert=a+b\le\lVert a\rVert+\lVert b\rVert$}
+						    \begin{enumerate}
+						      \item given that $a\le\lVert a\rVert$
+						      \item and $b\le\lVert b\rVert$.
+						    \end{enumerate}
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item Verify that $-a\le\lVert a\rVert$.
-						    \item Verify that $-b\le\lVert b\rVert$.
-						    \item Verify that $a+b<0$.
-						    \item \textbf{Hence verify that $\lVert a+b\rVert=-(a+b)=(-a)+(-b)\le\lVert a\rVert+\lVert b\rVert$.}
+						    \item \textbf{Show that $\lVert a+b\rVert=-(a+b)=(-a)+(-b)\le\lVert a\rVert+\lVert b\rVert$}
+						    \begin{enumerate}
+						      \item given that $-a\le\lVert a\rVert$
+						      \item and $-b\le\lVert b\rVert$
+						      \item and $a+b<0$.
+						    \end{enumerate}
 					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{1.89}
@@ -625,9 +631,8 @@
 				    Choose two integers $a,b$. The objective of the following instructions is to show that $\lVert a\rVert-\lVert b\rVert\le\lVert a-b\rVert$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.88} on $\langle b,a-b\rangle$.
-					    \item Hence verify that $\lVert a\rVert=\lVert b+(a-b)\rVert\le\lVert b\rVert+\lVert a-b\rVert$.
-					    \item \textbf{Hence verify that $\lVert a\rVert-\lVert b\rVert\le\lVert a-b\rVert$.}
+					    \item Show that $\lVert a\rVert=\lVert b+(a-b)\rVert\le\lVert b\rVert+\lVert a-b\rVert$ using \procedurehr{1.88}.
+					    \item \textbf{Hence show that $\lVert a\rVert-\lVert b\rVert\le\lVert a-b\rVert$.}
 				    \end{enumerate}
 		    \declaration{1.03}
 			    The notation \gls{intsgn(a)} will be used as a shorthand for the following expression:
@@ -643,20 +648,23 @@
 				    \begin{enumerate}
 					    \item If $a>0$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $\lVert a\rVert=a$.
-						    \item Verify that $\sgn(a)=1$.
-						    \item \textbf{Hence verify that $a=1a=\sgn(a)\lVert a\rVert$.}
+						    \item \textbf{Show that $a=1a=\sgn(a)\lVert a\rVert$}
+						    \begin{enumerate}
+						      \item given that $\lVert a\rVert=a$
+						      \item and $\sgn(a)=1$.
+						    \end{enumerate}
 					    \end{enumerate}
 					    \item If $a=0$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $\lVert a\rVert=a=0$.
-						    \item \textbf{Hence verify that $a=0=\sgn(a)0=\sgn(a)\lVert a\rVert$.}
+						    \item \textbf{Show that $a=0=\sgn(a)0=\sgn(a)\lVert a\rVert$ given that $\lVert a\rVert=a=0$.}
 					    \end{enumerate}
 					    \item Otherwise if $a<0$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $\lVert a\rVert=-a$.
-						    \item Verify that $\sgn(a)=-1$.
-						    \item \textbf{Hence verify that $a=(-1)(-a)=\sgn(a)\lVert a\rVert$.}
+						    \item \textbf{Show that $a=(-1)(-a)=\sgn(a)\lVert a\rVert$}
+						    \begin{enumerate}
+						      \item given that $\lVert a\rVert=-a$
+						      \item and $\sgn(a)=-1$.
+						    \end{enumerate}
 					    \end{enumerate}
 				    \end{enumerate}
 	    \end{multicols*}
@@ -671,18 +679,16 @@
 					    \item While $(n+1)b\le a$, do the following:
 					    \begin{enumerate}
 						    \item Let $n$ receive $n+1$.
-						    \item Verify that $nb\le a$.
+						    \item Show that $nb\le a$.
 					    \end{enumerate}
 					    \item While $nb>a$, do the following:
 					    \begin{enumerate}
 						    \item Let $n$ receive $n-1$.
-						    \item Verify that $(n+1)b>a$.
+						    \item Show that $(n+1)b>a$.
 					    \end{enumerate}
-					    \item Therefore verify that $nb\le a$.
-					    \item Also verify that $(n+1)b>a$.
+					    \item Hence show that $nb\le a$ and $(n+1)b>a$.
 					    \item Let $m=a-nb$.
-					    \item \textbf{Now verify that $b>a-nb=m\ge 0$.}
-					    \item \textbf{Also verify that $a=bn+a-nb=nb+m$.}
+					    \item \textbf{Now show that $b>a-nb=m\ge 0$ and $a=bn+a-nb=nb+m$.}
 					    \item \textbf{Yield $\langle n,m\rangle$.}
 				    \end{enumerate}
 		    \declaration{1.00}
@@ -696,7 +702,7 @@
 				    Choose four integers $a,b,c,d$ and a positive integer $e$ in such a way that $a\equiv c\pmod{e}$ and $b\equiv d\pmod{e}$. The objective of the following instructions is to show that $a+b\equiv c+d\pmod{e}$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $a+b$
+					    \item Show that $a+b$
 					    \begin{enumerate}
 						    \item $\equiv(a\div e)e+(a\bmod e)+(b\div e)e+(b\bmod e)$
 						    \item $\equiv(a\bmod e)+(b\bmod e)$
@@ -710,7 +716,7 @@
 				    Choose four integers $a,b,c,d$ and a positive integer $e$ in such a way that $a\equiv c\pmod{e}$ and $b\equiv d\pmod{e}$. The objective of the following instructions is to show that $ab\equiv cd\pmod{e}$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $ab$
+					    \item Show that $ab$
 					    \begin{enumerate}
 						    \item $\equiv((a\div e)e+(a\bmod e))((b\div e)e+(b\bmod e))$
 						    \item $\equiv(a\div e)(b\div e)e^2+(a\div e)(b\bmod e)e+(a\bmod e)(b\div e)e+(a\bmod e)(b\bmod e)$
@@ -725,78 +731,68 @@
 				    Choose an integer $a$ and two positive integers $b,c$. The objective of the following instructions is to show that $(a\bmod bc)\bmod b=a\bmod b$.
 			    \implementation
 				    \begin{enumerate}
-					    \item \textbf{Verify that $(a\bmod bc)\bmod b=(a-(a\div bc)bc)\bmod b=a\bmod b$.}
+					    \item \textbf{Show that $(a\bmod bc)\bmod b=(a-(a\div bc)bc)\bmod b=a\bmod b$.}
 				    \end{enumerate}
 		    \procedure{1.04}
 			    \objective
 				    Choose a positive integer $a$ and four integers $b_1,b_0,c_1,c_0$ such that $0\le b_0<a$, $0\le c_0<a$, and $b_1a+b_0=c_1a+c_0$. The objective of the following instructions is to show that $b_1=c_1$ and $b_0=c_0$.
 			    \implementation
 				    \begin{enumerate}
-					    \item \textbf{Verify that $b_0=b_0\bmod a=(b_1a+b_0)\bmod a=(c_1a+c_0)\bmod a=c_0\bmod a=c_0$.}
-					    \item Therefore verify that $b_1a=c_1a$.
-					    \item \textbf{Therefore verify that $b_1=c_1$.}
+					    \item \textbf{Show that $b_0=b_0\bmod a=(b_1a+b_0)\bmod a=(c_1a+c_0)\bmod a=c_0\bmod a=c_0$.}
+					    \item \textbf{Therefore show that $b_1=c_1$ given that $b_1a=c_1a$.}
 				    \end{enumerate}
 		    \procedure{1.05}
 			    \objective
 				    Choose an integer $a$ and two positive integers $b,c$. The objective of the following instructions is to show that $ca\bmod cb=c(a\bmod b)$ and that $ca\div cb=a\div b$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $bc(a\div b)+c(a\bmod b)=c(b(a\div b)+a\bmod b)=ca=cb(ca\div cb)+ca\bmod cb$.
-					    \item Now verify that $0\le a\bmod b<b$.
-					    \item Therefore verify that $0\le c(a\bmod b)<cb$.
-					    \item Now verify that $0\le ca\bmod cb<cb$.
-					    \item Execute \procedurehr{1.04} on $\langle bc,a\div b,c(a\bmod b),ca\div cb,ca\bmod cb\rangle$.
-					    \item \textbf{Therefore verify that $c(a\bmod b)=ca\bmod cb$.}
-					    \item \textbf{Also verify that $a\div b=ca\div cb$.}
+					    \item Show that $bc(a\div b)+c(a\bmod b)=c(b(a\div b)+a\bmod b)=ca=cb(ca\div cb)+ca\bmod cb$.
+					    \item Show that $0\le a\bmod b<b$.
+					    \item Show that $0\le c(a\bmod b)<cb$.
+					    \item Show that $0\le ca\bmod cb<cb$.
+					    \item \textbf{Hence show that $c(a\bmod b)=ca\bmod cb$ and $a\div b=ca\div cb$ using \procedurehr{1.04}.}
 				    \end{enumerate}
 		    \procedure{1.06}
 			    \objective
 				    Choose two integers $a,b$ and a positive integer $c$ such that $a\bmod c+b\bmod c<c$. The objective of the following instructions is to show that $a\div c+b\div c=(a+b)\div c$ and $a\bmod c+b\bmod c=(a+b)\bmod c$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $a=c(a\div c)+a\bmod c$.
-					    \item Verify that $b=c(b\div c)+b\bmod c$.
-					    \item Therefore verify that $a+b=c(a\div c+b\div c)+(a\bmod c+b\bmod c)$.
-					    \item Verify that $0\le a\bmod c+b\bmod c<c$.
-					    \item Also verify that $a+b=((a+b)\div c)c+(a+b)\bmod c$.
-					    \item Verify that $0\le(a+b)\bmod c<c$.
-					    \item Execute \procedurehr{1.04} on $\langle c,a\div c+b\div c,a\bmod c+b\bmod c,(a+b)\div c,(a+b)\bmod c\rangle$.
-					    \item \textbf{Therefore verify that $a\div c+b\div c=(a+b)\div c$.}
-					    \item \textbf{Also verify that $a\bmod c+b\bmod c=(a+b)\bmod c$.}
+					    \item Show that $a=c(a\div c)+a\bmod c$.
+					    \item Show that $b=c(b\div c)+b\bmod c$.
+					    \item Therefore show that $a+b=c(a\div c+b\div c)+(a\bmod c+b\bmod c)$.
+					    \item Show that $0\le a\bmod c+b\bmod c<c$.
+					    \item Also show that $a+b=((a+b)\div c)c+(a+b)\bmod c$.
+					    \item Show that $0\le(a+b)\bmod c<c$.
+					    \item \textbf{Hence show that $a\div c+b\div c=(a+b)\div c$ and $a\bmod c+b\bmod c=(a+b)\bmod c$ using \procedurehr{1.04}.}
 				    \end{enumerate}
 		    \procedure{1.07}
 			    \objective
 				    Choose two integers $a,b$ and a positive integer $c$ such that $a\bmod c+b\bmod c\ge c$. The objective of the following instructions is to show that $1+a\div c+b\div c=(a+b)\div c$ and $a\bmod c+b\bmod c-c=(a+b)\bmod c$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $a=c(a\div c)+a\bmod c$.
-					    \item Verify that $b=c(b\div c)+b\bmod c$.
-					    \item Therefore verify that $a+b=c(a\div c+b\div c)+a\bmod c+b\bmod c=c(1+a\div c+b\div c)+(a\bmod c+b\bmod c-c)$.
-					    \item Verify that $c\le a\bmod c+b\bmod c<2c$.
-					    \item Therefore verify that $0\le a\bmod c+b\bmod c-c<c$.
-					    \item Also verify that $a+b=c((a+b)\div c)+(a+b)\bmod c$.
-					    \item Verify that $0\le (a+b)\bmod c<c$.
-					    \item Execute \procedurehr{1.04} on $\langle c,1+a\div c+b\div c,a\bmod c+b\bmod c-c,(a+b)\div c,(a+b)\bmod c\rangle$.
-					    \item \textbf{Therefore verify that $1+a\div c+b\div c=(a+b)\div c$.}
-					    \item \textbf{Therefore verify that $a\bmod c+b\bmod c-c=(a+b)\bmod c$.}
+					    \item Show that $a=c(a\div c)+a\bmod c$.
+					    \item Show that $b=c(b\div c)+b\bmod c$.
+					    \item Therefore show that $a+b=c(a\div c+b\div c)+a\bmod c+b\bmod c=c(1+a\div c+b\div c)+(a\bmod c+b\bmod c-c)$.
+					    \item Show that $c\le a\bmod c+b\bmod c<2c$.
+					    \item Therefore show that $0\le a\bmod c+b\bmod c-c<c$.
+					    \item Also show that $a+b=c((a+b)\div c)+(a+b)\bmod c$.
+					    \item Show that $0\le (a+b)\bmod c<c$.
+					    \item \textbf{Therefore show that $1+a\div c+b\div c=(a+b)\div c$ and $a\bmod c+b\bmod c-c=(a+b)\bmod c$ using \procedurehr{1.04}.}
 				    \end{enumerate}
 		    \procedure{1.08}
 			    \objective
 				    Choose an integer $a$ and two positive integers $b,c$. The objective of the following instructions is to show that $a\div bc=(a\div b)\div c$ and $a\bmod bc=((a\div b)\bmod c)b+a\bmod b$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $a=(a\div b)b+a\bmod b$.
-					    \item Verify that $a\div b=((a\div b)\div c)c+(a\div b)\bmod c$.
-					    \item Therefore verify that $a=(((a\div b)\div c)c+(a\div b)\bmod c)b+a\bmod b=((a\div b)\div c)bc+((a\div b)\bmod c)b+a\bmod b$.
-					    \item Verify that $0\le(a\div b)\bmod c\le c-1$.
-					    \item Therefore verify that $0\le((a\div b)\bmod c)b\le cb-b$.
-					    \item Verify that $0\le a\bmod b<b$.
-					    \item Therefore verify that $0\le ((a\div b)\bmod c)b+a\bmod b<cb$.
-					    \item Now verify that $a=(a\div bc)bc+a\bmod bc$.
-					    \item Verify that $0\le a\bmod bc<bc$.
-					    \item Execute \procedurehr{1.04} on $\langle bc,(a\div b)\div c,((a\div b)\bmod c)b+a\bmod b,a\div bc,a\bmod bc\rangle$.
-					    \item \textbf{Therefore verify that $(a\div b)\div c=a\div bc$.}
-					    \item \textbf{Also verify that $((a\div b)\bmod c)b+a\bmod b=a\bmod bc$.}
+					    \item Show that $a=(((a\div b)\div c)c+(a\div b)\bmod c)b+a\bmod b=((a\div b)\div c)bc+((a\div b)\bmod c)b+a\bmod b$
+					    \begin{enumerate}
+					      \item given that $a=(a\div b)b+a\bmod b$
+					      \item given that $a\div b=((a\div b)\div c)c+(a\div b)\bmod c$.
+					    \end{enumerate}
+					    \item Show that $0\le((a\div b)\bmod c)b\le cb-b$ given that $0\le(a\div b)\bmod c\le c-1$.
+					    \item Therefore show that $0\le ((a\div b)\bmod c)b+a\bmod b<cb$ given that $0\le a\bmod b<b$.
+					    \item Now show that $a=(a\div bc)bc+a\bmod bc$ and $0\le a\bmod bc<bc$.
+					    \item \textbf{Therefore show that $(a\div b)\div c=a\div bc$ and $((a\div b)\bmod c)b+a\bmod b=a\bmod bc$ using \procedurehr{1.04}.}
 				    \end{enumerate}
 		    \procedure{1.09}
 			    \objective
@@ -805,89 +801,116 @@
 				    \begin{enumerate}
 					    \item If $b=0$, then do the following:
 					    \begin{enumerate}
-						    \item \textbf{Verify that $a=\sgn(a)\lvert a\rvert$.}
-						    \item \textbf{Verify that $b=0\lvert a\rvert$.}
-						    \item \textbf{Verify that $\lvert a\rvert=\sgn(a)a+0b$.}
+						    \item \textbf{Show that $a=\sgn(a)\lvert a\rvert$.}
+						    \item \textbf{Show that $b=0\lvert a\rvert$.}
+						    \item \textbf{Show that $\lvert a\rvert=\sgn(a)a+0b$.}
 						    \item \textbf{Yield $\langle\lvert a\rvert,\sgn(a),0,\sgn(a),0\rangle$.}
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item Verify that $0\le a\bmod b<b$.
-						    \item Execute \procedurehr{1.09} on $\langle b,a\bmod b\rangle$ and let $\langle c,d,e,f,g\rangle$ receive.
-						    \item \textbf{Now verify that $b=cd$.}
-						    \item Also verify that $a\bmod b=ce$.
-						    \item \textbf{Therefore verify that $a=(a\div b)b+(a\bmod b)=c(d(a\div b)+e)$.}
-						    \item \textbf{Also verify that $(f-g(a\div b))b+ga=fb+g(a-(a\div b)b)=fb+g(a\bmod b)=c$.}
+						    \item Show that $0\le a\bmod b<b$.
+						    \item Use \procedurehr{1.09} on $\langle b,a\bmod b\rangle$ to construct $\langle c,d,e,f,g\rangle$ and show that:
+						    \begin{enumerate}
+						      \item $b=cd$
+						      \item $a\bmod b=ce$
+						      \item $c=\lVert b\rVert$ if $a\bmod b=0$, otherwise $0<c\le a\bmod b$
+						      \item $fb+g(a\mod b)=c$.
+						    \end{enumerate}
+						    \item \textbf{Hence show that $a=(a\div b)b+(a\bmod b)=c(d(a\div b)+e)$.}
+						    \item \textbf{Also show that $(f-g(a\div b))b+ga=fb+g(a-(a\div b)b)=fb+g(a\bmod b)=c$.}
 						    \item If $a\bmod b=0$, then do the following:
 						    \begin{enumerate}
-							    \item \textbf{Using (2) and (b), verify that $0<b=c\le b$.}
+							    \item \textbf{Show that $0<b=c\le b$ given that $b\ge 0$, $b\ne 0$, and $c=\lVert b\rVert=b$.}
 						    \end{enumerate}
 						    \item Otherwise do the following:
 						    \begin{enumerate}
-							    \item \textbf{Using (b), verify that $0<c\le a\bmod b<b$.}
+							    \item \textbf{Show that $0<c\le a\bmod b<b$ given $0<c\le a\bmod b$.}
 						    \end{enumerate}
 						    \item \textbf{Therefore yield $\langle c,d(a\div b)+e,d,g,f-g(a\div b)\rangle$.}
 					    \end{enumerate}
 				    \end{enumerate}
 		    \declaration{1.04}
-			    The notation \gls{int(a,b)} will be used to refer to the first part of the quintuple yielded by executing \procedurehr{1.09} on the pair $\langle a,b\rangle$.
+			    The notation \gls{int(a,b)} will be used to refer to the first part of the quintuple constructed by using \procedurehr{1.09} on the pair $\langle a,b\rangle$.
 		    \procedure{1.10}
 			    \objective
 				    Choose an integer $a$ and a positive integer $b$. Let $1\le c\le b$ be the largest integer such that $a\bmod c=0$ and $b\bmod c=0$. The objective of the following instructions is to either show that $0\ne 0$ or $(a,b)=c$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle d,e,f,g,h\rangle$ receive.
-					    \item Verify that $0<d\le b$.
+					    \item Use \procedurehr{1.09} on $\langle a,b\rangle$ to construct $\langle d,e,f,g,h\rangle$ and show that:
+					    \begin{enumerate}
+					      \item $a=ed$
+					      \item $b=fd$
+					      \item $ga+hb=d$
+					      \item $0<d\le b$.
+					    \end{enumerate}
 					    \item If $d>c$, then do the following:
 					    \begin{enumerate}
-						    \item Using the precondition, verify that $a\bmod d\ne 0$ or $b\bmod d\ne 0$.
+						    \item Show that $a\bmod d\ne 0$ or $b\bmod d\ne 0$ given that $0<d\le b$ is larger than the largest integer such that $a\bmod c=0$ and $b\bmod c=0$.
 						    \item If $a\bmod d\ne 0$, then do the following:
 						    \begin{enumerate}
-							    \item Using (1), verify that $a=ed$.
-							    \item Therefore verify that $a\bmod d=0$.
-							    \item \textbf{Therefore using (3b) and (3bii), verify that $0\ne 0$.}
+							    \item Show that $a\bmod d=0$ given that $a=ed$.
+							    \item \textbf{Therefore show that $0\ne 0$ given that $a\bmod d\ne 0$ and $a\bmod d=0$.}
 							    \item \textbf{Abort procedure.}
 						    \end{enumerate}
 						    \item Otherwise if $b\bmod d\ne 0$, then do the following:
 						    \begin{enumerate}
-							    \item Using (1), verify that $b=fd$.
-							    \item Therefore verify that $b\bmod d=0$.
-							    \item \textbf{Therefore using (3c) and (3cii), verify that $0\ne 0$.}
+							    \item Show that $b\bmod d=0$ given that $b=fd$.
+							    \item \textbf{Therefore show that $0\ne 0$ given that $b\bmod d\ne 0$ and $b\bmod d=0$.}
 							    \item \textbf{Abort procedure.}
 						    \end{enumerate}
 					    \end{enumerate}
 					    \item Otherwise if $d<c$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $ga+hb=d$.
-						    \item Therefore verify that $0\equiv gc(a\div c)+hc(b\div c)=g(c(a\div c)+a\bmod c)+h(c(b\div c)+b\bmod c)=ga+hb=d\not\equiv 0\pmod{c}$.
-						    \item \textbf{Therefore verify that $0\ne 0$.}
+						    \item Therefore show that $0\equiv gc(a\div c)+hc(b\div c)=g(c(a\div c)+a\bmod c)+h(c(b\div c)+b\bmod c)=ga+hb=d\not\equiv 0\pmod{c}$ given that:
+						    \begin{enumerate}
+						      \item $ga+hb=d$
+						      \item $a\bmod c=0$
+						      \item $b\bmod c=0$.
+						    \end{enumerate}
+						    \item \textbf{Therefore show that $0\ne 0$.}
 						    \item \textbf{Abort procedure.}
 					    \end{enumerate}
-					    \item \textbf{Otherwise verify that $(a,b)=d=c$.}
+					    \item \textbf{Otherwise show that $(a,b)=d=c$.}
 				    \end{enumerate}
 		    \procedure{1.11}
 			    \objective
-				    Choose integers $a,c,d,j$ and a non-negative integer $b$. Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle e,f,g,h,i\rangle$ receive. The objective of the following instructions is to show that $ca+db=(c+gj)a+(d-fj)b$.
+				    Choose integers $a,c,d,j$ and a non-negative integer $b$. Use \procedurehr{1.09} on $\langle a,b\rangle$ to construct $\langle e,f,g,h,i\rangle$. The objective of the following instructions is to show that $ca+db=(c+gj)a+(d-fj)b$.
 			    \implementation
 				    \begin{enumerate}
-					    \item \textbf{Verify that $(c+gj)a+(d-fj)b=ca+db+gja-fjb=ca+db+gjef-fjeg=ca+db$.}
+					    \item \textbf{Show that $(c+gj)a+(d-fj)b=ca+db+gja-fjb=ca+db+gjef-fjeg=ca+db$.}
 				    \end{enumerate}
 		    \procedure{1.12}
 			    \objective
-				    Choose integers $a,c,d$ and a non-negative integer $b$ such that $ca+db=(a,b)$. Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle e,f,g,h,i\rangle$ receive. The objective of the following instructions is to construct a $j$ such that $c=h+gj$ and $d=i-fj$.
+				    Choose integers $a,c,d$ and a non-negative integer $b$ such that $ca+db=(a,b)$. Use \procedurehr{1.09} on $\langle a,b\rangle$ to construct $\langle e,f,g,h,i\rangle$. The objective of the following instructions is to construct a $j$ such that $c=h+gj$ and $d=i-fj$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $cef+deg=ca+db=(a,b)=e$.
-					    \item Therefore verify that $cf+dg=1$.
-					    \item Now verify that $hef+ieg=ha+ib=e$.
-					    \item Therefore verify that $hf+ig=1$.
+				      \item Use \procedurehr{1.09} on $\langle a,b\rangle$ to show that:
+				      \begin{enumerate}
+				        \item $a=ef$
+				        \item $b=eg$
+				        \item $ha+ib=e$.
+				      \end{enumerate}
+					    \item Show that $cf+dg=1$
+					    \begin{enumerate}
+					      \item given that $cef+deg=ca+db=(a,b)=e$
+					      \item given that $a=ef$ and $b=eg$.
+					    \end{enumerate}
+					    \item Show that $hf+ig=1$
+					    \begin{enumerate}
+					      \item given that $hef+ieg=ha+ib=e$
+					      \item given that $a=ef$ and $b=eg$.
+					    \end{enumerate}
 					    \item Let $j=ci-hd$.
-					    \item Now verify that $cf=1-dg$.
-					    \item Therefore verify that $c-cig=c(1-ig)=chf=h(1-dg)=h-hdg$.
-					    \item \textbf{Therefore verify that $c=h+cig-hdg=h+g(ci-hd)=h+gj$.}
-					    \item Now verify that $dg=1-cf$.
-					    \item Therefore verify that $d-dhf=d(1-hf)=dig=i(1-cf)=i-icf$.
-					    \item \textbf{Therefore verify that $d=i-icf+dhf=i-f(ic-dh)=i-fj$.}
+					    \item \textbf{Show that $c=h+cig-hdg=h+g(ci-hd)=h+gj$}
+					    \begin{enumerate}
+					      \item given that $c-cig=c(1-ig)=chf=h(1-dg)=h-hdg$
+					      \item given that $cf=1-dg$.
+					    \end{enumerate}
+					    \item \textbf{Show that $d=i-icf+dhf=i-f(ic-dh)=i-fj$}
+					    \begin{enumerate}
+					      \item given that $d-dhf=d(1-hf)=dig=i(1-cf)=i-icf$
+					      \item given that $dg=1-cf$.
+					    \end{enumerate}
 					    \item \textbf{Yield $\langle j\rangle$.}
 				    \end{enumerate}
 		    \procedure{1.13}
