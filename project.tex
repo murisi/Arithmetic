@@ -1089,24 +1089,18 @@
 				    Choose two integers $a,b$ and a non-negative integer $c$ such that $(a,c)=1$ and $(b,c)=1$. The objective of the following instructions is to show that either $0<0$ or $(ab,c)=1$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle a,c\rangle$ and let $\langle d,e,f,g,h\rangle$ receive.
-					    \item Verify that $ga+hc=d=(a,c)=1$.
-					    \item Execute \procedurehr{1.09} on $\langle b,c\rangle$ and let $\langle t,u,v,w,x\rangle$ receive.
-					    \item Verify that $wb+xc=t=(b,c)=1$.
-					    \item Therefore verify that $(gw)(ab)+(gax+wbh+hxc)c=(ga+hc)(wb+xc)=1$.
-					    \item Now execute \procedurehr{1.14} on $\langle ab,c,1,ab,c,gw,gax+wbh+hxc\rangle$.
-					    \item \textbf{Therefore verify that $(ab,c)=1$.}
+					    \item Use \procedurehr{1.09} on $\langle a,c\rangle$ to construct $\langle d,e,f,g,h\rangle$ and show that $ga+hc=d=(a,c)=1$.
+					    \item Use \procedurehr{1.09} on $\langle b,c\rangle$ to construct $\langle t,u,v,w,x\rangle$ and show that $wb+xc=t=(b,c)=1$.
+					    \item Hence show that $(gw)(ab)+(gax+wbh+hxc)c=(ga+hc)(wb+xc)=1$.
+					    \item \textbf{Use \procedurehr{1.14} on $\langle ab,c,1,ab,c,gw,gax+wbh+hxc\rangle$ to show that $(ab,c)=1$.}
 				    \end{enumerate}
 		    \procedure{1.21}
 			    \objective
 				    Choose an integer $a$ and two non-negative integers $b,c$ such that $(a,bc)=1$. The objective of the following instructions is to show that either $0<0$ or $(a,b)=1$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle a,bc\rangle$ and let $\langle d,e,f,g,h\rangle$ receive.
-					    \item Verify that $d=(a,bc)=1$.
-					    \item Verify that $ga+(hc)b=ga+h(bc)=d=1$.
-					    \item Now execute \procedurehr{1.14} on $\langle a,b,1,a,b,g,hc\rangle$.
-					    \item \textbf{Therefore verify that $(a,b)=1$.}
+					    \item Use \procedurehr{1.09} on $\langle a,bc\rangle$ to construct $\langle d,e,f,g,h\rangle$ and show that $ga+(hc)b=ga+h(bc)=d=(a,bc)=1$.
+					    \item \textbf{Now use \procedurehr{1.14} on $\langle a,b,1,a,b,g,hc\rangle$ to show that $(a,b)=1$.}
 				    \end{enumerate}
 		    \declaration{1.06}
 			    The phrase "\gls{intprime}" will be used to refer to integers $a$ such that $a>1$ and $a\bmod k\ne 0$ for $1<k<a$.
@@ -1115,25 +1109,27 @@
 				    Choose an integer $a$ and a prime $b$ such that $a\bmod b\ne 0$. The objective of the following instructions is to show that either $0\ne 0$ or $(a,b)=1$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle c,d,e,f,g\rangle$ receive.
-					    \item Verify that $0<c\le b$.
+					    \item Use \procedurehr{1.09} on $\langle a,b\rangle$ to construct $\langle c,d,e,f,g\rangle$ and show that:
+					    \begin{enumerate}
+					      \item $a=cd$
+					      \item $b=ce$
+					      \item $0<c\le b$.
+					    \end{enumerate}
 					    \item If $c=b$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $a=cd=bd$.
-						    \item Therefore verify that $a\bmod b=0$.
-						    \item \textbf{Therefore using the precondition and (3b), verify that $0\ne 0$.}
+						    \item Show that $a\bmod b=0$ given that $a=cd=bd$.
+						    \item \textbf{Hence show that $0\ne 0$ given that $a\bmod b\ne 0$.}
 						    \item \textbf{Abort procedure.}
 					    \end{enumerate}
 					    \item Otherwise if $1<c<b$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $b=ce$.
-						    \item Therefore verify that $b\bmod c=0$.
-						    \item \textbf{Therefore using the precondition and (4b), verify that $0\ne 0$.}
+						    \item Show that $b\bmod c=0$ given that $b=ce$.
+						    \item \textbf{Hence show that $0\ne 0$ given that $b$ is prime.}
 						    \item \textbf{Abort procedure.}
 					    \end{enumerate}
 					    \item Otherwise, do the following:
 					    \begin{enumerate}
-						    \item \textbf{Verify that $(a,b)=c=1$.}
+						    \item \textbf{Show that $(a,b)=c=1$.}
 					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{1.23}
@@ -1141,14 +1137,10 @@
 				    Choose two integers $a,b$ and a prime $c$ such that $a\bmod c\ne 0$ and $b\bmod c\ne 0$. The objective of the following instructions is to show that either $0\ne 0$ or $ab\bmod c\ne 0$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.22} on $\langle a,c\rangle$.
-					    \item Verify that $(a,c)=1$.
-					    \item Execute \procedurehr{1.22} on $\langle b,c\rangle$.
-					    \item Verify that $(b,c)=1$.
-					    \item Execute \procedurehr{1.20} on $\langle a,b,c\rangle$.
-					    \item Now verify that $0<(ab,c)=1<c$.
-					    \item Execute \procedurehr{1.13} on $\langle ab,c\rangle$.
-					    \item \textbf{Now verify that $ab\bmod c\ne 0$.}
+					    \item Use \procedurehr{1.22} on $\langle a,c\rangle$ to show that $(a,c)=1$.
+					    \item Use \procedurehr{1.22} on $\langle b,c\rangle$ to show that $(b,c)=1$.
+					    \item Use \procedurehr{1.20} on $\langle a,b,c\rangle$ to show that $0<(ab,c)=1<c$.
+					    \item \textbf{Use \procedurehr{1.13} on $\langle ab,c\rangle$ to show that $ab\bmod c\ne 0$.}
 				    \end{enumerate}
 		    \declaration{1.07}
 			    The notation \gls{int|a|} will be used to refer to the number of items in the list $a$.
