@@ -849,25 +849,25 @@
 						    \item If $a\bmod d\ne 0$, then do the following:
 						    \begin{enumerate}
 							    \item Show that $a\bmod d=0$ given that $a=ed$.
-							    \item \textbf{Therefore show that $0\ne 0$ given that $a\bmod d\ne 0$ and $a\bmod d=0$.}
+							    \item \textbf{Hence show that $0\ne 0$ given that $a\bmod d\ne 0$ and $a\bmod d=0$.}
 							    \item \textbf{Abort procedure.}
 						    \end{enumerate}
 						    \item Otherwise if $b\bmod d\ne 0$, then do the following:
 						    \begin{enumerate}
 							    \item Show that $b\bmod d=0$ given that $b=fd$.
-							    \item \textbf{Therefore show that $0\ne 0$ given that $b\bmod d\ne 0$ and $b\bmod d=0$.}
+							    \item \textbf{Hence show that $0\ne 0$ given that $b\bmod d\ne 0$ and $b\bmod d=0$.}
 							    \item \textbf{Abort procedure.}
 						    \end{enumerate}
 					    \end{enumerate}
 					    \item Otherwise if $d<c$, then do the following:
 					    \begin{enumerate}
-						    \item Therefore show that $0\equiv gc(a\div c)+hc(b\div c)=g(c(a\div c)+a\bmod c)+h(c(b\div c)+b\bmod c)=ga+hb=d\not\equiv 0\pmod{c}$ given that:
+						    \item Show that $0\equiv gc(a\div c)+hc(b\div c)=g(c(a\div c)+a\bmod c)+h(c(b\div c)+b\bmod c)=ga+hb=d\not\equiv 0\pmod{c}$ given that:
 						    \begin{enumerate}
 						      \item $ga+hb=d$
 						      \item $a\bmod c=0$
 						      \item $b\bmod c=0$.
 						    \end{enumerate}
-						    \item \textbf{Therefore show that $0\ne 0$.}
+						    \item \textbf{Hence show that $0\ne 0$.}
 						    \item \textbf{Abort procedure.}
 					    \end{enumerate}
 					    \item \textbf{Otherwise show that $(a,b)=d=c$.}
@@ -920,50 +920,57 @@
 				    \begin{enumerate}
 					    \item If $a\bmod b=0$, then do the following:
 					    \begin{enumerate}
-						    \item Using (1), verify that $af\equiv 0f\equiv 0\pmod{b}$.
-						    \item Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle c,d,e,f,g\rangle$ receive.
-						    \item Verify that $0<(a,b)=c=fa+gb<b$.
-						    \item Therefore verify $fa\equiv(a,b)\not\equiv 0\pmod{b}$.
-						    \item Therefore using (1a) and (1d), verify that $0\ne 0$.
-						    \item \textbf{Abort ptocedure.}
+						    \item Show that $af\equiv 0f\equiv 0\pmod{b}$ given that $a\bmod b=0$.
+						    \item Use \procedurehr{1.09} on $\langle a,b\rangle$ to construct $\langle c,d,e,f,g\rangle$ and show that:
+						    \begin{enumerate}
+						      \item $fa+gb=c=(a,b)$
+						      \item $0<c=(a,b)\le b$.
+						    \end{enumerate}
+						    \item Hence show that $fa\equiv(a,b)\not\equiv 0\pmod{b}$ given that $0<(a,b)<b$.
+						    \item Hence show that $0\ne 0$ given that $0\equiv af\not\equiv 0\pmod{b}$.
+						    \item \textbf{Abort procedure.}
 					    \end{enumerate}
-					    \item \textbf{Otherwise verify that $a\bmod b\ne 0$.}
+					    \item \textbf{Otherwise show that $a\bmod b\ne 0$.}
 				    \end{enumerate}
 		    \procedure{1.14}
 			    \objective
 				    Choose five integers $a,d,e,f,g$ and two non-negative integers $b,c$ such that $a=cd$, $b=ce$, and $fa+gb=c$. The objective of the following instructions is to show that $0<0$ or $(a,b)=c$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle u,v,x,y,z\rangle$ receive.
-					    \item Verify that $u\ge 0$.
-					    \item Verify that $a=uv$.
-					    \item Verify that $b=xu$.
-					    \item Therefore verify that $c=fa+gb=(fv+gx)u$.
+					    \item Use \procedurehr{1.09} on $\langle a,b\rangle$ to construct $\langle u,v,x,y,z\rangle$ and show that:
+					    \begin{enumerate}
+					      \item $u\ge 0$
+					      \item $a=uv$
+					      \item $b=xu$
+					      \item $u=ya+zb$.
+					    \end{enumerate}
+					    \item Hence show that $c=fa+gb=(fv+gx)u$.
 					    \item If $u=0$, then do the following:
 					    \begin{enumerate}
-						    \item \textbf{Verify that $c=(fv+gx)u=0=u=(a,b)$.}
+						    \item \textbf{Show that $c=(fv+gx)u=0=u=(a,b)$.}
 						    \item \textbf{Yield.}
 					    \end{enumerate}
-					    \item Also using (1) and the precondition, verify that $u=ya+zb=(yd+ze)c$.
+					    \item Show that $u=ya+zb=(yd+ze)c$ given that $u=ya+zb$, $a=cd$, and $b=ce$.
 					    \item If $c=0$, then do the following:
 					    \begin{enumerate}
-						    \item \textbf{Verify that $(a,b)=u=(yd+ze)c=0=c$.}
+						    \item \textbf{Show that $(a,b)=u=(yd+ze)c=0=c$.}
 						    \item \textbf{Yield.}
 					    \end{enumerate}
-					    \item Verify that $c>0$.
-					    \item Now verify that $c=(fv+gx)u=(fv+gx)(yd+ze)c$.
-					    \item Therefore verify that $(fv+gx)(yd+ze)=1$.
-					    \item Therefore verify that $fv+gx=yd+ze=\pm 1$.
+					    \item Show that $fv+gx=yd+ze=\pm 1$
+					    \begin{enumerate}
+					      \item given that $(fv+gx)(yd+ze)=1$
+					      \item given that $c=(fv+gx)u=(fv+gx)(yd+ze)c$ and $c>0$.
+					    \end{enumerate}
 					    \item If $fv+gx=yd+ze=-1$, then do the following:
 					    \begin{enumerate}
-						    \item Using (7) and (9), verify that $u=(yd+ze)c=-c<0$.
-						    \item \textbf{Therefore using (2) and (13a), verify that $0\le u<0$.}
+						    \item Show that $u=(yd+ze)c=(-1)c<0$ given that $u=(yd+ze)c$ and $c>0$.
+						    \item \textbf{Hence show that $0\le u<0$ given that $u\ge 0$.}
 						    \item \textbf{Abort procedure.}
 					    \end{enumerate}
 					    \item Otherwise, do the following:
 					    \begin{enumerate}
-						    \item Verify that $fv+gx=yd+ze=1$.
-						    \item \textbf{Therefore verify that $c=(fv+gx)u=u=(a,b)$.}
+						    \item Show that $fv+gx=yd+ze=1$.
+						    \item \textbf{Hence show that $c=(fv+gx)u=(1)u=(a,b)$ given that $c=(fv+gx)u$.}
 					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{1.15}
@@ -971,66 +978,84 @@
 				    Choose an integer $a$ and a non-negative integer $b$. The objective of the following instructions is to show that $0<0$ or $(a,b)=(-a,b)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle c,d,e,f,g\rangle$ receive.
-					    \item Verify that $a=dc$.
-					    \item Therefore verify that $-a=(-d)c$.
-					    \item Verify that $b=ec$.
-					    \item Verify that $fa+gb=c$.
-					    \item Therefore verify that $(-f)(-a)+gb=c$.
-					    \item Execute \procedurehr{1.14} on $\langle -a,b,c,-d,e,-f,g\rangle$.
-					    \item \textbf{Therefore verify that $(-a,b)=c=(a,b)$.}
+					    \item Use \procedurehr{1.09} on $\langle a,b\rangle$ to construct $\langle c,d,e,f,g\rangle$ and show that:
+					    \begin{enumerate}
+					      \item $a=dc$
+					      \item $b=ec$
+					      \item $fa+gb=c$.
+					    \end{enumerate}
+					    \item Hence show that $-a=(-d)c$.
+					    \item Also show that $(-f)(-a)+gb=c$.
+					    \item \textbf{Use \procedurehr{1.14} on $\langle -a,b,c,-d,e,-f,g\rangle$ to show that $(-a,b)=c=(a,b)$.}
 				    \end{enumerate}
 		    \procedure{1.16}
 			    \objective
 				    Choose two non-negative integers $a,b$. The objective of the following instructions is to show that $0<0$ or $(a,b)=(b,a)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle c,d,e,f,g\rangle$ receive.
-					    \item Verify that $b=ec$.
-					    \item Verify that $a=dc$.
-					    \item Verify that $gb+fa=c$.
-					    \item Execute \procedurehr{1.14} on $\langle b,a,c,e,d,g,f\rangle$.
-					    \item \textbf{Therefore verify that $(b,a)=c=(a,b)$.}
+					    \item Use \procedurehr{1.09} on $\langle a,b\rangle$ to construct $\langle c,d,e,f,g\rangle$ and show that:
+					    \begin{enumerate}
+					      \item $b=ec$
+					      \item $a=dc$
+					      \item $gb+fa=c$.
+					    \end{enumerate}
+					    \item \textbf{Use \procedurehr{1.14} on $\langle b,a,c,e,d,g,f\rangle$ to show that $(b,a)=c=(a,b)$.}
 				    \end{enumerate}
 		    \procedure{1.17}
 			    \objective
 				    Choose two integers $a,b$ and a positive integer $c$ such that $a\equiv b\pmod{c}$. The objective of the following instructions is to show that $0<0$ or $(a,c)=(b,c)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle a,c\rangle$ and let $\langle d,e,f,g,h\rangle$ receive.
-					    \item Verify that $a=ed$.
-					    \item Verify that $c=fd$.
+					    \item Use \procedurehr{1.09} on $\langle a,c\rangle$ to construct $\langle d,e,f,g,h\rangle$ and show that:
+					    \begin{enumerate}
+					      \item $a=ed$
+					      \item $c=fd$
+					      \item $ga+hc=d$.
+					    \end{enumerate}
 					    \item Let $j=b\div c-a\div c$.
-					    \item Therefore verify that $b=a+jc=ed+jfd=(e+jf)d$.
-					    \item Verify that $gb+(h-gj)c=g(a+jc)+(h-gj)c=ga+hc=d$.
-					    \item Now execute \procedurehr{1.14} on $\langle b,c,d,e+jf,f,g,h-gj\rangle$.
-					    \item \textbf{Therefore verify that $(b,c)=d=(a,c)$.}
+					    \item Hence show that $b=a+jc=ed+jfd=(e+jf)d$.
+					    \item Also show that $gb+(h-gj)c=g(a+jc)+(h-gj)c=ga+hc=d$ given that $b=a+jc$.
+					    \item \textbf{Use \procedurehr{1.14} on $\langle b,c,d,e+jf,f,g,h-gj\rangle$ to show that $(b,c)=d=(a,c)$.}
 				    \end{enumerate}
 		    \procedure{1.18}
 			    \objective
 				    Choose an integer $a$ and two non-negative integers $b,c$. The objective of the following instructions is to show that either $0<0$ or $(ca,cb)=c(a,b)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle d,e,f,g,h\rangle$ receive.
-					    \item Verify that $a=ed$.
-					    \item Therefore verify that $ca=e(cd)$.
-					    \item Verify that $b=df$.
-					    \item Therefore verify that $cb=f(cd)$.
-					    \item Verify that $ga+hb=d$.
-					    \item Therefore verify that $g(ca)+h(cb)=cd$.
-					    \item Now execute \procedurehr{1.14} on $\langle ca,cb,cd,e,f,g,h\rangle$.
-					    \item Therefore verify that $(ca,cb)=cd=c(a,b)$.
+					    \item Use \procedurehr{1.09} on $\langle a,b\rangle$ to construct $\langle d,e,f,g,h\rangle$ and show that:
+					    \begin{enumerate}
+					      \item $a=ed$
+					      \item $b=df$
+					      \item $ga+hb=d$.
+					    \end{enumerate}
+					    \item Hence show that $ca=e(cd)$, $cb=f(cd)$, and $g(ca)+h(cb)=cd$.
+					    \item \textbf{Use \procedurehr{1.14} on $\langle ca,cb,cd,e,f,g,h\rangle$ to show that $(ca,cb)=cd=c(a,b)$.}
 				    \end{enumerate}
 		    \procedure{1.19}
 			    \objective
 				    Choose an integer $a$ and two non-negative integers $b,c$. The objective of the following instructions is to show that either $0<0$ or $(a,(b,c))=((a,b),c)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle d_0,e_0,f_0,g_0,h_0\rangle$ receive.
-					    \item Execute \procedurehr{1.09} on $\langle b,c\rangle$ and let $\langle d_1,e_1,f_1,g_1,h_1\rangle$ receive.
-					    \item Execute \procedurehr{1.09} on $\langle (a,b),c\rangle$ and let $\langle d_2,e_2,f_2,g_2,h_2\rangle$ receive.
-					    \item Verify that $a=d_0e_0=e_0(a,b)=e_0d_2e_2=e_0e_2((a,b),c)$.
-					    \item Verify that $(b,c)$
+					    \item Use \procedurehr{1.09} on $\langle a,b\rangle$ to construct $\langle d_0,e_0,f_0,g_0,h_0\rangle$ and show that:
+					    \begin{enumerate}
+					      \item $a=d_0e_0$
+					      \item $b=d_0f_0$
+					      \item $g_0a+h_0b=d_0$.
+					    \end{enumerate}
+					    \item Use \procedurehr{1.09} on $\langle b,c\rangle$ to construct $\langle d_1,e_1,f_1,g_1,h_1\rangle$ and show that:
+					    \begin{enumerate}
+					      \item $b=d_1e_1$
+					      \item $c=d_1f_1$
+					      \item $g_1b+h_1c=d_1$.
+					    \end{enumerate}
+					    \item Use \procedurehr{1.09} on $\langle (a,b),c\rangle$ to construct $\langle d_2,e_2,f_2,g_2,h_2\rangle$ and show that:
+					    \begin{enumerate}
+					      \item $(a,b)=d_2e_2$
+					      \item $c=d_2f_2$
+					      \item $g_2(a,b)+h_2c=d_2$.
+					    \end{enumerate}
+					    \item Show that $a=d_0e_0=e_0(a,b)=e_0d_2e_2=e_0e_2((a,b),c)$.
+					    \item Also show that $(b,c)$
 					    \begin{enumerate}
 						    \item $=g_1b+h_1c$
 						    \item $=g_1d_0f_0+h_1d_2f_2$
@@ -1039,7 +1064,7 @@
 						    \item $=g_1f_0e_2((a,b),c)+h_1f_2((a,b),c)$
 						    \item $=(g_1f_0e_2+h_1f_2)((a,b),c)$.
 					    \end{enumerate}
-					    \item Verify that $((a,b),c)$
+					    \item Also show that $((a,b),c)$
 					    \begin{enumerate}
 						    \item $=d_2$
 						    \item $=g_2(a,b)+h_2c$
@@ -1049,8 +1074,7 @@
 						    \item $=g_2g_0a+g_2h_0e_1(b,c)+h_2f_1(b,c)$
 						    \item $=g_2g_0a+(g_2h_0e_1+h_2f_1)(b,c)$.
 					    \end{enumerate}
-					    \item Execute \procedurehr{1.14} on $\langle a,(b,c),((a,b),c),e_0e_2,g_1f_0e_2+h_1f_2,g_2g_0,g_2h_0e_1+h_2f_1\rangle$.
-					    \item \textbf{Therefore verify that $((a,b),c)=(a,(b,c))$.}
+					    \item \textbf{Use \procedurehr{1.14} on $\langle a,(b,c),((a,b),c),e_0e_2,g_1f_0e_2+h_1f_2,g_2g_0,g_2h_0e_1+h_2f_1\rangle$ to show that $((a,b),c)=(a,(b,c))$.}
 				    \end{enumerate}
 		    \declaration{1.05}
 			    The notation \gls{int(a_0,a_1,...,a_n-1)} will be used to contextually refer to one of the following integers:
