@@ -1159,35 +1159,36 @@
 				    \begin{enumerate}
 					    \item If $a=1$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $a=1=\langle\rangle_*$.
-						    \item Therefore yield $\langle\rangle$.
+						    \item Show that $a=1=\langle\rangle_*$.
+						    \item Hence yield $\langle\rangle$.
 					    \end{enumerate}
 					    \item Otherwsie, do the following:
 					    \begin{enumerate}
-						    \item Verify that $a>1$.
-						    \item For $c=2$ up to $c=a-1$, do the following:
+						    \item Show that $a>1$.
+						    \item If there is a $c\in[2:a]$ such that $a\bmod c=0$, then do the following:
 						    \begin{enumerate}
-							    \item If $a\bmod c=0$, then do the following:
+							    \item Show that $a=(a\div c)c$.
+							    \item Hence show that $1<a\div c<a$.
+							    \item Use \procedurehr{1.24} on $\langle a\div c\rangle$ to construct $\langle d\rangle$ and show that:
 							    \begin{enumerate}
-								    \item Verify that $a=(a\div c)c$.
-								    \item Therefore verify that $1<a\div c<a$.
-								    \item Execute \procedurehr{1.24} on $\langle a\div c\rangle$ and let $\langle d\rangle$ receive.
-								    \item Using (B) and (C), verify that $\lvert d\rvert>0$.
-								    \item Verify that every element of $d$ is prime.
-								    \item Verify that $a\div c=d_*$.
-								    \item Execute \procedurehr{1.24} on $\langle c\rangle$ and let $\langle e\rangle$ receive.
-								    \item Using (b) and (G), verify that $\lvert e\rvert>0$.
-								    \item Verify that every element of $e$ is prime.
-								    \item Verify that $c=e_*$.
-								    \item \textbf{Therefore verify that $\lvert d^\frown e\rvert>0$.}
-								    \item \textbf{Also verify that every element of $d^\frown e$ is prime.}
-								    \item \textbf{Also verify that $a=(a\div c)c=d_*e_*=(d^\frown e)_*$.}
-								    \item \textbf{Yield $\langle d^\frown e\rangle$.}
+							      \item every element of $d$ is prime.
+							      \item $a\div c=d_*$.
 							    \end{enumerate}
+							    \item Hence show that $\lvert d\rvert>0$ given that $1<a\div c=d_*$.
+							    \item Use \procedurehr{1.24} on $\langle c\rangle$ to construct $\langle e\rangle$ and show that:
+							    \begin{enumerate}
+							      \item every element of $e$ is prime.
+							      \item $c=e_*$.
+							    \end{enumerate}
+							    \item Hence show that $\lvert e\rvert>0$ given that $1<c=e_*$.
+							    \item \textbf{Hence show that $\lvert d^\frown e\rvert>0$.}
+							    \item \textbf{Also show that every element of $d^\frown e$ is prime.}
+							    \item \textbf{Also show that $a=(a\div c)c=d_*e_*=(d^\frown e)_*$.}
+							    \item \textbf{Yield $\langle d^\frown e\rangle$.}
 						    \end{enumerate}
 						    \item Otherwise do the following:
 						    \begin{enumerate}
-							    \item \textbf{Verify that $a$ is prime.}
+							    \item \textbf{Show that $a$ is prime.}
 							    \item \textbf{Yield $\langle a\rangle$.}
 						    \end{enumerate}
 					    \end{enumerate}
