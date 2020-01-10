@@ -1196,35 +1196,39 @@
 				    Choose a prime $a$ and a list of primes $b$ such that $b_*\equiv 0\pmod{a}$. The objective of the following instructions is to either show that $0=1$ or to construct a $k$ such that $a=b_k$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{1.06}, verify that $a>1$.
+					    \item Show that $a>1$ given that $a$ is prime.
 					    \item If $\lvert b\rvert=0$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $1=b_*\equiv 0\pmod{a}$.
-						    \item \textbf{Therefore using (1) and (a), verify that $0=1$.}
+						    \item Show that $1=b_*\equiv 0\pmod{a}$.
+						    \item \textbf{Hence show that $0=1$ given that $a>1$.}
 						    \item \textbf{Abort procedure.}
 					    \end{enumerate}
 					    \item Otherwise if $0\not\in b\bmod a$, then do the following:
 					    \begin{enumerate}
-						    \item Using \procedurehr{1.23}, verify that $b_*\not\equiv 0 \pmod{a}$.
-						    \item \textbf{Therefore using the precondition and (a), verify that $0\ne 0$.}
+						    \item Show that $b_*\not\equiv 0 \pmod{a}$ using \procedurehr{1.23}.
+						    \item \textbf{Hence show that $0\ne 0$ given that $b_*\equiv 0 \pmod{a}$.}
 						    \item \textbf{Abort procedure.}
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
 						    \item Let $k$ be such that $b_k\bmod a=0$.
-						    \item Verify that $b_k=(b_k\div a)a$.
-						    \item Verify that $b_k\div a\ge 1$.
+						    \item Show that $b_k=(b_k\div a)a$.
+						    \item Hence show that $b_k\div a\ge 1$.
 						    \item If $b_k\div a>1$, then do the following:
 						    \begin{enumerate}
-							    \item Using (1),(b), and (d), verify that $1<a<b_k$.
-							    \item Now, using \declarationhr{1.06} verify that $b_k\bmod a\ne 0$.
-							    \item \textbf{Hence using (a) and (ii), verify that $0\ne b_k\bmod a=0$.}
+							    \item Show that $1<a<b_k$ given that:
+							    \begin{enumerate}
+							      \item $a>1$
+							      \item $b_k\div a>1$
+							      \item $b_k=(b_k\div a)a$.
+							    \end{enumerate}
+							    \item Hence show that $b_k\bmod a\ne 0$ given that $b_k$ is prime and $1<a<b_k$.
+							    \item \textbf{Hence show that $0\ne b_k\bmod a=0$ given that $b_k\bmod a=0$.}
 							    \item \textbf{Abort procedure.}
 						    \end{enumerate}
 						    \item Otherwise do the following:
 						    \begin{enumerate}
-							    \item Verify that $b_k\div a=1$.
-							    \item \textbf{Therefore verify that $b_k=a$.}
+							    \item \textbf{Show that $b_k=a$ given that $b_k\div a=1$.}
 							    \item \textbf{Yield $\langle k\rangle$.}
 						    \end{enumerate}
 					    \end{enumerate}
@@ -1243,18 +1247,16 @@
 				    \begin{enumerate}
 					    \item If $\lvert a\rvert=0$, then do the following:
 					    \begin{enumerate}
-						    \item \textbf{Verify that $a$ is included in $b$.}
+						    \item \textbf{Show that $a$ is included in $b$.}
 					    \end{enumerate}
 					    \item Otherwise, do the following:
 					    \begin{enumerate}
-						    \item Verify that $\lvert a\rvert>0$.
-						    \item Verify that $b_*\equiv a_*\equiv 0 \pmod{a_0}$.
-						    \item Execute \procedurehr{1.25} on $\langle a_0, b\rangle$ and let $\langle k\rangle$ receive.
-						    \item Therefore verify that $b_k=a_0$.
-						    \item Now verify $(a_{[1:\lvert a\rvert]})_*=(b_{[0:k]^\frown[k+1:\lvert b\rvert]})_*$.
-						    \item Now execute \procedurehr{1.26} on $\langle a_{[1:\lvert a\rvert]},b_{[0:k]^\frown[k+1:\lvert b\rvert]}\rangle$.
-						    \item Now verify that $a_{[1:\lvert a\rvert]}$ is included in $b_{[0:k]^\frown[k+1:\lvert b\rvert]}\rangle$.
-						    \item \textbf{Therefore verify that $a$ is included in $b$.}
+						    \item Show that $\lvert a\rvert>0$.
+						    \item Show that $b_*\equiv a_*\equiv 0 \pmod{a_0}$.
+						    \item Use \procedurehr{1.25} on $\langle a_0, b\rangle$ to construct $\langle k\rangle$ and show that $b_k=a_0$.
+						    \item Now show that $(a_{[1:\lvert a\rvert]})_*=(b_{[0:k]^\frown[k+1:\lvert b\rvert]})_*$.
+						    \item Now use \procedurehr{1.26} on $\langle a_{[1:\lvert a\rvert]},b_{[0:k]^\frown[k+1:\lvert b\rvert]}\rangle$ to show that $a_{[1:\lvert a\rvert]}$ is included in $b_{[0:k]^\frown[k+1:\lvert b\rvert]}\rangle$.
+						    \item \textbf{Hence show that $a$ is included in $b$.}
 					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{1.27}
@@ -1262,37 +1264,43 @@
 				    Choose two lists of primes $a,b$ such that $a_*=b_*$. The objective of the following instructions is to show that either $1>1$ or $a$ is a rearrangement of $b$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.26} on $\langle a,b\rangle$.
-					    \item Verify that $a$ is included in $b$.
-					    \item Execute \procedurehr{1.26} on $\langle b,a\rangle$.
-					    \item Verify that $b$ is included in $a$.
-					    \item \textbf{Therefore verify that $a$ is a rearrangement of $b$.}
+					    \item Use \procedurehr{1.26} on $\langle a,b\rangle$ to show that $a$ is included in $b$.
+					    \item Use \procedurehr{1.26} on $\langle b,a\rangle$ to show that $b$ is included in $a$.
+					    \item \textbf{Hence show that $a$ is a rearrangement of $b$.}
 				    \end{enumerate}
 		    \procedure{1.28}
 			    \objective
 				    Choose a positive integer $a$. The objective of the following instructions is to either show that $0=1$ or to construct a prime $b$ such that $b>a$ and $[a+1:b]$ does not contain a prime.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $a!+1>1$.
-					    \item Execute \procedurehr{1.24} on $\langle a!+1\rangle$ and let $\langle d\rangle$ receive.
-					    \item Therefore using (1) and (2), verify that $\lvert d\rvert>0$.
-					    \item Now verify that $(a!+1)\bmod d_0=0$.
-					    \item For $e=2$ up to $e=a$, do the following:
+					    \item Show that $a!+1>1$.
+					    \item Use \procedurehr{1.24} on $\langle a!+1\rangle$ to construct $\langle d\rangle$ and show that:
 					    \begin{enumerate}
-						    \item Verify that $a!+1\equiv 1 \pmod{e}$.
-						    \item If $e=d_0$, then do the following:
+					      \item $a!+1=d_*$
+					      \item every element of $d$ is prime.
+					    \end{enumerate}
+					    \item Hence show that $\lvert d\rvert>0$ given that $a!+1>1$.
+					    \item Hence show that $(a!+1)\bmod d_0=0$.
+					    \item If $d_0\in[2:a+1]$, then do the following:
+					    \begin{enumerate}
+					      \item Show that $a!+1\equiv 1 \pmod{d_0}$
+					      \begin{enumerate}
+					        \item given that $a!\pmod{d_0}\equiv 0$
+					        \item given that $d_0\in[2:a+1]$.
+					      \end{enumerate}
+						    \item Show that $0\equiv a!+1\pmod{d_0}$
 						    \begin{enumerate}
-							    \item Using (4) and (a), verify that $0\equiv a!+1\equiv 1\pmod{e=d_0}$.
-							    \item \textbf{Therefore verify that $0=1$.}
-							    \item \textbf{Abort procedure.}
+						      \item given that $(a!+1)\bmod d_0=0$
+						      \item given that $a!+1=d_*$.
 						    \end{enumerate}
+						    \item \textbf{Hence show that $0=1$.}
+						    \item \textbf{Abort procedure.}
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item \textbf{Using (2), verify that $d_0$ is prime.}
-						    \item Using (a), verify that $d_0>1$.
-						    \item \textbf{Using (a) and (5), verify that $d_0>a$.}
-						    \item \textbf{Let $b$ be the least prime between $a+1$ and $d_0$.}
+						    \item \textbf{Show that $d_0$ is prime given that every element of $d$ is prime.}
+						    \item \textbf{Hence show that $d_0>a$ given that $d_0>1$ and $d_0\not\in[2:a+1]$.}
+						    \item \textbf{Let $b$ be the least prime in $[a+1:d_0+1]$.}
 						    \item \textbf{Yield $\langle b\rangle$.}
 					    \end{enumerate}
 				    \end{enumerate}
@@ -1302,12 +1310,12 @@
 			    \implementation
 				    \begin{enumerate}
 					    \item Let $b=a!+1$.
-					    \item For $i=1$ up to $i=a-1$, do the following:
+					    \item For $i\in[1:a]$, do the following:
 					    \begin{enumerate}
-						    \item Verify that $b+i=a!+1+i=i!(i+1)(i+2)\cdots(a)+1+i=(1+i)(i!(i+2)(i+3)\cdots(a) +1)$.
-						    \item Therefore verify that $b+i\equiv 0 \pmod{i+1}$.
-						    \item Also verify that $b+i=a!+1+i>a!\ge a\ge i+1>1$.
-						    \item \textbf{Therefore verify that $b+i$ is not prime.}
+						    \item Show that $b+i=a!+1+i=i!(i+1)(i+2)\cdots(a)+1+i=(1+i)(i!(i+2)(i+3)\cdots(a) +1)$.
+						    \item Therefore show that $b+i\equiv 0 \pmod{i+1}$.
+						    \item Also show that $b+i=a!+1+i>a!\ge a\ge i+1>1$.
+						    \item \textbf{Hence show that $b+i$ is not prime.}
 					    \end{enumerate}
 					    \item \textbf{Yield $\langle b\rangle$.}
 				    \end{enumerate}
