@@ -1324,22 +1324,26 @@
 				    Choose two lists of primes $a,b$ in such a way that their intersection is empty. The objective of the following instructions is to show that $0=1$ or $(a_*,b_*)=1$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle a_*,b_*\rangle$ and let $\langle c,d,e,f,g\rangle$.
-					    \item Verify that $0<c\le b\rangle$.
+					    \item Use \procedurehr{1.09} on $\langle a_*,b_*\rangle$ to construct $\langle c,d,e,f,g\rangle$ and show that:
+					    \begin{enumerate}
+					      \item $0<c\le b_*$
+					      \item $a_*=cd$
+					      \item $b_*=ce$.
+					    \end{enumerate}
 					    \item If $c>1$, then do the following:
 					    \begin{enumerate}
-						    \item Execute \procedurehr{1.24} on $\langle c\rangle$ and let $\langle h\rangle$ receive.
-						    \item Using (3) and (a), verify that $\lvert h\rvert>0$.
-						    \item Now verify that $a_*=dc=dh_*=dh_0(h_{[1:\vert h\rvert]})_*\equiv 0\pmod{h_0}$.
-						    \item Execute \procedurehr{1.25} on $\langle h_0,a\rangle$ and let $\langle k\rangle$ receive.
-						    \item Now verify that $b_*=ec=eh_*=eh_0(h_{[1:\vert h\rvert]})_*\equiv 0\pmod{h_0}$.
-						    \item Execute \procedurehr{1.25} on $\langle h_0,b\rangle$ and let $\langle m\rangle$ receive.
-						    \item \textbf{Therefore verify that $a_k=h_0=b_m$.}
+						    \item Use \procedurehr{1.24} on $\langle c\rangle$ to construct $\langle h\rangle$ and show that $c=h_*$.
+						    \item Hence show that $\lvert h\rvert>0$ given that $h_*=c>1$.
+						    \item Now show that $a_*=dc=dh_*=dh_0(h_{[1:\vert h\rvert]})_*\equiv 0\pmod{h_0}$.
+						    \item Use \procedurehr{1.25} on $\langle h_0,a\rangle$ to construct $\langle k\rangle$ and show that $h_0=a_k$.
+						    \item Now show that $b_*=ec=eh_*=eh_0(h_{[1:\vert h\rvert]})_*\equiv 0\pmod{h_0}$.
+						    \item Use \procedurehr{1.25} on $\langle h_0,b\rangle$ to construct $\langle m\rangle$ and show that $h_0=b_m$.
+						    \item \textbf{Hence show that $a$ and $b$ intersect given that $a_k=h_0=b_m$.}
 						    \item \textbf{Abort procedure.}
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item \textbf{Verify that $(a_*,b_*)=c=1$.}
+						    \item \textbf{Show that $(a_*,b_*)=c=1$ given that $0<c\le b_*$ and $c\le 1$.}
 					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{1.31}
@@ -1348,26 +1352,33 @@
 			    \implementation
 				    \begin{enumerate}
 					    \item Let $d$ be the result of removing with multiplicity elements of $c$ from $a$.
-					    \item Verify that $a_*=c_*d_*$.
+					    \item Show that $a_*=c_*d_*$.
 					    \item Let $e$ be the result of removing with multiplicity elements of $c$ from $b$.
-					    \item Verify that $b_*=c_*e_*$.
-					    \item Verify that $d$ and $e$ share no common elements.
-					    \item \textbf{Therefore using \procedurehr{1.18} and \procedurehr{1.30}, verify that $(a_*,b_*)=(c_*d_*,c_*e_*)=c_*(d_*,e_*)=c_*$.}
+					    \item Show that $b_*=c_*e_*$.
+					    \item Show that $d$ and $e$ share no common elements.
+					    \item \textbf{Therefore show that $(a_*,b_*)=(c_*d_*,c_*e_*)=c_*(d_*,e_*)=c_*$ using \procedurehr{1.18} and \procedurehr{1.30}.}
 				    \end{enumerate}
 		    \procedure{1.32}
 			    \objective
-				    Choose an integer $a$ and a positive integer $b$. The objective of the following instructions is to construct integers $c,f,e$ such that $c=af$, $c=be$, $c(a,b)=ab$, and $\lvert a\rvert\le c\sgn(a)\le\lvert a\rvert b$.
+				    Choose an integer $a$ and a positive integer $b$. The objective of the following instructions is to construct integers $c,f,e$ such that $c=af$, $c=be$, $c(a,b)=ab$, and $\lvert a\rvert\le\lvert c\rvert\le\lvert a\rvert b$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle a,b\rangle$ and let $\langle d,e,f,g,h\rangle$ receive.
+					    \item Use \procedurehr{1.09} on $\langle a,b\rangle$ to construct $\langle d,e,f,g,h\rangle$ and show that:
+					    \begin{enumerate}
+					      \item $a=de$
+					      \item $b=df$
+					      \item $d>0$.
+					    \end{enumerate}
 					    \item \textbf{Let $c=af$.}
-					    \item \textbf{Verify that $c(a,b)=cd=afd=ab$.}
-					    \item Verify that $d>0$.
-					    \item Verify that $b=fd$.
-					    \item Therefore verify that $1\le f\le b$.
-					    \item Therefore verify that $\lvert a\rvert\le\lvert a\rvert f\le\lvert a\rvert b$.
-					    \item \textbf{Therefore verify that $\lvert a\rvert\le c\sgn(a)\le\lvert a\rvert b$.}
-					    \item \textbf{Verify that $c=af=def=be$.}
+					    \item \textbf{Show that $c=af=def=be$.}
+					    \item \textbf{Show that $c(a,b)=cd=afd=ab$.}
+					    \item Show that $1\le f\le b$
+					    \begin{enumerate}
+					      \item given that $0<b=df$
+					      \item and $d>0$.
+					    \end{enumerate}
+					    \item Therefore show that $\lvert a\rvert\le\lvert a\rvert f\le\lvert a\rvert b$.
+					    \item \textbf{Therefore show that $\lvert a\rvert\le\lvert c\rvert\le\lvert a\rvert b$.}
 					    \item \textbf{Yield the tuple $\langle c,f,e\rangle$.}
 				    \end{enumerate}
 		    \declaration{1.12}
@@ -1377,25 +1388,25 @@
 				    Choose two positive integers $a,b$. The objective of the following instructions is to show that either $0<0$ or $[a,b]=[b,a]$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $(a,b)>0$.
-					    \item Using \procedurehr{1.16}, verify that $[a,b](a,b)=ab=ba=[b,a](b,a)=[b,a](a,b)$.
-					    \item \textbf{Therefore verify that $[a,b]=[b,a]$.}
+					    \item Show that $(a,b)>0$.
+					    \item Show that $[a,b](a,b)=ab=ba=[b,a](b,a)=[b,a](a,b)$ using \procedurehr{1.16}.
+					    \item \textbf{Therefore show that $[a,b]=[b,a]$.}
 				    \end{enumerate}
 		    \procedure{1.34}
 			    \objective
 				    Choose an integer $a$ and two positive integers $b,c$. The objective of the following instructions is to show that either $0<0$ or $[ca,cb]=c[a,b]$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $(ca,cb)>0$.
-					    \item Using \procedurehr{1.18}, verify that $[ca,cb](ca,cb)=cacb=c^2ab=c^2[a,b](a,b)=c[a,b](ca,cb)$.
-					    \item \textbf{Therefore verify that $[ca,cb]=c[a,b]$.}
+					    \item Show that $(ca,cb)>0$.
+					    \item Show that $[ca,cb](ca,cb)=cacb=c^2ab=c^2[a,b](a,b)=c[a,b](ca,cb)$ using \procedurehr{1.18}.
+					    \item \textbf{Therefore show that $[ca,cb]=c[a,b]$.}
 				    \end{enumerate}
 		    \procedure{1.35}
 			    \objective
 				    Choose an integer $a$ and two positive integers $b,c$. The objective of the following instructions is to show that either $0<0$ or $[[a,b],c]=[a,[b,c]]$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \procedurehr{1.19}, verify that $(a,b)(ab,(ac,bc))(b,c)[[a,b],c]$
+					    \item Using \procedurehr{1.19}, show that $(a,b)(ab,(ac,bc))(b,c)[[a,b],c]$
 					    \begin{enumerate}
 						    \item $=(ab,(ac,bc))(b,c)[(a,b)[a,b],(a,b)c]$
 						    \item $=(ab,(ac,bc))(b,c)[ab,(ac,bc)]$
@@ -1407,8 +1418,8 @@
 						    \item $=(a,b)(ab,(ac,bc))[a(b,c),[b,c](b,c)]$
 						    \item $=(a,b)(ab,(ac,bc))(b,c)[a,[b,c]]$.
 					    \end{enumerate}
-					    \item Verify that $(a,b)(ab,(ac,bc))(b,c)>0$.
-					    \item \textbf{Therefore verify that $[[a,b],c]=[a,[b,c]]$.}
+					    \item Show that $(a,b)(ab,(ac,bc))(b,c)>0$.
+					    \item \textbf{Therefore show that $[[a,b],c]=[a,[b,c]]$.}
 				    \end{enumerate}
 		    \declaration{1.13}
 			    The notation \gls{int[a_0,a_1,...,a_n-1]} will be used to contextually refer to one of the following integers:
@@ -1423,7 +1434,7 @@
 				    Choose three positive integers $a,b,c$. The objective of the following instructions is to show that either $0<0$ or $([a,b],c)=[(a,c),(b,c)]$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \procedurehr{1.32}, \procedurehr{1.18}, \procedurehr{1.19}, \procedurehr{1.16}, and \procedurehr{1.10}, verify that $(a,b)((a,c),(b,c))([a,b],c)$
+					    \item Using \procedurehr{1.32}, \procedurehr{1.18}, \procedurehr{1.19}, \procedurehr{1.16}, and \procedurehr{1.10}, show that $(a,b)((a,c),(b,c))([a,b],c)$
 					    \begin{enumerate}
 						    \item $=((a,c),(b,c))((a,b)[a,b],(a,b)c)$
 						    \item $=((a,c),(b,c))(ab,(ac,bc))$
@@ -1432,15 +1443,15 @@
 						    \item $=(a,b)(a,c)(b,c)$
 						    \item $=(a,b)((a,c),(b,c))[(a,c),(b,c)]$.
 					    \end{enumerate}
-					    \item Verify that $(a,b)((a,c),(b,c))>0$.
-					    \item \textbf{Therefore verify that $([a,b],c)=[(a,c),(b,c)]$.}
+					    \item Show that $(a,b)((a,c),(b,c))>0$.
+					    \item \textbf{Therefore show that $([a,b],c)=[(a,c),(b,c)]$.}
 				    \end{enumerate}
 		    \procedure{1.37}
 			    \objective
 				    Choose three positive integers $a,b,c$. The objective of the following instructions is to show that either $0<0$ or $[(a,b),c]=([a,c],[b,c])$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \procedurehr{1.32}, \procedurehr{1.18}, \procedurehr{1.19}, \procedurehr{1.16}, and \procedurehr{1.10}, verify that $((a,b),c)(a,c)(b,c)[(a,b),c]$
+					    \item Using \procedurehr{1.32}, \procedurehr{1.18}, \procedurehr{1.19}, \procedurehr{1.16}, and \procedurehr{1.10}, show that $((a,b),c)(a,c)(b,c)[(a,b),c]$
 					    \begin{enumerate}
 						    \item $=(a,c)(b,c)(a,b)c$
 						    \item $=(ab,ac,cb,c^2)(a,b)c$
@@ -1449,8 +1460,8 @@
 						    \item $=((a,b),c)(ac(b,c),bc(a,c))$
 						    \item $=((a,b),c)(a,c)(b,c)([a,c],[b,c])$.
 					    \end{enumerate}
-					    \item Verify that $((a,b),c)(a,c)(b,c)>0$.
-					    \item \textbf{Therefore verify that $[(a,b),c]=([a,c],[b,c])$.}
+					    \item Show that $((a,b),c)(a,c)(b,c)>0$.
+					    \item \textbf{Therefore show that $[(a,b),c]=([a,c],[b,c])$.}
 				    \end{enumerate}
 	    \end{multicols*}
 	  \chapter{Congruence Equations}
@@ -1458,7 +1469,7 @@
 		    \declaration{1.14}
 			    The notation \gls{intchibdac}, where $a,c$ are two integers and $b,d$ are two positive integers such that $a\equiv c\pmod{(b,d)}$,  will be used to refer to the result yielded by executing the following instructions:
 			    \begin{enumerate}
-				    \item Execute \procedurehr{1.09} on $\langle b,d\rangle$ and let $\langle f,g,h,i,j\rangle$ receive.
+				    \item Use \procedurehr{1.09} on $\langle b,d\rangle$ to construct $\langle f,g,h,i,j\rangle$.
 				    \item \textbf{Yield the tuple $\langle (a+((c-a)\div(b,d))ib)\bmod[b,d]\rangle$.}
 			    \end{enumerate}
 		    \procedure{1.39}
@@ -1466,31 +1477,41 @@
 				    Choose three integers $x,a,c$ and two positive integers $b,d$ such that $x\equiv a\pmod{b}$ and $x\equiv c\pmod{d}$. The objective of the following instructions is to show that $0\ne 0$ if $a\not\equiv d\pmod{(b,d)}$, otherwise $x\equiv\chi_{b,d}(a,c)\pmod{[b,d]}$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle b,d\rangle$ and let $\langle e,f,g,h,i\rangle$ receive.
+					    \item Use \procedurehr{1.09} on $\langle b,d\rangle$ to construct $\langle e,f,g,h,i\rangle$ and show that:
+					    \begin{enumerate}
+					      \item $b=ef$
+					      \item $d=eg$
+					      \item $hb+id=e$.
+					    \end{enumerate}
 					    \item Let $j=x\div b-a\div b$.
-					    \item Verify that $x=a+jb$.
+					    \item Show that $x=a+jb$ given that $x\equiv a\pmod{b}$.
 					    \item Let $k=x\div d-c\div d$.
-					    \item Verify that $x=c+kd$.
-					    \item Therefore verify that $c-a=jb-kd$.
+					    \item Show that $x=c+kd$ given that $x\equiv c\pmod{d}$.
+					    \item Therefore show that $c-a=jb-kd$.
 					    \item If $a\not\equiv c\pmod{(b,d)}$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $0\not\equiv d-a=jb-kd=jef-keg\equiv 0\pmod{e}$.
-						    \item \textbf{Therefore verify that $0\ne 0$.}
+						    \item Show that $0\not\equiv c-a=jb-kd=jef-keg\equiv 0\pmod{e}$.
+						    \item \textbf{Therefore show that $0\ne 0$.}
 						    \item \textbf{Abort procedure.}
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item Verify that $c-a\equiv 0\pmod{(b,d)}$.
 						    \item Let $l=(c-a)\div(b,d)$.
-						    \item Verify that $l(b,d)=le=c-a=jb-kd=jef-keg$.
-						    \item Therefore verify that $l=jf-kg$.
-						    \item Therefore verify that $l\equiv jf\pmod{g}$.
-						    \item Also, using (1) verify that $efh+egi=bh+di=e$.
-						    \item Therefore verify that $fh+gi=1$.
-						    \item Therefore verify that $fh\equiv 1\pmod{g}$.
-						    \item Therefore verify that $lh\equiv jfh\equiv j\pmod{g}$.
-						    \item Therefore using \procedurehr{1.05}, verify that $lhb\equiv jb\pmod{bg=[b,d]}$.
-						    \item \textbf{Therefore verify that $x\equiv a+jb\equiv a+lhb\equiv\chi_{b,d}(a,c)\pmod{[b,d]}$.}
+						    \item Show that $l(b,d)=le=c-a=jb-kd=jef-keg$ given that $c-a\equiv 0\pmod{(b,d)}$.
+						    \item Hence show that $l\equiv jf\pmod{g}$ given that $l=jf-kg$.
+						    \item Hence show that $fh\equiv 1\pmod{g}$
+						    \begin{enumerate}
+						      \item given that $fh+gi=1$
+						      \item given that $efh+egi=bh+di=e$
+						      \item given that $b=ef$, $d=eg$, and $hb+id=e$.
+						    \end{enumerate}
+						    \item Hence show that $lh\equiv jfh\equiv j\pmod{g}$
+						    \begin{enumerate}
+						      \item given that $l\equiv jf\pmod{g}$
+						      \item and $fh\equiv 1\pmod{g}$.
+						    \end{enumerate}
+						    \item Hence show that $lhb\equiv jb\pmod{bg=[b,d]}$ using \procedurehr{1.05}.
+						    \item \textbf{Hence show that $x=a+jb\equiv a+lhb\equiv\chi_{b,d}(a,c)\pmod{[b,d]}$.}
 					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{1.40}
@@ -1498,13 +1519,10 @@
 				    Choose two integers $a,c$ and two positive integers $b,d$ in such a way that $a\equiv c\pmod{(b,d)}$. The objective of the following instructions is to show that either $0<0$ or $\chi_{b,d}(a,c)=\chi_{d,b}(c,a)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle b,d\rangle$ and let $\langle f,g,h,i,j\rangle$ receive.
-					    \item Verify that $ib+jd=f=(b,d)$.
-					    \item Execute \procedurehr{1.09} on $\langle d,b\rangle$ and let $\langle k,l,m,n,p\rangle$ receive.
-					    \item Verify that $pb+nd=k=(d,b)=(b,d)$.
-					    \item Execute \procedurehr{1.12} on $\langle b,p,n,d\rangle$ and let $\langle q\rangle$ receive.
-					    \item Therefore verify that $n=j-qg$.
-					    \item Now using \procedurehr{1.33}, verify that $\chi_{b,d}(a,c)$
+					    \item Use \procedurehr{1.09} on $\langle b,d\rangle$ to construct $\langle f,g,h,i,j\rangle$ and show that $ib+jd=f=(b,d)$.
+					    \item Use \procedurehr{1.09} on $\langle d,b\rangle$ to construct $\langle k,l,m,n,p\rangle$ and show that $pb+nd=k=(d,b)=(b,d)$.
+					    \item Use \procedurehr{1.12} on $\langle b,p,n,d\rangle$ to construct $\langle q\rangle$ and show that $n=j-qg$.
+					    \item Now using \procedurehr{1.33}, show that $\chi_{b,d}(a,c)$
 					    \begin{enumerate}
 						    \item $=(a+((c-a)\div(b,d))ib)\bmod[b,d]$
 						    \item $=(a+((c-a)\div(b,d))(f-jd))\bmod[b,d]$
@@ -1522,22 +1540,23 @@
 				    Choose three integers $x,a,c$ and two positive integers $b,d$ such that $a\equiv c\pmod{(b,d)}$ and $x\equiv\chi_{b,d}(a,c)\pmod{[b,d]}$. The objective of the following instructions is to show that $x\equiv a\pmod{b}$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle b,d\rangle$ and let $\langle e,f,g,h,i\rangle$.
-					    \item Verify that $x\bmod[b,d]=\chi_{b,d}(a,c)\bmod[b,d]$.
-					    \item Therefore verify that $x\bmod(bg)=\chi_{b,d}(a,c)\bmod(bg)$.
-					    \item Therefore verify that $(x\bmod(bg))\bmod b=(\chi_{b,d}(a,c)\bmod(bg))\bmod b$.
-					    \item \textbf{Therefore using \procedurehr{1.03}, verify that $x\bmod b=\chi_{b,d}(a,c)\bmod b=(a+((c-a)\div(b,d))hb)\bmod b=a\bmod b$.}
+					    \item Use \procedurehr{1.09} on $\langle b,d\rangle$ to construct $\langle e,f,g,h,i\rangle$.
+					    \item Show that $[b,d]=bg$.
+					    \item Hence show that $(x\bmod(bg))\bmod b=(\chi_{b,d}(a,c)\bmod(bg))\bmod b$
+					    \begin{enumerate}
+					      \item given that $x\bmod(bg)=\chi_{b,d}(a,c)\bmod(bg)$
+					      \item given that $x\bmod[b,d]=\chi_{b,d}(a,c)\bmod[b,d]$.
+					    \end{enumerate}
+					    \item \textbf{Therefore using \procedurehr{1.03}, show that $x\bmod b=\chi_{b,d}(a,c)\bmod b=(a+((c-a)\div(b,d))hb)\bmod b=a\bmod b$.}
 				    \end{enumerate}
 		    \procedure{1.42}
 			    \objective
 				    Choose three integers $x,a,c$ and two positive integers $b,d$ such that $a\equiv c\pmod{(b,d)}$ and $x\equiv\chi_{b,d}(a,c)\pmod{[b,d]}$. The objective of the following instructions is to either show that $0<0$ or to show that $x\equiv a\pmod{b}$ and $x\equiv c\pmod{d}$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{1.41} on $\langle x,a,c,b,d\rangle$.
-					    \item \textbf{Therefore verify that $x\equiv a\pmod{b}$.}
-					    \item Now using \procedurehr{1.40}, verify that $x\equiv\chi_{b,d}(a,c)\equiv\chi_{d,b}(c,a)\pmod{[d,b]}$
-					    \item Execute \procedurehr{1.41} on $\langle x,c,a,d,b\rangle$.
-					    \item \textbf{Therefore verify that $x\equiv c\pmod{d}$.}
+					    \item \textbf{Use \procedurehr{1.41} on $\langle x,a,c,b,d\rangle$ to show that $x\equiv a\pmod{b}$.}
+					    \item Show that $x\equiv\chi_{b,d}(a,c)\equiv\chi_{d,b}(c,a)\pmod{[d,b]}$ using \procedurehr{1.40}.
+					    \item \textbf{Use \procedurehr{1.41} on $\langle x,c,a,d,b\rangle$ to show that $x\equiv c\pmod{d}$.}
 				    \end{enumerate}
 		    \procedure{1.43}
 			    \objective
