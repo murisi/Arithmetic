@@ -1474,7 +1474,7 @@
 			    \end{enumerate}
 		    \procedure{1.39}
 			    \objective
-				    Choose three integers $x,a,c$ and two positive integers $b,d$ such that $x\equiv a\pmod{b}$ and $x\equiv c\pmod{d}$. The objective of the following instructions is to show that $0\ne 0$ if $a\not\equiv d\pmod{(b,d)}$, otherwise $x\equiv\chi_{b,d}(a,c)\pmod{[b,d]}$.
+				    Choose three integers $x,a,c$ and two positive integers $b,d$ such that $x\equiv a\pmod{b}$ and $x\equiv c\pmod{d}$. The objective of the following instructions is to show that $0\ne 0$ if $a\not\equiv c\pmod{(b,d)}$, otherwise $x\equiv\chi_{b,d}(a,c)\pmod{[b,d]}$.
 			    \implementation
 				    \begin{enumerate}
 					    \item Use \procedurehr{1.09} on $\langle b,d\rangle$ to construct $\langle e,f,g,h,i\rangle$ and show that:
@@ -1563,57 +1563,44 @@
 				    Choose two integers $a,c$ and three positive integers $b,d,e$ such that $a\equiv c\pmod{(b,d)}$. The objective of the following instructions is to show that $\chi_{b,d}(ea,ec)=e\chi_{b,d}(a,c)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\chi_{b,d}(a,c)\equiv a\pmod{b}$.
-					    \item Therefore using \procedurehr{1.05}, verify that $e\chi_{b,d}(a,c)\equiv ea\pmod{b}$.
-					    \item Verify that $\chi_{b,d}(a,c)\equiv c\pmod{d}$.
-					    \item Therefore using \procedurehr{1.05}, verify that $e\chi_{b,d}(a,c)\equiv ec\pmod{d}$.
-					    \item Also using \procedurehr{1.02} and the precondition, verify that $ea\equiv ec\pmod{(b,d)}$.
-					    \item Therefore using \procedurehr{1.39}, verify that $e\chi_{b,d}(a,c)\equiv\chi_{b,d}(ea,ec)\pmod{[b,d]}$.
-					    \item \textbf{Therefore verify that $e\chi_{b,d}(a,c)=\chi_{b,d}(ea,ec)$.}
+					    \item Use \procedurehr{1.42} on $\langle\chi_{b,d}(a,c),a,c,b,d\rangle$ to show that:
+					    \begin{enumerate}
+					      \item $\chi_{b,d}(a,c)\equiv a\pmod{b}$
+					      \item $\chi_{b,d}(a,c)\equiv c\pmod{d}$.
+					    \end{enumerate}
+					    \item Hence show that $e\chi_{b,d}(a,c)\equiv ea\pmod{b}$ using \procedurehr{1.05}.
+					    \item Also show that $e\chi_{b,d}(a,c)\equiv ec\pmod{d}$ using \procedurehr{1.05}.
+					    \item Also show that $ea\equiv ec\pmod{(b,d)}$ using using \procedurehr{1.02} given that $a\equiv c\pmod{(b,d)}$.
+					    \item \textbf{Hence show that $e\chi_{b,d}(a,c)\equiv\chi_{b,d}(ea,ec)\pmod{[b,d]}$ using \procedurehr{1.39}.}
 				    \end{enumerate}
 		    \procedure{1.44}
 			    \objective
 				    Choose two integers $a,c$ and three positive integers $b,d,e$ such that $a\equiv c\pmod{(eb,ed)}$. The objective of the following instructions is to show that $\chi_{eb,ed}(a,c)\bmod[b,d]=\chi_{b,d}(a,c)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\chi_{eb,ed}(a,c)\equiv a\pmod{eb}$.
-					    \item Therefore using \procedurehr{1.03}, verify that $\chi_{eb,ed}(a,c)\equiv a\pmod{b}$.
-					    \item Verify that $\chi_{eb,ed}(a,c)\equiv c\pmod{ed}$.
-					    \item Therefore using \procedurehr{1.03}, verify that $\chi_{eb,ed}(a,c)\equiv c\pmod{d}$.
-					    \item Now verify that $a\equiv c\pmod{e(b,d)}$.
-					    \item Therefore using \procedurehr{1.03}, verify that $a\equiv c\pmod{(b,d)}$.
-					    \item Therefore using \procedurehr{1.39}, verify that $\chi_{eb,ed}(a,c)\equiv\chi_{b,d}(a,c)\pmod{[b,d]}$.
-					    \item \textbf{Therefore verify that $\chi_{eb,ed}(a,c)\bmod[b,d]=\chi_{b,d}(a,c)$.}
-				    \end{enumerate}
-		    \procedure{1.45}
-			    \objective
-				    Choose three integers $a,c,e$ and three positive integers $b,d,f$ such that $a\equiv e\pmod{(b,f)}$, and $c\equiv e\pmod{(d,f)}$. The objective of the following instructions is to show that either $0<0$ or $\chi_{b,d}(a,c)\equiv e\pmod{([b,d],f)}$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Execute \procedurehr{1.09} on $\langle b,f\rangle$ and let $\langle g_0,h_0,i_0,j_0,k_0\rangle$ receive.
-					    \item Execute \procedurehr{1.09} on $\langle d,f\rangle$ and let $\langle g_1,h_1,i_1,j_1,k_1\rangle$ receive.
-					    \item Verify that $e\equiv a\pmod{(b,f)}$.
-					    \item Verify that $e\equiv c\pmod{(d,f)}$.
-					    \item Therefore using \procedurehr{1.39} and \procedurehr{1.44}, verify that $e$
-					    \begin{enumerate}
-						    \item $\equiv\chi_{(b,f),(d,f)}(a,c)$
-						    \item $\equiv\chi_{(b,f)h_1,(d,f)h_2}(a,c)$
-						    \item $=\chi_{b,d}(a,c)\pmod{[(b,f),(d,f)]}$.
-					    \end{enumerate}
-					    \item \textbf{Therefore using \procedurehr{1.36}, verify that $e\equiv\chi_{b,d}(a,c)\pmod{([b,d],f)}$.}
+				      \item Use \procedurehr{1.42} on $\langle\chi_{eb,ed}(a,c),a,c,eb,ed\rangle$ to show that:
+				      \begin{enumerate}
+				        \item $\chi_{eb,ed}(a,c)\equiv a\pmod{eb}$
+				        \item $\chi_{eb,ed}(a,c)\equiv c\pmod{ed}$.
+				      \end{enumerate}
+					    \item Show that $\chi_{eb,ed}(a,c)\equiv a\pmod{b}$ using \procedurehr{1.03}.
+					    \item Show that $\chi_{eb,ed}(a,c)\equiv c\pmod{d}$ using \procedurehr{1.03}.
+					    \item Show that $a\equiv c\pmod{(b,d)}$ using \procedurehr{1.03} given that $a\equiv c\pmod{e(b,d)}$.
+					    \item Hence show that $\chi_{eb,ed}(a,c)\equiv\chi_{b,d}(a,c)\pmod{[b,d]}$ using \procedurehr{1.39}.
+					    \item \textbf{Hence show that $\chi_{eb,ed}(a,c)\bmod[b,d]=\chi_{b,d}(a,c)$.}
 				    \end{enumerate}
 		    \procedure{1.46}
 			    \objective
-				    Choose three integers $a,c,e$ and three positive integers $b,d,f$ such that $a\equiv c\pmod{(b,d)}$, $a\equiv e\pmod{(b,f)}$, and $c\equiv e\pmod{(d,f)}$. Execute \procedurehr{1.45} on $\langle a,c,e,b,d,f\rangle$. Execute \procedurehr{1.45} on $\langle c,e,a,d,f,b\rangle$. The objective of the following instructions is to show that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)=\chi_{b,[d,f]}(a,\chi_{d,f}(c,e))$.
+				    Choose three integers $a,c,e$ and three positive integers $b,d,f$ such that $a\equiv c\pmod{(b,d)}$ and $\chi_{b,d}(a,c)\equiv e\pmod{([b,d],f)}$. The objective of the following instructions is to show that $0\ne 0$ if $c\not\equiv e\pmod{(d,f)}$ or $a\not\equiv\chi_{d,f}(c,e)\pmod{(b,[d,f])}$, otherwise $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)=\chi_{b,[d,f]}(a,\chi_{d,f}(c,e))$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv e\pmod{f}$.
-					    \item Verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv \chi_{b,d}(a,c)\pmod{[b,d]=gb=hd}$.
-					    \item Therefore using \procedurehr{1.03}, verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv \chi_{b,d}(a,c)\equiv a\pmod{b}$.
-					    \item Also using \procedurehr{1.03}, verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv \chi_{b,d}(a,c)\equiv c\pmod{d}$.
-					    \item Therefore using (1), (4), and \procedurehr{1.39}, verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv\chi_{d,f}(c,e)\pmod{[d,f]}$.
-					    \item Therefore using (3), (5), and \procedurehr{1.39}, verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv\chi_{b,[d,f]}(a,\chi_{d,f}(c,e))\pmod{[b,[d,f]]=[[b,d],f]}$.
-					    \item \textbf{Therefore verify that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)=\chi_{b,[d,f]}(a,\chi_{d,f}(c,e))$.}
+					    \item Show that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv e\pmod{f}$ using \procedurehr{1.42}.
+					    \item Show that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv \chi_{b,d}(a,c)\pmod{[b,d]=gb=hd}$ using \procedurehr{1.42}.
+					    \item Show that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv \chi_{b,d}(a,c)\equiv a\pmod{b}$ using \procedurehr{1.03} and \procedurehr{1.42}.
+					    \item Show that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv \chi_{b,d}(a,c)\equiv c\pmod{d}$ using \procedurehr{1.03} and \procedurehr{1.42}.
+					    \item Use \procedurehr{1.39} on $\langle\chi_{[b,d],f}(\chi_{b,d}(a,c),e),c,e,d,f\rangle$ to show that $0\ne 0$ if $c\not\equiv e\pmod{(d,f)}$, otherwise $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv\chi_{d,f}(c,e)\pmod{[d,f]}$.
+					    \item Use \procedurehr{1.39} on $\langle\chi_{[b,d],f}(\chi_{b,d}(a,c),e),a,\chi_{d,f}(c,e),b,[d,f]\rangle$ to show that $0\ne 0$ if $a\not\equiv\chi_{d,f}(c,e)\pmod{(b,[d,f])}$, otherwise $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)\equiv\chi_{b,[d,f]}(a,\chi_{d,f}(c,e))\pmod{[b,[d,f]]=[[b,d],f]}$.
+					    \item \textbf{Hence show that $\chi_{[b,d],f}(\chi_{b,d}(a,c),e)=\chi_{b,[d,f]}(a,\chi_{d,f}(c,e))$.}
 				    \end{enumerate}
 		    \declaration{1.15}
 			    The notation \gls{intchib_0,b_1,...,b_n-1a_0a_1,...,a_n-1} will be used to contextually refer to one of the following integers:
