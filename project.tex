@@ -267,7 +267,7 @@
 				    Choose an integer $a$. The objective of the following instructions is to show that $a=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item \textbf{Show that $a=a$ given that $\Po(a)+\Ne(a)=\Ne(a)+\Po(a)$.}
+					    \item \textbf{Show that $a=a$ using \declarationhr{1.25} given that $\Po(a)+\Ne(a)=\Ne(a)+\Po(a)$.}
 				    \end{enumerate}
 		    \procedure{1.66}
 			    \objective
@@ -303,7 +303,7 @@
 				    \begin{enumerate}
 					    \item Show that $\Po(a)+\Ne(c)=\Ne(a)+\Po(c)$ using \declarationhr{1.25}.
 					    \item Show that $\Po(b)+\Ne(d)=\Ne(b)+\Po(d)$ using \declarationhr{1.25}.
-					    \item Hence show that $a+b$
+					    \item Hence using \declarationhr{1.26}, show that $a+b$
 					    \begin{enumerate}
 						    \item $=\langle\Po(a),\Ne(a)\rangle+\langle\Po(b),\Ne(b)\rangle$
 						    \item $=\langle\Po(a)+\Po(b),\Ne(a)+\Ne(b)\rangle$
@@ -321,7 +321,7 @@
 				    Choose three integers $a,b,c$. The objective of the following instructions is to show that $(a+b)+c=a+(b+c)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $(a+b)+c$
+					    \item Using \declarationhr{1.26}, show that $(a+b)+c$
 					    \begin{enumerate}
 						    \item $=\langle\Po(a)+\Po(b),\Ne(a)+\Ne(b)\rangle+\langle\Po(c),\Ne(c)\rangle$
 						    \item $=\langle(\Po(a)+\Po(b))+\Po(c),(\Ne(a)+\Ne(b))+\Ne(c)\rangle$
@@ -335,7 +335,7 @@
 				    Choose two integers $a,b$. The objective of the following instructions is to show that $a+b=b+a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $a+b$
+					    \item Using \declarationhr{1.26}, show that $a+b$
 					    \begin{enumerate}
 						    \item $=\langle\Po(a)+\Po(b),\Ne(a)+\Ne(b)\rangle$
 						    \item $=\langle\Po(b)+\Po(a),\Ne(b)+\Ne(a)\rangle$
@@ -349,7 +349,7 @@
 				    Choose an integer $a$. The objective of the following instructions is to show that $0+a=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $0+a$
+					    \item Using \declarationhr{1.26}, show that $0+a$
 					    \begin{enumerate}
 						    \item $=\langle 0,0\rangle+\langle\Po(a),\Ne(a)\rangle$
 						    \item $=\langle 0+\Po(a),0+\Ne(a)\rangle$
@@ -365,7 +365,7 @@
 			    \implementation
 				    \begin{enumerate}
 					    \item Show that $\Po(a)+\Ne(b)=\Ne(a)+\Po(b)$ using \declarationhr{1.25}.
-					    \item Hence show that $-a$
+					    \item Hence using \declarationhr{1.28}, show that $-a$
 					    \begin{enumerate}
 						    \item $=\langle\Ne(a),\Po(a)\rangle$
 						    \item $=\langle\Ne(a)+\Po(b),\Po(a)+\Po(b)\rangle$
@@ -379,7 +379,7 @@
 				    Choose an integer $a$. The objective of the following instructions is to show that $-a+a=0$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $-a+a$
+					    \item Using \declarationhr{1.26}, show that $-a+a$
 					    \begin{enumerate}
 						    \item $=(-a)+a$
 						    \item $=\langle\Ne(a),\Po(a)\rangle+\langle\Po(a),\Ne(a)\rangle$
@@ -397,7 +397,7 @@
 				    \begin{enumerate}
 					    \item Show that $\Po(a)+\Ne(c)=\Ne(a)+\Po(c)$ using \declarationhr{1.25}.
 					    \item Show that $\Po(b)+\Ne(d)=\Ne(b)+\Po(d)$ using \declarationhr{1.25}.
-					    \item Hence show that $ab$
+					    \item Hence using \declarationhr{1.29}, show that $ab$
 					    \begin{enumerate}
 						    \item $=\langle\Po(a)\Po(b)+\Ne(a)\Ne(b),\Po(a)\Ne(b)+\Ne(a)\Po(b)\rangle$
 						    \item $=\langle\Po(a)\Po(b)+\Ne(a)\Ne(b)+\Po(a)\Ne(d)+\Ne(c)\Po(d)+\Po(c)\Ne(d),\Po(a)\Ne(b)+\Ne(a)\Po(b)+\Po(a)\Ne(d)+\Ne(c)\Po(d)+\Po(c)\Ne(d)\rangle$
@@ -418,7 +418,7 @@
 				    Choose three integers $a,b,c$. The objective of the following instructions is to show that $(ab)c=a(bc)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $(ab)c$
+					    \item Using \declarationhr{1.29}, show that $(ab)c$
 					    \begin{enumerate}
 						    \item $=\langle\Po(a)\Po(b)+\Ne(a)\Ne(b),\Po(a)\Ne(b)+\Ne(a)\Po(b)\rangle\langle\Po(c),\Ne(c)\rangle$
 						    \item $=\langle(\Po(a)\Po(b)+\Ne(a)\Ne(b))\Po(c)+(\Po(a)\Ne(b)+\Ne(a)\Po(b))\Ne(c),(\Po(a)\Po(b)+\Ne(a)\Ne(b))\Ne(c)+(\Po(a)\Ne(b)+\Ne(a)\Po(b))\Po(c)\rangle$
@@ -432,7 +432,7 @@
 				    Choose two integers $a,b$. The objective of the following instructions is to show that $ab=ba$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $ab$
+					    \item Using \declarationhr{1.29}, show that $ab$
 					    \begin{enumerate}
 						    \item $=\langle\Po(a)\Po(b)+\Ne(a)\Ne(b),\Po(a)\Ne(b)+\Ne(a)\Po(b)\rangle$
 						    \item $=\langle\Po(b)\Po(a)+\Ne(b)\Ne(a),\Po(b)\Ne(a)+\Ne(b)\Po(a)\rangle$
@@ -444,7 +444,7 @@
 				    Choose an integer $a$. The objective of the following instructions is to show that $1a=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $1a$
+					    \item Using \declarationhr{1.29}, show that $1a$
 					    \begin{enumerate}
 						    \item $=\langle 1,0\rangle\langle\Po(a),\Ne(a)\rangle$
 						    \item $=\langle 1\Po(a)+0\Ne(a),1\Ne(a)+0\Po(a)\rangle$
@@ -457,7 +457,7 @@
 				    Choose three integers $a,b,c$. The objective of the following instructions is to show that $a(b+c)=ab+ac$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $a(b+c)$
+					    \item Using \declarationhr{1.26} and \declarationhr{1.29}, show that $a(b+c)$
 					    \begin{enumerate}
 						    \item $=\langle\Po(a),\Ne(a)\rangle\langle\Po(b)+\Po(c),\Ne(b)+\Ne(c)\rangle$
 						    \item $=\langle\Po(a)(\Po(b)+\Po(c))+\Ne(a)(\Ne(b)+\Ne(c)),\Po(a)(\Ne(b)+\Ne(c))+\Ne(a)(\Po(b)+\Po(c))\rangle$
@@ -471,11 +471,9 @@
 				    Choose an integer $a$. The objective of the following instructions is to show that $(-1)^{2a}=1$ and $(-1)^{2a+1}=-1$.
 			    \implementation
 				    \begin{enumerate}
-					    \item \textbf{Show that $(-1)^{2a+1}=(-1)^{2a}(-1)=1(-1)=-1$}
-					    \begin{enumerate}
-					      \item given that $(-1)^{2a}=((-1)^2)^a=1^a=1$
-					      \item given that $(-1)^2=(-1)(-1)+1+(-1)=(-1)((-1)+1)+1=(-1)0+1=1$.
-					    \end{enumerate}
+                        \item Show that $(-1)^2=(-1)(-1)+1+(-1)=(-1)((-1)+1)+1=(-1)0+1=1$.
+                        \item \textbf{Hence show that $(-1)^{2a}=((-1)^2)^a=1^a=1$.}
+					    \item \textbf{Also show that $(-1)^{2a+1}=(-1)^{2a}(-1)=1(-1)=-1$.}
 				    \end{enumerate}
 		    \declaration{1.30}
 			    The phrase "\gls{inta<b}", where $a,b$ are rational numbers, will be used as a shorthand for "$\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$".
@@ -495,7 +493,7 @@
 						    \item $<(\Ne(a)+\Po(b))+\Ne(c)+\Po(d)-\Ne(a)-\Po(b)$
 						    \item $=\Ne(c)+\Po(d)$.
 					    \end{enumerate}
-					    \item \textbf{Hence show that $c<d$.}
+					    \item \textbf{Hence show that $c<d$ using \declarationhr{1.30}.}
 				    \end{enumerate}
 		    \procedure{1.80}
 			    \objective
@@ -511,16 +509,16 @@
 						    \item $=\Ne(a)+\Ne(c)+\Po(b)+\Po(c)$
 						    \item $=\Ne(a+c)+\Po(b+c)$.
 					    \end{enumerate}
-					    \item \textbf{Hence show that $a+c<b+c$.}
+					    \item \textbf{Hence show that $a+c<b+c$ using \declarationhr{1.30}.}
 				    \end{enumerate}
 		    \procedure{1.81}
 			    \objective
 				    Choose two integers $a,b$ such that $a<b$. The objective of the following instructions is to show that $a\ne b$ and $b\not<a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$.
-					    \item \textbf{Hence show that $a\ne b$ given that $\Po(a)+\Ne(b)\ne\Ne(a)+\Po(b)$.}
-					    \item \textbf{Also show that $b\not<a$ given that $\Ne(a)+\Po(b)\not<\Po(a)+\Ne(b)$.}
+					    \item Show that $\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$ using \declarationhr{1.30} given that $a<b$.
+					    \item \textbf{Hence show that $a\ne b$ using \declarationhr{1.25} given that $\Po(a)+\Ne(b)\ne\Ne(a)+\Po(b)$.}
+					    \item \textbf{Also show that $b\not<a$ using \declarationhr{1.30} given that $\Ne(a)+\Po(b)\not<\Po(a)+\Ne(b)$.}
 				    \end{enumerate}
 		    \procedure{1.82}
 			    \objective
@@ -532,14 +530,14 @@
 				    Choose two integers $a,b$ such that $a\ne b$. The objective of the following instructions is to show that $a<b$ or $b<a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $\Po(a)+\Ne(b)\ne\Ne(a)+\Po(b)$.
+					    \item Show that $\Po(a)+\Ne(b)\ne\Ne(a)+\Po(b)$ using \declarationhr{1.25} given that $a\ne b$.
 					    \item If $\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$, then do the following:
 					    \begin{enumerate}
-						    \item \textbf{Show that $a<b$.}
+						    \item \textbf{Show that $a<b$ using \declarationhr{1.30}.}
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item \textbf{Show that $b<a$ given that $\Ne(a)+\Po(b)<\Po(a)+\Ne(b)$.}
+						    \item \textbf{Show that $b<a$ using \declarationhr{1.30} given that $\Ne(a)+\Po(b)<\Po(a)+\Ne(b)$.}
 					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{1.84}
@@ -554,7 +552,8 @@
 				    \begin{enumerate}
 					    \item Show that $\Ne(a)=\Po(0)+\Ne(a)<\Ne(0)+\Po(a)=\Po(a)$ using \declarationhr{1.30}.
 					    \item Show that $\Ne(b)=\Po(0)+\Ne(b)<\Ne(0)+\Po(b)=\Po(b)$ using \declarationhr{1.30}.
-					    \item \textbf{Hence show that $0<a+b$ given that $\Po(0)+\Ne(a+b)=\Ne(a+b)=\Ne(a)+\Ne(b)<\Po(a)+\Po(b)=\Po(a+b)=\Ne(0)+\Po(a+b)$.}
+                        \item Show that $\Po(0)+\Ne(a+b)=\Ne(a+b)=\Ne(a)+\Ne(b)<\Po(a)+\Po(b)=\Po(a+b)=\Ne(0)+\Po(a+b)$.
+					    \item \textbf{Hence show that $0<a+b$ given that $\Po(0)+\Ne(a+b)<\Ne(0)+\Po(a+b)$.}
 				    \end{enumerate}
 		    \procedure{1.86}
 			    \objective
