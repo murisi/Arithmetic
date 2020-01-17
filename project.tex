@@ -67,7 +67,7 @@
 \newcounter{declarationtemp}
 \newcommand{\declaration}[1]{
 	\renewcommand\thedeclarationtemp{\thepart:\thedeclaration}
-	\subsubsection*{Declaration \thedeclarationtemp}
+	\subsubsection*{Declaration \thedeclarationtemp (#1)}
 	\label{sec:declaration #1}
 	\refstepcounter{declarationtemp}
 	\label{declaration#1}
@@ -1985,40 +1985,39 @@
 				    Choose a rational number $a$. The objective of the following instructions is to show that $a=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\Nu(a)\De(a)=\De(a)\Nu(a)$.
-					    \item \textbf{Hence verify that $a=a$.}
+					    \item \textbf{Show that $a=a$ using \declarationhr{2.15} given that $\Nu(a)\De(a)=\De(a)\Nu(a)$.}
 				    \end{enumerate}
 		    \procedure{2.28}
 			    \objective
 				    Choose two rational numbers $a,b$ such that $a=b$. The objective of the following instructions is to show that $b=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\Nu(a)\De(b)=\De(a)\Nu(b)$.
-					    \item Hence verify that $\Nu(b)\De(a)=\De(b)\Nu(a)$.
-					    \item \textbf{Hence verify that $b=a$.}
+					    \item Show that $\Nu(a)\De(b)=\De(a)\Nu(b)$ using \declarationhr{2.15} given that $a=b$.
+					    \item \textbf{Hence show that $b=a$ using \declarationhr{2.15} given that $\Nu(b)\De(a)=\De(b)\Nu(a)$.}
 				    \end{enumerate}
 		    \procedure{2.29}
 			    \objective
 				    Choose three rational numbers $a,b,c$ such that $a=b$ and $b=c$. The objective of the following instructions is to show that $a=c$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{2.15}, verify that $\Nu(a)\De(b)=\De(a)\Nu(b)$.
-					    \item Using \declarationhr{2.15}, verify that $\Nu(b)\De(c)=\De(b)\Nu(c)$.
+					    \item Show that $\Nu(a)\De(b)=\De(a)\Nu(b)$ using \declarationhr{2.15} given that $a=b$.
+					    \item Show that $\Nu(b)\De(c)=\De(b)\Nu(c)$ using \declarationhr{2.15} given that $b=c$.
 					    \item If $\Nu(b)\ne 0$, then do the following:
 					    \begin{enumerate}
-						    \item Hence verify that $\Nu(a)\De(b)\Nu(b)\De(c)=\De(a)\Nu(b)\De(b)\Nu(c)$.
-						    \item Hence verify that $\Nu(a)\De(c)=\De(a)\Nu(c)$.
+						    \item Show that $\Nu(a)\De(b)\Nu(b)\De(c)=\De(a)\Nu(b)\De(b)\Nu(c)$.
+						    \item Hence show that $\Nu(a)\De(c)=\De(a)\Nu(c)$.
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item Using \declarationhr{2.12}, verify that $\De(b)\ne 0$.
-						    \item Verify that $\Nu(a)\De(b)=\De(a)\Nu(b)=0$.
-						    \item Hence verify that $\Nu(a)=0$.
-						    \item Verify that $0=\Nu(b)\De(c)=\De(b)\Nu(c)$.
-						    \item Hence verify that $\Nu(c)=0$.
-						    \item Hence verify that $\Nu(a)\De(c)=0=\De(a)\Nu(c)$.
+                            \item Show that $\Nu(b)=0$.
+						    \item Show that $\De(b)\ne 0$ using \declarationhr{2.12}.
+						    \item Show that $\Nu(a)\De(b)=\De(a)\Nu(b)=0\De(a)=0$ given that $a=b$.
+						    \item Hence show that $\Nu(a)=0$.
+						    \item Show that $0=0\De(c)=\Nu(b)\De(c)=\De(b)\Nu(c)$.
+						    \item Hence show that $\Nu(c)=0$.
+						    \item Hence show that $\Nu(a)\De(c)=0\De(c)=\De(a)0=\De(a)\Nu(c)$.
 					    \end{enumerate}
-					    \item \textbf{Hence verify that $a=c$.}
+					    \item \textbf{Hence show that $a=c$.}
 				    \end{enumerate}
 		    \declaration{2.16}
 			    The notation \gls{rata+b}, where $a,b$ are rational numbers, will be used as a shorthand for the pair $\langle\Nu(a)\De(b)+\De(a)\Nu(b),\De(a)\De(b)\rangle$.
@@ -2027,9 +2026,9 @@
 				    Choose two rational numbers $a,b,c,d$ such that $a=c$ and $b=d$. The objective of the following instructions is to show that $a+b=c+d$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{2.15}, verify that $\Nu(a)\De(c)=\De(a)\Nu(c)$.
-					    \item Using \declarationhr{2.15}, verify that $\Nu(b)\De(d)=\De(b)\Nu(d)$.
-					    \item Hence verify that $a+b$
+					    \item Show that $\Nu(a)\De(c)=\De(a)\Nu(c)$ using \declarationhr{2.15} given that $a=c$.
+					    \item Show that $\Nu(b)\De(d)=\De(b)\Nu(d)$ using \declarationhr{2.15} given that $b=d$.
+					    \item Hence using \declarationhr{2.16}, show that $a+b$
 					    \begin{enumerate}
 						    \item $=\langle\Nu(a),\De(a)\rangle+\langle\Nu(b),\De(b)\rangle$
 						    \item $=\langle\Nu(a)\De(b)+\De(a)\Nu(b),\De(a)\De(b)\rangle$
@@ -2047,7 +2046,7 @@
 				    Choose three rational numbers $a,b,c$. The objective of the following instructions is to show that $(a+b)+c=a+(b+c)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $(a+b)+c$
+					    \item Using \declarationhr{2.16}, show that $(a+b)+c$
 					    \begin{enumerate}
 						    \item $=\langle\Nu(a)\De(b)+\De(a)\Nu(b),\De(a)\De(b)\rangle+\langle\Nu(c),\De(c)\rangle$
 						    \item $=\langle(\Nu(a)\De(b)+\De(a)\Nu(b))\De(c)+(\De(a)\De(b))\Nu(c),(\De(a)\De(b))\De(c)\rangle$
@@ -2061,7 +2060,7 @@
 				    Choose two rational numbers $a,b$. The objective of the following instructions is to show that $a+b=b+a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item $a+b$
+					    \item Using \declarationhr{2.16}, show that $a+b$
 					    \begin{enumerate}
 						    \item $=\langle\Nu(a)\De(b)+\De(a)\Nu(b),\De(a)\De(b)\rangle$
 						    \item $=\langle\Nu(b)\De(a)+\De(b)\Nu(a),\De(b)\Nu(a)\rangle$
@@ -2075,7 +2074,7 @@
 				    Choose a rational number $a$. The objective of the following instructions is to show that $0+a=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $0+a$
+					    \item Using \declarationhr{2.16} and \declarationhr{2.17}, show that $0+a$
 					    \begin{enumerate}
 						    \item $=\langle 0,1\rangle+\langle\Nu(a),\De(a)\rangle$
 						    \item $=\langle 0\De(a)+1\Nu(a),1\De(a)\rangle$
@@ -2090,8 +2089,8 @@
 				    Choose two rational numbers $a,b$ such that $a=b$. The objective of the following instructions is to show that $-a=-b$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{2.15}, verify that $\Nu(a)\De(b)=\De(a)\Nu(b)$.
-					    \item Hence verify that $-a$
+					    \item Show that $\Nu(a)\De(b)=\De(a)\Nu(b)$ using \declarationhr{2.15} given that $a=b$.
+					    \item Hence using \declarationhr{2.18}, show that $-a$
 					    \begin{enumerate}
 						    \item $=\langle-\Nu(a),\De(a)\rangle$
 						    \item $=\langle-\Nu(a)\De(b),\De(a)\De(b)\rangle$
@@ -2105,7 +2104,7 @@
 				    Choose a rational number $a$. The objective of the following instructions is to show that $-a+a=0$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $-a+a$
+					    \item Using \declarationhr{2.16} and \declarationhr{2.18}, show that $-a+a$
 					    \begin{enumerate}
 						    \item $=(-a)+a$
 						    \item $=\langle-\Nu(a),\De(a)\rangle+\langle\Nu(a),\De(a)\rangle$
@@ -2122,9 +2121,9 @@
 				    Choose two rational numbers $a,b,c,d$ such that $a=c$ and $b=d$. The objective of the following instructions is to show that $ab=cd$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{2.15}, verify that $\Nu(a)\De(c)=\De(a)\Nu(c)$.
-					    \item Using \declarationhr{2.15}, verify that $\Nu(b)\De(d)=\De(b)\Nu(d)$.
-					    \item Hence verify that $ab$
+					    \item Show that $\Nu(a)\De(c)=\De(a)\Nu(c)$ using \declarationhr{2.15} given that $a=c$.
+					    \item Show that $\Nu(b)\De(d)=\De(b)\Nu(d)$ using \declarationhr{2.15} given that $b=d$.
+					    \item Hence using \declarationhr{2.19}, show that $ab$
 					    \begin{enumerate}
 						    \item $=\langle\Nu(a),\De(a)\rangle\langle\Nu(b),\De(b)\rangle$
 						    \item $=\langle\Nu(a)\Nu(b),\De(a)\De(b)\rangle$
@@ -2142,7 +2141,7 @@
 				    Choose three rational numbers $a,b,c$. The objective of the following instructions is to show that $(ab)c=a(bc)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $(ab)c$
+					    \item Using \declarationhr{2.19}, show that $(ab)c$
 					    \begin{enumerate}
 						    \item $=\langle\Nu(a)\Nu(b),\De(a)\De(b)\rangle\langle\Nu(c),\De(c)\rangle$
 						    \item $=\langle\Nu(a)\Nu(b)\Nu(c),\De(a)\De(b)\De(c)\rangle$
@@ -2155,7 +2154,7 @@
 				    Choose two rational numbers $a,b$. The objective of the following instructions is to show that $ab=ba$.
 			    \implementation
 				    \begin{enumerate}
-					    \item $ab$
+					    \item Using \declarationhr{2.19}, show that $ab$
 					    \begin{enumerate}
 						    \item $=\langle\Nu(a)\Nu(b),\De(a)\De(b)\rangle$
 						    \item $=\langle\Nu(b)\Nu(a),\De(b)\De(a)\rangle$
@@ -2167,7 +2166,7 @@
 				    Choose a rational number $a$. The objective of the following instructions is to show that $1a=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $1a$
+					    \item Using \declarationhr{2.19}, show that $1a$
 					    \begin{enumerate}
 						    \item $=\langle 1,1\rangle\langle\Nu(a),\De(a)\rangle$
 						    \item $=\langle 1\Nu(a),1\De(a)\rangle$
@@ -2176,21 +2175,19 @@
 					    \end{enumerate}
 				    \end{enumerate}
 		    \declaration{2.20}
-			    The notation \gls{rat1/a}, where $a$ is a rational number such that $\Nu(a)>0$, will be used as a shorthand for the pair $\langle\De(a),\Nu(a)\rangle$.
-		    \declaration{2.21}
-			    The notation $\frac{1}{a}$, where $a$ is a rational number such that $\Nu(a)<0$, will be used as a shorthand for the pair $\langle-\De(a),-\Nu(a)\rangle$.
+			    The notation \gls{rat1/a}, where $a$ is a rational number, will be used as a shorthand for the pair $\langle\De(a),\Nu(a)\rangle$ if $\Nu(a)>0$ and $\langle-\De(a),-\Nu(a)\rangle$ if $\Nu(a)<0$.
 		    \procedure{2.40}
 			    \objective
 				    Choose two rational numbers $a,b$ such that $a=b$ and $a\ne 0$. The objective of the following instructions is to show that $\frac{1}{a}=\frac{1}{b}$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{2.15}, verify that $\Nu(a)\De(b)=\De(a)\Nu(b)$.
-					    \item Using \declarationhr{2.15} and \declarationhr{2.17}, verify that $\Nu(a)=\Nu(a)\De(0)\ne\De(a)\Nu(0)=0$.
-					    \item Hence using \declarationhr{2.12}, verify that $\De(a)\Nu(b)=\Nu(a)\De(b)\ne 0$.
-					    \item Hence verify that $\Nu(b)\ne 0$.
+					    \item Show that $\Nu(a)=\Nu(a)\De(0)\ne\De(a)\Nu(0)=0$ using \declarationhr{2.15} and \declarationhr{2.17} given that $a\ne 0$.
+                        \item Show that $\Nu(a)\De(b)=\De(a)\Nu(b)$ using \declarationhr{2.15} given that $a=b$.
+					    \item Hence show that $\De(a)\Nu(b)=\Nu(a)\De(b)\ne 0$ using \declarationhr{2.12} given that $\Nu(a)\ne 0$.
+					    \item Hence show that $\Nu(b)\ne 0$.
 					    \item If $\Nu(a)\Nu(b)>0$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $\frac{1}{a}$
+						    \item Using \declarationhr{2.20}, show that $\frac{1}{a}$
 						    \begin{enumerate}
 							    \item $=\langle\De(a)\Nu(b),\Nu(a)\Nu(b)\rangle$
 							    \item $=\langle\Nu(a)\De(b),\Nu(a)\Nu(b)\rangle$
@@ -2199,8 +2196,8 @@
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item Verify that $\Nu(a)\Nu(b)<0$.
-						    \item Hence verify that $\frac{1}{a}$
+						    \item Show that $\Nu(a)\Nu(b)<0$.
+						    \item Hence using \declarationhr{2.20}, show that $\frac{1}{a}$
 						    \begin{enumerate}
 							    \item $=\langle-\De(a)\Nu(b),-\Nu(a)\Nu(b)\rangle$
 							    \item $=\langle-\Nu(a)\De(b),-\Nu(a)\Nu(b)\rangle$
@@ -2213,10 +2210,10 @@
 				    Choose a rational number $a$ such that $a\ne 0$. The objective of the following instructions is to show that $\frac{1}{a}a=1$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{2.15} and \declarationhr{2.17}, verify that $\Nu(a)=\Nu(a)\De(0)\ne\De(a)\Nu(0)=0$.
+					    \item Show that $\Nu(a)=\Nu(a)\De(0)\ne\De(a)\Nu(0)=0$ using \declarationhr{2.15} and \declarationhr{2.17}, given that $a\ne 0$.
 					    \item If $\Nu(a)>0$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $\frac{1}{a}a$
+						    \item Using \declarationhr{2.20}, show that $\frac{1}{a}a$
 						    \begin{enumerate}
 							    \item $=\langle\De(a),\Nu(a)\rangle\langle\Nu(a),\De(a)\rangle$
 							    \item $=\langle\De(a)\Nu(a),\Nu(a)\De(a)\rangle$
@@ -2226,8 +2223,8 @@
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item Verify that $\Nu(a)<0$.
-						    \item Hence verify that $\frac{1}{a}a$
+						    \item Show that $\Nu(a)<0$.
+						    \item Hence using \declarationhr{2.20}, show that $\frac{1}{a}a$
 						    \begin{enumerate}
 							    \item $=\langle-\De(a),-\Nu(a)\rangle\langle\Nu(a),\De(a)\rangle$
 							    \item $=\langle-\De(a)\Nu(a),-\Nu(a)\De(a)\rangle$
@@ -2241,7 +2238,7 @@
 				    Choose three rational numbers $a,b,c$. The objective of the following instructions is to show that $a(b+c)=ab+ac$.
 			    \implementation
 				    \begin{enumerate}
-					    \item $a(b+c)$
+					    \item Using \declarationhr{2.16} and \declarationhr{2.19}, show that $a(b+c)$
 					    \begin{enumerate}
 						    \item $=\langle\Nu(a),\De(a)\rangle\langle\Nu(b)\De(c)+\De(b)\Nu(c),\De(b)\De(c)\rangle$
 						    \item $=\langle\Nu(a)(\Nu(b)\De(c)+\De(b)\Nu(c)),\De(a)(\De(b)\De(c))\rangle$
@@ -2264,26 +2261,26 @@
 				    Choose four rational numbers $a,b,c,d$ such that $a<b$, $a=c$ and $b=d$. The objective of the following instructions is to show that $c<d$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{2.15}, verify that $\Nu(a)\De(c)=\De(a)\Nu(c)$.
-					    \item Using \declarationhr{2.15}, verify that $\Nu(b)\De(d)=\De(b)\Nu(d)$.
-					    \item Using \declarationhr{2.22}, verify that $\Nu(a)\De(b)<\De(a)\Nu(b)$.
-					    \item Hence verify that $\Nu(c)\De(d)\De(a)\De(b)$
+					    \item Show that $\Nu(a)\De(c)=\De(a)\Nu(c)$ using \declarationhr{2.15} given that $a=c$.
+					    \item Show that $\Nu(b)\De(d)=\De(b)\Nu(d)$ using \declarationhr{2.15} given that $b=d$.
+					    \item Show that $\Nu(a)\De(b)<\De(a)\Nu(b)$ using \declarationhr{2.22} given that $a<b$.
+					    \item Hence show that $\Nu(c)\De(d)\De(a)\De(b)$
 					    \begin{enumerate}
 						    \item $=\Nu(a)\De(c)\De(d)\De(b)$
 						    \item $<\De(a)\Nu(b)\De(c)\De(d)$
 						    \item $=\De(b)\Nu(d)\De(a)\De(c)$.
 					    \end{enumerate}
-					    \item Hence verify that $\Nu(c)\De(d)<\De(c)\Nu(d)$.
-					    \item \textbf{Hence verify that $c<d$.}
+					    \item Hence show that $\Nu(c)\De(d)<\De(c)\Nu(d)$.
+					    \item \textbf{Hence show that $c<d$ using \declarationhr{2.22}.}
 				    \end{enumerate}
 		    \procedure{2.44}
 			    \objective
 				    Choose three rational numbers $a,b,c$ such that $a<b$. The objective of the following instructions is to show that $a+c<b+c$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{2.22}, verify that $\Nu(a)\De(b)<\De(a)\Nu(b)$.
-					    \item Using \declarationhr{2.12}, verify that $0<\De(c)$.
-					    \item Hence verify that $\Nu(a+c)\De(b+c)$
+					    \item Show that $\Nu(a)\De(b)<\De(a)\Nu(b)$ using \declarationhr{2.22} given that $a<b$.
+					    \item Show that $0<\De(c)$ using \declarationhr{2.12}.
+					    \item Hence show that $\Nu(a+c)\De(b+c)$
 					    \begin{enumerate}
 						    \item $=(\Nu(a)\De(c)+\De(a)\Nu(c))\De(b)\De(c)$
 						    \item $=\Nu(a)\De(c)\De(b)\De(c)+\De(a)\Nu(c)\De(b)\De(c)$
@@ -2291,18 +2288,16 @@
 						    \item $=(\Nu(b)\De(c)+\Nu(c)\De(b))\De(a)\De(c)$
 						    \item $=\Nu(b+c)\De(a+c)$.
 					    \end{enumerate}
-					    \item \textbf{Hence verify that $a+c<b+c$.}
+					    \item \textbf{Hence show that $a+c<b+c$.}
 				    \end{enumerate}
 		    \procedure{2.45}
 			    \objective
 				    Choose two rational numbers $a,b$ such that $a<b$. The objective of the following instructions is to show that $a\ne b$ and $b\not<a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\Nu(a)\De(b)<\De(a)\Nu(b)$.
-					    \item Hence verify that $\Nu(a)\De(b)\ne\De(a)\Nu(b)$.
-					    \item \textbf{Hence verify that $a\ne b$.}
-					    \item Also verify that $\Nu(b)\De(a)\not<\De(b)\Nu(a)$.
-					    \item \textbf{Hence verify that $b\not<a$.}
+					    \item Show that $\Nu(a)\De(b)<\De(a)\Nu(b)$ using \declarationhr{2.22} given that $a<b$.
+					    \item \textbf{Hence show that $a\ne b$ using \declarationhr{2.15} given that $\Nu(a)\De(b)\ne\De(a)\Nu(b)$.}
+					    \item \textbf{Also show that $b\not<a$ using \declarationhr{2.22} given that $\Nu(b)\De(a)\not<\De(b)\Nu(a)$.}
 				    \end{enumerate}
 		    \procedure{2.46}
 			    \objective
@@ -2314,15 +2309,14 @@
 				    Choose two rational numbers $a,b$ such that $a\ne b$. The objective of the following instructions is to show that $a<b$ or $b<a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\Nu(a)\De(b)\ne\De(a)\Nu(b)$.
+					    \item Show that $\Nu(a)\De(b)\ne\De(a)\Nu(b)$ using \declarationhr{2.15} given that $a\ne b$.
 					    \item If $\Nu(a)\De(b)<\De(a)\Nu(b)$, then do the following:
 					    \begin{enumerate}
-						    \item \textbf{Verify that $a<b$.}
+						    \item \textbf{Show that $a<b$ using \declarationhr{2.22}.}
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item Verify that $\Nu(b)\De(a)<\De(b)\Nu(a)$.
-						    \item \textbf{Hence verify that $b<a$.}
+						    \item \textbf{Show that $b<a$ using \declarationhr{2.22} given that $\Nu(b)\De(a)<\De(b)\Nu(a)$.}
 					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{2.48}
@@ -2335,22 +2329,22 @@
 				    Choose two rational numbers $a,b$ such that $0<a$ and $0<b$. The objective of the following instructions is to show that $0<a+b$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{2.22}, verify that $0=\Nu(0)\De(a)<\De(0)\Nu(a)=\Nu(a)$.
-					    \item Using \declarationhr{2.12}, verify that $0<\De(a)$.
-					    \item Using \declarationhr{2.22}, verify that $0=\Nu(0)\De(b)<\De(0)\Nu(b)=\Nu(b)$.
-					    \item Using \declarationhr{2.12}, verify that $0<\De(b)$.
-					    \item Hence verify that $\Nu(0)\De(a+b)=0<\Nu(a)\De(b)+\De(a)\Nu(b)=\De(0)\Nu(a+b)$.
-					    \item \textbf{Hence verify that $0<a+b$.}
+					    \item Show that $0=\Nu(0)\De(a)<\De(0)\Nu(a)=\Nu(a)$ using \declarationhr{2.22} given that $0<a$.
+					    \item Show that $0<\De(a)$ using \declarationhr{2.12}.
+					    \item Show that $0=\Nu(0)\De(b)<\De(0)\Nu(b)=\Nu(b)$ using \declarationhr{2.22} given that $0<b$.
+					    \item Show that $0<\De(b)$ using \declarationhr{2.12}.
+					    \item Hence show that $\Nu(0)\De(a+b)=0<\Nu(a)\De(b)+\De(a)\Nu(b)=\De(0)\Nu(a+b)$.
+					    \item \textbf{Hence show that $0<a+b$ using \declarationhr{2.22} given that $\Nu(0)\De(a+b)<\De(0)\Nu(a+b)$.}
 				    \end{enumerate}
 		    \procedure{2.50}
 			    \objective
 				    Choose two rational numbers $a,b$ such that $0<a$ and $0<b$. The objective of the following instructions is to show that $0<ab$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{2.22}, verify that $0=\Nu(0)\De(a)<\De(0)\Nu(a)=\Nu(a)$.
-					    \item Using \declarationhr{2.22}, verify that $0=\Nu(0)\De(b)<\De(0)\Nu(b)=\Nu(b)$.
-					    \item Hence verify that $\Nu(0)\De(ab)=0<\Nu(a)\Nu(b)=\De(0)\Nu(ab)$.
-					    \item \textbf{Hence verify that $0<ab$.}
+					    \item Show that $0=\Nu(0)\De(a)<\De(0)\Nu(a)=\Nu(a)$ using \declarationhr{2.22} given that $0<a$.
+					    \item Show that $0=\Nu(0)\De(b)<\De(0)\Nu(b)=\Nu(b)$ using \declarationhr{2.22} given that $0<b$.
+					    \item Hence show that $\Nu(0)\De(ab)=0<\Nu(a)\Nu(b)=\De(0)\Nu(ab)$.
+					    \item \textbf{Hence show that $0<ab$ using \declarationhr{2.22} given that $\Nu(0)\De(ab)<\De(0)\Nu(ab)$.}
 				    \end{enumerate}
 		    \procedure{2.81}
 			    \objective
@@ -2381,16 +2375,16 @@
 				    Choose a rational number $r\ne 1$ and an integer $n\ge 0$. The objective of the following instructions is to show that $\sum_t^{[0:n]} r^t=\frac{1-r^n}{1-r}$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $r\sum_t^{[0:n]} r^t=\sum_t^{[0:n]} r^{t+1}=\sum_t^{[1:{n+1}]} r^t$.
-					    \item Therefore verify that $(1-r)\sum_t^{[0:n]} r^t=\sum_t^{[0:n]} r^t-\sum_t^{[1:{n+1}]} r^t=1-r^n$.
-					    \item \textbf{Therefore verify that $\sum_t^{[0:n]} r^t=\frac{1-r^n}{1-r}$.}
+					    \item Show that $r\sum_t^{[0:n]} r^t=\sum_t^{[0:n]} r^{t+1}=\sum_t^{[1:{n+1}]} r^t$.
+					    \item Therefore show that $(1-r)\sum_t^{[0:n]} r^t=\sum_t^{[0:n]} r^t-\sum_t^{[1:{n+1}]} r^t=1-r^n$.
+					    \item \textbf{Therefore show that $\sum_t^{[0:n]} r^t=\frac{1-r^n}{1-r}$.}
 				    \end{enumerate}
 		    \procedure{2.05}
 			    \objective
 				    Choose a rational $0<r<1$ and an integer $n\ge 0$. The objective of the following instructions is to show that $\sum_t^{[0:n]} r^t<\frac{1}{1-r}$.
 			    \implementation
 				    \begin{enumerate}
-					    \item \textbf{Using \procedurehr{2.04}, verify that $\sum_t^{[0:n]} r^t=\frac{1-r^n}{1-r}<\frac{1}{1-r}$.}
+					    \item \textbf{Show that $\sum_t^{[0:n]} r^t=\frac{1-r^n}{1-r}<\frac{1}{1-r}$ using \procedurehr{2.04}.}
 				    \end{enumerate}
 		    \procedure{2.06}
 			    \objective
@@ -2404,7 +2398,7 @@
 				    \begin{enumerate}
 					    \item If $-1\le x<0$, then do the following:
 					    \begin{enumerate}
-						    \item Using \procedurehr{2.04}, verify that $(1+x)^r$
+						    \item Using \procedurehr{2.04}, show that $(1+x)^r$
 						    \begin{enumerate}
 							    \item $=1+(1+x)^r-1$
 							    \item $=1+x\frac{(1+x)^r-1}{(1+x)-1}$
@@ -2415,8 +2409,8 @@
 					    \end{enumerate}
 					    \item Otherwise, do the following:
 					    \begin{enumerate}
-						    \item Verify that $x\ge 0$.
-						    \item Using \procedurehr{2.06}, verify that $(1+x)^r$
+						    \item Show that $x\ge 0$.
+						    \item Now using \procedurehr{2.06}, show that $(1+x)^r$
 						    \begin{enumerate}
 							    \item $=\sum_k^{[0:{r+1}]}\binom{r}{k}x^k$
 							    \item $\ge \binom{r}{0}x^0+\binom{r}{1}x^1$
@@ -2429,12 +2423,15 @@
 	          Choose a non-negative integer $r$ and a rational number $x>-1$ such that $(r-1)x<1$. The objective of the following instructions is to show that $(1+x)^r\le\frac{1+x}{1-(r-1)x}$.
 	        \implementation
 	          \begin{enumerate}
-	            \item Verify that $1-\frac{x}{1+x}=\frac{1}{1+x}>0$.
-	            \item Hence using \procedurehr{2.07}, verify that $(1-\frac{x}{1+x})^r\ge 1-\frac{rx}{1+x}$.
-	            \item Verify that $0<1+x-rx$.
-	            \item Hence verify that $0<1-\frac{rx}{1+x}$.
-	            \item Hence verify that $(1-\frac{x}{1+x})^r\ge 1-\frac{rx}{1+x}>0$.
-	            \item Hence verify that $(1+x)^r$
+	            \item Show that $1-\frac{x}{1+x}=\frac{1}{1+x}>0$.
+	            \item Hence show that $(1-\frac{x}{1+x})^r\ge 1-\frac{rx}{1+x}$ using \procedurehr{2.07}.
+	            \item Hence show that $(1-\frac{x}{1+x})^r\ge 1-\frac{rx}{1+x}>0$
+                \begin{enumerate}
+                    \item given that $0<\frac{1+x-rx}{1+x}=1-\frac{rx}{1+x}$
+                    \item given that $0<1+x-rx$
+                    \item given that $(r-1)x<1$.
+                \end{enumerate}
+	            \item Hence show that $(1+x)^r$
 	            \begin{enumerate}
 	              \item $=(\frac{1}{1+x})^{-r}$
 	              \item $=(1-\frac{x}{1+x})^{-r}$
