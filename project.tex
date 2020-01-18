@@ -2837,7 +2837,7 @@
 						    \item Hence show that $a_j=b_j=0$ using \declarationhr{2.34}.
 						    \item Hence show that $(a+b)_j=a_j+b_j=0$.
 					    \end{enumerate}
-					    \item Show that $(a+b)_{\deg(b)}=a_{\deg(b)}+b_{\deg(b)}=0+b_{\deg(b)}=b_{\deg(b)}\ne 0$ given that $\deg(b)>\deg(a)$.
+					    \item Show that $(a+b)_{\deg(b)}=a_{\deg(b)}+b_{\deg(b)}=0+b_{\deg(b)}=b_{\deg(b)}\ne 0$ using \declarationhr{2.34} given that $\deg(b)>\deg(a)$.
 					    \item \textbf{Hence show that $\deg(a+b)=\deg(b)$.}
 				    \end{enumerate}
 		    \procedure{2.75}
@@ -2847,12 +2847,10 @@
 				    \begin{enumerate}
 					    \item For $j\in[\max(\lvert a\rvert,\lvert b\rvert):\max(\deg(a),\deg(b))+1]$, do the following:
 					    \begin{enumerate}
-						    \item Verify that $j>\deg(a)$.
-						    \item Verify that $j>\deg(b)$.
-						    \item Hence verify that $a_j=b_j=0$.
-						    \item Hence verify that $(a+b)_j=a_j+b_j=0$.
+						    \item Show that $a_j=b_j=0$ using \declarationhr{2.34} given that $j>\deg(a)$ and $j>\deg(b)$.
+						    \item Hence show that $(a+b)_j=a_j+b_j=0$ using \declarationhr{2.29}.
 					    \end{enumerate}
-					    \item \textbf{Hence verify that $\deg(a+b)\le\max(\deg(a),\deg(b))$.}
+					    \item \textbf{Hence show that $\deg(a+b)\le\max(\deg(a),\deg(b))$ using \declarationhr{2.34}.}
 				    \end{enumerate}
 		    \procedure{2.76}
 			    \objective
@@ -2861,22 +2859,20 @@
 				    \begin{enumerate}
 					    \item For $j\in[\lvert a\rvert:\deg(a)+1]$, do the following:
 					    \begin{enumerate}
-						    \item Verify that $j>\deg(a)$.
-						    \item Hence verify that $a_j=0$.
-						    \item Hence verify that $(-a)_j=-(a_j)=-0=0$.
+						    \item Show that $a_j=0$ using \declarationhr{2.34} given that $j>\deg(a)$.
+						    \item Hence show that $(-a)_j=-(a_j)=-0=0$ using \declarationhr{2.31}.
 					    \end{enumerate}
-					    \item Verify that $a_{\deg(a)}\ne 0$.
-					    \item Hence verify that $(-a)_{\deg(a)}=-(a_{\deg(a)})\ne 0$.
-					    \item \textbf{Hence verify that $\deg(-a)=\deg(a)$.}
+					    \item Show that $(-a)_{\deg(a)}=-(a_{\deg(a)})\ne 0$ given that $a_{\deg(a)}\ne 0$.
+					    \item \textbf{Hence show that $\deg(-a)=\deg(a)$ using \declarationhr{2.34}.}
 				    \end{enumerate}
 		    \procedure{2.77}
 			    \objective
 				    Choose two polynomials $a,b$ such that $a\ne 0$ and $b\ne 0$. The objective of the following instructions is to show that $(ab)_{\deg(a)+\deg(b)}=a_{\deg(a)}b_{\deg(b)}\ne 0$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $a_{\deg(a)}\ne 0$.
-					    \item Verify that $b_{\deg(b)}\ne 0$.
-					    \item Hence verify that $(ab)_{\deg(a)+\deg(b)}$
+					    \item Show that $a_{\deg(a)}\ne 0$ given that $a\ne 0$.
+					    \item Show that $b_{\deg(b)}\ne 0$ given that $b\ne 0$.
+					    \item Hence using \declarationhr{2.32}, show that $(ab)_{\deg(a)+\deg(b)}$
 					    \begin{enumerate}
 						    \item $=\sum_r^{[0:\deg(a)+\deg(b)+1]}a_rb_{\deg(a)+\deg(b)-r}$
 						    \item $=\sum_r^{[0:\deg(a)]}a_rb_{\deg(a)+\deg(b)-r}+a_{\deg(a)}b_{\deg(a)+\deg(b)-\deg(a)}+\sum_r^{[\deg(a)+1:\deg(a)+\deg(b)+1]}a_rb_{\deg(a)+\deg(b)-r}$
@@ -2892,7 +2888,7 @@
 				    \begin{enumerate}
 					    \item For $j\in[\deg(a)+\deg(b)+1:\lvert a\rvert+\lvert b\rvert-1]$, do the following:
 					    \begin{enumerate}
-						    \item Verify that $(ab)_j$
+						    \item Using \declarationhr{2.32}, show that $(ab)_j$
 						    \begin{enumerate}
 							    \item $=\sum_r^{[0:j+1]}a_rb_{j-r}$
 							    \item $=\sum_r^{[0:\deg(a)+1]}a_rb_{j-r}+\sum_r^{[\deg(a)+1:j+1]}a_rb_{j-r}$
@@ -2900,8 +2896,8 @@
 							    \item $=0$.
 						    \end{enumerate}
 					    \end{enumerate}
-					    \item Now using \procedurehr{2.77}, verify that $(ab)_{\deg(a)+\deg(b)}=a_{\deg(a)}b_{\deg(b)}\ne 0$.
-					    \item \textbf{Hence verify that $\deg(ab)=\deg(a)+\deg(b)$.}
+					    \item Now show that $(ab)_{\deg(a)+\deg(b)}=a_{\deg(a)}b_{\deg(b)}\ne 0$ using \procedurehr{2.77}.
+					    \item \textbf{Hence show that $\deg(ab)=\deg(a)+\deg(b)$ using \declarationhr{2.34}.}
 				    \end{enumerate}
 		    \declaration{2.00}
 			    The phrase "\gls{ratpolymonic}" will be used to refer to polynomials $p$ such that $p\ne 0$ and $p_{\deg(p)}=1$.
@@ -2916,18 +2912,19 @@
 					    \begin{enumerate}
 						    \item Let $y=\frac{a_{\deg(a)}}{b_{\deg(b)}}\lambda^{\deg(a)-\deg(b)}$
 						    \item Let $e=a-yb$.
-						    \item Verify that $\deg(e)<\deg(a)$.
-						    \item Execute \procedurehr{2.25} on the tuple $\langle e,b\rangle$ and let $\langle c,d\rangle$ receive.
-						    \item Verify that $cb+d=e$.
-						    \item \textbf{Verify that $\deg(d)<\deg(b)$.}
-						    \item Therefore verify that $cb+d=a-yb$
-						    \item \textbf{Therefore verify that $(y+c)b+d=a$.}
+						    \item Show that $\deg(e)<\deg(a)$.
+						    \item Use \procedurehr{2.25} on $\langle e,b\rangle$ to construct $\langle c,d\rangle$ and show that:
+                            \begin{enumerate}
+                                \item $cb+d=e$.
+                                \item \textbf{$\deg(d)<\deg(b)$.}
+                            \end{enumerate}
+						    \item Hence show that $cb+d=a-yb$ given that $cb+d=e$ and $e=a-yb$.
+						    \item \textbf{Hence show that $(y+c)b+d=a$.}
 						    \item \textbf{Now yield the tuple $\langle y+c, d\rangle$.}
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item \textbf{Verify that $0b+a=a$.}
-						    \item \textbf{Verify that $\deg(a)<\deg(b)$.}
+						    \item \textbf{Show that $0b+a=a$ and $\deg(a)<\deg(b)$.}
 						    \item \textbf{Yield the tuple $\langle 0,a\rangle$.}
 					    \end{enumerate}
 				    \end{enumerate}
