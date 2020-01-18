@@ -2938,12 +2938,15 @@
 			    \implementation
 				    \begin{enumerate}
 					    \item Let $d=\lambda-b$.
-					    \item Verify that $d\ne 0$.
+					    \item Show that $d\ne 0$.
 					    \item Let $c=a\div d$.
-					    \item Verify that $a=cd+(a\bmod d)$.
-					    \item Also verify that $\deg(a\bmod d)<\deg(d)=1$.
-					    \item Hence verify that $\deg(a\bmod d)=0$.
-					    \item Now verify that $\Lambda(a,b)$
+					    \item Using \procedurehr{2.25}, show that:
+                        \begin{enumerate}
+                            \item $a=cd+(a\bmod d)$
+                            \item $\deg(a\bmod d)<\deg(d)=1$.
+                        \end{enumerate}
+					    \item Hence show that $\deg(a\bmod d)=0$.
+					    \item Now using \procedurehr{2.56} and \procedurehr{2.64}, show that $\Lambda(a,b)$
 					    \begin{enumerate}
 						    \item $=\Lambda(cd+(a\bmod d),b)$
 						    \item $=\Lambda(cd,b)+\Lambda(a\bmod d,b)$
@@ -2951,7 +2954,8 @@
 						    \item $=\Lambda(c,b)(-b+b)+\Lambda(a\bmod d,b)$
 						    \item $=0\Lambda(c,b)+\Lambda(a\bmod d,b)$
 						    \item $=\Lambda(a\bmod d,b)$
-						    \item $=a\bmod d$.
+						    \item $=a\bmod d$
+                            \item $=a\bmod(\lambda-b)$.
 					    \end{enumerate}
 				    \end{enumerate}
 	    \end{multicols*}
