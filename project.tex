@@ -2462,7 +2462,7 @@
 				    Choose two polynomials $a,b$ and a rational number $c$ such that $a=b$. The objective of the following instructions is to show that $\Lambda(a,c)=\Lambda(b,c)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\Lambda(a,c)$
+					    \item Using \declarationhr{2.27} and \declarationhr{2.28}, show that $\Lambda(a,c)$
 					    \begin{enumerate}
 						    \item $=\sum_r^{[0:\lvert a\rvert]}a_rc^r$
 						    \item $=\sum_r^{[0:\max(\lvert a\rvert,\lvert b\rvert)]}a_rc^r$
@@ -2478,12 +2478,11 @@
 				    \begin{enumerate}
 					    \item If $c<\max(\lvert a\rvert,\lvert b\rvert)$, then do the following:
 					    \begin{enumerate}
-						    \item \textbf{Verify that $a_c=b_c$.}
+						    \item \textbf{Show that $a_c=b_c$.}
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item Verify that $c\ge\max(\lvert a\rvert,\lvert b\rvert)$.
-						    \item \textbf{Hence verify that $a_c=0=b_c$.}
+						    \item \textbf{Show that $a_c=0=b_c$ given that $c\ge\max(\lvert a\rvert,\lvert b\rvert)$.}
 					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{2.53}
@@ -2491,27 +2490,27 @@
 				    Choose a polynomial $a$. The objective of the following instructions is to show that $a=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $a_i=a_i$ for each $i\in[0:\max(\lvert a\rvert,\lvert a\rvert)]$.
-					    \item \textbf{Hence verify that $a=a$.}
+					    \item Show that $a_i=a_i$ for each $i\in[0:\max(\lvert a\rvert,\lvert a\rvert)]$.
+					    \item \textbf{Hence show that $a=a$ using \declarationhr{2.27}.}
 				    \end{enumerate}
 		    \procedure{2.54}
 			    \objective
 				    Choose two polynomials $a,b$ such that $a=b$. The objective of the following instructions is to show that $b=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $a_i=b_i$ for each $i\in[0:\max(\lvert a\rvert,\lvert b\rvert)]$.
-					    \item Hence verify that $b_i=a_i$ for each $i\in[0:\max(\lvert b\rvert,\lvert a\rvert)]$.
-					    \item \textbf{Hence verify that $b=a$.}
+					    \item Show that $a_i=b_i$ for each $i\in[0:\max(\lvert a\rvert,\lvert b\rvert)]$ using \declarationhr{2.27}.
+					    \item Hence show that $b_i=a_i$ for each $i\in[0:\max(\lvert b\rvert,\lvert a\rvert)]$.
+					    \item \textbf{Hence show that $b=a$ using \declarationhr{2.27}.}
 				    \end{enumerate}
 		    \procedure{2.55}
 			    \objective
 				    Choose three polynomials $a,b,c$ such that $a=b$ and $b=c$. The objective of the following instructions is to show that $a=c$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{2.27}, verify that $a_i=b_i$ for each $i\in[0:\max(\lvert a\rvert,\lvert b\rvert,\lvert c\rvert)]$.
-					    \item Using \declarationhr{2.27}, verify that $b_i=c_i$ for each $i\in[0:\max(\lvert a\rvert,\lvert b\rvert,\lvert c\rvert)]$.
-					    \item Hence verify that $a_i=c_i$ for each $i\in[0:\max(\lvert a\rvert,\lvert b\rvert,\lvert c\rvert)]$.
-					    \item \textbf{Hence verify that $a=c$.}
+					    \item Show that $a_i=b_i$ for each $i\in[0:\max(\lvert a\rvert,\lvert b\rvert,\lvert c\rvert)]$ using \declarationhr{2.27}.
+					    \item Show that $b_i=c_i$ for each $i\in[0:\max(\lvert a\rvert,\lvert b\rvert,\lvert c\rvert)]$ using \declarationhr{2.27}.
+					    \item Hence show that $a_i=c_i$ for each $i\in[0:\max(\lvert a\rvert,\lvert b\rvert,\lvert c\rvert)]$.
+					    \item \textbf{Hence verify that $a=c$ using \declarationhr{2.27}.}
 				    \end{enumerate}
 		    \declaration{2.37}
 			    The notation \gls{ratlistcomp}, where $f[j]$ is a function of $j$ and $R$ is a list, will be used as a shorthand for $\langle f(R)\rangle$.
@@ -2522,7 +2521,7 @@
 				    Choose two polynomials $a,b$ and a rational number $c$. The objective of the following instructions is to show that $\Lambda(a+b,c)=\Lambda(a,c)+\Lambda(b,c)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\Lambda(a+b,c)$
+					    \item Using \declarationhr{2.28} and \declarationhr{2.29}, show that $\Lambda(a+b,c)$
 					    \begin{enumerate}
 						    \item $=\Lambda(\langle a_r+b_r\for r\in[0:\max(\lvert a\rvert,\lvert b\rvert)]\rangle,c)$
 						    \item $=\sum_r^{[0:\max(\lvert a\rvert,\lvert b\rvert)]}(a_r+b_r)c^r$
@@ -2538,15 +2537,13 @@
 				    \begin{enumerate}
 					    \item If $c<\max(\lvert a\rvert,\lvert b\rvert)$, then do the following:
 					    \begin{enumerate}
-						    \item \textbf{Verify that $(a+b)_c=a_c+b_c$.}
+						    \item \textbf{Show that $(a+b)_c=a_c+b_c$ using \declarationhr{2.29}.}
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item Verify that $c\ge\max(\lvert a\rvert,\lvert b\rvert)$.
-						    \item Hence verify that $a_c=0$.
-						    \item Also verify that $b_c=0$.
-						    \item Also verify that $(a+b)_c=0$.
-						    \item \textbf{Hence verify that $(a+b)_c=a_c+b_c$.}
+						    \item Show that $c\ge\max(\lvert a\rvert,\lvert b\rvert)$.
+						    \item Hence show that $a_c=0$, $b_c=0$, and $(a+b)_c=0$ using \declarationhr{2.26}.
+						    \item \textbf{Hence show that $(a+b)_c=a_c+b_c$.}
 					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{2.58}
@@ -2554,9 +2551,9 @@
 				    Choose four polynomials $a,b,c,d$ such that $a=c$ and $b=d$. The objective of the following instructions is to show that $a+b=c+d$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $a_i=c_i$ for each $i\in[0:\max(\lvert a\rvert,\lvert b\rvert,\lvert c\rvert,\lvert d\rvert)]$.
-					    \item Verify that $b_i=d_i$ for each $i\in[0:\max(\lvert a\rvert,\lvert b\rvert,\lvert c\rvert,\lvert d\rvert)]$.
-					    \item Hence verify that $a+b$
+					    \item Show that $a_i=c_i$ for each $i\in[0:\max(\lvert a\rvert,\lvert b\rvert,\lvert c\rvert,\lvert d\rvert)]$ using \declarationhr{2.27} given that $a=c$.
+					    \item Verify that $b_i=d_i$ for each $i\in[0:\max(\lvert a\rvert,\lvert b\rvert,\lvert c\rvert,\lvert d\rvert)]$ using \declarationhr{2.27} given that $b=d$.
+					    \item Hence using \declarationhr{2.29}, show that $a+b$
 					    \begin{enumerate}
 						    \item $=\langle a_i+b_i\for i\in[0:\max(\lvert a\rvert,\lvert b\rvert,\lvert c\rvert,\lvert d\rvert)]\rangle$
 						    \item $=\langle c_i+d_i\for i\in[0:\max(\lvert a\rvert,\lvert b\rvert,\lvert c\rvert,\lvert d\rvert)]\rangle$
@@ -2568,7 +2565,7 @@
 				    Choose three polynomials $a,b,c$. The objective of the following instructions is to show that $(a+b)+c=a+(b+c)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $(a+b)+c$
+					    \item Using \declarationhr{2.29}, show that $(a+b)+c$
 					    \begin{enumerate}
 						    \item $\langle(a+b)_i+c_i\for i\in[0:\max(\lvert a+b\rvert,\lvert c\rvert)]\rangle$
 						    \item $\langle(a_i+b_i)+c_i\for i\in[0:\max(\lvert a\rvert,\lvert b\rvert,\lvert c\rvert)]\rangle$
@@ -2582,7 +2579,7 @@
 				    Choose two polynomials $a,b$. The objective of the following instructions is to show that $a+b=b+a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $a+b$
+					    \item Using \declarationhr{2.29}, show that $a+b$
 					    \begin{enumerate}
 						    \item $=\langle a_i+b_i\for i\in[0:\max(\lvert a\rvert,\lvert b\rvert)]\rangle$
 						    \item $=\langle b_i+a_i\for i\in[0:\max(\lvert b\rvert,\lvert a\rvert)]\rangle$
@@ -2596,7 +2593,7 @@
 				    Choose a polynomial $a$. The objective of the following instructions is to show that $0+a=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $0+a$
+					    \item Using \declarationhr{2.29} and \declarationhr{2.30}, show that $0+a$
 					    \begin{enumerate}
 						    \item $=\langle 0_i+a_i\for i\in[0:\lvert a\rvert]\rangle$
 						    \item $=\langle 0+a_i\for i\in[0:\lvert a\rvert]\rangle$
@@ -2610,7 +2607,7 @@
 				    Choose a polynomial $a$ and a rational number $b$. The objective of the following instructions is to show that $\Lambda(-a,b)=-\Lambda(a,b)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\Lambda(-a,b)$
+					    \item Using \declarationhr{2.28} and \declarationhr{2.31}, show that $\Lambda(-a,b)$
 					    \begin{enumerate}
 						    \item $=\Lambda(\langle-a_i\for i\in[0:\lvert a\rvert]\rangle,b)$
 						    \item $=\sum_j^{[0:\lvert a\rvert]}(-a_j)b^j$
@@ -2623,8 +2620,8 @@
 				    Choose two polynomials $a,b$ such that $a=b$. The objective of the following instructions is to show that $-a=-b$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $a_i=b_i$ for $i\in[0:\max(\lvert a\rvert,\lvert b\rvert)]$.
-					    \item Hence verify that $-a$
+					    \item Show that $a_i=b_i$ for $i\in[0:\max(\lvert a\rvert,\lvert b\rvert)]$ using \declarationhr{2.27} given that $a=b$.
+					    \item Hence using \declarationhr{2.31}, show that $-a$
 					    \begin{enumerate}
 						    \item $=\langle-a_i\for i\in[0:\max(\lvert a\rvert,\lvert b\rvert)]\rangle$
 						    \item $=\langle-b_i\for i\in[0:\max(\lvert a\rvert,\lvert b\rvert)]\rangle$
@@ -2636,7 +2633,7 @@
 				    Choose a polynomial $a$. The objective of the following instructions is to show that $-a+a=0$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $-a+a$
+					    \item Using \declarationhr{2.29} and \declarationhr{2.31}, show that $-a+a$
 					    \begin{enumerate}
 						    \item $=(-a)+a$
 						    \item $=\langle-a_i\for i\in[0:\lvert a\rvert]\rangle+\langle a_i\for i\in[0:\lvert a\rvert]\rangle$
@@ -2652,7 +2649,7 @@
 				    Choose two polynomials $a,b$ and a rational number $c$. The objective of the following instructions is to show that $\Lambda(ab,c)=\Lambda(a,c)\Lambda(b,c)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\Lambda(ab,c)$
+					    \item Using \declarationhr{2.28} and \declarationhr{2.32}, show that $\Lambda(ab,c)$
 					    \begin{enumerate}
 						    \item $=\Lambda(\langle\sum_r^{[0:j+1]}a_rb_{j-r}\for j\in[0:\lvert a\rvert+\lvert b\rvert-1]\rangle,c)$
 						    \item $=\sum_j^{[0:\lvert a\rvert+\lvert b\rvert-1]}(\sum_r^{[0:j+1]}a_rb_{j-r})c^j$
@@ -2674,12 +2671,12 @@
 				    \begin{enumerate}
 					    \item If $c<\lvert a\rvert+\lvert b\rvert-1$, then do the following:
 					    \begin{enumerate}
-						    \item \textbf{Verify that $(ab)_c=\sum_r^{[0:c+1]}a_rb_{c-r}$.}
+						    \item \textbf{Show that $(ab)_c=\sum_r^{[0:c+1]}a_rb_{c-r}$ using \declarationhr{2.32}.}
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item Verify that $c\ge\lvert a\rvert+\lvert b\rvert-1$.
-						    \item Verify that $(ab)_c$
+						    \item Show that $c\ge\lvert a\rvert+\lvert b\rvert-1$.
+						    \item Hence using \declarationhr{2.26}, show that $(ab)_c$
 						    \begin{enumerate}
 							    \item $=0$
 							    \item $=\sum_r^{[0:\lvert a\rvert]}0a_r+\sum_r^{[\lvert a\rvert:c+1]}0b_{c-r}$
@@ -2693,9 +2690,9 @@
 				    Choose four polynomials $a,b,c,d$ such that $a=c$ and $b=d$. The objective of the following instructions is to show that $ab=cd$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Using \declarationhr{2.27}, verify that $a_i=c_i$ for $i\in[0:\max(\lvert a\rvert,\lvert c\rvert)+\max(\lvert b\rvert,\lvert d\rvert)-1]$.
-					    \item Using \declarationhr{2.27}, verify that $b_i=d_i$ for $i\in[0:\max(\lvert a\rvert,\lvert c\rvert)+\max(\lvert b\rvert,\lvert d\rvert)-1]$.
-					    \item Hence verify that $ab$
+					    \item Show that $a_i=c_i$ for $i\in[0:\max(\lvert a\rvert,\lvert c\rvert)+\max(\lvert b\rvert,\lvert d\rvert)-1]$ using \procedurehr{2.52} given that $a=c$.
+					    \item Show that $b_i=d_i$ for $i\in[0:\max(\lvert a\rvert,\lvert c\rvert)+\max(\lvert b\rvert,\lvert d\rvert)-1]$ using \procedurehr{2.52} given that $b=d$.
+					    \item Hence using \declarationhr{2.32}, show that $ab$
 					    \begin{enumerate}
 						    \item $=\langle\sum_r^{[0:i+1]}a_rb_{i-r}\for i\in[0:\max(\lvert a\rvert,\lvert c\rvert)+\max(\lvert b\rvert,\lvert d\rvert)-1]\rangle$
 						    \item $=\langle\sum_r^{[0:i+1]}c_rd_{i-r}\for i\in[0:\max(\lvert a\rvert,\lvert c\rvert)+\max(\lvert b\rvert,\lvert d\rvert)-1]\rangle$
@@ -2707,7 +2704,7 @@
 				    Choose three polynomials $a,b,c$. The objective of the following instructions is to show that $(ab)c=a(bc)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $(ab)c$
+					    \item Using \declarationhr{2.32}, show that $(ab)c$
 					    \begin{enumerate}
 						    \item $=\langle\sum_t^{[0:j+1]}(ab)_tc_{j-t}\for j\in[0:\lvert ab\rvert+\lvert c\rvert-1]\rangle$
 						    \item $=\langle\sum_t^{[0:j+1]}\langle\sum_r^{[0:i+1]}a_rb_{i-r}\for i\in[0:\lvert a\rvert+\lvert b\rvert-1]\rangle_tc_{j-t}\for j\in[0:\lvert a\rvert+\lvert b\rvert+\lvert c\rvert-2]\rangle$
@@ -2725,7 +2722,7 @@
 				    Choose two polynomials $a,b$. The objective of the following instructions is to show that $ab=ba$.
 			    \implementation
 				    \begin{enumerate}
-					    \item $ab$
+					    \item Using \declarationhr{2.32}, show that $ab$
 					    \begin{enumerate}
 						    \item $=\langle\sum_r^{[0:i+1]}a_rb_{i-r}\for i\in[0:\lvert a\rvert+\lvert b\rvert-1]\rangle$
 						    \item $=\langle\sum_r^{[0:i+1]}b_ra_{i-r}\for i\in[0:\lvert a\rvert+\lvert b\rvert-1]\rangle$
@@ -2737,7 +2734,7 @@
 				    Choose a polynomial $a$. The objective of the following instructions is to show that $1a=a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $1a$
+					    \item Using \declarationhr{2.30} and \declarationhr{2.32}, show that $1a$
 					    \begin{enumerate}
 						    \item $=\langle\sum_r^{[0:i+1]}1_ra_{i-r}\for i\in[0:\lvert 1\rvert+\lvert a\rvert-1]\rangle$
 						    \item $=\langle 1_0a_{i-0}\for i\in[0:\lvert a\rvert]\rangle$
@@ -2750,7 +2747,7 @@
 				    Choose three polynomials $a,b,c$. The objective of the following instructions is to show that $a(b+c)=ab+ac$.
 			    \implementation
 				    \begin{enumerate}
-					    \item $a(b+c)$
+					    \item Using \declarationhr{2.29} and \declarationhr{2.32}, show $a(b+c)$
 					    \begin{enumerate}
 						    \item $=\langle\sum_r^{[0:i+1]}a_r(b+c)_{i-r}\for i\in[0:\lvert a\rvert+\lvert b+c\rvert-1]\rangle$
 						    \item $=\langle\sum_r^{[0:i+1]}a_r(b_{i-r}+c_{i-r})\for i\in[0:\lvert a\rvert+\lvert b+c\rvert-1]\rangle$
@@ -2767,18 +2764,18 @@
 				    Choose a polynomial $a$. The objective of the following instructions is to show that $\lambda a=\langle 0\rangle^{\frown}a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Verify that $\lvert\lambda a\rvert=\lvert\lambda\rvert+\lvert a\rvert-1=\lvert a\rvert+1$.
+					    \item Show that $\lvert\lambda a\rvert=\lvert\lambda\rvert+\lvert a\rvert-1=\lvert a\rvert+1$ using \declarationhr{2.32}.
 					    \item For $j\in[1:\lvert a\rvert+1]$, do the following:
 					    \begin{enumerate}
-						    \item Verify that $(\lambda a)_j$
+						    \item Using \declarationhr{2.32}, show that $(\lambda a)_j$
 						    \begin{enumerate}
 							    \item $=\sum_r^{[0:j+1]}\lambda_ra_{j-r}$
 							    \item $=\sum_r^{[0:j+1]}[r=1]a_{j-r}$
 							    \item $=a_{j-1}$
 						    \end{enumerate}
 					    \end{enumerate}
-					    \item Verify that $(\lambda a)_0=\sum_r^{[0:1]}\lambda_ra_{0-r}=\lambda_0a_{0}=0$.
-					    \item \textbf{Hence verify that $\lambda a=\langle 0\rangle^{\frown}a$.}
+					    \item Hence using \declarationhr{2.32}, show that $(\lambda a)_0=\sum_r^{[0:1]}\lambda_ra_{0-r}=\lambda_0a_{0}=0$.
+					    \item \textbf{Hence show that $\lambda a=\langle 0\rangle^{\frown}a$.}
 				    \end{enumerate}
 		    \procedure{2.72}
 			    \objective
@@ -2787,7 +2784,7 @@
 				    \begin{enumerate}
 					    \item If $n=0$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $\lambda^n$
+						    \item Show that $\lambda^n$
 						    \begin{enumerate}
 							    \item $=\lambda^0$
 							    \item $=\langle 1\rangle$
@@ -2797,9 +2794,8 @@
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item Execute \procedurehr{2.25} on $\langle n-1\rangle$.
-						    \item Hence verify that $\lambda^{n-1}=\langle[j=n-1]\for j\in[0:n]\rangle$.
-						    \item Hence verify that $\lambda^n$
+						    \item Use \procedurehr{2.25} on $\langle n-1\rangle$ to show that $\lambda^{n-1}=\langle[j=n-1]\for j\in[0:n]\rangle$.
+						    \item Hence using \procedurehr{2.71}, show that $\lambda^n$
 						    \begin{enumerate}
 							    \item $=\lambda\lambda^{n-1}$
 							    \item $=\lambda\langle[j=n-1]\for j\in[0:n]\rangle$
@@ -2819,13 +2815,14 @@
 					    \begin{enumerate}
 						    \item If $a_j=0$, then do the following:
 						    \begin{enumerate}
-							    \item Verify that $0=a_j=b_j$.
+							    \item Show that $0=a_j=b_j$ using \declarationhr{2.27} given that $a=b$.
 						    \end{enumerate}
 						    \item Otherwise do the following:
 						    \begin{enumerate}
-							    \item Verify that $0\ne a_j=b_j$.
-							    \item Hence verify that $j<\min(\lvert a\rvert,\lvert b\rvert)$.
-							    \item \textbf{Hence verify that $\deg(a)=j=\deg(b)$.}
+							    \item Show that $0\ne a_j=b_j$ using \declarationhr{2.27} given that $a=b$.
+							    \item Show that $j<\min(\lvert a\rvert,\lvert b\rvert)$.
+							    \item \textbf{Hence show that $\deg(a)=j=\deg(b)$.}
+                                \item \textbf{Yield.}
 						    \end{enumerate}
 					    \end{enumerate}
 				    \end{enumerate}
@@ -2836,13 +2833,12 @@
 				    \begin{enumerate}
 					    \item For $j\in[\max(\lvert a\rvert,\lvert b\rvert):\deg(b)+1]$, do the following:
 					    \begin{enumerate}
-						    \item Verify that $j>\deg(b)>\deg(a)$.
-						    \item Hence verify that $a_j=b_j=0$.
-						    \item Hence verify that $(a+b)_j=a_j+b_j=0$.
+						    \item Show that $j>\deg(b)>\deg(a)$.
+						    \item Hence show that $a_j=b_j=0$ using \declarationhr{2.34}.
+						    \item Hence show that $(a+b)_j=a_j+b_j=0$.
 					    \end{enumerate}
-					    \item Verify that $\deg(b)>\deg(a)$.
-					    \item Hence verify that $(a+b)_{\deg(b)}=a_{\deg(b)}+b_{\deg(b)}=0+b_{\deg(b)}=b_{\deg(b)}\ne 0$.
-					    \item \textbf{Hence verify that $\deg(a+b)=\deg(b)$.}
+					    \item Show that $(a+b)_{\deg(b)}=a_{\deg(b)}+b_{\deg(b)}=0+b_{\deg(b)}=b_{\deg(b)}\ne 0$ given that $\deg(b)>\deg(a)$.
+					    \item \textbf{Hence show that $\deg(a+b)=\deg(b)$.}
 				    \end{enumerate}
 		    \procedure{2.75}
 			    \objective
