@@ -2365,6 +2365,16 @@
 				    Choose a rational number $a$. The objective of the following instructions is to show that $a=\sgn(a)\lVert a\rVert$.
 			    \implementation
 				    Implementation is analogous to that of \procedurehr{1.90}.
+            \procedure{thu3001201131}
+                \objective
+                    Choose two rational numbers $x,y$ such that $xy\le 0$. The objective of the following instructions is to show that $\lVert x\rVert\le\lVert y-x\rVert$ and $\lVert y\rVert\le\lVert y-x\rVert$.
+                \implementation
+                    \begin{enumerate}
+                        \item Show that $-\frac{1}{2}(y-x)^2+\frac{1}{2}y^2+\frac{1}{2}x^2=xy\le 0$.
+                        \item Hence show that $\frac{1}{2}(y^2+x^2)\le\frac{1}{2}(y-x)^2$.
+                        \item \textbf{Hence show that $\lVert y\rVert\le\lVert y-x\rVert$ given that $y^2\le y^2+x^2\le(y-x)^2$.}
+                        \item \textbf{Also show that $\lVert x\rVert\le\lVert y-x\rVert$ given that $x^2\le y^2+x^2\le(y-x)^2$.}
+                    \end{enumerate}
 		    \declaration{2.02}
 			    The notation \gls{ratfloor}, where $a$ is a rational number, will be used as a shorthand for $\Nu(a)\div\De(a)$.
 		    \declaration{2.03}
@@ -3006,6 +3016,25 @@
 					    \item Therefore using the precondition and (4), verify that $0=\Lambda(p,a_{n})\ne 0$.
 					    \item \textbf{Abort procedure.}
 				    \end{enumerate}
+            \procedure{thu2001191149}
+                \objective
+                    Choose a polynomial $p$ and a rational number $X$. The objective of the following instructions is to construct a rational number $a$ and a procedure $q(y)$ to show that $\lVert\Lambda(p,y)\rVert\le a$ when a rational number $y$ such that $\lVert y\rVert\le X$ is chosen.
+                \implementation
+                    \begin{enumerate}
+                        \item Let $a=\sum_r^{[0:\lvert p\rvert]}\lVert p_r\rVert X^r$.
+                        \item Let $q(y)$ be the following procedure:
+                        \begin{enumerate}
+                            \item Given that $\lVert y\rVert\le X$, show that $\lVert\Lambda(p,y)\rVert$
+                            \begin{enumerate}
+                                \item $=\lVert\sum_r^{[0:\lvert p\rvert]}p_ry^r\rVert$
+                                \item $\le\sum_r^{[0:\lvert p\rvert]}\lVert p_ry^r\rVert$
+                                \item $=\sum_r^{[0:\lvert p\rvert]}\lVert p_r\rVert\lVert y\rVert^r$
+                                \item $\le\sum_r^{[0:\lvert p\rvert]}\lVert p_r\rVert X^r$
+                                \item $=a$.
+                            \end{enumerate}
+                        \end{enumerate}
+                        \item \textbf{Yield the tuple $\langle a,q\rangle$.}
+                    \end{enumerate}
 		    \procedure{2.15}
 			    \objective
 				    Choose a polynomial $p$ and a rational number $X$. The objective of the following instructions is to construct a rational number $a$ and a procedure $q(y,z)$ to show that $\lvert\Lambda(p,z)-\Lambda(p,y)\rvert\le a\lvert z-y\rvert$ when two rational numbers $y,z$ such that $\lvert y\rvert\le X$ and $\lvert z\rvert\le X$ are chosen.
@@ -3033,6 +3062,30 @@
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,q\rangle$.}
 				    \end{enumerate}
+            \procedure{thu3001201111}
+                \objective
+                    Choose a polynomial $p$ and a rational number $X$. The objective of the following instructions is to construct a rational number $a$ and a procedure $q(y,z)$ to show that $\lVert\Lambda(p,z)\rVert\le a\lVert z-y\rVert$ and $\lVert\Lambda(p,y)\rVert\le a\lVert z-y\rVert$ when two rational numbers $y,z$ such that $\lVert y\rVert\le X$, $\lVert z\rVert\le X$, and $\Lambda(p,y)\Lambda(p,z)\le 0$ are chosen.
+                \implementation
+                    \begin{enumerate}
+                        \item Use \procedurehr{2.15} on $\langle p,X\rangle$ to construct $\langle a,q_1\rangle$.
+                        \item Let $q(y,z)$ be the following procedure:
+                        \begin{enumerate}
+                            \item Show that $\lVert\Lambda(p,z)-\Lambda(p,y)\rVert\le a\lVert z-y\rVert$ using procedure $q_1$.
+                            \item Hence using \procedurehr{thu3001201131} show that $\lVert\Lambda(p,z)\rVert$
+                            \begin{enumerate}
+                                \item $\le\lVert\Lambda(p,z)\rVert+\lVert\Lambda(p,y)\rVert$
+                                \item $=\lVert\Lambda(p,z)-\Lambda(p,y)\rVert$
+                                \item $\le a\lVert z-y\rVert$.
+                            \end{enumerate}
+                            \item Also using \procedurehr{thu3001201131} show that $\lVert\Lambda(p,y)\rVert$
+                            \begin{enumerate}
+                                \item $\le\lVert\Lambda(p,z)\rVert+\lVert\Lambda(p,y)\rVert$
+                                \item $=\lVert\Lambda(p,z)-\Lambda(p,y)\rVert$
+                                \item $\le a\lVert z-y\rVert$.
+                            \end{enumerate}
+                        \end{enumerate}
+                        \item \textbf{Yield the tuple $\langle a,q\rangle$.}
+                    \end{enumerate}
 		    \procedure{2.17}
 			    \objective
 				    Choose a polynomial $f$. Choose rational numbers $a<b$ such that $\sgn(\Lambda(f,a))=-\sgn(\Lambda(f,b))$. Choose a rational number target $B>0$. The objective of the following instructions is to construct a rational number $d$ such that $a\le d\le b$ and $\lvert f(d)\rvert<B$.
