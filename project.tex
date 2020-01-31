@@ -39,6 +39,7 @@
 
 \DeclareMathOperator*{\diff}{\Delta}
 \DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\hsf}{H}
 \DeclareMathOperator{\mat}{mat}
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\diag}{diag}
@@ -3310,8 +3311,60 @@
 				      \end{enumerate}
 				      \item \textbf{Yield the tuple $\langle a,t\rangle$.}
 				    \end{enumerate}
-		    \declaration{2.10}
-			    The notation \gls{ratpolyJ}, where $s$ is a list of polynomials and $x$ is a rational number, will be used as a shorthand for the number of changes observed when the list $\sgn(\Lambda(s,x))$ is iterated through linearly.
+				\procedure{fri3101200807}
+				  \objective
+				    Choose polynomials $g,h,j,p,q,r$ and a rational number $X$ such that $hq+jr=1$ and $p+r=gq$. The objective of the following instructions is to construct a rational number $a$ and a procedure $t(y,z)$ to show that $\Lambda(p,y)\Lambda(r,y)<0$,$\Lambda(p,z)\Lambda(r,z)<0$,$\Lambda(r,y)\Lambda(r,z)>0$, and $\Lambda(p,y)\Lambda(p,z)>0$ when two rational numbers $y,z$ such that $\lVert y\rVert\le X$, $\lVert z\rVert\le X$, $\lVert y-z\rVert\le a$, and $\Lambda(q,y)\Lambda(q,z)\le 0$ are chosen.
+				  \implementation
+				    \begin{enumerate}
+				      \item Use \procedurehr{fri3101200730} on $\langle g,h,j,p,q,r,X\rangle$ to construct $\langle a_1,t_1\rangle$.
+				      \item Use \procedurehr{fri3101200641} on $\langle j,h,r,q,X\rangle$ to construct $\langle a_2,t_2\rangle$.
+				      \item Show that $(j+jg)q+(-j)p=1$ given that $hq+jr=1$ and $r=gq-p$.
+				      \item Use \procedurehr{fri3101200641} on $\langle -j,h+jg,p,q,X\rangle$ to construct $\langle a_3,t_3\rangle$.
+				      \item Let $a=\min(a_1,a_2,a_3)$.
+				      \item Let $t(y,z)$ be the following procedure:
+				      \begin{enumerate}
+				        \item \textbf{Show that $\Lambda(p,y)\Lambda(r,y)<0$ using procedure $t_1$.}
+				        \item \textbf{Show that $\Lambda(r,y)\Lambda(r,z)>0$ using procedure $t_2$.}
+				        \item \textbf{Show that $\Lambda(p,y)\Lambda(p,z)>0$ using procedure $t_3$.}
+				        \item \textbf{Hence show that $\Lambda(p,z)\Lambda(r,z)=\frac{\Lambda(p,z)}{\Lambda(p,y)}\cdot\frac{\Lambda(r,z)}{\Lambda(r,y)}\Lambda(p,y)\Lambda(r,y)<0$.}
+				      \end{enumerate}
+				      \item \textbf{Yield the tuple $\langle a,t\rangle$.}
+				    \end{enumerate}
+				\declaration{2.10}
+			    The notation \gls{ratpolyJ}, where $s$ is a list of polynomials and $x$ is a rational number, will be used as a shorthand for the number of changes observed when the list $\sgn(\Lambda(s,x))$ is iterated through in order.
+				\procedure{fri3101200839}
+				  \objective
+				    Choose polynomials $g,h,j,p,q,r$ and a rational number $X$ such that $hq+jr=1$ and $p+r=gq$. The objective of the following instructions is to construct a rational number $a$ and a procedure $t(y,z)$ to show that $J_{\langle p,q,r\rangle}(y)=J_{\langle p,q,r\rangle}(z)=1$ when two rational numbers $y,z$ such that $\lVert y\rVert\le X$, $\lVert z\rVert\le X$, $\lVert y-z\rVert\le a$, and $\Lambda(q,y)\Lambda(q,z)\le 0$ are chosen.
+				  \implementation
+				    \begin{enumerate}
+				      \item Use \procedurehr{fri3101200807} on $\langle g,h,j,p,q,r,X\rangle$ to construct $\langle a,t_1\rangle$.
+				      \item Let $t(y,z)$ be the following procedure:
+				      \begin{enumerate}
+				        \item Use procedure $t_1$ to show that:
+				        \begin{enumerate}
+				          \item $\Lambda(p,y)\Lambda(r,y)<0$
+				          \item $\Lambda(r,y)\Lambda(r,z)>0$
+				          \item $\Lambda(p,y)\Lambda(p,z)>0$
+				          \item $\Lambda(p,z)\Lambda(r,z)<0$.
+				        \end{enumerate}
+				        \item Now show that $\hsf(\Lambda(p,y))\le\hsf(\Lambda(q,y))\le\hsf(\Lambda(r,y))$ or $\hsf(\Lambda(r,y))\le\hsf(\Lambda(q,y))\le\hsf(\Lambda(p,y))$ given that $\Lambda(p,y)\Lambda(r,y)<0$.
+				        \item Hence using \procedurehr{thu3001201131}, show that $J_{\langle p,q,r\rangle}(y)$
+				        \begin{enumerate}
+				          \item $=\lVert\hsf(\Lambda(q,y))-\hsf(\Lambda(p,y))\rVert+\lVert\hsf(\Lambda(r,y))-\hsf(\Lambda(q,y))\rVert$
+				          \item $=\lVert\hsf(\Lambda(r,y))-\hsf(\Lambda(p,y))\rVert$
+				          \item $=1$.
+				        \end{enumerate}
+				        \item Also show that $\hsf(\Lambda(p,z))\le\hsf(\Lambda(q,z))\le\hsf(\Lambda(r,z))$ or $\hsf(\Lambda(r,z))\le\hsf(\Lambda(q,z))\le\hsf(\Lambda(p,z))$ given that $\Lambda(p,z)\Lambda(r,z)<0$.
+				        \item Hence using \procedurehr{thu3001201131}, show that $J_{\langle p,q,r\rangle}(z)$
+				        \begin{enumerate}
+				          \item $=\lVert\hsf(\Lambda(q,z))-\hsf(\Lambda(p,z))\rVert+\lVert\hsf(\Lambda(r,z))-\hsf(\Lambda(q,z))\rVert$
+				          \item $=\lVert\hsf(\Lambda(r,z))-\hsf(\Lambda(p,z))\rVert$
+				          \item $=1$.
+				        \end{enumerate}
+				        \item \textbf{Hence show that $J_{\langle p,q,r\rangle}(y)=1=J_{\langle p,q,r\rangle}(z)$.}
+				      \end{enumerate}
+				      \item \textbf{Yield the tuple $\langle a,t\rangle$.}
+				    \end{enumerate}
 		    \procedure{2.20}
 			    \objective
 				    Execute \procedurehr{2.19} and let $\langle s,q,g,h\rangle$ receive. Choose a rational number $X$. The objective of the following instructions is to construct a rational number $l$ and a procedure $u(c,d)$ to show that either $0<0$ or $\lvert J_{s}(d)-J_{s}(c)\rvert=[\sgn(\Lambda(s_{\lvert s\rvert-1},c))\ne\sgn(\Lambda(s_{\lvert s\rvert-1},d))]$, when rational numbers $c,d$ such that $\lvert c\rvert\le X$, $\lvert d\rvert\le X$, $\lvert d-c\rvert\le l$, $0\not\in\Lambda(s,c)$, and $0\not\in\Lambda(s,d)$ are chosen.
