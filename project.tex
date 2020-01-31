@@ -3406,87 +3406,77 @@
 				    \end{enumerate}
 		    \procedure{2.20}
 			    \objective
-				    Execute \procedurehr{2.19} and let $\langle s,q,g,h\rangle$ receive. Choose a rational number $X$. The objective of the following instructions is to construct a rational number $l$ and a procedure $u(c,d)$ to show that either $0<0$ or $\lvert \jsc_{s}(d)-\jsc_{s}(c)\rvert=[\sgn(\Lambda(s_{\lvert s\rvert-1},c))\ne\sgn(\Lambda(s_{\lvert s\rvert-1},d))]$, when rational numbers $c,d$ such that $\lvert c\rvert\le X$, $\lvert d\rvert\le X$, $\lvert d-c\rvert\le l$, $0\not\in\Lambda(s,c)$, and $0\not\in\Lambda(s,d)$ are chosen.
+				    Choose a Sturm chain $s$ and a rational number $X$. The objective of the following instructions is to construct a rational number $l$ and a procedure $u(c,d)$ to show that either $0<0$ or $\lvert\jsc_{s}(d)-\jsc_{s}(c)\rvert=\lVert\hsf(\Lambda(s_{\lvert s\rvert-1},c))-\hsf(\Lambda(s_{\lvert s\rvert-1},d))\rVert$, when rational numbers $c,d$ such that $\lvert c\rvert\le X$, $\lvert d\rvert\le X$, and $\lvert d-c\rvert\le l$ are chosen.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{2.15} on $\langle s,X\rangle$ and let $\langle G,t\rangle$ receive the result.
-					    \item Let $B=\max_i^{[0:\lvert s\rvert]}G_i$.
-					    \item Let $C=\max_i^{[0:\lvert s\rvert-1]}\max(\lvert\Lambda(\lVert g_i\rVert,X)\rvert,\lvert\Lambda(\lVert h_i\rVert,X)\rvert)$.
-					    \item Let $D=\max_i^{[1:\lvert s\rvert-1]}\max(\lvert\Lambda(\lVert q_i\rVert,X)\rvert,2)$.
-					    \item Let $l=\frac{1}{BCD}$.
-					    \item Let $u(c,d)$ be the following procedure:
-					    \begin{enumerate}
-						    \item Let $i=0$.
-						    \item If $i+1<\lvert s\rvert$, do the following:
-						    \begin{enumerate}
-							    \item Verify that $\sgn(\Lambda(s_i,c))=\sgn(\Lambda(s_i,d))$.
-							    \item Verify that $\jsc_{s_{[0:i+1]}}(c)=\jsc_{s_{[0:i+1]}}(d)$.
-							    \item If $\sgn(\Lambda(s_{i+1},c))=\sgn(\Lambda(s_{i+1},d))$, do the following:
-							    \begin{enumerate}
-								    \item Verify that $\jsc_{s_{[0:i+2]}}(c)=\jsc_{s_{[0:i+2]}}(d)$.
-								    \item Set $i$ to $i+1$ and go to (b).
-							    \end{enumerate}
-							    \item Otherwise if $\sgn(\Lambda(s_{i+1},c))=\sgn(\Lambda(s_{i+1},d))$ or $i+2\ge\lvert s\rvert$, do the following:
-							    \begin{enumerate}
-								    \item Verify that $\sgn(\Lambda(s_{i+1},c))\ne\sgn(\Lambda(s_{i+1},d))$.
-								    \item Verify that $\lvert \jsc_{s_{[0:i+2]}}(c)-\jsc_{s_{[0:i+2]}}(d)\rvert=1$.
-								    \item Verify that $i+2=\lvert s\rvert$.
-								    \item Go to (c).
-							    \end{enumerate}
-							    \item Execute \subprocedurehr{wed2808191626} on $i$.
-							    \item If $\sgn(\Lambda(s_{i+2},c))\ne\sgn(\Lambda(s_{i+2},d))$, do the following:
-							    \begin{enumerate}
-								    \item Execute procedure $t_{i+2}$ on $\langle c,d\rangle$.
-								    \item Hence verify that $\lvert\Lambda(s_{i+2},c)\rvert<\lvert\Lambda(s_{i+2},d)-\Lambda(s_{i+2},c)\rvert=\lvert (d-c)G_{i+2}\rvert\le\frac{1}{BCD}\cdot B=\frac{1}{CD}=\frac{1}{C}\cdot\frac{1}{D}\le\frac{1}{C}(1-\frac{1}{D})$.
-								    \item Using (A) and (i), verify that $\frac{1}{C}(1-\frac{1}{D})<\lvert s_{i+2}(c)\rvert<\frac{1}{C}(1-\frac{1}{D})$.
-								    \item \textbf{Abort procedure.}
-							    \end{enumerate}
-							    \item Otherwise if $\sgn(\Lambda(s_i,c))=\sgn(\Lambda(s_{i+2},c))$, do the following:
-							    \begin{enumerate}
-								    \item Verify that $2\frac{1}{C}(1-\frac{1}{D})<\lvert\Lambda(s_i,c)\rvert+\lvert\Lambda(s_{i+2},c)\rvert=\lvert\Lambda(s_i,c)+\Lambda(s_{i+2},c)\rvert=\lvert q_{i+1}(c)\Lambda(s_{i+1},c)\rvert<D\frac{1}{CD}$.
-								    \item Verify that $2(1-\frac{1}{D})<1$.
-								    \item Using (B) and the construction of $D$, verify that $2\le D<2$.
-								    \item \textbf{Abort procedure.}
-							    \end{enumerate}
-							    \item Otherwise, do the following:
-							    \begin{enumerate}
-								    \item Verify that $\sgn(\Lambda(s_i,d))=\sgn(\Lambda(s_i,c))\ne\sgn(\Lambda(s_{i+2},c))=\sgn(\Lambda(s_{i+2},d))$.
-								    \item Therefore verify that $1=\jsc_{s_{[0:i+3]}}(c)-\jsc_{s_{[0:i+1]}}(c)=\jsc_{s_{[0:i+3]}}(d)-\jsc_{s_{[0:i+1]}}(d)$.
-								    \item Therefore verify that $\jsc_{s_{[0:i+1]}}(c)+1=\jsc_{s_{[0:i+3]}}(c)=\jsc_{s_{[0:i+3]}}(d)=\jsc_{s_{[0:i+1]}}(d)+1$.
-								    \item Set $i$ to $i+2$ and go to (b).
-							    \end{enumerate}
-						    \end{enumerate}
-						    \item If $\sgn(\Lambda(s_{\lvert s\rvert-1},c))=\sgn(\Lambda(s_{\lvert s\rvert-1},d))$, then do the following:
-						    \begin{enumerate}
-							    \item \textbf{Verify that $\jsc_s(c)=\jsc_s(d)$.}
-						    \end{enumerate}
-						    \item Otherwise do the following:
-						    \begin{enumerate}
-							    \item \textbf{Verify that $\lvert \jsc_s(d)-\jsc_s(c)\rvert=1$.}
-						    \end{enumerate}
-					    \end{enumerate}
-					    \item \textbf{Yield the tuple $\langle l,u\rangle$.}
+				      \item If $\lvert s\rvert>2$, then do the following:
+				      \begin{enumerate}
+				        \item Use \procedurehr{2.20} on $\langle s_{[0:\lvert s\rvert-2]},X\rangle$ to construct $\langle l_1,u_1\rangle$.
+				        \item Use \procedurehr{2.20} on $\langle s_{[0:\lvert s\rvert-1]},X\rangle$ to construct $\langle l_2,u_2\rangle$.
+				        \item Use \procedurehr{2.19} on $\langle s_{[0:\lvert s\rvert-1]}\rangle$ to construct $\langle g,h\rangle$ and show that $\langle gs_{\lvert s\rvert-2}+hs_{\lvert s\rvert-3}=1$.
+				        \item Use \procedurehr{fri3101200807} on $\langle(s_{\lvert s\rvert-1}+s_{\lvert s\rvert-3})\div s_{\lvert s\rvert-2},g,h,s_{\lvert s\rvert-1},s_{\lvert s\rvert-2},s_{\lvert s\rvert-3},X\rangle$ to construct $\langle a_4,u_4\rangle$.
+				        \item Use \procedurehr{fri3101200839} on $\langle(s_{\lvert s\rvert-1}+s_{\lvert s\rvert-3})\div s_{\lvert s\rvert-2},g,h,s_{\lvert s\rvert-1},s_{\lvert s\rvert-2},s_{\lvert s\rvert-3},X\rangle$ to construct $\langle a_5,u_5\rangle$.
+				        \item Let $l=\min(l_1,l_2,a_4,a_5)$.
+				      \end{enumerate}
+				      \item Otherwise do the following:
+				      \begin{enumerate}
+				        \item Let $l=1$.
+				      \end{enumerate}
+				      \item Let $u(c,d)$ be the following procedure:
+				      \begin{enumerate}
+				        \item If $\lvert s\rvert=1$, then do the following:
+				        \begin{enumerate}
+				          \item Show that $\lVert\jsc_s(d)-\jsc_s(c)\rVert$
+				          \begin{enumerate}
+				            \item $=\lVert\sum_r^{[0:\lvert s\rvert-1]}\lVert\hsf(\Lambda(s_{r+1},d))-\hsf(\Lambda(s_r,d))\rVert-\sum_r^{[0:\lvert s\rvert-1]}\lVert\hsf(\Lambda(s_{r+1},c))-\hsf(\Lambda(s_r,c))\rVert\rVert$
+				            \item $=\lVert 0-0\rVert$
+				            \item $=\lVert\hsf((s_{\lvert s\rvert-1})_0)-\hsf((s_{\lvert s\rvert-1})_0)\rVert$
+				            \item $=\lVert\hsf(\Lambda(s_{\lvert s\rvert-1},c))-\hsf(\Lambda(s_{\lvert s\rvert-1},d))\rVert$.
+				          \end{enumerate}
+				        \end{enumerate}
+				        \item Otherwise if $\lvert s\rvert=2$, then do the following:
+				        \begin{enumerate}
+				          \item Show that $\lVert\jsc_s(d)-\jsc_s(c)\rVert$
+				          \begin{enumerate}
+				            \item $=\lVert\sum_r^{[0:\lvert s\rvert-1]}\lVert\hsf(\Lambda(s_{r+1},d))-\hsf(\Lambda(s_r,d))\rVert-\sum_r^{[0:\lvert s\rvert-1]}\lVert\hsf(\Lambda(s_{r+1},c))-\hsf(\Lambda(s_r,c))\rVert\rVert$
+				            \item $=\lVert\lVert\hsf(\Lambda(s_1,d))-\hsf(\Lambda(s_0,d))\rVert-\lVert\hsf(\Lambda(s_1,c))-\hsf(\Lambda(s_0,c))\rVert\rVert$
+				            \item $=\lVert\lVert\hsf(\Lambda(s_1,d))-\hsf((s_0)_0)\rVert-\lVert\hsf(\Lambda(s_1,c))-\hsf((s_0)_0)\rVert\rVert$
+				            \item $=\lVert\hsf(\Lambda(s_1,d))-\hsf(\Lambda(s_1,c))\rVert$.
+				          \end{enumerate}
+				        \end{enumerate}
+				        \item Otherwise if $\hsf(\Lambda(s_{\lvert s\rvert-2},c))=\hsf(\Lambda(s_{\lvert s\rvert-2},d))$, then do the following:
+				        \begin{enumerate}
+				          \item Use procedure $u_2$ to show that $\lVert\jsc_{s_{[0:\lvert s\rvert-1]}}(d)-\jsc_{s_{[0:\lvert s\rvert-1]}}(c)$
+				          \begin{enumerate}
+				            \item $=\lVert\hsf(\Lambda(s_{\lvert s\rvert-2},c))-\hsf(\Lambda(s_{\lvert s\rvert-2},d))\rVert$
+				            \item $=0$.
+				          \end{enumerate}
+				          \item Hence show that $\lVert\jsc_s(d)-\jsc_s(c)\rVert$
+				          \begin{enumerate}
+				            \item $=\lVert(\jsc_{s_{[0:\lvert s\rvert-1]}}(d)+\jsc_{s_{[\lvert s\rvert-2:\lvert s\rvert]}}(d))-(\jsc_{s_{[0:\lvert s\rvert-1]}}(c)+\jsc_{s_{[\lvert s\rvert-2:\lvert s\rvert]}}(c))\rVert$
+				            \item $=\lVert\jsc_{s_{[\lvert s\rvert-2:\lvert s\rvert]}}(c)-\jsc_{s_{[\lvert s\rvert-2:\lvert s\rvert]}}(d)\rVert$
+				            \item $=\lVert\lVert\hsf(\Lambda(s_{\lvert s\rvert-1},c))-\hsf(\Lambda(s_{\lvert s\rvert-2},c))\rVert-\lVert\hsf(\Lambda(s_{\lvert s\rvert-1},d))-\hsf(\Lambda(s_{\lvert s\rvert-2},d))\rVert\rVert$
+				            \item $=\lVert\hsf(\Lambda(s_{\lvert s\rvert-1},c))-\hsf(\Lambda(s_{\lvert s\rvert-1},d))\rVert$.
+				          \end{enumerate}
+				        \end{enumerate}
+				        \item Otherwise do the following:
+				        \begin{enumerate}
+				          \item Show that $\hsf(\Lambda(s_{\lvert s\rvert-2},c))\ne\hsf(\Lambda(s_{\lvert s\rvert-2},d))$.
+				          \item Show that $\Lambda(s_{\lvert s\rvert-1},c)\Lambda(s_{\lvert s\rvert-1},d)>0$ and $\Lambda(s_{\lvert s\rvert-3},c)\Lambda(s_{\lvert s\rvert-3},d)>0$ using procedure $u_4$.
+				          \item Hence show that $\hsf(\Lambda(s_{\lvert s\rvert-1},c))=\hsf(\Lambda(s_{\lvert s\rvert-1},d))$ and $\hsf(\Lambda(s_{\lvert s\rvert-3},c))=\hsf(\Lambda(s_{\lvert s\rvert-3},d))$.
+				          \item Use procedure $u_1$ to show that $\lVert\jsc_{s_{[0:\lvert s\rvert-2]}}(d)-\jsc_{s_{[0:\lvert s\rvert-2]}}(c)\rVert=\lVert\hsf(\Lambda(s_{\lvert s\rvert-3},d))-\hsf(\Lambda(s_{\lvert s\rvert-3},c))\rVert=0$ given that $\hsf(\Lambda(s_{\lvert s\rvert-3},c))=\hsf(\Lambda(s_{\lvert s\rvert-3},d))$.
+				          \item Use procedure $u_5$ to show that $\jsc_{s_{[\lvert s\rvert-3:\lvert s\rvert]}}(c)=\jsc_{s_{[\lvert s\rvert-3:\lvert s\rvert]}}(d)=1$ given that $\Lambda(s_{\lvert s\rvert-2},c)\Lambda(s_{\lvert s\rvert-2},d)<0$.
+				          \item Hence given that $\hsf(\Lambda(s_{\lvert s\rvert-1},c))=\hsf(\Lambda(s_{\lvert s\rvert-1},d))$ show that $\lVert\jsc_s(d)-\jsc_s(c)\rVert$
+				          \begin{enumerate}
+				            \item $=\lVert(\jsc_{s_{[0:\lvert s\rvert-2]}}(d)+\jsc_{s_{[\lvert s\rvert-3:\lvert s\rvert]}}(d))-(\jsc_{s_{[0:\lvert s\rvert-2]}}(c)+\jsc_{s_{[\lvert s\rvert-3:\lvert s\rvert]}}(c))\rVert$
+				            \item $=\lVert 0+(1-1)\rVert$
+				            \item $=0$
+				            \item $=\lVert\hsf(\Lambda(s_{\lvert s\rvert-1},d))-\hsf(\Lambda(s_{\lvert s\rvert-1},c))\rVert$.
+				          \end{enumerate}
+				        \end{enumerate}
+				      \end{enumerate}
+				      \item \textbf{Yield the tuple $\langle l,u\rangle$.}
 				    \end{enumerate}
-			    \subprocedure{wed2808191626}
-				    \paragraph{Objective}
-					    Choose a non-negative integer $i<m$ and natural numbers $c,d$ such that $\sgn(\Lambda(s_{i+1},c))\ne\sgn(\Lambda(s_{i+1},d))$ and $i+2\le m$. The objective of the following instructions is to show that $\lvert\Lambda(s_{i+1},c)\rvert<\frac{1}{CD}$, $\lvert\Lambda(s_{i+1},d)\rvert<\frac{1}{CD}$, $\frac{1}{C}(1-\frac{1}{D})<\lvert\Lambda(s_{i},c)\rvert$, $\frac{1}{C}(1-\frac{1}{D})<\lvert\Lambda(s_{i},d)\rvert$, $\frac{1}{C}(1-\frac{1}{D})<\lvert\Lambda(s_{i+2},c)\rvert$, and $\frac{1}{C}(1-\frac{1}{D})<\lvert\Lambda(s_{i+2},d)\rvert$.
-				    \paragraph{Implementation}
-					    \begin{enumerate}
-						    \item Verify the following in order:
-						    \begin{enumerate}
-							    \item Execute procedure $t_{i+1}$ on $\langle c,d\rangle$.
-							    \item $\lvert\Lambda(s_{i+1},c)\rvert<\lvert\Lambda(s_{i+1},c)-\Lambda(s_{i+1},d)\rvert=\lvert c-d\rvert\lvert G_{i+1}\rvert\le\lvert c-d\rvert B\le\frac{1}{BCD}\cdot B=\frac{1}{CD}$
-							    \item $\lvert\Lambda(s_{i+1},d)\rvert<\lvert\Lambda(s_{i+1},c)-\Lambda(s_{i+1},d)\rvert\le\frac{1}{CD}$
-							    \item $1=\Lambda(g_{i},c)\Lambda(s_{i+1},c)+\Lambda(h_{i},c)\Lambda(s_{i},c)=\lvert\Lambda(g_{i},c)\Lambda(s_{i+1},c)+\Lambda(h_{i},c)\Lambda(s_{i},c)\rvert\le\lvert\Lambda(g_{i},c)\rvert\lvert\Lambda(s_{i+1},c)\rvert+\lvert\Lambda(h_{i},c)\rvert\lvert\Lambda(s_{i},c)\rvert<C(\frac{1}{CD}+\lvert\Lambda(s_{i},c)\rvert)$
-							    \item $\frac{1}{C}(1-\frac{1}{D})<\lvert\Lambda(s_{i},c)\rvert$
-							    \item $1<C(\frac{1}{CD}+\lvert\Lambda(s_{i},d)\rvert)$
-							    \item $\frac{1}{C}(1-\frac{1}{D})<\lvert\Lambda(s_{i},d)\rvert$
-							    \item $1=\Lambda(g_{i+1},c)\Lambda(s_{i+2},c)+\Lambda(h_{i+1},c)\Lambda(s_{i+1},c)=\lvert\Lambda(g_{i+1},c)\Lambda(s_{i+2},c)+\Lambda(h_{i+1},c)\Lambda(s_{i+1},c)\rvert\le\lvert\Lambda(g_{i+1},c)\rvert\lvert\Lambda(s_{i+2},c)\rvert+\lvert\Lambda(h_{i+1},c)\rvert\lvert\Lambda(s_{i+1},c)\rvert<C(\lvert\Lambda(s_{i+2},c)\rvert+\frac{1}{CD})$
-							    \item $\frac{1}{C}(1-\frac{1}{D})<\lvert\Lambda(s_{i+2},c)\rvert$
-							    \item $1<C(\lvert\Lambda(s_{i+2},d)\rvert+\frac{1}{CD})$
-							    \item $\frac{1}{C}(1-\frac{1}{D})<\lvert\Lambda(s_{i+2},d)\rvert$
-						    \end{enumerate}
-					    \end{enumerate}
 		    \procedure{2.21}
 			    \objective
 				    Choose a polynomial $p\ne 0$. Choose a rational number $k>1+\max_{i}^{[0:\deg(p)]}\lvert\frac{p_i}{p_{\deg(p)}}\rvert$. The objective of the following instructions is to show that $\sgn(\Lambda(p,k))=\sgn(p_{\deg(p)})$.
