@@ -40,6 +40,7 @@
 \DeclareMathOperator*{\diff}{\Delta}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\hsf}{H}
+\DeclareMathOperator{\jsc}{J}
 \DeclareMathOperator{\mat}{mat}
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\diag}{diag}
@@ -122,6 +123,7 @@
 \newglossaryentry{inta<b}{name=\ensuremath{a<b},description={integer less than}}
 \newglossaryentry{int||a||}{name=\ensuremath{\lVert a\rVert},description={absolute value}}
 \newglossaryentry{intsgn(a)}{name=\ensuremath{\sgn(a)},description={sign function}}
+\newglossaryentry{inthsf(a)}{name=\ensuremath{\hsf(a)},description={Heaviside step function}}
 \newglossaryentry{intadivb}{name=\ensuremath{a\div b},description={integer division}}
 \newglossaryentry{intamodb}{name=\ensuremath{a\bmod b},description={integer modulus}}
 \newglossaryentry{inta=bmodc}{name=\ensuremath{a\equiv b\pmod{c}},description={modular equality}}
@@ -177,7 +179,8 @@
 \newglossaryentry{ratpolymon}{name=\ensuremath{\mon(p)},description={}}
 \newglossaryentry{ratpolydiv}{name=\ensuremath{a\div b},description={polynomial division}}
 \newglossaryentry{ratpolymod}{name=\ensuremath{a\bmod b},description={polynomial modulus}}
-\newglossaryentry{ratpolyJ}{name=\ensuremath{J_s(x)},description={}}
+\newglossaryentry{ratpolyJ}{name=\ensuremath{\jsc_s(x)},description={}}
+\newglossaryentry{ratpolySturm}{name={Sturm chain},description={}}
 \newglossaryentry{complex}{name={complex number},description={}}
 \newglossaryentry{complexRe}{name=$\Re(a)$,description={real part of $a$}}
 \newglossaryentry{complexIm}{name=$\Im(a)$,description={imaginary part of $a$}}
@@ -641,6 +644,12 @@
 				    \item $-1$ if $a<0$
 				    \item $0$ if $a=0$
 				    \item $1$ if $a>0$
+			    \end{enumerate}
+			  \declaration{1.03}
+			    The notation \gls{inthsf(a)} will be used as a shorthand for the following expression:
+			    \begin{enumerate}
+				    \item $0$ if $a<0$
+				    \item $1$ if $a\ge 0$
 			    \end{enumerate}
 		    \procedure{1.90}
 			    \objective
@@ -3331,10 +3340,10 @@
 				      \item \textbf{Yield the tuple $\langle a,t\rangle$.}
 				    \end{enumerate}
 				\declaration{2.10}
-			    The notation \gls{ratpolyJ}, where $s$ is a list of polynomials and $x$ is a rational number, will be used as a shorthand for the number of changes observed when the list $\sgn(\Lambda(s,x))$ is iterated through in order.
+			    The notation \gls{ratpolyJ}, where $s$ is a list of polynomials and $x$ is a rational number, will be used as a shorthand for the number of changes observed when the list $\hsf(\Lambda(s,x))$ is iterated through in order.
 				\procedure{fri3101200839}
 				  \objective
-				    Choose polynomials $g,h,j,p,q,r$ and a rational number $X$ such that $hq+jr=1$ and $p+r=gq$. The objective of the following instructions is to construct a rational number $a$ and a procedure $t(y,z)$ to show that $J_{\langle p,q,r\rangle}(y)=J_{\langle p,q,r\rangle}(z)=1$ when two rational numbers $y,z$ such that $\lVert y\rVert\le X$, $\lVert z\rVert\le X$, $\lVert y-z\rVert\le a$, and $\Lambda(q,y)\Lambda(q,z)\le 0$ are chosen.
+				    Choose polynomials $g,h,j,p,q,r$ and a rational number $X$ such that $hq+jr=1$ and $p+r=gq$. The objective of the following instructions is to construct a rational number $a$ and a procedure $t(y,z)$ to show that $\jsc_{\langle p,q,r\rangle}(y)=\jsc_{\langle p,q,r\rangle}(z)=1$ when two rational numbers $y,z$ such that $\lVert y\rVert\le X$, $\lVert z\rVert\le X$, $\lVert y-z\rVert\le a$, and $\Lambda(q,y)\Lambda(q,z)\le 0$ are chosen.
 				  \implementation
 				    \begin{enumerate}
 				      \item Use \procedurehr{fri3101200807} on $\langle g,h,j,p,q,r,X\rangle$ to construct $\langle a,t_1\rangle$.
@@ -3348,26 +3357,56 @@
 				          \item $\Lambda(p,z)\Lambda(r,z)<0$.
 				        \end{enumerate}
 				        \item Now show that $\hsf(\Lambda(p,y))\le\hsf(\Lambda(q,y))\le\hsf(\Lambda(r,y))$ or $\hsf(\Lambda(r,y))\le\hsf(\Lambda(q,y))\le\hsf(\Lambda(p,y))$ given that $\Lambda(p,y)\Lambda(r,y)<0$.
-				        \item Hence using \procedurehr{thu3001201131}, show that $J_{\langle p,q,r\rangle}(y)$
+				        \item Hence using \procedurehr{thu3001201131}, show that $\jsc_{\langle p,q,r\rangle}(y)$
 				        \begin{enumerate}
 				          \item $=\lVert\hsf(\Lambda(q,y))-\hsf(\Lambda(p,y))\rVert+\lVert\hsf(\Lambda(r,y))-\hsf(\Lambda(q,y))\rVert$
 				          \item $=\lVert\hsf(\Lambda(r,y))-\hsf(\Lambda(p,y))\rVert$
 				          \item $=1$.
 				        \end{enumerate}
 				        \item Also show that $\hsf(\Lambda(p,z))\le\hsf(\Lambda(q,z))\le\hsf(\Lambda(r,z))$ or $\hsf(\Lambda(r,z))\le\hsf(\Lambda(q,z))\le\hsf(\Lambda(p,z))$ given that $\Lambda(p,z)\Lambda(r,z)<0$.
-				        \item Hence using \procedurehr{thu3001201131}, show that $J_{\langle p,q,r\rangle}(z)$
+				        \item Hence using \procedurehr{thu3001201131}, show that $\jsc_{\langle p,q,r\rangle}(z)$
 				        \begin{enumerate}
 				          \item $=\lVert\hsf(\Lambda(q,z))-\hsf(\Lambda(p,z))\rVert+\lVert\hsf(\Lambda(r,z))-\hsf(\Lambda(q,z))\rVert$
 				          \item $=\lVert\hsf(\Lambda(r,z))-\hsf(\Lambda(p,z))\rVert$
 				          \item $=1$.
 				        \end{enumerate}
-				        \item \textbf{Hence show that $J_{\langle p,q,r\rangle}(y)=1=J_{\langle p,q,r\rangle}(z)$.}
+				        \item \textbf{Hence show that $\jsc_{\langle p,q,r\rangle}(y)=1=\jsc_{\langle p,q,r\rangle}(z)$.}
 				      \end{enumerate}
 				      \item \textbf{Yield the tuple $\langle a,t\rangle$.}
 				    \end{enumerate}
+				\procedure{fri3101201221}
+				  \objective
+				    Choose a list of polynomials $s$, a rational number $r$, and a natural number $k$ such that $k<\lvert s\rvert$. The objective of the following instructions is to show that $\jsc_s(r)=\jsc_{s_{[0:k+1]}}(r)+\jsc_{s_{[k:\lvert s\rvert]}}(r)$.
+				  \implementation
+				    \begin{enumerate}
+				      \item Show that $\jsc_s(r)$
+				      \begin{enumerate}
+				        \item $=\sum_t^{[0:\lvert s\rvert-1]}\lVert\hsf(\Lambda(s_{t+1},r))-\hsf(\Lambda(s_t,r))\rVert$
+				        \item $=\sum_t^{[0:k]}\lVert\hsf(\Lambda(s_{t+1}))-\hsf(\Lambda(s_t,r))\rVert$
+				        \item $=\sum_t^{[k:\lvert s\rvert-1]}\lVert\hsf(\Lambda(s_{t+1},r))-\hsf(\Lambda(s_t,r))\rVert$
+				        \item $=\jsc_{s_{[0:k+1]}}(r)+\jsc_{s_{[k:\lvert s\rvert]}}(r)$.
+				      \end{enumerate}
+				    \end{enumerate}
+				\declaration{fri3101201236}
+				  The phrase "\gls{ratpolySturm}" will be used as a shorthand for a non-empty list of polynomials $s$ such that:
+				  \begin{enumerate}
+				    \item For $i$ in $[0:\lvert s\rvert]$, $\deg(s_i)=i$.
+				    \item For $i$ in $[0:\lvert s\rvert-1]$, $\sgn((s_i)_i)=\sgn_((s_{i+1})_{i+1})$
+				    \item For $i$ in $[1:\lvert s\rvert-1]$, $s_{i-1}+s_{i+1}\bmod s_i=0$.
+				  \end{enumerate}
+				\procedure{fri3101201247}
+				  \objective
+				    Choose a Sturm chain $s$, and a natural number $k$ such that $0<k\le\lvert s\rvert$. The objective of the following instructions is to show that $s_{[0:k]}$ is also a Sturm chain.
+				  \implementation
+				    \begin{enumerate}
+				      \item For $i$ in $[0:k]$, show that $\deg(s_i)=i$.
+				      \item For $i$ in $[0:k-1]$, show that $\sgn((s_i)_i)=\sgn((s_{i+1})_{i+1})$.
+				      \item For $i$ in $[1:k-1]$, show that $s_{i-1}+s_{i+1}\bmod s_i=0$.
+				      \item \textbf{Hence show that $s_{[0:k]}$ is a Sturm chain.}
+				    \end{enumerate}
 		    \procedure{2.20}
 			    \objective
-				    Execute \procedurehr{2.19} and let $\langle s,q,g,h\rangle$ receive. Choose a rational number $X$. The objective of the following instructions is to construct a rational number $l$ and a procedure $u(c,d)$ to show that either $0<0$ or $\lvert J_{s}(d)-J_{s}(c)\rvert=[\sgn(\Lambda(s_{\lvert s\rvert-1},c))\ne\sgn(\Lambda(s_{\lvert s\rvert-1},d))]$, when rational numbers $c,d$ such that $\lvert c\rvert\le X$, $\lvert d\rvert\le X$, $\lvert d-c\rvert\le l$, $0\not\in\Lambda(s,c)$, and $0\not\in\Lambda(s,d)$ are chosen.
+				    Execute \procedurehr{2.19} and let $\langle s,q,g,h\rangle$ receive. Choose a rational number $X$. The objective of the following instructions is to construct a rational number $l$ and a procedure $u(c,d)$ to show that either $0<0$ or $\lvert \jsc_{s}(d)-\jsc_{s}(c)\rvert=[\sgn(\Lambda(s_{\lvert s\rvert-1},c))\ne\sgn(\Lambda(s_{\lvert s\rvert-1},d))]$, when rational numbers $c,d$ such that $\lvert c\rvert\le X$, $\lvert d\rvert\le X$, $\lvert d-c\rvert\le l$, $0\not\in\Lambda(s,c)$, and $0\not\in\Lambda(s,d)$ are chosen.
 			    \implementation
 				    \begin{enumerate}
 					    \item Execute \procedurehr{2.15} on $\langle s,X\rangle$ and let $\langle G,t\rangle$ receive the result.
@@ -3381,16 +3420,16 @@
 						    \item If $i+1<\lvert s\rvert$, do the following:
 						    \begin{enumerate}
 							    \item Verify that $\sgn(\Lambda(s_i,c))=\sgn(\Lambda(s_i,d))$.
-							    \item Verify that $J_{s_{[0:i+1]}}(c)=J_{s_{[0:i+1]}}(d)$.
+							    \item Verify that $\jsc_{s_{[0:i+1]}}(c)=\jsc_{s_{[0:i+1]}}(d)$.
 							    \item If $\sgn(\Lambda(s_{i+1},c))=\sgn(\Lambda(s_{i+1},d))$, do the following:
 							    \begin{enumerate}
-								    \item Verify that $J_{s_{[0:i+2]}}(c)=J_{s_{[0:i+2]}}(d)$.
+								    \item Verify that $\jsc_{s_{[0:i+2]}}(c)=\jsc_{s_{[0:i+2]}}(d)$.
 								    \item Set $i$ to $i+1$ and go to (b).
 							    \end{enumerate}
 							    \item Otherwise if $\sgn(\Lambda(s_{i+1},c))=\sgn(\Lambda(s_{i+1},d))$ or $i+2\ge\lvert s\rvert$, do the following:
 							    \begin{enumerate}
 								    \item Verify that $\sgn(\Lambda(s_{i+1},c))\ne\sgn(\Lambda(s_{i+1},d))$.
-								    \item Verify that $\lvert J_{s_{[0:i+2]}}(c)-J_{s_{[0:i+2]}}(d)\rvert=1$.
+								    \item Verify that $\lvert \jsc_{s_{[0:i+2]}}(c)-\jsc_{s_{[0:i+2]}}(d)\rvert=1$.
 								    \item Verify that $i+2=\lvert s\rvert$.
 								    \item Go to (c).
 							    \end{enumerate}
@@ -3412,18 +3451,18 @@
 							    \item Otherwise, do the following:
 							    \begin{enumerate}
 								    \item Verify that $\sgn(\Lambda(s_i,d))=\sgn(\Lambda(s_i,c))\ne\sgn(\Lambda(s_{i+2},c))=\sgn(\Lambda(s_{i+2},d))$.
-								    \item Therefore verify that $1=J_{s_{[0:i+3]}}(c)-J_{s_{[0:i+1]}}(c)=J_{s_{[0:i+3]}}(d)-J_{s_{[0:i+1]}}(d)$.
-								    \item Therefore verify that $J_{s_{[0:i+1]}}(c)+1=J_{s_{[0:i+3]}}(c)=J_{s_{[0:i+3]}}(d)=J_{s_{[0:i+1]}}(d)+1$.
+								    \item Therefore verify that $1=\jsc_{s_{[0:i+3]}}(c)-\jsc_{s_{[0:i+1]}}(c)=\jsc_{s_{[0:i+3]}}(d)-\jsc_{s_{[0:i+1]}}(d)$.
+								    \item Therefore verify that $\jsc_{s_{[0:i+1]}}(c)+1=\jsc_{s_{[0:i+3]}}(c)=\jsc_{s_{[0:i+3]}}(d)=\jsc_{s_{[0:i+1]}}(d)+1$.
 								    \item Set $i$ to $i+2$ and go to (b).
 							    \end{enumerate}
 						    \end{enumerate}
 						    \item If $\sgn(\Lambda(s_{\lvert s\rvert-1},c))=\sgn(\Lambda(s_{\lvert s\rvert-1},d))$, then do the following:
 						    \begin{enumerate}
-							    \item \textbf{Verify that $J_s(c)=J_s(d)$.}
+							    \item \textbf{Verify that $\jsc_s(c)=\jsc_s(d)$.}
 						    \end{enumerate}
 						    \item Otherwise do the following:
 						    \begin{enumerate}
-							    \item \textbf{Verify that $\lvert J_s(d)-J_s(c)\rvert=1$.}
+							    \item \textbf{Verify that $\lvert \jsc_s(d)-\jsc_s(c)\rvert=1$.}
 						    \end{enumerate}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle l,u\rangle$.}
@@ -3553,13 +3592,13 @@
 					    \item For $i=1$ to $i=\lvert e\rvert-1$:
 					    \begin{enumerate}
 						    \item Execute procedure $u$ on the tuple $\langle e_{i-1},e_{i}\rangle$.
-						    \item If $J_m(e_{i-1})\ne J_m(e_{i})$, then do the following:
+						    \item If $\jsc_m(e_{i-1})\ne \jsc_m(e_{i})$, then do the following:
 						    \begin{enumerate}
 							    \item Append $e_{i-1}$ to $c$.
 							    \item Append $e_{i}$ to $d$.
-							    \item Verify that $0\ne\lvert J_{s}(d_{\lvert d\rvert-1})-J_{s}(c_{\lvert c\rvert-1})\rvert=[\sgn(\Lambda(s_{\lvert s\rvert-1},c_{\lvert c\rvert-1}))\ne\sgn(\Lambda(s_{\lvert s\rvert-1},d_{\lvert d\rvert-1}))]$.
+							    \item Verify that $0\ne\lvert \jsc_{s}(d_{\lvert d\rvert-1})-\jsc_{s}(c_{\lvert c\rvert-1})\rvert=[\sgn(\Lambda(s_{\lvert s\rvert-1},c_{\lvert c\rvert-1}))\ne\sgn(\Lambda(s_{\lvert s\rvert-1},d_{\lvert d\rvert-1}))]$.
 							    \item Therefore verify that $\sgn(s_m(c_{\lvert c\rvert-1}))\ne\sgn(s_m(d_{\lvert d\rvert-1}))$.
-							    \item Therefore verify that $\lvert J_m(d_{\lvert d\rvert-1})-J_m(c_{\lvert c\rvert-1})\rvert=1$.
+							    \item Therefore verify that $\lvert \jsc_m(d_{\lvert d\rvert-1})-\jsc_m(c_{\lvert c\rvert-1})\rvert=1$.
 							    \item Also verify that $0\not\in\Lambda(s,c_{\lvert c\rvert-1})$.
 							    \item Hence verify that $\Lambda(s_m,c_{\lvert c\rvert-1})\ne 0$.
 							    \item Also verify that $0\not\in\Lambda(s,d_{\lvert d\rvert-1})$.
@@ -3570,10 +3609,10 @@
 					    \end{enumerate}
 					    \item If $\lvert c\rvert=\lvert d\rvert<m$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that each change of $J_m(x)$ over the course of (7) was by $1$.
-						    \item Verify that $J_m(x)$ changed less than $m$ times over the course of (12).
-						    \item Therefore verify that $\lvert J_m(U)-J_m(-U)\rvert<m$.
-						    \item Therefore using (2) and (3), verify that $m=\lvert J_m(U)-J_m(-U)\rvert<m$.
+						    \item Verify that each change of $\jsc_m(x)$ over the course of (7) was by $1$.
+						    \item Verify that $\jsc_m(x)$ changed less than $m$ times over the course of (12).
+						    \item Therefore verify that $\lvert \jsc_m(U)-\jsc_m(-U)\rvert<m$.
+						    \item Therefore using (2) and (3), verify that $m=\lvert \jsc_m(U)-\jsc_m(-U)\rvert<m$.
 						    \item \textbf{Abort procedure.}
 					    \end{enumerate}
 					    \item Otherwise, do the following:
