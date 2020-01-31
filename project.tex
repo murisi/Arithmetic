@@ -3204,6 +3204,112 @@
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle s,q,g,h\rangle$.}
 				    \end{enumerate}
+				\procedure{fri3101200641}
+				  \objective
+				    Choose polynomials $g,h,p,q$ and a rational number $X$ such that $gp+hq=1$. The objective of the following instructions is to construct a rational numbers $a$ and a procedure $r(y,z)$ to show that $\Lambda(p,y)\Lambda(p,z)>0$ when two rational numbers $y,z$ such that $\lVert y\rVert\le X$, $\lVert z\rVert\le X$, $\lVert y-z\rVert\le a$, and $\Lambda(q,y)\Lambda(q,z)\le 0$ are chosen.
+				  \implementation
+				    \begin{enumerate}
+				      \item Use \procedurehr{thu3001201111} on $\langle p,X\rangle$ to construct $\langle a_1,r_1\rangle$.
+				      \item Use \procedurehr{thu3001201111} on $\langle q,X\rangle$ to construct $\langle a_2,r_2\rangle$.
+				      \item Use \procedurehr{thu2001191149} on $\langle g,X\rangle$ to construct $\langle a_3,r_3\rangle$.
+				      \item Use \procedurehr{thu2001191149} on $\langle h,X\rangle$ to construct $\langle a_4,r_4\rangle$.
+				      \item Let $a=\frac{1}{a_1a_3+a_2a_4+1}$.
+				      \item Let $r(y,z)$ be the following procedure:
+				      \begin{enumerate}
+				        \item If $\Lambda(p,y)\Lambda(p,z)\le 0$, then do the following:
+				        \begin{enumerate}
+				          \item Show that $\lVert\Lambda(p,y)\rVert\le a_1\lVert z-y\rVert\le a_1a$ using procedure $r_1$.
+				          \item Show that $\lVert\Lambda(q,y)\rVert\le a_2\lVert z-y\rVert\le a_2a$ using procedure $r_2$.
+				          \item Show that $\lVert\Lambda(g,y)\rVert\le a_3$ using procedure $r_3$.
+				          \item Show that $\lVert\Lambda(h,y)\rVert\le a_4$ using procedure $r_4$.
+				          \item Given that $gp+hq=1$, show that $\Lambda(gp,y)+\Lambda(h,y)\Lambda(q,y)$
+				          \begin{enumerate}
+				            \item $=\Lambda(gp+hq,y)$
+				            \item $=\Lambda(1,y)$
+				            \item $=1$.
+				          \end{enumerate}
+				          \item Hence show that $\Lambda(gp,y)$
+				          \begin{enumerate}
+				            \item $=1-\Lambda(h,y)\Lambda(q,y)$
+				            \item $\ge 1-a_4a_2a$
+				            \item $=\frac{a_1a_3+1}{a_1a_3+a_2a_4+1}$
+				            \item $=(a_1a_3+1)a$
+				            \item $>a_1a_3a$
+				            \item $\ge\lVert\Lambda(p,y)\rVert\lVert\Lambda(g,y)\rVert$
+				            \item $\ge\Lambda(p,y)\Lambda(g,y)$
+				            \item $=\Lambda(pg,y)$.
+				          \end{enumerate}
+				          \item Hence show that $0>0$.
+				          \item \textbf{Abort procedure.}
+				        \end{enumerate}
+				        \item Otherwise do the following:
+				        \begin{enumerate}
+				          \item Show that $\Lambda(p,y)\Lambda(p,z)>0$.
+				        \end{enumerate}
+				      \end{enumerate}
+				      \item \textbf{Yield the tuple $\langle a,r\rangle$.}
+				    \end{enumerate}
+				\procedure{fri3101200730}
+				  \objective
+				    Choose polynomials $g,h,j,p,q,r$ and a rational number $X$ such that $hq+jr=1$ and $p+r+gq$. The objective of the following instructions is to construct a rational number $a$ and a procedure $t(y,z)$ to show that $\Lambda(p,y)\Lambda(r,y)<0$ and $\Lambda(j,y)\ne 0$ when two rational numbers $y,z$ such that $\lVert y\rVert\le X$, $\lVert z\rVert\le X$, $\lVert y-z\rVert\le a$, and $\Lambda(q,y)\Lambda(q,z)\le 0$ are chosen.
+				  \implementation
+				    \begin{enumerate}
+				      \item Use \procedurehr{thu2001191149} on $\langle h,X\rangle$ to construct $\langle a_1,t_1\rangle$.
+				      \item Use \procedurehr{thu2001191149} on $\langle g,X\rangle$ to construct $\langle a_2,t_2\rangle$.
+				      \item Use \procedurehr{thu2001191149} on $\langle j,X\rangle$ to construct $\langle a_3,t_3\rangle$.
+				      \item Use \procedurehr{thu3001201111} on $\langle q,X\rangle$ to construct $\langle a_4,t_4\rangle$.
+				      \item Let $a=\frac{1}{(a_1+a_2a_3)a_4+1}$.
+				      \item Let $t(y,z)$ be the following procedure:
+				      \begin{enumerate}
+				        \item Show that $\lVert\Lambda(h,y)\rVert\le a_1$ using procedure $t_1$.
+				        \item Show that $\lVert\Lambda(g,y)\rVert\le a_2$ using procedure $t_2$.
+				        \item Show that $\lVert\Lambda(j,y)\rVert\le a_3$ using procedure $t_3$.
+				        \item Show that $\lVert\Lambda(q,y)\rVert\le a_4\lVert z-y\rVert\le a_4a$ using procedure $t_4$.
+				        \item Show that $jr=1-hq$ given that $hq+jr=1$.
+				        \item Hence show that $\lVert\Lambda(j,y)\rVert\lVert\Lambda(r,y)\rVert$
+				        \begin{enumerate}
+				          \item $=\lVert\Lambda(jr,y)\rVert$
+				          \item $=\lVert\Lambda(1-hq,y)\rVert$
+				          \item $=\lVert\Lambda(1,y)\rVert-\lVert\Lambda(h,y)\Lambda(q,y)\rVert$
+				          \item $\ge 1-a_1a_4\lVert y-z\rVert$
+				          \item $=1-a_1a_4a$
+				          \item $=\frac{a_2a_3a_4+1}{(a_1+a_2a_3)a_4+1}$
+				          \item $=(a_2a_3a_4+1)a$
+				          \item $>a_2a_3a_4a$
+				          \item $\ge\lVert\Lambda(q,y)\rVert\lVert\Lambda(g,y)\rVert\lVert\Lambda(j,y)\rVert$
+				          \item $\ge\lVert\Lambda(qg,y)\rVert\lVert\Lambda(j,y)\rVert$.
+				        \end{enumerate}
+				        \item Hence show that $\lVert\Lambda(r,y)\rVert>\lVert\Lambda(qg,y)\rVert\ge 0$
+				        \begin{enumerate}
+				          \item given that $\Lambda(j,y)\ne 0$
+				          \item given that $\lVert\Lambda(j,y)\rVert\lVert\Lambda(r,y)\rVert>\lVert\Lambda(qg,y)\rVert\lVert\Lambda(j,y)\rVert$.
+				        \end{enumerate}
+				        \item Show that $p=gq-r$ given that $p+r=gq$.
+				        \item If $\Lambda(r,y)>0$, then do the following:
+				        \begin{enumerate}
+				          \item Show that $\Lambda(p,y)$
+				          \begin{enumerate}
+				            \item $=\Lambda(gq-r,y)$
+				            \item $=\Lambda(gq,y)-\Lambda(r,y)$
+				            \item $\le\lVert\Lambda(gq,y)\rVert-\lVert\Lambda(r,y)\rVert$
+				            \item $<0$.
+				          \end{enumerate}
+				          \item \textbf{Hence show that $\Lambda(p,y)\Lambda(r,y)<0$.}
+				        \end{enumerate}
+				        \item Otherwise do the following:
+				        \begin{enumerate}
+				          \item Given that $\Lambda(r,y)<0$, show that $\Lambda(p,y)$
+				          \begin{enumerate}
+				            \item $=\Lambda(gq-r,y)$
+				            \item $=\Lambda(gq,y)-\Lambda(r,y)$
+				            \item $\ge-\lVert\Lambda(gq,y)\rVert+\lVert\Lambda(r,y)\rVert$
+				            \item $>0$.
+				          \end{enumerate}
+				          \item \textbf{Hence show that $\Lambda(p,y)\Lambda(r,y)<0$.}
+				        \end{enumerate}
+				      \end{enumerate}
+				      \item \textbf{Yield the tuple $\langle a,t\rangle$.}
+				    \end{enumerate}
 		    \declaration{2.10}
 			    The notation \gls{ratpolyJ}, where $s$ is a list of polynomials and $x$ is a rational number, will be used as a shorthand for the number of changes observed when the list $\sgn(\Lambda(s,x))$ is iterated through linearly.
 		    \procedure{2.20}
