@@ -3018,10 +3018,9 @@
 			    \implementation
 				    \begin{enumerate}
 					    \item Let $n=\deg(p)$.
-					    \item Execute \procedurehr{2.80} on $\langle p,a\rangle$.
-					    \item Hence verify that $p=q_0\prod_j^{[0:{n}]}(\lambda-a_j)$.
-					    \item Hence verify that $\Lambda(p,a_{n})=\Lambda(q_0\prod_j^{[0:{n}]}(\lambda-a_j),a_{n})=\Lambda(q_0,a_{n})\prod_j^{[0:{n}]}\Lambda(\lambda-a_j,a_{n})=q_0\prod_j^{[0:{n}]}(a_{n}-a_j)\ne 0$.
-					    \item Therefore using the precondition and (4), verify that $0=\Lambda(p,a_{n})\ne 0$.
+					    \item Use \procedurehr{2.80} on $\langle p,a_{[0:n]}\rangle$ to show that $p=p_n\prod_j^{[0:{n}]}(\lambda-a_j)$.
+					    \item Hence show that $\Lambda(p,a_{n})=\Lambda(q_0\prod_j^{[0:{n}]}(\lambda-a_j),a_{n})=\Lambda(q_0,a_{n})\prod_j^{[0:{n}]}\Lambda(\lambda-a_j,a_{n})=q_0\prod_j^{[0:{n}]}(a_{n}-a_j)\ne 0$.
+					    \item Hence show that $0=\Lambda(p,a_{n})\ne 0$ given that $\Lambda(p,a_{n})=0$.
 					    \item \textbf{Abort procedure.}
 				    \end{enumerate}
             \procedure{thu2001191149}
@@ -3051,7 +3050,7 @@
 					    \item Let $a=\sum_{r}^{[1:\lvert p\rvert]}r\lvert p_r\rvert X^{r-1}$.
 					    \item Let $q(y,z)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Verify that $\lvert\Lambda(p,z)-\Lambda(p,y)\rvert$
+						    \item Show that $\lvert\Lambda(p,z)-\Lambda(p,y)\rvert$
 						    \begin{enumerate}
 							    \item $=\lvert(\sum_{r}^{[0:\lvert p\rvert]} p_rz^r)-(\sum_{r}^{[0:\lvert p\rvert]} p_ry^r)\rvert$
 							    \item $=\lvert\sum_{r}^{[1:\lvert p\rvert]} p_r(z^r-y^r)\rvert$
@@ -3072,7 +3071,7 @@
 				    \end{enumerate}
             \procedure{thu3001201111}
                 \objective
-                    Choose a polynomial $p$ and a rational number $X$. The objective of the following instructions is to construct a rational number $a$ and a procedure $q(y,z)$ to show that $\lVert\Lambda(p,z)\rVert\le a\lVert z-y\rVert$ and $\lVert\Lambda(p,y)\rVert\le a\lVert z-y\rVert$ when two rational numbers $y,z$ such that $\lVert y\rVert\le X$, $\lVert z\rVert\le X$, and $\Lambda(p,y)\Lambda(p,z)\le 0$ are chosen.
+                    Choose a polynomial $p$ and a rational number $X$. The objective of the following instructions is to construct a rational number $a>0$ and a procedure $q(y,z)$ to show that $\lVert\Lambda(p,z)\rVert\le a\lVert z-y\rVert$ and $\lVert\Lambda(p,y)\rVert\le a\lVert z-y\rVert$ when two rational numbers $y,z$ such that $\lVert y\rVert\le X$, $\lVert z\rVert\le X$, and $\Lambda(p,y)\Lambda(p,z)\le 0$ are chosen.
                 \implementation
                     \begin{enumerate}
                         \item Use \procedurehr{2.15} on $\langle p,X\rangle$ to construct $\langle a,q_1\rangle$.
@@ -3094,34 +3093,57 @@
                         \end{enumerate}
                         \item \textbf{Yield the tuple $\langle a,q\rangle$.}
                     \end{enumerate}
-		    \procedure{2.17}
+        \procedure{sat0102201050}
 			    \objective
-				    Choose a polynomial $f$. Choose rational numbers $a<b$ such that $\sgn(\Lambda(f,a))=-\sgn(\Lambda(f,b))$. Choose a rational number target $B>0$. The objective of the following instructions is to construct a rational number $d$ such that $a\le d\le b$ and $\lvert f(d)\rvert<B$.
+				    Choose a polynomial $f$ and rational numbers $c,d,B$ such that $c\le d$, $\Lambda(f,c)\Lambda(f,d)\le 0$ and $B>0$. The objective of the following instructions is to construct rational numbers $e,h$ such that $c\le e\le h\le d$, $\lVert h-e\rVert<B$ and $\Lambda(f,e)\Lambda(f,h)\le 0$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{2.15} on $\langle f,\max(\lvert a\rvert,\lvert b\rvert)\rangle$ and let $\langle G,q\rangle$ receive the result.
-					    \item Let $c=a$ and $d=b$.
-					    \item Until $G\lvert d-c\rvert<B$
+					    \item If $\lVert d-c\rVert<B$, then do the following:
 					    \begin{enumerate}
-						    \item Let $e=\frac{c+d}{2}$.
-						    \item \textbf{Verify that $a\le c<e<d\le b$.}
-						    \item If $\sgn(\Lambda(f,c))=-\sgn(\Lambda(f,e))$, then do the following:
-						    \begin{enumerate}
-							    \item Let $d=e$.
-						    \end{enumerate}
-						    \item Otherwise if $\sgn(\Lambda(f,e))=-\sgn(\Lambda(f,d))$, then do the following:
-						    \begin{enumerate}
-							    \item Let $c=e$.
-						    \end{enumerate}
-						    \item Otherwise if $\Lambda(f,e)=0$, then do the following:
-						    \begin{enumerate}
-							    \item \textbf{Verify that $\lvert\Lambda(f,e)\rvert=0<B$.}
-							    \item \textbf{Yield the tuple $\langle e\rangle$.}
-						    \end{enumerate}
+					      \item \textbf{Yield the tuple $\langle c,d\rangle$.}
 					    \end{enumerate}
-					    \item Execute procedure $q$ on $\langle c,d\rangle$.
-					    \item \textbf{Hence verify that $\lvert\Lambda(f,c)\rvert<\lvert\Lambda(f,d)-\Lambda(f,c)\rvert\le G\lvert d-c\rvert<B$.}
-					    \item \textbf{Yield the tuple $\langle c\rangle$.}
+					    \item Otherwise do the following:
+					    \begin{enumerate}
+						    \item Let $g=\frac{c+d}{2}$.
+						    \item \textbf{Show that $c<g<d$.}
+						    \item Show that $\lVert g-c\rVert=\lVert d-g\rVert=\frac{d-c}{2}$.
+						    \item If $\Lambda(f,c)\Lambda(f,g)\le 0$, then do the following:
+						    \begin{enumerate}
+							    \item Use \procedurehr{sat0102201050} on $\langle f,c,g,B\rangle$ to construct $\langle e,h\rangle$ and show that:
+							    \begin{enumerate}
+							      \item $c\le e\le h\le g<d$
+							      \item $\Lambda(f,e)\Lambda(f,h)\le 0$.
+							    \end{enumerate}
+						    \end{enumerate}
+						    \item Otherwise do the following:
+						    \begin{enumerate}
+						      \item Show that $\Lambda(f,g)\Lambda(f,d)=\frac{\Lambda(f,g)}{\Lambda(f,c)}\Lambda(f,c)\Lambda(f,d)\le 0$ given that
+						      \begin{enumerate}
+						        \item $\Lambda(f,c)\Lambda(f,g)>0$
+						        \item and $\Lambda(f,c)\Lambda(f,d)\le 0$.
+						      \end{enumerate}
+							    \item Hence use \procedurehr{sat0102201050} on $\langle f,g,d,B\rangle$ to construct $\langle e,h\rangle$ and show that:
+							    \begin{enumerate}
+							      \item $c<g\le e\le h\le d$
+							      \item $\Lambda(f,e)\Lambda(f,h)\le 0$.
+							    \end{enumerate}
+						    \end{enumerate}
+						    \item \textbf{Yield the tuple $\langle e,h\rangle$.}
+					    \end{enumerate}
+				    \end{enumerate}
+		    \procedure{2.17}
+			    \objective
+				    Choose a polynomial $f$ and rational numbers $a,b,B$ such that $a\le b$, $\Lambda(f,a)\Lambda(f,b)\le 0$, and $B>0$. The objective of the following instructions is to construct a rational number $d$ such that $a\le d\le b$ and $\lVert f(d)\rVert<B$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Use \procedurehr{thu3001201111} on $\langle f,\max(\lvert a\rvert,\lvert b\rvert)\rangle$ to construct $\langle G,q\rangle$.
+					    \item Use \procedurehr{sat0102201050} on $\langle f,a,b,\frac{B}{G}\rangle$ to construct $\langle c,d\rangle$ and show that:
+					    \begin{enumerate}
+					      \item $a\le c\le d\le b$
+					      \item $\lVert d-c\rVert\le\frac{B}{G}$
+					      \item $\Lambda(f,a)\Lambda(f,b)\le 0$.
+					    \end{enumerate}
+					    \item \textbf{Use procedure $q$ on $\langle c,d\rangle$ to show that $\lVert\Lambda(f,d)\rVert\le G\lVert d-c\rVert\le G\frac{B}{G}=B$.}
 				    \end{enumerate}
 		    \procedure{2.18}
 			    \objective
