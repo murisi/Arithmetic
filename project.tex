@@ -2983,36 +2983,34 @@
 	    \begin{multicols*}{2}
 		    \procedure{2.80}
 			    \objective
-				    Choose a polynomial $p\ne 0$ and rational numbers $a_0<a_1<\cdots<a_{\deg(p)-2}<a_{\deg(p)-1}$ in such a way that $\Lambda(p,a_i)=0$ for $i\in[0:\deg(p)]$. The objective of the following instructions is to either show that $p=q_0\prod_j^{[0:{n}]}(\lambda-a_j)$ or $0\ne 0$.
+				    Choose a polynomial $p\ne 0$ and rational numbers $a_0<a_1<\cdots<a_{\deg(p)-2}<a_{\deg(p)-1}$ in such a way that $\Lambda(p,a_i)=0$ for $i\in[0:\deg(p)]$. The objective of the following instructions is to show that $p=p_{\deg(p)}\prod_j^{[0:\deg(p)]}(\lambda-a_j)$.
 			    \implementation
 				    \begin{enumerate}
 					    \item Let $n=\deg(p)$.
-					    \item Let $q=p$.
-					    \item For $i$ in $[0:n]$, do the following:
+					    \item If $n=0$, then do the following:
 					    \begin{enumerate}
-						    \item Verify that $p=q\prod_k^{[0:i]}(\lambda-a_k)$.
-						    \item If $\Lambda(q,a_i)\ne 0$, do the following:
-						    \begin{enumerate}
-							    \item Verify that $\Lambda(p,a_i)=\Lambda(q\prod_k^{[0:i]}(\lambda-a_k),a_i)=\Lambda(q,a_i)\prod_k^{[0:i]}\Lambda(\lambda-a_k,a_i)=\Lambda(q,a_i)\prod_k^{[0:i]}(a_i-a_k)\ne 0$.
-							    \item Therefore using the precondition and (i), verify that $0\ne 0$.
-							    \item \textbf{Abort procedure.}
-						    \end{enumerate}
-						    \item Otherwise do the following:
-						    \begin{enumerate}
-							    \item Let $b=q$.
-							    \item Let $q=b\div(\lambda-a_i)$.
-							    \item Verify that $\Lambda(b,a_i)=0$.
-							    \item Execute \procedurehr{2.79} on $\langle b,a_i\rangle$.
-							    \item Hence verify that $b=(\lambda-a_i)q+b\bmod(\lambda-a_i)=(\lambda-a_i)q$.
-							    \item Hence verify that $p=q\prod_j^{[0:{i+1}]}(\lambda-a_j)$.
-						    \end{enumerate}
+					      \item \textbf{Show that $p=p_0=p_{\deg(p)}\prod_j^{[0:{n}]}(\lambda-a_j)$.}
 					    \end{enumerate}
-					    \item Now verify that $0\ne p=q\prod_j^{[0:{n}]}(\lambda-a_j)$.
-					    \item Hence verify that $q\ne 0$.
-					    \item Hence verify that $n=\deg(p)=\deg(q)+\sum_j^{[0:n]}\deg(\lambda-a_j)=\deg(q)+n$.
-					    \item Hence verify that $\deg(q)=0$.
-					    \item Hence verify that $q=q_0\ne 0$.
-					    \item \textbf{Hence verify that $p=q_0\prod_j^{[0:{n}]}(\lambda-a_j)$.}
+					    \item Otherwise do the following:
+					    \begin{enumerate}
+					      \item Show that $p\bmod(\lambda-a_{n-1})=\Lambda(p,a_{n-1})=0$ using \procedurehr{2.79} given that $\Lambda(p,a_{n-1})=0$.
+					      \item Let $q=p\div(\lambda-a_{n-1})$.
+					      \item Hence show that $p=(\lambda-a_{n-1})q+p\bmod(\lambda-a_{n-1})=(\lambda-a_{n-1})q$.
+					      \item For $i\in[0:n-1]$, do the following:
+					      \begin{enumerate}
+					        \item Show that $0$
+					        \begin{enumerate}
+					          \item $=\Lambda(p,a_i)$
+					          \item $=\Lambda((\lambda-a_{n-1})q,a_i)$
+					          \item $=\Lambda(\lambda-a_{n-1},a_i)\Lambda(q,a_i)$
+					          \item $=(a_i-a_{n-1})\Lambda(q,a_i)$.
+					        \end{enumerate}
+					        \item Hence show that $\Lambda(q,a_i)=0$ given that $a_i-a_{n-1}\ne 0$.
+					      \end{enumerate}
+					      \item Hence use \procedurehr{2.80} on $\langle q,a_{[0:n-1]}\rangle$ to show that $q=q_{\deg(q)}\prod_j^{[0:{n-1}]}(\lambda-a_j)$.
+					      \item Now show that $p_{\deg(p)}=(\lambda-a_{n-1})_{\deg(\lambda-a_{n-1})}q_{\deg{q}}=1q_{\deg{q}}=q_{\deg{q}}$ using \procedurehr{2.77} given that $p=(\lambda-a_{n-1})q$.
+					      \item \textbf{Hence show that $p=(\lambda-a_{n-1})q=q_{\deg{q}}(\lambda-a_{n-1})\prod_j^{[0:{n-1}]}(\lambda-a_j)=p_{\deg{p}}\prod_j^{[0:{n}]}(\lambda-a_j)$.}
+					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{2.16}
 			    \objective
