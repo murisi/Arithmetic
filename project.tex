@@ -3133,7 +3133,7 @@
 				    \end{enumerate}
 		    \procedure{2.17}
 			    \objective
-				    Choose a polynomial $f$ and rational numbers $a,b,B$ such that $a\le b$, $\Lambda(f,a)\Lambda(f,b)\le 0$, and $B>0$. The objective of the following instructions is to construct a rational number $d$ such that $a\le d\le b$ and $\lVert f(d)\rVert<B$.
+				    Choose a polynomial $f$ and rational numbers $a,b,B$ such that $a\le b$, $\Lambda(f,a)\Lambda(f,b)\le 0$, and $B>0$. The objective of the following instructions is to construct a rational number $d$ such that $a\le d\le b$ and $\lVert \Lambda(f,d)\rVert<B$.
 			    \implementation
 				    \begin{enumerate}
 					    \item Use \procedurehr{thu3001201111} on $\langle f,\max(\lvert a\rvert,\lvert b\rvert)\rangle$ to construct $\langle G,q\rangle$.
@@ -3281,7 +3281,7 @@
 				    \end{enumerate}
 				\procedure{fri3101200730}
 				  \objective
-				    Choose polynomials $g,h,j,p,q,r$ and a rational number $X$ such that $hq+jr=1$ and $p+r+gq$. The objective of the following instructions is to construct a rational number $a$ and a procedure $t(y,z)$ to show that $\Lambda(p,y)\Lambda(r,y)<0$ and $\Lambda(j,y)\ne 0$ when two rational numbers $y,z$ such that $\lVert y\rVert\le X$, $\lVert z\rVert\le X$, $\lVert y-z\rVert\le a$, and $\Lambda(q,y)\Lambda(q,z)\le 0$ are chosen.
+				    Choose polynomials $g,h,j,p,q,r$ and a rational number $X$ such that $hq+jr=1$ and $p+r=gq$. The objective of the following instructions is to construct a rational number $a$ and a procedure $t(y,z)$ to show that $\Lambda(p,y)\Lambda(r,y)<0$ and $\Lambda(j,y)\ne 0$ when two rational numbers $y,z$ such that $\lVert y\rVert\le X$, $\lVert z\rVert\le X$, $\lVert y-z\rVert\le a$, and $\Lambda(q,y)\Lambda(q,z)\le 0$ are chosen.
 				  \implementation
 				    \begin{enumerate}
 				      \item Use \procedurehr{thu2001191149} on $\langle h,X\rangle$ to construct $\langle a_1,t_1\rangle$.
