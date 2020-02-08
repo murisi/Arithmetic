@@ -64,6 +64,10 @@
 \newcommand{\ul}[1]{\protect\underline{#1}}
 \newcommand{\ol}[1]{\overline{#1}}
 \newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\iu}{i}
+\newcommand{\ju}{j}
+\newcommand{\ku}{k}
+\newcommand{\kcu}{\conj{k}}
 
 \newcounter{declaration}[part]
 \newcounter{declarationtemp}
@@ -190,8 +194,8 @@
 \newglossaryentry{perplexconj}{name=\ensuremath{\conj{a}},description={perplex conjugate}}
 \newglossaryentry{perplexabs^2}{name=\ensuremath{\lVert a\rVert^2},description={hyperbolic distance squared}}
 \newglossaryentry{perplex1/a}{name=\ensuremath{\frac{1}{a}},description={perplex reciprocal}}
-\newglossaryentry{perplexj}{name=\ensuremath{j},description={perplex imaginary unit}}
-\newglossaryentry{perplexk}{name=\ensuremath{k},description={perplex positive diagonal}}
+\newglossaryentry{perplexj}{name=\ensuremath{\ju},description={perplex imaginary unit}}
+\newglossaryentry{perplexk}{name=\ensuremath{\ku},description={perplex positive diagonal}}
 \newglossaryentry{ratpolyJ}{name=\ensuremath{\jsc_s(x)},description={}}
 \newglossaryentry{ratpolySturm}{name={Sturm chain},description={}}
 \newglossaryentry{complex}{name={complex number},description={}}
@@ -205,7 +209,7 @@
 \newglossaryentry{complexconj}{name=\ensuremath{\conj{a}},description={complex conjugate}}
 \newglossaryentry{complexabs^2}{name=\ensuremath{\lVert a\rVert^2},description={Euclidean distance squared}}
 \newglossaryentry{complex1/a}{name=\ensuremath{\frac{1}{a}},description={complex reciprocal}}
-\newglossaryentry{complexi}{name=\ensuremath{i},description={complex imaginary unit}}
+\newglossaryentry{complexi}{name=\ensuremath{\iu},description={complex imaginary unit}}
 \newglossaryentry{complexerr}{name=\ensuremath{a\equiv b\err{c_1}\err{c_2}\cdots\err{c_n}},description={approximate equality}}
 \newglossaryentry{complexexp}{name=\ensuremath{\exp_n(a)},description={complex exponential function}}
 \newglossaryentry{complexdiff}{name=\ensuremath{\diff_{x=y}^zf(x)},description={differentiation}}
@@ -3456,36 +3460,37 @@
 						    \item $=1$.
 					    \end{enumerate}
 				    \end{enumerate}
-		    \declaration{3.28}
+		    \declaration{sat0802201702}
 			    The notations \gls{perplexj} and \gls{perplexk} will be used as a shorthand for the perplex numbers $\langle 0,1\rangle$ and $\langle\frac{1}{2},\frac{1}{2}\rangle$ respectively.
 		    \procedure{thu0602201510}
 			    \objective
-				    The objective of the following instructions is to show that $j^{2}=1$, $k^2=k$, $\conj{k}^2=\conj{k}$, $k\conj{k}=0$, and $k+\conj{k}=1$.
+				    The objective of the following instructions is to show that $\ju^{2}=1$, $\ku^2=k$, $\kcu^2=\kcu$, $k\kcu=0$, and $k+\kcu=1$.
 			    \implementation
 				    \begin{enumerate}
-					    \item \textbf{Show that $j^2=1$}.
-					    \item \textbf{Show that $k^2=k$}.
-					    \item \textbf{Show that $\conj{k}^2=\conj{k}$}.
-					    \item \textbf{Show that $k\conj{k}=0$}.
-					    \item \textbf{Show that $k+\conj{k}=1$.}
+					    \item \textbf{Show that $\ju^2=1$}.
+					    \item \textbf{Show that $\ku^2=k$}.
+					    \item \textbf{Show that $\kcu^2=\kcu$}.
+					    \item \textbf{Show that $\ku\kcu=0$}.
+					    \item \textbf{Show that $\ku+\kcu=1$.}
 				    \end{enumerate}
 				\procedure{sat0802201559}
 			    \objective
-				    Choose rational numbers $a,b,c,d$. The objective of the following instructions is to show that $(ak+b\conj{k})+(ck+d\conj{k})=(a+c)k+(b+d)\conj{k}$.
+				    Choose rational numbers $a,b,c,d$. The objective of the following instructions is to show that $(a\ku+b\kcu)+(c\ku+d\kcu)=(a+c)\ku+(b+d)\kcu$.
 			    \implementation
 				    \begin{enumerate}
-				      \item Show that $(ak+b\conj{k})+(ck+d\conj{k})=(a+c)k+(b+d)\conj{k}$.
-				    \end{enumerate}\procedure{sat0802201559}
+				      \item Show that $(a\ku+b\kcu)+(c\ku+d\kcu)=(a+c)\ku+(b+d)\kcu$.
+				    \end{enumerate}
+				\procedure{sat0802201559}
 			    \objective
-				    Choose rational numbers $a,b,c,d$. The objective of the following instructions is to show that $(ak+b\conj{k})(ck+d\conj{k})=ack+bd\conj{k}$.
+				    Choose rational numbers $a,b,c,d$. The objective of the following instructions is to show that $(a\ku+b\kcu)(c\ku+d\kcu)=ac\ku+bd\kcu$.
 			    \implementation
 				    \begin{enumerate}
-				      \item Show that $(ak+b\conj{k})(ck+d\conj{k})$
+				      \item Show that $(a\ku+b\kcu)(c\ku+d\kcu)$
 				      \begin{enumerate}
-				        \item $=ak(ck+d\conj{k})+b\conj{k}(ck+d\conj{k})$
-				        \item $=akck+akd\conj{k}+b\conj{k}ck+b\conj{k}d\conj{k}$
-				        \item $=ack+0ad+0bc+bd\conj{k}$
-				        \item $=ack+bd\conj{k}$.
+				        \item $=a\ku(c\ku+d\kcu)+b\kcu(c\ku+d\kcu)$
+				        \item $=a\ku c\ku+a\ku d\kcu+b\kcu c\ku+b\kcu d\kcu$
+				        \item $=ac\ku+0ad+0bc+bd\kcu$
+				        \item $=ac\ku+bd\kcu$.
 				      \end{enumerate}
 				    \end{enumerate}
 	    \end{multicols*}
@@ -4532,17 +4537,17 @@
 			    The notation \gls{complexi} will be used as a shorthand for $\langle 0,1\rangle$.
 		    \procedure{3.03}
 			    \objective
-				    Choose an integer $a$. The objective of the following instructions is to show that $i^{4a}=1$, $i^{4a+1}=i$, $i^{4a+2}=-1$, and $i^{4a+3}=-i$.
+				    Choose an integer $a$. The objective of the following instructions is to show that $\iu^{4a}=1$, $\iu^{4a+1}=i$, $\iu^{4a+2}=-1$, and $\iu^{4a+3}=-i$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $i^2=-1$.
-					    \item Hence show that $i^4=(-1)^2=1$.
+					    \item Show that $\iu^2=-1$.
+					    \item Hence show that $\iu^4=(-1)^2=1$.
 					    \item \textbf{Hence show that}
 					    \begin{enumerate}
-					      \item $i^{4a}=(i^4)^a=1^a=1$
-					      \item $i^{4a+1}=i^{4a}i=1i=i$
-					      \item $i^{4a+2}=i^{4a+1}i=i^2=-1$
-					      \item $i^{4a+3}=i^{4a+2}i=(-1)i=-i$.
+					      \item $\iu^{4a}=(\iu^4)^a=1^a=1$
+					      \item $\iu^{4a+1}=\iu^{4a}\iu=1\iu=\iu$
+					      \item $\iu^{4a+2}=\iu^{4a+1}\iu=\iu^2=-1$
+					      \item $\iu^{4a+3}=\iu^{4a+2}\iu=(-1)\iu=-\iu$.
 					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{sun2107190636}
@@ -4677,7 +4682,7 @@
 				    Choose a rational number $X\le 0$. The objective of the following instructions is to construct two rational numbers $a>0,b$, and a procedure $p(x,r,n)$ to show that $(1+\frac{x}{n})^r\ge a^2$ when a rational number $x$ and non-negative integers $r,n$ such that $X\le x\le 0$, $r\le n$, and $n>b$ are chosen.
 			    \implementation
 				    \begin{enumerate}
-					    \item Execute \procedurehr{3.10} on $\langle -2X\rangle$ and let $\langle c,d,q\rangle$ receive.
+					    \item Use \procedurehr{3.10} on $\langle -2X\rangle$ to construct $\langle c,d,q\rangle$.
 					    \item Let $a=c^{-1}$.
 					    \item Let $b=\max(-2X,d)$.
 					    \item Let $p(x,r,n)$ be the following procedure:
@@ -4978,36 +4983,36 @@
 			    \end{tikzpicture}
 		    \end{minipage}
 		    \begin{minipage}[c]{0.35\textwidth}
-			    A plot of the list of complex numbers $(1+\frac{4i}{10})^{[0:11]}$. Notice that each multiplication of a complex number by $1+\frac{4i}{10}$ results in an anti-clockwise rotation about the origin and a small radial movement outwards. This can be seen to reflect the computation $(1+\frac{4i}{10})a=1a+\frac{4}{10}(ai)$ after one notes that $ai$ is perpendicular to $a$. Also note that each line segment has a length of roughly $\frac{4}{10}$ units. Hence the entire path has a length of approximately $10*\frac{4}{10}=4$ units.
+			    A plot of the list of complex numbers $(1+\frac{4\iu}{10})^{[0:11]}$. Notice that each multiplication of a complex number by $1+\frac{4\iu}{10}$ results in an anti-clockwise rotation about the origin and a small radial movement outwards. This can be seen to reflect the computation $(1+\frac{4\iu}{10})a=1a+\frac{4}{10}(a\iu)$ after one notes that $a\iu$ is perpendicular to $a$. Also note that each line segment has a length of roughly $\frac{4}{10}$ units. Hence the entire path has a length of approximately $10*\frac{4}{10}=4$ units.
 		    \end{minipage}
 	    \begin{multicols*}{2}
 		    \declaration{3.17}
-			    The notation \gls{complexcos}, where $z$ is a complex number and $n$ is a positive integer, will be used as a shorthand for $\frac{\exp_n(iz)+\exp_n(-iz)}{2}$.
+			    The notation \gls{complexcos}, where $z$ is a complex number and $n$ is a positive integer, will be used as a shorthand for $\frac{\exp_n(\iu z)+\exp_n(-\iu z)}{2}$.
 		    \procedure{3.22}
 			    \objective
-				    Choose a rational number $x$ and a positive integer $n$. The objective of the following instructions is to show that $\Re(\exp_n(ix))=\cos_n(x)$.
+				    Choose a rational number $x$ and a positive integer $n$. The objective of the following instructions is to show that $\Re(\exp_n(\iu x))=\cos_n(x)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $\Re(\exp_n(ix))$
+					    \item Show that $\Re(\exp_n(\iu x))$
 					    \begin{enumerate}
-						    \item $=\frac{\exp_n(ix)+\conj{\exp_n(ix)}}{2}$
-						    \item $=\frac{\exp_n(ix)+\exp_n(\conj{ix})}{2}$
-						    \item $=\frac{\exp_n(ix)+\exp_n(-ix)}{2}$
+						    \item $=\frac{\exp_n(\iu x)+\conj{\exp_n(\iu x)}}{2}$
+						    \item $=\frac{\exp_n(\iu x)+\exp_n(\conj{\iu x})}{2}$
+						    \item $=\frac{\exp_n(\iu x)+\exp_n(-\iu x)}{2}$
 						    \item $=\cos_n(x)$.
 					    \end{enumerate}
 				    \end{enumerate}
 		    \declaration{3.18}
-			    The notation \gls{complexsin}, where $z$ is a complex number and $n$ is a positive integer, will be used as a shorthand for $\frac{\exp_n(iz)-\exp_n(-iz)}{2i}$.
+			    The notation \gls{complexsin}, where $z$ is a complex number and $n$ is a positive integer, will be used as a shorthand for $\frac{\exp_n(\iu z)-\exp_n(-\iu z)}{2\iu}$.
 		    \procedure{3.23}
 			    \objective
-				    Choose a rational number $x$ and a positive integer $n$. The objective of the following instructions is to show that $\Im(\exp_n(ix))=\sin_n(x)$.
+				    Choose a rational number $x$ and a positive integer $n$. The objective of the following instructions is to show that $\Im(\exp_n(\iu x))=\sin_n(x)$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $\Im(\exp_n(ix))$
+					    \item Show that $\Im(\exp_n(\iu x))$
 					    \begin{enumerate}
-						    \item $=\frac{\exp_n(ix)-\conj{\exp_n(ix)}}{2i}$
-						    \item $=\frac{\exp_n(ix)-\exp_n(\conj{ix})}{2i}$
-						    \item $=\frac{\exp_n(ix)-\exp_n(-ix)}{2i}$
+						    \item $=\frac{\exp_n(\iu x)-\conj{\exp_n(\iu x)}}{2i}$
+						    \item $=\frac{\exp_n(\iu x)-\exp_n(\conj{\iu x})}{2i}$
+						    \item $=\frac{\exp_n(\iu x)-\exp_n(-\iu x)}{2i}$
 						    \item $=\sin_n(x)$.
 					    \end{enumerate}
 				    \end{enumerate}
@@ -5021,12 +5026,12 @@
 					    \begin{enumerate}
 					      \item Using procedure $q$, show that $\cos_n(x+y)$
 					      \begin{enumerate}
-					        \item $=\frac{1}{2}(\exp_n(i(x+y))+\exp_n(-i(x+y)))$
-					        \item $\equiv\frac{1}{2}(\exp_n(ix)\exp_n(iy)+\exp_n(-i(x+y)))\err{\frac{a(ix)(iy)}{2n}}$
-					        \item $\equiv\frac{1}{2}(\exp_n(ix)\exp_n(iy)+\exp_n(-ix)\exp_n(-iy))\allowbreak\err{\frac{a(-ix)(-iy)}{2n}}$
-					        \item $=\frac{1}{4}(\exp_n(ix)\exp_n(iy)+\exp_n(-ix)\exp_n(-iy))+\frac{1}{4}(\exp_n(ix)\exp_n(iy)+\exp_n(-ix)\exp_n(-iy))$
-					        \item $=\frac{1}{4}(\exp_n(ix)(\exp_n(iy)+\exp_n(-iy))+(\exp_n(-ix)-\exp_n(ix))\exp_n(-iy))+\frac{1}{4}((\exp_n(ix)-\exp_n(-ix))\exp_n(iy)+\exp_n(-ix)(\exp_n(iy)+\exp_n(-iy)))$
-					        \item $=\frac{1}{2}\exp_n(ix)\cos_n(y)+\frac{1}{2i}\sin_n(x)\exp_n(-iy)-\frac{1}{2i}\sin_n(x)\exp_n(iy)+\frac{1}{2}\exp_n(-ix)\cos_n(y)$
+					        \item $=\frac{1}{2}(\exp_n(\iu(x+y))+\exp_n(-\iu(x+y)))$
+					        \item $\equiv\frac{1}{2}(\exp_n(\iu x)\exp_n(\iu y)+\exp_n(-\iu(x+y)))\err{\frac{a(\iu x)(\iu y)}{2n}}$
+					        \item $\equiv\frac{1}{2}(\exp_n(\iu x)\exp_n(\iu y)+\exp_n(-\iu x)\exp_n(-\iu y))\allowbreak\err{\frac{a(-\iu x)(-\iu y)}{2n}}$
+					        \item $=\frac{1}{4}(\exp_n(\iu x)\exp_n(\iu y)+\exp_n(-\iu x)\exp_n(-\iu y))+\frac{1}{4}(\exp_n(\iu x)\exp_n(\iu y)+\exp_n(-\iu x)\exp_n(-\iu y))$
+					        \item $=\frac{1}{4}(\exp_n(\iu x)(\exp_n(\iu y)+\exp_n(-\iu y))+(\exp_n(-\iu x)-\exp_n(\iu x))\exp_n(-\iu y))+\frac{1}{4}((\exp_n(\iu x)-\exp_n(-\iu x))\exp_n(\iu y)+\exp_n(-\iu x)(\exp_n(\iu y)+\exp_n(-\iu y)))$
+					        \item $=\frac{1}{2}\exp_n(\iu x)\cos_n(y)+\frac{1}{2\iu}\sin_n(x)\exp_n(-\iu y)-\frac{1}{2\iu}\sin_n(x)\exp_n(\iu y)+\frac{1}{2}\exp_n(-\iu x)\cos_n(y)$
 					        \item $=\cos_n(x)\cos_n(y)-\sin_n(x)\sin_n(y)$
 					      \end{enumerate}
 					      \item \textbf{Hence show that $\cos_n(x+y)\equiv\cos_n(x)\cos_n(y)-\sin_n(x)\sin_n(y)\err{\frac{axy}{n}}\err{\frac{aX^2}{n}}$.}
@@ -5048,10 +5053,10 @@
 					    \begin{enumerate}
 					      \item Using procedure $q$, show that $\cos_n(x)^2+\sin_n(y)^2$
 					      \begin{enumerate}
-					        \item $=\frac{1}{4}(\exp_n(ix)+\exp_n(-ix))^2+\frac{1}{4i^2}(\exp_n(ix)-\exp_n(-ix))^2$
-					        \item $=\frac{1}{4}(\exp_n(ix)^2+2\exp_n(ix)\exp_n(-ix)+\exp_n(-ix)^2-\exp_n(ix)^2+2\exp_n(ix)\exp_n(-ix)-\exp_n(-ix)^2)$
-					        \item $=\exp_n(ix)\exp_n(-ix)$
-					        \item $\equiv 1\err{\frac{a(-ix)(ix)}{n}}$.
+					        \item $=\frac{1}{4}(\exp_n(\iu x)+\exp_n(-\iu x))^2+\frac{1}{4\iu^2}(\exp_n(\iu x)-\exp_n(-\iu x))^2$
+					        \item $=\frac{1}{4}(\exp_n(\iu x)^2+2\exp_n(\iu x)\exp_n(-\iu x)+\exp_n(-\iu x)^2-\exp_n(\iu x)^2+2\exp_n(\iu x)\exp_n(-\iu x)-\exp_n(-\iu x)^2)$
+					        \item $=\exp_n(\iu x)\exp_n(-\iu x)$
+					        \item $\equiv 1\err{\frac{a(-\iu x)(\iu x)}{n}}$.
 					      \end{enumerate}
 					      \item \textbf{Hence show that $\cos_n(x)^2+\sin_n(y)^2\equiv 1\err{\frac{a\lVert x\rVert^2}{n}}\err{\frac{aX^2}{n}}$.}
 					    \end{enumerate}
@@ -5059,20 +5064,20 @@
 				    \end{enumerate}
 		    \procedure{sat0308190647}
 		      \objective
-		        Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,y,n)$, to show that $\lVert x\exp_n(iy)\rVert^2\equiv\lVert x\rVert^2\err{\frac{a\lVert x\rVert^2\lVert y\rVert^2}{n}}\err{\frac{a\lVert x\rVert^2X^2}{n}}$ when a complex number $x$, a rational number $y$, and a positive integer $n$ such that $\lVert y\rVert^2\le X^2$ and $n>b$ are chosen.
+		        Choose a rational number $X\ge 0$. The objective of the following instructions is to construct two rational numbers $a,b$, and a procedure, $p(x,y,n)$, to show that $\lVert x\exp_n(\iu y)\rVert^2\equiv\lVert x\rVert^2\err{\frac{a\lVert x\rVert^2\lVert y\rVert^2}{n}}\err{\frac{a\lVert x\rVert^2X^2}{n}}$ when a complex number $x$, a rational number $y$, and a positive integer $n$ such that $\lVert y\rVert^2\le X^2$ and $n>b$ are chosen.
 		      \implementation
 		        \begin{enumerate}
 		          \item Execute \procedurehr{3.26} on $\langle X\rangle$ and let $\langle a,b,q\rangle$ receive.
 		          \item Let $p(x,y,n)$ be the following procedure:
 		          \begin{enumerate}
-		            \item Using procedure $q$, \procedurehr{3.22}, and \procedurehr{3.23}, show that $\lVert x\exp_n(iy)\rVert^2$
+		            \item Using procedure $q$, \procedurehr{3.22}, and \procedurehr{3.23}, show that $\lVert x\exp_n(\iu y)\rVert^2$
 		            \begin{enumerate}
-		              \item $=\lVert x\rVert^2\lVert\exp_n(iy)\rVert^2$
-		              \item $=\lVert x\rVert^2\lVert\cos_n(y)+i\sin_n(y)\rVert^2$
+		              \item $=\lVert x\rVert^2\lVert\exp_n(\iu y)\rVert^2$
+		              \item $=\lVert x\rVert^2\lVert\cos_n(y)+\iu\sin_n(y)\rVert^2$
 		              \item $=\lVert x\rVert^2(\cos_n(y)^2+\sin_n(y)^2)$
 		              \item $\equiv\lVert x\rVert^2\cdot 1\err{\lVert x\rVert^2\cdot\frac{a\lVert y\rVert^2}{n}}$.
 		            \end{enumerate}
-		            \item \textbf{Hence show that $\lVert x\exp_n(iy)\rVert^2\equiv\lVert x\rVert^2\err{\frac{a\lVert xy\rVert^2}{n}}\err{\frac{a\lVert x\rVert^2X^2}{n}}$.}
+		            \item \textbf{Hence show that $\lVert x\exp_n(\iu y)\rVert^2\equiv\lVert x\rVert^2\err{\frac{a\lVert xy\rVert^2}{n}}\err{\frac{a\lVert x\rVert^2X^2}{n}}$.}
 		          \end{enumerate}
 		        \end{enumerate}
 		    \procedure{3.29}
@@ -5085,10 +5090,10 @@
 					    \begin{enumerate}
 						    \item Using procedure $q$, show that $\cos_n(x)$
 						    \begin{enumerate}
-						      \item $=\frac{\exp_n(ix)}{2}+\frac{\exp_n(-ix)}{2}$
-						      \item $\equiv\frac{1}{2}\sum_r^{[0:{n+1}]}\frac{(ix)^{r}}{r!}+\frac{\exp_n(-ix)}{2}\err{\frac{a}{2n}}$
-						      \item $\equiv\frac{1}{2}\sum_r^{[0:{n+1}]}\frac{(ix)^{r}}{r!}+\frac{1}{2}\sum_r^{[0:{n+1}]}\frac{(-ix)^{r}}{r!}\err{\frac{a}{2n}}$
-						      \item $=\sum_r^{[0:{n+1}]}\frac{(i^r+(-i)^r)x^{r}}{2(r!)}$
+						      \item $=\frac{\exp_n(\iu x)}{2}+\frac{\exp_n(-\iu x)}{2}$
+						      \item $\equiv\frac{1}{2}\sum_r^{[0:{n+1}]}\frac{(\iu x)^{r}}{r!}+\frac{\exp_n(-\iu x)}{2}\err{\frac{a}{2n}}$
+						      \item $\equiv\frac{1}{2}\sum_r^{[0:{n+1}]}\frac{(\iu x)^{r}}{r!}+\frac{1}{2}\sum_r^{[0:{n+1}]}\frac{(-\iu x)^{r}}{r!}\err{\frac{a}{2n}}$
+						      \item $=\sum_r^{[0:{n+1}]}\frac{(\iu^r+(-\iu)^r)x^{r}}{2(r!)}$
 						      \item $=\sum_r^{[0:{n+1}]}\frac{[r\bmod 2=0](-1)^{\frac{r}{2}}x^{r}}{r!}$
 						      \item $=\sum_r^{[0:{\lceil\frac{n}{2}\rceil}]}\frac{(-1)^rx^{2r}}{(2r)!}$.
 						    \end{enumerate}
@@ -5779,7 +5784,7 @@
 	  \chapter{Gregory-Leibniz Series}
 	    \begin{multicols}{2}
 		    \declaration{3.33}
-			    The notation \gls{complextau}, where $n$ is a positive integer, will be used as a shorthand for $8\Im(\ln_n(1+i))$.
+			    The notation \gls{complextau}, where $n$ is a positive integer, will be used as a shorthand for $8\Im(\ln_n(1+\iu))$.
 		    \procedure{3.47}
 			    \objective
 				    Choose a positive integer $k$. The objective of the following instructions is to show that $\tau_k=8\sum_r^{[0:\lfloor\frac{k}{2}\rfloor]}\frac{(-1)^r}{2r+1}$.
@@ -5787,9 +5792,9 @@
 				    \begin{enumerate}
 					    \item Using \declarationhr{3.33}, show that $\tau_k$
 					    \begin{enumerate}
-						    \item $=8\Im(\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}i^r)$
-						    \item $=8\Im(\sum_r^{[0:\lfloor\frac{k}{2}\rfloor]}\frac{(-1)^{2r}}{2r+1}i^{2r+1})$
-						    \item $=8\sum_r^{[0:\lfloor\frac{k}{2}\rfloor]}\frac{i^{2r}}{2r+1}$
+						    \item $=8\Im(\sum_r^{[1:k]}\frac{(-1)^{r-1}}{r}\iu^r)$
+						    \item $=8\Im(\sum_r^{[0:\lfloor\frac{k}{2}\rfloor]}\frac{(-1)^{2r}}{2r+1}\iu^{2r+1})$
+						    \item $=8\sum_r^{[0:\lfloor\frac{k}{2}\rfloor]}\frac{\iu^{2r}}{2r+1}$
 						    \item $=8\sum_r^{[0:\lfloor\frac{k}{2}\rfloor]}\frac{(-1)^r}{2r+1}$.
 					    \end{enumerate}
 				    \end{enumerate}
@@ -5875,7 +5880,7 @@
 				    \end{enumerate}
 		    \procedure{3.53}
 			    \objective
-				    The objective of the following instructions is to construct positive rational numbers $a,c,d,e$, and a procedure $p(n,k)$ to show that $\exp_n(\frac{1}{4}\tau_ki)\equiv i\err{\frac{an}{k}+\frac{c}{n}}$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
+				    The objective of the following instructions is to construct positive rational numbers $a,c,d,e$, and a procedure $p(n,k)$ to show that $\exp_n(\frac{1}{4}\tau_k\iu)\equiv\iu\err{\frac{an}{k}+\frac{c}{n}}$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
 			    \implementation
 				    \begin{enumerate}
 					    \item Execute \procedurehr{fri2607191736} on $\langle 0\rangle$ and let $\langle a_1,p_1\rangle$ receive.
@@ -5887,28 +5892,28 @@
 					    \item Let $e=\max(b_2,b_3,e_4)$.
 					    \item Let $p(n,k)$ be the following procedure:
 					    \begin{enumerate}
-					      \item Show that $\lVert\ln_k(1+i)\rVert^2\le {a_1}^2$ using procedure $p_1$.
-					      \item Hence using procedures $p_2,p_3,p_4$, show that $\exp_n(\frac{1}{4}\tau_ki)$
+					      \item Show that $\lVert\ln_k(1+\iu)\rVert^2\le {a_1}^2$ using procedure $p_1$.
+					      \item Hence using procedures $p_2,p_3,p_4$, show that $\exp_n(\frac{1}{4}\tau_k\iu)$
 					      \begin{enumerate}
-					        \item $=\exp_n(2\Im(\ln_k(1+i))i)$
-					        \item $=\exp_n(\ln_k(1+i)-\conj{\ln_k(1+i)})$
-					        \item $\equiv\frac{\exp_n(\ln_k(1+i))}{\exp_n(\conj{\ln_k(1+i)})}\err{\frac{a_2}{n}}$
-					        \item $\equiv\frac{1+i}{\exp_n(\conj{\ln_k(1+i)})}\err{\frac{1}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n})}$
-					        \item $=\frac{1+i}{\conj{\exp_n(\ln_k(1+i))}}$
-					        \item $\equiv\frac{1+i}{\conj{1+i}}$
+					        \item $=\exp_n(2\Im(\ln_k(1+\iu))\iu)$
+					        \item $=\exp_n(\ln_k(1+\iu)-\conj{\ln_k(1+\iu)})$
+					        \item $\equiv\frac{\exp_n(\ln_k(1+\iu))}{\exp_n(\conj{\ln_k(1+\iu)})}\err{\frac{a_2}{n}}$
+					        \item $\equiv\frac{1+\iu}{\exp_n(\conj{\ln_k(1+\iu)})}\err{\frac{1}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n})}$
+					        \item $=\frac{1+\iu}{\conj{\exp_n(\ln_k(1+\iu))}}$
+					        \item $\equiv\frac{1+\iu}{\conj{1+\iu}}$
 					        \begin{enumerate}
-					          \item $\err{\frac{(1+i)(\frac{a_4n}{k}+\frac{c_4}{n})}{\conj{\exp_n(\ln_k(1+i))}\cdot\conj{1+i}}}$
+					          \item $\err{\frac{(1+\iu)(\frac{a_4n}{k}+\frac{c_4}{n})}{\conj{\exp_n(\ln_k(1+\iu))}\cdot\conj{1+\iu}}}$
 					          \item $\err{\frac{1}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n})}$
 					        \end{enumerate}
 					        \item $=i$.
 					      \end{enumerate}
-					      \item \textbf{Hence show that $\exp_n(\frac{1}{4}\tau_ki)\equiv i\err{\frac{a_2}{n}+\frac{2}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n})}\err{\frac{an}{k}+\frac{c}{n}}$.}
+					      \item \textbf{Hence show that $\exp_n(\frac{1}{4}\tau_k\iu)\equiv\iu\err{\frac{a_2}{n}+\frac{2}{a_3}(\frac{a_4n}{k}+\frac{c_4}{n})}\err{\frac{an}{k}+\frac{c}{n}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,c,d,e,p\rangle$.}
 				    \end{enumerate}
 		    \procedure{3.54}
 			    \objective
-				    The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ such that $b>1$, and a procedure, $p(n,k)$, to show that $\exp_n(-\frac{1}{4}\tau_ki)\equiv -i\err{\frac{an}{k}+\frac{c}{n}}$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
+				    The objective of the following instructions is to construct positive rational numbers $a,c,d,e$ such that $b>1$, and a procedure, $p(n,k)$, to show that $\exp_n(-\frac{1}{4}\tau_k\iu)\equiv -\iu\err{\frac{an}{k}+\frac{c}{n}}$ when integers $k,n$ such that $n>e$ and $k>d$ are chosen.
 			    \implementation
 				    Implementation is analogous to that of \procedurehr{3.53}.
 		    \procedure{mon2608190753}
@@ -5932,7 +5937,7 @@
 		        \end{enumerate}
 		    \procedure{3.55}
 			    \objective
-				    Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\exp_n(\frac{k}{4}\tau_m i)\equiv i^k\err{\frac{an}{m}+\frac{b}{n}}$ when a non-negative integer $k$ and two positive integers $n,m$ such that $k\le K$, $n>c$, and $m>d$ are chosen.
+				    Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\exp_n(\frac{k}{4}\tau_m\iu)\equiv\iu^k\err{\frac{an}{m}+\frac{b}{n}}$ when a non-negative integer $k$ and two positive integers $n,m$ such that $k\le K$, $n>c$, and $m>d$ are chosen.
 			    \implementation
 				    \begin{enumerate}
 					    \item Execute \procedurehr{3.50} and let $\langle a_1,d,p_1\rangle$ receive.
@@ -5946,23 +5951,23 @@
 					    \item Let $p(n,k,m)$ be the following procedure:
 					    \begin{enumerate}
 						    \item Show that $\tau_m\le a_1$ using procedure $p_1$.
-						    \item Hence show that $\lVert\frac{1}{4}\tau_m i\rVert^2=\lVert\frac{1}{4}\tau_m\rVert^2\le(\frac{a_1}{4})^2$.
-						    \item Hence show that $\lVert\exp_n(\frac{1}{4}\tau_m i)-i\rVert^2\le(\frac{a_3n}{m}+\frac{b_3}{n})^2$ using procedure $p_3$.
-						    \item Hence show that $\lVert\exp_n(\frac{1}{4}\tau_m i)\rVert^2\le a_4$ using procedure $p_4$.
-						    \item Hence using procedures $p_2,p_5$, show that $\exp_n(\frac{k}{4}\tau_m i)$
+						    \item Hence show that $\lVert\frac{1}{4}\tau_m\iu\rVert^2=\lVert\frac{1}{4}\tau_m\rVert^2\le(\frac{a_1}{4})^2$.
+						    \item Hence show that $\lVert\exp_n(\frac{1}{4}\tau_m\iu)-\iu\rVert^2\le(\frac{a_3n}{m}+\frac{b_3}{n})^2$ using procedure $p_3$.
+						    \item Hence show that $\lVert\exp_n(\frac{1}{4}\tau_m\iu)\rVert^2\le a_4$ using procedure $p_4$.
+						    \item Hence using procedures $p_2,p_5$, show that $\exp_n(\frac{k}{4}\tau_m\iu)$
 						    \begin{enumerate}
-						      \item $\equiv\exp_n(\frac{1}{4}\tau_m i)^k$
+						      \item $\equiv\exp_n(\frac{1}{4}\tau_m\iu)^k$
 						      \begin{enumerate}
 						        \item $\err{\frac{a_2k}{n}}$
 						        \item $\err{\frac{a_2K}{n}}$
 						      \end{enumerate}
-						      \item $\equiv i^k$
+						      \item $\equiv\iu^k$
 						      \begin{enumerate}
-						        \item $\err{a_5(\exp_n(\frac{1}{4}\tau_m i)-i)}$
+						        \item $\err{a_5(\exp_n(\frac{1}{4}\tau_m\iu)-\iu)}$
 						        \item $\err{a_5(\frac{a_3n}{m}+\frac{b_3}{n})}$
 						      \end{enumerate}
 						    \end{enumerate}
-						    \item \textbf{Hence show that $\exp_n(\frac{k}{4}\tau_m i)\equiv i^k\err{\frac{a_2K}{n}+a_5(\frac{a_3n}{m}+\frac{b_3}{n})}\err{\frac{an}{m}+\frac{b}{n}}$.}
+						    \item \textbf{Hence show that $\exp_n(\frac{k}{4}\tau_m\iu)\equiv\iu^k\err{\frac{a_2K}{n}+a_5(\frac{a_3n}{m}+\frac{b_3}{n})}\err{\frac{an}{m}+\frac{b}{n}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
             \end{enumerate}
@@ -5973,7 +5978,7 @@
 				    Implementation is an extension of that of \procedurehr{3.55} using \procedurehr{3.54}.
 		    \procedure{3.57}
 			    \objective
-				    Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\cos_n(\frac{k}{4}\tau_m)\equiv\frac{i^k+(-i)^k}{2}\err{\frac{an}{m}+\frac{b}{n}}$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
+				    Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\cos_n(\frac{k}{4}\tau_m)\equiv\frac{\iu^k+(-\iu)^k}{2}\err{\frac{an}{m}+\frac{b}{n}}$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
 			    \implementation
 				    \begin{enumerate}
 					    \item Execute \procedurehr{3.56} on $\langle K\rangle$ and let $\langle a,b,c,d,q\rangle$ receive.
@@ -5981,24 +5986,24 @@
 					    \begin{enumerate}
 						    \item Using procedure $q$, show that $\cos_n(\frac{k}{4}\tau_m)$
 						    \begin{enumerate}
-						      \item $=\frac{\exp_n(\frac{k}{4}\tau_m i)+\exp_n(-\frac{k}{4}\tau_m i)}{2}$
-						      \item $=\frac{\exp_n(\frac{k}{4}\tau_m i)}{2}+\frac{\exp_n(-\frac{k}{4}\tau_m i)}{2}$
-						      \item $\equiv\frac{i^k}{2}+\frac{\exp_n(-\frac{k}{4}\tau_m i)}{2}\err{\frac{1}{2}(\frac{an}{m}+\frac{b}{n})}$
-						      \item $\equiv\frac{i^k}{2}+\frac{i^{-k}}{2}\err{\frac{1}{2}(\frac{an}{m}+\frac{b}{n})}$
-						      \item $=\frac{i^k+i^{-k}}{2}$.
+						      \item $=\frac{\exp_n(\frac{k}{4}\tau_m\iu)+\exp_n(-\frac{k}{4}\tau_m\iu)}{2}$
+						      \item $=\frac{\exp_n(\frac{k}{4}\tau_m\iu)}{2}+\frac{\exp_n(-\frac{k}{4}\tau_m\iu)}{2}$
+						      \item $\equiv\frac{\iu^k}{2}+\frac{\exp_n(-\frac{k}{4}\tau_m\iu)}{2}\err{\frac{1}{2}(\frac{an}{m}+\frac{b}{n})}$
+						      \item $\equiv\frac{\iu^k}{2}+\frac{\iu^{-k}}{2}\err{\frac{1}{2}(\frac{an}{m}+\frac{b}{n})}$
+						      \item $=\frac{\iu^k+\iu^{-k}}{2}$.
 						    \end{enumerate}
-						    \item \textbf{Hence show that $\cos_n(\frac{k}{4}\tau_m)\equiv\frac{i^k+i^{-k}}{2}\err{\frac{an}{m}+\frac{b}{n}}$.}
+						    \item \textbf{Hence show that $\cos_n(\frac{k}{4}\tau_m)\equiv\frac{\iu^k+\iu^{-k}}{2}\err{\frac{an}{m}+\frac{b}{n}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				    \end{enumerate}
 		    \procedure{3.58}
 			    \objective
-				    Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\sin_n(\frac{k}{4}\tau_m)\equiv\frac{i^k-(-i)^k}{2i}\err{\frac{an}{m}+\frac{b}{n}}$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
+				    Choose an integer $K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\sin_n(\frac{k}{4}\tau_m)\equiv\frac{\iu^k-(-\iu)^k}{2\iu}\err{\frac{an}{m}+\frac{b}{n}}$ when an integer $k$ and two positive integers $n,m$ such that $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
 			    \implementation
 				    Implementation is analogous to that of \procedurehr{3.57}.
 		    \procedure{3.59}
 			    \objective
-				    Choose two integers $X\ge 0,K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m,k)$, to show that $\exp_n(x+\frac{k}{4}\tau_m i)\equiv i^k\exp_n(x)\err{\frac{an}{m}+\frac{b}{n}}$ when an integer $k$ and two positive integers $n,m$ such that $\lVert x\rVert^2\le X$, $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
+				    Choose two integers $X\ge 0,K\ge 0$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m,k)$, to show that $\exp_n(x+\frac{k}{4}\tau_m\iu)\equiv\iu^k\exp_n(x)\err{\frac{an}{m}+\frac{b}{n}}$ when an integer $k$ and two positive integers $n,m$ such that $\lVert x\rVert^2\le X$, $\lvert k\rvert\le K$, $n>c$, and $m>d$ are chosen.
 			    \implementation
 				    \begin{enumerate}
 					    \item Execute \procedurehr{3.50} and let $\langle a_1,b_1,p_1\rangle$ receive.
@@ -6013,19 +6018,19 @@
 					    \item Let $p(x,n,k,m)$ be the following procedure:
 					    \begin{enumerate}
 						    \item Show that $\tau_m\le a_1$ using procedure $p_1$.
-						    \item Hence show that $\lVert\frac{k}{4}\tau_m i\rVert^2=(\frac{k{\tau_m}}{4})^2$.
-						    \item Hence using procedures $p_2,p_3,p_4$, show that $\exp_n(x+\frac{k}{4}\tau_m i)$
+						    \item Hence show that $\lVert\frac{k}{4}\tau_m\iu\rVert^2=(\frac{k{\tau_m}}{4})^2$.
+						    \item Hence using procedures $p_2,p_3,p_4$, show that $\exp_n(x+\frac{k}{4}\tau_m\iu)$
 						    \begin{enumerate}
-						      \item $\equiv\exp_n(\frac{k}{4}\tau_m i)\exp_n(x)\err{\frac{a_2H^2}{n}}$
-						      \item $\equiv i^k\exp_n(x)\err{a_3(\frac{a_4n}{m}+\frac{b_4}{n})}$
+						      \item $\equiv\exp_n(\frac{k}{4}\tau_m\iu)\exp_n(x)\err{\frac{a_2H^2}{n}}$
+						      \item $\equiv\iu^k\exp_n(x)\err{a_3(\frac{a_4n}{m}+\frac{b_4}{n})}$
 						    \end{enumerate}
-						    \item \textbf{Hence show that $\exp_n(x+\frac{k}{4}\tau_m i)\equiv i^k\exp_n(x)\err{\frac{a_2H^2}{n}+a_3(\frac{a_4n}{m}+\frac{b_4}{n})}\err{\frac{an}{m}+\frac{b}{n}}$.}
+						    \item \textbf{Hence show that $\exp_n(x+\frac{k}{4}\tau_m\iu)\equiv\iu^k\exp_n(x)\err{\frac{a_2H^2}{n}+a_3(\frac{a_4n}{m}+\frac{b_4}{n})}\err{\frac{an}{m}+\frac{b}{n}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				    \end{enumerate}
 		    \procedure{3.89}
 			    \objective
-				    Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\exp_n(\frac{k}{K}\tau_m i)^K\equiv 1\err{\frac{an}{m}+\frac{b}{n}}$ when an integer $k$ and positive integers $n,m$ such that $0\le k<K$, $n\ge c$, and $m>d$ are chosen.
+				    Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m,k)$, to show that $\exp_n(\frac{k}{K}\tau_m\iu)^K\equiv 1\err{\frac{an}{m}+\frac{b}{n}}$ when an integer $k$ and positive integers $n,m$ such that $0\le k<K$, $n\ge c$, and $m>d$ are chosen.
 			    \implementation
 				    \begin{enumerate}
 					    \item Execute \procedurehr{3.50} and let $\langle a_1,b_1,p_1\rangle$ receive.
@@ -6038,14 +6043,14 @@
 					    \item Let $p(n,m,k)$ be the following procedure:
 					    \begin{enumerate}
 						    \item Show that $\tau_m\le a_1$ using procedure $p_1$.
-						    \item Hence show that $\lVert K\frac{k}{K}\tau_mi\rVert=\lVert k\tau_m\rVert^2\le(Ka_1)^2$.
-						    \item Now using procedures $p_2,p_3$, show that $\exp_n(\frac{k}{K}\tau_mi)^K$
+						    \item Hence show that $\lVert K\frac{k}{K}\tau_m\iu\rVert=\lVert k\tau_m\rVert^2\le(Ka_1)^2$.
+						    \item Now using procedures $p_2,p_3$, show that $\exp_n(\frac{k}{K}\tau_m\iu)^K$
 						    \begin{enumerate}
-						      \item $\equiv\exp_n(K\frac{k}{K}\tau_mi)\err{\frac{a_2K}{n}}$
-						      \item $=\exp_n(\frac{4k}{4}\tau_mi)$
-						      \item $\equiv i^{4k}\err{\frac{a_3n}{m}+\frac{b_3}{n}}$
+						      \item $\equiv\exp_n(K\frac{k}{K}\tau_m\iu)\err{\frac{a_2K}{n}}$
+						      \item $=\exp_n(\frac{4k}{4}\tau_m\iu)$
+						      \item $\equiv\iu^{4k}\err{\frac{a_3n}{m}+\frac{b_3}{n}}$
 						    \end{enumerate}
-						    \item \textbf{Hence show that $\exp_n(\frac{k}{K}\tau_mi)^K\equiv i^{4k}\err{\frac{a_2K}{n}+\frac{a_3n}{m}+\frac{b_3}{n}}\err{\frac{an}{m}+\frac{b}{n}}$.}
+						    \item \textbf{Hence show that $\exp_n(\frac{k}{K}\tau_m\iu)^K\equiv\iu^{4k}\err{\frac{a_2K}{n}+\frac{a_3n}{m}+\frac{b_3}{n}}\err{\frac{an}{m}+\frac{b}{n}}$.}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,b,c,d,p\rangle$.}
 				    \end{enumerate}
@@ -6120,8 +6125,8 @@
 					    \begin{enumerate}
 						    \item Using \procedurehr{3.22}, show that $(\cos_n(x)-1)^2$
 						    \begin{enumerate}
-							    \item $=(\frac{1}{2}((1+\frac{xi}{n})^n+(1-\frac{xi}{n})^n)-1)^2$
-							    \item $=(\frac{1}{2}(\sum_r^{[0:{n+1}]}\frac{n^{\ul{r}}}{r!}(\frac{x}{n})^ri^r+\sum_r^{[0:{n+1}]}\frac{n^{\ul{r}}}{r!}(\frac{x}{n})^r(-i)^r)-1)^2$
+							    \item $=(\frac{1}{2}((1+\frac{x\iu}{n})^n+(1-\frac{x\iu}{n})^n)-1)^2$
+							    \item $=(\frac{1}{2}(\sum_r^{[0:{n+1}]}\frac{n^{\ul{r}}}{r!}(\frac{x}{n})^r\iu^r+\sum_r^{[0:{n+1}]}\frac{n^{\ul{r}}}{r!}(\frac{x}{n})^r(-\iu)^r)-1)^2$
 							    \item $=(\sum_r^{[0:\lfloor\frac{n}{2}\rfloor+1]}\frac{n^{\ul{2r}}}{(2r)!}(\frac{x}{n})^{2r}(-1)^r-1)^2$
 							    \item $=(\sum_r^{[1:\lfloor\frac{n}{2}\rfloor+1]}\frac{n^{\ul{2r}}}{(2r)!}(\frac{x}{n})^{2r}(-1)^r)^2$
 							    \item $=(\sum_r^{[1:\lfloor\frac{\lfloor\frac{n}{2}\rfloor}{2}\rfloor+1]}(-\frac{n^{\ul{4r-2}}}{(4r-2)!}(\frac{x}{n})^{4r-2}+\frac{n^{\ul{4r}}}{(4r)!}(\frac{x}{n})^{4r})-\frac{n^{\ul{2\lfloor\frac{n}{2}\rfloor}}}{(2\lfloor\frac{n}{2}\rfloor)!}(\frac{x}{n})^{2\lfloor\frac{n}{2}\rfloor}[\lfloor\frac{n}{2}\rfloor\bmod 2=1])^2$
@@ -6139,7 +6144,7 @@
 				    \end{enumerate}
 		    \procedure{3.60}
 			    \objective
-				    Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,m,k)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-1\rVert^2\ge a^2$ when an integer $k$ and positive integers $n,m$ such that $0<\lvert k\rvert\le\frac{K}{2}$, $n>b$, and $m>c$ are chosen.
+				    Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,m,k)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_m\iu)-1\rVert^2\ge a^2$ when an integer $k$ and positive integers $n,m$ such that $0<\lvert k\rvert\le\frac{K}{2}$, $n>b$, and $m>c$ are chosen.
 			    \implementation
 				    \begin{enumerate}
 					    \item Execute \procedurehr{3.50} and let $\langle a_1,c,p_1\rangle$ receive.
@@ -6153,9 +6158,9 @@
 						    \item Show that $\frac{1}{K}\le\frac{\lvert k\rvert}{K}\le\frac{1}{2}$ given that $1\le\lvert k\rvert\le\frac{K}{2}$.
 						    \item Hence show that $0<\frac{a_2}{K}\le\frac{1}{K}\tau_m\le\frac{\lvert k\rvert}{K}\tau_m\le\frac{1}{2}\tau_m\le\frac{a_1}{2}$ using procedures $p_1$ and $p_2$.
 						    \item Hence show that $(\cos_n(\frac{k}{K}\tau_m)-1)^2\ge a^2$ using procedure $p_3$.
-						    \item Using \procedurehr{3.22}, show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-1\rVert^2$
+						    \item Using \procedurehr{3.22}, show that $\lVert\exp_n(\frac{k}{K}\tau_m\iu)-1\rVert^2$
 						    \begin{enumerate}
-							    \item $\ge\Re(\exp_n(\frac{k}{K}\tau_mi)-1)^2$
+							    \item $\ge\Re(\exp_n(\frac{k}{K}\tau_m\iu)-1)^2$
 							    \item $=(\cos_n(\frac{k}{K}\tau_m)-1)^2$
 							    \item $\ge a^2$
 						    \end{enumerate}
@@ -6164,7 +6169,7 @@
 				    \end{enumerate}
 		    \procedure{3.61}
 			    \objective
-				    Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,m,j,k)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a^2$ when positive integers $n,j,k,m$ such that $-K<j\le k<K$, $0<k-j\le\frac{K}{2}$, $n\ge b$, and $m\ge c$ are chosen.
+				    Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,m,j,k)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_m\iu)-\exp_n(\frac{j}{K}\tau_m\iu)\rVert^2\ge a^2$ when positive integers $n,j,k,m$ such that $-K<j\le k<K$, $0<k-j\le\frac{K}{2}$, $n\ge b$, and $m\ge c$ are chosen.
 			    \implementation
 				    \begin{enumerate}
 					    \item Execute \procedurehr{3.50} and let $\langle a_1,b_1,p_1\rangle$ receive.
@@ -6181,16 +6186,16 @@
 						      \item given that $-1<\frac{j}{K}<1$
 						      \item given that $-K<j<K$.
 						    \end{enumerate}
-						    \item Hence show that $\lVert\frac{j}{K}\tau_mi\rVert^2=\lVert\frac{j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_1}^2$ using procedure $p_1$.
-						    \item Hence show that $\lVert\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge{a_2}^2>0$ using procedure $p_2$.
-						    \item Hence show that $\lVert\exp_n(\frac{k-j}{K}\tau_mi)-1\rVert^2\ge{a_3}^2>0$ using procedure $p_3$.
-						    \item Show that $\lVert\frac{k-j}{K}\tau_mi\rVert^2\le\lVert\frac{k-j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_1}^2$ given that $0<\frac{k-j}{K}\le\frac{1}{2}$.
+						    \item Hence show that $\lVert\frac{j}{K}\tau_m\iu\rVert^2=\lVert\frac{j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_1}^2$ using procedure $p_1$.
+						    \item Hence show that $\lVert\exp_n(\frac{j}{K}\tau_m\iu)\rVert^2\ge{a_2}^2>0$ using procedure $p_2$.
+						    \item Hence show that $\lVert\exp_n(\frac{k-j}{K}\tau_m\iu)-1\rVert^2\ge{a_3}^2>0$ using procedure $p_3$.
+						    \item Show that $\lVert\frac{k-j}{K}\tau_m\iu\rVert^2\le\lVert\frac{k-j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_1}^2$ given that $0<\frac{k-j}{K}\le\frac{1}{2}$.
 						    \item Show that $n\ge b\ge\frac{2a_4{a_1}^2}{a_2a_3}$.
-						    \item Hence show that $\lVert\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)\rVert^2\le\frac{{a_4}^2\lVert\frac{k-j}{K}\tau_mi\rVert^2\lVert\frac{j}{K}\tau_mi\rVert^2}{n^2}\le\frac{{a_4}^2{a_1}^4}{n^2}\le(\frac{a_2a_3}{2})^2$ using procedure $p_4$.
-						    \item Hence using \procedurehr{sat1708191238}, show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
+						    \item Hence show that $\lVert\exp_n(\frac{k-j}{K}\tau_m\iu)\exp_n(\frac{j}{K}\tau_m\iu)-\exp_n(\frac{k-j}{K}\tau_m\iu+\frac{j}{K}\tau_m\iu)\rVert^2\le\frac{{a_4}^2\lVert\frac{k-j}{K}\tau_m\iu\rVert^2\lVert\frac{j}{K}\tau_m\iu\rVert^2}{n^2}\le\frac{{a_4}^2{a_1}^4}{n^2}\le(\frac{a_2a_3}{2})^2$ using procedure $p_4$.
+						    \item Hence using \procedurehr{sat1708191238}, show that $\lVert\exp_n(\frac{k}{K}\tau_m\iu)-\exp_n(\frac{j}{K}\tau_m\iu)\rVert^2$
 						    \begin{enumerate}
-							    \item $=\lVert\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)+\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
-							    \item $=\lVert\exp_n(\frac{j}{K}\tau_mi)(\exp_n(\frac{k-j}{K}\tau_mi)-1)-(\exp_n(\frac{k-j}{K}\tau_mi+\frac{j}{K}\tau_mi)-\exp_n(\frac{k-j}{K}\tau_mi)\exp_n(\frac{j}{K}\tau_mi))\rVert^2$
+							    \item $=\lVert\exp_n(\frac{k-j}{K}\tau_m\iu+\frac{j}{K}\tau_m\iu)-\exp_n(\frac{k-j}{K}\tau_m\iu)\exp_n(\frac{j}{K}\tau_m\iu)+\exp_n(\frac{k-j}{K}\tau_m\iu)\exp_n(\frac{j}{K}\tau_m\iu)-\exp_n(\frac{j}{K}\tau_m\iu)\rVert^2$
+							    \item $=\lVert\exp_n(\frac{j}{K}\tau_m\iu)(\exp_n(\frac{k-j}{K}\tau_m\iu)-1)-(\exp_n(\frac{k-j}{K}\tau_m\iu+\frac{j}{K}\tau_m\iu)-\exp_n(\frac{k-j}{K}\tau_m\iu)\exp_n(\frac{j}{K}\tau_m\iu))\rVert^2$
 							    \item $\ge (a_2a_3-\frac{a_2a_3}{2})^2$
 							    \item $\ge a^2$.
 						    \end{enumerate}
@@ -6199,7 +6204,7 @@
 				    \end{enumerate}
 		    \procedure{3.62}
 			    \objective
-				    Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,m,j,k)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a^2$ when positive integers $n,j,k,m$ such that $0\le j\le k<K$, $\frac{K}{2}\le k-j<K$, $n\ge b$, and $\frac{m}{n}\ge c$ are chosen.
+				    Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,m,j,k)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_m\iu)-\exp_n(\frac{j}{K}\tau_m\iu)\rVert^2\ge a^2$ when positive integers $n,j,k,m$ such that $0\le j\le k<K$, $\frac{K}{2}\le k-j<K$, $n\ge b$, and $\frac{m}{n}\ge c$ are chosen.
 			    \implementation
 				    \begin{enumerate}
 					    \item Execute \procedurehr{3.61} on $\langle K\rangle$ and let $\langle a_1,b_1,c_1,p_1\rangle$ receive.
@@ -6213,16 +6218,16 @@
 						    \item Show that $-\frac{K}{2}\le k-K<j<\frac{K}{2}$.
 						    \item Also show that $0<j-(k-K)\le\frac{K}{2}$.
 						    \item Show that $m\ge cn\ge\frac{c_1}{b}b=c_1$.
-						    \item Hence show that $\lVert\exp_n(\frac{j}{K}\tau_mi)-\exp_n(\frac{k-K}{K}\tau_mi)\rVert^2\ge{a_1}^2$ using procedure $p_1$.
+						    \item Hence show that $\lVert\exp_n(\frac{j}{K}\tau_m\iu)-\exp_n(\frac{k-K}{K}\tau_m\iu)\rVert^2\ge{a_1}^2$ using procedure $p_1$.
 						    \item Show that $m\ge cn\ge\frac{b_2}{b}b=b_2$.
 						    \item Hence show that $\tau_m\le a_2$ using procedure $p_2$.
-						    \item Hence show that $\lVert\frac{k}{K}\tau_mi\rVert^2=\lVert\frac{k}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_2}^2$.
+						    \item Hence show that $\lVert\frac{k}{K}\tau_m\iu\rVert^2=\lVert\frac{k}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le{a_2}^2$.
 						    \item Also show that $m\ge cn\ge\frac{d_3}{b}b=d_3$.
-						    \item Hence show that $\lVert i^{-4}\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{k}{K}\tau_mi-\frac{4}{4}\tau_mi)\rVert^2\le(\frac{a_3n}{m}+\frac{b_3}{n})^2\le(\frac{a_1}{2})^2$ using procedure $p_3$.
-						    \item Now show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
+						    \item Hence show that $\lVert\iu^{-4}\exp_n(\frac{k}{K}\tau_m\iu)-\exp_n(\frac{k}{K}\tau_m\iu-\frac{4}{4}\tau_m\iu)\rVert^2\le(\frac{a_3n}{m}+\frac{b_3}{n})^2\le(\frac{a_1}{2})^2$ using procedure $p_3$.
+						    \item Now show that $\lVert\exp_n(\frac{k}{K}\tau_m\iu)-\exp_n(\frac{j}{K}\tau_m\iu)\rVert^2$
 						    \begin{enumerate}
-							    \item $=\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{k}{K}\tau_mi-\tau_mi)+\exp_n(\frac{k-K}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2$
-							    \item $\ge\frac{1}{2}\lVert\exp_n(\frac{k-K}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2-\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{k}{K}\tau_mi-\tau_mi)\rVert^2$
+							    \item $=\lVert\exp_n(\frac{k}{K}\tau_m\iu)-\exp_n(\frac{k}{K}\tau_m\iu-\tau_m\iu)+\exp_n(\frac{k-K}{K}\tau_m\iu)-\exp_n(\frac{j}{K}\tau_m\iu)\rVert^2$
+							    \item $\ge\frac{1}{2}\lVert\exp_n(\frac{k-K}{K}\tau_m\iu)-\exp_n(\frac{j}{K}\tau_m\iu)\rVert^2-\lVert\exp_n(\frac{k}{K}\tau_m\iu)-\exp_n(\frac{k}{K}\tau_m\iu-\tau_m\iu)\rVert^2$
 							    \item $\ge\frac{1}{2}{a_1}^2-(\frac{a_1}{2})^2$
 							    \item $\ge a^2$.
 						    \end{enumerate}
@@ -6231,7 +6236,7 @@
 				    \end{enumerate}
 		    \procedure{3.63}
 			    \objective
-				    Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,m,j,k)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a^2$ when positive integers $n,j,k,m$ such that $0\le j\le k<K$, $0<k-j<K$, $n\ge b$, and $\frac{m}{n}\ge c$ are chosen.
+				    Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c$ such that $a>0$, and a procedure, $p(n,m,j,k)$, to show that $\lVert\exp_n(\frac{k}{K}\tau_m\iu)-\exp_n(\frac{j}{K}\tau_m\iu)\rVert^2\ge a^2$ when positive integers $n,j,k,m$ such that $0\le j\le k<K$, $0<k-j<K$, $n\ge b$, and $\frac{m}{n}\ge c$ are chosen.
 			    \implementation
 				    \begin{enumerate}
 					    \item Execute \procedurehr{3.61} on $\langle K\rangle$ and let $\langle a_1,b_1,c_1,p_1\rangle$ receive.
@@ -6245,11 +6250,11 @@
 						    \item If $k-j\le\frac{K}{2}$, then do the following:
 						    \begin{enumerate}
 						      \item Show that $m\ge cn\ge\frac{c_1}{b}b=c_1$.
-							    \item \textbf{Hence show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a_1\ge a$ using procedure $p_1$.}
+							    \item \textbf{Hence show that $\lVert\exp_n(\frac{k}{K}\tau_m\iu)-\exp_n(\frac{j}{K}\tau_m\iu)\rVert^2\ge a_1\ge a$ using procedure $p_1$.}
 						    \end{enumerate}
 						    \item Otherwise if $k-j>\frac{K}{2}$, then do the following:
 						    \begin{enumerate}
-							    \item \textbf{Show that $\lVert\exp_n(\frac{k}{K}\tau_mi)-\exp_n(\frac{j}{K}\tau_mi)\rVert^2\ge a_2\ge a$ using procedure $p_2$.}
+							    \item \textbf{Show that $\lVert\exp_n(\frac{k}{K}\tau_m\iu)-\exp_n(\frac{j}{K}\tau_m\iu)\rVert^2\ge a_2\ge a$ using procedure $p_2$.}
 						    \end{enumerate}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,b,c,p\rangle$.}
@@ -6260,7 +6265,7 @@
 			    \objective
 				    Choose a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(n,m)$, to construct a list of complex numbers $z$ and a list of complex polynomials $q$ such that,
 				    \begin{enumerate}
-					    \item $z_k=\exp_n(\frac{K-k-1}{K}\tau_mi)$ for $k\in[0:K]$
+					    \item $z_k=\exp_n(\frac{K-k-1}{K}\tau_m\iu)$ for $k\in[0:K]$
 					    \item $q_K=\lambda^K-1$
 					    \item $q_{K-1}=\sum_r^{[0:K]}\lambda^r$
 					    \item $q_{k+1}=(\lambda-z_k)q_k+\Lambda(q_{k+1},z_k)$ for $k\in[0:K]$
@@ -6281,7 +6286,7 @@
 						    \item \textbf{Let $q_K=\lambda^K-1$.}
 						    \item For $k\in[K:0]$, do the following:
 						    \begin{enumerate}
-							    \item \textbf{Let $z_k=\exp_n(\frac{K-k-1}{K}\tau_mi)$.}
+							    \item \textbf{Let $z_k=\exp_n(\frac{K-k-1}{K}\tau_m\iu)$.}
 							    \item \textbf{Now show that $\lVert\Lambda(q_K,z_k)\rVert^2\le(\frac{a_1n}{m}+\frac{b_1}{n})^2$ using procedure $p_1$.}
 						    \end{enumerate}
 						    \item For $k\in[K:0]$, do the following:
@@ -6307,7 +6312,7 @@
 				    \end{enumerate}
 			    \subprocedure{wed2808191630}
 			      \paragraph{Objective}
-			        Choose a non-negative integer $k$, a complex polynomial $q_{k+1}$, and a list of complex numbers $z$ such that $z_j=\exp_n(\frac{j}{K}\tau_mi)$ and $\Lambda(q_{k+1},z_j)\equiv 0\err{(\frac{2}{a_2})^{K-(k+1)}(\frac{a_1n}{m}+\frac{b_1}{n})}$ for $j\in[k+1:0]$. Let $q_k=q_{k+1}\div(\lambda-z_k)$. The objective of the following instructions is to show that $\Lambda(q_{k},z_j)\equiv 0\err{(\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n})}\err{\frac{an}{m}+\frac{b}{n}}$ for $j\in[k:0]$.
+			        Choose a non-negative integer $k$, a complex polynomial $q_{k+1}$, and a list of complex numbers $z$ such that $z_j=\exp_n(\frac{j}{K}\tau_m\iu)$ and $\Lambda(q_{k+1},z_j)\equiv 0\err{(\frac{2}{a_2})^{K-(k+1)}(\frac{a_1n}{m}+\frac{b_1}{n})}$ for $j\in[k+1:0]$. Let $q_k=q_{k+1}\div(\lambda-z_k)$. The objective of the following instructions is to show that $\Lambda(q_{k},z_j)\equiv 0\err{(\frac{2}{a_2})^{K-k}(\frac{a_1n}{m}+\frac{b_1}{n})}\err{\frac{an}{m}+\frac{b}{n}}$ for $j\in[k:0]$.
 			      \paragraph{Implementation}
 			        \begin{enumerate}
 			          \item For $j\in[k:0]$, do the following:
@@ -6328,7 +6333,7 @@
 					    \end{enumerate}
 		    \procedure{3.65}
 			    \objective
-				    Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\sum_r^{[0:K]}x^r\equiv\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\err{\frac{an}{m}+\frac{b}{n}}$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $\frac{m}{n}>d$, and $\lVert x\rVert^2\le X$ are chosen.
+				    Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\sum_r^{[0:K]}x^r\equiv\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_m\iu))\err{\frac{an}{m}+\frac{b}{n}}$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $\frac{m}{n}>d$, and $\lVert x\rVert^2\le X$ are chosen.
 			    \implementation
 				    \begin{enumerate}
 					    \item Execute \procedurehr{3.64} on $\langle K\rangle$ and let $\langle a_1,b_1,c_1,d_1,p_1\rangle$ receive.
@@ -6345,8 +6350,8 @@
 						    \item Execute procedure $p_1$ on $\langle n,m\rangle$ and let $\langle z,t\rangle$ receive.
 						    \item For $j\in[1:K]$, do the following:
 						    \begin{enumerate}
-							    \item Show that $\lVert\frac{j}{K}\tau_mi\rVert^2=\lVert\frac{j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le a_2$.
-							    \item Hence show that $\lVert z_j\rVert^2=\lVert\exp_n(\frac{j}{K}\tau_mi)\rVert^2\le a_3$ using procedure $p_3$.
+							    \item Show that $\lVert\frac{j}{K}\tau_m\iu\rVert^2=\lVert\frac{j}{K}\rVert^2\lVert\tau_m\rVert^2\le\lVert\tau_m\rVert^2\le a_2$.
+							    \item Hence show that $\lVert z_j\rVert^2=\lVert\exp_n(\frac{j}{K}\tau_m\iu)\rVert^2\le a_3$ using procedure $p_3$.
 						    \end{enumerate}
 						    \item Hence show that $\lVert\sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-z_r)\rVert^2$
 						    \begin{enumerate}
@@ -6364,7 +6369,7 @@
 				    \end{enumerate}
 		    \procedure{3.66}
 			    \objective
-				    Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $x^K-1\equiv\prod_r^{[0:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\err{\frac{an}{m}+\frac{b}{n}}$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $\frac{m}{n}>d$, and $\lVert x\rVert^2\le X$ are chosen.
+				    Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $x^K-1\equiv\prod_r^{[0:K]}(x-\exp_n(\frac{r}{K}\tau_m\iu))\err{\frac{an}{m}+\frac{b}{n}}$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $\frac{m}{n}>d$, and $\lVert x\rVert^2\le X$ are chosen.
 			    \implementation
 				    \begin{enumerate}
 					    \item Execute \procedurehr{3.65} on $\langle X,K\rangle$ and let $\langle a_1,b_1,c,d,p_1\rangle$ receive.
@@ -6372,11 +6377,11 @@
 					    \item Let $b=(X+1)b_1$.
 					    \item Let $p(x,n,m)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Show that $\lVert\sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{a_1n}{m}+\frac{b_1}{n})^2$ using procedure $p_1$.
-						    \item Hence show that $\lVert x^K-1-\prod_r^{[0:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2$
+						    \item Show that $\lVert\sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_m\iu))\rVert^2\le(\frac{a_1n}{m}+\frac{b_1}{n})^2$ using procedure $p_1$.
+						    \item Hence show that $\lVert x^K-1-\prod_r^{[0:K]}(x-\exp_n(\frac{r}{K}\tau_m\iu))\rVert^2$
 						    \begin{enumerate}
-							    \item $=\lVert(x-1)\sum_r^{[0:K]}x^r-(x-1)\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2$
-							    \item $=\lVert x-1\rVert^2\lVert\sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_mi))\rVert^2$
+							    \item $=\lVert(x-1)\sum_r^{[0:K]}x^r-(x-1)\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_m\iu))\rVert^2$
+							    \item $=\lVert x-1\rVert^2\lVert\sum_r^{[0:K]}x^r-\prod_r^{[1:K]}(x-\exp_n(\frac{r}{K}\tau_m\iu))\rVert^2$
 							    \item $\le(X+1)^2(\frac{a_1n}{m}+\frac{b_1}{n})^2$
 							    \item $=(\frac{an}{m}+\frac{b}{n})^2$.
 						    \end{enumerate}
@@ -6385,7 +6390,7 @@
 				    \end{enumerate}
 		    \procedure{3.67}
 			    \objective
-				    Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\exp_K(x)-1\equiv x\prod_r^{[1:K]}(1-\frac{x}{K(\exp_n(\frac{r}{K}\tau_mi)-1)})\err{\frac{an}{m}+\frac{b}{n}}$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $\frac{m}{n}>d$, and $\lVert x\rVert^2\le X$ are chosen.
+				    Choose a rational number $X$ and a positive integer $K$. The objective of the following instructions is to construct rational numbers $a,b,c,d$, and a procedure, $p(x,n,m)$, to show that $\exp_K(x)-1\equiv x\prod_r^{[1:K]}(1-\frac{x}{K(\exp_n(\frac{r}{K}\tau_m\iu)-1)})\err{\frac{an}{m}+\frac{b}{n}}$ when a complex number $x$ and positive integers $n,m$ such that $n>c$, $\frac{m}{n}>d$, and $\lVert x\rVert^2\le X$ are chosen.
 			    \implementation
 				    \begin{enumerate}
 					    \item Execute \procedurehr{3.66} on $\langle 1+\frac{X}{K},K\rangle$ and let $\langle a_1,b_1,c_1,d_1,p_1\rangle$ receive.
@@ -6399,19 +6404,19 @@
 					    \item Let $p(x,n,m)$ be the following procedure:
 					    \begin{enumerate}
 						    \item Show that $\lVert 1+\frac{x}{K}\rVert^2\le (1+\frac{X}{K})^2$.
-						    \item Hence show that $\lVert(1+\frac{x}{K})^K-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{a_1n}{m}+\frac{b_1}{n})^2$ using procedure $p_1$.
-						    \item Hence show that $\lVert K-\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))\rVert^2=\sum_r^{[0:K]}1^r-\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))\rVert^2\le(\frac{a_2n}{m}+\frac{b_2}{n})^2$ using procedure $p_2$.
+						    \item Hence show that $\lVert(1+\frac{x}{K})^K-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_m\iu))\rVert^2\le(\frac{a_1n}{m}+\frac{b_1}{n})^2$ using procedure $p_1$.
+						    \item Hence show that $\lVert K-\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_m\iu))\rVert^2=\sum_r^{[0:K]}1^r-\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_m\iu))\rVert^2\le(\frac{a_2n}{m}+\frac{b_2}{n})^2$ using procedure $p_2$.
 						    \item For $j\in[1:K]$, do the following:
 						    \begin{enumerate}
-							    \item Show that $\lVert\exp_n(\frac{j}{K}\tau_mi)-1\rVert^2\ge{a_3}^2$ using procedure $p_3$.
-							    \item Let $z_j=K(\exp_n(\frac{j}{K}\tau_mi)-1)$.
+							    \item Show that $\lVert\exp_n(\frac{j}{K}\tau_m\iu)-1\rVert^2\ge{a_3}^2$ using procedure $p_3$.
+							    \item Let $z_j=K(\exp_n(\frac{j}{K}\tau_m\iu)-1)$.
 						    \end{enumerate}
 						    \item Hence show that $\lVert\exp_K(x)-1-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
 						    \begin{enumerate}
-							    \item $=\lVert\exp_K(x)-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))+\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
-							    \item $=\lVert\exp_K(x)-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))+\frac{x}{K}\prod_r^{[1:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
-							    \item $=\lVert\exp_K(x)-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi))+\frac{x}{K}\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))\prod_r^{[1:K]}(1-\frac{x}{z_r})-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
-							    \item $=\lVert(\exp_K(x)-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_mi)))+\frac{x}{K}\prod_r^{[1:K]}(1-\frac{x}{z_r})(\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_mi))-K)\rVert^2$
+							    \item $=\lVert\exp_K(x)-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_m\iu))+\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_m\iu))-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
+							    \item $=\lVert\exp_K(x)-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_m\iu))+\frac{x}{K}\prod_r^{[1:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_m\iu))-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
+							    \item $=\lVert\exp_K(x)-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_m\iu))+\frac{x}{K}\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_m\iu))\prod_r^{[1:K]}(1-\frac{x}{z_r})-x\prod_r^{[1:K]}(1-\frac{x}{z_r})\rVert^2$
+							    \item $=\lVert(\exp_K(x)-1-\prod_r^{[0:K]}(1+\frac{x}{K}-\exp_n(\frac{r}{K}\tau_m\iu)))+\frac{x}{K}\prod_r^{[1:K]}(1-\frac{x}{z_r})(\prod_r^{[1:K]}(1-\exp_n(\frac{r}{K}\tau_m\iu))-K)\rVert^2$
 							    \item $\le((\frac{a_1n}{m}+\frac{b_1}{n})+\frac{X}{K}(\prod_r^{[1:K]}(1+\frac{X}{Ka_3}))(\frac{a_2n}{m}+\frac{b_2}{n}))^2$
 							    \item $=((\frac{a_1n}{m}+\frac{b_1}{n})+\frac{X}{K}(1+\frac{X}{Ka_3})^{K-1}(\frac{a_2n}{m}+\frac{b_2}{n}))^2$
 							    \item $=(\frac{an}{m}+\frac{b}{n})^2$.
@@ -6988,20 +6993,20 @@
 				    \begin{instructions}
 					    \item Execute the following in post-order:
 					    \begin{instructions}
-					      \item Execute \procedurehr{tue2008191001} on $\langle\frac{1}{2i},q_2,q_3\rangle$ and let $\langle l,d,a,b,D,q_0,q_1\rangle$ receive.
+					      \item Execute \procedurehr{tue2008191001} on $\langle\frac{1}{2\iu},q_2,q_3\rangle$ and let $\langle l,d,a,b,D,q_0,q_1\rangle$ receive.
 					      \begin{instructions}
 					        \item Execute \procedurehr{mon1908191506} on $\langle q_4,q_5,q_6,q_7\rangle$ and let $\langle q_2,q_3\rangle$ receive.
 					        \begin{instructions}
 					          \item Execute \procedurehr{sat0308191134} on $\langle q_8,q_9,q_{10},q_{11},q_{12}\rangle$ and let $\langle q_4,q_5\rangle$ receive.
 					          \begin{instructions}
 					            \item Execute \procedurehr{3.19} on $\langle X,D\rangle$ and let $\langle q_8,q_9\rangle$ receive.
-					            \item Execute \procedurehr{tue2008191001} on $\langle i,q_{13},q_{14}\rangle$ and let $\langle q_{10},q_{11}\rangle$ receive.
+					            \item Execute \procedurehr{tue2008191001} on $\langle\iu,q_{13},q_{14}\rangle$ and let $\langle q_{10},q_{11}\rangle$ receive.
 					            \begin{instructions}
 					              \item Execute \procedurehr{tue2008191209} on $\langle 1,X,D\rangle$ and let $\langle q_{13},q_{14}\rangle$ receive.
 					            \end{instructions}
 					            \item Let $q_{12}(x,n)$ be the following procedure:
 					            \begin{instructions}
-					              \item Show that $\lVert ix\rVert^2=\lVert x\rVert^2\le X^2$.
+					              \item Show that $\lVert\iu x\rVert^2=\lVert x\rVert^2\le X^2$.
 					            \end{instructions}
 					          \end{instructions}
 					          \item Execute \procedurehr{tue2008191001} on $\langle-1,q_{15},q_{16}\rangle$ and let $\langle q_6,q_7\rangle$.
@@ -7009,13 +7014,13 @@
 					            \item Execute \procedurehr{sat0308191134} on $\langle q_{17},q_{18},q_{19},q_{20},q_{21}\rangle$ and let $\langle q_{15},q_{16}\rangle$ receive.
 					            \begin{instructions}
 					              \item Execute \procedurehr{3.19} on $\langle X,D\rangle$ and let $\langle q_{17},q_{18}\rangle$ receive.
-					              \item Execute \procedurehr{tue2008191001} on $\langle-i,q_{22},q_{23}\rangle$ and let $\langle q_{19},q_{20}\rangle$ receive.
+					              \item Execute \procedurehr{tue2008191001} on $\langle-\iu,q_{22},q_{23}\rangle$ and let $\langle q_{19},q_{20}\rangle$ receive.
 					              \begin{instructions}
 					                \item Execute \procedurehr{tue2008191209} on $\langle 1,X,D\rangle$ and let $\langle q_{22},q_{23}\rangle$ receive.
 					              \end{instructions}
 					              \item Let $q_{21}(x,n)$ be the following procedure:
 					              \begin{instructions}
-					                \item Show that $\lVert -ix\rVert^2=\lVert x\rVert^2\le X^2$.
+					                \item Show that $\lVert -\iu x\rVert^2=\lVert x\rVert^2\le X^2$.
 					              \end{instructions}
 					            \end{instructions}
 					          \end{instructions}
@@ -7026,8 +7031,8 @@
 					    \begin{enumerate}
 					      \item Using procedure $q_0$, show that $\cos_n(x)$
 					      \begin{enumerate}
-					        \item $=\frac{1}{2}(\exp_n(ix)+\exp_n(-ix))$
-					        \item $=\frac{1}{2i}(\exp_n(ix^1)\cdot i\cdot 1x^0+(-1)\exp_n(-ix^1)\cdot(-i)\cdot 1\cdot x^0)$
+					        \item $=\frac{1}{2}(\exp_n(\iu x)+\exp_n(-\iu x))$
+					        \item $=\frac{1}{2\iu}(\exp_n(\iu x^1)\cdot\iu\cdot 1x^0+(-1)\exp_n(-\iu x^1)\cdot(-\iu)\cdot 1\cdot x^0)$
 					        \item $\equiv 0\err{l}$.
 					      \end{enumerate}
 					    \end{enumerate}
@@ -7035,10 +7040,10 @@
 					    \begin{enumerate}
 					      \item Using procedure $q_1$, show that $\Delta_{y=x}^{+\delta}\sin_n(y)$
 					      \begin{enumerate}
-					        \item $=\Delta_{y=x}^{+\delta}(\frac{\exp_n(ix)-\exp_n(-ix)}{2i})$
-					        \item $=\Delta_{y=x}^{+\delta}(\frac{1}{2i}(\exp_n(ix^1)+(-1)\exp_n((-i)x^1)))$
-					        \item $\equiv\frac{1}{2i}(\exp_n(ix^1)\cdot i\cdot 1x^0+(-1)\exp_n(-ix^1)\cdot(-i)\cdot 1\cdot x^0)\err{\frac{a}{n}+b\{\delta\}}$
-					        \item $=\frac{\exp_n(ix)+\exp_n(-ix)}{2}$
+					        \item $=\Delta_{y=x}^{+\delta}(\frac{\exp_n(\iu x)-\exp_n(-\iu x)}{2\iu})$
+					        \item $=\Delta_{y=x}^{+\delta}(\frac{1}{2\iu}(\exp_n(\iu x^1)+(-1)\exp_n((-\iu)x^1)))$
+					        \item $\equiv\frac{1}{2\iu}(\exp_n(\iu x^1)\cdot\iu\cdot 1x^0+(-1)\exp_n(-\iu x^1)\cdot(-\iu)\cdot 1\cdot x^0)\err{\frac{a}{n}+b\{\delta\}}$
+					        \item $=\frac{\exp_n(\iu x)+\exp_n(-\iu x)}{2}$
 					        \item $=\cos_n(x)$.
 					      \end{enumerate}
 					      \item \textbf{Hence show that $\Delta_{y=x}^{+\delta}\sin_n(y)\equiv\cos_n(x)\err{\frac{a}{n}+b\{\delta\}}$.}
@@ -7149,7 +7154,7 @@
 		          \end{enumerate}
 		        \end{enumerate}
 		    \declaration{wed2108191408}
-		      The notation \gls{differentialln}, where $x$ is a complex number, will be used as a shorthand for $\ln_n(1+\frac{x-1}{x+1})-\ln_n(1-\frac{x-1}{x+1})$ when $\Re(x)\ge 0$, $\ln_n(\frac{x}{i})+\frac{\tau_n}{4}i$ when $\Im(x)\ge 0$, and $\ln_n(xi)-\frac{\tau_n}{4}i$ if otherwise.
+		      The notation \gls{differentialln}, where $x$ is a complex number, will be used as a shorthand for $\ln_n(1+\frac{x-1}{x+1})-\ln_n(1-\frac{x-1}{x+1})$ when $\Re(x)\ge 0$, $\ln_n(\frac{x}{i})+\frac{\tau_n}{4}\iu$ when $\Im(x)\ge 0$, and $\ln_n(xi)-\frac{\tau_n}{4}\iu$ if otherwise.
 		    \procedure{thu2208191250}
 		      \objective
 		        Choose a rational number $X$ such that $1\ge X> 0$. The objective of the following instructions is to construct a positive rational number $a$, and a procedure $p(x,k)$ to show that $\lVert\ln_k(x)\rVert^2\le a^2$ when a positive integer $k$ and a complex number $x$ such that $\lVert x\rVert^2\ge X^2$ and $\Re(x)\ge 0$ are chosen.
@@ -7190,17 +7195,17 @@
 		            \end{enumerate}
 		            \item Otherwise if $\Im(x)\ge 0$, then do the following:
 		            \begin{enumerate}
-		              \item Show that $\lVert\frac{x}{i}\rVert^2=\lVert x\rVert^2\ge X^2$.
-		              \item Show that $\Re(\frac{x}{i})=\Re(\Im(x)-\Re(x)i)=\Im(x)\ge 0$.
-		              \item Hence show that $\lVert\ln_k(\frac{x}{i})\rVert^2\le{a_1}^2$ using procedure $p_1$.
-		              \item \textbf{Hence show that $\lVert\ln_k(x)\rVert^2=\lVert\ln_k(\frac{x}{i})+\frac{\tau_k}{4}i\rVert^2\le(a_1+\frac{a_2}{4})^2=a^2$.}
+		              \item Show that $\lVert\frac{x}{\iu}\rVert^2=\lVert x\rVert^2\ge X^2$.
+		              \item Show that $\Re(\frac{x}{\iu})=\Re(\Im(x)-\Re(x)\iu)=\Im(x)\ge 0$.
+		              \item Hence show that $\lVert\ln_k(\frac{x}{\iu})\rVert^2\le{a_1}^2$ using procedure $p_1$.
+		              \item \textbf{Hence show that $\lVert\ln_k(x)\rVert^2=\lVert\ln_k(\frac{x}{\iu})+\frac{\tau_k}{4}\iu\rVert^2\le(a_1+\frac{a_2}{4})^2=a^2$.}
 		            \end{enumerate}
 		            \item Otherwise do the following:
 		            \begin{enumerate}
-		              \item Show that $\lVert xi\rVert^2=\lVert x\rVert^2\ge X^2$.
-		              \item Show that $\Re(xi)=\Re(-\Im(x)+\Re(x)i)=-\Im(x)>0$.
-		              \item Hence show that $\lVert\ln_k(xi)\rVert^2\le{a_1}^2$ using procedure $p_1$.
-		              \item \textbf{Hence show that $\lVert\ln_k(x)\rVert^2=\lVert\ln_k(xi)-\frac{\tau_k}{4}i\rVert^2\le(a_1+\frac{a_2}{4})^2=a^2$.}
+		              \item Show that $\lVert x\iu\rVert^2=\lVert x\rVert^2\ge X^2$.
+		              \item Show that $\Re(x\iu)=\Re(-\Im(x)+\Re(x)\iu)=-\Im(x)>0$.
+		              \item Hence show that $\lVert\ln_k(x\iu)\rVert^2\le{a_1}^2$ using procedure $p_1$.
+		              \item \textbf{Hence show that $\lVert\ln_k(x)\rVert^2=\lVert\ln_k(x\iu)-\frac{\tau_k}{4}\iu\rVert^2\le(a_1+\frac{a_2}{4})^2=a^2$.}
 		            \end{enumerate}
 		          \end{enumerate}
 		          \item \textbf{Yield the tuple $\langle a,b,p\rangle$.}
@@ -7260,30 +7265,30 @@
 		            \end{enumerate}
 		            \item Otherwise if $\Im(x)\ge 0$, then do the following:
 		            \begin{enumerate}
-		              \item Show that $\lVert\frac{x}{i}\rVert^2=\lVert x\rVert^2\ge X^2$.
-		              \item Show that $\Re(\frac{x}{i})=\Re(\Im(x)-\Re(x)i)=\Im(x)\ge 0$.
-		              \item Hence show that $\exp_n(\ln_k(\frac{x}{i}))\equiv\frac{x}{i}\err{\frac{a_2n}{k}+\frac{b_1}{n}}$ using procedure $p_1$.
-		              \item Hence show that $\lVert\ln_k(\frac{x}{i})\rVert^2\le{a_2}^2$ using procedure $p_2$.
+		              \item Show that $\lVert\frac{x}{\iu}\rVert^2=\lVert x\rVert^2\ge X^2$.
+		              \item Show that $\Re(\frac{x}{\iu})=\Re(\Im(x)-\Re(x)\iu)=\Im(x)\ge 0$.
+		              \item Hence show that $\exp_n(\ln_k(\frac{x}{\iu}))\equiv\frac{x}{\iu}\err{\frac{a_2n}{k}+\frac{b_1}{n}}$ using procedure $p_1$.
+		              \item Hence show that $\lVert\ln_k(\frac{x}{\iu})\rVert^2\le{a_2}^2$ using procedure $p_2$.
 		              \item Hence using procedure $p_3$, show that $\exp_n(\ln_k(x))$
 		              \begin{enumerate}
-		                \item $=\exp_n(\ln_k(\frac{x}{i})+\frac{\tau_k}{4}i)$
-		                \item $\equiv i^1\exp_n(\ln_k(\frac{x}{i}))\err{\frac{a_3n}{k}+\frac{b_3}{n}}$
-		                \item $\equiv i\cdot\frac{x}{i}\err{\frac{a_2n}{k}+\frac{b_1}{n}}$
+		                \item $=\exp_n(\ln_k(\frac{x}{\iu})+\frac{\tau_k}{4}\iu)$
+		                \item $\equiv\iu^1\exp_n(\ln_k(\frac{x}{\iu}))\err{\frac{a_3n}{k}+\frac{b_3}{n}}$
+		                \item $\equiv\iu\cdot\frac{x}{\iu}\err{\frac{a_2n}{k}+\frac{b_1}{n}}$
 		                \item $=x$.
 		              \end{enumerate}
 		              \item \textbf{Hence show that $\exp_n(\ln_k(x))\equiv x\err{\frac{an}{k}+\frac{c}{n}}$.}
 		            \end{enumerate}
 		            \item Otherwise do the following:
 		            \begin{enumerate}
-		              \item Show that $\lVert xi\rVert^2=\lVert x\rVert^2\ge X^2$.
-		              \item Show that $\Re(xi)=\Re(-\Im(x)+\Re(x)i)=-\Im(x)>0$.
-		              \item Hence show that $\exp_n(\ln_k(xi))\equiv xi\err{\frac{a_2n}{k}+\frac{b_1}{n}}$ using procedure $p_1$.
-		              \item Hence show that $\lVert\ln_k(xi)\rVert^2\le{a_2}^2$ using procedure $p_2$.
+		              \item Show that $\lVert x\iu\rVert^2=\lVert x\rVert^2\ge X^2$.
+		              \item Show that $\Re(x\iu)=\Re(-\Im(x)+\Re(x)\iu)=-\Im(x)>0$.
+		              \item Hence show that $\exp_n(\ln_k(x\iu))\equiv x\iu\err{\frac{a_2n}{k}+\frac{b_1}{n}}$ using procedure $p_1$.
+		              \item Hence show that $\lVert\ln_k(x\iu)\rVert^2\le{a_2}^2$ using procedure $p_2$.
 		              \item Hence using procedure $p_3$, show that $\exp_n(\ln_k(x))$
 		              \begin{enumerate}
-		                \item $=\exp_n(\ln_k(xi)-\frac{\tau_k}{4}i)$
-		                \item $\equiv i^{-1}\exp_n(\ln_k(xi))\err{\frac{a_3n}{k}+\frac{b_3}{n}}$
-		                \item $\equiv i^{-1}xi\err{\frac{a_2n}{k}+\frac{b_1}{n}}$
+		                \item $=\exp_n(\ln_k(x\iu)-\frac{\tau_k}{4}\iu)$
+		                \item $\equiv\iu^{-1}\exp_n(\ln_k(x\iu))\err{\frac{a_3n}{k}+\frac{b_3}{n}}$
+		                \item $\equiv\iu^{-1}x\iu\err{\frac{a_2n}{k}+\frac{b_1}{n}}$
 		                \item $=x$.
 		              \end{enumerate}
 		              \item \textbf{Hence show that $\exp_n(\ln_k(x))\equiv x\err{\frac{an}{k}+\frac{c}{n}}$.}
