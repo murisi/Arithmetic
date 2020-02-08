@@ -3176,11 +3176,20 @@
 						    \item $=a$.
 					    \end{enumerate}
 				    \end{enumerate}
-		    \procedure{sun2107190636}
+		    \procedure{sat0802201553}
 			    \objective
-				    Choose a non-negative integer $a$ and a perplex number $x$. The objective of the following instructions is to show that $(1+x)^a=\sum_r^{[0:{a+1}]}\binom{a}{r}x^r$.
+				    Choose three perplex numbers $a,b,c$. The objective of the following instructions is to show that $a(b+c)=ab+ac$.
 			    \implementation
-				    Instructions are analogous to those of \procedurehr{1.63}.
+				    \begin{enumerate}
+					    \item $a(b+c)$
+					    \begin{enumerate}
+						    \item $=\langle\Re(a),\Im(a)\rangle\langle\Re(b)+\Re(c),\Im(b)+\Im(c)\rangle$
+						    \item $=\langle\Re(a)(\Re(b)+\Re(c))+\Im(a)(\Im(b)+\Im(c)),\Re(a)(\Im(b)+\Im(c))+\Im(a)(\Re(b)+\Re(c))\rangle$
+						    \item $=\langle(\Re(a)\Re(b)+\Im(a)\Im(b))+(\Re(a)\Re(c)+\Im(a)\Im(c)),(\Re(a)\Im(b)+\Im(a)\Re(b))+(\Re(a)\Im(c)+\Im(a)\Re(c))\rangle$
+						    \item $=\langle\Re(a)\Re(b)+\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle+\langle\Re(a)\Re(c)+\Im(a)\Im(c),\Re(a)\Im(c)+\Im(a)\Re(c)\rangle$
+						    \item $=ab+ac$.
+					    \end{enumerate}
+				    \end{enumerate}
 		    \declaration{3.02}
 			    The notation \gls{perplexconj}, where $a$ is a perplex number, will be used as a shorthand for the perplex number $\langle\Re(a),-\Im(a)\rangle$.
 		    \procedure{3.00}
@@ -3208,140 +3217,7 @@
 						    \item $=\conj{a}\conj{b}$.
 					    \end{enumerate}
 				    \end{enumerate}
-		    \declaration{3.03}
-			    The notation \gls{perplexabs^2}, where $a$ is a perplex number, will be used as a shorthand for $\Re(a)^2-\Im(a)^2$.
-		    \procedure{3.02}
-			    \objective
-				    Choose a perplex number $a$. The objective of the following instructions is to show that $a\conj{a}=\lVert a\rVert^2$.
-			    \implementation
-				    \begin{enumerate}
-					    \item \textbf{Show that $a\conj{a}=\lVert a\rVert^2$.}
-				    \end{enumerate}
-		    \procedure{3.04}
-			    \objective
-				    Choose a list of complex numbers $a$. The objective of the following instructions is to show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2\le\lvert a\rvert\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2$
-					    \begin{enumerate}
-						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\sum_k^{[0:{\lvert a\rvert}]}a_r\conj{a_k}$
-						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+2\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(\Re(a_r)\Re(a_k)+\Im(a_r)\Im(a_k))$
-						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+2\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(\Re(a_r)^2-(\Re(a_r)-\Re(a_k))^2+\Re(a_k)^2+\Im(a_r)^2-(\Im(a_r)-\Im(a_k))^2+\Im(a_k)^2)$
-						    \item $\le\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(\Re(a_r)^2+\Re(a_k)^2+\Im(a_r)^2+\Im(a_k)^2)$
-						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(\lVert a_r\rVert^2+\lVert a_k\rVert^2)$
-						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\frac{1}{2}\sum_r^{[0:\lvert a\rvert]}\sum_k^{[0:r]^{\frown}[r+1:\lvert a\rvert]}(\lVert a_r\rVert^2+\lVert a_k\rVert^2)$
-						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\frac{1}{2}(\sum_r^{[0:{\lvert a\rvert}]}(\lvert a\rvert-1)\lVert a_r\rVert^2+\sum_k^{[0:{\lvert a\rvert}]}(\lvert a\rvert-1)\lVert a_k\rVert^2)$
-						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\sum_r^{[0:{\lvert a\rvert}]}(\lvert a\rvert-1)\lVert a_r\rVert^2$
-						    \item $=\lvert a\rvert\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2$
-					    \end{enumerate}
-				    \end{enumerate}
-		    \procedure{3.05}
-			    \objective
-				    Choose a list of complex numbers $a$. The objective of the following instructions is to show that $\frac{\lVert a_0\rVert^2}{\lvert a\rvert}-\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2\le\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Using \procedurehr{3.04}, show that $\lVert a_0\rVert^2$
-					    \begin{enumerate}
-						    \item $=\lVert\sum_r^{[1:{\lvert a\rvert}]}a_r+(a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r)\rVert^2$
-						    \item $\le \lvert a\rvert\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2+\lvert a\rvert\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$
-					    \end{enumerate}
-					    \item \textbf{Therefore show that $\frac{\lVert a_0\rVert^2}{\lvert a\rvert}-\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2\le\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$.}
-				    \end{enumerate}
-		    \procedure{3.04aa}
-			    \objective
-				    Choose a list of complex numbers $a$ and a list of rational numbers $b$ such that $\lvert a\rvert=\lvert b\rvert$ and $\lVert a_i\rVert^2\le {b_i}^2$ for each $i\in[0:\lvert a\rvert]$. The objective of the following instructions is to show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2\le(\sum_r^{[0:{\lvert b\rvert}]}{b_r})^2$.
-			    \implementation
-				    \begin{enumerate}
-					    \item If $\lvert a\rvert=0$, then do the following:
-					    \begin{enumerate}
-						    \item \textbf{Show that $\lVert\sum_i^{[0:\lvert a\rvert]} a_i\rVert^2=\lVert 0\rVert^2=(\sum_i^{[0:\lvert b\rvert]}b_i)^2$.}
-					    \end{enumerate}
-					    \item Otherwise do the following:
-					    \begin{enumerate}
-					      \item Show that $\lvert a\rvert>0$.
-					      \item Show that $\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2\le(\sum_i^{[1:\lvert b\rvert]} b_i)^2$ using \procedurehr{3.04aa} on $a_{[1:\lvert a\rvert]}$ and $b_{[1:\lvert b\rvert]}$.
-					      \item Show that $\Re(\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i)^2$
-					      \begin{enumerate}
-					        \item $\le\lVert\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
-					        \item $=\lVert\conj{a_0}\rVert^2\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
-					        \item $\le{b_0}^2(\sum_i^{[1:\lvert a\rvert]}b_i)^2$.
-					      \end{enumerate}
-					      \item Hence show that $\lVert\sum_i^{[0:\lvert a\rvert]}a_i\rVert^2$
-					      \begin{enumerate}
-					        \item $=(a_0+\sum_i^{[1:\lvert a\rvert]}a_i)(\conj{a_0+\sum_i^{[1:\lvert a\rvert]}a_i})$
-					        \item $=\lVert a_0\rVert^2+a_0\conj{\sum_i^{[1:\lvert a\rvert]}a_i}+\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i+\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
-					        \item $\le{b_0}^2+\conj{\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i}+\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i+(\sum_i^{[1:\lvert a\rvert]}b_i)^2$
-					        \item $={b_0}^2+2\Re(\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i)+(\sum_i^{[1:\lvert a\rvert]}b_i)^2$
-					        \item $\le{b_0}^2+2b_0\sum_i^{[1:\lvert a\rvert]} b_i+(\sum_i^{[1:\lvert a\rvert]}b_i)^2$
-					        \item $=(b_0+\sum_i^{[1:\lvert a\rvert]}b_i)^2$
-					        \item $=(\sum_i^{[0:\lvert a\rvert]}b_i)^2$.
-					      \end{enumerate}
-					    \end{enumerate}
-				    \end{enumerate}
-		    \procedure{sat1708191238}
-		      \objective
-		        Choose two complex numbers $a,d$ and two rational numbers $b,c$ such that $\lVert a\rVert^2\le b^2<c^2\le\lVert d\rVert^2$. The objective of the following instructions is to show that $\lVert d-a\rVert^2\ge(c-b)^2$.
-		      \implementation
-		        \begin{enumerate}
-		          \item Show that $\Re(\frac{a}{d})^2$
-		          \begin{enumerate}
-		            \item $=\Re(\frac{a\conj{d}}{\lVert d\rVert^2})^2=\frac{\Re(a\conj{d})^2}{\lVert d\rVert^4}\le\frac{\lVert a\conj{d}\rVert^2}{\lVert d\rVert^4}$
-		            \item $=\frac{\lVert a\rVert^2\lVert d\rVert^2}{\lVert d\rVert^4}=\frac{\lVert a\rVert^2}{\lVert d\rVert^2}\le\frac{b^2}{c^2}=(\frac{b}{c})^2$.
-		          \end{enumerate}
-		          \item Hence show that $\Re(\frac{a}{d})\le\frac{b}{c}<1$.
-		          \item Hence show that $\lVert d-a\rVert^2$
-		          \begin{enumerate}
-		            \item $=\lVert\frac{d-a}{d}\rVert^2\lVert d\rVert^2$
-		            \item $=(\Re(1-\frac{a}{d})^2+\Im(1-\frac{a}{d})^2)\lVert d\rVert^2$
-		            \item $\ge\Re(1-\frac{a}{d})^2\lVert d\rVert^2$
-		            \item $=(1-\Re(\frac{a}{d}))^2\lVert d\rVert^2$
-		            \item $\ge(1-\frac{b}{c})^2c^2$
-		            \item $=(c-b)^2$.
-		          \end{enumerate}
-		        \end{enumerate}
-		    \declaration{3.27}
-			    The notation \gls{perplex1/a}, where $a$ is a perplex number, will be used as a shorthand for the pair $\frac{1}{\lVert a\rVert^2}\conj{a}$.
-		    \procedure{3.81}
-			    \objective
-				    Choose a perplex number $a$ such that $\lVert a\rVert^2\ne 0$. The objective of the following instructions is to show that $\frac{1}{a}a=1$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $\frac{1}{a}a$
-					    \begin{enumerate}
-						    \item $=(\frac{1}{\Vert a\rVert^2}\conj{a})a$
-						    \item $=\frac{1}{\Vert a\rVert^2}(\conj{a}a)$
-						    \item $=\frac{1}{\Vert a\rVert^2}\Vert a\rVert^2$
-						    \item $=1$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \procedure{3.82}
-			    \objective
-				    Choose three perplex numbers $a,b,c$. The objective of the following instructions is to show that $a(b+c)=ab+ac$.
-			    \implementation
-				    \begin{enumerate}
-					    \item $a(b+c)$
-					    \begin{enumerate}
-						    \item $=\langle\Re(a),\Im(a)\rangle\langle\Re(b)+\Re(c),\Im(b)+\Im(c)\rangle$
-						    \item $=\langle\Re(a)(\Re(b)+\Re(c))+\Im(a)(\Im(b)+\Im(c)),\Re(a)(\Im(b)+\Im(c))+\Im(a)(\Re(b)+\Re(c))\rangle$
-						    \item $=\langle(\Re(a)\Re(b)+\Im(a)\Im(b))+(\Re(a)\Re(c)+\Im(a)\Im(c)),(\Re(a)\Im(b)+\Im(a)\Re(b))+(\Re(a)\Im(c)+\Im(a)\Re(c))\rangle$
-						    \item $=\langle\Re(a)\Re(b)+\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle+\langle\Re(a)\Re(c)+\Im(a)\Im(c),\Re(a)\Im(c)+\Im(a)\Re(c)\rangle$
-						    \item $=ab+ac$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \declaration{3.28}
-			    The notations \gls{perplexj}, \gls{perplexj+}, and \gls{perplexj-} will be used as a shorthand for the perplex numbers $\langle 0,1\rangle$, $\langle\frac{1}{2},\frac{1}{2}\rangle$, and $\langle\frac{1}{2},-\frac{1}{2}\rangle$ respectively.
-		    \procedure{thu0602201510}
-			    \objective
-				    The objective of the following instructions is to show that $j^{2}=1$, ${j_+}^2=j_+$, ${j_-}^2=j_-$, $j_+j_-=0$, and $j_++j_-=1$.
-			    \implementation
-				    \begin{enumerate}
-					    \item \textbf{Show that $j^2=1$}.
-					    \item \textbf{Show that ${j_+}^2=j_+$}.
-					    \item \textbf{Show that ${j_-}^2=j_-$}.
-					    \item \textbf{Show that $j_+j_-=0$}.
-					    \item \textbf{Show that $j_++j_-=1$.}
-				    \end{enumerate}
-			  \declaration{wed0502201719}
+		    \declaration{wed0502201719}
 			    The notation $a<b$, where $a,b$ are perplex numbers, will be used as a shorthand for $0<\Re(b-a)$ and $\lVert\Im(b-a)\rVert\le\Re(b-a)$.
 			  \procedure{sat0802200648}
 			    \objective
@@ -3493,6 +3369,126 @@
 			        \end{enumerate}
 			        \item Hence show that $a+c\subseteq b+c$ using \declarationhr{wed0502201655}.
 			      \end{enumerate}
+			  \declaration{3.03}
+			    The notation \gls{perplexabs^2}, where $a$ is a perplex number, will be used as a shorthand for $\Re(a)^2-\Im(a)^2$.
+		    \procedure{3.02}
+			    \objective
+				    Choose a perplex number $a$. The objective of the following instructions is to show that $a\conj{a}=\lVert a\rVert^2$.
+			    \implementation
+				    \begin{enumerate}
+					    \item \textbf{Show that $a\conj{a}=\lVert a\rVert^2$.}
+				    \end{enumerate}
+		    \procedure{sat0802201500}
+			    \objective
+				    Choose a list of positive perplex numbers $a$. The objective of the following instructions is to show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2\ge\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2$.
+			    \implementation
+				    \begin{enumerate}
+				      \item Show that $\Re(\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}a_r\conj{a_k})>0$ given that $\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}a_r\conj{a_k}>0$.
+					    \item Hence show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2$
+					    \begin{enumerate}
+						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\sum_k^{[0:{\lvert a\rvert}]}a_r\conj{a_k}$
+						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(a_r\conj{a_k}+\conj{a_r\conj{a_k}})$
+						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+2\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}\Re(a_r\conj{a_k})$
+						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+2\Re(\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}a_r\conj{a_k})$
+						    \item $\ge\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \procedure{sat0802201518}
+			    \objective
+				    Choose a non-empty list of positive perplex numbers $a$ such that $a_0>\sum_r^{[1:{\lvert a\rvert}]}a_r$. The objective of the following instructions is to show that $\lVert a_0\rVert^2-\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2\ge\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Using \procedurehr{sat0802201500}, show that $\lVert a_0\rVert^2$
+					    \begin{enumerate}
+						    \item $=\lVert\sum_r^{[1:{\lvert a\rvert}]}a_r+(a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r)\rVert^2$
+						    \item $\ge\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2+\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$
+					    \end{enumerate}
+					    \item \textbf{Therefore show that $\lVert a_0\rVert^2-\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2\ge\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$.}
+				    \end{enumerate}
+		    \procedure{sat0802201359}
+			    \objective
+				    Choose a list of positive perplex numbers $a$ and a list of rational numbers $b$ such that $\lvert a\rvert=\lvert b\rvert$ and $\lVert a_i\rVert^2\ge {b_i}^2$ for each $i\in[0:\lvert a\rvert]$. The objective of the following instructions is to show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2\ge(\sum_r^{[0:{\lvert b\rvert}]}{b_r})^2$.
+			    \implementation
+				    \begin{enumerate}
+					    \item If $\lvert a\rvert=0$, then do the following:
+					    \begin{enumerate}
+						    \item \textbf{Show that $\lVert\sum_i^{[0:\lvert a\rvert]} a_i\rVert^2=\lVert 0\rVert^2=(\sum_i^{[0:\lvert b\rvert]}b_i)^2$.}
+					    \end{enumerate}
+					    \item Otherwise do the following:
+					    \begin{enumerate}
+					      \item Show that $\lvert a\rvert>0$.
+					      \item Show that $\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2\ge(\sum_i^{[1:\lvert b\rvert]} b_i)^2$ using \procedurehr{sat0802201359} on $a_{[1:\lvert a\rvert]}$ and $b_{[1:\lvert b\rvert]}$.
+					      \item Show that $\Re(\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i)>0$
+					      \begin{enumerate}
+					        \item given that $\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i>0$
+					        \item given that $\sum_i^{[1:\lvert a\rvert]}a_i>0$
+					        \item and $\conj{a_0}>0$.
+					      \end{enumerate}
+					      \item Show that $\Re(\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i)^2$
+					      \begin{enumerate}
+					        \item $\ge\lVert\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
+					        \item $=\lVert\conj{a_0}\rVert^2\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
+					        \item $\ge{b_0}^2(\sum_i^{[1:\lvert a\rvert]}b_i)^2$.
+					      \end{enumerate}
+					      \item Hence show that $\lVert\sum_i^{[0:\lvert a\rvert]}a_i\rVert^2$
+					      \begin{enumerate}
+					        \item $=(a_0+\sum_i^{[1:\lvert a\rvert]}a_i)(\conj{a_0+\sum_i^{[1:\lvert a\rvert]}a_i})$
+					        \item $=\lVert a_0\rVert^2+a_0\conj{\sum_i^{[1:\lvert a\rvert]}a_i}+\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i+\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
+					        \item $\ge{b_0}^2+\conj{\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i}+\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i+(\sum_i^{[1:\lvert a\rvert]}b_i)^2$
+					        \item $={b_0}^2+2\Re(\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i)+(\sum_i^{[1:\lvert a\rvert]}b_i)^2$
+					        \item $\ge{b_0}^2+2b_0\sum_i^{[1:\lvert a\rvert]} b_i+(\sum_i^{[1:\lvert a\rvert]}b_i)^2$
+					        \item $=(b_0+\sum_i^{[1:\lvert a\rvert]}b_i)^2$
+					        \item $=(\sum_i^{[0:\lvert a\rvert]}b_i)^2$.
+					      \end{enumerate}
+					    \end{enumerate}
+				    \end{enumerate}
+		    \declaration{3.27}
+			    The notation \gls{perplex1/a}, where $a$ is a perplex number, will be used as a shorthand for the pair $\frac{1}{\lVert a\rVert^2}\conj{a}$.
+		    \procedure{3.81}
+			    \objective
+				    Choose a perplex number $a$ such that $\lVert a\rVert^2\ne 0$. The objective of the following instructions is to show that $\frac{1}{a}a=1$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $\frac{1}{a}a$
+					    \begin{enumerate}
+						    \item $=(\frac{1}{\Vert a\rVert^2}\conj{a})a$
+						    \item $=\frac{1}{\Vert a\rVert^2}(\conj{a}a)$
+						    \item $=\frac{1}{\Vert a\rVert^2}\Vert a\rVert^2$
+						    \item $=1$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \declaration{3.28}
+			    The notations \gls{perplexj}, \gls{perplexj+}, and \gls{perplexj-} will be used as a shorthand for the perplex numbers $\langle 0,1\rangle$, $\langle\frac{1}{2},\frac{1}{2}\rangle$, and $\langle\frac{1}{2},-\frac{1}{2}\rangle$ respectively.
+		    \procedure{thu0602201510}
+			    \objective
+				    The objective of the following instructions is to show that $j^{2}=1$, ${j_+}^2=j_+$, ${j_-}^2=j_-$, $j_+j_-=0$, and $j_++j_-=1$.
+			    \implementation
+				    \begin{enumerate}
+					    \item \textbf{Show that $j^2=1$}.
+					    \item \textbf{Show that ${j_+}^2=j_+$}.
+					    \item \textbf{Show that ${j_-}^2=j_-$}.
+					    \item \textbf{Show that $j_+j_-=0$}.
+					    \item \textbf{Show that $j_++j_-=1$.}
+				    \end{enumerate}
+				\procedure{sat0802201559}
+			    \objective
+				    Choose rational numbers $a,b,c,d$. The objective of the following instructions is to show that $(aj_++bj_-)+(cj_++dj_-)=(a+c)j_++(b+d)j_-$.
+			    \implementation
+				    \begin{enumerate}
+				      \item Show that $(aj_++bj_-)+(cj_++dj_-)=(a+c)j_++(b+d)j_-$.
+				    \end{enumerate}\procedure{sat0802201559}
+			    \objective
+				    Choose rational numbers $a,b,c,d$. The objective of the following instructions is to show that $(aj_++bj_-)(cj_++dj_-)=acj_++bdj_-$.
+			    \implementation
+				    \begin{enumerate}
+				      \item Show that $(aj_++bj_-)(cj_++dj_-)$
+				      \begin{enumerate}
+				        \item $=aj_+(cj_++dj_-)+bj_-(cj_++dj_-)$
+				        \item $=aj_+cj_++aj_+dj_-+bj_-cj_++bj_-dj_-$
+				        \item $=acj_+0ad+0bc+bdj_-$
+				        \item $=acj_++bdj_-$.
+				      \end{enumerate}
+				    \end{enumerate}
 	    \end{multicols*}
 	  \chapter{Polynomial Sign Changes}
 	    \begin{multicols*}{2}
@@ -4384,11 +4380,20 @@
 						    \item $=a$.
 					    \end{enumerate}
 				    \end{enumerate}
-		    \procedure{sun2107190636}
+		    \procedure{3.82}
 			    \objective
-				    Choose a non-negative integer $a$ and a complex number $x$. The objective of the following instructions is to show that $(1+x)^a=\sum_r^{[0:{a+1}]}\binom{a}{r}x^r$.
+				    Choose three complex numbers $a,b,c$. The objective of the following instructions is to show that $a(b+c)=ab+ac$.
 			    \implementation
-				    Instructions are analogous to those of \procedurehr{1.63}.
+				    \begin{enumerate}
+					    \item $a(b+c)$
+					    \begin{enumerate}
+						    \item $=\langle\Re(a),\Im(a)\rangle\langle\Re(b)+\Re(c),\Im(b)+\Im(c)\rangle$
+						    \item $=\langle\Re(a)(\Re(b)+\Re(c))-\Im(a)(\Im(b)+\Im(c)),\Re(a)(\Im(b)+\Im(c))+\Im(a)(\Re(b)+\Re(c))\rangle$
+						    \item $=\langle(\Re(a)\Re(b)-\Im(a)\Im(b))+(\Re(a)\Re(c)-\Im(a)\Im(c)),(\Re(a)\Im(b)+\Im(a)\Re(b))+(\Re(a)\Im(c)+\Im(a)\Re(c))\rangle$
+						    \item $=\langle\Re(a)\Re(b)-\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle+\langle\Re(a)\Re(c)-\Im(a)\Im(c),\Re(a)\Im(c)+\Im(a)\Re(c)\rangle$
+						    \item $=ab+ac$.
+					    \end{enumerate}
+				    \end{enumerate}
 		    \declaration{3.02}
 			    The notation \gls{complexconj}, where $a$ is a complex number, will be used as a shorthand for $\langle\Re(a),-\Im(a)\rangle$.
 		    \procedure{3.00}
@@ -4434,7 +4439,7 @@
 					    \begin{enumerate}
 						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\sum_k^{[0:{\lvert a\rvert}]}a_r\conj{a_k}$
 						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+2\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(\Re(a_r)\Re(a_k)+\Im(a_r)\Im(a_k))$
-						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+2\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(\Re(a_r)^2-(\Re(a_r)-\Re(a_k))^2+\Re(a_k)^2+\Im(a_r)^2-(\Im(a_r)-\Im(a_k))^2+\Im(a_k)^2)$
+						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(\Re(a_r)^2-(\Re(a_r)-\Re(a_k))^2+\Re(a_k)^2+\Im(a_r)^2-(\Im(a_r)-\Im(a_k))^2+\Im(a_k)^2)$
 						    \item $\le\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(\Re(a_r)^2+\Re(a_k)^2+\Im(a_r)^2+\Im(a_k)^2)$
 						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(\lVert a_r\rVert^2+\lVert a_k\rVert^2)$
 						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\frac{1}{2}\sum_r^{[0:\lvert a\rvert]}\sum_k^{[0:r]^{\frown}[r+1:\lvert a\rvert]}(\lVert a_r\rVert^2+\lVert a_k\rVert^2)$
@@ -4524,20 +4529,6 @@
 						    \item $=1$.
 					    \end{enumerate}
 				    \end{enumerate}
-		    \procedure{3.82}
-			    \objective
-				    Choose three complex numbers $a,b,c$. The objective of the following instructions is to show that $a(b+c)=ab+ac$.
-			    \implementation
-				    \begin{enumerate}
-					    \item $a(b+c)$
-					    \begin{enumerate}
-						    \item $=\langle\Re(a),\Im(a)\rangle\langle\Re(b)+\Re(c),\Im(b)+\Im(c)\rangle$
-						    \item $=\langle\Re(a)(\Re(b)+\Re(c))-\Im(a)(\Im(b)+\Im(c)),\Re(a)(\Im(b)+\Im(c))+\Im(a)(\Re(b)+\Re(c))\rangle$
-						    \item $=\langle(\Re(a)\Re(b)-\Im(a)\Im(b))+(\Re(a)\Re(c)-\Im(a)\Im(c)),(\Re(a)\Im(b)+\Im(a)\Re(b))+(\Re(a)\Im(c)+\Im(a)\Re(c))\rangle$
-						    \item $=\langle\Re(a)\Re(b)-\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle+\langle\Re(a)\Re(c)-\Im(a)\Im(c),\Re(a)\Im(c)+\Im(a)\Re(c)\rangle$
-						    \item $=ab+ac$.
-					    \end{enumerate}
-				    \end{enumerate}
 		    \declaration{3.28}
 			    The notation \gls{complexi} will be used as a shorthand for $\langle 0,1\rangle$.
 		    \procedure{3.03}
@@ -4555,6 +4546,11 @@
 					      \item $i^{4a+3}=i^{4a+2}i=(-1)i=-i$.
 					    \end{enumerate}
 				    \end{enumerate}
+		    \procedure{sun2107190636}
+			    \objective
+				    Choose a non-negative integer $a$ and a complex number $x$. The objective of the following instructions is to show that $(1+x)^a=\sum_r^{[0:{a+1}]}\binom{a}{r}x^r$.
+			    \implementation
+				    Instructions are analogous to those of \procedurehr{1.63}.
 		    \declaration{mon1908191749}
 		      The notation \gls{complexerr} will be used as a shorthand for $\lVert b-a\rVert^2\le\lVert c_1\rVert^2\le\lVert c_2\rVert^2\le\cdots\le\lVert c_n\rVert^2$.
 		    \procedure{mon1908191916}
