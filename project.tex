@@ -191,8 +191,7 @@
 \newglossaryentry{perplexabs^2}{name=\ensuremath{\lVert a\rVert^2},description={hyperbolic distance squared}}
 \newglossaryentry{perplex1/a}{name=\ensuremath{\frac{1}{a}},description={perplex reciprocal}}
 \newglossaryentry{perplexj}{name=\ensuremath{j},description={perplex imaginary unit}}
-\newglossaryentry{perplexj+}{name=\ensuremath{j_+},description={}}
-\newglossaryentry{perplexj-}{name=\ensuremath{j_-},description={}}
+\newglossaryentry{perplexk}{name=\ensuremath{k},description={perplex positive diagonal}}
 \newglossaryentry{ratpolyJ}{name=\ensuremath{\jsc_s(x)},description={}}
 \newglossaryentry{ratpolySturm}{name={Sturm chain},description={}}
 \newglossaryentry{complex}{name={complex number},description={}}
@@ -3458,35 +3457,35 @@
 					    \end{enumerate}
 				    \end{enumerate}
 		    \declaration{3.28}
-			    The notations \gls{perplexj}, \gls{perplexj+}, and \gls{perplexj-} will be used as a shorthand for the perplex numbers $\langle 0,1\rangle$, $\langle\frac{1}{2},\frac{1}{2}\rangle$, and $\langle\frac{1}{2},-\frac{1}{2}\rangle$ respectively.
+			    The notations \gls{perplexj} and \gls{perplexk} will be used as a shorthand for the perplex numbers $\langle 0,1\rangle$ and $\langle\frac{1}{2},\frac{1}{2}\rangle$ respectively.
 		    \procedure{thu0602201510}
 			    \objective
-				    The objective of the following instructions is to show that $j^{2}=1$, ${j_+}^2=j_+$, ${j_-}^2=j_-$, $j_+j_-=0$, and $j_++j_-=1$.
+				    The objective of the following instructions is to show that $j^{2}=1$, $k^2=k$, $\conj{k}^2=\conj{k}$, $k\conj{k}=0$, and $k+\conj{k}=1$.
 			    \implementation
 				    \begin{enumerate}
 					    \item \textbf{Show that $j^2=1$}.
-					    \item \textbf{Show that ${j_+}^2=j_+$}.
-					    \item \textbf{Show that ${j_-}^2=j_-$}.
-					    \item \textbf{Show that $j_+j_-=0$}.
-					    \item \textbf{Show that $j_++j_-=1$.}
+					    \item \textbf{Show that $k^2=k$}.
+					    \item \textbf{Show that $\conj{k}^2=\conj{k}$}.
+					    \item \textbf{Show that $k\conj{k}=0$}.
+					    \item \textbf{Show that $k+\conj{k}=1$.}
 				    \end{enumerate}
 				\procedure{sat0802201559}
 			    \objective
-				    Choose rational numbers $a,b,c,d$. The objective of the following instructions is to show that $(aj_++bj_-)+(cj_++dj_-)=(a+c)j_++(b+d)j_-$.
+				    Choose rational numbers $a,b,c,d$. The objective of the following instructions is to show that $(ak+b\conj{k})+(ck+d\conj{k})=(a+c)k+(b+d)\conj{k}$.
 			    \implementation
 				    \begin{enumerate}
-				      \item Show that $(aj_++bj_-)+(cj_++dj_-)=(a+c)j_++(b+d)j_-$.
+				      \item Show that $(ak+b\conj{k})+(ck+d\conj{k})=(a+c)k+(b+d)\conj{k}$.
 				    \end{enumerate}\procedure{sat0802201559}
 			    \objective
-				    Choose rational numbers $a,b,c,d$. The objective of the following instructions is to show that $(aj_++bj_-)(cj_++dj_-)=acj_++bdj_-$.
+				    Choose rational numbers $a,b,c,d$. The objective of the following instructions is to show that $(ak+b\conj{k})(ck+d\conj{k})=ack+bd\conj{k}$.
 			    \implementation
 				    \begin{enumerate}
-				      \item Show that $(aj_++bj_-)(cj_++dj_-)$
+				      \item Show that $(ak+b\conj{k})(ck+d\conj{k})$
 				      \begin{enumerate}
-				        \item $=aj_+(cj_++dj_-)+bj_-(cj_++dj_-)$
-				        \item $=aj_+cj_++aj_+dj_-+bj_-cj_++bj_-dj_-$
-				        \item $=acj_+0ad+0bc+bdj_-$
-				        \item $=acj_++bdj_-$.
+				        \item $=ak(ck+d\conj{k})+b\conj{k}(ck+d\conj{k})$
+				        \item $=akck+akd\conj{k}+b\conj{k}ck+b\conj{k}d\conj{k}$
+				        \item $=ack+0ad+0bc+bd\conj{k}$
+				        \item $=ack+bd\conj{k}$.
 				      \end{enumerate}
 				    \end{enumerate}
 	    \end{multicols*}
