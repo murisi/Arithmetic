@@ -2476,6 +2476,533 @@
 	            \end{enumerate}
 	          \end{enumerate}
 			\end{multicols*}
+	  \chapter{Perplex Arithmetic}
+			\begin{multicols*}{2}
+			  \declaration{wed0502201651}
+			    The phrase "\gls{perplex}" will be used as a shorthand for a pair of rational numbers.
+			  \declaration{sun0902201114}
+			    The phrase "the real part of $a$" and the notation \gls{perplexRe}, where $a$ is a perplex number, will be used as a shorthand for the first entry of $a$.
+		    \declaration{sun0902201115}
+			    The phrase "the imaginary part of $a$" and the notation \gls{perplexIm}, where $a$ is a perplex number, will be used as a shorthand for the second entry of $a$.
+		    \declaration{sat0802201051}
+			    The phrase "\gls{perplexa=b}", where $a,b$ are perplex numbers, will be used as a shorthand for "$\Re(a)=\Re(b)$ and $\Im(a)=\Im(b)$".
+		    \procedure{sun0902201116}
+			    \objective
+				    Choose a perplex number $a$. The objective of the following instructions is to show that $a=a$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $\Re(a)=\Re(a)$.
+					    \item Show that $\Im(a)=\Im(a)$.
+					    \item \textbf{Hence show that $a=a$.}
+				    \end{enumerate}
+		    \procedure{sun0902201117}
+			    \objective
+				    Choose two perplex numbers $a,b$ such that $a=b$. The objective of the following instructions is to show that $b=a$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $\Re(b)=\Re(a)$ given that $\Re(a)=\Re(b)$.
+					    \item Show that $\Im(b)=\Im(a)$ given that $\Im(a)=\Im(b)$.
+					    \item \textbf{Hence show that $b=a$.}
+				    \end{enumerate}
+		    \procedure{sun0902201118}
+			    \objective
+				    Choose three perplex numbers $a,b,c$ such that $a=b$ and $b=c$. The objective of the following instructions is to show that $a=c$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $\Re(a)=\Re(c)$
+					    \begin{enumerate}
+					      \item given that $\Re(a)=\Re(b)$
+					      \item and $\Re(b)=\Re(c)$.
+					    \end{enumerate}
+					    \item Show that $\Im(a)=\Im(c)$
+					    \begin{enumerate}
+					      \item given that $\Im(a)=\Im(b)$
+					      \item and $\Im(b)=\Im(c)$.
+					    \end{enumerate}
+					    \item \textbf{Hence verify that $a=c$.}
+				    \end{enumerate}
+		    \declaration{sun0902201119}
+			    The notation \gls{perplexa+b}, where $a,b$ are perplex numbers, will be used as a shorthand for the perplex number $\langle\Re(a)+\Re(b),\Im(a)+\Im(b)\rangle$.
+		    \procedure{sun0902201120}
+			    \objective
+				    Choose two perplex numbers $a,b,c,d$ such that $a=c$ and $b=d$. The objective of the following instructions is to show that $a+b=c+d$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Using \declarationhr{sat0802201051}, show that
+					    \begin{enumerate}
+					      \item $\Re(a)=\Re(c)$
+					      \item $\Im(a)=\Im(c)$
+					      \item $\Re(b)=\Re(d)$
+					      \item $\Im(b)=\Im(d)$.
+					    \end{enumerate}
+					    \item Hence show that $a+b$
+					    \begin{enumerate}
+						    \item $=\langle\Re(a),\Im(a)\rangle+\langle\Re(b),\Im(b)\rangle$
+						    \item $=\langle\Re(a)+\Re(b),\Im(a)+\Im(b)\rangle$
+						    \item $=\langle\Re(c)+\Re(d),\Im(c)+\Im(d)\rangle$
+						    \item $=\langle\Re(c),\Im(c)\rangle+\langle\Re(d),\Im(d)\rangle$
+						    \item $=c+d$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \procedure{sun0902201121}
+			    \objective
+				    Choose three perplex numbers $a,b,c$. The objective of the following instructions is to show that $(a+b)+c=a+(b+c)$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $(a+b)+c$
+					    \begin{enumerate}
+						    \item $=\langle\Re(a)+\Re(b),\Im(a)+\Im(b)\rangle+\langle\Re(c),\Im(c)\rangle$
+						    \item $=\langle(\Re(a)+\Re(b))+\Re(c),(\Im(a)+\Im(b))+\Im(c)\rangle$
+						    \item $=\langle\Re(a)+(\Re(b)+\Re(c)),\Im(a)+(\Im(b)+\Im(c))\rangle$
+						    \item $=\langle\Re(a),\Im(a)\rangle+\langle\Re(b)+\Re(c),\Im(b)+\Im(c)\rangle$
+						    \item $=a+(b+c)$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \procedure{sun0902201122}
+			    \objective
+				    Choose two perplex numbers $a,b$. The objective of the following instructions is to show that $a+b=b+a$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $a+b$
+					    \begin{enumerate}
+						    \item $=\langle\Re(a)+\Re(b),\Im(a)+\Im(b)\rangle$
+						    \item $=\langle\Re(b)+\Re(a),\Im(b)+\Im(a)\rangle$
+						    \item $=b+a$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \declaration{sun0902201123}
+			    The notation \gls{perplexa}, where $a$ is a rational number, will contextually be used as a shorthand for the perplex number $\langle a,0\rangle$.
+		    \procedure{sun0902201124}
+			    \objective
+				    Choose a perplex number $a$. The objective of the following instructions is to show that $0+a=a$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $0+a$
+					    \begin{enumerate}
+						    \item $=\langle 0,0\rangle+\langle\Re(a),\Im(a)\rangle$
+						    \item $=\langle 0+\Re(a),0+\Im(a)\rangle$
+						    \item $=\langle\Re(a),\Im(a)\rangle$
+						    \item $=a$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \declaration{sun0902201125}
+			    The notation \gls{perplex-a}, where $a$ is a perplex number, will be used as a shorthand for the pair $\langle-\Re(a),-\Im(a)\rangle$.
+		    \procedure{sun0902201126}
+			    \objective
+				    Choose a perplex number $a$. The objective of the following instructions is to show that $-a+a=0$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $-a+a$
+					    \begin{enumerate}
+						    \item $=(-a)+a$
+						    \item $=\langle-\Re(a),-\Im(a)\rangle+\langle\Re(a),\Im(a)\rangle$
+						    \item $=\langle-\Re(a)+\Re(a),-\Im(a)+\Im(a)\rangle$
+						    \item $=\langle 0,0\rangle$
+						    \item $=0$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \declaration{sun0902201127}
+			    The notation \gls{perplexab}, where $a,b$ are perplex numbers, will be used as a shorthand for the perplex number $\langle\Re(a)\Re(b)+\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle$.
+		    \procedure{sun0902201128}
+			    \objective
+				    Choose four perplex numbers $a,b,c,d$ such that $a=c$ and $b=d$. The objective of the following instructions is to show that $ab=cd$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Using \declarationhr{sat0802201051}, show that
+					    \begin{enumerate}
+					      \item $\Re(a)=\Re(c)$
+					      \item $\Im(a)=\Im(c)$
+					      \item $\Re(b)=\Re(d)$
+					      \item $\Im(b)=\Im(d)$.
+					    \end{enumerate}
+					    \item Hence show that $ab$
+					    \begin{enumerate}
+						    \item $=\langle\Re(a),\Im(a)\rangle\langle\Re(b),\Im(b)\rangle$
+						    \item $=\langle\Re(a)\Re(b)+\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle$
+						    \item $=\langle\Re(c)\Re(d)+\Im(c)\Im(d),\Re(c)\Im(d)+\Im(c)\Re(d)\rangle$
+						    \item $=\langle\Re(c),\Im(c)\rangle\langle\Re(d),\Im(d)\rangle$
+						    \item $=cd$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \procedure{sun0902201129}
+			    \objective
+				    Choose three perplex numbers $a,b,c$. The objective of the following instructions is to show that $(ab)c=a(bc)$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $(ab)c$
+					    \begin{enumerate}
+						    \item $=\langle\Re(a)\Re(b)+\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle\langle\Re(c),\Im(c)\rangle$
+						    \item $=\langle(\Re(a)\Re(b)+\Im(a)\Im(b))\Re(c)+(\Re(a)\Im(b)+\Im(a)\Re(b))\Im(c),(\Re(a)\Re(b)+\Im(a)\Im(b))\Im(c)+(\Re(a)\Im(b)+\Im(a)\Re(b))\Re(c)\rangle$
+						    \item $=\langle\Re(a)(\Re(b)\Re(c)+\Im(b)\Im(c))+\Im(a)(\Re(b)\Im(c)+\Im(b)\Re(c)),\Re(a)(\Re(b)\Im(c)+\Im(b)\Re(c))+\Im(a)(\Re(b)\Re(c)+\Im(b)\Im(c))\rangle$
+						    \item $=\langle\Re(a),\Im(a)\rangle\langle\Re(b)\Re(c)+\Im(b)\Im(c),\Re(b)\Im(c)+\Im(b)\Re(c)\rangle$
+						    \item $=a(bc)$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \procedure{sun0902201130}
+			    \objective
+				    Choose two perplex numbers $a,b$. The objective of the following instructions is to show that $ab=ba$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $ab$
+					    \begin{enumerate}
+						    \item $=\langle\Re(a)\Re(b)+\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle$
+						    \item $=\langle\Re(b)\Re(a)+\Im(b)\Im(a),\Re(b)\Im(a)+\Im(b)\Re(a)\rangle$
+						    \item $=ba$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \procedure{sun0902201131}
+			    \objective
+				    Choose a perplex number $a$. The objective of the following instructions is to show that $1a=a$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $1a$
+					    \begin{enumerate}
+						    \item $=\langle 1,0\rangle\langle\Re(a),\Im(a)\rangle$
+						    \item $=\langle 1\Re(a)+0\Im(a),1\Im(a)+0\Re(a)\rangle$
+						    \item $=\langle\Re(a),\Im(a)\rangle$
+						    \item $=a$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \procedure{sat0802201553}
+			    \objective
+				    Choose three perplex numbers $a,b,c$. The objective of the following instructions is to show that $a(b+c)=ab+ac$.
+			    \implementation
+				    \begin{enumerate}
+					    \item $a(b+c)$
+					    \begin{enumerate}
+						    \item $=\langle\Re(a),\Im(a)\rangle\langle\Re(b)+\Re(c),\Im(b)+\Im(c)\rangle$
+						    \item $=\langle\Re(a)(\Re(b)+\Re(c))+\Im(a)(\Im(b)+\Im(c)),\Re(a)(\Im(b)+\Im(c))+\Im(a)(\Re(b)+\Re(c))\rangle$
+						    \item $=\langle(\Re(a)\Re(b)+\Im(a)\Im(b))+(\Re(a)\Re(c)+\Im(a)\Im(c)),(\Re(a)\Im(b)+\Im(a)\Re(b))+(\Re(a)\Im(c)+\Im(a)\Re(c))\rangle$
+						    \item $=\langle\Re(a)\Re(b)+\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle+\langle\Re(a)\Re(c)+\Im(a)\Im(c),\Re(a)\Im(c)+\Im(a)\Re(c)\rangle$
+						    \item $=ab+ac$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \declaration{sun0902201132}
+			    The notation \gls{perplexconj}, where $a$ is a perplex number, will be used as a shorthand for the perplex number $\langle\Re(a),-\Im(a)\rangle$.
+		    \procedure{sun0902201133}
+			    \objective
+				    Choose two perplex numbers $a,b$. The objective of the following instructions is to show that $\conj{a+b}=\conj{a}+\conj{b}$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $\conj{a+b}$
+					    \begin{enumerate}
+						    \item $=\langle\Re(a+b),-\Im(a+b)\rangle$
+						    \item $=\langle\Re(a)+\Re(b),-\Im(a)-\Im(b)\rangle$
+						    \item $=\conj{a}+\conj{b}$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \procedure{sun0902201134}
+			    \objective
+				    Choose two perplex numbers $a,b$. The objective of the following instructions is to show that $\conj{ab}=\conj{a}\conj{b}$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $\conj{ab}$
+					    \begin{enumerate}
+						    \item $=\langle\Re(ab),-\Im(ab)\rangle$
+						    \item $=\langle\Re(a)\Re(b)+\Im(a)\Im(b)),-\Re(a)\Im(b)-\Im(a)\Re(b)\rangle$
+						    \item $=\langle\Re(a),-\Im(a)\rangle\langle\Re(b),-\Im(b)\rangle$
+						    \item $=\conj{a}\conj{b}$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \declaration{wed0502201719}
+			    The notation $a<b$, where $a,b$ are perplex numbers, will be used as a shorthand for $0<\Re(b-a)$ and $\lVert\Im(b-a)\rVert\le\Re(b-a)$.
+			  \procedure{sat0802200648}
+			    \objective
+				    Choose four perplex numbers $a,b,c,d$ such that $a<b$, $a=c$ and $b=d$. The objective of the following instructions is to show that $c<d$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $\Re(a)=\Re(c)$ and $\Im(a)=\Im(c)$ using \declarationhr{sat0802201051} given that $a=c$.
+					    \item Show that $\Re(b)=\Re(d)$ and $\Im(b)=\Im(d)$ using \declarationhr{sat0802201051} given that $b=d$.
+					    \item Show that $0<\Re(b-a)$ and $\lVert\Im(b-a)\rVert\le\Re(b-a)$ using \declarationhr{wed0502201719} given that $a<b$.
+					    \item Hence show that $\Re(d-c)=\Re(b-a)>0$.
+					    \item Also show that $\lVert\Im(d-c)\rVert=\lVert\Im(b-a)\rVert\le\Re(b-a)=\Re(d-c)$.
+					    \item \textbf{Hence show that $c<d$ using \declarationhr{wed0502201719}.}
+				    \end{enumerate}
+		    \procedure{sun0902201135}
+			    \objective
+				    Choose three perplex numbers $a,b,c$ such that $a<b$. The objective of the following instructions is to show that $a+c<b+c$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $0<\Re(b-a)$ and $\lVert\Im(b-a)\rVert\le\Re(b-a)$ using \declarationhr{wed0502201719} given that $a<b$.
+					    \item Hence show that $\Re((b+c)-(a+c))=\Re(b-a)>0$.
+					    \item Also show that $\lVert\Im((b+c)-(a+c))\rVert=\lVert\Im(b-a)\rVert\le\Re(b-a)=\Re((b+c)-(a+c))$.
+					    \item \textbf{Hence show that $a+c<b+c$ using \declarationhr{wed0502201719}.}
+				    \end{enumerate}
+		    \procedure{sun0902201136}
+			    \objective
+				    Choose two perplex numbers $a,b$ such that $a<b$. The objective of the following instructions is to show that $a\ne b$ and $b\not<a$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $0<\Re(b-a)$ and $\lVert\Im(b-a)\rVert\le\Re(b-a)$ using \declarationhr{wed0502201719} given that $a<b$.
+					    \item \textbf{Hence show that $a\ne b$}
+					    \begin{enumerate}
+					      \item given that $\Re(a)\ne\Re(b)$
+					      \item given that $0<\Re(b-a)$.
+					    \end{enumerate}
+					    \item \textbf{Also using \declarationhr{wed0502201719}, show $b\not<a$}
+					    \begin{enumerate}
+					      \item given that $0\not<\Re(a-b)$
+					      \item given that $0<\Re(b-a)$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \procedure{sun0902201137}
+			    \objective
+				    Choose two perplex numbers $a,b$ such that $a=b$. The objective of the following instructions is to show that $a\not<b$ and $b\not<a$.
+			    \implementation
+				    Implementation is analogous to that of \procedurehr{sun0902201136}.
+		    \procedure{sun0902201138}
+			    \objective
+				    Choose two perplex numbers $a,b$ such that $0<a$ and $0<b$. The objective of the following instructions is to show that $0<a+b$.
+			    \implementation
+				    \begin{enumerate}
+				      \item Show that $0<\Re(a)$ and $\lVert\Im(a)\rVert\le\Re(a)$ using \declarationhr{wed0502201719} given that $0<a$.
+				      \item Show that $0<\Re(b)$ and $\lVert\Im(b)\rVert\le\Re(b)$ using \declarationhr{wed0502201719} given that $0<b$.
+				      \item Hence show that $\Re(a+b)=\Re(a)+\Re(b)>0$ given that $0<\Re(a)$ and $0<\Re(b)$.
+				      \item Also show that $\lVert\Im(a+b)\rVert=\lVert\Im(a)+\Im(b)\rVert\le\lVert\Im(a)\rVert+\lVert\Im(b)\rVert\le\Re(a)+\Re(b)=\Re(a+b)$ given that $\lVert\Im(a)\rVert\le\Re(a)$ and $\lVert\Im(b)\rVert\le\Re(b)$.
+					    \item \textbf{Hence show that $0<a+b$ using \declarationhr{wed0502201719} given that $\Re(a+b)>0$ and $\lVert\Im(a+b)\rVert\le\Re(a+b)$.}
+				    \end{enumerate}
+		    \procedure{sun0902201139}
+			    \objective
+				    Choose two perplex numbers $a,b$ such that $0<a$ and $0<b$. The objective of the following instructions is to show that $0\le ab$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $0<\Re(a)$ and $\lVert\Im(a)\rVert\le\Re(a)$ using \declarationhr{wed0502201719} given that $0<a$.
+				      \item Show that $0<\Re(b)$ and $\lVert\Im(b)\rVert\le\Re(b)$ using \declarationhr{wed0502201719} given that $0<b$.
+				      \item Hence show that $\Re(ab)=\Re(a)\Re(b)+\Im(a)\Im(b)\ge\Re(a)\Re(b)-\Re(a)\Re(b)=0$.
+				      \item Given that $\lVert\Im(a)\rVert\le\Re(a)$ and $\lVert\Im(b)\rVert\le\Re(b)$, show $\Re(ab)-\Im(ab)$
+				      \begin{enumerate}
+				        \item $=\Re(a)\Re(b)+\Im(a)\Im(b)-\Re(a)\Im(b)-\Im(a)\Re(b)$
+				        \item $=(\Re(a)-\Im(a))(\Re(b)-\Im(b))$
+				        \item $\ge 0$.
+				      \end{enumerate}
+				      \item Hence show that $\Re(ab)\ge\Im(ab)$.
+				      \item Given that $\lVert\Im(a)\rVert\le\Re(a)$ and $\lVert\Im(b)\rVert\le\Re(b)$, show $\Re(ab)+\Im(ab)$
+				      \begin{enumerate}
+				        \item $=\Re(a)\Re(b)+\Im(a)\Im(b)+\Re(a)\Im(b)+\Im(a)\Re(b)$
+				        \item $=(\Re(a)+\Im(a))(\Re(b)+\Im(b))$
+				        \item $\ge 0$.
+				      \end{enumerate}
+				      \item Hence show that $\Im(ab)\ge-\Re(ab)$.
+					    \item Hence show that $\lVert\Im(ab)\rVert\le\Re(ab)$ given that
+					    \begin{enumerate}
+					      \item $\Re(ab)\ge 0$
+					      \item and $\Re(ab)\ge\Im(ab)$
+					      \item and $\Im(ab)\ge-\Re(ab)$.
+					    \end{enumerate}
+					    \item If $\Re(ab)=0$, then do the following:
+					    \begin{enumerate}
+					      \item \textbf{Show that $ab=0$ using \declarationhr{sat0802201051} given that $\Im(ab)=0$ given that $\lVert\Im(ab)\rVert\le\Re(ab)=0$.}
+					    \end{enumerate}
+					    \item Otherwise do the following:
+					    \begin{enumerate}
+					      \item \textbf{Show that $ab>0$ using \declarationhr{wed0502201719} given that $\Re(ab)>0$ and $\lVert\Im(ab)\rVert\le\Re(ab)$.}
+					    \end{enumerate}
+				    \end{enumerate}
+			  \declaration{wed0502201655}
+			    The notations $a\subseteq b$ and $b\supseteq a$, where $a,b$ are perplex numbers, will be used as shorthands for $\lVert\Re(b)-\Re(a)\rVert\le\Im(b)-\Im(a)$.
+			  \procedure{sat0802201148}
+			    \objective
+			      Choose a perplex number $a$. The objective of the following instructions is to show that $a\subseteq a$.
+			    \implementation
+			      \begin{enumerate}
+			        \item Show that $a\subseteq a$ using \declarationhr{wed0502201655} given that $\lVert\Re(a)-\Re(a)\rVert=0=\Im(a)-\Im(a)$.
+			      \end{enumerate}
+			  \procedure{sat0802201153}
+			    \objective
+			      Choose perplex numbers $a,b$ such that $a\subseteq b$ and $b\subseteq a$. The objective of the following instructions is to show that $a=b$.
+			    \implementation
+			      \begin{enumerate}
+			        \item Show that $\lVert\Re(b)-\Re(a)\rVert\le\Im(b)-\Im(a)$ given that $a\subseteq b$.
+			        \item Show that $\lVert\Re(a)-\Re(b)\rVert\le\Im(a)-\Im(b)$ given that $b\subseteq a$.
+			        \item Hence show that $\Im(b)=\Im(a)$
+			        \begin{enumerate}
+			          \item given that $\Im(b)-\Im(a)=0$
+			          \item given that $\Im(b)-\Im(a)\le 0\le\Im(b)-\Im(a)$.
+			        \end{enumerate}
+			        \item Hence show that $\Re(b)=\Re(a)$
+			        \begin{enumerate}
+			          \item given that $\Re(b)-\Re(a)=0$
+			          \item given that $\lVert\Re(b)-\Re(a)\rVert\le 0$.
+			        \end{enumerate}
+			        \item Hence show that $a=b$ using \declarationhr{sat0802201051}.
+			      \end{enumerate}
+			  \procedure{sat0802201213}
+			    \objective
+			      Choose perplex numbers $a,b,c$ such that $a\subseteq b$ and $b\subseteq c$. The objective of the following instructions is to show that $a\subseteq c$.
+			    \implementation
+			      \begin{enumerate}
+			        \item Show that $\lVert\Re(b)-\Re(a)\rVert\le\Im(b)-\Im(a)$ given that $a\subseteq b$.
+			        \item Show that $\lVert\Re(c)-\Re(b)\rVert\le\Im(c)-\Im(b)$ given that $b\subseteq c$.
+			        \item Hence show that $\lVert\Re(c)-\Re(a)\rVert$
+			        \begin{enumerate}
+			          \item $=\lVert(\Re(c)-\Re(b))+(\Re(b)-\Re(a))\rVert$
+			          \item $\le\lVert\Re(c)-\Re(b)\rVert+\lVert\Re(b)-\Re(a)\rVert$
+			          \item $\le(\Im(b)-\Im(a))+(\Im(c)-\Im(b))$
+			          \item $=\Im(c)-\Im(a)$.
+			        \end{enumerate}
+			        \item Hence show that $a\subseteq c$ using \declarationhr{wed0502201655}.
+			      \end{enumerate}
+			  \procedure{sat0802201250}
+			    \objective
+			      Choose perplex numbers $a,b,c$ such that $a\subseteq b$. The objective of the following instructions is to show that $a+c\subseteq b+c$.
+			    \implementation
+			      \begin{enumerate}
+			        \item Show that $\lVert\Re(b)-\Re(a)\rVert\le\Im(b)-\Im(a)$ given that $a\subseteq b$.
+			        \item Now show that $\lVert\Re(b+c)-\Re(a+c)\rVert$
+			        \begin{enumerate}
+			          \item $=\lVert\Re(b)-\Re(a)\rVert$
+			          \item $\le\Im(b)-\Im(a)$
+			          \item $=\Im(b+c)-\Im(a+c)$.
+			        \end{enumerate}
+			        \item Hence show that $a+c\subseteq b+c$ using \declarationhr{wed0502201655}.
+			      \end{enumerate}
+			  \declaration{sun0902201140}
+			    The notation \gls{perplexabs^2}, where $a$ is a perplex number, will be used as a shorthand for $\Re(a)^2-\Im(a)^2$.
+		    \procedure{sun0902201141}
+			    \objective
+				    Choose a perplex number $a$. The objective of the following instructions is to show that $a\conj{a}=\lVert a\rVert^2$.
+			    \implementation
+				    \begin{enumerate}
+					    \item \textbf{Show that $a\conj{a}=\lVert a\rVert^2$.}
+				    \end{enumerate}
+		    \procedure{sat0802201500}
+			    \objective
+				    Choose a list of positive perplex numbers $a$. The objective of the following instructions is to show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2\ge\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2$.
+			    \implementation
+				    \begin{enumerate}
+				      \item Show that $\Re(\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}a_r\conj{a_k})>0$ given that $\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}a_r\conj{a_k}>0$.
+					    \item Hence show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2$
+					    \begin{enumerate}
+						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\sum_k^{[0:{\lvert a\rvert}]}a_r\conj{a_k}$
+						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(a_r\conj{a_k}+\conj{a_r\conj{a_k}})$
+						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+2\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}\Re(a_r\conj{a_k})$
+						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+2\Re(\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}a_r\conj{a_k})$
+						    \item $\ge\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \procedure{sat0802201518}
+			    \objective
+				    Choose a non-empty list of positive perplex numbers $a$ such that $a_0>\sum_r^{[1:{\lvert a\rvert}]}a_r$. The objective of the following instructions is to show that $\lVert a_0\rVert^2-\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2\ge\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Using \procedurehr{sat0802201500}, show that $\lVert a_0\rVert^2$
+					    \begin{enumerate}
+						    \item $=\lVert\sum_r^{[1:{\lvert a\rvert}]}a_r+(a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r)\rVert^2$
+						    \item $\ge\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2+\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$
+					    \end{enumerate}
+					    \item \textbf{Therefore show that $\lVert a_0\rVert^2-\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2\ge\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$.}
+				    \end{enumerate}
+		    \procedure{sat0802201359}
+			    \objective
+				    Choose a list of positive perplex numbers $a$ and a list of rational numbers $b$ such that $\lvert a\rvert=\lvert b\rvert$ and $\lVert a_i\rVert^2\ge {b_i}^2$ for each $i\in[0:\lvert a\rvert]$. The objective of the following instructions is to show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2\ge(\sum_r^{[0:{\lvert b\rvert}]}{b_r})^2$.
+			    \implementation
+				    \begin{enumerate}
+					    \item If $\lvert a\rvert=0$, then do the following:
+					    \begin{enumerate}
+						    \item \textbf{Show that $\lVert\sum_i^{[0:\lvert a\rvert]} a_i\rVert^2=\lVert 0\rVert^2=(\sum_i^{[0:\lvert b\rvert]}b_i)^2$.}
+					    \end{enumerate}
+					    \item Otherwise do the following:
+					    \begin{enumerate}
+					      \item Show that $\lvert a\rvert>0$.
+					      \item Show that $\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2\ge(\sum_i^{[1:\lvert b\rvert]} b_i)^2$ using \procedurehr{sat0802201359} on $a_{[1:\lvert a\rvert]}$ and $b_{[1:\lvert b\rvert]}$.
+					      \item Show that $\Re(\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i)>0$
+					      \begin{enumerate}
+					        \item given that $\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i>0$
+					        \item given that $\sum_i^{[1:\lvert a\rvert]}a_i>0$
+					        \item and $\conj{a_0}>0$.
+					      \end{enumerate}
+					      \item Show that $\Re(\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i)^2$
+					      \begin{enumerate}
+					        \item $\ge\lVert\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
+					        \item $=\lVert\conj{a_0}\rVert^2\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
+					        \item $\ge{b_0}^2(\sum_i^{[1:\lvert a\rvert]}b_i)^2$.
+					      \end{enumerate}
+					      \item Hence show that $\lVert\sum_i^{[0:\lvert a\rvert]}a_i\rVert^2$
+					      \begin{enumerate}
+					        \item $=(a_0+\sum_i^{[1:\lvert a\rvert]}a_i)(\conj{a_0+\sum_i^{[1:\lvert a\rvert]}a_i})$
+					        \item $=\lVert a_0\rVert^2+a_0\conj{\sum_i^{[1:\lvert a\rvert]}a_i}+\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i+\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
+					        \item $\ge{b_0}^2+\conj{\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i}+\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i+(\sum_i^{[1:\lvert a\rvert]}b_i)^2$
+					        \item $={b_0}^2+2\Re(\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i)+(\sum_i^{[1:\lvert a\rvert]}b_i)^2$
+					        \item $\ge{b_0}^2+2b_0\sum_i^{[1:\lvert a\rvert]} b_i+(\sum_i^{[1:\lvert a\rvert]}b_i)^2$
+					        \item $=(b_0+\sum_i^{[1:\lvert a\rvert]}b_i)^2$
+					        \item $=(\sum_i^{[0:\lvert a\rvert]}b_i)^2$.
+					      \end{enumerate}
+					    \end{enumerate}
+				    \end{enumerate}
+		    \declaration{sun0902201142}
+			    The notation \gls{perplex1/a}, where $a$ is a perplex number, will be used as a shorthand for the pair $\frac{1}{\lVert a\rVert^2}\conj{a}$.
+		    \procedure{sun0902201143}
+			    \objective
+				    Choose a perplex number $a$ such that $\lVert a\rVert^2\ne 0$. The objective of the following instructions is to show that $\frac{1}{a}a=1$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $\frac{1}{a}a$
+					    \begin{enumerate}
+						    \item $=(\frac{1}{\Vert a\rVert^2}\conj{a})a$
+						    \item $=\frac{1}{\Vert a\rVert^2}(\conj{a}a)$
+						    \item $=\frac{1}{\Vert a\rVert^2}\Vert a\rVert^2$
+						    \item $=1$.
+					    \end{enumerate}
+				    \end{enumerate}
+		    \declaration{sat0802201702}
+			    The notations \gls{perplexj} and \gls{perplexk} will be used as a shorthand for the perplex numbers $\langle 0,1\rangle$ and $\langle\frac{1}{2},\frac{1}{2}\rangle$ respectively.
+		    \procedure{thu0602201510}
+			    \objective
+				    The objective of the following instructions is to show that $\ju^{2}=1$, $\ku^2=k$, $\kcu^2=\kcu$, $k\kcu=0$, $k+\kcu=1$, and $\ku-\kcu=\ju$.
+			    \implementation
+				    \begin{enumerate}
+					    \item \textbf{Show that $\ju^2=1$.}
+					    \item \textbf{Show that $\ku^2=k$.}
+					    \item \textbf{Show that $\kcu^2=\kcu$.}
+					    \item \textbf{Show that $\ku\kcu=0$.}
+					    \item \textbf{Show that $\ku+\kcu=1$.}
+					    \item \textbf{Show that $\ku-\kcu=\ju$.}
+				    \end{enumerate}
+				\procedure{fri1402201203}
+				  \objective
+				    Choose a perplex number $a$. The objective of the following instructions is to show that $a=\Re(a)+\Im(a)\ju$.
+				  \implementation
+				    \begin{enumerate}
+				      \item Show that $a$
+				      \begin{enumerate}
+				        \item $=\langle\Re(a),\Im(a)\rangle$
+				        \item $=\langle\Re(a),0\rangle+\langle 0,\Im(a)\rangle$
+				        \item $=\Re(a)+\Im(a)\ju$.
+				      \end{enumerate}
+				    \end{enumerate}
+				\procedure{fri1402201147}
+				  \objective
+				    Choose a perplex number $a$. The objective of the following instructions is to show that $a=(\Re(a)+\Im(a))\ku+(\Re(a)-\Im(a))\kcu$.
+				  \implementation
+				    \begin{enumerate}
+				      \item Using \procedurehr{thu0602201510}, show that $a$
+				      \begin{enumerate}
+				        \item $=\Re(a)+\Im(a)\ju$
+				        \item $=\Re(a)(\ku+\kcu)+\Im(a)(\ku-\kcu)$
+				        \item $=(\Re(a)+\Im(a))\ku+(\Re(a)-\Im(a))\kcu$.
+				      \end{enumerate}
+				    \end{enumerate}
+				\procedure{sat0802201559}
+			    \objective
+				    Choose rational numbers $a,b,c,d$. The objective of the following instructions is to show that $(a\ku+b\kcu)+(c\ku+d\kcu)=(a+c)\ku+(b+d)\kcu$.
+			    \implementation
+				    \begin{enumerate}
+				      \item Show that $(a\ku+b\kcu)+(c\ku+d\kcu)=(a+c)\ku+(b+d)\kcu$.
+				    \end{enumerate}
+				\procedure{sun0902201144}
+			    \objective
+				    Choose rational numbers $a,b,c,d$. The objective of the following instructions is to show that $(a\ku+b\kcu)(c\ku+d\kcu)=ac\ku+bd\kcu$.
+			    \implementation
+				    \begin{enumerate}
+				      \item Show that $(a\ku+b\kcu)(c\ku+d\kcu)$
+				      \begin{enumerate}
+				        \item $=a\ku(c\ku+d\kcu)+b\kcu(c\ku+d\kcu)$
+				        \item $=a\ku c\ku+a\ku d\kcu+b\kcu c\ku+b\kcu d\kcu$
+				        \item $=ac\ku+0ad+0bc+bd\kcu$
+				        \item $=ac\ku+bd\kcu$.
+				      \end{enumerate}
+				    \end{enumerate}
+	    \end{multicols*}
 	  \chapter{Polynomial Arithmetic}
 	    \begin{multicols*}{2}
 	      \declaration{2.08}
@@ -2974,10 +3501,10 @@
 					    \item Show that $d\ne 0$.
 					    \item Let $c=a\div d$.
 					    \item Using \procedurehr{2.25}, show that:
-                        \begin{enumerate}
-                            \item $a=cd+(a\bmod d)$
-                            \item $\deg(a\bmod d)<\deg(d)=1$.
-                        \end{enumerate}
+              \begin{enumerate}
+                \item $a=cd+(a\bmod d)$
+                \item $\deg(a\bmod d)<\deg(d)=1$.
+              \end{enumerate}
 					    \item Hence show that $\deg(a\bmod d)=0$.
 					    \item Now using \procedurehr{2.56} and \procedurehr{2.64}, show that $\Lambda(a,b)$
 					    \begin{enumerate}
@@ -2988,509 +3515,39 @@
 						    \item $=0\Lambda(c,b)+\Lambda(a\bmod d,b)$
 						    \item $=\Lambda(a\bmod d,b)$
 						    \item $=a\bmod d$
-                            \item $=a\bmod(\lambda-b)$.
+                \item $=a\bmod(\lambda-b)$.
 					    \end{enumerate}
 				    \end{enumerate}
-	    \end{multicols*}
-	  \chapter{Perplex Arithmetic}
-			\begin{multicols*}{2}
-			  \declaration{wed0502201651}
-			    The phrase "\gls{perplex}" will be used as a shorthand for a pair of rational numbers.
-			  \declaration{sun0902201114}
-			    The phrase "the real part of $a$" and the notation \gls{perplexRe}, where $a$ is a perplex number, will be used as a shorthand for the first entry of $a$.
-		    \declaration{sun0902201115}
-			    The phrase "the imaginary part of $a$" and the notation \gls{perplexIm}, where $a$ is a perplex number, will be used as a shorthand for the second entry of $a$.
-		    \declaration{sat0802201051}
-			    The phrase "\gls{perplexa=b}", where $a,b$ are perplex numbers, will be used as a shorthand for "$\Re(a)=\Re(b)$ and $\Im(a)=\Im(b)$".
-		    \procedure{sun0902201116}
-			    \objective
-				    Choose a perplex number $a$. The objective of the following instructions is to show that $a=a$.
-			    \implementation
+				\procedure{fri1402201125}
+				  \objective
+				    Choose a polynomial $a$ and a perplex number $b$. The objective of the following instructions is to show that $\Re(\Lambda(a,b))=\frac{1}{2}(\Lambda(a,\Re(b)+\Im(b))+\Lambda(a,\Re(b)-\Im(b)))$.
+				  \implementation
 				    \begin{enumerate}
-					    \item Show that $\Re(a)=\Re(a)$.
-					    \item Show that $\Im(a)=\Im(a)$.
-					    \item \textbf{Hence show that $a=a$.}
-				    \end{enumerate}
-		    \procedure{sun0902201117}
-			    \objective
-				    Choose two perplex numbers $a,b$ such that $a=b$. The objective of the following instructions is to show that $b=a$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $\Re(b)=\Re(a)$ given that $\Re(a)=\Re(b)$.
-					    \item Show that $\Im(b)=\Im(a)$ given that $\Im(a)=\Im(b)$.
-					    \item \textbf{Hence show that $b=a$.}
-				    \end{enumerate}
-		    \procedure{sun0902201118}
-			    \objective
-				    Choose three perplex numbers $a,b,c$ such that $a=b$ and $b=c$. The objective of the following instructions is to show that $a=c$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $\Re(a)=\Re(c)$
-					    \begin{enumerate}
-					      \item given that $\Re(a)=\Re(b)$
-					      \item and $\Re(b)=\Re(c)$.
-					    \end{enumerate}
-					    \item Show that $\Im(a)=\Im(c)$
-					    \begin{enumerate}
-					      \item given that $\Im(a)=\Im(b)$
-					      \item and $\Im(b)=\Im(c)$.
-					    \end{enumerate}
-					    \item \textbf{Hence verify that $a=c$.}
-				    \end{enumerate}
-		    \declaration{sun0902201119}
-			    The notation \gls{perplexa+b}, where $a,b$ are perplex numbers, will be used as a shorthand for the perplex number $\langle\Re(a)+\Re(b),\Im(a)+\Im(b)\rangle$.
-		    \procedure{sun0902201120}
-			    \objective
-				    Choose two perplex numbers $a,b,c,d$ such that $a=c$ and $b=d$. The objective of the following instructions is to show that $a+b=c+d$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Using \declarationhr{sat0802201051}, show that
-					    \begin{enumerate}
-					      \item $\Re(a)=\Re(c)$
-					      \item $\Im(a)=\Im(c)$
-					      \item $\Re(b)=\Re(d)$
-					      \item $\Im(b)=\Im(d)$.
-					    \end{enumerate}
-					    \item Hence show that $a+b$
-					    \begin{enumerate}
-						    \item $=\langle\Re(a),\Im(a)\rangle+\langle\Re(b),\Im(b)\rangle$
-						    \item $=\langle\Re(a)+\Re(b),\Im(a)+\Im(b)\rangle$
-						    \item $=\langle\Re(c)+\Re(d),\Im(c)+\Im(d)\rangle$
-						    \item $=\langle\Re(c),\Im(c)\rangle+\langle\Re(d),\Im(d)\rangle$
-						    \item $=c+d$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \procedure{sun0902201121}
-			    \objective
-				    Choose three perplex numbers $a,b,c$. The objective of the following instructions is to show that $(a+b)+c=a+(b+c)$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $(a+b)+c$
-					    \begin{enumerate}
-						    \item $=\langle\Re(a)+\Re(b),\Im(a)+\Im(b)\rangle+\langle\Re(c),\Im(c)\rangle$
-						    \item $=\langle(\Re(a)+\Re(b))+\Re(c),(\Im(a)+\Im(b))+\Im(c)\rangle$
-						    \item $=\langle\Re(a)+(\Re(b)+\Re(c)),\Im(a)+(\Im(b)+\Im(c))\rangle$
-						    \item $=\langle\Re(a),\Im(a)\rangle+\langle\Re(b)+\Re(c),\Im(b)+\Im(c)\rangle$
-						    \item $=a+(b+c)$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \procedure{sun0902201122}
-			    \objective
-				    Choose two perplex numbers $a,b$. The objective of the following instructions is to show that $a+b=b+a$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $a+b$
-					    \begin{enumerate}
-						    \item $=\langle\Re(a)+\Re(b),\Im(a)+\Im(b)\rangle$
-						    \item $=\langle\Re(b)+\Re(a),\Im(b)+\Im(a)\rangle$
-						    \item $=b+a$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \declaration{sun0902201123}
-			    The notation \gls{perplexa}, where $a$ is a rational number, will contextually be used as a shorthand for the perplex number $\langle a,0\rangle$.
-		    \procedure{sun0902201124}
-			    \objective
-				    Choose a perplex number $a$. The objective of the following instructions is to show that $0+a=a$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $0+a$
-					    \begin{enumerate}
-						    \item $=\langle 0,0\rangle+\langle\Re(a),\Im(a)\rangle$
-						    \item $=\langle 0+\Re(a),0+\Im(a)\rangle$
-						    \item $=\langle\Re(a),\Im(a)\rangle$
-						    \item $=a$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \declaration{sun0902201125}
-			    The notation \gls{perplex-a}, where $a$ is a perplex number, will be used as a shorthand for the pair $\langle-\Re(a),-\Im(a)\rangle$.
-		    \procedure{sun0902201126}
-			    \objective
-				    Choose a perplex number $a$. The objective of the following instructions is to show that $-a+a=0$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $-a+a$
-					    \begin{enumerate}
-						    \item $=(-a)+a$
-						    \item $=\langle-\Re(a),-\Im(a)\rangle+\langle\Re(a),\Im(a)\rangle$
-						    \item $=\langle-\Re(a)+\Re(a),-\Im(a)+\Im(a)\rangle$
-						    \item $=\langle 0,0\rangle$
-						    \item $=0$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \declaration{sun0902201127}
-			    The notation \gls{perplexab}, where $a,b$ are perplex numbers, will be used as a shorthand for the perplex number $\langle\Re(a)\Re(b)+\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle$.
-		    \procedure{sun0902201128}
-			    \objective
-				    Choose four perplex numbers $a,b,c,d$ such that $a=c$ and $b=d$. The objective of the following instructions is to show that $ab=cd$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Using \declarationhr{sat0802201051}, show that
-					    \begin{enumerate}
-					      \item $\Re(a)=\Re(c)$
-					      \item $\Im(a)=\Im(c)$
-					      \item $\Re(b)=\Re(d)$
-					      \item $\Im(b)=\Im(d)$.
-					    \end{enumerate}
-					    \item Hence show that $ab$
-					    \begin{enumerate}
-						    \item $=\langle\Re(a),\Im(a)\rangle\langle\Re(b),\Im(b)\rangle$
-						    \item $=\langle\Re(a)\Re(b)+\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle$
-						    \item $=\langle\Re(c)\Re(d)+\Im(c)\Im(d),\Re(c)\Im(d)+\Im(c)\Re(d)\rangle$
-						    \item $=\langle\Re(c),\Im(c)\rangle\langle\Re(d),\Im(d)\rangle$
-						    \item $=cd$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \procedure{sun0902201129}
-			    \objective
-				    Choose three perplex numbers $a,b,c$. The objective of the following instructions is to show that $(ab)c=a(bc)$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $(ab)c$
-					    \begin{enumerate}
-						    \item $=\langle\Re(a)\Re(b)+\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle\langle\Re(c),\Im(c)\rangle$
-						    \item $=\langle(\Re(a)\Re(b)+\Im(a)\Im(b))\Re(c)+(\Re(a)\Im(b)+\Im(a)\Re(b))\Im(c),(\Re(a)\Re(b)+\Im(a)\Im(b))\Im(c)+(\Re(a)\Im(b)+\Im(a)\Re(b))\Re(c)\rangle$
-						    \item $=\langle\Re(a)(\Re(b)\Re(c)+\Im(b)\Im(c))+\Im(a)(\Re(b)\Im(c)+\Im(b)\Re(c)),\Re(a)(\Re(b)\Im(c)+\Im(b)\Re(c))+\Im(a)(\Re(b)\Re(c)+\Im(b)\Im(c))\rangle$
-						    \item $=\langle\Re(a),\Im(a)\rangle\langle\Re(b)\Re(c)+\Im(b)\Im(c),\Re(b)\Im(c)+\Im(b)\Re(c)\rangle$
-						    \item $=a(bc)$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \procedure{sun0902201130}
-			    \objective
-				    Choose two perplex numbers $a,b$. The objective of the following instructions is to show that $ab=ba$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $ab$
-					    \begin{enumerate}
-						    \item $=\langle\Re(a)\Re(b)+\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle$
-						    \item $=\langle\Re(b)\Re(a)+\Im(b)\Im(a),\Re(b)\Im(a)+\Im(b)\Re(a)\rangle$
-						    \item $=ba$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \procedure{sun0902201131}
-			    \objective
-				    Choose a perplex number $a$. The objective of the following instructions is to show that $1a=a$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $1a$
-					    \begin{enumerate}
-						    \item $=\langle 1,0\rangle\langle\Re(a),\Im(a)\rangle$
-						    \item $=\langle 1\Re(a)+0\Im(a),1\Im(a)+0\Re(a)\rangle$
-						    \item $=\langle\Re(a),\Im(a)\rangle$
-						    \item $=a$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \procedure{sat0802201553}
-			    \objective
-				    Choose three perplex numbers $a,b,c$. The objective of the following instructions is to show that $a(b+c)=ab+ac$.
-			    \implementation
-				    \begin{enumerate}
-					    \item $a(b+c)$
-					    \begin{enumerate}
-						    \item $=\langle\Re(a),\Im(a)\rangle\langle\Re(b)+\Re(c),\Im(b)+\Im(c)\rangle$
-						    \item $=\langle\Re(a)(\Re(b)+\Re(c))+\Im(a)(\Im(b)+\Im(c)),\Re(a)(\Im(b)+\Im(c))+\Im(a)(\Re(b)+\Re(c))\rangle$
-						    \item $=\langle(\Re(a)\Re(b)+\Im(a)\Im(b))+(\Re(a)\Re(c)+\Im(a)\Im(c)),(\Re(a)\Im(b)+\Im(a)\Re(b))+(\Re(a)\Im(c)+\Im(a)\Re(c))\rangle$
-						    \item $=\langle\Re(a)\Re(b)+\Im(a)\Im(b),\Re(a)\Im(b)+\Im(a)\Re(b)\rangle+\langle\Re(a)\Re(c)+\Im(a)\Im(c),\Re(a)\Im(c)+\Im(a)\Re(c)\rangle$
-						    \item $=ab+ac$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \declaration{sun0902201132}
-			    The notation \gls{perplexconj}, where $a$ is a perplex number, will be used as a shorthand for the perplex number $\langle\Re(a),-\Im(a)\rangle$.
-		    \procedure{sun0902201133}
-			    \objective
-				    Choose two perplex numbers $a,b$. The objective of the following instructions is to show that $\conj{a+b}=\conj{a}+\conj{b}$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $\conj{a+b}$
-					    \begin{enumerate}
-						    \item $=\langle\Re(a+b),-\Im(a+b)\rangle$
-						    \item $=\langle\Re(a)+\Re(b),-\Im(a)-\Im(b)\rangle$
-						    \item $=\conj{a}+\conj{b}$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \procedure{sun0902201134}
-			    \objective
-				    Choose two perplex numbers $a,b$. The objective of the following instructions is to show that $\conj{ab}=\conj{a}\conj{b}$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $\conj{ab}$
-					    \begin{enumerate}
-						    \item $=\langle\Re(ab),-\Im(ab)\rangle$
-						    \item $=\langle\Re(a)\Re(b)+\Im(a)\Im(b)),-\Re(a)\Im(b)-\Im(a)\Re(b)\rangle$
-						    \item $=\langle\Re(a),-\Im(a)\rangle\langle\Re(b),-\Im(b)\rangle$
-						    \item $=\conj{a}\conj{b}$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \declaration{wed0502201719}
-			    The notation $a<b$, where $a,b$ are perplex numbers, will be used as a shorthand for $0<\Re(b-a)$ and $\lVert\Im(b-a)\rVert\le\Re(b-a)$.
-			  \procedure{sat0802200648}
-			    \objective
-				    Choose four perplex numbers $a,b,c,d$ such that $a<b$, $a=c$ and $b=d$. The objective of the following instructions is to show that $c<d$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $\Re(a)=\Re(c)$ and $\Im(a)=\Im(c)$ using \declarationhr{sat0802201051} given that $a=c$.
-					    \item Show that $\Re(b)=\Re(d)$ and $\Im(b)=\Im(d)$ using \declarationhr{sat0802201051} given that $b=d$.
-					    \item Show that $0<\Re(b-a)$ and $\lVert\Im(b-a)\rVert\le\Re(b-a)$ using \declarationhr{wed0502201719} given that $a<b$.
-					    \item Hence show that $\Re(d-c)=\Re(b-a)>0$.
-					    \item Also show that $\lVert\Im(d-c)\rVert=\lVert\Im(b-a)\rVert\le\Re(b-a)=\Re(d-c)$.
-					    \item \textbf{Hence show that $c<d$ using \declarationhr{wed0502201719}.}
-				    \end{enumerate}
-		    \procedure{sun0902201135}
-			    \objective
-				    Choose three perplex numbers $a,b,c$ such that $a<b$. The objective of the following instructions is to show that $a+c<b+c$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $0<\Re(b-a)$ and $\lVert\Im(b-a)\rVert\le\Re(b-a)$ using \declarationhr{wed0502201719} given that $a<b$.
-					    \item Hence show that $\Re((b+c)-(a+c))=\Re(b-a)>0$.
-					    \item Also show that $\lVert\Im((b+c)-(a+c))\rVert=\lVert\Im(b-a)\rVert\le\Re(b-a)=\Re((b+c)-(a+c))$.
-					    \item \textbf{Hence show that $a+c<b+c$ using \declarationhr{wed0502201719}.}
-				    \end{enumerate}
-		    \procedure{sun0902201136}
-			    \objective
-				    Choose two perplex numbers $a,b$ such that $a<b$. The objective of the following instructions is to show that $a\ne b$ and $b\not<a$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $0<\Re(b-a)$ and $\lVert\Im(b-a)\rVert\le\Re(b-a)$ using \declarationhr{wed0502201719} given that $a<b$.
-					    \item \textbf{Hence show that $a\ne b$}
-					    \begin{enumerate}
-					      \item given that $\Re(a)\ne\Re(b)$
-					      \item given that $0<\Re(b-a)$.
-					    \end{enumerate}
-					    \item \textbf{Also using \declarationhr{wed0502201719}, show $b\not<a$}
-					    \begin{enumerate}
-					      \item given that $0\not<\Re(a-b)$
-					      \item given that $0<\Re(b-a)$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \procedure{sun0902201137}
-			    \objective
-				    Choose two perplex numbers $a,b$ such that $a=b$. The objective of the following instructions is to show that $a\not<b$ and $b\not<a$.
-			    \implementation
-				    Implementation is analogous to that of \procedurehr{sun0902201136}.
-		    \procedure{sun0902201138}
-			    \objective
-				    Choose two perplex numbers $a,b$ such that $0<a$ and $0<b$. The objective of the following instructions is to show that $0<a+b$.
-			    \implementation
-				    \begin{enumerate}
-				      \item Show that $0<\Re(a)$ and $\lVert\Im(a)\rVert\le\Re(a)$ using \declarationhr{wed0502201719} given that $0<a$.
-				      \item Show that $0<\Re(b)$ and $\lVert\Im(b)\rVert\le\Re(b)$ using \declarationhr{wed0502201719} given that $0<b$.
-				      \item Hence show that $\Re(a+b)=\Re(a)+\Re(b)>0$ given that $0<\Re(a)$ and $0<\Re(b)$.
-				      \item Also show that $\lVert\Im(a+b)\rVert=\lVert\Im(a)+\Im(b)\rVert\le\lVert\Im(a)\rVert+\lVert\Im(b)\rVert\le\Re(a)+\Re(b)=\Re(a+b)$ given that $\lVert\Im(a)\rVert\le\Re(a)$ and $\lVert\Im(b)\rVert\le\Re(b)$.
-					    \item \textbf{Hence show that $0<a+b$ using \declarationhr{wed0502201719} given that $\Re(a+b)>0$ and $\lVert\Im(a+b)\rVert\le\Re(a+b)$.}
-				    \end{enumerate}
-		    \procedure{sun0902201139}
-			    \objective
-				    Choose two perplex numbers $a,b$ such that $0<a$ and $0<b$. The objective of the following instructions is to show that $0\le ab$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $0<\Re(a)$ and $\lVert\Im(a)\rVert\le\Re(a)$ using \declarationhr{wed0502201719} given that $0<a$.
-				      \item Show that $0<\Re(b)$ and $\lVert\Im(b)\rVert\le\Re(b)$ using \declarationhr{wed0502201719} given that $0<b$.
-				      \item Hence show that $\Re(ab)=\Re(a)\Re(b)+\Im(a)\Im(b)\ge\Re(a)\Re(b)-\Re(a)\Re(b)=0$.
-				      \item Given that $\lVert\Im(a)\rVert\le\Re(a)$ and $\lVert\Im(b)\rVert\le\Re(b)$, show $\Re(ab)-\Im(ab)$
+				      \item Show that $\Re(\Lambda(a,b))$
 				      \begin{enumerate}
-				        \item $=\Re(a)\Re(b)+\Im(a)\Im(b)-\Re(a)\Im(b)-\Im(a)\Re(b)$
-				        \item $=(\Re(a)-\Im(a))(\Re(b)-\Im(b))$
-				        \item $\ge 0$.
+				        \item $=\Re(\sum_r^{[0:\lvert a\rvert]}a_rb^r)$
+				        \item $=\Re(\sum_r^{[0:\lvert a\rvert]}a_r((\Re(b)+\Im(b))\ku+(\Re(b)-\Im(b))\kcu)^r)$
+				        \item $=\sum_r^{[0:\lvert a\rvert]}a_r\Re((\Re(b)+\Im(b))^r\ku+(\Re(b)-\Im(b))^r\kcu)$
+				        \item $=\frac{1}{2}\sum_r^{[0:\lvert a\rvert]}a_r((\Re(b)+\Im(b))^r+(\Re(b)-\Im(b))^r)$
+				        \item $=\frac{1}{2}(\sum_r^{[0:\lvert a\rvert]}a_r(\Re(b)+\Im(b))^r+\sum_r^{[0:\lvert a\rvert]}a_r(\Re(b)-\Im(b))^r)$
+				        \item $=\frac{1}{2}(\Lambda(a,\Re(b)+\Im(b))+\Lambda(a,\Re(b)-\Im(b)))$.
 				      \end{enumerate}
-				      \item Hence show that $\Re(ab)\ge\Im(ab)$.
-				      \item Given that $\lVert\Im(a)\rVert\le\Re(a)$ and $\lVert\Im(b)\rVert\le\Re(b)$, show $\Re(ab)+\Im(ab)$
+				    \end{enumerate}
+				\procedure{fri1402201210}
+				  \objective
+				    Choose a polynomial $a$ and a perplex number $b$. The objective of the following instructions is to show that $\Im(\Lambda(a,b))=\frac{1}{2}(\Lambda(a,\Re(b)+\Im(b))-\Lambda(a,\Re(b)-\Im(b)))$.
+				  \implementation
+				    The implementation is analogous to that of \procedurehr{fri1402201125}.
+				\procedure{fri1402201213}
+				  \objective
+				    Choose a polynomial $a$ and a perplex number $b$. The objective of the following instructions is to show that $\lVert\Lambda(a,b)\rVert^2=\Lambda(a,\Re(b)-\Im(b))\Lambda(a,\Re(b)+\Im(b))$.
+				  \implementation
+				    \begin{enumerate}
+				      \item Using \declarationhr{sun0902201140}, \procedurehr{fri1402201125}, and \procedurehr{fri1402201210}, show that $\lVert\Lambda(a,b)\rVert^2$
 				      \begin{enumerate}
-				        \item $=\Re(a)\Re(b)+\Im(a)\Im(b)+\Re(a)\Im(b)+\Im(a)\Re(b)$
-				        \item $=(\Re(a)+\Im(a))(\Re(b)+\Im(b))$
-				        \item $\ge 0$.
-				      \end{enumerate}
-				      \item Hence show that $\Im(ab)\ge-\Re(ab)$.
-					    \item Hence show that $\lVert\Im(ab)\rVert\le\Re(ab)$ given that
-					    \begin{enumerate}
-					      \item $\Re(ab)\ge 0$
-					      \item and $\Re(ab)\ge\Im(ab)$
-					      \item and $\Im(ab)\ge-\Re(ab)$.
-					    \end{enumerate}
-					    \item If $\Re(ab)=0$, then do the following:
-					    \begin{enumerate}
-					      \item \textbf{Show that $ab=0$ using \declarationhr{sat0802201051} given that $\Im(ab)=0$ given that $\lVert\Im(ab)\rVert\le\Re(ab)=0$.}
-					    \end{enumerate}
-					    \item Otherwise do the following:
-					    \begin{enumerate}
-					      \item \textbf{Show that $ab>0$ using \declarationhr{wed0502201719} given that $\Re(ab)>0$ and $\lVert\Im(ab)\rVert\le\Re(ab)$.}
-					    \end{enumerate}
-				    \end{enumerate}
-			  \declaration{wed0502201655}
-			    The notations $a\subseteq b$ and $b\supseteq a$, where $a,b$ are perplex numbers, will be used as shorthands for $\lVert\Re(b)-\Re(a)\rVert\le\Im(b)-\Im(a)$.
-			  \procedure{sat0802201148}
-			    \objective
-			      Choose a perplex number $a$. The objective of the following instructions is to show that $a\subseteq a$.
-			    \implementation
-			      \begin{enumerate}
-			        \item Show that $a\subseteq a$ using \declarationhr{wed0502201655} given that $\lVert\Re(a)-\Re(a)\rVert=0=\Im(a)-\Im(a)$.
-			      \end{enumerate}
-			  \procedure{sat0802201153}
-			    \objective
-			      Choose perplex numbers $a,b$ such that $a\subseteq b$ and $b\subseteq a$. The objective of the following instructions is to show that $a=b$.
-			    \implementation
-			      \begin{enumerate}
-			        \item Show that $\lVert\Re(b)-\Re(a)\rVert\le\Im(b)-\Im(a)$ given that $a\subseteq b$.
-			        \item Show that $\lVert\Re(a)-\Re(b)\rVert\le\Im(a)-\Im(b)$ given that $b\subseteq a$.
-			        \item Hence show that $\Im(b)=\Im(a)$
-			        \begin{enumerate}
-			          \item given that $\Im(b)-\Im(a)=0$
-			          \item given that $\Im(b)-\Im(a)\le 0\le\Im(b)-\Im(a)$.
-			        \end{enumerate}
-			        \item Hence show that $\Re(b)=\Re(a)$
-			        \begin{enumerate}
-			          \item given that $\Re(b)-\Re(a)=0$
-			          \item given that $\lVert\Re(b)-\Re(a)\rVert\le 0$.
-			        \end{enumerate}
-			        \item Hence show that $a=b$ using \declarationhr{sat0802201051}.
-			      \end{enumerate}
-			  \procedure{sat0802201213}
-			    \objective
-			      Choose perplex numbers $a,b,c$ such that $a\subseteq b$ and $b\subseteq c$. The objective of the following instructions is to show that $a\subseteq c$.
-			    \implementation
-			      \begin{enumerate}
-			        \item Show that $\lVert\Re(b)-\Re(a)\rVert\le\Im(b)-\Im(a)$ given that $a\subseteq b$.
-			        \item Show that $\lVert\Re(c)-\Re(b)\rVert\le\Im(c)-\Im(b)$ given that $b\subseteq c$.
-			        \item Hence show that $\lVert\Re(c)-\Re(a)\rVert$
-			        \begin{enumerate}
-			          \item $=\lVert(\Re(c)-\Re(b))+(\Re(b)-\Re(a))\rVert$
-			          \item $\le\lVert\Re(c)-\Re(b)\rVert+\lVert\Re(b)-\Re(a)\rVert$
-			          \item $\le(\Im(b)-\Im(a))+(\Im(c)-\Im(b))$
-			          \item $=\Im(c)-\Im(a)$.
-			        \end{enumerate}
-			        \item Hence show that $a\subseteq c$ using \declarationhr{wed0502201655}.
-			      \end{enumerate}
-			  \procedure{sat0802201250}
-			    \objective
-			      Choose perplex numbers $a,b,c$ such that $a\subseteq b$. The objective of the following instructions is to show that $a+c\subseteq b+c$.
-			    \implementation
-			      \begin{enumerate}
-			        \item Show that $\lVert\Re(b)-\Re(a)\rVert\le\Im(b)-\Im(a)$ given that $a\subseteq b$.
-			        \item Now show that $\lVert\Re(b+c)-\Re(a+c)\rVert$
-			        \begin{enumerate}
-			          \item $=\lVert\Re(b)-\Re(a)\rVert$
-			          \item $\le\Im(b)-\Im(a)$
-			          \item $=\Im(b+c)-\Im(a+c)$.
-			        \end{enumerate}
-			        \item Hence show that $a+c\subseteq b+c$ using \declarationhr{wed0502201655}.
-			      \end{enumerate}
-			  \declaration{sun0902201140}
-			    The notation \gls{perplexabs^2}, where $a$ is a perplex number, will be used as a shorthand for $\Re(a)^2-\Im(a)^2$.
-		    \procedure{sun0902201141}
-			    \objective
-				    Choose a perplex number $a$. The objective of the following instructions is to show that $a\conj{a}=\lVert a\rVert^2$.
-			    \implementation
-				    \begin{enumerate}
-					    \item \textbf{Show that $a\conj{a}=\lVert a\rVert^2$.}
-				    \end{enumerate}
-		    \procedure{sat0802201500}
-			    \objective
-				    Choose a list of positive perplex numbers $a$. The objective of the following instructions is to show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2\ge\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2$.
-			    \implementation
-				    \begin{enumerate}
-				      \item Show that $\Re(\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}a_r\conj{a_k})>0$ given that $\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}a_r\conj{a_k}>0$.
-					    \item Hence show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2$
-					    \begin{enumerate}
-						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\sum_k^{[0:{\lvert a\rvert}]}a_r\conj{a_k}$
-						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}(a_r\conj{a_k}+\conj{a_r\conj{a_k}})$
-						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+2\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}\Re(a_r\conj{a_k})$
-						    \item $=\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2+2\Re(\sum_r^{[0:\lvert a\rvert]}\sum_k^{[r+1:\lvert a\rvert]}a_r\conj{a_k})$
-						    \item $\ge\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \procedure{sat0802201518}
-			    \objective
-				    Choose a non-empty list of positive perplex numbers $a$ such that $a_0>\sum_r^{[1:{\lvert a\rvert}]}a_r$. The objective of the following instructions is to show that $\lVert a_0\rVert^2-\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2\ge\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Using \procedurehr{sat0802201500}, show that $\lVert a_0\rVert^2$
-					    \begin{enumerate}
-						    \item $=\lVert\sum_r^{[1:{\lvert a\rvert}]}a_r+(a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r)\rVert^2$
-						    \item $\ge\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2+\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$
-					    \end{enumerate}
-					    \item \textbf{Therefore show that $\lVert a_0\rVert^2-\sum_r^{[1:{\lvert a\rvert}]}\lVert a_r\rVert^2\ge\lVert a_0-\sum_r^{[1:{\lvert a\rvert}]}a_r\rVert^2$.}
-				    \end{enumerate}
-		    \procedure{sat0802201359}
-			    \objective
-				    Choose a list of positive perplex numbers $a$ and a list of rational numbers $b$ such that $\lvert a\rvert=\lvert b\rvert$ and $\lVert a_i\rVert^2\ge {b_i}^2$ for each $i\in[0:\lvert a\rvert]$. The objective of the following instructions is to show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2\ge(\sum_r^{[0:{\lvert b\rvert}]}{b_r})^2$.
-			    \implementation
-				    \begin{enumerate}
-					    \item If $\lvert a\rvert=0$, then do the following:
-					    \begin{enumerate}
-						    \item \textbf{Show that $\lVert\sum_i^{[0:\lvert a\rvert]} a_i\rVert^2=\lVert 0\rVert^2=(\sum_i^{[0:\lvert b\rvert]}b_i)^2$.}
-					    \end{enumerate}
-					    \item Otherwise do the following:
-					    \begin{enumerate}
-					      \item Show that $\lvert a\rvert>0$.
-					      \item Show that $\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2\ge(\sum_i^{[1:\lvert b\rvert]} b_i)^2$ using \procedurehr{sat0802201359} on $a_{[1:\lvert a\rvert]}$ and $b_{[1:\lvert b\rvert]}$.
-					      \item Show that $\Re(\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i)>0$
-					      \begin{enumerate}
-					        \item given that $\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i>0$
-					        \item given that $\sum_i^{[1:\lvert a\rvert]}a_i>0$
-					        \item and $\conj{a_0}>0$.
-					      \end{enumerate}
-					      \item Show that $\Re(\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i)^2$
-					      \begin{enumerate}
-					        \item $\ge\lVert\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
-					        \item $=\lVert\conj{a_0}\rVert^2\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
-					        \item $\ge{b_0}^2(\sum_i^{[1:\lvert a\rvert]}b_i)^2$.
-					      \end{enumerate}
-					      \item Hence show that $\lVert\sum_i^{[0:\lvert a\rvert]}a_i\rVert^2$
-					      \begin{enumerate}
-					        \item $=(a_0+\sum_i^{[1:\lvert a\rvert]}a_i)(\conj{a_0+\sum_i^{[1:\lvert a\rvert]}a_i})$
-					        \item $=\lVert a_0\rVert^2+a_0\conj{\sum_i^{[1:\lvert a\rvert]}a_i}+\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i+\lVert\sum_i^{[1:\lvert a\rvert]}a_i\rVert^2$
-					        \item $\ge{b_0}^2+\conj{\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i}+\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i+(\sum_i^{[1:\lvert a\rvert]}b_i)^2$
-					        \item $={b_0}^2+2\Re(\conj{a_0}\sum_i^{[1:\lvert a\rvert]}a_i)+(\sum_i^{[1:\lvert a\rvert]}b_i)^2$
-					        \item $\ge{b_0}^2+2b_0\sum_i^{[1:\lvert a\rvert]} b_i+(\sum_i^{[1:\lvert a\rvert]}b_i)^2$
-					        \item $=(b_0+\sum_i^{[1:\lvert a\rvert]}b_i)^2$
-					        \item $=(\sum_i^{[0:\lvert a\rvert]}b_i)^2$.
-					      \end{enumerate}
-					    \end{enumerate}
-				    \end{enumerate}
-		    \declaration{sun0902201142}
-			    The notation \gls{perplex1/a}, where $a$ is a perplex number, will be used as a shorthand for the pair $\frac{1}{\lVert a\rVert^2}\conj{a}$.
-		    \procedure{sun0902201143}
-			    \objective
-				    Choose a perplex number $a$ such that $\lVert a\rVert^2\ne 0$. The objective of the following instructions is to show that $\frac{1}{a}a=1$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $\frac{1}{a}a$
-					    \begin{enumerate}
-						    \item $=(\frac{1}{\Vert a\rVert^2}\conj{a})a$
-						    \item $=\frac{1}{\Vert a\rVert^2}(\conj{a}a)$
-						    \item $=\frac{1}{\Vert a\rVert^2}\Vert a\rVert^2$
-						    \item $=1$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \declaration{sat0802201702}
-			    The notations \gls{perplexj} and \gls{perplexk} will be used as a shorthand for the perplex numbers $\langle 0,1\rangle$ and $\langle\frac{1}{2},\frac{1}{2}\rangle$ respectively.
-		    \procedure{thu0602201510}
-			    \objective
-				    The objective of the following instructions is to show that $\ju^{2}=1$, $\ku^2=k$, $\kcu^2=\kcu$, $k\kcu=0$, and $k+\kcu=1$.
-			    \implementation
-				    \begin{enumerate}
-					    \item \textbf{Show that $\ju^2=1$}.
-					    \item \textbf{Show that $\ku^2=k$}.
-					    \item \textbf{Show that $\kcu^2=\kcu$}.
-					    \item \textbf{Show that $\ku\kcu=0$}.
-					    \item \textbf{Show that $\ku+\kcu=1$.}
-				    \end{enumerate}
-				\procedure{sat0802201559}
-			    \objective
-				    Choose rational numbers $a,b,c,d$. The objective of the following instructions is to show that $(a\ku+b\kcu)+(c\ku+d\kcu)=(a+c)\ku+(b+d)\kcu$.
-			    \implementation
-				    \begin{enumerate}
-				      \item Show that $(a\ku+b\kcu)+(c\ku+d\kcu)=(a+c)\ku+(b+d)\kcu$.
-				    \end{enumerate}
-				\procedure{sun0902201144}
-			    \objective
-				    Choose rational numbers $a,b,c,d$. The objective of the following instructions is to show that $(a\ku+b\kcu)(c\ku+d\kcu)=ac\ku+bd\kcu$.
-			    \implementation
-				    \begin{enumerate}
-				      \item Show that $(a\ku+b\kcu)(c\ku+d\kcu)$
-				      \begin{enumerate}
-				        \item $=a\ku(c\ku+d\kcu)+b\kcu(c\ku+d\kcu)$
-				        \item $=a\ku c\ku+a\ku d\kcu+b\kcu c\ku+b\kcu d\kcu$
-				        \item $=ac\ku+0ad+0bc+bd\kcu$
-				        \item $=ac\ku+bd\kcu$.
+				        \item $=\Re(\Lambda(a,b))^2-\Im(\Lambda(a,b))^2$
+				        \item $=(\frac{1}{2}(\Lambda(a,\Re(b)+\Im(b))+\Lambda(a,\Re(b)-\Im(b))))^2-(\frac{1}{2}(\Lambda(a,\Re(b)+\Im(b))-\Lambda(a,\Re(b)-\Im(b))))^2$
+				        \item $=\Lambda(a,\Re(b)-\Im(b))\Lambda(a,\Re(b)+\Im(b))$.
 				      \end{enumerate}
 				    \end{enumerate}
 	    \end{multicols*}
@@ -3559,50 +3616,46 @@
                     \end{enumerate}
 		    \procedure{2.15}
 			    \objective
-				    Choose a polynomial $p$ and a rational number $X$. The objective of the following instructions is to construct a rational number $a$ and a procedure $q(y,z)$ to show that $\lvert\Lambda(p,z)-\Lambda(p,y)\rvert\le a\lvert z-y\rvert$ when two rational numbers $y,z$ such that $\lvert y\rvert\le X$ and $\lvert z\rvert\le X$ are chosen.
+				    Choose a polynomial $p$ and a rational number $X$. The objective of the following instructions is to construct a rational number $a$ and a procedure $q(z)$ to show that $\lVert\Im(\Lambda(p,z))\rVert\le a\lVert\Im(z)\rVert$ when a perplex number $z$ such that $z\subseteq X\ju$ are chosen.
 			    \implementation
 				    \begin{enumerate}
-					    \item Let $a=\sum_{r}^{[1:\lvert p\rvert]}r\lvert p_r\rvert X^{r-1}$.
+					    \item Let $a=\sum_{r}^{[1:\lvert p\rvert]}r\lVert p_r\rVert X^{r-1}$.
 					    \item Let $q(y,z)$ be the following procedure:
 					    \begin{enumerate}
-						    \item Show that $\lvert\Lambda(p,z)-\Lambda(p,y)\rvert$
+						    \item Show that $\lVert\Im(\Lambda(p,z))\rVert$
 						    \begin{enumerate}
-							    \item $=\lvert(\sum_{r}^{[0:\lvert p\rvert]} p_rz^r)-(\sum_{r}^{[0:\lvert p\rvert]} p_ry^r)\rvert$
-							    \item $=\lvert\sum_{r}^{[1:\lvert p\rvert]} p_r(z^r-y^r)\rvert$
-							    \item $=\lvert\sum_{r}^{[1:\lvert p\rvert]} p_r(z-y)\sum_t^{[0:r]}z^ty^{r-1-t}\rvert$
-							    \item $=\lvert(z-y)\sum_{r}^{[1:\lvert p\rvert]} p_r\sum_t^{[0:r]}z^ty^{r-1-t}\rvert$
-							    \item $=\lvert z-y\rvert\lvert\sum_{r}^{[1:\lvert p\rvert]} p_r\sum_t^{[0:r]}z^ty^{r-1-t}\rvert$
-							    \item $\le\lvert z-y\rvert\sum_{r}^{[1:\lvert p\rvert]}\lvert p_r\sum_t^{[0:r]}z^ty^{r-1-t}\rvert$
-							    \item $=\lvert z-y\rvert\sum_{r}^{[1:\lvert p\rvert]}\lvert p_r\rvert\lvert\sum_t^{[0:r]}z^ty^{r-1-t}\rvert$
-							    \item $\le\lvert z-y\rvert\sum_{r}^{[1:\lvert p\rvert]}\lvert p_r\rvert\sum_t^{[0:r]}\lvert z^ty^{r-1-t}\rvert$
-							    \item $=\lvert z-y\rvert\sum_{r}^{[1:\lvert p\rvert]}\lvert p_r\rvert\sum_t^{[0:r]}\lvert z\rvert^t\lvert y\rvert^{r-1-t}$
-							    \item $\le\lvert z-y\rvert\sum_{r}^{[1:\lvert p\rvert]}\lvert p_r\rvert\sum_t^{[0:r]}X^tX^{r-1-t}$
-							    \item $=\lvert z-y\rvert\sum_{r}^{[1:\lvert p\rvert]}\lvert p_r\rvert\sum_t^{[0:r]}X^{r-1}$
-							    \item $=\lvert z-y\rvert\sum_{r}^{[1:\lvert p\rvert]}r\lvert p_r\rvert X^{r-1}$
-							    \item $=a\lvert z-y\rvert$
+							    \item $=\lVert\Im(\sum_{r}^{[0:\lvert p\rvert]} p_rz^r)\rVert$
+							    \item $=\lVert\Im(\sum_{r}^{[0:\lvert p\rvert]} p_r((\Re(z)-\Im(z))\kcu+(\Re(z)+\Im(z))\ku)^r)\rVert$
+							    \item $=\lVert\sum_{r}^{[0:\lvert p\rvert]} p_r\Im((\Re(z)-\Im(z))^r\kcu+(\Re(z)+\Im(z))^r\ku)\rVert$
+							    \item $=\lVert\frac{1}{2}\sum_{r}^{[0:\lvert p\rvert]} p_r((\Re(z)+\Im(z))^r-(\Re(z)-\Im(z))^r)\rVert$
+							    \item $=\lVert\sum_{r}^{[1:\lvert p\rvert]} p_r\Im(z)\sum_t^{[0:r]}(\Re(z)+\Im(z))^t(\Re(z)-\Im(z))^{r-1-t}\rVert$
+							    \item $\le\sum_{r}^{[1:\lvert p\rvert]}\lVert p_r\rVert\lVert\Im(z)\rVert\lVert\sum_t^{[0:r]}(\Re(z)+\Im(z))^t(\Re(z)-\Im(z))^{r-1-t}\rVert$
+							    \item $\le\sum_{r}^{[1:\lvert p\rvert]}\lVert p_r\rVert\lVert\Im(z)\rVert\sum_t^{[0:r]}\lVert(\Re(z)+\Im(z))^t\rVert\lVert(\Re(z)-\Im(z))^{r-1-t}\rVert$
+							    \item $\le\sum_{r}^{[1:\lvert p\rvert]}\lVert p_r\rVert\lVert\Im(z)\rVert\sum_t^{[0:r]}X^tX^{r-1-t}$
+							    \item $=\lVert\Im(z)\rVert\sum_{r}^{[1:\lvert p\rvert]}\lVert p_r\rVert\sum_t^{[0:r]}X^{r-1}$
+							    \item $=\lVert\Im(z)\rVert\sum_{r}^{[1:\lvert p\rvert]}r\lVert p_r\rVert X^{r-1}$
+							    \item $=a\lVert\Im(z)\rVert$
 						    \end{enumerate}
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,q\rangle$.}
 				    \end{enumerate}
             \procedure{thu3001201111}
                 \objective
-                    Choose a polynomial $p$ and a rational number $X$. The objective of the following instructions is to construct a rational number $a>0$ and a procedure $q(y,z)$ to show that $\lVert\Lambda(p,z)\rVert\le a\lVert z-y\rVert$ and $\lVert\Lambda(p,y)\rVert\le a\lVert z-y\rVert$ when two rational numbers $y,z$ such that $\lVert y\rVert\le X$, $\lVert z\rVert\le X$, and $\Lambda(p,y)\Lambda(p,z)\le 0$ are chosen.
+                    Choose a polynomial $p$ and a rational number $X$. The objective of the following instructions is to construct a rational number $a>0$ and a procedure $q(z)$ to show that $\lVert\Lambda(p,\Re(z)\pm\Im(z))\rVert\le a\lVert\Im(z)\rVert$ when a perplex number $z$ such that $z\subseteq X\ju$, and $\lVert\Lambda(p,z)\rVert^2\le 0$ are chosen.
                 \implementation
                     \begin{enumerate}
-                        \item Use \procedurehr{2.15} on $\langle p,X\rangle$ to construct $\langle a,q_1\rangle$.
+                        \item Use \procedurehr{2.15} on $\langle p,X\rangle$ to construct $\langle a_1,q_1\rangle$.
+                        \item Let $a=2a_1$.
                         \item Let $q(y,z)$ be the following procedure:
                         \begin{enumerate}
-                            \item Show that $\lVert\Lambda(p,z)-\Lambda(p,y)\rVert\le a\lVert z-y\rVert$ using procedure $q_1$.
-                            \item Hence using \procedurehr{thu3001201131} show that $\lVert\Lambda(p,z)\rVert$
+                            \item Show that $\lVert\Im(\Lambda(p,z))\rVert\le a_1\lVert\Im(z)\rVert$ using procedure $q_1$.
+                            \item Show that $\Lambda(p,\Re(z)+\Im(z))\Lambda(p,\Re(z)-\Im(z))=\lVert\Lambda(p,z)\rVert^2\le 0$ using \procedurehr{fri1402201213}.
+                            \item Hence using \procedurehr{thu3001201131} show that $\lVert\Lambda(p,\Re(z)\pm\Im(z))\rVert$
                             \begin{enumerate}
-                                \item $\le\lVert\Lambda(p,z)\rVert+\lVert\Lambda(p,y)\rVert$
-                                \item $=\lVert\Lambda(p,z)-\Lambda(p,y)\rVert$
-                                \item $\le a\lVert z-y\rVert$.
-                            \end{enumerate}
-                            \item Also using \procedurehr{thu3001201131} show that $\lVert\Lambda(p,y)\rVert$
-                            \begin{enumerate}
-                                \item $\le\lVert\Lambda(p,z)\rVert+\lVert\Lambda(p,y)\rVert$
-                                \item $=\lVert\Lambda(p,z)-\Lambda(p,y)\rVert$
+                                \item $\le\lVert\Lambda(p,\Re(z)+\Im(z))\rVert+\lVert\Lambda(p,\Re(z)-\Im(z))\rVert$
+                                \item $=\lVert\Lambda(p,\Re(z)+\Im(z))-\Lambda(p,\Re(z)-\Im(z))\rVert$
+                                \item $=2\lVert\Im(\Lambda(p,z))\rVert$
+                                \item $\le 2a_1\lVert z-y\rVert$
                                 \item $\le a\lVert z-y\rVert$.
                             \end{enumerate}
                         \end{enumerate}
