@@ -492,12 +492,12 @@
 				    Choose an integer $a$. The objective of the following instructions is to show that $(-1)^{2a}=1$ and $(-1)^{2a+1}=-1$.
 			    \implementation
 				    \begin{enumerate}
-                        \item Show that $(-1)^2=(-1)(-1)+1+(-1)=(-1)((-1)+1)+1=(-1)0+1=1$.
-                        \item \textbf{Hence show that $(-1)^{2a}=((-1)^2)^a=1^a=1$.}
+              \item Show that $(-1)^2=(-1)(-1)+1+(-1)=(-1)((-1)+1)+1=(-1)0+1=1$.
+              \item \textbf{Hence show that $(-1)^{2a}=((-1)^2)^a=1^a=1$.}
 					    \item \textbf{Also show that $(-1)^{2a+1}=(-1)^{2a}(-1)=1(-1)=-1$.}
 				    \end{enumerate}
 		    \declaration{1.30}
-			    The phrase "\gls{inta<b}", where $a,b$ are rational numbers, will be used as a shorthand for "$\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$".
+			    The phrases "\gls{inta<b}" and "$b>a$", where $a,b$ are rational numbers, will be used as a shorthand for "$\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$".
 		    \procedure{1.79}
 			    \objective
 				    Choose four integers $a,b,c,d$ such that $a<b$, $a=c$ and $b=d$. The objective of the following instructions is to show that $c<d$.
@@ -534,38 +534,22 @@
 				    \end{enumerate}
 		    \procedure{1.81}
 			    \objective
-				    Choose two integers $a,b$ such that $a<b$. The objective of the following instructions is to show that $a\ne b$ and $b\not<a$.
+				    Choose two integers $a,b$. The objective of the following instructions is to show that $a<b$, $a=b$ and $a>b$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$ using \declarationhr{1.30} given that $a<b$.
-					    \item \textbf{Hence show that $a\ne b$ using \declarationhr{1.25} given that $\Po(a)+\Ne(b)\ne\Ne(a)+\Po(b)$.}
-					    \item \textbf{Also show that $b\not<a$ using \declarationhr{1.30} given that $\Ne(a)+\Po(b)\not<\Po(a)+\Ne(b)$.}
-				    \end{enumerate}
-		    \procedure{1.82}
-			    \objective
-				    Choose two integers $a,b$ such that $a=b$. The objective of the following instructions is to show that $a\not<b$ and $b\not<a$.
-			    \implementation
-				    Implementation is analogous to that of \procedurehr{1.81}.
-		    \procedure{1.83}
-			    \objective
-				    Choose two integers $a,b$ such that $a\ne b$. The objective of the following instructions is to show that $a<b$ or $b<a$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $\Po(a)+\Ne(b)\ne\Ne(a)+\Po(b)$ using \declarationhr{1.25} given that $a\ne b$.
-					    \item If $\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$, then do the following:
+					    \item Show that either
 					    \begin{enumerate}
-						    \item \textbf{Show that $a<b$ using \declarationhr{1.30}.}
+					      \item $\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$
+					      \item $\Po(a)+\Ne(b)=\Ne(a)+\Po(b)$
+					      \item $\Po(a)+\Ne(b)>\Ne(a)+\Po(b)$
 					    \end{enumerate}
-					    \item Otherwise do the following:
+					    \item Hence show that either
 					    \begin{enumerate}
-						    \item \textbf{Show that $b<a$ using \declarationhr{1.30} given that $\Ne(a)+\Po(b)<\Po(a)+\Ne(b)$.}
+					      \item $a<b$ using \declarationhr{1.30} given that $\Po(a)+\Ne(b)<\Ne(a)+\Po(b)$.
+					      \item $a=b$ using \declarationhr{1.25} given that $\Po(a)+\Ne(b)=\Ne(a)+\Po(b)$.
+					      \item $a>b$ using \declarationhr{1.30} given that $\Po(a)+\Ne(b)>\Ne(a)+\Po(b)$.
 					    \end{enumerate}
 				    \end{enumerate}
-		    \procedure{1.84}
-			    \objective
-				    Choose two integers $a,b$ such that $a\not<b$. The objective of the following instructions is to show that $a=b$ or $b<a$.
-			    \implementation
-				    Implementation is analogous to that of \procedurehr{1.83}.
 		    \procedure{1.85}
 			    \objective
 				    Choose two integers $a,b$ such that $0<a$ and $0<b$. The objective of the following instructions is to show that $0<a+b$.
@@ -2281,7 +2265,7 @@
 			    \implementation
 				    Implementation is analogous to that of \procedurehr{1.91}.
 		    \declaration{2.22}
-			    The phrase "\gls{rata<b}", where $a,b$ are rational numbers, will be used as a shorthand for "$\Nu(a)\De(b)<\De(a)\Nu(b)$".
+			    The phrases "\gls{rata<b}" and "$b>a$", where $a,b$ are rational numbers, will be used as a shorthand for "$\Nu(a)\De(b)<\De(a)\Nu(b)$".
 		    \procedure{2.43}
 			    \objective
 				    Choose four rational numbers $a,b,c,d$ such that $a<b$, $a=c$ and $b=d$. The objective of the following instructions is to show that $c<d$.
@@ -2318,38 +2302,22 @@
 				    \end{enumerate}
 		    \procedure{2.45}
 			    \objective
-				    Choose two rational numbers $a,b$ such that $a<b$. The objective of the following instructions is to show that $a\ne b$ and $b\not<a$.
+				    Choose two rational numbers $a,b$. The objective of the following instructions is to show that either $a<b$, $a=b$ and $b<a$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Show that $\Nu(a)\De(b)<\De(a)\Nu(b)$ using \declarationhr{2.22} given that $a<b$.
-					    \item \textbf{Hence show that $a\ne b$ using \declarationhr{2.15} given that $\Nu(a)\De(b)\ne\De(a)\Nu(b)$.}
-					    \item \textbf{Also show that $b\not<a$ using \declarationhr{2.22} given that $\Nu(b)\De(a)\not<\De(b)\Nu(a)$.}
-				    \end{enumerate}
-		    \procedure{2.46}
-			    \objective
-				    Choose two rational numbers $a,b$ such that $a=b$. The objective of the following instructions is to show that $a\not<b$ and $b\not<a$.
-			    \implementation
-				    Implementation is analogous to that of \procedurehr{2.45}.
-		    \procedure{2.47}
-			    \objective
-				    Choose two rational numbers $a,b$ such that $a\ne b$. The objective of the following instructions is to show that $a<b$ or $b<a$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $\Nu(a)\De(b)\ne\De(a)\Nu(b)$ using \declarationhr{2.15} given that $a\ne b$.
-					    \item If $\Nu(a)\De(b)<\De(a)\Nu(b)$, then do the following:
+					    \item Using \procedurehr{1.81}, show that either
 					    \begin{enumerate}
-						    \item \textbf{Show that $a<b$ using \declarationhr{2.22}.}
+					      \item $\Nu(a)\De(b)<\De(a)\Nu(b)$
+					      \item $\Nu(a)\De(b)=\De(a)\Nu(b)$
+					      \item $\Nu(a)\De(b)>\De(a)\Nu(b)$
 					    \end{enumerate}
-					    \item Otherwise do the following:
+					    \item Hence show that either
 					    \begin{enumerate}
-						    \item \textbf{Show that $b<a$ using \declarationhr{2.22} given that $\Nu(b)\De(a)<\De(b)\Nu(a)$.}
+					      \item $a<b$ using \declarationhr{2.22} given that $\Nu(a)\De(b)<\De(a)\Nu(b)$.
+					      \item $a=b$ using \declarationhr{2.15} given that $\Nu(a)\De(b)=\De(a)\Nu(b)$.
+					      \item $b>a$ using \declarationhr{2.22} given that $\Nu(b)\De(a)>\De(b)\Nu(a)$.
 					    \end{enumerate}
 				    \end{enumerate}
-		    \procedure{2.48}
-			    \objective
-				    Choose two rational numbers $a,b$ such that $a\not<b$. The objective of the following instructions is to show that $a=b$ or $b<a$.
-			    \implementation
-				    Implementation is analogous to that of \procedurehr{2.47}.
 		    \procedure{2.49}
 			    \objective
 				    Choose two rational numbers $a,b$ such that $0<a$ and $0<b$. The objective of the following instructions is to show that $0<a+b$.
@@ -2704,159 +2672,7 @@
 						    \item $=\conj{a}\conj{b}$.
 					    \end{enumerate}
 				    \end{enumerate}
-		    \declaration{wed0502201719}
-			    The notation $a<b$, where $a,b$ are perplex numbers, will be used as a shorthand for $0<\Re(b-a)$ and $\lVert\Im(b-a)\rVert\le\Re(b-a)$.
-			  \procedure{sat0802200648}
-			    \objective
-				    Choose four perplex numbers $a,b,c,d$ such that $a<b$, $a=c$ and $b=d$. The objective of the following instructions is to show that $c<d$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $\Re(a)=\Re(c)$ and $\Im(a)=\Im(c)$ using \declarationhr{sat0802201051} given that $a=c$.
-					    \item Show that $\Re(b)=\Re(d)$ and $\Im(b)=\Im(d)$ using \declarationhr{sat0802201051} given that $b=d$.
-					    \item Show that $0<\Re(b-a)$ and $\lVert\Im(b-a)\rVert\le\Re(b-a)$ using \declarationhr{wed0502201719} given that $a<b$.
-					    \item Hence show that $\Re(d-c)=\Re(b-a)>0$.
-					    \item Also show that $\lVert\Im(d-c)\rVert=\lVert\Im(b-a)\rVert\le\Re(b-a)=\Re(d-c)$.
-					    \item \textbf{Hence show that $c<d$ using \declarationhr{wed0502201719}.}
-				    \end{enumerate}
-		    \procedure{sun0902201135}
-			    \objective
-				    Choose three perplex numbers $a,b,c$ such that $a<b$. The objective of the following instructions is to show that $a+c<b+c$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $0<\Re(b-a)$ and $\lVert\Im(b-a)\rVert\le\Re(b-a)$ using \declarationhr{wed0502201719} given that $a<b$.
-					    \item Hence show that $\Re((b+c)-(a+c))=\Re(b-a)>0$.
-					    \item Also show that $\lVert\Im((b+c)-(a+c))\rVert=\lVert\Im(b-a)\rVert\le\Re(b-a)=\Re((b+c)-(a+c))$.
-					    \item \textbf{Hence show that $a+c<b+c$ using \declarationhr{wed0502201719}.}
-				    \end{enumerate}
-		    \procedure{sun0902201136}
-			    \objective
-				    Choose two perplex numbers $a,b$ such that $a<b$. The objective of the following instructions is to show that $a\ne b$ and $b\not<a$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $0<\Re(b-a)$ and $\lVert\Im(b-a)\rVert\le\Re(b-a)$ using \declarationhr{wed0502201719} given that $a<b$.
-					    \item \textbf{Hence show that $a\ne b$}
-					    \begin{enumerate}
-					      \item given that $\Re(a)\ne\Re(b)$
-					      \item given that $0<\Re(b-a)$.
-					    \end{enumerate}
-					    \item \textbf{Also using \declarationhr{wed0502201719}, show $b\not<a$}
-					    \begin{enumerate}
-					      \item given that $0\not<\Re(a-b)$
-					      \item given that $0<\Re(b-a)$.
-					    \end{enumerate}
-				    \end{enumerate}
-		    \procedure{sun0902201137}
-			    \objective
-				    Choose two perplex numbers $a,b$ such that $a=b$. The objective of the following instructions is to show that $a\not<b$ and $b\not<a$.
-			    \implementation
-				    Implementation is analogous to that of \procedurehr{sun0902201136}.
-		    \procedure{sun0902201138}
-			    \objective
-				    Choose two perplex numbers $a,b$ such that $0<a$ and $0<b$. The objective of the following instructions is to show that $0<a+b$.
-			    \implementation
-				    \begin{enumerate}
-				      \item Show that $0<\Re(a)$ and $\lVert\Im(a)\rVert\le\Re(a)$ using \declarationhr{wed0502201719} given that $0<a$.
-				      \item Show that $0<\Re(b)$ and $\lVert\Im(b)\rVert\le\Re(b)$ using \declarationhr{wed0502201719} given that $0<b$.
-				      \item Hence show that $\Re(a+b)=\Re(a)+\Re(b)>0$ given that $0<\Re(a)$ and $0<\Re(b)$.
-				      \item Also show that $\lVert\Im(a+b)\rVert=\lVert\Im(a)+\Im(b)\rVert\le\lVert\Im(a)\rVert+\lVert\Im(b)\rVert\le\Re(a)+\Re(b)=\Re(a+b)$ given that $\lVert\Im(a)\rVert\le\Re(a)$ and $\lVert\Im(b)\rVert\le\Re(b)$.
-					    \item \textbf{Hence show that $0<a+b$ using \declarationhr{wed0502201719} given that $\Re(a+b)>0$ and $\lVert\Im(a+b)\rVert\le\Re(a+b)$.}
-				    \end{enumerate}
-		    \procedure{sun0902201139}
-			    \objective
-				    Choose two perplex numbers $a,b$ such that $0<a$ and $0<b$. The objective of the following instructions is to show that $0\le ab$.
-			    \implementation
-				    \begin{enumerate}
-					    \item Show that $0<\Re(a)$ and $\lVert\Im(a)\rVert\le\Re(a)$ using \declarationhr{wed0502201719} given that $0<a$.
-				      \item Show that $0<\Re(b)$ and $\lVert\Im(b)\rVert\le\Re(b)$ using \declarationhr{wed0502201719} given that $0<b$.
-				      \item Hence show that $\Re(ab)=\Re(a)\Re(b)+\Im(a)\Im(b)\ge\Re(a)\Re(b)-\Re(a)\Re(b)=0$.
-				      \item Given that $\lVert\Im(a)\rVert\le\Re(a)$ and $\lVert\Im(b)\rVert\le\Re(b)$, show $\Re(ab)-\Im(ab)$
-				      \begin{enumerate}
-				        \item $=\Re(a)\Re(b)+\Im(a)\Im(b)-\Re(a)\Im(b)-\Im(a)\Re(b)$
-				        \item $=(\Re(a)-\Im(a))(\Re(b)-\Im(b))$
-				        \item $\ge 0$.
-				      \end{enumerate}
-				      \item Hence show that $\Re(ab)\ge\Im(ab)$.
-				      \item Given that $\lVert\Im(a)\rVert\le\Re(a)$ and $\lVert\Im(b)\rVert\le\Re(b)$, show $\Re(ab)+\Im(ab)$
-				      \begin{enumerate}
-				        \item $=\Re(a)\Re(b)+\Im(a)\Im(b)+\Re(a)\Im(b)+\Im(a)\Re(b)$
-				        \item $=(\Re(a)+\Im(a))(\Re(b)+\Im(b))$
-				        \item $\ge 0$.
-				      \end{enumerate}
-				      \item Hence show that $\Im(ab)\ge-\Re(ab)$.
-					    \item Hence show that $\lVert\Im(ab)\rVert\le\Re(ab)$ given that
-					    \begin{enumerate}
-					      \item $\Re(ab)\ge 0$
-					      \item and $\Re(ab)\ge\Im(ab)$
-					      \item and $\Im(ab)\ge-\Re(ab)$.
-					    \end{enumerate}
-					    \item If $\Re(ab)=0$, then do the following:
-					    \begin{enumerate}
-					      \item \textbf{Show that $ab=0$ using \declarationhr{sat0802201051} given that $\Im(ab)=0$ given that $\lVert\Im(ab)\rVert\le\Re(ab)=0$.}
-					    \end{enumerate}
-					    \item Otherwise do the following:
-					    \begin{enumerate}
-					      \item \textbf{Show that $ab>0$ using \declarationhr{wed0502201719} given that $\Re(ab)>0$ and $\lVert\Im(ab)\rVert\le\Re(ab)$.}
-					    \end{enumerate}
-				    \end{enumerate}
-			  \declaration{wed0502201655}
-			    The notations $a\subseteq b$ and $b\supseteq a$, where $a,b$ are perplex numbers, will be used as shorthands for $\lVert\Re(b)-\Re(a)\rVert\le\Im(b)-\Im(a)$.
-			  \procedure{sat0802201148}
-			    \objective
-			      Choose a perplex number $a$. The objective of the following instructions is to show that $a\subseteq a$.
-			    \implementation
-			      \begin{enumerate}
-			        \item Show that $a\subseteq a$ using \declarationhr{wed0502201655} given that $\lVert\Re(a)-\Re(a)\rVert=0=\Im(a)-\Im(a)$.
-			      \end{enumerate}
-			  \procedure{sat0802201153}
-			    \objective
-			      Choose perplex numbers $a,b$ such that $a\subseteq b$ and $b\subseteq a$. The objective of the following instructions is to show that $a=b$.
-			    \implementation
-			      \begin{enumerate}
-			        \item Show that $\lVert\Re(b)-\Re(a)\rVert\le\Im(b)-\Im(a)$ given that $a\subseteq b$.
-			        \item Show that $\lVert\Re(a)-\Re(b)\rVert\le\Im(a)-\Im(b)$ given that $b\subseteq a$.
-			        \item Hence show that $\Im(b)=\Im(a)$
-			        \begin{enumerate}
-			          \item given that $\Im(b)-\Im(a)=0$
-			          \item given that $\Im(b)-\Im(a)\le 0\le\Im(b)-\Im(a)$.
-			        \end{enumerate}
-			        \item Hence show that $\Re(b)=\Re(a)$
-			        \begin{enumerate}
-			          \item given that $\Re(b)-\Re(a)=0$
-			          \item given that $\lVert\Re(b)-\Re(a)\rVert\le 0$.
-			        \end{enumerate}
-			        \item Hence show that $a=b$ using \declarationhr{sat0802201051}.
-			      \end{enumerate}
-			  \procedure{sat0802201213}
-			    \objective
-			      Choose perplex numbers $a,b,c$ such that $a\subseteq b$ and $b\subseteq c$. The objective of the following instructions is to show that $a\subseteq c$.
-			    \implementation
-			      \begin{enumerate}
-			        \item Show that $\lVert\Re(b)-\Re(a)\rVert\le\Im(b)-\Im(a)$ given that $a\subseteq b$.
-			        \item Show that $\lVert\Re(c)-\Re(b)\rVert\le\Im(c)-\Im(b)$ given that $b\subseteq c$.
-			        \item Hence show that $\lVert\Re(c)-\Re(a)\rVert$
-			        \begin{enumerate}
-			          \item $=\lVert(\Re(c)-\Re(b))+(\Re(b)-\Re(a))\rVert$
-			          \item $\le\lVert\Re(c)-\Re(b)\rVert+\lVert\Re(b)-\Re(a)\rVert$
-			          \item $\le(\Im(b)-\Im(a))+(\Im(c)-\Im(b))$
-			          \item $=\Im(c)-\Im(a)$.
-			        \end{enumerate}
-			        \item Hence show that $a\subseteq c$ using \declarationhr{wed0502201655}.
-			      \end{enumerate}
-			  \procedure{sat0802201250}
-			    \objective
-			      Choose perplex numbers $a,b,c$ such that $a\subseteq b$. The objective of the following instructions is to show that $a+c\subseteq b+c$.
-			    \implementation
-			      \begin{enumerate}
-			        \item Show that $\lVert\Re(b)-\Re(a)\rVert\le\Im(b)-\Im(a)$ given that $a\subseteq b$.
-			        \item Now show that $\lVert\Re(b+c)-\Re(a+c)\rVert$
-			        \begin{enumerate}
-			          \item $=\lVert\Re(b)-\Re(a)\rVert$
-			          \item $\le\Im(b)-\Im(a)$
-			          \item $=\Im(b+c)-\Im(a+c)$.
-			        \end{enumerate}
-			        \item Hence show that $a+c\subseteq b+c$ using \declarationhr{wed0502201655}.
-			      \end{enumerate}
-			  \declaration{sun0902201140}
+		    \declaration{sun0902201140}
 			    The notation \gls{perplexabs^2}, where $a$ is a perplex number, will be used as a shorthand for $\Re(a)^2-\Im(a)^2$.
 		    \procedure{sun0902201141}
 			    \objective
@@ -2864,6 +2680,150 @@
 			    \implementation
 				    \begin{enumerate}
 					    \item \textbf{Show that $a\conj{a}=\lVert a\rVert^2$.}
+				    \end{enumerate}
+		    \declaration{wed0502201719}
+			    The notation $a<b$, where $a,b$ are perplex numbers, will be used as a shorthand for $0<\Re(b-a)$ and $\lVert b-a\rVert^2\ge 0$.
+			  \procedure{sat0802200648}
+			    \objective
+				    Choose four perplex numbers $a,b,c,d$ such that $a<b$, $a=c$ and $b=d$. The objective of the following instructions is to show that $c<d$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $\Re(a)=\Re(c)$ and $\Im(a)=\Im(c)$ using \declarationhr{sat0802201051} given that $a=c$.
+					    \item Show that $\Re(b)=\Re(d)$ and $\Im(b)=\Im(d)$ using \declarationhr{sat0802201051} given that $b=d$.
+					    \item Show that $0<\Re(b-a)$ and $\lVert b-a\rVert^2\ge 0$ using \declarationhr{wed0502201719} given that $a<b$.
+					    \item Hence show that $\Re(d-c)=\Re(b-a)>0$.
+					    \item Also show that $\lVert d-c\rVert^2=\lVert b-a\rVert^2\ge 0$.
+					    \item \textbf{Hence show that $c<d$ using \declarationhr{wed0502201719}.}
+				    \end{enumerate}
+		    \procedure{sun0902201135}
+			    \objective
+				    Choose three perplex numbers $a,b,c$ such that $a<b$. The objective of the following instructions is to show that $a+c<b+c$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $0<\Re(b-a)$ and $\lVert b-a\rVert^2\ge 0$ using \declarationhr{wed0502201719} given that $a<b$.
+					    \item Hence show that $\Re((b+c)-(a+c))=\Re(b-a)>0$.
+					    \item Also show that $\lVert(b+c)-(a+c)\rVert^2=\lVert b-a\rVert^2\ge 0$.
+					    \item \textbf{Hence show that $a+c<b+c$ using \declarationhr{wed0502201719}.}
+				    \end{enumerate}
+		    \procedure{sun0902201138}
+			    \objective
+				    Choose two perplex numbers $a,b$ such that $0<a$ and $0<b$. The objective of the following instructions is to show that $0<a+b$.
+			    \implementation
+				    \begin{enumerate}
+				      \item Show that $0<\Re(a)$ and $\lVert a\rVert^2\ge 0$ using \declarationhr{wed0502201719} given that $0<a$.
+				      \item Show that $0<\Re(b)$ and $\lVert b\rVert^2\ge 0$ using \declarationhr{wed0502201719} given that $0<b$.
+				      \item Hence show that $\Re(a+b)=\Re(a)+\Re(b)>0$ given that $0<\Re(a)$ and $0<\Re(b)$.
+				      \item Also show that $\lVert a+b\rVert^2=\Re(a+b)^2-\Im(a+b)^2=\Re(a)^2-\Im(a)^2+\Re(b)^2-\Im(b)^2+2(\Re(a)\Re(b)-\Im(a)\Im(b))=\lVert a\rVert^2+\lVert b\rVert^2+(\Re(a)-\Im(a))(\Re(b)+\Im(b))+(\Re(a)+\Im(a))(\Re(b)-\Im(b))\ge 0$.
+					    \item \textbf{Hence show that $0<a+b$ using \declarationhr{wed0502201719} given that $\Re(a+b)>0$ and $\lVert a+b\rVert^2\ge 0$.}
+				    \end{enumerate}
+		    \procedure{sun0902201139}
+			    \objective
+				    Choose two perplex numbers $a,b$ such that $0<a$ and $0<b$. The objective of the following instructions is to show that $0\le ab$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $0<\Re(a)$ and $\lVert a\rVert^2\ge 0$ using \declarationhr{wed0502201719} given that $0<a$.
+				      \item Show that $0<\Re(b)$ and $\lVert b\rVert^2\ge 0$ using \declarationhr{wed0502201719} given that $0<b$.
+				      \item Hence show that $\Re(ab)=\Re(a)\Re(b)+\Im(a)\Im(b)\ge\Re(a)\Re(b)-\Re(a)\Re(b)=0$.
+				      \item Also show that $\lVert ab\rVert^2=\lVert a\rVert^2\lVert b\rVert^2\ge 0$.
+					    \item If $\Re(ab)=0$, then do the following:
+					    \begin{enumerate}
+					      \item \textbf{Show that $ab=0$ using \declarationhr{sat0802201051} given that $\Im(ab)=0$ given that $\Im(ab)^2\le\Re(ab)^2=0$ given that $\lVert ab\rVert^2\ge 0$.}
+					    \end{enumerate}
+					    \item Otherwise do the following:
+					    \begin{enumerate}
+					      \item \textbf{Show that $ab>0$ using \declarationhr{wed0502201719} given that $\Re(ab)>0$ and $\lVert ab\rVert^2\ge 0$.}
+					    \end{enumerate}
+				    \end{enumerate}
+			  \declaration{wed0502201655}
+			    The notations $a\subset b$ and $b\supset a$, where $a,b$ are perplex numbers, will be used as shorthands for $\lVert b-a\rVert^2\le 0$ and $\Im(b-a)>0$.
+			  \procedure{sun1602201324}
+			    \objective
+				    Choose four perplex numbers $a,b,c,d$ such that $a\subset b$, $a=c$ and $b=d$. The objective of the following instructions is to show that $c\subset d$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $\Re(a)=\Re(c)$ and $\Im(a)=\Im(c)$ using \declarationhr{sat0802201051} given that $a=c$.
+					    \item Show that $\Re(b)=\Re(d)$ and $\Im(b)=\Im(d)$ using \declarationhr{sat0802201051} given that $b=d$.
+					    \item Show that $0<\Im(b-a)$ and $\lVert b-a\rVert^2\le 0$ using \declarationhr{wed0502201655} given that $a\subset b$.
+					    \item Hence show that $\Im(d-c)=\Im(b-a)>0$.
+					    \item Also show that $\lVert d-c\rVert^2=\lVert b-a\rVert^2\le 0$.
+					    \item \textbf{Hence show that $c\subset d$ using \declarationhr{wed0502201655}.}
+				    \end{enumerate}
+		    \procedure{sun1602201330}
+			    \objective
+				    Choose three perplex numbers $a,b,c$ such that $a\subset b$. The objective of the following instructions is to show that $a+c\subset b+c$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $0<\Im(b-a)$ and $\lVert b-a\rVert^2\le 0$ using \declarationhr{wed0502201655} given that $a\subset b$.
+					    \item Hence show that $\Im((b+c)-(a+c))=\Im(b-a)>0$.
+					    \item Also show that $\lVert(b+c)-(a+c)\rVert^2=\lVert b-a\rVert^2\le 0$.
+					    \item \textbf{Hence show that $a+c\subset b+c$ using \declarationhr{wed0502201655}.}
+				    \end{enumerate}
+		    \procedure{sun1602201336}
+			    \objective
+				    Choose two perplex numbers $a,b$ such that $0\subset a$ and $0\subset b$. The objective of the following instructions is to show that $0\subset a+b$.
+			    \implementation
+				    \begin{enumerate}
+				      \item Show that $0<\Im(a)$ and $\lVert a\rVert^2\le 0$ using \declarationhr{wed0502201655} given that $0\subset a$.
+				      \item Show that $0<\Im(b)$ and $\lVert b\rVert^2\le 0$ using \declarationhr{wed0502201655} given that $0\subset b$.
+				      \item Hence show that $\Im(a+b)=\Im(a)+\Im(b)>0$ given that $0<\Im(a)$ and $0<\Im(b)$.
+				      \item Also show that $\lVert a+b\rVert^2=\Re(a+b)^2-\Im(a+b)^2=\Re(a)^2-\Im(a)^2+\Re(b)^2-\Im(b)^2+2(\Re(a)\Re(b)-\Im(a)\Im(b))=\lVert a\rVert^2+\lVert b\rVert^2+(\Re(a)-\Im(a))(\Re(b)+\Im(b))+(\Re(a)+\Im(a))(\Re(b)-\Im(b))\le 0$.
+					    \item \textbf{Hence show that $0\subset a+b$ using \declarationhr{wed0502201655} given that $\Im(a+b)>0$ and $\lVert a+b\rVert^2\le 0$.}
+				    \end{enumerate}
+		    \procedure{sun1602201526}
+			    \objective
+				    Choose two perplex numbers $a,b$ such that $0\subset a$ and $0\subset b$. The objective of the following instructions is to show that $0\le ab$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $0<\Im(a)$ and $\lVert a\rVert^2\le 0$ using \declarationhr{wed0502201655} given that $0\subset a$.
+				      \item Show that $0<\Im(b)$ and $\lVert b\rVert^2\le 0$ using \declarationhr{wed0502201655} given that $0\subset b$.
+				      \item Hence show that $\Re(ab)=\Re(a)\Re(b)+\Im(a)\Im(b)\ge-\Im(a)\Im(b)+\Im(a)\Im(b)=0$.
+				      \item Also show that $\lVert ab\rVert^2=\lVert a\rVert^2\lVert b\rVert^2\ge 0$.
+					    \item If $\Re(ab)=0$, then do the following:
+					    \begin{enumerate}
+					      \item \textbf{Show that $ab=0$ using \declarationhr{sat0802201051} given that $\Im(ab)=0$ given that $\Im(ab)^2\le\Re(ab)^2=0$ given that $\lVert ab\rVert^2\ge 0$.}
+					    \end{enumerate}
+					    \item Otherwise do the following:
+					    \begin{enumerate}
+					      \item \textbf{Show that $ab>0$ using \declarationhr{wed0502201719} given that $\Re(ab)>0$ and $\lVert ab\rVert^2\ge 0$.}
+					    \end{enumerate}
+				    \end{enumerate}
+			  \procedure{sun1602201531}
+			    \objective
+				    Choose two perplex numbers $a,b$ such that $0\subset a$ and $0<b$. The objective of the following instructions is to show that $0\subseteq ab$.
+			    \implementation
+				    \begin{enumerate}
+					    \item Show that $0<\Im(a)$ and $\lVert a\rVert^2\le 0$ using \declarationhr{wed0502201655} given that $0\subset a$.
+				      \item Show that $0<\Re(b)$ and $\lVert b\rVert^2\ge 0$ using \declarationhr{wed0502201719} given that $0<b$.
+				      \item Hence show that $\Im(ab)=\Re(a)\Im(b)+\Im(a)\Re(b)\ge-\Im(a)\Re(b)+\Im(a)\Im(b)=0$.
+				      \item Also show that $\lVert ab\rVert^2=\lVert a\rVert^2\lVert b\rVert^2\le 0$.
+					    \item If $\Im(ab)=0$, then do the following:
+					    \begin{enumerate}
+					      \item \textbf{Show that $ab=0$ using \declarationhr{sat0802201051} given that $\Re(ab)=0$ given that $\Re(ab)^2\le\Im(ab)^2=0$ given that $\lVert ab\rVert^2\le 0$.}
+					    \end{enumerate}
+					    \item Otherwise do the following:
+					    \begin{enumerate}
+					      \item \textbf{Show that $ab\supset 0$ using \declarationhr{wed0502201655} given that $\Im(ab)>0$ and $\lVert ab\rVert^2\le 0$.}
+					    \end{enumerate}
+				    \end{enumerate}
+			  \procedure{sun0902201136}
+			    \objective
+				    Choose two perplex numbers $a,b$ such that $\lVert b-a\rVert^2\ne 0$. The objective of the following instructions is to show that either $a<b$, $a>b$, $a\subset b$, or $a\supset b$.
+			    \implementation
+				    \begin{enumerate}
+				      \item Given that $\lVert b-a\rVert^2\ne 0$, show that either
+				      \begin{enumerate}
+				        \item $\lVert b-a\rVert^2>0$ and $\Re(b-a)>0$
+				        \item $\lVert b-a\rVert^2>0$ and $\Re(b-a)<0$
+				        \item $\lVert b-a\rVert^2<0$ and $\Im(b-a)>0$
+				        \item $\lVert b-a\rVert^2<0$ and $\Im(b-a)<0$.
+				      \end{enumerate}
+					    \item Hence show that either:
+					    \begin{enumerate}
+					      \item $a<b$ using \declarationhr{wed0502201719} given that $\lVert b-a\rVert^2>0$ and $\Re(b-a)>0$
+					      \item $a>b$ using \declarationhr{wed0502201719} given that $\lVert b-a\rVert^2>0$ and $\Re(b-a)<0$
+					      \item $a\subset b$ using \declarationhr{wed0502201655} given that $\lVert b-a\rVert^2<0$ and $\Im(b-a)>0$
+					      \item $a\supset b$ using \declarationhr{wed0502201655} given that $\lVert b-a\rVert^2<0$ and $\Im(b-a)<0$.
+					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{sat0802201500}
 			    \objective
@@ -3002,6 +2962,33 @@
 				        \item $=ac\ku+bd\kcu$.
 				      \end{enumerate}
 				    \end{enumerate}
+				\declaration{sun1602200918}
+				  The phrases "$a$ and $b$ intersect", "$a$ and $b$ adjoin", and "$a$ and $b$ are disjoint", where $a$ and $b$ are perplex numbers, will be used to paraphrase the relations $\lVert b-\conj{a}\rVert^2\le 0$, $\lVert b-\conj{a}\rVert^2=0$, and $\lVert b-\conj{a}\rVert^2\ge 0$ respectively.
+				\procedure{sun1602200941}
+				  \objective
+				    Choose a perplex number $a$. The objective of the following instructions is to show that $a$ intersects $a$.
+				  \implementation
+				    \begin{enumerate}
+				      \item Show that $a$ intersects $a$ given that $\lVert a-\conj{a}\rVert^2=\lVert 2\Im(a)\ju\rVert^2=-4\Im(a)^2\le 0$.
+				    \end{enumerate}
+				\procedure{sun1602200933}
+				  \objective
+				    Choose two perplex numbers $a,b$ such that $a$ and $b$ intersect. The objective of the following instructions is to show that $b$ and $a$ intersect.
+				  \implementation
+				    \begin{enumerate}
+				      \item Show that $\lVert b-\conj{a}\rVert^2\le 0$ given that $a$ and $b$ intersect.
+				      \item Show that $b$ and $a$ intersect given that $\lVert a-\conj{b}\rVert^2=\lVert\conj{b}-a\rVert^2=\lVert b-\conj{a}\rVert^2\le 0$.
+				    \end{enumerate}
+				\procedure{sun1602200959}
+				  \objective
+				    Choose two perplex numbers $a,b$ such that $a$ and $b$ adjoin. The objective of the following instructions is to show that $b$ and $a$ adjoin.
+				  \implementation
+				    The implementation is analogous to that of \procedurehr{sun1602200933}.
+				\procedure{sun1602201001}
+				  \objective
+				    Choose two perplex numbers $a,b$ such that $a$ and $b$ are disjoint. The objective of the following instructions is to show that $b$ and $a$ are disjoint.
+				  \implementation
+				    The implementation is analogous to that of \procedurehr{sun1602200933}.
 	    \end{multicols*}
 	  \chapter{Polynomial Arithmetic}
 	    \begin{multicols*}{2}
@@ -3639,79 +3626,85 @@
 					    \end{enumerate}
 					    \item \textbf{Yield the tuple $\langle a,q\rangle$.}
 				    \end{enumerate}
-            \procedure{thu3001201111}
-                \objective
-                    Choose a polynomial $p$ and a rational number $X$. The objective of the following instructions is to construct a rational number $a>0$ and a procedure $q(z)$ to show that $\lVert\Lambda(p,\Re(z)\pm\Im(z))\rVert\le a\lVert\Im(z)\rVert$ when a perplex number $z$ such that $z\subseteq X\ju$, and $\lVert\Lambda(p,z)\rVert^2\le 0$ are chosen.
-                \implementation
-                    \begin{enumerate}
-                        \item Use \procedurehr{2.15} on $\langle p,X\rangle$ to construct $\langle a_1,q_1\rangle$.
-                        \item Let $a=2a_1$.
-                        \item Let $q(y,z)$ be the following procedure:
-                        \begin{enumerate}
-                            \item Show that $\lVert\Im(\Lambda(p,z))\rVert\le a_1\lVert\Im(z)\rVert$ using procedure $q_1$.
-                            \item Show that $\Lambda(p,\Re(z)+\Im(z))\Lambda(p,\Re(z)-\Im(z))=\lVert\Lambda(p,z)\rVert^2\le 0$ using \procedurehr{fri1402201213}.
-                            \item Hence using \procedurehr{thu3001201131} show that $\lVert\Lambda(p,\Re(z)\pm\Im(z))\rVert$
-                            \begin{enumerate}
-                                \item $\le\lVert\Lambda(p,\Re(z)+\Im(z))\rVert+\lVert\Lambda(p,\Re(z)-\Im(z))\rVert$
-                                \item $=\lVert\Lambda(p,\Re(z)+\Im(z))-\Lambda(p,\Re(z)-\Im(z))\rVert$
-                                \item $=2\lVert\Im(\Lambda(p,z))\rVert$
-                                \item $\le 2a_1\lVert z-y\rVert$
-                                \item $\le a\lVert z-y\rVert$.
-                            \end{enumerate}
-                        \end{enumerate}
-                        \item \textbf{Yield the tuple $\langle a,q\rangle$.}
-                    \end{enumerate}
+        \procedure{thu3001201111}
+          \objective
+            Choose a polynomial $p$ and a rational number $X$. The objective of the following instructions is to construct a rational number $a>0$ and a procedure $q(z)$ to show that $\lVert\Lambda(p,\Re(z)\pm\Im(z))\rVert\le a\lVert\Im(z)\rVert$ when a perplex number $z$ such that $z\subseteq X\ju$, and $\lVert\Lambda(p,z)\rVert^2\le 0$ are chosen.
+          \implementation
+            \begin{enumerate}
+              \item Use \procedurehr{2.15} on $\langle p,X\rangle$ to construct $\langle a_1,q_1\rangle$.
+              \item Let $a=2a_1$.
+              \item Let $q(y,z)$ be the following procedure:
+              \begin{enumerate}
+                \item Show that $\lVert\Im(\Lambda(p,z))\rVert\le a_1\lVert\Im(z)\rVert$ using procedure $q_1$.
+                \item Show that $\Lambda(p,\Re(z)+\Im(z))\Lambda(p,\Re(z)-\Im(z))=\lVert\Lambda(p,z)\rVert^2\le 0$ using \procedurehr{fri1402201213}.
+                \item Hence using \procedurehr{thu3001201131} show that $\lVert\Lambda(p,\Re(z)\pm\Im(z))\rVert$
+                \begin{enumerate}
+                  \item $\le\lVert\Lambda(p,\Re(z)+\Im(z))\rVert+\lVert\Lambda(p,\Re(z)-\Im(z))\rVert$
+                  \item $=\lVert\Lambda(p,\Re(z)+\Im(z))-\Lambda(p,\Re(z)-\Im(z))\rVert$
+                  \item $=2\lVert\Im(\Lambda(p,z))\rVert$
+                  \item $\le 2a_1\lVert z-y\rVert$
+                  \item $\le a\lVert z-y\rVert$.
+                \end{enumerate}
+              \end{enumerate}
+              \item \textbf{Yield the tuple $\langle a,q\rangle$.}
+            \end{enumerate}
         \procedure{sat0102201050}
 			    \objective
-				    Choose a polynomial $f$ and rational numbers $c,d,B$ such that $c\le d$, $\Lambda(f,c)\Lambda(f,d)\le 0$ and $B>0$. The objective of the following instructions is to construct rational numbers $e,h$ such that $c\le e\le h\le d$, $\lVert h-e\rVert<B$ and $\Lambda(f,e)\Lambda(f,h)\le 0$.
+				    Choose a polynomial $f$, a perplex number $c$, and a rational number $B$ such that $\lVert\Lambda(f,c)\rVert^2\le 0$ and $B>0$. The objective of the following instructions is to construct a perplex number $e$ such that $e\subseteq c$, $\lVert\Im(e)\rVert<B$ and $\lVert\Lambda(f,e)\rVert^2\le 0$.
 			    \implementation
 				    \begin{enumerate}
-					    \item If $\lVert d-c\rVert<B$, then do the following:
+					    \item If $\lVert\Im(c)\rVert<B$, then do the following:
 					    \begin{enumerate}
-					      \item \textbf{Yield the tuple $\langle c,d\rangle$.}
+					      \item \textbf{Yield the tuple $\langle c\rangle$.}
 					    \end{enumerate}
 					    \item Otherwise do the following:
 					    \begin{enumerate}
-						    \item Let $g=\frac{c+d}{2}$.
-						    \item \textbf{Show that $c<g<d$.}
-						    \item Show that $\lVert g-c\rVert=\lVert d-g\rVert=\frac{d-c}{2}$.
-						    \item If $\Lambda(f,c)\Lambda(f,g)\le 0$, then do the following:
+						    \item Let $g=(\Re(c)-\Im(c))\kcu+\Re(c)\ku$ and show that $g\subseteq c$ and $\lVert\Im(g)\rVert=\frac{1}{2}\lVert\Im(c)\rVert$.
+						    \item Let $m=\Re(c)\kcu+(\Re(c)+\Im(c))\ku$ and show that $m\subseteq c$ and $\lVert\Im(m)\rVert=\frac{1}{2}\lVert\Im(c)\rVert$.
+						    \item Show that $\Re(c)-\Im(c)=\Re(g)-\Im(g)$, $\Re(g)+\Im(g)=\Re(m)-\Im(m)$, and $\Re(m)+\Im(m)=\Re(c)+\Im(c)$.
+						    \item If $\lVert\Lambda(f,g)\rVert^2\le 0$, then do the following:
 						    \begin{enumerate}
-							    \item Use \procedurehr{sat0102201050} on $\langle f,c,g,B\rangle$ to construct $\langle e,h\rangle$ and show that:
+							    \item Use \procedurehr{sat0102201050} on $\langle f,g,B\rangle$ to construct $\langle e,h\rangle$ and show that:
 							    \begin{enumerate}
-							      \item $c\le e\le h\le g<d$
-							      \item $\Lambda(f,e)\Lambda(f,h)\le 0$.
+							      \item $e\subseteq g\subseteq c$
+							      \item $\lVert\Im(e)\rVert<B$
+							      \item $\lVert\Lambda(f,e)\rVert^2\le 0$.
 							    \end{enumerate}
 						    \end{enumerate}
 						    \item Otherwise do the following:
 						    \begin{enumerate}
-						      \item Show that $\Lambda(f,g)\Lambda(f,d)=\frac{\Lambda(f,g)}{\Lambda(f,c)}\Lambda(f,c)\Lambda(f,d)\le 0$ given that
+						      \item Given that $\lVert\Lambda(f,c)\rVert^2\le 0$ and $\lVert\Lambda(f,g)\rVert^2>0$, show that $\lVert\Lambda(f,m)\rVert^2$
 						      \begin{enumerate}
-						        \item $\Lambda(f,c)\Lambda(f,g)>0$
-						        \item and $\Lambda(f,c)\Lambda(f,d)\le 0$.
+						        \item $=\Lambda(f,\Re(m)-\Im(m))\Lambda(f,\Re(m)+\Im(m))$
+						        \item $=\frac{\Lambda(f,\Re(m)-\Im(m))}{\Lambda(f,\Re(g)-\Im(g))}\Lambda(f,\Re(g)-\Im(g))\Lambda(f,\Re(m)+\Im(m))$
+						        \item $=\frac{\Lambda(f,\Re(g)+\Im(g))}{\Lambda(f,\Re(g)-\Im(g))}\lVert\Lambda(f,c)\rVert^2$
+						        \item $\le 0$.
 						      \end{enumerate}
-							    \item Hence use \procedurehr{sat0102201050} on $\langle f,g,d,B\rangle$ to construct $\langle e,h\rangle$ and show that:
+							    \item Hence use \procedurehr{sat0102201050} on $\langle f,m,B\rangle$ to construct $\langle e\rangle$ and show that:
 							    \begin{enumerate}
-							      \item $c<g\le e\le h\le d$
-							      \item $\Lambda(f,e)\Lambda(f,h)\le 0$.
+							      \item $e\subseteq m\subseteq c$
+							      \item $\lVert\Im(e)\rVert<B$
+							      \item $\lVert\Lambda(f,e)\rVert^2\le 0$.
 							    \end{enumerate}
 						    \end{enumerate}
-						    \item \textbf{Yield the tuple $\langle e,h\rangle$.}
+						    \item \textbf{Yield the tuple $\langle e\rangle$.}
 					    \end{enumerate}
 				    \end{enumerate}
 		    \procedure{2.17}
 			    \objective
-				    Choose a polynomial $f$ and rational numbers $a,b,B$ such that $a\le b$, $\Lambda(f,a)\Lambda(f,b)\le 0$, and $B>0$. The objective of the following instructions is to construct a rational number $d$ such that $a\le d\le b$ and $\lVert \Lambda(f,d)\rVert<B$.
+				    Choose a polynomial $f$, a perplex number $a$, and a rational number $B$ such that $\lVert\Lambda(f,a)\rVert^2\le 0$ and $B>0$. The objective of the following instructions is to construct a rational number $d$ such that $d\subseteq a$ and $\lVert\Lambda(f,d)\rVert<B$.
 			    \implementation
 				    \begin{enumerate}
 					    \item Use \procedurehr{thu3001201111} on $\langle f,\max(\lvert a\rvert,\lvert b\rvert)\rangle$ to construct $\langle G,q\rangle$.
-					    \item Use \procedurehr{sat0102201050} on $\langle f,a,b,\frac{B}{G}\rangle$ to construct $\langle c,d\rangle$ and show that:
+					    \item Use \procedurehr{sat0102201050} on $\langle f,a,\frac{B}{G}\rangle$ to construct $\langle c\rangle$ and show that:
 					    \begin{enumerate}
-					      \item $a\le c\le d\le b$
-					      \item $\lVert d-c\rVert\le\frac{B}{G}$
-					      \item $\Lambda(f,a)\Lambda(f,b)\le 0$.
+					      \item $c\subseteq a$
+					      \item $\lVert\Im(c)\rVert\le\frac{B}{G}$
+					      \item $\lVert\Lambda(f,c)\rVert^2\le 0$.
 					    \end{enumerate}
-					    \item \textbf{Use procedure $q$ on $\langle c,d\rangle$ to show that $\lVert\Lambda(f,d)\rVert\le G\lVert d-c\rVert\le G\frac{B}{G}=B$.}
+					    \item Let $d=\Re(c)+\Im(c)$.
+					    \item \textbf{Use procedure $q$ on $\langle c\rangle$ to show that $\lVert\Lambda(f,d)\rVert\le G\lVert\Im(c)\rVert\le G\frac{B}{G}=B$.}
+					    \item \textbf{Yield the tuple $\langle d\rangle$.}
 				    \end{enumerate}
 		    \procedure{2.18}
 			    \objective
