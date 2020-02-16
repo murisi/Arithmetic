@@ -2825,6 +2825,8 @@
 					      \item $a\supset b$ using \declarationhr{wed0502201655} given that $\lVert b-a\rVert^2<0$ and $\Im(b-a)<0$.
 					    \end{enumerate}
 				    \end{enumerate}
+				\declaration{sun1602200918}
+				  The phrases "$a$ and $b$ intersect", "$a$ and $b$ are disjoint", and "$a$ and $b$ adjoin", where $a$ and $b$ are perplex numbers, will be used to paraphrase $\lVert b-\conj{a}\rVert^2\le 0$, $\lVert b-\conj{a}\rVert^2\ge 0$, and $\lVert b-\conj{a}\rVert^2=0$ respectively.
 		    \procedure{sat0802201500}
 			    \objective
 				    Choose a list of positive perplex numbers $a$. The objective of the following instructions is to show that $\lVert\sum_r^{[0:{\lvert a\rvert}]}a_r\rVert^2\ge\sum_r^{[0:{\lvert a\rvert}]}\lVert a_r\rVert^2$.
@@ -2962,33 +2964,6 @@
 				        \item $=ac\ku+bd\kcu$.
 				      \end{enumerate}
 				    \end{enumerate}
-				\declaration{sun1602200918}
-				  The phrases "$a$ and $b$ intersect" will be used to paraphrase $\conj{a}\subseteq b$ or $b\subseteq\conj{a}$., "$a$ and $b$ adjoin", and "$a$ and $b$ are disjoint", where $a$ and $b$ are perplex numbers, will be used to paraphrase the relations $\lVert b-\conj{a}\rVert^2\le 0$, $\lVert b-\conj{a}\rVert^2=0$, and $\lVert b-\conj{a}\rVert^2\ge 0$ respectively.
-				\procedure{sun1602200941}
-				  \objective
-				    Choose a perplex number $a$. The objective of the following instructions is to show that $a$ intersects $a$.
-				  \implementation
-				    \begin{enumerate}
-				      \item Show that $a$ intersects $a$ given that $\lVert a-\conj{a}\rVert^2=\lVert 2\Im(a)\ju\rVert^2=-4\Im(a)^2\le 0$.
-				    \end{enumerate}
-				\procedure{sun1602200933}
-				  \objective
-				    Choose two perplex numbers $a,b$ such that $a$ and $b$ intersect. The objective of the following instructions is to show that $b$ and $a$ intersect.
-				  \implementation
-				    \begin{enumerate}
-				      \item Show that $\lVert b-\conj{a}\rVert^2\le 0$ given that $a$ and $b$ intersect.
-				      \item Show that $b$ and $a$ intersect given that $\lVert a-\conj{b}\rVert^2=\lVert\conj{b}-a\rVert^2=\lVert b-\conj{a}\rVert^2\le 0$.
-				    \end{enumerate}
-				\procedure{sun1602200959}
-				  \objective
-				    Choose two perplex numbers $a,b$ such that $a$ and $b$ adjoin. The objective of the following instructions is to show that $b$ and $a$ adjoin.
-				  \implementation
-				    The implementation is analogous to that of \procedurehr{sun1602200933}.
-				\procedure{sun1602201001}
-				  \objective
-				    Choose two perplex numbers $a,b$ such that $a$ and $b$ are disjoint. The objective of the following instructions is to show that $b$ and $a$ are disjoint.
-				  \implementation
-				    The implementation is analogous to that of \procedurehr{sun1602200933}.
 	    \end{multicols*}
 	  \chapter{Polynomial Arithmetic}
 	    \begin{multicols*}{2}
