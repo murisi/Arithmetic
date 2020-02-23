@@ -3512,6 +3512,37 @@
 				        \item $=\Lambda(a,\Re(b)-\Im(b))\Lambda(a,\Re(b)+\Im(b))$.
 				      \end{enumerate}
 				    \end{enumerate}
+				\procedure{mon1702200807}
+				  \objective
+				    Choose a polynomial $a$ and a perplex number $b$. The objective of the following instructions is to show that $\conj{\Lambda(a,b)}=\Lambda(a,\conj{b})$.
+				  \implementation
+				    \begin{enumerate}
+				      \item Show that $\conj{\Lambda(a,b)}$
+				      \begin{enumerate}
+				        \item $=\conj{\sum_r^{[0:\lvert a\rvert]}a_rb^r}$
+				        \item $=\sum_r^{[0:\lvert a\rvert]}\conj{a_rb^r}$
+				        \item $=\sum_r^{[0:\lvert a\rvert]}a_r\conj{b}^r$
+				        \item $=\Lambda(a,\conj{b})$.
+				      \end{enumerate}
+				    \end{enumerate}
+				\procedure{mon1702200743}
+				  \objective
+				    Choose a polynomial $a$ and two adjoint perplex numbers $b,c$. The objective of the following instructions is to show that $\Lambda(a,b)$ and $\Lambda(a,c)$ are adjoint.
+				  \implementation
+				    \begin{enumerate}
+				      \item Show that $\lVert c-\conj{b}\rVert^2=0$ given that $b$ and $c$ are adjoint.
+				      \item Using \procedurehr{mon1702200807}, show that $\lVert\Lambda(a,c)-\conj{\Lambda(a,b)}\rVert^2$
+				      \begin{enumerate}
+				        \item $=\lVert\Lambda(a,c)-\Lambda(a,\conj{b})\rVert^2$
+				        \item $=\lVert\sum_r^{[0:\lvert a\rvert]}a_rc^r-\sum_r^{[0:\lvert a\rvert]}a_r\conj{b}^r\rVert^2$
+				        \item $=\lVert\sum_r^{[0:\lvert a\rvert]}a_r(c^r-\conj{b}^r)\rVert^2$
+				        \item $=\lVert\sum_r^{[0:\lvert a\rvert]}a_r(c-\conj{b})\sum_t^{[0:r]}c^t\conj{b}^{r-1-t}\rVert^2$
+				        \item $=\lVert c-\conj{b}\rVert^2\lVert\sum_r^{[0:\lvert a\rvert]}a_r\sum_t^{[0:r]}c^t\conj{b}^{r-1-t}\rVert^2$
+				        \item $=0\lVert\sum_r^{[0:\lvert a\rvert]}a_r\sum_t^{[0:r]}c^t\conj{b}^{r-1-t}\rVert^2$
+				        \item $=0$.
+				      \end{enumerate}
+				      \item \textbf{Hence show that $\Lambda(a,b)$ and $\Lambda(a,c)$ are adjoint.}
+				    \end{enumerate}
 	    \end{multicols*}
 	  \chapter{Polynomial Sign Changes}
 	    \begin{multicols*}{2}
@@ -3617,8 +3648,8 @@
                   \item $\le\lVert\Lambda(p,\Re(z)+\Im(z))\rVert+\lVert\Lambda(p,\Re(z)-\Im(z))\rVert$
                   \item $=\lVert\Lambda(p,\Re(z)+\Im(z))-\Lambda(p,\Re(z)-\Im(z))\rVert$
                   \item $=2\lVert\Im(\Lambda(p,z))\rVert$
-                  \item $\le 2a_1\lVert z-y\rVert$
-                  \item $\le a\lVert z-y\rVert$.
+                  \item $\le 2a_1\lVert\Im(z)\rVert$
+                  \item $\le a\lVert\Im(z)\rVert$.
                 \end{enumerate}
               \end{enumerate}
               \item \textbf{Yield the tuple $\langle a,q\rangle$.}
