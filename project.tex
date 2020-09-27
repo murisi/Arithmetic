@@ -8,6 +8,7 @@
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{glossaries}
+\usepackage{stackrel}
 \usepackage{multicol}
 \usepackage{tikz}
 \usepackage{enumitem}
@@ -55,6 +56,8 @@
 \DeclareMathOperator{\De}{de}
 \DeclareMathOperator{\Po}{po}
 \DeclareMathOperator{\Ne}{ne}
+\DeclareMathOperator{\subsetnsim}{\stackrel[\nsim]{}{\subset}}
+\DeclareMathOperator{\supsetnsim}{\stackrel[\nsim]{}{\supset}}
 \let\div\relax\DeclareMathOperator{\div}{div}
 \let\Re\relax\DeclareMathOperator{\Re}{re}
 \let\Im\relax\DeclareMathOperator{\Im}{im}
@@ -63,7 +66,8 @@
 \newcommand{\for}{\text{ for }}
 \newcommand{\ul}[1]{\protect\underline{#1}}
 \newcommand{\ol}[1]{\overline{#1}}
-\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\conj}[1]{{(#1)^{-}}}
+\newcommand{\pmconj}[1]{{(#1)^{\pm}}}
 \newcommand{\iu}{i}
 \newcommand{\ju}{j}
 \newcommand{\ku}{k}
@@ -196,6 +200,7 @@
 \newglossaryentry{perplex1/a}{name=\ensuremath{\frac{1}{a}},description={perplex reciprocal}}
 \newglossaryentry{perplexj}{name=\ensuremath{\ju},description={perplex imaginary unit}}
 \newglossaryentry{perplexk}{name=\ensuremath{\ku},description={perplex positive diagonal}}
+\newglossaryentry{ratperplexmu}{name=\ensuremath{\mu_p(x)},description={perplex absolute conjugate}}
 \newglossaryentry{ratpolyJ}{name=\ensuremath{\jsc_s(x)},description={}}
 \newglossaryentry{ratpolySturm}{name={Sturm chain},description={}}
 \newglossaryentry{complex}{name={complex number},description={}}
@@ -2825,6 +2830,8 @@
 					      \item $a\supset b$ using \declarationhr{wed0502201655} given that $\lVert b-a\rVert^2<0$ and $\Im(b-a)<0$.
 					    \end{enumerate}
 				    \end{enumerate}
+				\declaration{tue2502201203}
+				  The phrases "proper perplex number" and "improper perplex number" will be used as shorthands for perplex numbers, $a$, such that $\Im(a)\ge 0$ and $\Im(a)\le 0$ respectively.
 				\declaration{sun1602200918}
 				  The phrases "$a$ and $b$ intersect", "$a$ and $b$ are disjoint", and "$a$ and $b$ adjoin", where $a$ and $b$ are perplex numbers, will be used to paraphrase $\lVert b-\conj{a}\rVert^2\le 0$, $\lVert b-\conj{a}\rVert^2\ge 0$, and $\lVert b-\conj{a}\rVert^2=0$ respectively.
 		    \procedure{sat0802201500}
@@ -3609,7 +3616,7 @@
                     \end{enumerate}
 		    \procedure{2.15}
 			    \objective
-				    Choose a polynomial $p$ and a rational number $X$. The objective of the following instructions is to construct a rational number $a$ and a procedure $q(z)$ to show that $\lVert\Im(\Lambda(p,z))\rVert\le a\lVert\Im(z)\rVert$ when a perplex number $z$ such that $z\subseteq X\ju$ are chosen.
+				    Choose a polynomial $p$ and a rational number $X$. The objective of the following instructions is to construct a rational number $a$ and a procedure $q(z)$ to show that $\lVert\Im(\Lambda(p,z))\rVert\le a\lVert\Im(z)\rVert$ when a proper perplex number $z$ such that $z\subseteq X\ju$ are chosen.
 			    \implementation
 				    \begin{enumerate}
 					    \item Let $a=\sum_{r}^{[1:\lvert p\rvert]}r\lVert p_r\rVert X^{r-1}$.
@@ -3634,7 +3641,7 @@
 				    \end{enumerate}
         \procedure{thu3001201111}
           \objective
-            Choose a polynomial $p$ and a rational number $X$. The objective of the following instructions is to construct a rational number $a>0$ and a procedure $q(z)$ to show that $\lVert\Lambda(p,\Re(z)\pm\Im(z))\rVert\le a\lVert\Im(z)\rVert$ when a perplex number $z$ such that $z\subseteq X\ju$, and $\lVert\Lambda(p,z)\rVert^2\le 0$ are chosen.
+            Choose a polynomial $p$ and a rational number $X$. The objective of the following instructions is to construct a rational number $a>0$ and a procedure $q(z)$ to show that $\lVert\Lambda(p,\Re(z)\pm\Im(z))\rVert\le a\lVert\Im(z)\rVert$ when a proper perplex number $z$ such that $z\subseteq X\ju$, and $\lVert\Lambda(p,z)\rVert^2\le 0$ are chosen.
           \implementation
             \begin{enumerate}
               \item Use \procedurehr{2.15} on $\langle p,X\rangle$ to construct $\langle a_1,q_1\rangle$.
@@ -3656,7 +3663,7 @@
             \end{enumerate}
         \procedure{sat0102201050}
 			    \objective
-				    Choose a polynomial $f$, a perplex number $c$, and a rational number $B$ such that $\lVert\Lambda(f,c)\rVert^2\le 0$ and $B>0$. The objective of the following instructions is to construct a perplex number $e$ such that $e\subseteq c$, $\lVert\Im(e)\rVert<B$ and $\lVert\Lambda(f,e)\rVert^2\le 0$.
+				    Choose a polynomial $f$, a proper perplex number $c$, and a rational number $B$ such that $\lVert\Lambda(f,c)\rVert^2\le 0$ and $B>0$. The objective of the following instructions is to construct a proper perplex number $e$ such that $e\subseteq c$, $\Im(e)<B$ and $\lVert\Lambda(f,e)\rVert^2\le 0$.
 			    \implementation
 				    \begin{enumerate}
 					    \item If $\lVert\Im(c)\rVert<B$, then do the following:
@@ -3698,20 +3705,119 @@
 				    \end{enumerate}
 		    \procedure{2.17}
 			    \objective
-				    Choose a polynomial $f$, a perplex number $a$, and a rational number $B$ such that $\lVert\Lambda(f,a)\rVert^2\le 0$ and $B>0$. The objective of the following instructions is to construct a rational number $d$ such that $d\subseteq a$ and $\lVert\Lambda(f,d)\rVert<B$.
+				    Choose a polynomial $f$, a proper perplex number $a$, and a rational number $B$ such that $\lVert\Lambda(f,a)\rVert^2\le 0$ and $B>0$. The objective of the following instructions is to construct a proper perplex number $d$ such that $d\subseteq a$, $\lVert\Lambda(f,d)\rVert^2\le 0$, and $\lVert\Im(\Lambda(f,d))\rVert<B$.
 			    \implementation
 				    \begin{enumerate}
-					    \item Use \procedurehr{thu3001201111} on $\langle f,\max(\lvert a\rvert,\lvert b\rvert)\rangle$ to construct $\langle G,q\rangle$.
+					    \item Use \procedurehr{2.15} on $\langle f,\lVert\Re(a)\rVert+\lVert\Im(b)\rVert\rangle$ to construct $\langle G,q\rangle$.
 					    \item Use \procedurehr{sat0102201050} on $\langle f,a,\frac{B}{G}\rangle$ to construct $\langle c\rangle$ and show that:
 					    \begin{enumerate}
 					      \item $c\subseteq a$
 					      \item $\lVert\Im(c)\rVert\le\frac{B}{G}$
 					      \item $\lVert\Lambda(f,c)\rVert^2\le 0$.
 					    \end{enumerate}
-					    \item Let $d=\Re(c)+\Im(c)$.
-					    \item \textbf{Use procedure $q$ on $\langle c\rangle$ to show that $\lVert\Lambda(f,d)\rVert\le G\lVert\Im(c)\rVert\le G\frac{B}{G}=B$.}
-					    \item \textbf{Yield the tuple $\langle d\rangle$.}
+					    \item \textbf{Use procedure $q$ on $\langle c\rangle$ to show that $\lVert\Im(\Lambda(f,c))\rVert\le G\lVert\Im(c)\rVert\le G\frac{B}{G}=B$.}
+					    \item \textbf{Yield the tuple $\langle c\rangle$.}
 				    \end{enumerate}
+				\declaration{tue2502201328}
+	        The notation \gls{ratperplexmu}, where $x$ is a perplex number and $p$ is a perplex polynomial, will be used as a shorthand for $x$ if $\Im(\Lambda(p,x))>0$ and $\conj{x}$ if $\Im(\Lambda(p,x))<0$.
+	      \procedure{tue2502201349}
+	        \objective
+	          Choose a perplex polynomial $p$ and an increasing list of pairwise disjoint proper perplex numbers $r$ such that $\lvert r\rvert=\deg(p)$ and $-\Lambda(p,r_i)\sim\pm\ju\sim\Lambda(p,\conj{r_i})$ for $0<i<\lvert r\rvert$. The objective of the following instructions is to construct a list of perplex numbers $t$ such that $\lvert t\rvert=\lvert r\rvert$ and $\mu_\lambda(t_i)\subseteq r_i$ for $0<i<\lvert r\rvert$, and a procedure $q(x)$ to show that $\Lambda(p,x)\supseteq p_{\lvert t\rvert}\prod_{m}^{[0:\lvert t\rvert]}(x-\pmconj{t_m})$ when a perplex number $x$ that is disjoint from $r$ is chosen.
+	        \implementation
+	          \begin{instructions}
+	            \item If $\deg(p)=0$, then do the following:
+	            \begin{instructions}
+	              \item Let $t=\langle\rangle$.
+	              \item Let $q(x)$ be the following procedure:
+	              \begin{instructions}
+	                \item Show that $\Lambda(p,x)$
+	                \begin{instructions}
+	                  \item $=p_0$
+	                  \item $\supseteq p_{\lvert t\rvert}\prod_{m}^{[0:\lvert t\rvert]}(x-\pmconj{t_m})$.
+	                \end{instructions}
+	              \end{instructions}
+	              \item \textbf{Yield the tuple $\langle t,q\rangle$.}
+	            \end{instructions}
+	            \item Otherwise do the following:
+	            \begin{instructions}
+	              \item Let $z=\max(\Lambda(p,\mu_p(r))\conj{\ku})+\min(\Lambda(p,\mu_p(r))\ku)$.
+	              \item Let $y=\min(-(\Re(z)-\Im(z)),\Re(z)+\Im(z))$.
+	              \item Use \procedurehr{2.17} on $\langle p,r_0,\frac{1}{2}y\rangle$ to construct $t_0$ and show that:
+	              \begin{instructions}
+	                \item $t_0$ is a proper perplex number
+	                \item $t_0\subseteq r_0$
+	                \item $\lVert\Lambda(p,t_0)\rVert^2\le 0$
+	                \item $\lVert\Im(\Lambda(p,t_0))\rVert<\frac{1}{2}y$.
+	              \end{instructions}
+	              \item Hence show that $\Lambda(p,\mu_p(t_0))\subseteq y\ju\subseteq z$.
+	              \item Let $d=\sum_m^{[0:\lvert r\rvert+1]}p_m\sum_n^{[0:m]}\lambda^n{t_0}^{m-1-n}$.
+	              \item For $i$ in $[1:\lvert r\rvert]$, do the following:
+	              \begin{instructions}
+	                \item Show that $\Lambda(p,\mu_p(t_0))\subseteq z\subseteq\Lambda(p,\mu_p(r_i))$.
+	                \item Hence show that $-(r_i-t_0)\Lambda(d,r_i)$
+	                \begin{instructions}
+	                  \item $=-\Lambda(\lambda-t_0,r_i)\Lambda(d,r_i)$
+	                  \item $=-\Lambda((\lambda-t_0)d,r_i)$
+	                  \item $=-(\Lambda(p,r_i)-\Lambda(p,t_0))$
+	                  \item $\sim-\Lambda(p,r_i)$
+	                  \item $\sim\pm\ju$
+	                  \item $\sim\Lambda(p,\conj{r_i})$
+	                  \item $\sim\Lambda(p,\conj{r_i})-\Lambda(p,t_0)$
+	                  \item $=\Lambda((\lambda-t_0)d,\conj{r_i})$
+	                  \item $=\Lambda(\lambda-t_0,\conj{r_i})\Lambda(d,\conj{r_i})$
+	                  \item $=(\conj{r_i}-t_0)\Lambda(d,\conj{r_i})$
+	                \end{instructions}
+	                \item Hence show that $-\Lambda(d,r_i)\sim\pm\ju\sim\Lambda(d,\conj{r_i})$
+	                \begin{instructions}
+	                  \item given that $r_i-t_0>0$
+	                  \item and $\conj{r_i}-t_0>0$.
+	                \end{instructions}
+	              \end{instructions}
+	              \item Use \procedurehr{tue2502201349} on $\langle d,r_{[1:\lvert r\rvert]}\rangle$ to construct $\langle t_{[1:\lvert r\rvert]},u\rangle$.
+	              \item Use \procedurehr{thu2702201419} on $\langle d,r_{[1:\lvert r\rvert]}\rangle$ to construct $\langle t_{[1:\lvert r\rvert]},w\rangle$.
+	              \item Let $q(x)$ be the following procedure:
+	              \begin{instructions}
+	                \item If $x>\mu_p(t_0)$, then do the following:
+	                \begin{instructions}
+	                  \item Using procedure $u$, show that $\Lambda(d,x)$
+	                  \begin{instructions}
+	                    \item $\supseteq d_{\lvert t\rvert-1}\prod_{m}^{[1:\lvert t\rvert]}(x-\pmconj{t_m})$
+	                    \item $=p_{\lvert t\rvert}\prod_{m}^{[1:\lvert t\rvert]}(x-\pmconj{t_m})$.
+	                  \end{instructions}
+	                  \item Given that $x-\mu_p(t_0)>0$, show that $\Lambda(p,x)$
+	                  \begin{instructions}
+	                    \item $=\Lambda((\lambda-\mu_p(t_0))d,x)+\Lambda(p,\mu_p(t_0))$
+	                    \item $\supseteq\Lambda((\lambda-\mu_p(t_0))d,x)$
+	                    \item $=(x-\mu_p(t_0))\Lambda(d,x)$
+	                    \item $\supseteq(x-\mu_p(t_0))p_{\lvert t\rvert}\prod_{m}^{[1:\lvert t\rvert]}(x-\pmconj{t_m})$
+	                    \item $=p_{\lvert t\rvert}\prod_{m}^{[0:\lvert t\rvert]}(x-\pmconj{t_m})$.
+	                  \end{instructions}
+	                \end{instructions}
+	                \item Otherwise if $x<\mu_p(t_0)$, then do the following:
+	                \begin{instructions}
+	                  \item Using procedure $w$, show that $\Lambda(d,x)$
+	                  \begin{instructions}
+	                    \item $\subseteq d_{\lvert t\rvert-1}\prod_{m}^{[1:\lvert t\rvert]}(x-\pmconj{t_m})$
+	                    \item $=p_{\lvert t\rvert}\prod_{m}^{[1:\lvert t\rvert]}(x-\pmconj{t_m})$.
+	                  \end{instructions}
+	                  \item Given that $x-\mu_p(t_0)<0$, show that $\Lambda(p,x)$
+	                  \begin{instructions}
+	                    \item $=\Lambda((\lambda-\mu_p(t_0))d,x)+\Lambda(p,\mu_p(t_0))$
+	                    \item $\supseteq\Lambda((\lambda-\mu_p(t_0))d,x)$
+	                    \item $=(x-\mu_p(t_0))\Lambda(d,x)$
+	                    \item $\supseteq(x-\mu_p(t_0))p_{\lvert t\rvert}\prod_{m}^{[1:\lvert t\rvert]}(x-\pmconj{t_m})$
+	                    \item $=p_{\lvert t\rvert}\prod_{m}^{[0:\lvert t\rvert]}(x-\pmconj{t_m})$.
+	                  \end{instructions}
+	                \end{instructions}
+	              \end{instructions}
+	              \item \textbf{Yield the tuple $\langle t,q\rangle$.}
+	            \end{instructions}
+	          \end{instructions}
+	      \procedure{thu2702201419}
+	        \objective
+	          Choose a perplex polynomial $p$ and an increasing list of pairwise disjoint proper perplex numbers $r$ such that $\lvert r\rvert=\deg(p)$ and $-\Lambda(p,r_i)\sim\pm\ju\sim\Lambda(p,\conj{r_i})$ for $0<i<\lvert r\rvert$. The objective of the following instructions is to construct a list of perplex numbers $t$ such that $\lvert t\rvert=\lvert r\rvert$ and $\mu_\lambda(t_i)\subseteq r_i$ for $0<i<\lvert r\rvert$, and a procedure $q(x)$ to show that $\Lambda(p,x)\subseteq p_{\lvert t\rvert}\prod_{m}^{[0:\lvert t\rvert]}(x-\pmconj{t_m})$ when a perplex number $x$ that is disjoint from $r$ is chosen.
+	        \implementation
+	          Implementation is analogous to that of \procedurehr{tue2502201349}.
 		    \procedure{2.18}
 			    \objective
 				    Choose a polynomial $f\ne 0$ and pairs of rational numbers $(a_{\deg(f)},b_{\deg(f)}),(a_{\deg(f)-1},b_{\deg(f)-1}),\cdots,(a_0,b_0)$ in such a way that:
